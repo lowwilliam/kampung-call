@@ -3687,8 +3687,7 @@ const FUTURE_DELIVERIES=[
   pickup:"Mesh node is offline after a power interruption. Verify the main router first, then re-pair the extender near the router.",
   drop:"Mesh pairing is stable. Node returned to its coverage position and final connection test passed; ticket notes recorded."},
 ];
-// Start with the clearest onboarding call, then widen into increasingly varied
-// faults and neighbourhoods across the full island shift.
+// Pool of calls for each shift. buildRoute() randomizes their visit order.
 const DELIVERIES=[
   FUTURE_DELIVERIES[4], // router installation
   FUTURE_DELIVERIES[0], // optical fault / escalation
@@ -3800,8 +3799,16 @@ const DIAGNOSTIC_CASES={
 let stage=0, holding=false, questCooldown=0, finished=false, startTime=null, shiftMistakes=0;
 let route=DELIVERIES.map((_,i)=>i);
 function cur(){ return DELIVERIES[route[stage]]; }
+function shuffled(items){
+  const result=[...items];
+  for(let i=result.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [result[i],result[j]]=[result[j],result[i]];
+  }
+  return result;
+}
 function buildRoute(){
-  route=DELIVERIES.map((_,i)=>i);
+  route=shuffled(DELIVERIES.map((_,i)=>i));
 }
 
 const chit=document.getElementById('chit');
@@ -4148,13 +4155,15 @@ const repairOptions=document.getElementById('repair-options');
 const repairFeedback=document.getElementById('repair-feedback');
 let diagnosing=false,diagnosticStep=0,diagnosticTarget=null;
 let diagnosticPatience=3,diagnosticResolved=false,visitMistakes=0;
+let diagnosticOptions=[];
 function renderDiagnostic(){
   const fault=DIAGNOSTIC_CASES[cur().item],round=fault.rounds[diagnosticStep];
+  diagnosticOptions=shuffled(round.options);
   document.getElementById('repair-complaint').textContent=fault.complaint;
   document.getElementById('repair-progress').textContent=`CLUE ${diagnosticStep+1} / ${fault.rounds.length}`;
   document.getElementById('repair-patience').textContent=`PATIENCE ${'♥'.repeat(diagnosticPatience)}${'♡'.repeat(3-diagnosticPatience)}`;
   document.getElementById('repair-question').textContent=round.question;
-  repairOptions.innerHTML=round.options.map((option,i)=>
+  repairOptions.innerHTML=diagnosticOptions.map((option,i)=>
     `<button class="repair-option" data-choice="${i}"><span class="repair-key">${i+1}</span><span>${option[0]}</span></button>`).join('');
   repairFeedback.className='';repairFeedback.textContent='';
   repairAction.classList.remove('show');
@@ -4178,7 +4187,7 @@ function finishDiagnosis(){
 }
 function chooseDiagnostic(choice,button){
   if(!diagnosing||diagnosticResolved||button.disabled)return;
-  const option=DIAGNOSTIC_CASES[cur().item].rounds[diagnosticStep].options[choice];
+  const option=diagnosticOptions[choice];
   if(option[1]){
     diagnosticResolved=true;
     [...repairOptions.children].forEach(b=>b.disabled=true);
@@ -4659,7 +4668,8 @@ document.getElementById('begin').addEventListener('click',()=>{
   buildRoute();
   stageOpening();
   updateChit();
-  showToast('Dispatch', 'Kai is waiting at home. Bring the new router online.');
+  const firstCall=cur(),firstCustomer=NPC_DEFS[firstCall.from];
+  showToast('Dispatch', `${firstCustomer.name} is waiting at ${firstCustomer.place}. Diagnose the reported service issue.`);
   started=true; startTime=performance.now();
   const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
   swoopFromPos.copy(camera.position);
