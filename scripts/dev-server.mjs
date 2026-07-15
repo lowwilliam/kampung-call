@@ -7,7 +7,7 @@ const port = Number(process.env.PORT || 4173);
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.json': 'application/json', '.glb': 'model/gltf-binary', '.mp3': 'audio/mpeg', '.png': 'image/png' };
 const server = http.createServer((request, response) => {
   const requestPath = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
-  const relative = requestPath === '/' || requestPath === '/kampung-post' ? 'kampung-post.html' : requestPath.replace(/^\//, '');
+  const relative = requestPath === '/' || requestPath === '/kampung-call' ? 'kampung-call.html' : requestPath.replace(/^\//, '');
   const target = path.resolve(root, relative);
   if (!target.startsWith(`${root}${path.sep}`) || !fs.existsSync(target) || !fs.statSync(target).isFile()) {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });

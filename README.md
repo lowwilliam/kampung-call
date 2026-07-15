@@ -1,4 +1,4 @@
-# Kampung Calls
+# Kampung Call
 
 An interactive Three.js neighbourhood mission set across a stylised Singapore. Make your rounds, help six neighbours, and bring the kampung back together.
 
@@ -21,4 +21,4 @@ npm test
 
 This validates HTML and asset references, the scenario/work-order contract, diagnostic choices and feedback, transitional performance budgets, JSON, and basic formatting. Pull requests and pushes to `main` run the same checks in GitHub Actions.
 
-The application continues to deploy from `kampung-post.html`; `/` rewrites to `/kampung-post` on Vercel. See [docs/COMMERCIAL-READINESS.md](docs/COMMERCIAL-READINESS.md) for the remaining enterprise launch gates.
+The application deploys from `kampung-call.html`; `/` rewrites to `/kampung-call` on Vercel. See [docs/COMMERCIAL-READINESS.md](docs/COMMERCIAL-READINESS.md) for the remaining enterprise launch gates.

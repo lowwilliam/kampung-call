@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/kampung-post"
+      "destination": "/kampung-call"
     }
   ],
   "headers": [
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "source": "/kampung-post",
+      "source": "/kampung-call",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

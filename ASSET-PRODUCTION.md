@@ -28,7 +28,7 @@
 - Preview renders are in `assets/previews/` plus the two earlier hero previews in `assets/`.
 - Static assets are joined by material and Draco-compressed before export.
 - Procedural models remain as graceful fallbacks if a GLB cannot load.
-- `kampung-post.html` scopes hero assets to their intended call location; background residences keep lightweight shared models.
+- `kampung-call.html` scopes hero assets to their intended call location; background residences keep lightweight shared models.
 
 ## Priority 2–6 world pass
 

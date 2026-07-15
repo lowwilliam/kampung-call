@@ -1,4 +1,4 @@
-# Kampung Calls city-planning system
+# Kampung Call city-planning system
 
 The island uses one shared `ROAD_NETWORKS` model for the 3D world, vehicle placement and navigation checks. New districts should connect to this model rather than adding isolated path strips.
 
