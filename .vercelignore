@@ -1,0 +1,10 @@
+.git
+.DS_Store
+ART-DIRECTION.md
+ASSET-PRODUCTION.md
+PRIORITIES-2-6.md
+blender
+assets/**/*.blend
+assets/**/*.blend1
+assets/previews
+assets/*-preview.png
