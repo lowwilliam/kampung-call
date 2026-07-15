@@ -138,6 +138,7 @@
     border-radius:18px;background:linear-gradient(145deg,#bfe0d8,#e8d5a3);
     border:4px solid #fff;box-shadow:0 5px 16px rgba(46,42,37,.18);
   }
+  .dialogue-avatar img{width:100%;height:100%;display:block;object-fit:cover;}
   .avatar-neck{position:absolute;left:49px;top:76px;width:31px;height:25px;background:var(--skin);border-radius:8px;}
   .avatar-shirt{position:absolute;left:20px;bottom:-22px;width:90px;height:67px;background:var(--shirt);border-radius:44px 44px 12px 12px;}
   .avatar-face{position:absolute;left:35px;top:22px;width:61px;height:70px;background:var(--skin);border-radius:44% 44% 48% 48%;}
@@ -150,7 +151,11 @@
   .dialogue-kicker{font:700 10px/1 "Courier New",monospace;letter-spacing:.18em;color:var(--stamp);text-transform:uppercase;}
   #dialogue-name{font-size:21px;line-height:1.15;margin:5px 0 7px;}
   #dialogue-text{font-size:15px;line-height:1.52;min-height:47px;}
-  .dialogue-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px;}
+  .dialogue-footer{display:flex;align-items:center;justify-content:space-between;gap:10px 14px;margin-top:12px;flex-wrap:wrap;}
+  .dialogue-actions{display:flex;align-items:center;gap:8px;}
+  .dialogue-exit,.repair-exit{border:1.5px solid rgba(46,42,37,.2);border-radius:999px;background:transparent;
+    color:var(--ink);padding:9px 13px;cursor:pointer;font:700 10px/1 "Courier New",monospace;letter-spacing:.07em;}
+  .dialogue-exit:hover,.repair-exit:hover{background:rgba(46,42,37,.06);}
   #dialogue-progress{font:700 10px/1 "Courier New",monospace;color:var(--teal);letter-spacing:.12em;}
   #dialogue-next{border:0;border-radius:999px;background:var(--stamp);color:#fff;padding:10px 18px;cursor:pointer;font:700 11px/1 "Courier New",monospace;letter-spacing:.1em;}
   #dialogue-next:hover{transform:translateY(-1px);}
@@ -165,7 +170,12 @@
   #repair-panel.show{display:block;animation:repairIn .22s ease forwards;}
   @keyframes repairIn{to{transform:translate(-50%,-50%) scale(1)}}
   #repair-panel h3{font-size:17px;margin-bottom:5px;}
+  .repair-heading{display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:11px;margin-bottom:12px;}
+  .repair-heading h3{margin:0 0 4px;}
+  #repair-avatar{width:54px;height:54px;border-radius:10px;object-fit:cover;border:3px solid #fff;
+    box-shadow:0 2px 7px rgba(46,42,37,.15);}
   #repair-panel .repair-site{font-size:11px;color:var(--teal);font-weight:700;margin-bottom:12px;}
+  .repair-heading .repair-site{margin-bottom:0;}
   .repair-brief{background:#fff;border-radius:7px;padding:11px 13px;margin-bottom:12px;line-height:1.45;}
   .repair-label{display:block;color:var(--stamp);font-size:9px;font-weight:700;letter-spacing:.16em;margin-bottom:4px;}
   #repair-complaint{font-size:12px;}
@@ -188,10 +198,15 @@
     font-size:11px;line-height:1.4;background:#e8f3ef;color:#175e68;}
   #repair-feedback.show{display:block;animation:feedbackIn .2s ease;}
   #repair-feedback.warning{background:#fff0eb;color:#8b2e28;}
+  #repair-feedback .npc-coach{display:block;margin-top:6px;padding-top:6px;border-top:1px solid currentColor;
+    font-weight:700;}
   @keyframes feedbackIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
   #repair-action{width:100%;border:0;border-radius:5px;background:var(--stamp);color:#fff;
     padding:11px;font:700 12px "Courier New",monospace;letter-spacing:.08em;cursor:pointer;display:none;}
   #repair-action.show{display:block;animation:feedbackIn .2s ease;}
+  .repair-foot{display:flex;gap:8px;align-items:center;}
+  .repair-foot .repair-exit{margin-left:auto;flex:0 0 auto;}
+  .repair-foot #repair-action{flex:1;}
 
   /* ---------- controls / misc ---------- */
   #controls-hint{
@@ -261,8 +276,10 @@
     .t-tag{max-width:340px;font-size:15px;}
     #chit{top:10px;left:10px;width:calc(100vw - 20px);}
     #dialogue-panel{bottom:14px;padding:15px 15px 14px 104px;min-height:145px;}
-    .dialogue-avatar{left:13px;bottom:14px;width:78px;height:112px;}
-    .dialogue-avatar>*{transform:translate(-25px,-3px) scale(.9);}
+    .dialogue-avatar{left:13px;bottom:auto;top:15px;width:78px;height:78px;}
+    .dialogue-avatar img{transform:none;}
+    .dialogue-actions{gap:5px;}
+    .dialogue-exit{padding:8px 10px;}
     #dialogue-name{font-size:18px}#dialogue-text{font-size:13px;line-height:1.42;}
   }
 
@@ -323,21 +340,20 @@
 
 <div id="toast" role="status" aria-live="polite"><span class="who" id="toastWho"></span><span id="toastMsg"></span></div>
 <section id="dialogue-panel" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
-  <div class="dialogue-avatar" id="dialogue-avatar" aria-hidden="true"></div>
+  <div class="dialogue-avatar" id="dialogue-avatar"></div>
   <div class="dialogue-kicker" id="dialogue-kicker">Neighbour check-in</div>
   <h3 id="dialogue-name"></h3>
   <p id="dialogue-text"></p>
-  <div class="dialogue-footer"><span id="dialogue-progress"></span><button id="dialogue-next">CONTINUE →</button></div>
+  <div class="dialogue-footer"><span id="dialogue-progress"></span><div class="dialogue-actions"><button class="dialogue-exit" id="dialogue-exit">EXIT</button><button id="dialogue-next">CONTINUE →</button></div></div>
 </section>
 <section id="repair-panel" role="dialog" aria-modal="true" aria-labelledby="repair-title">
-  <h3 id="repair-title">On-site diagnosis</h3>
-  <div class="repair-site" id="repair-site"></div>
+  <div class="repair-heading"><img id="repair-avatar" alt=""><div><h3 id="repair-title">On-site diagnosis</h3><div class="repair-site" id="repair-site"></div></div><button class="repair-exit" id="repair-exit">EXIT</button></div>
   <div class="repair-brief"><span class="repair-label">NEIGHBOUR'S NOTE</span><p id="repair-complaint"></p></div>
   <div class="repair-meta"><span id="repair-progress"></span><span id="repair-patience"></span></div>
   <p id="repair-question"></p>
   <div id="repair-options" role="group" aria-label="Diagnostic choices"></div>
   <div id="repair-feedback" role="status" aria-live="polite"></div>
-  <button id="repair-action">NEXT CLUE</button>
+  <div class="repair-foot"><button id="repair-action">NEXT CLUE</button></div>
 </section>
 <div id="controls-hint">WASD / ARROWS · MOVE &nbsp;&nbsp; F · VAN &nbsp;&nbsp; E · EMOTE</div>
 <div id="action-prompt" role="status" aria-live="polite"></div>
@@ -2937,7 +2953,15 @@ registerSwap('cat',placeOnSphere(addOutlines(buildCat(0xfdf8ec)),TEMPLE.lat+3,TE
 
 // Forty additional local buildings across eight compact estates.
 LOCAL_BUILDING_PLOTS.forEach(([lat,lon],i)=>{
-  const b=buildLocalBuilding(i%3,i%4);
+  let b;
+  if(i===15){
+    // One estate plot is a real neighbourhood school instead of another
+    // anonymous residential block. Keep a procedural fallback until its GLB
+    // finishes loading, just like the other authored landmarks.
+    b=new THREE.Group();
+    const fallback=buildCampus('KAMPUNG PRIMARY',0xc9553e,0);fallback.scale.setScalar(.32);b.add(fallback);
+    registerSwap('school',b);
+  }else b=buildLocalBuilding(i%3,i%4);
   // Each five-building estate is organised around its local street rather
   // than dropping façades directly onto an arbitrary compass heading.
   const {unit:u,tangent,sideSign}=localBuildingPose(i);
@@ -3085,10 +3109,10 @@ plaza(CIVIC.lat,CIVIC.lon,3.5,0xd9d3c7);
 plaza(INTERCHANGE.lat,INTERCHANGE.lon,3.5,0xd9d3c7);
 
 // Singapore capability anchors
-placeOnSphere(buildCampus('NUS',0x2f7f8c,0),NUS.lat,NUS.lon,130);addCollider(NUS.lat,NUS.lon,3.1);
-placeOnSphere(buildCampus('NTU',0xc9553e,1),NTU.lat,NTU.lon,155);addCollider(NTU.lat,NTU.lon,3.1);
-placeOnSphere(buildCampus('SMU',0x3d7ea6,0),SMU.lat,SMU.lon,210);addCollider(SMU.lat,SMU.lon,3.0);
-placeOnSphere(buildCampus('SUTD',0x8b4f8e,1),SUTD.lat,SUTD.lon,85);addCollider(SUTD.lat,SUTD.lon,3.1);
+registerSwap('nus',placeOnSphere(buildCampus('NUS',0x2f7f8c,0),NUS.lat,NUS.lon,130));addCollider(NUS.lat,NUS.lon,3.1);
+registerSwap('ntu',placeOnSphere(buildCampus('NTU',0xc9553e,1),NTU.lat,NTU.lon,155));addCollider(NTU.lat,NTU.lon,3.1);
+registerSwap('smu',placeOnSphere(buildCampus('SMU',0x3d7ea6,0),SMU.lat,SMU.lon,210));addCollider(SMU.lat,SMU.lon,3.0);
+registerSwap('sutd',placeOnSphere(buildCampus('SUTD',0x8b4f8e,1),SUTD.lat,SUTD.lon,85));addCollider(SUTD.lat,SUTD.lon,3.1);
 placeOnSphere(buildHospital(),HOSPITAL.lat,HOSPITAL.lon,175);addCollider(HOSPITAL.lat,HOSPITAL.lon,3.2);
 placeOnSphere(buildPort(),TUAS.lat,TUAS.lon,125);addCollider(TUAS.lat,TUAS.lon,4.0);
 placeOnSphere(buildEmergencyHub(),CIVIC.lat,CIVIC.lon,195);addCollider(CIVIC.lat,CIVIC.lon,2.8);
@@ -3153,7 +3177,7 @@ const cabins=[];
 })();
 
 // Changi: a single readable precinct — terminal, Jewel, tower and airfield
-placeOnSphere(buildTerminal(),CHANGI.lat,CHANGI.lon,105); addCollider(CHANGI.lat,CHANGI.lon,3.0);
+registerSwap('airportTerminal',placeOnSphere(buildTerminal(),CHANGI.lat,CHANGI.lon,105)); addCollider(CHANGI.lat,CHANGI.lon,3.0);
 const jewelObj=placeOnSphere(buildJewel(),CHANGI_JEWEL.lat,CHANGI_JEWEL.lon,0); addCollider(CHANGI_JEWEL.lat,CHANGI_JEWEL.lon,2.4);
 const changiTowerObj=placeOnSphere(buildControlTower(),CHANGI_TOWER.lat,CHANGI_TOWER.lon,0);addCollider(CHANGI_TOWER.lat,CHANGI_TOWER.lon,1.2);
 placeOnSphere(buildDistrictSign('CHANGI AIRPORT','TERMINALS · JEWEL · AIR CARGO',0x2e5e52),11,-159,105);
@@ -3982,17 +4006,17 @@ function stepVan(dt,t){
 // field-engineer visits the full spread of housing across a shift.
 const CUSTOMER_DEFS=[
  {name:'Uncle Lim',    place:'the kampung house',lat:KAMPUNG.lat+3,lon:KAMPUNG.lon-3, heading:-30,
-  shirt:0xffffff,pants:0x6b4f35,hair:0x8c8c8c,skin:0xe9b98c,buttons:true,face:{moustache:true,brows:true}},
+  profile:'assets/profiles/uncle-lim.png',shirt:0xffffff,pants:0x6b4f35,hair:0x8c8c8c,skin:0xe9b98c,buttons:true,face:{moustache:true,brows:true}},
  {name:'Auntie Rosnah',place:'Blk 65',         lat:HDB.lat-3,lon:HDB.lon-9, heading:120,
-  shirt:0x8e5bb5,pants:0x444444,hair:0x3a3a3a,skin:0xcf9668,bun:true,floral:true,face:{glasses:true}},
+  profile:'assets/profiles/auntie-rosnah.png',shirt:0x8e5bb5,pants:0x444444,hair:0x3a3a3a,skin:0xcf9668,bun:true,floral:true,face:{glasses:true}},
  {name:'Devi',         place:'Marina View Condo',lat:CONDO6.lat-3,lon:CONDO6.lon-2, heading:60,
-  shirt:0xffffff,pants:0x2e3d52,hair:0x181512,skin:0xa96b3f,longHair:true,flower:true,backpack:0x2f7f8c},
+  profile:'assets/profiles/devi.png',shirt:0xffffff,pants:0x2e3d52,hair:0x181512,skin:0xa96b3f,longHair:true,flower:true,backpack:0x2f7f8c},
  {name:'Mr Tan',       place:'the point block',lat:PBLOCK.lat-3,lon:PBLOCK.lon+4, heading:-40,
-  shirt:0x3d7ea6,pants:0x8a8a8a,hair:0x2a2320,skin:0xf0c49a,face:{glasses:true}},
+  profile:'assets/profiles/mr-tan.png',shirt:0x3d7ea6,pants:0x8a8a8a,hair:0x2a2320,skin:0xf0c49a,face:{glasses:true}},
  {name:'Kai',          place:'East Coast landed home',lat:LANDED4.lat+3,lon:LANDED4.lon+3, heading:150,
-  shirt:0x4f9d55,pants:0x5b4632,hair:0x2a2320,skin:0xdca375,shorts:true},
+  profile:'assets/profiles/kai.png',shirt:0x4f9d55,pants:0x5b4632,hair:0x2a2320,skin:0xdca375,shorts:true},
  {name:'Sofia',        place:'Holland View Condo',lat:CONDO5.lat+3,lon:CONDO5.lon-3, heading:-90,
-  shirt:0xffffff,pants:0x384048,hair:0x241f1c,skin:0xc98a5a,vest:0xf2a03d,ponytail:true},
+  profile:'assets/profiles/sofia.png',shirt:0xffffff,pants:0x384048,hair:0x241f1c,skin:0xc98a5a,vest:0xf2a03d,ponytail:true},
 ];
 const AMBIENT_NPC_DEFS=[
  {name:'Aunty May',place:'the market',lat:30,lon:-20,heading:80,shirt:0xe86a5e,pants:0x413d48,hair:0x30302e,skin:0xe2ad7f,bun:true,face:{glasses:true},ambient:true},
@@ -4549,12 +4573,19 @@ function showToast(who,msg){
   toastTimer=setTimeout(()=>toast.classList.remove('show'),4600);
 }
 
-// Full customer scenes: every work order begins and ends face-to-face. The
-// portraits are generated from the same colour/accessory data as each 3D
-// resident, keeping all six customers recognisable without extra downloads.
+// Full customer scenes: every work order begins and ends face-to-face. Each
+// generated portrait matches the resident's in-world appearance.
 const dialoguePanel=document.getElementById('dialogue-panel');
 const dialogueNext=document.getElementById('dialogue-next');
+const dialogueExit=document.getElementById('dialogue-exit');
 let dialogueOpen=false,dialogueLines=[],dialogueStep=0,dialogueDone=null;
+let interactionPaused=false;
+const visitSessions=new Map();
+function currentVisitSession(){
+  const key=route[stage];
+  if(!visitSessions.has(key))visitSessions.set(key,{introSeen:false,step:0,patience:3,mistakes:0,resolved:false,attemptsByStep:{}});
+  return visitSessions.get(key);
+}
 const CUSTOMER_VOICES=[
   {hello:'Aiyo, thanks for coming all the way. Come, I show you the box.',thanks:'Steady lah! Now the whole house can connect again. Kopi on me next time.'},
   {hello:'Hello dear, you found the block! The Internet chose today to misbehave.',thanks:'Alhamdulillah, working again. I can call my family tonight—thank you!'},
@@ -4563,15 +4594,6 @@ const CUSTOMER_VOICES=[
   {hello:'Hey! New router day. I resisted plugging everything in before you arrived.',thanks:'Full speed! Okay, first victory lap is a game download. Thanks!'},
   {hello:'Thanks for coming. The mesh light has been sulking since the power cut.',thanks:'Green again! Even the bedroom has signal. You rescued movie night.'},
 ];
-function cssHex(value){return '#'+Number(value??0x888888).toString(16).padStart(6,'0');}
-function renderCustomerAvatar(def,index){
-  const long=def.longHair||def.ponytail||def.bun;
-  return `<div style="--skin:${cssHex(def.skin)};--shirt:${cssHex(def.vest||def.shirt)};--hair:${cssHex(def.hair)}">
-    <span class="avatar-hair ${long?'long':''}"></span><span class="avatar-neck"></span>
-    <span class="avatar-shirt"></span><span class="avatar-face"></span>
-    ${def.face?.glasses?'<span class="avatar-glasses"></span>':''}
-    <span class="avatar-badge">${['☕','🌺','📱','📋','🎮','✨'][index]}</span></div>`;
-}
 function drawDialogueLine(){
   const line=dialogueLines[dialogueStep];
   document.getElementById('dialogue-name').textContent=line.speaker;
@@ -4580,15 +4602,18 @@ function drawDialogueLine(){
   dialogueNext.textContent=dialogueStep===dialogueLines.length-1?'LET’S GO →':'CONTINUE →';
 }
 function openCustomerDialogue(index,phase,onDone){
-  if(dialogueOpen)return;
+  if(dialogueOpen||diagnosing)return;
   const def=CUSTOMER_DEFS[index],voice=CUSTOMER_VOICES[index],job=cur();
   dialogueOpen=true;dialogueStep=0;dialogueDone=onDone;
-  document.getElementById('dialogue-avatar').innerHTML=renderCustomerAvatar(def,index);
-  document.getElementById('dialogue-kicker').textContent=phase==='arrival'?'Neighbour check-in':'Job done';
+  const avatar=document.getElementById('dialogue-avatar');
+  avatar.innerHTML=`<img src="${def.profile}" alt="Portrait of ${def.name}">`;
+  document.getElementById('dialogue-kicker').textContent=phase==='arrival'?'Neighbour check-in':phase==='resume'?'Welcome back':'Job done';
   dialogueLines=phase==='arrival' ? [
     {speaker:def.name,text:voice.hello},
     {speaker:'You · Kampung Crew',text:`Hi ${def.name}. I’m here for the “${job.item}” call. Tell me what changed before the issue started.`},
     {speaker:def.name,text:DIAGNOSTIC_CASES[job.item].complaint.replace(/[“”]/g,'')},
+  ] : phase==='resume' ? [
+    {speaker:def.name,text:`Welcome back. We saved clue ${currentVisitSession().step+1}, so let’s carry on from there.`},
   ] : [
     {speaker:'You · Kampung Crew',text:'All the checks pass. I’ll show you what I fixed and note down what we did.'},
     {speaker:def.name,text:voice.thanks},
@@ -4596,15 +4621,26 @@ function openCustomerDialogue(index,phase,onDone){
   hideCompass();toast.classList.remove('show');dialoguePanel.classList.add('show');drawDialogueLine();
   requestAnimationFrame(()=>dialogueNext.focus());
 }
+function closeDialogue(completed){
+  if(!dialogueOpen)return;
+  dialogueOpen=false;dialoguePanel.classList.remove('show');
+  const done=dialogueDone;dialogueDone=null;
+  if(completed){if(done)done();}
+  else{
+    interactionPaused=true;questCooldown=1;
+    showToast('Round paused','No problem—explore freely. Come back to this neighbour when you want to continue.');
+  }
+}
 function advanceDialogue(){
   if(!dialogueOpen)return;
   if(dialogueStep<dialogueLines.length-1){dialogueStep++;drawDialogueLine();return;}
-  dialogueOpen=false;dialoguePanel.classList.remove('show');
-  const done=dialogueDone;dialogueDone=null;if(done)done();
+  closeDialogue(true);
 }
 dialogueNext.addEventListener('click',advanceDialogue);
+dialogueExit.addEventListener('click',()=>closeDialogue(false));
 addEventListener('keydown',event=>{
   if(dialogueOpen&&(event.key==='Enter'||event.key===' ')){event.preventDefault();advanceDialogue();}
+  if(dialogueOpen&&event.key==='Escape'){event.preventDefault();closeDialogue(false);}
 });
 function updateChit(){
   if(stage>=DELIVERIES.length)return;
@@ -4957,13 +4993,27 @@ function updateCompass(target,targetU,meters){
 
 const repairPanel=document.getElementById('repair-panel');
 const repairAction=document.getElementById('repair-action');
+const repairExit=document.getElementById('repair-exit');
 const repairOptions=document.getElementById('repair-options');
 const repairFeedback=document.getElementById('repair-feedback');
 let diagnosing=false,diagnosticStep=0,diagnosticTarget=null;
 let diagnosticPatience=3,diagnosticResolved=false,visitMistakes=0;
 let diagnosticOptions=[];
+const CUSTOMER_COACHES=[
+  ['Look at what the box lights are telling us first. One clue at a time, can already.','We have ruled that choice out. Follow the fault from the service toward the device.'],
+  ['Never mind, dear. Compare the two ends of the cable before changing anything else.','Good try. Use a known-good part to isolate the break instead of resetting everything.'],
+  ['That result tells us where the problem is not. Test from a strong-signal spot and work outward.','Keep the node where it can still hear the router clearly, then verify in the room.'],
+  ['The event history is useful evidence—preserve it before restarting.','Change one thing, then run a sustained test so we know what actually fixed it.'],
+  ['The fibre side needs to be healthy before the router can do its job.','Wait for the indicators to settle, then prove it on a real device.'],
+  ['Let’s confirm the main router first, then we know the fault is only the mesh link.','Pair nearby before moving the node back, then check its backhaul.'],
+];
+function saveDiagnosticSession(){
+  const session=currentVisitSession();
+  session.step=diagnosticStep;session.patience=diagnosticPatience;session.mistakes=visitMistakes;session.resolved=diagnosticResolved;
+}
 function renderDiagnostic(){
   const fault=DIAGNOSTIC_CASES[cur().item],round=fault.rounds[diagnosticStep];
+  const alreadyResolved=currentVisitSession().resolved;
   diagnosticOptions=shuffled(round.options);
   document.getElementById('repair-complaint').textContent=fault.complaint;
   document.getElementById('repair-progress').textContent=`CLUE ${diagnosticStep+1} / ${fault.rounds.length}`;
@@ -4971,21 +5021,33 @@ function renderDiagnostic(){
   document.getElementById('repair-question').textContent=round.question;
   repairOptions.innerHTML=diagnosticOptions.map((option,i)=>
     `<button class="repair-option" data-choice="${i}"><span class="repair-key">${i+1}</span><span>${option[0]}</span></button>`).join('');
-  repairFeedback.className='';repairFeedback.textContent='';
-  repairAction.classList.remove('show');
+  repairFeedback.className='';repairFeedback.textContent='';repairAction.classList.remove('show');
   repairAction.textContent=diagnosticStep>=fault.rounds.length-1?'WRAP UP':'NEXT CLUE';
-  diagnosticResolved=false;
+  diagnosticResolved=alreadyResolved;
+  if(alreadyResolved){
+    [...repairOptions.children].forEach(button=>button.disabled=true);
+    repairFeedback.className='show';repairFeedback.textContent='✓ This clue is already solved—continue when you are ready.';
+    repairAction.classList.add('show');
+  }
 }
 function beginDiagnostic(target){
   if(diagnosing)return;
-  diagnosing=true;diagnosticStep=0;diagnosticTarget=target;
+  const session=currentVisitSession(),def=NPC_DEFS[cur().from];
+  diagnosing=true;diagnosticStep=session.step;diagnosticTarget=target;
   hideCompass();
-  diagnosticPatience=3;visitMistakes=0;
-  document.getElementById('repair-site').textContent=`${NPC_DEFS[cur().from].name} · ${NPC_DEFS[cur().from].place}`;
+  dialogueOpen=false;dialogueDone=null;dialoguePanel.classList.remove('show');
+  diagnosticPatience=session.patience;visitMistakes=session.mistakes;
+  const avatar=document.getElementById('repair-avatar');avatar.src=def.profile;avatar.alt=`Portrait of ${def.name}`;
+  document.getElementById('repair-site').textContent=`${def.name} · ${def.place}`;
   renderDiagnostic();repairPanel.classList.add('show');
   requestAnimationFrame(()=>repairOptions.querySelector('button')?.focus());
 }
-function cancelDiagnostic(){diagnosing=false;diagnosticTarget=null;repairPanel.classList.remove('show');}
+function cancelDiagnostic({pause=false,notify=false}={}){
+  if(!diagnosing)return;
+  saveDiagnosticSession();diagnosing=false;diagnosticTarget=null;repairPanel.classList.remove('show');
+  if(pause){interactionPaused=true;questCooldown=1;}
+  if(notify)showToast('Diagnosis saved',`Clue ${diagnosticStep+1} is saved. Walk around, then return whenever you’re ready.`);
+}
 function finishDiagnosis(){
   const d=cur(),target=diagnosticTarget;
   if(visitMistakes===0){
@@ -4993,7 +5055,7 @@ function finishDiagnosis(){
     const tp=target.getWorldPosition(new THREE.Vector3()),tu=targetUnit(target);
     burstConfetti(tp,tu);popEmote(target,serviceStreak>1?`🔥${serviceStreak}`:'⭐');
   }
-  cancelDiagnostic();holding=true;setCarry(d.emoji);
+  saveDiagnosticSession();cancelDiagnostic();holding=true;setCarry(d.emoji);
   showToast(NPC_DEFS[d.from].name,d.pickup);popEmote(target,'🧰');target.userData.bounceT=performance.now()/1000;
   Snd.pickup();questCooldown=2.8;updateChit();
 }
@@ -5004,6 +5066,7 @@ function chooseDiagnostic(choice,button){
     shiftScore+=100+serviceStreak*20;
     document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
     diagnosticResolved=true;
+    currentVisitSession().resolved=true;
     [...repairOptions.children].forEach(b=>b.disabled=true);
     button.classList.add('correct');
     repairFeedback.className='show';repairFeedback.textContent=`✓ ${option[2]}`;
@@ -5013,9 +5076,13 @@ function chooseDiagnostic(choice,button){
     document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
     button.disabled=true;button.classList.add('wrong');
     diagnosticPatience=Math.max(0,diagnosticPatience-1);visitMistakes++;shiftMistakes++;
+    const session=currentVisitSession();
+    const attempts=(session.attemptsByStep[diagnosticStep]||0)+1;session.attemptsByStep[diagnosticStep]=attempts;
+    saveDiagnosticSession();
     document.getElementById('repair-patience').textContent=`PATIENCE ${'♥'.repeat(diagnosticPatience)}${'♡'.repeat(3-diagnosticPatience)}`;
     repairFeedback.className='show warning';
-    repairFeedback.textContent=`✕ ${option[2]}${diagnosticPatience===0?' Field manual opened—look at the evidence and try again.':''}`;
+    const coach=CUSTOMER_COACHES[cur().from][Math.min(attempts-1,1)];
+    repairFeedback.innerHTML=`✕ ${option[2]}<span class="npc-coach">${NPC_DEFS[cur().from].name}: “${coach}”</span>`;
     if(Snd.ctx)Snd.tone(150,Snd.ctx.currentTime,.16,'sawtooth',.06,105);
   }
 }
@@ -5028,12 +5095,16 @@ addEventListener('keydown',event=>{
   const button=repairOptions.querySelector(`[data-choice="${Number(event.key)-1}"]`);
   if(button){event.preventDefault();button.click();}
 });
+repairExit.addEventListener('click',()=>cancelDiagnostic({pause:true,notify:true}));
+addEventListener('keydown',event=>{
+  if(diagnosing&&event.key==='Escape'){event.preventDefault();cancelDiagnostic({pause:true,notify:true});}
+});
 repairAction.addEventListener('click',()=>{
   if(!diagnosing)return;
   const rounds=DIAGNOSTIC_CASES[cur().item].rounds;
   if(!diagnosticResolved)return;
   if(diagnosticStep>=rounds.length-1)finishDiagnosis();
-  else{diagnosticStep++;renderDiagnostic();repairOptions.querySelector('button').focus();}
+  else{diagnosticStep++;const session=currentVisitSession();session.step=diagnosticStep;session.resolved=false;renderDiagnostic();repairOptions.querySelector('button').focus();}
 });
 
 function stepQuest(t){
@@ -5056,14 +5127,23 @@ function stepQuest(t){
   }
   updateCompass(target,tu,meters);
   if(dialogueOpen)return;
-  if(diagnosing&&(dist>NPC_ACTIVITY_EXIT_DISTANCE||vanState.mode!=='foot'))cancelDiagnostic();
+  // The quiz owns the interaction surface while it is active. Without this
+  // guard, the proximity check below can reopen the resume conversation on
+  // the next frame, leaving both panels visible at once.
+  if(diagnosing)return;
+  if(interactionPaused){
+    if(dist>NPC_ACTIVITY_EXIT_DISTANCE)interactionPaused=false;
+    else return;
+  }
   if(questCooldown>0)return;
   // Customer activities cannot start or complete while driving.
   if(vanState.mode!=='foot')return;
   if(dist<NPC_ACTIVITY_DISTANCE){
     const d=cur();
     if(!holding){
-      openCustomerDialogue(d.from,'arrival',()=>beginDiagnostic(target));
+      const session=currentVisitSession(),phase=session.introSeen?'resume':'arrival';
+      session.introSeen=true;
+      openCustomerDialogue(d.from,phase,()=>beginDiagnostic(target));
       return;
     }else{
       openCustomerDialogue(d.to,'resolved',()=>{
@@ -5335,6 +5415,12 @@ const ASSET_MANIFEST={
   condoHolland:{url:'assets/condo-holland-v2.glb',scale:.72,ground:true},
   kampungHero:{url:'assets/kampung-call-v2.glb',scale:.72,ground:true},
   pointblockHero:{url:'assets/pointblock-call-v2.glb',scale:.72,ground:true},
+  airportTerminal:{url:'assets/airport-terminal-v2.glb',scale:.72,ground:true},
+  nus:        {url:'assets/nus-v2.glb',scale:.72,ground:true},
+  ntu:        {url:'assets/ntu-v2.glb',scale:.72,ground:true},
+  smu:        {url:'assets/smu-v2.glb',scale:.72,ground:true},
+  sutd:       {url:'assets/sutd-v2.glb',scale:.72,ground:true},
+  school:     {url:'assets/school-v2.glb',scale:.32,ground:true},
   landed:    {url:'assets/landed-bg-v2.glb',scale:1.32,ground:true},
   landedHero:{url:'assets/landed-v2.glb', scale:1.38,ground:true},
   raintreeHero:{url:'assets/raintree-v2.glb',scale:.72},
