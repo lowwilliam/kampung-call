@@ -110,25 +110,6 @@
     box-shadow:0 4px 12px rgba(46,42,37,.2);
   }
 
-  /* ---------- island operations map ---------- */
-  #ops-map{
-    position:fixed;right:18px;top:18px;z-index:17;display:none;width:238px;
-    padding:10px 11px 11px;border-radius:12px;background:rgba(251,246,232,.92);
-    color:var(--ink);box-shadow:0 8px 24px rgba(30,25,18,.16);backdrop-filter:blur(9px);
-    font-family:"Courier New",monospace;user-select:none;
-  }
-  #ops-map.show{display:block;animation:chitDrop .45s cubic-bezier(.2,1.4,.4,1)}
-  .ops-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;
-    font-size:9px;font-weight:700;letter-spacing:.13em;color:var(--teal)}
-  #ops-map canvas{width:216px;height:122px;display:block;transform:none!important;filter:none!important;
-    border-radius:8px;background:#b9ddd5;border:1px solid rgba(46,42,37,.14)}
-  .ops-legend{display:flex;justify-content:space-between;margin-top:6px;font-size:8px;opacity:.7}
-  .ops-road-key{display:flex;gap:10px;margin-top:5px;padding-top:5px;border-top:1px solid rgba(46,42,37,.12);
-    font-size:7.5px;letter-spacing:.04em;opacity:.72}
-  .ops-road-key span{display:flex;align-items:center;gap:4px}.ops-road-key i{display:block;width:20px;height:0;border-top-style:solid}
-  .ops-road-key .express{border-top-width:4px;border-top-color:#f7f0d8;box-shadow:0 -1px #3b5252}
-  .ops-road-key .arterial{border-top-width:2px;border-top-color:#f7f0d8}
-
   /* ---------- dialog toast ---------- */
   #toast{
     position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);z-index:20;
@@ -283,8 +264,6 @@
     .dialogue-avatar{left:13px;bottom:14px;width:78px;height:112px;}
     .dialogue-avatar>*{transform:translate(-25px,-3px) scale(.9);}
     #dialogue-name{font-size:18px}#dialogue-text{font-size:13px;line-height:1.42;}
-    #ops-map{top:auto;right:10px;bottom:88px;width:154px;padding:7px}
-    #ops-map canvas{width:140px;height:79px}.ops-legend,.ops-road-key{display:none}.ops-head{margin-bottom:4px;font-size:8px}
   }
 
   /* ---------- complete screen ---------- */
@@ -341,13 +320,6 @@
 </div>
 
 <button id="muteBtn" aria-label="Toggle sound">🔊</button>
-
-<aside id="ops-map" aria-label="Singapore neighbourhood map">
-  <div class="ops-head"><span>KAMPUNG MAP</span><span>LIVE</span></div>
-  <canvas id="ops-canvas" width="432" height="244" aria-hidden="true"></canvas>
-  <div class="ops-legend"><span>● YOU</span><span>✦ ACTIVE CALL</span><span>◆ DISTRICT</span></div>
-  <div class="ops-road-key"><span><i class="express"></i>EXPRESS</span><span><i class="arterial"></i>ARTERIAL</span></div>
-</aside>
 
 <div id="toast" role="status" aria-live="polite"><span class="who" id="toastWho"></span><span id="toastMsg"></span></div>
 <section id="dialogue-panel" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
@@ -593,43 +565,44 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // ============================================================
 // POIs + TERRAIN (chunky faceted planet like the reference)
 // ============================================================
-const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
+const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62},
+      HDB66={lat:30,lon:92}, HDB67={lat:55,lon:88}, MRT={lat:30,lon:-92},
       MERLION={lat:6,lon:108}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
       BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
-      TEMPLE={lat:-28,lon:5};
+      TEMPLE={lat:-8,lon:12};
 const ESP={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
-      TOWER={lat:8,lon:-162}, PBLOCK={lat:56,lon:96};
+      TOWER={lat:2,lon:-145}, PBLOCK={lat:67,lon:115};
 const SENTOSA={lat:-56,lon:-50}, STUDIOS={lat:-63,lon:-14},
       CLARKE={lat:-40,lon:-100}, CHANGI={lat:16,lon:-176},
       JEWEL={lat:16,lon:-152}, ECP={lat:-4,lon:-132},
-      COMCENTRE={lat:22,lon:122}, SATELLITE={lat:70,lon:20},
+      COMCENTRE={lat:22,lon:122}, SATELLITE={lat:60,lon:0},
       CABLEA={lat:-40,lon:-36};
 // wave 4 — downtown + river + Holland V
-const CBD={lat:-30,lon:140}, RIVER={lat:-36,lon:120}, HOLAND={lat:-50,lon:150},
+const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-50,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
-const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-12,lon:72},
-      SUTD={lat:28,lon:-137}, HOSPITAL={lat:18,lon:42}, TUAS={lat:48,lon:-108},
-      CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:39,lon:-78},
+const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
+      SUTD={lat:28,lon:-137}, HOSPITAL={lat:15,lon:28}, TUAS={lat:42,lon:-120},
+      CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:30,lon:-72},
       CHANGI_TOWER={lat:13,lon:-169}, CHANGI_JEWEL={lat:18,lon:-163};
 // wave 5 — residences for the field-engineer re-theme (condo cluster near HDB)
-const CONDO={lat:48,lon:52}, CONDO2={lat:36,lon:70};
-const CONDO3={lat:43,lon:40}, CONDO4={lat:54,lon:69},
-      CONDO5={lat:-52,lon:164}, CONDO6={lat:-26,lon:78},
-      LANDED1={lat:61,lon:-138}, LANDED2={lat:73,lon:-145}, LANDED3={lat:57,lon:-161},
+const CONDO={lat:50,lon:30}, CONDO2={lat:5,lon:40};
+const CONDO3={lat:35,lon:22}, CONDO4={lat:65,lon:55},
+      CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
+      LANDED1={lat:48,lon:-150}, LANDED2={lat:70,lon:-100}, LANDED3={lat:30,lon:145},
       LANDED4={lat:-2,lon:-116};
 // Small north-island archive ring: keeps superseded Blender exports present
 // in-world as secondary variants without replacing the authored V2 assets.
-const ARCHIVE_HDB={lat:80,lon:-160}, ARCHIVE_CONDO={lat:80,lon:-115},
-      ARCHIVE_LANDED={lat:80,lon:-70}, ARCHIVE_KOPI={lat:80,lon:-25},
-      ARCHIVE_MRT={lat:80,lon:20}, ARCHIVE_SHOP={lat:80,lon:65},
-      ARCHIVE_ENGINEER={lat:80,lon:110}, ARCHIVE_NEIGHBOURHOOD={lat:80,lon:155};
+const ARCHIVE_HDB={lat:75,lon:-140}, ARCHIVE_CONDO={lat:84,lon:-115},
+      ARCHIVE_LANDED={lat:77,lon:-70}, ARCHIVE_KOPI={lat:84,lon:-25},
+      ARCHIVE_MRT={lat:77,lon:20}, ARCHIVE_SHOP={lat:84,lon:65},
+      ARCHIVE_ENGINEER={lat:77,lon:110}, ARCHIVE_NEIGHBOURHOOD={lat:84,lon:155};
 
 // Authoritative visible building footprints. Both the road hierarchy and the
 // beige neighbourhood streets use this same registry, so no route can end
 // beneath a building model or cut through an unrelated structure en route.
 const CITY_BUILDING_ZONES=[
-  [KOPITIAM,3.0],[HDB,3.4],[{lat:HDB.lat-9,lon:HDB.lon+16},3.0],[{lat:HDB.lat+7,lon:HDB.lon+20},3.0],
+  [KOPITIAM,3.0],[HDB,3.4],[HDB66,3.0],[HDB67,3.0],
   [MRT,2.4],[MERLION,1.7],[{lat:-16,lon:132},4.0],[GARDENS,2.2],[FLYER,2.3],
   [{lat:SHOPS.lat,lon:SHOPS.lon-5},1.7],[SHOPS,1.7],[{lat:SHOPS.lat,lon:SHOPS.lon+5},1.7],
   [HAWKER,2.2],[TEMPLE,2.0],[ESP,2.6],[KAMPUNG,2.5],[TOWER,1.2],[PBLOCK,2.5],
@@ -643,13 +616,13 @@ const CITY_BUILDING_ZONES=[
 // are derived from these street axes and added to the same clearance registry.
 const LOCAL_BUILDING_PLOTS=[
   [31,-18],[34,-14],[37,-10],[40,-6],[43,-2],
-  [62,118],[66,124],[69,132],[65,140],[60,147],
+  [45,108],[47,114],[49,120],[51,126],[53,132],
   [48,-84],[52,-78],[56,-72],[60,-66],[64,-60],
   [12,54],[16,60],[20,66],[24,72],[28,78],
   [-8,-20],[-12,-14],[-16,-8],[-20,-2],[-24,4],
   [-34,46],[-39,52],[-44,58],[-49,64],[-54,70],
   [-60,92],[-56,100],[-52,108],[-48,116],[-44,124],
-  [38,164],[46,170],[54,176],[62,-178],[70,-170],
+  [38,164],[46,170],[54,176],[62,-178],[68,-155],
 ];
 const LOCAL_BUILDING_SETBACK=2.25;
 
@@ -657,7 +630,7 @@ const LOCAL_BUILDING_SETBACK=2.25;
 const FLAT_SPOTS=[
   KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   ESP,KAMPUNG,TOWER,PBLOCK,
-  {lat:HDB.lat-9,lon:HDB.lon+16},{lat:HDB.lat+7,lon:HDB.lon+20},   // Blk 66/67
+  HDB66,HDB67,                                                     // Blk 66/67
   {lat:-16,lon:132},                                               // MBS
   {lat:GARDENS.lat+6,lon:GARDENS.lon+7},{lat:GARDENS.lat-7,lon:GARDENS.lon+9},
   {lat:25.5,lon:32},                                               // bus stop
@@ -857,7 +830,7 @@ const RIVER_BRIDGE_WALKWAYS=[];
 
 // ---------- planned road hierarchy ----------
 // Pedestrian paths above remain warm and narrow. Roads use a shared network
-// model so the 3D city and operations map describe the same urban structure.
+// model so every district follows the same connected urban structure.
 const ROAD_STYLES={
   expressway:{width:2.55,shoulder:.34,surface:0x465152,edge:0x77807d,line:0xf7f0d8,dash:3,gap:2},
   arterial:  {width:1.85,shoulder:.28,surface:0x596362,edge:0x858b84,line:0xf7f0d8,dash:3,gap:3},
@@ -867,12 +840,12 @@ const ROAD_STYLES={
 // these nodes separate from the POI coordinates prevents a terminal, campus,
 // hospital or housing block from ever being built on the carriageway.
 const ROAD_ACCESS={
-  TUAS:{lat:33,lon:-123},WESTERN_BYPASS:{lat:10,lon:-105},INTERCHANGE:{lat:34,lon:-70},NUS:{lat:12,lon:-34},
+  TUAS:{lat:35,lon:-126},WESTERN_BYPASS:{lat:10,lon:-105},INTERCHANGE:{lat:27,lon:-78},NUS:{lat:12,lon:-34},
   KOPITIAM:{lat:0,lon:8},HOSPITAL:{lat:12,lon:50},CIVIC:{lat:-13,lon:96},
   CHANGI:{lat:10,lon:-164},ECP:{lat:-10,lon:-124},SUTD:{lat:22,lon:-129},
   KAMPUNG:{lat:57,lon:-141},MRT:{lat:24,lon:-84},HDB:{lat:36,lon:70},
   SMU:{lat:-18,lon:64},PBLOCK:{lat:50,lon:104},MERLION:{lat:0,lon:116},
-  CBD:{lat:-36,lon:132},NTU:{lat:42,lon:-38},
+  CBD:{lat:-27,lon:153},NTU:{lat:42,lon:-38},
 };
 const A=ROAD_ACCESS;
 const MAJOR_BUILDING_VISUAL_BUFFER=1.35;
@@ -888,6 +861,47 @@ function localBuildingPose(i){
   const unit=axis.clone().multiplyScalar(R).add(side.multiplyScalar(sideSign*(LOCAL_BUILDING_SETBACK+(i%3)*.18))).normalize();
   return {unit,tangent,sideSign};
 }
+// Keep district silhouettes separate without scattering related buildings
+// across the island. Connected ensembles (the shophouse row, airport and
+// downtown campuses) are represented by a single combined footprint here.
+const MIN_BUILDING_VERGE=.4;
+const BUILDING_SPACING_PLAN=[
+  ['Kopitiam',KOPITIAM,3.0],['HDB 65',HDB,3.4],['HDB 66',HDB66,3.0],['HDB 67',HDB67,3.0],
+  ['MRT',MRT,2.4],['Merlion',MERLION,1.7],['Marina Bay',BAY,5.0],['Gardens',GARDENS,3.8],
+  ['Flyer',FLYER,2.3],['Shophouse row',SHOPS,3.7],['Hawker',HAWKER,2.2],['Temple',TEMPLE,2.0],
+  ['Esplanade',ESP,2.6],['Kampung',KAMPUNG,2.5],['Control tower',TOWER,1.2],['Point block',PBLOCK,2.5],
+  ['Condo 1',CONDO,2.6],['Condo 2',CONDO2,2.6],['Condo 3',CONDO3,2.6],['Condo 4',CONDO4,2.6],
+  ['Holland condo',CONDO5,3.0],['Marina condo',CONDO6,3.0],
+  ['Landed 1',LANDED1,2.7],['Landed 2',LANDED2,2.7],['Landed 3',LANDED3,2.7],['Landed 4',LANDED4,3.0],
+  ['Sentosa',SENTOSA,1.8],['Studios',STUDIOS,3.8],['Clarke Quay',CLARKE,3.8],
+  ['Changi campus',CHANGI_JEWEL,4.7],['Comcentre',COMCENTRE,2.2],['Satellite station',SATELLITE,3.6],
+  ['Cable station',CABLEA,1.6],['NUS',NUS,3.1],['NTU',NTU,3.1],['SMU',SMU,3.0],['SUTD',SUTD,3.1],
+  ['Hospital',HOSPITAL,3.2],['Tuas',TUAS,4.0],['Civic',CIVIC,2.8],['Interchange',INTERCHANGE,3.0],
+  ['CBD',CBD,5.0],['Holland Village',HOLAND,3.6],
+  ['Archive HDB',ARCHIVE_HDB,1.7],['Archive condo',ARCHIVE_CONDO,1.6],
+  ['Archive landed',ARCHIVE_LANDED,1.4],['Archive kopi',ARCHIVE_KOPI,1.8],
+  ['Archive MRT',ARCHIVE_MRT,1.4],['Archive shop',ARCHIVE_SHOP,1.3],
+  ['Archive engineer',ARCHIVE_ENGINEER,.7],['Archive neighbourhood',ARCHIVE_NEIGHBOURHOOD,1.8],
+  ...LOCAL_BUILDING_PLOTS.map((_,i)=>[`Local building ${i+1}`,localBuildingPose(i).unit,i%3===2?1.25:1.0]),
+];
+function auditBuildingSpacing(){
+  const crowded=[];
+  for(let i=0;i<BUILDING_SPACING_PLAN.length;i++)for(let j=i+1;j<BUILDING_SPACING_PLAN.length;j++){
+    const [aName,aPoint,aRadius]=BUILDING_SPACING_PLAN[i],[bName,bPoint,bRadius]=BUILDING_SPACING_PLAN[j];
+    const a=aPoint.isVector3?aPoint:latLonPos(aPoint.lat,aPoint.lon).normalize();
+    const b=bPoint.isVector3?bPoint:latLonPos(bPoint.lat,bPoint.lon).normalize();
+    const verge=a.angleTo(b)*R-aRadius-bRadius;
+    if(verge<MIN_BUILDING_VERGE)crowded.push({a:aName,b:bName,verge:Number(verge.toFixed(2))});
+  }
+  const result={checked:BUILDING_SPACING_PLAN.length,crowded};
+  window.__buildingSpacingAudit=result;
+  document.documentElement.dataset.buildingSpacingChecked=String(result.checked);
+  document.documentElement.dataset.buildingSpacingCrowded=String(crowded.length);
+  console.assert(!crowded.length,`Building spacing audit failed: ${crowded.map(p=>`${p.a}/${p.b} ${p.verge}m`).join(', ')}`);
+  if(!crowded.length)console.log(`[city] building spacing audit passed (${result.checked} footprints)`);
+  return result;
+}
+auditBuildingSpacing();
 // Clearance radii cover the visible footprint plus a comfortable verge. Route
 // samples that would enter one of these zones are bent around its perimeter.
 const ROAD_CLEARANCE_ZONES=[
@@ -904,13 +918,13 @@ const ROAD_NETWORKS=[
   {name:'CAMPUS LINK',type:'arterial',points:[A.NTU,A.NUS]},
   {name:'CITY CAMPUS LINK',type:'arterial',points:[A.SMU,A.CIVIC]},
   {name:'NORTH ESTATE',type:'local',points:[{lat:31,lon:-18},{lat:43,lon:-2}]},
-  {name:'NORTH-EAST ESTATE',type:'local',points:[{lat:62,lon:118},{lat:60,lon:147}]},
+  {name:'NORTH-EAST ESTATE',type:'local',points:[{lat:45,lon:108},{lat:53,lon:132}]},
   {name:'WEST ESTATE',type:'local',points:[{lat:48,lon:-84},{lat:64,lon:-60}]},
   {name:'EAST ESTATE',type:'local',points:[{lat:12,lon:54},{lat:28,lon:78}]},
   {name:'CENTRAL ESTATE',type:'local',points:[{lat:-8,lon:-20},{lat:-24,lon:4}]},
   {name:'SOUTH ESTATE',type:'local',points:[{lat:-34,lon:46},{lat:-54,lon:70}]},
   {name:'BAY ESTATE',type:'local',points:[{lat:-60,lon:92},{lat:-44,lon:124}]},
-  {name:'CHANGI ESTATE',type:'local',points:[{lat:38,lon:164},{lat:70,lon:-170}]},
+  {name:'CHANGI ESTATE',type:'local',points:[{lat:38,lon:164},{lat:68,lon:-155}]},
 ];
 function keepRoadClear(unit,halfWidth,approach=null,detourSide=null){
   const u=unit.clone();
@@ -1036,9 +1050,6 @@ function placeRoadSign(a,b,t,route,destinations,sideOffset=1.65){
 }
 for(const network of ROAD_NETWORKS){
   const centers=buildRoadRoute(network.points,network.type);
-  // Store the collision-cleared geometry for the operations map so its route
-  // drawing stays faithful to the actual 3D carriageway.
-  network.renderPoints=centers.map(latLonFromUnit);
   network.centerUnits=centers;
 }
 function nearestRoadPose(target){
@@ -2820,8 +2831,8 @@ function buildInterchange(){
 // ============================================================
 const kopitiamObj=registerSwap('kopitiam',placeOnSphere(buildKopitiam(),KOPITIAM.lat,KOPITIAM.lon,180)); addCollider(KOPITIAM.lat,KOPITIAM.lon,3.0);
 registerSwap('hdbHero',placeOnSphere(buildHDB('#e86a5e','BLK 65'),HDB.lat,HDB.lon,160)); addCollider(HDB.lat,HDB.lon,3.4);
-registerSwap('hdb',placeOnSphere(buildHDB('#7fb8a4','BLK 66'),HDB.lat-9,HDB.lon+16,140)); addCollider(HDB.lat-9,HDB.lon+16,3.0);
-registerSwap('hdb',placeOnSphere(buildHDB('#f2c14e','BLK 67'),HDB.lat+7,HDB.lon+20,200)); addCollider(HDB.lat+7,HDB.lon+20,3.0);
+registerSwap('hdb',placeOnSphere(buildHDB('#7fb8a4','BLK 66'),HDB66.lat,HDB66.lon,140)); addCollider(HDB66.lat,HDB66.lon,3.0);
+registerSwap('hdb',placeOnSphere(buildHDB('#f2c14e','BLK 67'),HDB67.lat,HDB67.lon,200)); addCollider(HDB67.lat,HDB67.lon,3.0);
 registerSwap('mrt',placeOnSphere(buildMRT(),MRT.lat,MRT.lon,170)); addCollider(MRT.lat,MRT.lon,2.4);
 const merlion=registerSwap('merlion',placeOnSphere(buildMerlion(),MERLION.lat,MERLION.lon,205)); addCollider(MERLION.lat,MERLION.lon,1.7);
 registerSwap('mbs',placeOnSphere(buildMBS(),-16,132,210)); addCollider(-16,132,4.0);
@@ -4642,69 +4653,6 @@ function completeAll(){
 // ---------- movement ----------
 let pos=latLonPos(2,-18).normalize().multiplyScalar(R);
 let fwd=V3(0,0,-1);
-// Lightweight live operations map. It mirrors the authored spherical world,
-// so every new district remains discoverable without another WebGL camera.
-const opsMap=document.getElementById('ops-map');
-const opsCanvas=document.getElementById('ops-canvas');
-const opsCtx=opsCanvas.getContext('2d');
-const OPS_POIS=[
-  ['CHANGI',CHANGI,'✈'],['SUTD',SUTD,'U'],['TUAS',TUAS,'⚓'],['NTU',NTU,'U'],
-  ['NUS',NUS,'U'],['SGH',HOSPITAL,'+'],['SMU',SMU,'U'],['CIVIC',CIVIC,'★'],
-  ['MRT',INTERCHANGE,'M'],['CBD',CBD,'◆'],['HDB',HDB,'⌂'],['SENTOSA',SENTOSA,'●']
-];
-function opsPointFromLatLon(lat,lon){
-  return {x:(lon+180)/360*opsCanvas.width,y:(90-lat)/180*opsCanvas.height};
-}
-function opsPointFromUnit(u){
-  const lat=Math.asin(THREE.MathUtils.clamp(u.y,-1,1))*180/Math.PI;
-  let lon=Math.atan2(-u.x,-u.z)*180/Math.PI;if(lon>180)lon-=360;if(lon<-180)lon+=360;
-  return opsPointFromLatLon(lat,lon);
-}
-function drawOpsRoadSegment(c,a,b,type){
-  const w=opsCanvas.width,p1=opsPointFromLatLon(a.lat,a.lon),p2=opsPointFromLatLon(b.lat,b.lon);
-  if(Math.abs(p2.x-p1.x)>w/2)p2.x+=p2.x>p1.x?-w:w;
-  const widths=type==='expressway'?[7,4]:type==='arterial'?[4.5,2.4]:[2.3,1.15];
-  for(const shift of [-w,0,w]){
-    c.beginPath();c.moveTo(p1.x+shift,p1.y);c.lineTo(p2.x+shift,p2.y);
-    c.strokeStyle='rgba(45,67,66,.42)';c.lineWidth=widths[0];c.setLineDash([]);c.stroke();
-    c.strokeStyle=type==='local'?'rgba(248,238,211,.7)':'rgba(251,246,232,.95)';
-    c.lineWidth=widths[1];c.stroke();
-    if(type==='expressway'){
-      c.strokeStyle='rgba(47,127,140,.72)';c.lineWidth=1;c.setLineDash([6,5]);c.stroke();c.setLineDash([]);
-    }
-  }
-}
-let opsLastDraw=0;
-function drawOpsMap(now=0){
-  if(now-opsLastDraw<120)return;opsLastDraw=now;
-  const c=opsCtx,w=opsCanvas.width,h=opsCanvas.height;c.clearRect(0,0,w,h);
-  c.fillStyle='#b9ddd5';c.fillRect(0,0,w,h);
-  c.fillStyle='#79ad69';c.beginPath();
-  c.moveTo(8,h*.57);c.bezierCurveTo(w*.16,h*.12,w*.4,h*.12,w*.52,h*.32);
-  c.bezierCurveTo(w*.7,h*.04,w*.92,h*.25,w-8,h*.48);
-  c.bezierCurveTo(w*.84,h*.9,w*.58,h*.83,w*.42,h*.68);
-  c.bezierCurveTo(w*.24,h*.94,w*.08,h*.82,8,h*.57);c.fill();
-  c.lineCap='round';c.lineJoin='round';
-  for(const network of ROAD_NETWORKS){
-    if(network.type==='local')continue;
-    // Keep the overview legible: show the authored hierarchy rather than
-    // reproducing metre-scale building detours from the 3D carriageway.
-    const route=network.points;
-    for(let i=0;i<route.length-1;i++)drawOpsRoadSegment(c,route[i],route[i+1],network.type);
-  }
-  c.textAlign='center';c.textBaseline='middle';
-  for(const [label,p,icon] of OPS_POIS){
-    const q=opsPointFromLatLon(p.lat,p.lon);c.fillStyle='#fbf6e8';c.beginPath();c.arc(q.x,q.y,9,0,Math.PI*2);c.fill();
-    c.fillStyle='#2f7f8c';c.font='bold 14px Courier New';c.fillText(icon,q.x,q.y+.5);
-    c.fillStyle='rgba(46,42,37,.86)';c.font='bold 12px Courier New';
-    const tx=Math.max(24,Math.min(w-24,q.x)),ty=q.y<22?q.y+18:q.y-15;c.fillText(label,tx,ty);
-  }
-  if(started&&stage<DELIVERIES.length){
-    const t=opsPointFromUnit(targetUnit(currentTargetNPC()));c.fillStyle='#d0342c';c.font='bold 23px sans-serif';c.fillText('✦',t.x,t.y);
-  }
-  const me=opsPointFromUnit(pos.clone().normalize());c.fillStyle='#202b2d';c.beginPath();c.arc(me.x,me.y,6,0,Math.PI*2);c.fill();
-  c.strokeStyle='#fff';c.lineWidth=2;c.stroke();
-}
 {
   const up=pos.clone().normalize();
   fwd.sub(up.clone().multiplyScalar(fwd.dot(up))).normalize();
@@ -5355,7 +5303,6 @@ function loop(now){
   stepNPCs(dt,t);
   stepCamera(dt,t);
   stepWorld(dt,t);
-  drawOpsMap(now);
   renderer.render(scene,camera);
 }
 stepCamera(1,performance.now()/1000);
@@ -5555,7 +5502,6 @@ document.getElementById('begin').addEventListener('click',()=>{
     vanBtn.style.display='block';
   }
   document.getElementById('muteBtn').style.display='block';
-  opsMap.classList.add('show');
   Snd.init();
   buildRoute();
   stageOpening();

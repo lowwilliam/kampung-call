@@ -122,10 +122,8 @@ if (roadStart >= 0 && roadEnd > roadStart) {
   for (const routeName of ['ISLAND EXPRESS', 'COASTAL EXPRESS', 'CENTRAL CORRIDOR', 'CAMPUS LINK']) {
     assert(roadBlock.includes(`name:'${routeName}'`), `Road plan is missing ${routeName}.`);
   }
-  const roadConsumers = [...html.matchAll(/for\(const network of ROAD_NETWORKS\)/g)].length;
-  assert(roadConsumers >= 2, 'ROAD_NETWORKS must drive both the 3D world and operations map.');
-  assert(/network\.renderPoints=centers\.map\(latLonFromUnit\)/.test(html),
-    'Operations map must consume the same collision-cleared road geometry as the 3D city.');
+  assert(/network\.centerUnits=centers/.test(html),
+    'Road networks must retain collision-cleared geometry for navigation and placement.');
 }
 assert(/LOCAL_BUILDING_SETBACK>ROAD_STYLES\.local\.width\/2\+1\.25\+\.25/.test(html),
   'Local buildings must retain a full road-and-collider clearance setback.');
@@ -140,6 +138,8 @@ assert(/function visibleBuildingOverlap\(unit\)[\s\S]{0,700}MAJOR_BUILDING_VISUA
   'Road QA must validate against enlarged visible building footprints.');
 assert(/function localBuildingPose\(i\)[\s\S]{0,1200}LOCAL_BUILDING_SETBACK/.test(html),
   'Local building placement and road clearance must share one deterministic pose function.');
+assert(/function auditBuildingSpacing\(\)[\s\S]{0,1200}window\.__buildingSpacingAudit=result/.test(html),
+  'City planning must expose a runtime spacing audit for major and local buildings.');
 assert(/surfR\(up2\)\+VEHICLE_SURFACE_OFFSET/.test(html),
   'Moving service vehicles must be aligned to the rendered road surface.');
 assert(/forwardYaw:-Math\.PI\/2/.test(html)

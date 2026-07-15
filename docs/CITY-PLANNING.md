@@ -1,6 +1,6 @@
 # Kampung Calls city-planning system
 
-The island uses one shared `ROAD_NETWORKS` model for the 3D world and the live operations map. New districts should connect to this model rather than adding isolated path strips.
+The island uses one shared `ROAD_NETWORKS` model for the 3D world, vehicle placement and navigation checks. New districts should connect to this model rather than adding isolated path strips.
 
 ## Road hierarchy
 
@@ -28,10 +28,11 @@ The hierarchy should remain readable in silhouette. Avoid using an expressway wh
 - `auditPublicRouteClearance` samples the final road and bridge network after all colliders load and exposes its checked/blocked result for regression QA.
 - Redundant links are removed when overlapping destination footprints cannot provide a safe verge; the Kampung and secondary condo district connect through the HDB/central network instead of an unsafe direct shortcut.
 - Local plots keep a clearance setback greater than the road half-width, the largest building collider and a safety margin.
+- Independent building silhouettes keep a measured verge; intentional connected ensembles such as shophouse rows and the airport campus use one combined planning footprint.
+- `auditBuildingSpacing` checks every major footprint, the north archive display and all forty local-estate buildings whenever the world loads.
 - Major intersections use a junction or roundabout treatment so route changes are visible from the gameplay camera.
 - Institutions retain a pedestrian plaza between their entrance and the road network.
 - Road signs name operational destinations rather than decorative landmarks.
-- The operations map must be generated from the same route data as the 3D world.
 
 ## Current structure
 
@@ -41,6 +42,6 @@ The hierarchy should remain readable in silhouette. Avoid using an expressway wh
 - `CAMPUS LINK`: NTU, NUS, hospital, SMU and civic district.
 - Eight local estate corridors organise the background building clusters.
 
-When adding a district, create its building-free `ROAD_ACCESS` node, update `ROAD_NETWORKS`, terrain flattening, the collision/POI list and `OPS_POIS`, then run `npm test` and review both title and gameplay cameras. Parked vehicles snap to the nearest sampled road pose and inherit its tangent heading; moving road vehicles use the rendered road offset. Watercraft use the shared water-surface, draft and bob constants.
+When adding a district, create its building-free `ROAD_ACCESS` node, update `ROAD_NETWORKS`, terrain flattening and the collision/POI list, then run `npm test` and review both title and gameplay cameras. Parked vehicles snap to the nearest sampled road pose and inherit its tangent heading; moving road vehicles use the rendered road offset. Watercraft use the shared water-surface, draft and bob constants.
 
 Vehicle assets use local `+Z` as forward. Assets authored on another axis must declare a `forwardYaw`; the service-van GLB uses `-π/2` to convert its Blender `+X` nose. Driving is forward-only, braking uses Down/S, and steering is applied only while moving.
