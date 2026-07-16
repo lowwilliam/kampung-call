@@ -1,8 +1,8 @@
 # Kampung Call
 
-Kampung Call is a browser-based field-service training game set across a playful, stylised Singapore. You travel between neighbourhoods, meet six residents, diagnose home-connectivity problems, and complete every call in the shift.
+Kampung Call is a full-HTML browser game set across a playful, stylised Singapore. Explore its neighbourhoods, meet six residents, solve home-connectivity problems, and complete every call before the shift ends.
 
-The project combines a small open-world Three.js experience with scenario-based learning. Each customer visit asks the player to inspect symptoms, choose diagnostic actions, see immediate coaching feedback, and either restore service or make the correct escalation.
+The game combines a small open-world Three.js experience with hands-on service missions. Each customer visit asks the player to inspect symptoms, choose diagnostic actions, get immediate feedback, and either restore service or make the correct escalation.
 
 ## What you do
 
