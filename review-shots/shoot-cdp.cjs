@@ -1,0 +1,100 @@
+// Temporary review tool: screenshot the game via raw Chrome DevTools Protocol.
+// No npm deps — uses node 24's global WebSocket + fetch against Chrome's
+// remote debugging port. (puppeteer-core in the singapost install is corrupted.)
+const fs = require("fs");
+const { spawn } = require("child_process");
+
+const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const GAME_URL = process.env.GAME_URL || "http://localhost:5199/";
+const PORT = 9223;
+const OUT = __dirname + "/";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const log = (m) => { fs.appendFileSync(OUT + "shoot.log", m + "\n"); };
+
+async function getTargetWs() {
+  for (let i = 0; i < 40; i++) {
+    try {
+      const res = await fetch(`http://127.0.0.1:${PORT}/json/list`);
+      const targets = await res.json();
+      const page = targets.find((t) => t.type === "page");
+      if (page) return page.webSocketDebuggerUrl;
+    } catch {}
+    await sleep(500);
+  }
+  throw new Error("Chrome debug target never appeared");
+}
+
+(async () => {
+  const chrome = spawn(CHROME, [
+    "--headless=new", `--remote-debugging-port=${PORT}`,
+    "--window-size=1440,900", "--use-angle=metal", "--mute-audio",
+    "--user-data-dir=/tmp/kc-chrome-profile-" + Date.now(),
+    "about:blank",
+  ], { stdio: "ignore" });
+  process.on("exit", () => { try { chrome.kill("SIGKILL"); } catch {} });
+
+  const ws = new WebSocket(await getTargetWs());
+  await new Promise((res, rej) => { ws.onopen = res; ws.onerror = rej; });
+  log("cdp connected");
+
+  let id = 0;
+  const pending = new Map();
+  const events = [];
+  ws.onmessage = (ev) => {
+    const msg = JSON.parse(ev.data);
+    if (msg.id && pending.has(msg.id)) { pending.get(msg.id)(msg); pending.delete(msg.id); }
+    else if (msg.method) events.push(msg);
+  };
+  const send = (method, params = {}) => new Promise((res) => {
+    const mid = ++id;
+    pending.set(mid, res);
+    ws.send(JSON.stringify({ id: mid, method, params }));
+  });
+  const evaluate = (expr) => send("Runtime.evaluate", { expression: expr, awaitPromise: false });
+  const shot = async (name) => {
+    const r = await send("Page.captureScreenshot", { format: "png" });
+    fs.writeFileSync(OUT + name, Buffer.from(r.result.data, "base64"));
+    log("saved " + name);
+  };
+
+  await send("Page.enable");
+  await send("Runtime.enable");
+  await send("Page.navigate", { url: GAME_URL });
+  log("navigated");
+  await sleep(14000); // GLB load + title world settle
+  await shot("cur_title.png");
+
+  await evaluate("document.getElementById('begin') && document.getElementById('begin').click()");
+  await sleep(5000); // camera swoop into gameplay
+  await shot("cur_spawn.png");
+
+  const key = async (type, code, keyVal, vk) => send("Input.dispatchKeyEvent", {
+    type, code, key: keyVal, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk,
+  });
+  const hold = async (code, keyVal, vk, ms) => {
+    await key("rawKeyDown", code, keyVal, vk);
+    await sleep(ms);
+    await key("keyUp", code, keyVal, vk);
+  };
+  await hold("KeyW", "w", 87, 3500);
+  await sleep(800);
+  await shot("cur_walk.png");
+
+  await hold("KeyD", "d", 68, 900);
+  await hold("KeyW", "w", 87, 3500);
+  await sleep(800);
+  await shot("cur_walk2.png");
+
+  // keep walking toward the call target; dialogue should auto-open in range
+  await hold("KeyW", "w", 87, 4000);
+  await sleep(1200);
+  await shot("cur_near.png");
+
+  const st = await evaluate("JSON.stringify({route:window.__routeClearanceAudit||null})");
+  log("STATE " + JSON.stringify(st.result && st.result.result && st.result.result.value));
+
+  ws.close();
+  chrome.kill("SIGKILL");
+  log("DONE");
+  process.exit(0);
+})().catch((e) => { log("ERROR " + e.message); console.error(e); process.exit(1); });

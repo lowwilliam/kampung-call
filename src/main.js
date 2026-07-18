@@ -26,7 +26,7 @@ renderer.setSize(innerWidth,innerHeight);
 renderer.setClearColor(VOID_COLOR,1);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.04;
+renderer.toneMappingExposure = 0.98;
 const SHADOWS = !isTouch;
 if(SHADOWS){
   renderer.shadowMap.enabled = true;
@@ -35,12 +35,37 @@ if(SHADOWS){
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-// far side of the planet melts into the void, like the reference
-scene.fog = new THREE.Fog(VOID_COLOR, 78, 155);
+// far side of the planet melts into the void, like the reference — fog now
+// starts close enough to add real aerial depth at gameplay camera distance
+scene.fog = new THREE.Fog(VOID_COLOR, 36, 124);
 const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
 
+// ---------- gradient sky dome: keeps the teal "void" identity but gives the
+// horizon depth instead of a flat clear colour ----------
+(function buildSky(){
+  const skyGeo = new THREE.SphereGeometry(320, 24, 16);
+  const skyMat = new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite: false, fog: false,
+    uniforms: {
+      top: { value: new THREE.Color(0x4f9d9b) },
+      mid: { value: new THREE.Color(VOID_COLOR) },
+      bot: { value: new THREE.Color(0xf2e2bd) },
+    },
+    vertexShader: `
+      varying vec3 vDir;
+      void main(){ vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+    fragmentShader: `
+      varying vec3 vDir; uniform vec3 top; uniform vec3 mid; uniform vec3 bot;
+      void main(){ float h = vDir.y; vec3 c = h > 0.0 ? mix(mid, top, pow(h, 0.65)) : mix(mid, bot, pow(-h, 0.75)); gl_FragColor = vec4(c, 1.0); }`,
+  });
+  const sky = new THREE.Mesh(skyGeo, skyMat);
+  sky.userData.noShadow = true; sky.userData.noOutline = true;
+  scene.add(sky);
+})();
+
 // ---------- toon material system ----------
-const gradData = new Uint8Array([70, 135, 195, 255]);
+// deeper bottom step so shaded areas actually go dark (was [70,135,195,255])
+const gradData = new Uint8Array([38, 112, 200, 255]);
 const gradTex = new THREE.DataTexture(gradData, 4, 1, THREE.RedFormat);
 gradTex.minFilter = gradTex.magFilter = THREE.NearestFilter;
 gradTex.generateMipmaps = false;
@@ -57,9 +82,9 @@ function mat(color, extra){
 function texMat(map, extra){ return new THREE.MeshToonMaterial(Object.assign({map, gradientMap:gradTex}, extra)); }
 function glowMat(color){ return new THREE.MeshBasicMaterial({color}); }
 
-// ---------- cel outlines (inverted hull) ----------
-const OUTLINE_MAT = new THREE.MeshBasicMaterial({color:0x45413b, side:THREE.BackSide});
-function addOutlines(group, thick=1.038){
+// ---------- cel outlines (inverted hull) — ink per ART-DIRECTION.md ----------
+const OUTLINE_MAT = new THREE.MeshBasicMaterial({color:0x27302f, side:THREE.BackSide});
+function addOutlines(group, thick=1.045){
   const list=[];
   group.traverse(m=>{
     if(m.isMesh && !m.userData.noOutline && !m.userData.noShadow &&
@@ -75,9 +100,9 @@ function addOutlines(group, thick=1.038){
   return group;
 }
 
-// ---------- lights (no sky dome, no sun mesh — clean void) ----------
-scene.add(new THREE.HemisphereLight(0xfdfaf2, 0x789a79, .58));
-const dir = new THREE.DirectionalLight(0xfff2d6, .72);
+// ---------- lights (gradient sky dome above; key-driven shading) ----------
+scene.add(new THREE.HemisphereLight(0xfdfaf2, 0x789a79, .36));
+const dir = new THREE.DirectionalLight(0xfff2d6, 1.15);
 dir.position.set(60,90,-40);
 if(SHADOWS){
   dir.castShadow=true;
@@ -91,7 +116,7 @@ const dirTarget=new THREE.Object3D();
 scene.add(dirTarget); dir.target=dirTarget;
 scene.add(dir);
 // cool rim/back light for cel pop — follows the player like the sun does
-const rim=new THREE.DirectionalLight(0xbfe3ec,.28);
+const rim=new THREE.DirectionalLight(0xbfe3ec,.42);
 rim.target=dirTarget;
 scene.add(rim);
 
@@ -365,8 +390,9 @@ function resolveCollisions(unit,skip=null){
   const geo=new THREE.SphereGeometry(R,64,48);
   const posA=geo.attributes.position;
   const colors=[];
-  const g1=new THREE.Color(0x8cc073), g2=new THREE.Color(0x74ac60),
-        hi=new THREE.Color(0xd9c98f), lo=new THREE.Color(0x699e58);
+  // wider value/saturation spread so the zoning reads at gameplay distance
+  const g1=new THREE.Color(0x97cc76), g2=new THREE.Color(0x5f9c52),
+        hi=new THREE.Color(0xd9c98f), lo=new THREE.Color(0x4f8443);
   const v=new THREE.Vector3();
   for(let i=0;i<posA.count;i++){
     v.fromBufferAttribute(posA,i);
@@ -375,7 +401,8 @@ function resolveCollisions(unit,skip=null){
     v.copy(u).multiplyScalar(R+h);
     posA.setXYZ(i,v.x,v.y,v.z);
     // colour: two greens mottled, sandy tops on high bumps, deeper green in dips
-    const n=.5+.5*Math.sin(9.2*u.x+7.1*u.y+5.3*u.z);
+    let n=.5+.5*Math.sin(9.2*u.x+7.1*u.y+5.3*u.z);
+    n=Math.min(1,Math.max(0,(n-.5)*1.7+.5)); // contrast curve: visible patches, not noise
     let c=g1.clone().lerp(g2,n);
     if(h>.22)c.lerp(hi,Math.min(1,(h-.22)/.3));
     if(h<-.18)c.lerp(lo,Math.min(1,(-h-.18)/.25));
@@ -848,7 +875,7 @@ function buildKopitiam(){
       c.fillStyle='#2e5e52';c.fillRect(0,0,512,100);
       c.strokeStyle='#f2c14e';c.lineWidth=6;c.strokeRect(8,8,496,84);
       c.fillStyle='#f2c14e';c.font='bold 54px Trebuchet MS';c.textAlign='center';
-      c.fillText('KOPI ☕ 咖啡',256,66);
+      c.fillText('KOPI 咖啡',256,66);
     })));
   sign.position.set(0,3.35,1.9); g.add(sign);
   for(const lx of [-2.3,2.3]){
@@ -3083,19 +3110,20 @@ const smokes=[];
 })();
 
 // clouds — white puffs floating in the void, like the reference
+// more of them now, some lower and larger, so they read from ground level too
 const clouds=[];
-for(let i=0;i<8;i++){
+for(let i=0;i<14;i++){
   const c=new THREE.Group();
   const n=3+(Math.random()*2|0);
   for(let j=0;j<n;j++){
-    const p=new THREE.Mesh(new THREE.SphereGeometry(.9+Math.random()*1.1,8,6),
+    const p=new THREE.Mesh(new THREE.SphereGeometry(1.2+Math.random()*1.4,8,6),
       new THREE.MeshToonMaterial({color:0xffffff,gradientMap:gradTex,transparent:true,opacity:.97}));
-    p.position.set(j*1.3-n*.6,Math.random()*.5,Math.random()*.9);
+    p.position.set(j*1.5-n*.7,Math.random()*.6,Math.random()*1.1);
     p.userData.noShadow=true;
     c.add(p);
   }
   const axis=V3(Math.random()-.5,Math.random()-.5,Math.random()-.5).normalize();
-  const start=V3().crossVectors(axis,V3(0,1,.3)).normalize().multiplyScalar(R+8+Math.random()*4);
+  const start=V3().crossVectors(axis,V3(0,1,.3)).normalize().multiplyScalar(R+5+Math.random()*8);
   c.position.copy(start);
   c.userData={axis,speed:.012+Math.random()*.02};
   scene.add(c); clouds.push(c);
@@ -3632,8 +3660,8 @@ function stepNPCs(dt,t){
       if(started&&!finished&&vanState.mode==='foot'&&!diagnosing&&!dialogueOpen&&
         ambientTalkCooldown===0&&n.userData.ambientCooldown===0&&angDist<2.8){
         showToast(n.userData.def.name,AMBIENT_LINES[(Math.random()*AMBIENT_LINES.length)|0]);
-        popEmote(n,'💬');n.userData.bounceT=t;
-        shiftScore+=10;document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
+        popEmote(n,'chat');n.userData.bounceT=t;
+        shiftScore+=10;document.getElementById('chitScore').textContent=`★ ${shiftScore}`;
         ambientTalkCooldown=7;n.userData.ambientCooldown=22+Math.random()*16;
       }
     }
@@ -3722,8 +3750,135 @@ function stepNPCs(dt,t){
   }
 }
 
+// ---------- inked icon system: hand-drawn markers, no platform emoji ----------
+// Every in-world marker/emote is drawn here in the ART-DIRECTION ink style so
+// the look is identical on every platform (system emoji are not).
+const INK='#27302f';
+const ICONS={
+  los(c,x,y,s){ // optical LOS fault: red alarm LED with rays
+    c.fillStyle='#d0342c';
+    c.beginPath();c.arc(x,y,s*.52,0,7);c.fill();c.stroke();
+    for(let i=0;i<8;i++){const a=i*Math.PI/4;
+      c.beginPath();c.moveTo(x+Math.cos(a)*s*.78,y+Math.sin(a)*s*.78);
+      c.lineTo(x+Math.cos(a)*s*.98,y+Math.sin(a)*s*.98);c.stroke();}
+    c.fillStyle='#f6d9cf';c.beginPath();c.arc(x-s*.16,y-s*.18,s*.13,0,7);c.fill();
+  },
+  lan(c,x,y,s){ // ethernet plug with gold contacts and cable
+    c.fillStyle='#ebe3c7';
+    c.fillRect(x-s*.55,y-s*.42,s*1.1,s*.84);c.strokeRect(x-s*.55,y-s*.42,s*1.1,s*.84);
+    c.fillStyle='#c98f1b';
+    for(let i=-1.5;i<=1.5;i++)c.fillRect(x+i*s*.26-s*.05,y-s*.64,s*.1,s*.24);
+    c.beginPath();c.moveTo(x,y+s*.42);c.quadraticCurveTo(x+s*.1,y+s*.8,x-s*.3,y+s*.95);c.stroke();
+  },
+  wifi(c,x,y,s){ // signal arcs + dot
+    for(let i=0;i<3;i++){c.beginPath();c.arc(x,y+s*.55,s*.34+i*s*.3,-Math.PI*.78,-Math.PI*.22);c.stroke();}
+    c.fillStyle='#0e6b66';c.beginPath();c.arc(x,y+s*.55,s*.14,0,7);c.fill();
+  },
+  intermittent(c,x,y,s){ // broken trace + spark
+    c.beginPath();c.moveTo(x-s*.9,y+s*.3);c.lineTo(x-s*.45,y-s*.25);c.lineTo(x-s*.15,y+s*.15);c.stroke();
+    c.beginPath();c.moveTo(x+s*.15,y-s*.15);c.lineTo(x+s*.45,y+s*.25);c.lineTo(x+s*.9,y-s*.3);c.stroke();
+    c.fillStyle='#f09214';
+    c.beginPath();c.moveTo(x,y-s*.55);c.lineTo(x+s*.14,y-s*.1);c.lineTo(x+s*.5,y-s*.18);
+    c.lineTo(x+s*.1,y+s*.18);c.lineTo(x+s*.2,y+s*.6);c.lineTo(x-s*.05,y+s*.2);
+    c.lineTo(x-s*.42,y+s*.3);c.lineTo(x-s*.12,y-s*.12);c.closePath();c.fill();c.stroke();
+  },
+  router(c,x,y,s){ // router box with antenna and LEDs
+    c.fillStyle='#0e6b66';
+    c.fillRect(x-s*.7,y-s*.1,s*1.4,s*.62);c.strokeRect(x-s*.7,y-s*.1,s*1.4,s*.62);
+    c.beginPath();c.moveTo(x-s*.45,y-s*.1);c.lineTo(x-s*.45,y-s*.75);c.stroke();
+    c.beginPath();c.arc(x-s*.45,y-s*.82,s*.1,0,7);c.fill();c.stroke();
+    c.fillStyle='#f2c14e';
+    for(const i of[-.35,0,.35]){c.beginPath();c.arc(x+i*s,y+s*.21,s*.07,0,7);c.fill();}
+  },
+  mesh(c,x,y,s){ // two linked nodes
+    c.fillStyle='#0e6b66';
+    c.fillRect(x-s*.85,y-s*.35,s*.55,s*.55);c.strokeRect(x-s*.85,y-s*.35,s*.55,s*.55);
+    c.fillRect(x+s*.3,y,s*.55,s*.55);c.strokeRect(x+s*.3,y,s*.55,s*.55);
+    c.setLineDash([s*.16,s*.12]);
+    c.beginPath();c.moveTo(x-s*.3,y-s*.07);c.lineTo(x+s*.3,y+s*.27);c.stroke();
+    c.setLineDash([]);
+    c.beginPath();c.arc(x-s*.57,y-s*.35,s*.42,-Math.PI*.8,-Math.PI*.2);c.stroke();
+  },
+  star(c,x,y,s){
+    c.fillStyle='#f2c14e';c.beginPath();
+    for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?s*.42:s*.9;
+      c[i?'lineTo':'moveTo'](x+Math.cos(a)*r,y+Math.sin(a)*r);}
+    c.closePath();c.fill();c.stroke();
+  },
+  heart(c,x,y,s){
+    c.fillStyle='#d0342c';c.beginPath();
+    c.moveTo(x,y+s*.7);
+    c.bezierCurveTo(x-s*1.05,y-s*.05,x-s*.55,y-s*.85,x,y-s*.25);
+    c.bezierCurveTo(x+s*.55,y-s*.85,x+s*1.05,y-s*.05,x,y+s*.7);
+    c.fill();c.stroke();
+  },
+  chat(c,x,y,s){ // mini speech bubble with dots
+    c.fillStyle='#ffffff';
+    c.fillRect(x-s*.75,y-s*.5,s*1.5,s*.9);c.strokeRect(x-s*.75,y-s*.5,s*1.5,s*.9);
+    c.beginPath();c.moveTo(x-s*.2,y+s*.38);c.lineTo(x-s*.35,y+s*.8);c.lineTo(x+s*.08,y+s*.38);c.closePath();c.fill();c.stroke();
+    c.fillStyle=INK;
+    for(const i of[-.35,0,.35]){c.beginPath();c.arc(x+i*s,y-s*.05,s*.09,0,7);c.fill();}
+  },
+  wrench(c,x,y,s){
+    c.beginPath();c.moveTo(x-s*.55,y+s*.55);c.lineTo(x+s*.3,y-s*.3);c.stroke();
+    c.beginPath();c.arc(x+s*.45,y-s*.45,s*.3,-.35,Math.PI*1.25);c.stroke();
+    c.beginPath();c.arc(x-s*.62,y+s*.62,s*.16,0,7);c.stroke();
+  },
+  smile(c,x,y,s){
+    c.fillStyle='#f2c14e';
+    c.beginPath();c.arc(x,y,s*.8,0,7);c.fill();c.stroke();
+    c.fillStyle=INK;
+    for(const i of[-.3,.3]){c.beginPath();c.arc(x+i*s,y-s*.18,s*.09,0,7);c.fill();}
+    c.beginPath();c.arc(x,y+s*.08,s*.38,.35,Math.PI-.35);c.stroke();
+  },
+  flag(c,x,y,s){ // little Singapore flag
+    c.beginPath();c.moveTo(x-s*.6,y-s*.85);c.lineTo(x-s*.6,y+s*.85);c.stroke();
+    c.fillStyle='#ffffff';c.fillRect(x-s*.6,y-s*.85,s*1.3,s*.75);c.strokeRect(x-s*.6,y-s*.85,s*1.3,s*.75);
+    c.fillStyle='#d0342c';c.fillRect(x-s*.6,y-s*.85,s*1.3,s*.38);
+    c.fillStyle='#ffffff';c.beginPath();c.arc(x-s*.28,y-s*.66,s*.1,0,7);c.fill();
+  },
+  toolbox(c,x,y,s){
+    c.fillStyle='#aa2e1c';
+    c.fillRect(x-s*.75,y-s*.25,s*1.5,s*.85);c.strokeRect(x-s*.75,y-s*.25,s*1.5,s*.85);
+    c.beginPath();c.moveTo(x-s*.75,y+s*.08);c.lineTo(x+s*.75,y+s*.08);c.stroke();
+    c.beginPath();c.arc(x,y-s*.25,s*.3,Math.PI,0);c.stroke();
+    c.fillStyle='#f2c14e';c.fillRect(x-s*.12,y-s*.08,s*.24,s*.22);c.strokeRect(x-s*.12,y-s*.08,s*.24,s*.22);
+  },
+  flame(c,x,y,s){
+    c.fillStyle='#f09214';c.beginPath();
+    c.moveTo(x,y+s*.72);
+    c.bezierCurveTo(x-s*.75,y+s*.3,x-s*.5,y-s*.25,x-s*.12,y-s*.42);
+    c.bezierCurveTo(x-s*.22,y-s*.72,x-s*.05,y-s*.8,x,y-s*.95);
+    c.bezierCurveTo(x+s*.4,y-s*.6,x+s*.28,y-s*.35,x+s*.45,y-s*.1);
+    c.bezierCurveTo(x+s*.72,y+s*.25,x+s*.5,y+s*.55,x,y+s*.72);
+    c.fill();c.stroke();
+    c.fillStyle='#d0342c';c.beginPath();
+    c.moveTo(x,y+s*.68);c.bezierCurveTo(x-s*.32,y+s*.42,x-s*.18,y+s*.05,x,y-s*.12);
+    c.bezierCurveTo(x+s*.28,y+s*.08,x+s*.3,y+s*.4,x,y+s*.68);
+    c.fill();
+  },
+};
+function drawIcon(c,kind,x,y,s){
+  c.save();
+  c.strokeStyle=INK;c.lineWidth=Math.max(2,s*.16);c.lineJoin='round';c.lineCap='round';
+  (ICONS[kind]||ICONS.star)(c,x,y,s);
+  c.restore();
+}
+// data-URL versions of the same icons for DOM UI (work-order chit)
+const iconURLCache={};
+function iconURL(kind){
+  if(!iconURLCache[kind]){
+    const cv=document.createElement('canvas');cv.width=cv.height=48;
+    drawIcon(cv.getContext('2d'),kind,24,25,17);
+    iconURLCache[kind]=cv.toDataURL();
+  }
+  return iconURLCache[kind];
+}
+// debug/QA hook (matches the existing window.__* audits)
+window.__icons={drawIcon,kinds:Object.keys(ICONS)};
+
 // ---------- target marker: speech bubble (reference style) ----------
-function bubbleTex(ch){
+function bubbleIconTex(kind){
   return canvasTex(160,180,(c)=>{
     c.fillStyle='#ffffff';
     c.strokeStyle='#3a352e';c.lineWidth=7;
@@ -3735,18 +3890,19 @@ function bubbleTex(ch){
     c.lineTo(18+r,120);c.arcTo(18,120,18,120-r,r);
     c.lineTo(18,10+r);c.arcTo(18,10,18+r,10,r);
     c.closePath();c.fill();c.stroke();
-    c.font='64px serif';c.textAlign='center';c.textBaseline='middle';
-    c.fillText(ch,80,66);
+    drawIcon(c,kind,80,66,34);
   });
 }
-const marker=new THREE.Sprite(new THREE.SpriteMaterial({map:bubbleTex('☕'),transparent:true,depthWrite:false}));
+const marker=new THREE.Sprite(new THREE.SpriteMaterial({map:bubbleIconTex('star'),transparent:true,depthWrite:false}));
 marker.scale.set(1.9,2.14,1);
 marker.visible=false;
 scene.add(marker);
-function setMarkerEmoji(ch){
-  marker.material.map=bubbleTex(ch);
+function setMarkerIcon(kind){
+  marker.material.map.dispose();
+  marker.material.map=bubbleIconTex(kind);
   marker.material.needsUpdate=true;
   markerPopT=performance.now()/1000;
+  window.__markerKind=kind; // QA: which icon the target marker is showing
 }
 const beacon=new THREE.Group();
 const ring=new THREE.Mesh(new THREE.RingGeometry(.7,1,28),
@@ -3761,24 +3917,24 @@ scene.traverse(o=>{
 });
 
 // ---------- emotes / carried item ----------
-function emojiSprite(ch,size=.9){
-  const t=canvasTex(128,128,(c)=>{c.font='96px serif';c.textAlign='center';c.textBaseline='middle';c.fillText(ch,64,70);});
+function iconSprite(kind,size=.9){
+  const t=canvasTex(128,128,(c)=>{drawIcon(c,kind,64,66,42);});
   const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false}));
   s.scale.set(size,size,1); return s;
 }
 const floaters=[];
-function popEmote(anchorObj,ch){
-  const s=emojiSprite(ch,1);
+function popEmote(anchorObj,kind){
+  const s=iconSprite(kind,1);
   scene.add(s);
   const base=anchorObj.getWorldPosition(new THREE.Vector3());
   const up=base.clone().normalize();
   floaters.push({s,base,up,t:0,drift:(Math.random()-.5)*1.2});
 }
 let carrySprite=null, carrySpawnT=-9;
-function setCarry(ch){
+function setCarry(kind){
   if(carrySprite){player.remove(carrySprite);carrySprite=null;}
-  if(ch){
-    carrySprite=emojiSprite(ch,.8);
+  if(kind){
+    carrySprite=iconSprite(kind,.8);
     carrySprite.position.set(0,2.7,0);
     player.add(carrySprite);
     carrySpawnT=performance.now()/1000;
@@ -3900,22 +4056,22 @@ const Snd={
 // fault, restore service, validate, then close or escalate the ticket.
 // `holding` means diagnosis is in progress at the current premises.
 const FUTURE_DELIVERIES=[
- {item:'LOS / red PON',emoji:'🔴',from:0,to:0,
+ {item:'LOS / red PON',icon:'los',from:0,to:0,
   pickup:"Appointment verified. Customer reports no service. Inspect power, fibre patch cord and ONT PON/LOS indicators before touching the equipment.",
   drop:"LOS remains after reseating the patch cord. Optical fault documented and escalated to NetLink Trust; customer advised of the follow-up appointment."},
- {item:'No LAN link',emoji:'🔌',from:1,to:1,
+ {item:'No LAN link',icon:'lan',from:1,to:1,
   pickup:"ONT has stable green PON but LAN 1 is dark. Trace the Ethernet path from ONT LAN 1 to the router WAN port.",
   drop:"Damaged Ethernet lead replaced. LAN and Internet indicators are active; wired connectivity test passed."},
- {item:'Wi-Fi dead zone',emoji:'📶',from:2,to:2,
+ {item:'Wi-Fi dead zone',icon:'wifi',from:2,to:2,
   pickup:"Broadband is online but the study has weak Wi-Fi. Check router placement and survey signal before adding hardware.",
   drop:"Mesh node paired and placed in an open midpoint location. Roaming and room coverage verified with the customer."},
- {item:'Intermittent service',emoji:'🧪',from:3,to:3,
+ {item:'Intermittent service',icon:'intermittent',from:3,to:3,
   pickup:"Customer reports repeated dropouts. Check ONR event state, power and patch connections, then isolate with a wired test.",
   drop:"Loose WAN patch connection secured. ONR and router restarted in sequence; sustained wired test is stable."},
- {item:'Router installation',emoji:'◉',from:4,to:4,
+ {item:'Router installation',icon:'router',from:4,to:4,
   pickup:"New installation appointment. Confirm the fibre service is active, connect the ONR/ONT to the router, then wait for stable indicators.",
   drop:"Power, PON, LAN and Internet indicators verified. Customer device connected and service handover completed."},
- {item:'Mesh re-pairing',emoji:'💡',from:5,to:5,
+ {item:'Mesh re-pairing',icon:'mesh',from:5,to:5,
   pickup:"Mesh node is offline after a power interruption. Verify the main router first, then re-pair the extender near the router.",
   drop:"Mesh pairing is stable. Node returned to its coverage position and final connection test passed; ticket notes recorded."},
 ];
@@ -4128,15 +4284,15 @@ function updateChit(){
   if(stage>=DELIVERIES.length)return;
   const d=cur();
   document.getElementById('chitNo').textContent=`CALL ${stage+1}/${DELIVERIES.length}`;
-  document.getElementById('chitItem').textContent=`${d.emoji} ${d.item}`;
-  document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
+  document.getElementById('chitItem').innerHTML=`<img class="chit-ico" alt="" src="${iconURL(d.icon)}"> ${d.item}`;
+  document.getElementById('chitScore').textContent=`★ ${shiftScore}`;
   document.getElementById('chitTask').innerHTML = holding
     ? `Sorting things out at <b>${NPC_DEFS[d.to].name}</b> — check the clues`
     : `Neighbour call: <b>${NPC_DEFS[d.from].name}</b> — ${NPC_DEFS[d.from].place}`;
   document.getElementById('chitDots').innerHTML=
     DELIVERIES.map((_,i)=>`<span class="${i<stage?'d1':''}"></span>`).join('');
   lastDist=-1;
-  setMarkerEmoji(d.emoji);
+  setMarkerIcon(d.icon);
 }
 function currentTargetNPC(){
   const d=cur();
@@ -4198,12 +4354,12 @@ function stageOpening(){
   player.position.copy(startU).multiplyScalar(surfR(startU));
 }
 const keys={};
-const EMOJIS=['👍','💪','🛜','🔧','😅','🇸🇬','😮','📶'];
+const EMOTE_KINDS=['star','heart','chat','wrench','smile','flag'];
 addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;
   // One-shot actions must ignore the browser's held-key repeat. Without this,
   // holding F for a fraction of a second can enter and immediately exit.
   if(e.repeat&&(e.key.toLowerCase()==='f'||e.key.toLowerCase()==='e'))return;
-  if(e.key.toLowerCase()==='e')popEmote(player,EMOJIS[(Math.random()*EMOJIS.length)|0]);
+  if(e.key.toLowerCase()==='e')popEmote(player,EMOTE_KINDS[(Math.random()*EMOTE_KINDS.length)|0]);
   // [F] enter/exit the van (only during a shift, not on the title screen)
   if(e.key.toLowerCase()==='f'&&started&&!finished&&!dialogueOpen&&!diagnosing){
     e.preventDefault();
@@ -4251,7 +4407,7 @@ if(isTouch){
     }
   });
   document.getElementById('emoteBtn').addEventListener('click',()=>{
-    popEmote(player,EMOJIS[(Math.random()*EMOJIS.length)|0]);
+    popEmote(player,EMOTE_KINDS[(Math.random()*EMOTE_KINDS.length)|0]);
   });
 }
 
@@ -4535,10 +4691,10 @@ function finishDiagnosis(){
   if(visitMistakes===0){
     shiftScore+=150;serviceStreak++;
     const tp=target.getWorldPosition(new THREE.Vector3()),tu=targetUnit(target);
-    burstConfetti(tp,tu);popEmote(target,serviceStreak>1?`🔥${serviceStreak}`:'⭐');
+    burstConfetti(tp,tu);popEmote(target,serviceStreak>1?'flame':'star');
   }
-  saveDiagnosticSession();cancelDiagnostic();holding=true;setCarry(d.emoji);
-  showToast(NPC_DEFS[d.from].name,d.pickup);popEmote(target,'🧰');target.userData.bounceT=performance.now()/1000;
+  saveDiagnosticSession();cancelDiagnostic();holding=true;setCarry(d.icon);
+  showToast(NPC_DEFS[d.from].name,d.pickup);popEmote(target,'toolbox');target.userData.bounceT=performance.now()/1000;
   Snd.pickup();questCooldown=2.8;updateChit();
 }
 function chooseDiagnostic(choice,button){
@@ -4546,7 +4702,7 @@ function chooseDiagnostic(choice,button){
   const option=diagnosticOptions[choice];
   if(option[1]){
     shiftScore+=100+serviceStreak*20;
-    document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
+    document.getElementById('chitScore').textContent=`★ ${shiftScore}`;
     diagnosticResolved=true;
     currentVisitSession().resolved=true;
     [...repairOptions.children].forEach(b=>b.disabled=true);
@@ -4555,7 +4711,7 @@ function chooseDiagnostic(choice,button){
     repairAction.classList.add('show');repairAction.focus();Snd.pickup();
   }else{
     shiftScore=Math.max(0,shiftScore-25);serviceStreak=0;
-    document.getElementById('chitScore').textContent=`⭐ ${shiftScore}`;
+    document.getElementById('chitScore').textContent=`★ ${shiftScore}`;
     button.disabled=true;button.classList.add('wrong');
     diagnosticPatience=Math.max(0,diagnosticPatience-1);visitMistakes++;shiftMistakes++;
     const session=currentVisitSession();
@@ -4630,7 +4786,7 @@ function stepQuest(t){
     }else{
       openCustomerDialogue(d.to,'resolved',()=>{
         showToast(NPC_DEFS[d.to].name,d.drop);
-        popEmote(target,d.emoji);popEmote(target,'❤️');burstConfetti(tp,tu);
+        popEmote(target,d.icon);popEmote(target,'heart');burstConfetti(tp,tu);
         target.userData.bounceT=performance.now()/1000;Snd.deliver();
         shiftScore+=250;setCarry(null);holding=false;stage++;questCooldown=4;
         if(stage>=DELIVERIES.length){completeAll();return;}

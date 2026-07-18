@@ -85,6 +85,7 @@
   .chit-row1{display:flex;justify-content:space-between;align-items:baseline;margin-top:5px;
     font-size:11px;letter-spacing:.14em;opacity:.65;}
   .chit-item{font-size:16px;font-weight:700;margin-top:5px;}
+  .chit-ico{width:1.05em;height:1.05em;vertical-align:-0.16em;margin-right:2px;}
   .chit-task{font-size:12.5px;margin-top:3px;line-height:1.45;}
   .chit-task b{color:var(--stamp);}
   .chit-dist{font-size:11px;margin-top:5px;letter-spacing:.08em;color:var(--teal);font-weight:700;}
