@@ -29,9 +29,11 @@ assert(/function auditPublicRouteClearance\(\)[\s\S]{0,1800}window\.__routeClear
   'Runtime QA must audit every public route against the final collision set.');
 assert(/dataset\.routeClearanceBlocked=String\(blocked\.length\)/.test(html),
   'Runtime route-clearance result must be browser-test observable.');
-assert(/if\(cfg\.ground\|\|cfg\.watercraft\)[\s\S]{0,500}alignLowestPoint\(inst\)/.test(html)
-    && /function alignLowestPoint\(model\)[\s\S]{0,500}new THREE\.Box3\(\)\.setFromObject\(model\)/.test(html),
+assert(/if\(cfg\.ground\|\|cfg\.watercraft\)[\s\S]{0,500}alignLowestPoint\(inst,cfg\.watercraft\?0:\(cfg\.groundInset\?\?\.12\)\)/.test(html)
+    && /function alignLowestPoint\(model,inset=0\)[\s\S]{0,1200}o\.userData\.noOutline[\s\S]{0,500}o\.geometry\.boundingBox/.test(html),
   'Imported buildings must be grounded from their rendered bounds.');
+assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingWaterConflicts=String\(wet\.length\)/.test(html),
+  'Dry-land buildings must be audited against authored water footprints.');
 assert(/overheadbridge:\{[^}]*ground:true/.test(html),
   'The overhead bridge asset must be aligned to the local terrain.');
 assert(/function overheadBridgeHeight\(unit\)/.test(html)

@@ -204,11 +204,11 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // POIs + TERRAIN (chunky faceted planet like the reference)
 // ============================================================
 const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
-      MERLION={lat:6,lon:108}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
+      MERLION={lat:6,lon:108}, MBS={lat:8,lon:148}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
       BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
       TEMPLE={lat:-8,lon:12};
 const ESP={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
-      TOWER={lat:2,lon:-145}, PBLOCK={lat:67,lon:115};
+      TOWER={lat:8,lon:-143}, PBLOCK={lat:67,lon:115};
 const SENTOSA={lat:-56,lon:-50}, STUDIOS={lat:-63,lon:-14},
       CLARKE={lat:-40,lon:-100}, CHANGI={lat:16,lon:-176},
       JEWEL={lat:16,lon:-152}, ECP={lat:-4,lon:-132},
@@ -226,14 +226,14 @@ const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
 // districts. Background duplicates were removed so these homes remain useful
 // navigation landmarks instead of merging into a ring of similar towers.
 const CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
-      LANDED4={lat:-2,lon:-116};
+      LANDED4={lat:2,lon:-110};
 
 // Authoritative visible building footprints. Both the road hierarchy and the
 // beige neighbourhood streets use this same registry, so no route can end
 // beneath a building model or cut through an unrelated structure en route.
 const CITY_BUILDING_ZONES=[
   [KOPITIAM,3.0],[HDB,3.4],
-  [MRT,2.4],[MERLION,1.7],[{lat:-16,lon:132},4.0],[GARDENS,2.2],[FLYER,2.3],
+  [MRT,2.4],[MERLION,1.7],[MBS,4.0],[GARDENS,2.2],[FLYER,2.3],
   [{lat:SHOPS.lat,lon:SHOPS.lon-5},1.7],[SHOPS,1.7],[{lat:SHOPS.lat,lon:SHOPS.lon+5},1.7],
   [HAWKER,2.2],[TEMPLE,2.0],[ESP,2.6],[KAMPUNG,2.5],[TOWER,1.2],[PBLOCK,2.5],
   [CONDO5,3.0],[CONDO6,3.0],[LANDED4,3.0],
@@ -256,7 +256,7 @@ const LOCAL_BUILDING_SETBACK=2.25;
 const FLAT_SPOTS=[
   KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   ESP,KAMPUNG,TOWER,PBLOCK,
-  {lat:-16,lon:132},                                               // MBS
+  MBS,
   {lat:GARDENS.lat+6,lon:GARDENS.lon+7},{lat:GARDENS.lat-7,lon:GARDENS.lon+9},
   {lat:25.5,lon:32},                                               // bus stop
   {lat:HDB.lat+3,lon:HDB.lon-7},                                   // playground
@@ -486,7 +486,7 @@ function localBuildingPose(i){
 const MIN_BUILDING_VERGE=.4;
 const BUILDING_SPACING_PLAN=[
   ['Kopitiam',KOPITIAM,3.0],['HDB 65',HDB,3.4],
-  ['MRT',MRT,2.4],['Merlion',MERLION,1.7],['Marina Bay',BAY,5.0],['Gardens',GARDENS,3.8],
+  ['MRT',MRT,2.4],['Merlion',MERLION,1.7],['MBS',MBS,4.0],['Marina Bay',BAY,5.0],['Gardens',GARDENS,3.8],
   ['Flyer',FLYER,2.3],['Shophouse row',SHOPS,3.7],['Hawker',HAWKER,2.2],['Temple',TEMPLE,2.0],
   ['Esplanade',ESP,2.6],['Kampung',KAMPUNG,2.5],['Control tower',TOWER,1.2],['Point block',PBLOCK,2.5],
   ['Holland condo',CONDO5,3.0],['Marina condo',CONDO6,3.0],
@@ -516,6 +516,31 @@ function auditBuildingSpacing(){
   return result;
 }
 auditBuildingSpacing();
+// Buildings must clear the full footprint of authored water bodies. Waterfront
+// landmarks such as the Merlion are intentionally exempt; habitable buildings
+// and infrastructure must remain entirely on dry terrain.
+const WATER_CLEARANCE_ZONES=[
+  ['Marina Bay',BAY,7.7],
+  ['East Coast sea',ECP,5.2],
+];
+function auditBuildingWaterClearance(){
+  const exempt=new Set(['Marina Bay','Merlion']);
+  const wet=[];
+  for(const [name,point,radius] of BUILDING_SPACING_PLAN){
+    if(exempt.has(name))continue;
+    const unit=point.isVector3?point:latLonPos(point.lat,point.lon).normalize();
+    for(const [waterName,waterPoint,waterRadius] of WATER_CLEARANCE_ZONES){
+      const clearance=unit.angleTo(latLonPos(waterPoint.lat,waterPoint.lon).normalize())*R-waterRadius-radius;
+      if(clearance<0)wet.push({name,water:waterName,clearance:Number(clearance.toFixed(2))});
+    }
+  }
+  window.__buildingWaterAudit={checked:BUILDING_SPACING_PLAN.length-exempt.size,wet};
+  document.documentElement.dataset.buildingWaterChecked=String(BUILDING_SPACING_PLAN.length-exempt.size);
+  document.documentElement.dataset.buildingWaterConflicts=String(wet.length);
+  console.assert(!wet.length,`Buildings overlapping water: ${wet.map(p=>`${p.name}/${p.water} ${p.clearance}m`).join(', ')}`);
+  return wet;
+}
+auditBuildingWaterClearance();
 // Clearance radii cover the visible footprint plus a comfortable verge. Route
 // samples that would enter one of these zones are bent around its perimeter.
 const ROAD_CLEARANCE_ZONES=[
@@ -2350,7 +2375,7 @@ const kopitiamObj=registerSwap('kopitiam',placeOnSphere(buildKopitiam(),KOPITIAM
 registerSwap('hdbHero',placeOnSphere(buildHDB('#e86a5e','BLK 65'),HDB.lat,HDB.lon,160)); addCollider(HDB.lat,HDB.lon,3.4);
 registerSwap('mrt',placeOnSphere(buildMRT(),MRT.lat,MRT.lon,170)); addCollider(MRT.lat,MRT.lon,2.4);
 const merlion=registerSwap('merlion',placeOnSphere(buildMerlion(),MERLION.lat,MERLION.lon,205)); addCollider(MERLION.lat,MERLION.lon,1.7);
-registerSwap('mbs',placeOnSphere(buildMBS(),-16,132,210)); addCollider(-16,132,4.0);
+registerSwap('mbs',placeOnSphere(buildMBS(),MBS.lat,MBS.lon,210)); addCollider(MBS.lat,MBS.lon,4.0);
 registerSwap('supertree',placeOnSphere(buildSupertree(1),GARDENS.lat,GARDENS.lon-6)); addCollider(GARDENS.lat,GARDENS.lon-6,1.1);
 registerSwap('supertree',placeOnSphere(buildSupertree(.8),GARDENS.lat+6,GARDENS.lon+7)); addCollider(GARDENS.lat+6,GARDENS.lon+7,.9);
 registerSwap('supertree',placeOnSphere(buildSupertree(.88),GARDENS.lat-7,GARDENS.lon+9)); addCollider(GARDENS.lat-7,GARDENS.lon+9,1);
@@ -2904,7 +2929,7 @@ const POIS=[KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   {lat:CBD.lat-2,lon:CBD.lon+4},{lat:CBD.lat+2,lon:CBD.lon-4},{lat:CBD.lat-5,lon:CBD.lon+2},
   {lat:HOLAND.lat-3,lon:HOLAND.lon-3},{lat:HOLAND.lat+3,lon:HOLAND.lon+3},
   {lat:CLARKE.lat,lon:CLARKE.lon+5},{lat:3,lon:-164},{lat:7,lon:-170},
-  {lat:-16,lon:132},{lat:25.5,lon:32},{lat:HDB.lat+3,lon:HDB.lon-7},
+  MBS,{lat:25.5,lon:32},{lat:HDB.lat+3,lon:HDB.lon-7},
   {lat:21,lon:26},{lat:-11,lon:9},{lat:HDB.lat-1,lon:HDB.lon+8},
   ...LOCAL_BUILDING_PLOTS.map(([lat,lon])=>({lat,lon}))];
 function farFromPOIs(lat,lon,min=7.5){
@@ -4886,7 +4911,7 @@ const ASSET_MANIFEST={
   postbox:   {url:'assets/postbox-v2.glb',scale:.65},
   bench:     {url:'assets/bench-v2.glb',scale:.75},
   merlion:   {url:'assets/merlion-v2.glb',scale:.65},
-  mbs:       {url:'assets/mbs-v2.glb',scale:.76,ground:true},
+  mbs:       {url:'assets/mbs-v2.glb',scale:.76,ground:true,groundInset:.28},
   flyer:     {url:'assets/flyer-v2.glb',scale:.72},
   supertree: {url:'assets/supertree-v2.glb',scale:.74},
   esplanade: {url:'assets/esplanade-v2.glb',scale:.76,ground:true},
@@ -4927,12 +4952,25 @@ function toonify(root){
     o.add(h);
   }
 }
-function alignLowestPoint(model){
-  // Asset authors use different origins. Normalize the rendered lower bound
-  // to local Y=0 before the parent is placed on a road or waterline.
+function alignLowestPoint(model,inset=0){
+  // Asset authors use different origins. Only visible authored meshes count
+  // toward the contact plane; hidden helpers and generated outline hulls must
+  // not suspend the actual building above the terrain.
   model.updateMatrixWorld(true);
-  const bounds=new THREE.Box3().setFromObject(model);
-  if(Number.isFinite(bounds.min.y))model.position.y-=bounds.min.y;
+  const bounds=new THREE.Box3(),inverse=model.matrixWorld.clone().invert();
+  const corner=new THREE.Vector3();
+  model.traverse(o=>{
+    if(!o.isMesh||!o.visible||o.userData.noOutline||!o.geometry)return;
+    for(let p=o.parent;p&&p!==model;p=p.parent)if(!p.visible)return;
+    if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();
+    const box=o.geometry.boundingBox;
+    if(!box||box.isEmpty())return;
+    for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z]){
+      corner.set(x,y,z).applyMatrix4(o.matrixWorld).applyMatrix4(inverse);
+      bounds.expandByPoint(corner);
+    }
+  });
+  if(Number.isFinite(bounds.min.y))model.position.y-=bounds.min.y+inset;
 }
 function swapPlayer(gltf,cfg){
   const keep=carrySprite;
@@ -4955,7 +4993,7 @@ function swapVan(gltf,cfg){
   const model=gltf.scene;
   model.scale.setScalar(cfg.scale||1);
   model.rotation.y=cfg.forwardYaw||0;
-  alignLowestPoint(model);
+  alignLowestPoint(model,.04);
   van.add(model);
   const wheels=[];
   let beacon=null;
@@ -4983,7 +5021,7 @@ function applySwap(name,cfg,gltf){
       // Blender exports do not all share the exact same origin. Align the
       // lowest visible point with the procedural placement origin so a model
       // cannot hover above the terrain when it replaces its fallback.
-      alignLowestPoint(inst);
+      alignLowestPoint(inst,cfg.watercraft?0:(cfg.groundInset??.12));
     }
     grp.add(inst);
   }
