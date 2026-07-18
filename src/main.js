@@ -1,394 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Make your rounds across a playful Singapore, lend six neighbours a hand, and bring the kampung back together.">
-<title>Kampung Call — six neighbours, one mission</title>
-<style>
-  :root{
-    --ink:#2e2a25;
-    --paper:#fbf6e8;
-    --stamp:#d0342c;
-    --teal:#2f7f8c;
-    --sand:#e8d5a3;
-    --void:#c9e0da;
-    --sky:#7dbfbd;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html,body{height:100%;overflow:hidden;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;background:var(--void);}
-  canvas{display:block;transform:translateX(12vw) scale(.9);transition:transform 1.5s cubic-bezier(.2,.8,.2,1),filter 1.2s ease;filter:saturate(1.08) contrast(1.03);}
-  body.is-playing canvas{transform:none;filter:none;}
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
-  /* ---------- title screen (clean, reference-style white void) ---------- */
-  #title{
-    position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;
-    align-items:flex-start;justify-content:center;text-align:left;padding:8vw;
-    background:linear-gradient(90deg,rgba(201,224,218,.98) 0%,rgba(201,224,218,.88) 28%,rgba(201,224,218,.16) 56%,transparent 76%);
-    transition:opacity .8s ease;overflow:hidden;pointer-events:none;
-  }
-  #title.hidden{opacity:0;pointer-events:none;}
-  .t-cloud{
-    position:absolute;background:#fff;opacity:.9;border-radius:60px;
-    animation:drift 70s linear infinite;
-    box-shadow:0 6px 18px rgba(46,42,37,.06);
-  }
-  .t-cloud::before,.t-cloud::after{content:"";position:absolute;background:#fff;border-radius:50%;}
-  .t-cloud.c1{width:150px;height:44px;top:14%;left:-160px;}
-  .t-cloud.c1::before{width:70px;height:70px;top:-32px;left:26px;}
-  .t-cloud.c1::after{width:50px;height:50px;top:-20px;left:82px;}
-  .t-cloud.c2{width:110px;height:34px;top:64%;left:-130px;animation-duration:95s;animation-delay:-35s;opacity:.7;}
-  .t-cloud.c2::before{width:52px;height:52px;top:-24px;left:20px;}
-  .t-cloud.c2::after{width:38px;height:38px;top:-14px;left:60px;}
-  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 320px))}}
-  .t-eyebrow{
-    font-family:"Courier New",monospace;font-size:11px;letter-spacing:.3em;
-    color:var(--ink);opacity:.58;text-transform:uppercase;margin-bottom:18px;
-    animation:titleUp .9s .35s both;
-  }
-  .t-name{
-    font-size:clamp(48px,7vw,92px);font-weight:900;letter-spacing:-.045em;
-    color:var(--ink);line-height:.82;max-width:560px;
-    text-shadow:0 2px 0 rgba(255,255,255,.45);animation:titleUp .9s .48s both;
-  }
-  .t-name span{color:var(--stamp);display:block;}
-  .t-tag{
-    margin-top:24px;font-size:clamp(15px,1.8vw,18px);color:var(--ink);
-    opacity:.74;max-width:390px;padding:0;line-height:1.5;animation:titleUp .9s .6s both;
-  }
-  #begin{
-    margin-top:34px;cursor:pointer;pointer-events:auto;
-    background:var(--stamp);color:#fff;
-    font-family:"Courier New",monospace;font-weight:700;font-size:13px;letter-spacing:.18em;
-    padding:15px 24px;border-radius:999px;
-    box-shadow:0 10px 30px rgba(115,48,40,.24);
-    border:0;transition:transform .18s ease,box-shadow .18s ease;
-    position:relative;animation:titleUp .9s .72s both;
-  }
-  #begin::after{content:"  →";}
-  #begin:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(115,48,40,.3);}
-  #begin:focus-visible{outline:3px solid var(--teal);outline-offset:3px;}
-  button:focus-visible{outline:3px solid var(--teal);outline-offset:3px;}
-  .t-hint{display:none;}
-  .t-credit{display:none;}
-  @keyframes titleUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-
-  /* ---------- order chit HUD ---------- */
-  #chit{
-    position:fixed;top:22px;left:22px;z-index:20;
-    width:min(310px,calc(100vw - 44px));
-    background:rgba(251,246,232,.94);color:var(--ink);backdrop-filter:blur(10px);
-    font-family:"Courier New",monospace;
-    border-radius:9px;
-    box-shadow:0 10px 30px rgba(30,25,18,.14);
-    padding:13px 16px 14px;
-    display:none;
-  }
-  #chit.show{display:block;animation:chitDrop .45s cubic-bezier(.2,1.4,.4,1);}
-  @keyframes chitDrop{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:none;}}
-  #chit::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:5px;
-    background:repeating-linear-gradient(90deg,var(--stamp) 0 14px,transparent 14px 22px);
-  }
-  .chit-row1{display:flex;justify-content:space-between;align-items:baseline;margin-top:5px;
-    font-size:11px;letter-spacing:.14em;opacity:.65;}
-  .chit-item{font-size:16px;font-weight:700;margin-top:5px;}
-  .chit-task{font-size:12.5px;margin-top:3px;line-height:1.45;}
-  .chit-task b{color:var(--stamp);}
-  .chit-dist{font-size:11px;margin-top:5px;letter-spacing:.08em;color:var(--teal);font-weight:700;}
-  .chit-dots{display:none;}
-  .chit-dots span{
-    width:9px;height:9px;border-radius:50%;
-    border:1.5px solid rgba(46,42,37,.45);
-  }
-  .chit-dots span.d1{background:var(--stamp);border-color:var(--stamp);}
-
-  #muteBtn{
-    position:fixed;left:18px;bottom:22px;z-index:15;display:none;
-    width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
-    background:#fff;font-size:18px;
-    box-shadow:0 4px 12px rgba(46,42,37,.2);
-  }
-
-  /* ---------- dialog toast ---------- */
-  #toast{
-    position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);z-index:20;
-    width:min(440px,88vw);
-    background:rgba(46,42,37,.92);color:#fdf8ec;
-    border-radius:14px;padding:13px 18px;
-    font-size:14.5px;line-height:1.5;
-    opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;
-  }
-  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-  #toast .who{color:#f2c14e;font-weight:700;font-size:12px;letter-spacing:.12em;
-    text-transform:uppercase;display:block;margin-bottom:3px;}
-
-  /* ---------- customer conversation ---------- */
-  #dialogue-panel{
-    position:fixed;left:50%;bottom:28px;transform:translate(-50%,18px) scale(.98);z-index:26;
-    display:none;width:min(720px,calc(100vw - 28px));min-height:168px;
-    padding:18px 20px 17px 170px;border-radius:18px;
-    background:rgba(251,246,232,.98);color:var(--ink);
-    box-shadow:0 20px 55px rgba(30,25,18,.3);border:2px solid rgba(46,42,37,.12);
-  }
-  #dialogue-panel.show{display:block;animation:dialogueIn .24s cubic-bezier(.2,.9,.3,1) forwards;}
-  @keyframes dialogueIn{to{transform:translate(-50%,0) scale(1)}}
-  .dialogue-avatar{
-    position:absolute;left:20px;bottom:18px;width:128px;height:128px;overflow:hidden;
-    border-radius:18px;background:linear-gradient(145deg,#bfe0d8,#e8d5a3);
-    border:4px solid #fff;box-shadow:0 5px 16px rgba(46,42,37,.18);
-  }
-  .dialogue-avatar img{width:100%;height:100%;display:block;object-fit:cover;}
-  .avatar-neck{position:absolute;left:49px;top:76px;width:31px;height:25px;background:var(--skin);border-radius:8px;}
-  .avatar-shirt{position:absolute;left:20px;bottom:-22px;width:90px;height:67px;background:var(--shirt);border-radius:44px 44px 12px 12px;}
-  .avatar-face{position:absolute;left:35px;top:22px;width:61px;height:70px;background:var(--skin);border-radius:44% 44% 48% 48%;}
-  .avatar-hair{position:absolute;left:31px;top:13px;width:68px;height:41px;background:var(--hair);border-radius:44px 44px 20px 20px;}
-  .avatar-hair.long{height:77px;border-radius:42px 42px 25px 25px;}
-  .avatar-face::before{content:"••";position:absolute;left:17px;top:24px;color:#2e2a25;font:bold 16px/1 monospace;letter-spacing:9px;}
-  .avatar-face::after{content:"⌣";position:absolute;left:21px;top:40px;color:#7b4234;font:bold 20px/1 sans-serif;}
-  .avatar-glasses{position:absolute;left:42px;top:45px;width:47px;height:16px;border-top:3px solid #393532;border-bottom:3px solid #393532;border-radius:8px;opacity:.85;}
-  .avatar-badge{position:absolute;right:7px;top:7px;display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:#fff;font-size:18px;}
-  .dialogue-kicker{font:700 10px/1 "Courier New",monospace;letter-spacing:.18em;color:var(--stamp);text-transform:uppercase;}
-  #dialogue-name{font-size:21px;line-height:1.15;margin:5px 0 7px;}
-  #dialogue-text{font-size:15px;line-height:1.52;min-height:47px;}
-  .dialogue-footer{display:flex;align-items:center;justify-content:space-between;gap:10px 14px;margin-top:12px;flex-wrap:wrap;}
-  .dialogue-actions{display:flex;align-items:center;gap:8px;}
-  .dialogue-exit,.repair-exit{border:1.5px solid rgba(46,42,37,.2);border-radius:999px;background:transparent;
-    color:var(--ink);padding:9px 13px;cursor:pointer;font:700 10px/1 "Courier New",monospace;letter-spacing:.07em;}
-  .dialogue-exit:hover,.repair-exit:hover{background:rgba(46,42,37,.06);}
-  #dialogue-progress{font:700 10px/1 "Courier New",monospace;color:var(--teal);letter-spacing:.12em;}
-  #dialogue-next{border:0;border-radius:999px;background:var(--stamp);color:#fff;padding:10px 18px;cursor:pointer;font:700 11px/1 "Courier New",monospace;letter-spacing:.1em;}
-  #dialogue-next:hover{transform:translateY(-1px);}
-
-  #repair-panel{
-    position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);z-index:25;
-    display:none;width:min(520px,92vw);max-height:min(760px,90vh);overflow:auto;
-    padding:22px 24px 20px;border-radius:10px;
-    background:var(--paper);color:var(--ink);font-family:"Courier New",monospace;
-    box-shadow:0 18px 50px rgba(46,42,37,.28);border-top:6px solid var(--stamp);
-  }
-  #repair-panel.show{display:block;animation:repairIn .22s ease forwards;}
-  @keyframes repairIn{to{transform:translate(-50%,-50%) scale(1)}}
-  #repair-panel h3{font-size:17px;margin-bottom:5px;}
-  .repair-heading{display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:11px;margin-bottom:12px;}
-  .repair-heading h3{margin:0 0 4px;}
-  #repair-avatar{width:54px;height:54px;border-radius:10px;object-fit:cover;border:3px solid #fff;
-    box-shadow:0 2px 7px rgba(46,42,37,.15);}
-  #repair-panel .repair-site{font-size:11px;color:var(--teal);font-weight:700;margin-bottom:12px;}
-  .repair-heading .repair-site{margin-bottom:0;}
-  .repair-brief{background:#fff;border-radius:7px;padding:11px 13px;margin-bottom:12px;line-height:1.45;}
-  .repair-label{display:block;color:var(--stamp);font-size:9px;font-weight:700;letter-spacing:.16em;margin-bottom:4px;}
-  #repair-complaint{font-size:12px;}
-  .repair-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;
-    font-size:10px;font-weight:700;letter-spacing:.06em;}
-  #repair-progress{color:var(--teal);}
-  #repair-patience{white-space:nowrap;color:var(--stamp);}
-  #repair-question{font-size:13px;line-height:1.45;margin:0 0 10px;}
-  #repair-options{display:grid;gap:7px;margin-bottom:10px;}
-  .repair-option{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;border:1.5px solid rgba(46,42,37,.15);
-    border-radius:7px;background:#fff;color:var(--ink);padding:10px 11px;font:12px/1.35 "Courier New",monospace;
-    cursor:pointer;transition:transform .14s ease,border-color .14s ease,background .14s ease;}
-  .repair-option:hover:not(:disabled){transform:translateX(3px);border-color:var(--teal);background:#f7fbfa;}
-  .repair-option:disabled{cursor:default;opacity:.48;}
-  .repair-option.correct{opacity:1;border-color:var(--teal);background:#e8f3ef;color:#175e68;}
-  .repair-option.wrong{border-color:var(--stamp);background:#fff0eb;}
-  .repair-key{display:inline-grid;place-items:center;flex:0 0 20px;height:20px;border-radius:50%;
-    background:var(--ink);color:#fff;font-size:10px;font-weight:700;}
-  #repair-feedback{display:none;min-height:42px;border-radius:7px;padding:9px 11px;margin-bottom:10px;
-    font-size:11px;line-height:1.4;background:#e8f3ef;color:#175e68;}
-  #repair-feedback.show{display:block;animation:feedbackIn .2s ease;}
-  #repair-feedback.warning{background:#fff0eb;color:#8b2e28;}
-  #repair-feedback .npc-coach{display:block;margin-top:6px;padding-top:6px;border-top:1px solid currentColor;
-    font-weight:700;}
-  @keyframes feedbackIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-  #repair-action{width:100%;border:0;border-radius:5px;background:var(--stamp);color:#fff;
-    padding:11px;font:700 12px "Courier New",monospace;letter-spacing:.08em;cursor:pointer;display:none;}
-  #repair-action.show{display:block;animation:feedbackIn .2s ease;}
-  .repair-foot{display:flex;gap:8px;align-items:center;}
-  .repair-foot .repair-exit{margin-left:auto;flex:0 0 auto;}
-  .repair-foot #repair-action{flex:1;}
-
-  /* ---------- controls / misc ---------- */
-  #controls-hint{
-    position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:15;
-    font-family:"Courier New",monospace;font-size:11.5px;letter-spacing:.08em;
-    color:var(--ink);opacity:.55;display:none;text-align:center;
-  }
-  #action-prompt{
-    position:fixed;left:50%;bottom:54px;transform:translateX(-50%) translateY(8px);
-    z-index:19;display:none;padding:8px 13px;border-radius:8px;
-    background:rgba(46,42,37,.9);color:#fff;font:700 12px/1.2 "Courier New",monospace;
-    letter-spacing:.08em;box-shadow:0 4px 12px rgba(46,42,37,.2);
-    pointer-events:none;opacity:0;transition:opacity .18s ease,transform .18s ease;
-    white-space:nowrap;
-  }
-  #action-prompt.show{display:block;opacity:1;transform:translateX(-50%) translateY(0);}
-  #vanBtn{
-    position:fixed;right:18px;bottom:88px;z-index:16;display:none;
-    min-width:84px;height:44px;padding:0 12px;border:0;border-radius:22px;
-    background:#fff;color:var(--ink);font:700 11px "Courier New",monospace;
-    box-shadow:0 4px 12px rgba(46,42,37,.2);cursor:pointer;
-  }
-  #emoteBtn{
-    position:fixed;right:18px;bottom:22px;z-index:15;display:none;
-    width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
-    background:#fff;font-size:24px;
-    box-shadow:0 4px 12px rgba(46,42,37,.2);
-  }
-  #joy{
-    position:fixed;z-index:15;width:110px;height:110px;border-radius:50%;
-    border:2px solid rgba(46,42,37,.25);background:rgba(46,42,37,.06);
-    display:none;pointer-events:none;
-  }
-  #joy .knob{
-    position:absolute;left:50%;top:50%;width:44px;height:44px;border-radius:50%;
-    background:rgba(46,42,37,.35);transform:translate(-50%,-50%);
-  }
-
-  /* ---------- target compass (off-screen chevron) ---------- */
-  #compass{
-    position:fixed;z-index:18;display:none;pointer-events:none;
-    width:54px;height:54px;
-    transform:translate(-50%,-50%);
-    transition:opacity .25s ease;
-  }
-  #compass svg{width:100%;height:100%;overflow:visible;
-    filter:drop-shadow(0 2px 4px rgba(46,42,37,.35));}
-  #compass .ring{fill:#fff;stroke:var(--stamp);stroke-width:2.5;}
-  #compass .tip{fill:var(--stamp);}
-  #compass .lbl{
-    position:absolute;left:50%;top:100%;transform:translate(-50%,4px);
-    font-family:"Courier New",monospace;font-size:10px;font-weight:700;
-    letter-spacing:.08em;color:var(--ink);background:rgba(255,255,255,.85);
-    padding:4px 7px;border-radius:4px;white-space:nowrap;
-    box-shadow:0 2px 5px rgba(46,42,37,.14);
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
-    .t-cloud{display:none;}
-  }
-
-  @media (max-width:760px){
-    canvas{transform:translateY(-6vh) scale(.82);}
-    #title{justify-content:flex-end;padding:0 24px 74px;background:linear-gradient(0deg,rgba(201,224,218,.98) 0%,rgba(201,224,218,.8) 38%,transparent 68%);}
-    .t-name{font-size:clamp(46px,16vw,70px);}
-    .t-tag{max-width:340px;font-size:15px;}
-    #chit{top:10px;left:10px;width:calc(100vw - 20px);}
-    #dialogue-panel{bottom:14px;padding:15px 15px 14px 104px;min-height:145px;}
-    .dialogue-avatar{left:13px;bottom:auto;top:15px;width:78px;height:78px;}
-    .dialogue-avatar img{transform:none;}
-    .dialogue-actions{gap:5px;}
-    .dialogue-exit{padding:8px 10px;}
-    #dialogue-name{font-size:18px}#dialogue-text{font-size:13px;line-height:1.42;}
-  }
-
-  /* ---------- complete screen ---------- */
-  #done{
-    position:fixed;inset:0;z-index:30;display:none;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;
-    background:rgba(246,243,236,.75);backdrop-filter:blur(4px);
-  }
-  #done.show{display:flex;animation:fadeIn .5s ease;}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  .done-card{
-    background:var(--paper);color:var(--ink);border-radius:8px;
-    padding:38px 42px;max-width:440px;width:88vw;
-    box-shadow:0 20px 50px rgba(46,42,37,.25);
-    font-family:"Courier New",monospace;position:relative;transform:rotate(-.8deg);
-  }
-  .done-card::after{
-    content:"RESTORED";position:absolute;top:18px;right:-14px;
-    border:3px solid var(--stamp);color:var(--stamp);
-    font-weight:700;font-size:15px;letter-spacing:.18em;padding:5px 12px;
-    transform:rotate(9deg);border-radius:4px;opacity:.9;
-  }
-  .done-card h2{font-size:26px;letter-spacing:.04em;margin-bottom:10px;}
-  .done-card p{font-size:14px;line-height:1.6;margin-bottom:8px;}
-  .done-card .big{font-size:38px;margin:8px 0 2px;}
-  #again{
-    margin-top:18px;border:1.5px dashed rgba(46,42,37,.5);background:#fff;
-    font-family:inherit;font-weight:700;font-size:14px;letter-spacing:.16em;
-    padding:12px 28px;border-radius:3px;cursor:pointer;color:var(--ink);
-  }
-  #again:hover{background:var(--sand);}
-</style>
-</head>
-<body>
-<main id="app-main">
-
-<div id="title">
-  <div class="t-cloud c1"></div>
-  <div class="t-cloud c2"></div>
-  <div class="t-eyebrow">Six neighbours · one mission</div>
-  <div class="t-name">KAMPUNG <span>CALL</span></div>
-  <div class="t-tag">The kampung needs a hand. Make your rounds across Singapore, solve each neighbour’s problem, and bring the community back together.</div>
-  <button id="begin">START ROUNDS</button>
-  <div class="t-hint" id="titleHint">WASD / arrows to move · E to emote · F to enter/exit van</div>
-  <div class="t-credit">an AI-built homage to messenger.abeto.co · made in singapore</div>
-</div>
-
-<div id="chit">
-  <div class="chit-row1"><span id="chitNo">CALL 1/6</span><span id="chitScore">⭐ 0</span></div>
-  <div class="chit-item" id="chitItem">☕ Kopi siew dai</div>
-  <div class="chit-task" id="chitTask">Collect from <b>Uncle Lim</b> at the kopitiam</div>
-  <div class="chit-dist" id="chitDist"></div>
-  <div class="chit-dots" id="chitDots"></div>
-</div>
-
-<button id="muteBtn" aria-label="Toggle sound">🔊</button>
-
-<div id="toast" role="status" aria-live="polite"><span class="who" id="toastWho"></span><span id="toastMsg"></span></div>
-<section id="dialogue-panel" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
-  <div class="dialogue-avatar" id="dialogue-avatar"></div>
-  <div class="dialogue-kicker" id="dialogue-kicker">Neighbour check-in</div>
-  <h3 id="dialogue-name"></h3>
-  <p id="dialogue-text"></p>
-  <div class="dialogue-footer"><span id="dialogue-progress"></span><div class="dialogue-actions"><button class="dialogue-exit" id="dialogue-exit">EXIT</button><button id="dialogue-next">CONTINUE →</button></div></div>
-</section>
-<section id="repair-panel" role="dialog" aria-modal="true" aria-labelledby="repair-title">
-  <div class="repair-heading"><img id="repair-avatar" alt=""><div><h3 id="repair-title">On-site diagnosis</h3><div class="repair-site" id="repair-site"></div></div><button class="repair-exit" id="repair-exit">EXIT</button></div>
-  <div class="repair-brief"><span class="repair-label">NEIGHBOUR'S NOTE</span><p id="repair-complaint"></p></div>
-  <div class="repair-meta"><span id="repair-progress"></span><span id="repair-patience"></span></div>
-  <p id="repair-question"></p>
-  <div id="repair-options" role="group" aria-label="Diagnostic choices"></div>
-  <div id="repair-feedback" role="status" aria-live="polite"></div>
-  <div class="repair-foot"><button id="repair-action">NEXT CLUE</button></div>
-</section>
-<div id="controls-hint">WASD / ARROWS · MOVE &nbsp;&nbsp; F · VAN &nbsp;&nbsp; E · EMOTE</div>
-<div id="action-prompt" role="status" aria-live="polite"></div>
-<button id="emoteBtn" aria-label="Send emote">🎉</button>
-<button id="vanBtn" aria-label="Enter or exit van">🚐 ENTER</button>
-<div id="joy"><div class="knob" id="joyKnob"></div></div>
-
-<div id="compass" aria-hidden="true">
-  <svg viewBox="-27 -27 54 54">
-    <circle class="ring" cx="0" cy="0" r="17"/>
-    <path class="tip" d="M 0 -22 L 9 -6 L 0 -11 L -9 -6 Z"/>
-  </svg>
-  <div class="lbl" id="compassLbl"></div>
-</div>
-
-<div id="done">
-  <div class="done-card">
-    <h2>Kampung steady.</h2>
-    <div class="big">✓</div>
-    <p>Six calls completed. Every neighbour has been helped, and the kampung is humming again.</p>
-    <p id="doneTime"></p>
-    <button id="again">NEXT ROUND</button>
-  </div>
-</div>
-</main>
-
-<capability-console></capability-console>
-<script type="module" src="src/capability/capability-console.mjs"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script>
-(function(){
-"use strict";
 
 /* ============================================================
    SINGTEL FIELD OPS — field-engineer broadband-repair re-theme
@@ -398,13 +11,20 @@
 const R = 26;
 const VOID_COLOR = 0x88c6c3;
 const isTouch = matchMedia('(pointer:coarse)').matches;
+// A stable scenery seed keeps the authored composition identical on every
+// reload. Gameplay and character timing can continue using Math.random().
+let scenerySeed=0x51f15e;
+function sceneryRandom(){
+  scenerySeed=(Math.imul(scenerySeed,1664525)+1013904223)>>>0;
+  return scenerySeed/4294967296;
+}
 
 // ---------- renderer / scene ----------
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio, isTouch?1.75:2));
 renderer.setSize(innerWidth,innerHeight);
 renderer.setClearColor(VOID_COLOR,1);
-renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.04;
 const SHADOWS = !isTouch;
@@ -421,7 +41,7 @@ const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
 
 // ---------- toon material system ----------
 const gradData = new Uint8Array([70, 135, 195, 255]);
-const gradTex = new THREE.DataTexture(gradData, 4, 1, THREE.LuminanceFormat);
+const gradTex = new THREE.DataTexture(gradData, 4, 1, THREE.RedFormat);
 gradTex.minFilter = gradTex.magFilter = THREE.NearestFilter;
 gradTex.generateMipmaps = false;
 gradTex.needsUpdate = true;
@@ -497,6 +117,8 @@ function radialTex(color){
 }
 function slerpUnit(a,b,t){
   const ang=a.angleTo(b), s=Math.sin(ang);
+  if(ang<1e-6)return a.clone();
+  if(Math.abs(s)<1e-6)return a.clone().lerp(b,t).normalize();
   return a.clone().multiplyScalar(Math.sin((1-t)*ang)/s)
     .add(b.clone().multiplyScalar(Math.sin(t*ang)/s)).normalize();
 }
@@ -581,8 +203,7 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // ============================================================
 // POIs + TERRAIN (chunky faceted planet like the reference)
 // ============================================================
-const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62},
-      HDB66={lat:30,lon:92}, HDB67={lat:55,lon:88}, MRT={lat:30,lon:-92},
+const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
       MERLION={lat:6,lon:108}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
       BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
       TEMPLE={lat:-8,lon:12};
@@ -601,44 +222,33 @@ const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
       SUTD={lat:28,lon:-137}, HOSPITAL={lat:15,lon:28}, TUAS={lat:42,lon:-120},
       CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:30,lon:-72},
       CHANGI_TOWER={lat:13,lon:-169}, CHANGI_JEWEL={lat:18,lon:-163};
-// wave 5 — residences for the field-engineer re-theme (condo cluster near HDB)
-const CONDO={lat:50,lon:30}, CONDO2={lat:5,lon:40};
-const CONDO3={lat:35,lon:22}, CONDO4={lat:65,lon:55},
-      CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
-      LANDED1={lat:48,lon:-150}, LANDED2={lat:70,lon:-100}, LANDED3={lat:30,lon:145},
+// Mission residences are deliberately separated into three readable housing
+// districts. Background duplicates were removed so these homes remain useful
+// navigation landmarks instead of merging into a ring of similar towers.
+const CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
       LANDED4={lat:-2,lon:-116};
-// Small north-island archive ring: keeps superseded Blender exports present
-// in-world as secondary variants without replacing the authored V2 assets.
-const ARCHIVE_HDB={lat:75,lon:-140}, ARCHIVE_CONDO={lat:84,lon:-115},
-      ARCHIVE_LANDED={lat:77,lon:-70}, ARCHIVE_KOPI={lat:84,lon:-25},
-      ARCHIVE_MRT={lat:77,lon:20}, ARCHIVE_SHOP={lat:84,lon:65},
-      ARCHIVE_ENGINEER={lat:77,lon:110}, ARCHIVE_NEIGHBOURHOOD={lat:84,lon:155};
 
 // Authoritative visible building footprints. Both the road hierarchy and the
 // beige neighbourhood streets use this same registry, so no route can end
 // beneath a building model or cut through an unrelated structure en route.
 const CITY_BUILDING_ZONES=[
-  [KOPITIAM,3.0],[HDB,3.4],[HDB66,3.0],[HDB67,3.0],
+  [KOPITIAM,3.0],[HDB,3.4],
   [MRT,2.4],[MERLION,1.7],[{lat:-16,lon:132},4.0],[GARDENS,2.2],[FLYER,2.3],
   [{lat:SHOPS.lat,lon:SHOPS.lon-5},1.7],[SHOPS,1.7],[{lat:SHOPS.lat,lon:SHOPS.lon+5},1.7],
   [HAWKER,2.2],[TEMPLE,2.0],[ESP,2.6],[KAMPUNG,2.5],[TOWER,1.2],[PBLOCK,2.5],
-  [CONDO,2.6],[CONDO2,2.6],[CONDO3,2.6],[CONDO4,2.6],[CONDO5,3.0],[CONDO6,3.0],
-  [LANDED1,2.7],[LANDED2,2.7],[LANDED3,2.7],[LANDED4,3.0],
+  [CONDO5,3.0],[CONDO6,3.0],[LANDED4,3.0],
   [SENTOSA,1.8],[STUDIOS,3.8],[CLARKE,3.8],[CHANGI,3.0],[CHANGI_JEWEL,2.4],[CHANGI_TOWER,1.2],
   [COMCENTRE,2.2],[SATELLITE,3.6],[CABLEA,1.6],[NUS,3.1],[NTU,3.1],[SMU,3.0],
   [SUTD,3.1],[HOSPITAL,3.2],[TUAS,4.0],[CIVIC,2.8],[INTERCHANGE,3.0],[CBD,5.0],[HOLAND,3.6],
 ];
-// Forty deterministic plots across eight compact estates. Their final units
-// are derived from these street axes and added to the same clearance registry.
+// Twelve supporting buildings form four small, legible estates. Three varied
+// façades per district provide urban texture without competing with landmarks.
+const LOCAL_ESTATE_SIZE=3;
 const LOCAL_BUILDING_PLOTS=[
-  [31,-18],[34,-14],[37,-10],[40,-6],[43,-2],
-  [45,108],[47,114],[49,120],[51,126],[53,132],
-  [48,-84],[52,-78],[56,-72],[60,-66],[64,-60],
-  [12,54],[16,60],[20,66],[24,72],[28,78],
-  [-8,-20],[-12,-14],[-16,-8],[-20,-2],[-24,4],
-  [-34,46],[-39,52],[-44,58],[-49,64],[-54,70],
-  [-60,92],[-56,100],[-52,108],[-48,116],[-44,124],
-  [38,164],[46,170],[54,176],[62,-178],[68,-155],
+  [46,-86],[52,-76],[58,-66],
+  [-10,-22],[-17,-12],[-24,-2],
+  [-60,96],[-52,108],[-44,120],
+  [42,165],[54,178],[65,-165],
 ];
 const LOCAL_BUILDING_SETBACK=2.25;
 
@@ -646,7 +256,6 @@ const LOCAL_BUILDING_SETBACK=2.25;
 const FLAT_SPOTS=[
   KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   ESP,KAMPUNG,TOWER,PBLOCK,
-  HDB66,HDB67,                                                     // Blk 66/67
   {lat:-16,lon:132},                                               // MBS
   {lat:GARDENS.lat+6,lon:GARDENS.lon+7},{lat:GARDENS.lat-7,lon:GARDENS.lon+9},
   {lat:25.5,lon:32},                                               // bus stop
@@ -665,10 +274,7 @@ const FLAT_SPOTS=[
   {lat:CBD.lat-5,lon:CBD.lon+2},                                   // shortest tower
   HOLAND,                                                           // Holland V plaza
   {lat:HOLAND.lat-3,lon:HOLAND.lon-3},{lat:HOLAND.lat+3,lon:HOLAND.lon+3}, // HV shophouses
-  CONDO,CONDO2,CONDO3,CONDO4,CONDO5,CONDO6,
-  LANDED1,LANDED2,LANDED3,LANDED4,                                  // distributed residential districts
-  ARCHIVE_HDB,ARCHIVE_CONDO,ARCHIVE_LANDED,ARCHIVE_KOPI,
-  ARCHIVE_MRT,ARCHIVE_SHOP,ARCHIVE_ENGINEER,ARCHIVE_NEIGHBOURHOOD,
+  CONDO5,CONDO6,LANDED4,                                           // mission residences
 ].map(p=>latLonPos(p.lat,p.lon).normalize());
 
 function smoothstep(e0,e1,x){
@@ -826,17 +432,14 @@ function buildPathStrip(centers,width,color,offset){
   scene.add(m);
 }
 function buildPath(a,b,width=1.5){
-  // These are footpaths and service walks, not duplicate carriageways. Keep
-  // them subordinate to the road hierarchy even when legacy call sites ask
-  // for road-scale widths.
+  // Keep an invisible route graph for navigation and collision clearance.
+  // The rendered street ribbons were removed to leave the terrain uncluttered.
   const pathWidth=Math.min(.72,Math.max(.5,width*.46));
   const va=latLonPos(a.lat,a.lon).normalize(), vb=latLonPos(b.lat,b.lon).normalize();
   const n=Math.max(10,Math.ceil(va.angleTo(vb)*R/0.8));
   const raw=[];
   for(let i=0;i<=n;i++)raw.push(slerpUnit(va,vb,i/n));
   const centers=buildClearedRoute(raw,pathWidth/2);
-  buildPathStrip(centers,pathWidth+.14,0xcdb884,0.026);
-  buildPathStrip(centers,pathWidth,0xecd9a8,0.036);
   PEDESTRIAN_NETWORKS.push({a,b,width:pathWidth,centers});
   return centers;
 }
@@ -867,10 +470,10 @@ const A=ROAD_ACCESS;
 const MAJOR_BUILDING_VISUAL_BUFFER=1.35;
 const SENTOSA_WALK={lat:-48,lon:-55},STUDIOS_WALK={lat:-54,lon:-8};
 function localBuildingPose(i){
-  const clusterStart=Math.floor(i/5)*5,within=i%5;
+  const clusterStart=Math.floor(i/LOCAL_ESTATE_SIZE)*LOCAL_ESTATE_SIZE,within=i%LOCAL_ESTATE_SIZE;
   const [aLat,aLon]=LOCAL_BUILDING_PLOTS[clusterStart];
-  const [bLat,bLon]=LOCAL_BUILDING_PLOTS[clusterStart+4];
-  const a=latLonPos(aLat,aLon).normalize(),z=latLonPos(bLat,bLon).normalize(),t=within/4;
+  const [bLat,bLon]=LOCAL_BUILDING_PLOTS[clusterStart+LOCAL_ESTATE_SIZE-1];
+  const a=latLonPos(aLat,aLon).normalize(),z=latLonPos(bLat,bLon).normalize(),t=within/(LOCAL_ESTATE_SIZE-1);
   const axis=slerpUnit(a,z,t),before=slerpUnit(a,z,Math.max(0,t-.025)),after=slerpUnit(a,z,Math.min(1,t+.025));
   const tangent=after.clone().sub(before).normalize(),side=V3().crossVectors(axis,tangent).normalize();
   const sideSign=within%2===0?1:-1;
@@ -882,22 +485,17 @@ function localBuildingPose(i){
 // downtown campuses) are represented by a single combined footprint here.
 const MIN_BUILDING_VERGE=.4;
 const BUILDING_SPACING_PLAN=[
-  ['Kopitiam',KOPITIAM,3.0],['HDB 65',HDB,3.4],['HDB 66',HDB66,3.0],['HDB 67',HDB67,3.0],
+  ['Kopitiam',KOPITIAM,3.0],['HDB 65',HDB,3.4],
   ['MRT',MRT,2.4],['Merlion',MERLION,1.7],['Marina Bay',BAY,5.0],['Gardens',GARDENS,3.8],
   ['Flyer',FLYER,2.3],['Shophouse row',SHOPS,3.7],['Hawker',HAWKER,2.2],['Temple',TEMPLE,2.0],
   ['Esplanade',ESP,2.6],['Kampung',KAMPUNG,2.5],['Control tower',TOWER,1.2],['Point block',PBLOCK,2.5],
-  ['Condo 1',CONDO,2.6],['Condo 2',CONDO2,2.6],['Condo 3',CONDO3,2.6],['Condo 4',CONDO4,2.6],
   ['Holland condo',CONDO5,3.0],['Marina condo',CONDO6,3.0],
-  ['Landed 1',LANDED1,2.7],['Landed 2',LANDED2,2.7],['Landed 3',LANDED3,2.7],['Landed 4',LANDED4,3.0],
+  ['East Coast landed',LANDED4,3.0],
   ['Sentosa',SENTOSA,1.8],['Studios',STUDIOS,3.8],['Clarke Quay',CLARKE,3.8],
   ['Changi campus',CHANGI_JEWEL,4.7],['Comcentre',COMCENTRE,2.2],['Satellite station',SATELLITE,3.6],
   ['Cable station',CABLEA,1.6],['NUS',NUS,3.1],['NTU',NTU,3.1],['SMU',SMU,3.0],['SUTD',SUTD,3.1],
   ['Hospital',HOSPITAL,3.2],['Tuas',TUAS,4.0],['Civic',CIVIC,2.8],['Interchange',INTERCHANGE,3.0],
   ['CBD',CBD,5.0],['Holland Village',HOLAND,3.6],
-  ['Archive HDB',ARCHIVE_HDB,1.7],['Archive condo',ARCHIVE_CONDO,1.6],
-  ['Archive landed',ARCHIVE_LANDED,1.4],['Archive kopi',ARCHIVE_KOPI,1.8],
-  ['Archive MRT',ARCHIVE_MRT,1.4],['Archive shop',ARCHIVE_SHOP,1.3],
-  ['Archive engineer',ARCHIVE_ENGINEER,.7],['Archive neighbourhood',ARCHIVE_NEIGHBOURHOOD,1.8],
   ...LOCAL_BUILDING_PLOTS.map((_,i)=>[`Local building ${i+1}`,localBuildingPose(i).unit,i%3===2?1.25:1.0]),
 ];
 function auditBuildingSpacing(){
@@ -933,14 +531,10 @@ const ROAD_NETWORKS=[
   {name:'CENTRAL CORRIDOR',type:'arterial',points:[A.KAMPUNG,A.MRT,A.KOPITIAM,A.HDB,A.PBLOCK,A.MERLION,A.CBD]},
   {name:'CAMPUS LINK',type:'arterial',points:[A.NTU,A.NUS]},
   {name:'CITY CAMPUS LINK',type:'arterial',points:[A.SMU,A.CIVIC]},
-  {name:'NORTH ESTATE',type:'local',points:[{lat:31,lon:-18},{lat:43,lon:-2}]},
-  {name:'NORTH-EAST ESTATE',type:'local',points:[{lat:45,lon:108},{lat:53,lon:132}]},
-  {name:'WEST ESTATE',type:'local',points:[{lat:48,lon:-84},{lat:64,lon:-60}]},
-  {name:'EAST ESTATE',type:'local',points:[{lat:12,lon:54},{lat:28,lon:78}]},
-  {name:'CENTRAL ESTATE',type:'local',points:[{lat:-8,lon:-20},{lat:-24,lon:4}]},
-  {name:'SOUTH ESTATE',type:'local',points:[{lat:-34,lon:46},{lat:-54,lon:70}]},
-  {name:'BAY ESTATE',type:'local',points:[{lat:-60,lon:92},{lat:-44,lon:124}]},
-  {name:'CHANGI ESTATE',type:'local',points:[{lat:38,lon:164},{lat:68,lon:-155}]},
+  {name:'WEST ESTATE',type:'local',points:[{lat:46,lon:-86},{lat:58,lon:-66}]},
+  {name:'CENTRAL ESTATE',type:'local',points:[{lat:-10,lon:-22},{lat:-24,lon:-2}]},
+  {name:'BAY ESTATE',type:'local',points:[{lat:-60,lon:96},{lat:-44,lon:120}]},
+  {name:'CHANGI ESTATE',type:'local',points:[{lat:42,lon:165},{lat:65,lon:-165}]},
 ];
 function keepRoadClear(unit,halfWidth,approach=null,detourSide=null){
   const u=unit.clone();
@@ -966,9 +560,10 @@ function keepRoadClear(unit,halfWidth,approach=null,detourSide=null){
   return u;
 }
 // Apply one controlled deflection, then relax it into a continuous civil-style
-// alignment. Clearance is deliberately not re-applied during relaxation: that
-// was the feedback loop responsible for the exploded asphalt seen in dense
-// neighbourhoods. End points stay fixed at their authored frontages.
+// alignment. A single final clearance pass is important: relaxation can pull a
+// route back beneath a large landmark even when its initial samples were safe.
+// Since roads are navigation corridors rather than rendered ribbons, this
+// final projection prioritises dependable access over cosmetic interpolation.
 function buildClearedRoute(raw,halfWidth){
   const mid=Math.floor(raw.length/2);
   const before=raw[Math.max(0,mid-1)],after=raw[Math.min(raw.length-1,mid+1)];
@@ -989,36 +584,26 @@ function buildClearedRoute(raw,halfWidth){
     }
     centers=relaxed;
   }
-  return centers;
+  return centers.map((unit,i)=>{
+    const approach=i===0?centers[1]:i===centers.length-1?centers[centers.length-2]:centers[i];
+    const detour=i===0||i===centers.length-1?null:routeSide;
+    let cleared=unit;
+    // A few sites have adjacent landmark footprints (airport, civic core).
+    // Resolve each controlling footprint once, with a tight cap to avoid the
+    // old unbounded ricochet behaviour in dense districts.
+    for(let pass=0;pass<4;pass++){
+      const next=keepRoadClear(cleared,halfWidth,approach,detour);
+      if(next.angleTo(cleared)*R<.001)break;
+      cleared=next;
+    }
+    return cleared;
+  });
 }
 function latLonFromUnit(u){
   return {
     lat:Math.asin(THREE.MathUtils.clamp(u.y,-1,1))*180/Math.PI,
     lon:Math.atan2(-u.x,-u.z)*180/Math.PI,
   };
-}
-function buildDashedPath(centers,width,color,offset,dash=3,gap=2){
-  const verts=[],idx=[];
-  for(let i=0;i<centers.length-1;i++){
-    if(i%(dash+gap)>=dash)continue;
-    const a=centers[i],b=centers[i+1];
-    if(a.angleTo(b)*R>1.45)continue;
-    const tan=b.clone().sub(a).normalize();
-    for(const p of [a,b]){
-      const side=new THREE.Vector3().crossVectors(p,tan).normalize();
-      for(const s of [-1,1]){
-        const q=p.clone().multiplyScalar(R).add(side.multiplyScalar(s*width/2));
-        const qu=q.clone().normalize();q.copy(qu).multiplyScalar(surfR(qu)+offset);
-        verts.push(q.x,q.y,q.z);
-      }
-    }
-    const k=verts.length/3-4;idx.push(k,k+1,k+3,k,k+3,k+2);
-  }
-  if(!verts.length)return;
-  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));
-  geo.setIndex(idx);geo.computeVertexNormals();
-  const mesh=new THREE.Mesh(geo,mat(color,{side:THREE.DoubleSide}));
-  mesh.receiveShadow=true;mesh.userData.noShadow=true;scene.add(mesh);
 }
 function buildRoadRoute(points,type='arterial'){
   const style=ROAD_STYLES[type],centers=[];
@@ -1031,38 +616,7 @@ function buildRoadRoute(points,type='arterial'){
     const cleared=buildClearedRoute(raw,style.width/2);
     centers.push(...cleared.slice(segment?1:0));
   }
-  buildPathStrip(centers,style.width+style.shoulder*2,style.edge,0.046);
-  buildPathStrip(centers,style.width,style.surface,0.056);
-  buildDashedPath(centers,type==='expressway'?.11:.08,style.line,0.071,style.dash,style.gap);
   return centers;
-}
-function buildRoadJunction(point,r=2.15){
-  const asphalt=new THREE.Mesh(new THREE.CircleGeometry(r,32),mat(ROAD_STYLES.arterial.surface));
-  placeOnSphere(asphalt,point.lat,point.lon);asphalt.rotateX(-Math.PI/2);conformToSphere(asphalt,.061);
-  const island=new THREE.Mesh(new THREE.CircleGeometry(r*.38,24),mat(0x7faa68));
-  placeOnSphere(island,point.lat,point.lon);island.rotateX(-Math.PI/2);conformToSphere(island,.076);
-  const kerb=new THREE.Mesh(new THREE.RingGeometry(r*.36,r*.45,28),mat(0xf2ead5));
-  placeOnSphere(kerb,point.lat,point.lon);kerb.rotateX(-Math.PI/2);conformToSphere(kerb,.079);
-}
-function buildRoadSign(route,destinations){
-  const g=new THREE.Group(),tex=canvasTex(420,180,(c)=>{
-    c.fillStyle='#16635f';c.fillRect(0,0,420,180);
-    c.strokeStyle='#f7f0d8';c.lineWidth=8;c.strokeRect(7,7,406,166);
-    c.fillStyle='#f7f0d8';c.font='bold 38px Trebuchet MS';c.textAlign='left';c.fillText(route,24,58);
-    c.font='bold 27px Trebuchet MS';c.fillText(destinations,24,112);
-    c.font='bold 34px sans-serif';c.textAlign='right';c.fillText('→',390,150);
-  });
-  for(const x of [-.68,.68]){const post=box(.08,1.65,.08,0x455153);post.position.set(x,.82,0);g.add(post);}
-  const board=new THREE.Mesh(new THREE.PlaneGeometry(1.9,.82),texMat(tex,{side:THREE.DoubleSide}));
-  board.position.y=1.65;g.add(board);return g;
-}
-function placeRoadSign(a,b,t,route,destinations,sideOffset=1.65){
-  const va=latLonPos(a.lat,a.lon).normalize(),vb=latLonPos(b.lat,b.lon).normalize();
-  const u=keepRoadClear(slerpUnit(va,vb,t),ROAD_STYLES.expressway.width/2);
-  const u2=keepRoadClear(slerpUnit(va,vb,Math.min(.99,t+.02)),ROAD_STYLES.expressway.width/2);
-  const tan=u2.clone().sub(u).normalize(),side=V3().crossVectors(u,tan).normalize();
-  const su=u.clone().multiplyScalar(R).add(side.multiplyScalar(sideOffset)).normalize();
-  const sign=placeAtUnit(buildRoadSign(route,destinations),su,0);alignXToDir(sign,su,side);addColliderUnit(su,.45);
 }
 for(const network of ROAD_NETWORKS){
   const centers=buildRoadRoute(network.points,network.type);
@@ -1123,55 +677,15 @@ function walkableCorridorAt(unit){
   }))return true;
   return RIVER_BRIDGE_WALKWAYS.some(walkway=>insideBridgeWalkway(unit,walkway));
 }
-// Roundabouts are reserved for true multi-road junctions. Decorative circles
-// at simple through-roads read as accidental asphalt islands.
-for(const hub of [A.KOPITIAM,A.CIVIC])buildRoadJunction(hub,1.65);
-placeRoadSign(A.NUS,A.KOPITIAM,.48,'ISLAND EXPRESS','CENTRAL · CHANGI');
-placeRoadSign(A.INTERCHANGE,A.NUS,.38,'ISLAND EXPRESS','TUAS · CENTRAL');
-placeRoadSign(A.SUTD,A.CHANGI,.5,'AIRPORT LINK','CHANGI AIRPORT');
-placeRoadSign(A.MRT,A.KAMPUNG,.46,'CENTRAL CORRIDOR','HDB · CBD');
-
-function buildStreetlamp(){
-  const g=new THREE.Group();
-  // revolved post: flared base, slim shaft, collar — one continuous silhouette
-  const poleProf=[
-    [.18,0],[.15,.04],[.09,.10],[.07,.30],[.065,.90],[.07,1.80],[.085,2.15],[.16,2.28],[.17,2.34]
-  ];
-  const pole=new THREE.Mesh(lathe(poleProf,14),mat(0x3d4a52));
-  g.add(pole);
-  // curved arm as a small tube instead of a floating cylinder
-  const arm=new THREE.Mesh(tubeMesh([[0,2.32,0],[.2,2.34,0],[.42,2.30,0],[.5,2.26,0]],.045,6,10),mat(0x3d4a52));
-  g.add(arm);
-  // lamp housing: revolved dome, capped by the glowing globe
-  const housing=new THREE.Mesh(lathe([[0,.0],[.14,.01],[.16,.08],[.12,.14],[0,.16]],12),mat(0x3d4a52));
-  housing.position.set(.5,2.30,0); g.add(housing);
-  const lamp=new THREE.Mesh(new THREE.SphereGeometry(.13,12,10),glowMat(0xffdf9e));
-  lamp.position.set(.5,2.20,0); lamp.userData.noShadow=true; g.add(lamp);
-  const halo=new THREE.Sprite(new THREE.SpriteMaterial({
-    map:radialTex('#ffdf9e'),transparent:true,opacity:.38,depthWrite:false}));
-  halo.scale.set(1.2,1.2,1); halo.position.set(.5,2.20,0); g.add(halo);
-  return addOutlines(g);
-}
-function lampsAlong(centers,every=7){
-  for(let i=3;i<centers.length-3;i+=every){
-    const p=centers[i], next=centers[Math.min(centers.length-1,i+1)];
-    const tan=next.clone().sub(p).normalize();
-    const side=new THREE.Vector3().crossVectors(p,tan).normalize();
-    const s=(i/every)%2===0?1:-1;
-    const u=p.clone().multiplyScalar(R).add(side.multiplyScalar(s*1.55)).normalize();
-    registerSwap('streetlamp',placeAtUnit(buildStreetlamp(),u,Math.random()*360));
-    addColliderUnit(u,.4);
-  }
-}
-lampsAlong(buildPath(KOPITIAM,HDB));
-lampsAlong(buildPath(KOPITIAM,MRT));
-lampsAlong(buildPath(KOPITIAM,MERLION));
+buildPath(KOPITIAM,HDB);
+buildPath(KOPITIAM,MRT);
+buildPath(KOPITIAM,MERLION);
 buildPath(MERLION,FLYER);
 buildPath(FLYER,HDB);
 buildPath(MRT,GARDENS);
 buildPath(KOPITIAM,SHOPS);
 buildPath(SHOPS,GARDENS,1.2);
-lampsAlong(buildPath(KOPITIAM,HAWKER),8);
+buildPath(KOPITIAM,HAWKER);
 buildPath(HAWKER,MRT,1.2);
 
 plaza(KOPITIAM.lat,KOPITIAM.lon,5);
@@ -2033,19 +1547,6 @@ function buildOverheadBridge(){
   return g;
 }
 
-// traffic light
-function buildTrafficLight(){
-  const g=new THREE.Group();
-  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.05,.06,2.4,7),mat(0x3d4a52));
-  pole.position.y=1.2; g.add(pole);
-  const head=box(.22,.62,.18,0x2e2a25); head.position.y=2.5; g.add(head);
-  [0xd0342c,0xf2c14e,0x35c46b].forEach((cc,i)=>{
-    const l=new THREE.Mesh(new THREE.SphereGeometry(.06,7,6),glowMat(cc));
-    l.position.set(0,2.68-i*.18,.1); l.userData.noShadow=true; g.add(l);
-  });
-  return g;
-}
-
 // bumboat with painted eye
 function buildBumboat(hull){
   const g=new THREE.Group();
@@ -2847,8 +2348,6 @@ function buildInterchange(){
 // ============================================================
 const kopitiamObj=registerSwap('kopitiam',placeOnSphere(buildKopitiam(),KOPITIAM.lat,KOPITIAM.lon,180)); addCollider(KOPITIAM.lat,KOPITIAM.lon,3.0);
 registerSwap('hdbHero',placeOnSphere(buildHDB('#e86a5e','BLK 65'),HDB.lat,HDB.lon,160)); addCollider(HDB.lat,HDB.lon,3.4);
-registerSwap('hdb',placeOnSphere(buildHDB('#7fb8a4','BLK 66'),HDB66.lat,HDB66.lon,140)); addCollider(HDB66.lat,HDB66.lon,3.0);
-registerSwap('hdb',placeOnSphere(buildHDB('#f2c14e','BLK 67'),HDB67.lat,HDB67.lon,200)); addCollider(HDB67.lat,HDB67.lon,3.0);
 registerSwap('mrt',placeOnSphere(buildMRT(),MRT.lat,MRT.lon,170)); addCollider(MRT.lat,MRT.lon,2.4);
 const merlion=registerSwap('merlion',placeOnSphere(buildMerlion(),MERLION.lat,MERLION.lon,205)); addCollider(MERLION.lat,MERLION.lon,1.7);
 registerSwap('mbs',placeOnSphere(buildMBS(),-16,132,210)); addCollider(-16,132,4.0);
@@ -2883,8 +2382,8 @@ placeOnSphere(addOutlines(buildHydrant()),HDB.lat-6,HDB.lon+6);
   const B=latLonPos(BAY.lat,BAY.lon).normalize();
   const T0=V3().crossVectors(B,V3(0,1,.3)).normalize();
   const arc=9/R;
-  for(let k=0;k<8;k++){
-    const a=(.62+k*.235);
+  for(let k=0;k<5;k++){
+    const a=(.72+k*.34);
     const D=T0.clone().applyAxisAngle(B,a);
     const u=B.clone().multiplyScalar(Math.cos(arc)).add(D.multiplyScalar(Math.sin(arc))).normalize();
     const f=addOutlines(buildFence());
@@ -2904,16 +2403,9 @@ registerSwap('esplanade',placeOnSphere(buildEsplanade(),ESP.lat,ESP.lon,100)); a
 registerSwap('kampungHero',placeOnSphere(buildKampungHouse(),KAMPUNG.lat,KAMPUNG.lon,30)); addCollider(KAMPUNG.lat,KAMPUNG.lon,2.5);
 const towerObj=registerSwap('controltower',placeOnSphere(buildControlTower(),TOWER.lat,TOWER.lon,0)); addCollider(TOWER.lat,TOWER.lon,1.2);
 registerSwap('pointblockHero',placeOnSphere(buildPointBlock(),PBLOCK.lat,PBLOCK.lon,120)); addCollider(PBLOCK.lat,PBLOCK.lon,2.5);
-// condos — the "condo" residence type for field-engineer jobs
-registerSwap('condo',placeOnSphere(buildCondo('#7fb8d4'),CONDO.lat,CONDO.lon,150)); addCollider(CONDO.lat,CONDO.lon,2.6);
-registerSwap('condo',placeOnSphere(buildCondo('#f2b6c1'),CONDO2.lat,CONDO2.lon,-20)); addCollider(CONDO2.lat,CONDO2.lon,2.6);
-registerSwap('condo',placeOnSphere(buildCondo('#9fc7b0'),CONDO3.lat,CONDO3.lon,105)); addCollider(CONDO3.lat,CONDO3.lon,2.6);
-registerSwap('condo',placeOnSphere(buildCondo('#d8b48c'),CONDO4.lat,CONDO4.lon,205)); addCollider(CONDO4.lat,CONDO4.lon,2.6);
+// Mission residences: one clearly identifiable home for each relevant call.
 registerSwap('condoHolland',placeOnSphere(buildCondo('#82b6a9'),CONDO5.lat,CONDO5.lon,25)); addCollider(CONDO5.lat,CONDO5.lon,3.0);
 registerSwap('condoMarina',placeOnSphere(buildCondo('#d6b8d8'),CONDO6.lat,CONDO6.lon,120)); addCollider(CONDO6.lat,CONDO6.lon,3.0);
-registerSwap('landed',placeOnSphere(buildLandedHouse(0xf2e5cf,0x2f7f8c),LANDED1.lat,LANDED1.lon,45)); addCollider(LANDED1.lat,LANDED1.lon,2.7);
-registerSwap('landed',placeOnSphere(buildLandedHouse(0xdde8e1,0xc9553e),LANDED2.lat,LANDED2.lon,150)); addCollider(LANDED2.lat,LANDED2.lon,2.7);
-registerSwap('landed',placeOnSphere(buildLandedHouse(0xead9c6,0x3d7ea6),LANDED3.lat,LANDED3.lon,-50)); addCollider(LANDED3.lat,LANDED3.lon,2.7);
 registerSwap('landedHero',placeOnSphere(buildLandedHouse(0xe3e2d5,0x2e7d4f),LANDED4.lat,LANDED4.lon,95)); addCollider(LANDED4.lat,LANDED4.lon,3.0);
 registerSwap('raintreeHero',placeOnSphere(buildRainTree(),LANDED4.lat+5,LANDED4.lon-5,25)); addCollider(LANDED4.lat+5,LANDED4.lon-5,.8);
 // Compact fallback stations keep the service story visible even before the
@@ -2931,16 +2423,6 @@ registerSwap('serviceFibre',placeOnSphere(buildServiceStation(0x3d7ea6),HDB.lat-
 registerSwap('serviceFibre',placeOnSphere(buildServiceStation(0x3d7ea6),PBLOCK.lat-1,PBLOCK.lon+5,-30));
 registerSwap('serviceWifi',placeOnSphere(buildServiceStation(0x2e7d4f),CONDO6.lat-1,CONDO6.lon-4,60));
 registerSwap('serviceWifi',placeOnSphere(buildServiceStation(0x2e7d4f),CONDO5.lat+1,CONDO5.lon-5,-70));
-// Archive neighbourhood — every original Blender export remains visibly
-// represented in the shipped world, at smaller background scale.
-registerSwap('archiveHdb',placeOnSphere(buildHDB('#d99b70','BLK A'),ARCHIVE_HDB.lat,ARCHIVE_HDB.lon,25)); addCollider(ARCHIVE_HDB.lat,ARCHIVE_HDB.lon,1.7);
-registerSwap('archiveCondo',placeOnSphere(buildCondo('#89b8ad'),ARCHIVE_CONDO.lat,ARCHIVE_CONDO.lon,70)); addCollider(ARCHIVE_CONDO.lat,ARCHIVE_CONDO.lon,1.6);
-registerSwap('archiveLanded',placeOnSphere(buildLandedHouse(0xe8dcc5,0xc9553e),ARCHIVE_LANDED.lat,ARCHIVE_LANDED.lon,110)); addCollider(ARCHIVE_LANDED.lat,ARCHIVE_LANDED.lon,1.4);
-registerSwap('archiveKopitiam',placeOnSphere(buildKopitiam(),ARCHIVE_KOPI.lat,ARCHIVE_KOPI.lon,150)); addCollider(ARCHIVE_KOPI.lat,ARCHIVE_KOPI.lon,1.8);
-registerSwap('archiveMrt',placeOnSphere(buildMRT(),ARCHIVE_MRT.lat,ARCHIVE_MRT.lon,190)); addCollider(ARCHIVE_MRT.lat,ARCHIVE_MRT.lon,1.4);
-registerSwap('archiveShophouse',placeOnSphere(buildShophouse('#f5d98f','#3d7ea6'),ARCHIVE_SHOP.lat,ARCHIVE_SHOP.lon,230)); addCollider(ARCHIVE_SHOP.lat,ARCHIVE_SHOP.lon,1.3);
-registerSwap('archiveEngineer',placeOnSphere(buildServiceStation(0xf09214),ARCHIVE_ENGINEER.lat,ARCHIVE_ENGINEER.lon,270)); addCollider(ARCHIVE_ENGINEER.lat,ARCHIVE_ENGINEER.lon,.7);
-registerSwap('archiveNeighbourhood',placeOnSphere(buildLandedHouse(0xdde8e1,0x2e7d4f),ARCHIVE_NEIGHBOURHOOD.lat,ARCHIVE_NEIGHBOURHOOD.lon,310)); addCollider(ARCHIVE_NEIGHBOURHOOD.lat,ARCHIVE_NEIGHBOURHOOD.lon,1.8);
 registerSwap('mamashop',placeOnSphere(buildMamaShop(),HDB.lat-1,HDB.lon+8,-160)); addCollider(HDB.lat-1,HDB.lon+8,1.2);
 placeOnSphere(addOutlines(buildIceCreamCart()),MERLION.lat+3,MERLION.lon-8,120); addCollider(MERLION.lat+3,MERLION.lon-8,.9);
 placeOnSphere(buildClockTower(),HAWKER.lat+2,HAWKER.lon-6,40); addCollider(HAWKER.lat+2,HAWKER.lon-6,.8);
@@ -2951,10 +2433,11 @@ registerSwap('cat',placeOnSphere(addOutlines(buildCat(0xe0862f)),KOPITIAM.lat+2,
 registerSwap('cat',placeOnSphere(addOutlines(buildCat(0x3a3f45)),HDB.lat-2,HDB.lon-5,90));
 registerSwap('cat',placeOnSphere(addOutlines(buildCat(0xfdf8ec)),TEMPLE.lat+3,TEMPLE.lon-4,-60));
 
-// Forty additional local buildings across eight compact estates.
+// Supporting buildings stay in compact three-building estates, leaving broad
+// green breathing room between named districts.
 LOCAL_BUILDING_PLOTS.forEach(([lat,lon],i)=>{
   let b;
-  if(i===15){
+  if(i===1){
     // One estate plot is a real neighbourhood school instead of another
     // anonymous residential block. Keep a procedural fallback until its GLB
     // finishes loading, just like the other authored landmarks.
@@ -2968,7 +2451,7 @@ LOCAL_BUILDING_PLOTS.forEach(([lat,lon],i)=>{
   placeAtUnit(b,u,0);alignXToDir(b,u,tangent);if(sideSign<0)b.rotateY(Math.PI);
   addColliderUnit(u,i%3===2?1.25:1.0);
 });
-console.assert(LOCAL_BUILDING_PLOTS.length>=40,'Local building target not met');
+console.assert(LOCAL_BUILDING_PLOTS.length===12,'Curated local building plan changed unexpectedly');
 console.assert(LOCAL_BUILDING_SETBACK>ROAD_STYLES.local.width/2+1.25+.25,'Local building road clearance is insufficient');
 for(const dlon of [-5,0,5]){
   placeOnSphere(addOutlines(buildPottedPlant()),SHOPS.lat+2.6,SHOPS.lon+dlon,0);
@@ -2988,28 +2471,6 @@ placeOnSphere(addOutlines(buildPottedPlant()),TEMPLE.lat-2,TEMPLE.lon+3,0);
     faceTangent(bs,u,B);
     addColliderUnit(u,.8);
   }
-})();
-
-// zebra crossing + traffic light on the shophouse road
-(function zebra(){
-  const va=latLonPos(KOPITIAM.lat,KOPITIAM.lon).normalize();
-  const vb=latLonPos(SHOPS.lat,SHOPS.lon).normalize();
-  const u=slerpUnit(va,vb,.5), u2=slerpUnit(va,vb,.54);
-  const tan=u2.clone().sub(u).normalize();
-  const side=V3().crossVectors(u,tan).normalize();
-  const g=new THREE.Group();
-  for(let k=-2;k<=2;k++){
-    const stripe=box(1.9,.03,.28,0xfdf8ec);
-    stripe.position.set(0,.04,k*.5);
-    stripe.userData.noOutline=true;
-    g.add(stripe);
-  }
-  placeAtUnit(g,u,0);
-  alignXToDir(g,u,side);
-  const tl=addOutlines(buildTrafficLight());
-  const lu=u.clone().multiplyScalar(R).add(side.clone().multiplyScalar(1.6)).normalize();
-  placeAtUnit(tl,lu,0);
-  addColliderUnit(lu,.35);
 })();
 
 // Walkable surface metadata is kept in world tangent coordinates. The player
@@ -3085,10 +2546,9 @@ buildPath(FLYER,CONDO6,1.2);
 buildPath(PBLOCK,SATELLITE,1.0);
 // field-engineer routes: depot ↔ residences so the van has roads to drive
 buildPath(COMCENTRE,HDB,1.6);
-buildPath(HDB,CONDO,1.6);
 buildPath(KAMPUNG,HDB,1.4);
 // institutional/economic corridors make the island read as one service network
-lampsAlong(buildPath(KOPITIAM,NUS,1.55),8);
+buildPath(KOPITIAM,NUS,1.55);
 buildPath(NUS,NTU,1.45);
 buildPath(NUS,HOSPITAL,1.5);
 buildPath(MERLION,SMU,1.45);
@@ -3182,7 +2642,6 @@ const jewelObj=placeOnSphere(buildJewel(),CHANGI_JEWEL.lat,CHANGI_JEWEL.lon,0); 
 const changiTowerObj=placeOnSphere(buildControlTower(),CHANGI_TOWER.lat,CHANGI_TOWER.lon,0);addCollider(CHANGI_TOWER.lat,CHANGI_TOWER.lon,1.2);
 placeOnSphere(buildDistrictSign('CHANGI AIRPORT','TERMINALS · JEWEL · AIR CARGO',0x2e5e52),11,-159,105);
 buildPath(SUTD,CHANGI,1.8);
-buildPath(CHANGI,CHANGI_JEWEL,1.35);
 (function runway(){
   const a=latLonPos(3,-150).normalize(), b=latLonPos(3,-178).normalize();
   const n=22, centers=[];
@@ -3282,7 +2741,6 @@ buildPath(CBD,COMCENTRE,1.2);
 buildPath(CLARKE,RIVER,1.3);
 buildPath(RIVER,CBD,1.3);
 buildPath(BAY,HOLAND,1.2);
-buildPath(HOLAND,CONDO5,1.2);
 plaza(CBD.lat,CBD.lon,5,0xd9d3c7);
 plaza(HOLAND.lat,HOLAND.lon,3.6,0xe8d5a3);
 plaza(RIVER.lat,RIVER.lon,3.4,0xd9c79a);
@@ -3442,8 +2900,7 @@ function stepOtters(dt,t){
 const POIS=[KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   ESP,KAMPUNG,TOWER,PBLOCK,
   SENTOSA,STUDIOS,CLARKE,CHANGI,JEWEL,ECP,COMCENTRE,SATELLITE,CABLEA,
-  CBD,RIVER,HOLAND,OTTER,
-  CONDO,CONDO2,
+  CBD,RIVER,HOLAND,OTTER,CONDO5,CONDO6,LANDED4,
   {lat:CBD.lat-2,lon:CBD.lon+4},{lat:CBD.lat+2,lon:CBD.lon-4},{lat:CBD.lat-5,lon:CBD.lon+2},
   {lat:HOLAND.lat-3,lon:HOLAND.lon-3},{lat:HOLAND.lat+3,lon:HOLAND.lon+3},
   {lat:CLARKE.lat,lon:CLARKE.lon+5},{lat:3,lon:-164},{lat:7,lon:-170},
@@ -3456,24 +2913,24 @@ function farFromPOIs(lat,lon,min=7.5){
 function scatter(count,min,builder,collideR=0,outline=false,swapName=null){
   let placed=0,guard=0;
   while(placed<count&&guard++<500){
-    const lat=-82+Math.random()*164, lon=-180+Math.random()*360;
+    const lat=-82+sceneryRandom()*164, lon=-180+sceneryRandom()*360;
     if(!farFromPOIs(lat,lon,min))continue;
     let obj=builder();
     if(outline&&!isTouch)obj=addOutlines(obj);
-    const inst=placeOnSphere(obj,lat,lon,Math.random()*360);
+    const inst=placeOnSphere(obj,lat,lon,sceneryRandom()*360);
     if(swapName)registerSwap(swapName,inst);
     if(collideR)addCollider(lat,lon,collideR);
     placed++;
   }
 }
-scatter(9,7.5,buildPalm,.7,true,'palm');
-scatter(8,7.5,buildRainTree,.7,true,'raintree');
-scatter(12,5,buildBush,0,true);
-scatter(8,5,buildRock,.55,true);
-scatter(14,4.5,buildFlower,0,true);
-scatter(22,4,buildTuft);
-for(let i=0;i<10;i++){
-  placeOnSphere(addOutlines(buildFlower()),GARDENS.lat+(Math.random()-.5)*16,GARDENS.lon+(Math.random()-.5)*22);
+scatter(5,8.5,buildPalm,.7,true,'palm');
+scatter(5,8.5,buildRainTree,.7,true,'raintree');
+scatter(7,6,buildBush,0,true);
+scatter(5,6,buildRock,.55,true);
+scatter(8,5.5,buildFlower,0,true);
+scatter(12,5,buildTuft);
+for(let i=0;i<6;i++){
+  placeOnSphere(addOutlines(buildFlower()),GARDENS.lat+(sceneryRandom()-.5)*14,GARDENS.lon+(sceneryRandom()-.5)*18);
 }
 
 // ============================================================
@@ -5426,7 +4883,6 @@ const ASSET_MANIFEST={
   raintreeHero:{url:'assets/raintree-v2.glb',scale:.72},
   // Blender asset points its nose along +X; the controller convention is +Z.
   van:       {url:'assets/service-van-v2.glb',scale:.72,van:true,forwardYaw:-Math.PI/2},
-  streetlamp:{url:'assets/streetlamp-v2.glb',scale:.46},
   postbox:   {url:'assets/postbox-v2.glb',scale:.65},
   bench:     {url:'assets/bench-v2.glb',scale:.75},
   merlion:   {url:'assets/merlion-v2.glb',scale:.65},
@@ -5448,14 +4904,6 @@ const ASSET_MANIFEST={
   serviceRouter:{url:'assets/router-kit-v2.glb',scale:.55},
   serviceFibre:{url:'assets/fibre-kit-v2.glb',scale:.55},
   serviceWifi:{url:'assets/wifi-kit-v2.glb',scale:.55},
-  archiveHdb:{url:'assets/hdb.glb',scale:.50},
-  archiveCondo:{url:'assets/condo.glb',scale:.52},
-  archiveLanded:{url:'assets/landed.glb',scale:.58},
-  archiveKopitiam:{url:'assets/kopitiam.glb',scale:.52},
-  archiveMrt:{url:'assets/mrt.glb',scale:.55},
-  archiveShophouse:{url:'assets/shophouse.glb',scale:.58},
-  archiveEngineer:{url:'assets/engineer-v2.glb',scale:.72},
-  archiveNeighbourhood:{url:'assets/hero-neighbourhood.glb',scale:.20},
 };
 // convert imported materials to the game's cel look + add ink hulls
 function toonify(root){
@@ -5468,7 +4916,6 @@ function toonify(root){
       if(src.map){m2.map=src.map; if(m2.map)m2.map.anisotropy=4;}
       if(src.color)m2.color.copy(src.color);
     }
-    if(o.isSkinnedMesh)m2.skinning=true;
     o.material=m2;
     o.castShadow=true; o.receiveShadow=true;
     if(!o.isSkinnedMesh)hulls.push(o);
@@ -5557,13 +5004,10 @@ function swapResident(index,gltf){
     (gltf.animations.length?` (${gltf.animations.map(c=>c.name).join(', ')})`:''));
 }
 (function loadAssets(){
-  if(!THREE.GLTFLoader)return;
-  const loader=new THREE.GLTFLoader();
-  if(THREE.DRACOLoader){
-    const draco=new THREE.DRACOLoader();
-    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
-    loader.setDRACOLoader(draco);
-  }
+  const loader=new GLTFLoader();
+  const draco=new DRACOLoader();
+  draco.setDecoderPath('/draco/');
+  loader.setDRACOLoader(draco);
   for(const [name,cfg] of Object.entries(ASSET_MANIFEST)){
     loader.load(cfg.url,
       gltf=>applySwap(name,cfg,gltf),
@@ -5614,8 +5058,3 @@ document.getElementById('muteBtn').addEventListener('click',()=>{
   document.getElementById('muteBtn').textContent=Snd.toggle()?'🔊':'🔇';
 });
 document.getElementById('again').addEventListener('click',()=>location.reload());
-
-})();
-</script>
-</body>
-</html>

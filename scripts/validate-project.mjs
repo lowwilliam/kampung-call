@@ -106,7 +106,7 @@ if (scenarios) {
 }
 
 const roadStart = html.indexOf('const ROAD_ACCESS=');
-const roadEnd = html.indexOf('function buildDashedPath', roadStart);
+const roadEnd = html.indexOf('function buildRoadRoute', roadStart);
 assert(roadStart >= 0 && roadEnd > roadStart, 'Could not find the shared ROAD_NETWORKS city plan.');
 if (roadStart >= 0 && roadEnd > roadStart) {
   const roadBlock = html.slice(roadStart, roadEnd);

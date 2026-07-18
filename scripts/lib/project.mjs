@@ -3,10 +3,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-export const htmlPath = path.join(root, 'kampung-call.html');
+export const htmlPath = path.join(root, 'index.html');
+export const applicationPath = path.join(root, 'src/main.js');
 
 export function readHtml() {
-  return fs.readFileSync(htmlPath, 'utf8');
+  return [htmlPath, applicationPath].map((file) => fs.readFileSync(file, 'utf8')).join('\n');
 }
 
 export function extractBalancedLiteral(source, declaration) {

@@ -5,13 +5,22 @@
   "description": "A Singapore field-service training experience built with Three.js.",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/dev-server.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "validate": "node scripts/validate-project.mjs",
-    "test": "npm run validate && npm run test:performance && npm run format:check",
+    "test": "npm run validate && npm run test:performance && npm run format:check && npm run build",
     "test:performance": "node scripts/check-performance-budget.mjs",
     "format:check": "node scripts/check-format.mjs"
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.6",
+    "vite-plugin-static-copy": "^3.4.0"
   }
 }

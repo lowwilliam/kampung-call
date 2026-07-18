@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { root } from './lib/project.mjs';
 
-const files = ['package.json', 'vercel.json', 'README.md', '.github/workflows/quality.yml', 'docs/COMMERCIAL-READINESS.md'];
+const files = ['package.json', 'vercel.json', 'vite.config.js', 'index.html', 'src/styles.css', 'src/main.js', 'README.md', '.github/workflows/quality.yml', 'docs/COMMERCIAL-READINESS.md'];
 const failures = [];
 for (const file of files) {
   const target = path.join(root, file);
