@@ -1,6 +1,6 @@
 # Kampung Call
 
-Kampung Call is a full-HTML browser game set across a playful, stylised Singapore. Explore its neighbourhoods, meet six residents, solve home-connectivity problems, and complete every call before the shift ends.
+Kampung Call is a Three.js browser game set across a playful, stylised Singapore. Explore its neighbourhoods, meet six residents, solve home-connectivity problems, and complete every call before the shift ends.
 
 The game combines a small open-world Three.js experience with hands-on service missions. Each customer visit asks the player to inspect symptoms, choose diagnostic actions, get immediate feedback, and either restore service or make the correct escalation.
 
@@ -32,22 +32,20 @@ For each call, the player follows the target compass to a resident, holds a shor
 ### Requirements
 
 - Node.js 20 or newer
-- An internet connection when loading the game, because Three.js 0.128 and its GLTF/DRACO loaders are fetched from public CDNs
+- npm 10 or newer
 
-There are no third-party npm development dependencies.
+Three.js, its GLTF/DRACO loaders, and the application code are bundled locally by Vite. The game does not depend on runtime CDN scripts.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open [http://127.0.0.1:4173](http://127.0.0.1:4173). To use a different port:
+Open the URL printed by Vite, normally [http://localhost:5173](http://localhost:5173). To use a different port:
 
 ```sh
-PORT=8080 npm run dev
+npm run dev -- --port 8080
 ```
-
-The local server maps both `/` and `/kampung-call` to `kampung-call.html`.
 
 ## Controls
 
@@ -64,27 +62,32 @@ Customer conversations and diagnosis panels open automatically when the player r
 ## Project structure
 
 ```text
-kampung-call.html       Main application: UI, game state, Three.js world and scenarios
+index.html              Accessible application shell and HUD markup
+src/main.js             Three.js world, player controls, missions and asset loading
+src/styles.css          Responsive HUD, dialogue and title-screen styling
+vite.config.js          Production build and static 3D/audio asset pipeline
 assets/                 Runtime 3D models, resident portraits, audio and previews
 blender/                Scripts and source files used to produce 3D assets
 src/capability/          Reusable scenario, competency and reporting modules
 tests/                  Node tests for the capability engine and console helpers
-scripts/                Local server, project validation and performance checks
+scripts/                Project validation and performance checks
 docs/                   Planning, performance and launch-readiness notes
 vercel.json             Production route and cache-header configuration
 ```
 
-Most of the playable experience intentionally lives in `kampung-call.html`, so it can be served as a static site without a build step. The capability modules are browser-loadable ES modules and have their own integration notes in [`src/capability/README.md`](src/capability/README.md).
+The application uses native ES modules in development and produces a self-contained static build in `dist/`. The capability modules are browser-loadable ES modules and have their own integration notes in [`src/capability/README.md`](src/capability/README.md).
 
 ## Development commands
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start the dependency-free local server |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Create an optimized production build in `dist/` |
+| `npm run preview` | Preview the production build locally |
 | `npm run validate` | Check HTML invariants, assets, roads, work orders and scenario structure |
 | `npm run test:performance` | Enforce HTML, total runtime-asset and single-asset budgets |
 | `npm run format:check` | Run lightweight formatting checks |
-| `npm test` | Run all project checks used by CI |
+| `npm test` | Run all project checks and a production build |
 
 Run the full suite before opening a pull request:
 
@@ -106,7 +109,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the change workflow and the documen
 
 ## Deployment
 
-The application is a static site. Vercel serves `kampung-call.html`, rewrites `/` to `/kampung-call`, and applies cache headers defined in `vercel.json`.
+The application builds to a static Vite site. Vercel serves `dist/index.html` and applies the cache and security headers defined in `vercel.json`.
 
 This repository is currently a prototype, not a production-ready learning platform. Accessibility, security, analytics, LMS integration, content governance, browser support, and operational readiness still require dedicated work before a commercial launch.
 

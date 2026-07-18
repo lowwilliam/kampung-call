@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Make your rounds across a playful Singapore, lend six neighbours a hand, and bring the kampung back together.">
+<title>Kampung Call — six neighbours, one mission</title>
+<link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+<main id="app-main">
+
+<div id="title">
+  <div class="t-cloud c1"></div>
+  <div class="t-cloud c2"></div>
+  <div class="t-eyebrow">Six neighbours · one mission</div>
+  <div class="t-name">KAMPUNG <span>CALL</span></div>
+  <div class="t-tag">The kampung needs a hand. Make your rounds across Singapore, solve each neighbour’s problem, and bring the community back together.</div>
+  <button id="begin">START ROUNDS</button>
+  <div class="t-hint" id="titleHint">WASD / arrows to move · E to emote · F to enter/exit van</div>
+  <div class="t-credit">an AI-built homage to messenger.abeto.co · made in singapore</div>
+</div>
+
+<div id="chit">
+  <div class="chit-row1"><span id="chitNo">CALL 1/6</span><span id="chitScore">⭐ 0</span></div>
+  <div class="chit-item" id="chitItem">☕ Kopi siew dai</div>
+  <div class="chit-task" id="chitTask">Collect from <b>Uncle Lim</b> at the kopitiam</div>
+  <div class="chit-dist" id="chitDist"></div>
+  <div class="chit-dots" id="chitDots"></div>
+</div>
+
+<button id="muteBtn" aria-label="Toggle sound">🔊</button>
+
+<div id="toast" role="status" aria-live="polite"><span class="who" id="toastWho"></span><span id="toastMsg"></span></div>
+<section id="dialogue-panel" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
+  <div class="dialogue-avatar" id="dialogue-avatar"></div>
+  <div class="dialogue-kicker" id="dialogue-kicker">Neighbour check-in</div>
+  <h3 id="dialogue-name"></h3>
+  <p id="dialogue-text"></p>
+  <div class="dialogue-footer"><span id="dialogue-progress"></span><div class="dialogue-actions"><button class="dialogue-exit" id="dialogue-exit">EXIT</button><button id="dialogue-next">CONTINUE →</button></div></div>
+</section>
+<section id="repair-panel" role="dialog" aria-modal="true" aria-labelledby="repair-title">
+  <div class="repair-heading"><img id="repair-avatar" alt=""><div><h3 id="repair-title">On-site diagnosis</h3><div class="repair-site" id="repair-site"></div></div><button class="repair-exit" id="repair-exit">EXIT</button></div>
+  <div class="repair-brief"><span class="repair-label">NEIGHBOUR'S NOTE</span><p id="repair-complaint"></p></div>
+  <div class="repair-meta"><span id="repair-progress"></span><span id="repair-patience"></span></div>
+  <p id="repair-question"></p>
+  <div id="repair-options" role="group" aria-label="Diagnostic choices"></div>
+  <div id="repair-feedback" role="status" aria-live="polite"></div>
+  <div class="repair-foot"><button id="repair-action">NEXT CLUE</button></div>
+</section>
+<div id="controls-hint">WASD / ARROWS · MOVE &nbsp;&nbsp; F · VAN &nbsp;&nbsp; E · EMOTE</div>
+<div id="action-prompt" role="status" aria-live="polite"></div>
+<button id="emoteBtn" aria-label="Send emote">🎉</button>
+<button id="vanBtn" aria-label="Enter or exit van">🚐 ENTER</button>
+<div id="joy"><div class="knob" id="joyKnob"></div></div>
+
+<div id="compass" aria-hidden="true">
+  <svg viewBox="-27 -27 54 54">
+    <circle class="ring" cx="0" cy="0" r="17"/>
+    <path class="tip" d="M 0 -22 L 9 -6 L 0 -11 L -9 -6 Z"/>
+  </svg>
+  <div class="lbl" id="compassLbl"></div>
+</div>
+
+<div id="done">
+  <div class="done-card">
+    <h2>Kampung steady.</h2>
+    <div class="big">✓</div>
+    <p>Six calls completed. Every neighbour has been helped, and the kampung is humming again.</p>
+    <p id="doneTime"></p>
+    <button id="again">NEXT ROUND</button>
+  </div>
+</div>
+</main>
+
+<capability-console></capability-console>
+<script type="module" src="/src/capability/capability-console.mjs"></script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
