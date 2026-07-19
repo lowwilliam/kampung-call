@@ -9,7 +9,10 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
    ============================================================ */
 
 const R = 26;
-const VOID_COLOR = 0x88c6c3;
+// Keep the renderer clear colour, fog, CSS page background, and sky midpoint
+// in the same family so the scene fades naturally instead of forming teal and
+// yellow colour bands around the title composition.
+const VOID_COLOR = 0xc5deda;
 const isTouch = matchMedia('(pointer:coarse)').matches;
 // A stable scenery seed keeps the authored composition identical on every
 // reload. Gameplay and character timing can continue using Math.random().
@@ -47,9 +50,9 @@ const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
   const skyMat = new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, fog: false,
     uniforms: {
-      top: { value: new THREE.Color(0x4f9d9b) },
+      top: { value: new THREE.Color(0x78aaa8) },
       mid: { value: new THREE.Color(VOID_COLOR) },
-      bot: { value: new THREE.Color(0xf2e2bd) },
+      bot: { value: new THREE.Color(0xe9e3d4) },
     },
     vertexShader: `
       varying vec3 vDir;
