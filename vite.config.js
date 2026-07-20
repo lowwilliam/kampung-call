@@ -18,6 +18,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    outDir: 'dist/client',
     target: 'es2022',
     sourcemap: true,
     chunkSizeWarningLimit: 700,

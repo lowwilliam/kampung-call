@@ -13,6 +13,10 @@ await copyFile(
   resolve(serverDirectory, 'index.js'),
 );
 await copyFile(
+  resolve(projectRoot, 'sites/wrangler.json'),
+  resolve(serverDirectory, 'wrangler.json'),
+);
+await copyFile(
   resolve(projectRoot, '.openai/hosting.json'),
   resolve(hostingDirectory, 'hosting.json'),
 );
