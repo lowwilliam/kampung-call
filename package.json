@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/clean-dist.mjs && vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview",
     "validate": "node scripts/validate-project.mjs",
     "test": "npm run validate && npm run test:performance && npm run format:check && npm run build",
