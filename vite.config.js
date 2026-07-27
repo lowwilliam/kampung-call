@@ -5,11 +5,16 @@ export default defineConfig({
   publicDir: false,
   plugins: [
     viteStaticCopy({
+      structured: true,
       targets: [
         {
           src: 'assets/**/*.{glb,mp3,png,jpg,jpeg,webp}',
-          dest: 'assets',
+          dest: '',
         },
+      ],
+    }),
+    viteStaticCopy({
+      targets: [
         {
           src: 'node_modules/three/examples/jsm/libs/draco/*',
           dest: 'draco',
