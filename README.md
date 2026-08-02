@@ -117,6 +117,7 @@ This repository is currently a prototype, not a production-ready learning platfo
 
 - [`docs/CITY-PLANNING.md`](docs/CITY-PLANNING.md) — road hierarchy, building clearances and district rules
 - [`docs/MEDIA-PERFORMANCE.md`](docs/MEDIA-PERFORMANCE.md) — current media footprint and optimization history
+- [`docs/COMMERCIALISATION-PLAN.md`](docs/COMMERCIALISATION-PLAN.md) — product review, positioning recommendation and phased plan to launch
 - [`docs/COMMERCIAL-READINESS.md`](docs/COMMERCIAL-READINESS.md) — release, accessibility, privacy and learning-platform gates
 - [`ART-DIRECTION.md`](ART-DIRECTION.md) — visual language and asset direction
 - [`ASSET-PRODUCTION.md`](ASSET-PRODUCTION.md) — 3D asset-production guidance
