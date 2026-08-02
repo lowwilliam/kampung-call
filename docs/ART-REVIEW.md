@@ -275,9 +275,22 @@ the same visual footprint and relative scale cannot be judged.
 
 ### 4.2 Frame and UX polish
 
-- **The compass parks mid-screen.** It is built as an off-screen direction
-  indicator but renders in the middle of empty sky rather than anchored to the
-  screen edge on the bearing of the target.
+- **The compass "dock" lands in the middle of the frame.** `updateCompass()` is
+  better built than it first appears — it clamps to an elliptical viewport
+  margin when the target is off to one side, and deliberately docks beneath the
+  work-order card when the route is straight ahead. But the dock branch reads
+  the card's rectangle and then ignores its horizontal position:
+
+  ```js
+  const card = chit.getBoundingClientRect();
+  compassEl.style.left = '50%';                  // viewport centre, ~640px
+  compassEl.style.top  = (card.bottom + 34) + 'px';   // correctly under the card
+  ```
+
+  The chit sits at `left:22px` with `width:min(310px, …)`, so its centre is
+  around 177px. The guide is anchored vertically to the card and horizontally to
+  the middle of the screen, so it docks beneath nothing and floats over open
+  world. A one-line fix, not a redesign.
 - **No scrim behind modals.** The world keeps full contrast behind the diagnosis
   panel and competes with it.
 - **The completion screen is emotionally flat.** After restoring six neighbours'
