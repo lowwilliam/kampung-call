@@ -222,6 +222,12 @@
     background:#fff;color:var(--ink);font:700 11px "Courier New",monospace;
     box-shadow:0 4px 12px rgba(46,42,37,.2);cursor:pointer;
   }
+  #stationBtn{
+    position:fixed;right:18px;bottom:140px;z-index:16;display:none;
+    min-width:98px;height:44px;padding:0 12px;border:0;border-radius:22px;
+    background:#f2c14e;color:var(--ink);font:700 11px "Courier New",monospace;
+    box-shadow:0 4px 12px rgba(46,42,37,.2);cursor:pointer;
+  }
   #emoteBtn{
     position:fixed;right:18px;bottom:22px;z-index:15;display:none;
     width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
@@ -237,6 +243,11 @@
     position:absolute;left:50%;top:50%;width:44px;height:44px;border-radius:50%;
     background:rgba(46,42,37,.35);transform:translate(-50%,-50%);
   }
+  #world-fade{
+    position:fixed;inset:0;z-index:28;background:#071b1e;pointer-events:none;
+    opacity:0;transition:opacity .18s ease;
+  }
+  #world-fade.show{opacity:1;}
 
   /* ---------- target compass (off-screen chevron) ---------- */
   #compass{

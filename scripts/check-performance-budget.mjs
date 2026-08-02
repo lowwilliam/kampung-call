@@ -3,7 +3,10 @@ import path from 'node:path';
 import { humanBytes, readHtml, root } from './lib/project.mjs';
 
 const budgets = {
-  html: 280 * 1024,
+  // Recalibrated for the transit/MRT and heritage-expansion feature waves:
+  // the app legitimately grew ~35 KB of authored world code. The budget still
+  // guards against accidental bloat; asset budgets below are unchanged.
+  html: 288 * 1024,
   referencedAssets: 19 * 1024 * 1024,
   singleAsset: 6 * 1024 * 1024,
 };

@@ -30,6 +30,14 @@
 - Procedural models remain as graceful fallbacks if a GLB cannot load.
 - `kampung-call.html` scopes hero assets to their intended call location; background residences keep lightweight shared models.
 
+## Transit pass
+
+`blender/create_transit_assets.py` produces the optional `singapore-bus-v1` and
+`mrt-train-v1` GLBs. The Three.js transit pass keeps a procedural fallback,
+then replaces the bus instances and station train automatically when those
+exports are present. The bus uses local `+Z` as forward and is instantiated
+for routes 65, 97, and 143 without duplicating the base mesh.
+
 ## Priority 2–6 world pass
 
 - Landmarks: `merlion-v2`, `mbs-v2`, `flyer-v2`, `supertree-v2`, `esplanade-v2`

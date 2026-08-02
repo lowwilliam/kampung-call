@@ -11,6 +11,7 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 const R = 26;
 const VOID_COLOR = 0x88c6c3;
 const isTouch = matchMedia('(pointer:coarse)').matches;
+const DEBUG_TRANSIT = new URLSearchParams(location.search).has('debugTransit');
 // A stable scenery seed keeps the authored composition identical on every
 // reload. Gameplay and character timing can continue using Math.random().
 let scenerySeed=0x51f15e;
@@ -252,6 +253,12 @@ const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
 // navigation landmarks instead of merging into a ring of similar towers.
 const CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
       LANDED4={lat:2,lon:-110};
+// Heritage Expansion Pack anchors: Peranakan row end, Kampong Gelam mosque,
+// kampong green, Blk 65 void deck and the neighbourhood wet market.
+const KGELAM={lat:-40,lon:31}, KGREEN={lat:-57,lon:-162},
+      VOIDDECK={lat:28,lon:65}, WETMKT={lat:-50,lon:60},
+      PERANAKAN={lat:SHOPS.lat,lon:SHOPS.lon+10},
+      KGREEN_PROPS={lat:KGREEN.lat+5,lon:KGREEN.lon+7};
 
 // Authoritative visible building footprints. Both the road hierarchy and the
 // beige neighbourhood streets use this same registry, so no route can end
@@ -265,6 +272,7 @@ const CITY_BUILDING_ZONES=[
   [SENTOSA,1.8],[STUDIOS,3.8],[CLARKE,3.8],[CHANGI,3.0],[CHANGI_JEWEL,2.4],[CHANGI_TOWER,1.2],
   [COMCENTRE,2.2],[SATELLITE,3.6],[CABLEA,1.6],[NUS,3.1],[NTU,3.1],[SMU,3.0],
   [SUTD,3.1],[HOSPITAL,3.2],[TUAS,4.0],[CIVIC,2.8],[INTERCHANGE,3.0],[CBD,5.0],[HOLAND,3.6],
+  [PERANAKAN,1.7],[KGELAM,2.6],[KGREEN,2.2],[KGREEN_PROPS,1.6],[VOIDDECK,2.4],[WETMKT,2.8],
 ];
 // Twelve supporting buildings form four small, legible estates. Three varied
 // façades per district provide urban texture without competing with landmarks.
@@ -300,6 +308,7 @@ const FLAT_SPOTS=[
   HOLAND,                                                           // Holland V plaza
   {lat:HOLAND.lat-3,lon:HOLAND.lon-3},{lat:HOLAND.lat+3,lon:HOLAND.lon+3}, // HV shophouses
   CONDO5,CONDO6,LANDED4,                                           // mission residences
+  PERANAKAN,KGELAM,KGREEN,KGREEN_PROPS,VOIDDECK,WETMKT,            // heritage district
 ].map(p=>latLonPos(p.lat,p.lon).normalize());
 
 function smoothstep(e0,e1,x){
@@ -363,6 +372,13 @@ function conformToSphere(mesh,offset=0.04){
 const colliders=[];
 function addCollider(lat,lon,r){colliders.push({u:latLonPos(lat,lon).normalize(),r});}
 function addColliderUnit(u,r){colliders.push({u:u.clone().normalize(),r});}
+// Collider at a local (x,z) offset inside an already placed group — used for
+// open structures (void deck columns, market stall rows) where one circular
+// footprint collider would seal a space that must stay walkable.
+function addLocalCollider(grp,x,z,r){
+  grp.updateMatrixWorld(true);
+  addColliderUnit(V3(x,0,z).applyMatrix4(grp.matrixWorld),r);
+}
 function resolveCollisions(unit,skip=null){
   // Authored roads and bridge decks are guaranteed public movement corridors.
   // Incidental water, prop and NPC colliders cannot invisibly seal them, while
@@ -1078,6 +1094,141 @@ function buildShophouse(wall,shutter){
   return g;
 }
 
+// ---------- heritage district fallbacks ----------
+// Procedural stand-ins sized to each GLB's grounded footprint (GLB × .72) so
+// collision and framing match whether or not the authored asset loads.
+function hAdd(g,m,x,y,z,rx=0,rz=0){m.position.set(x,y,z);if(rx)m.rotation.x=rx;if(rz)m.rotation.z=rz;g.add(m);return m;}
+function buildPeranakanHouse(){
+  const g=new THREE.Group();
+  hAdd(g,box(2.6,3.5,4.3,0xe8a3ab),0,2.1,.45);
+  hAdd(g,box(2.6,.14,1.2,0xb7b2a4),0,.07,-1.6);
+  for(const x of [-1.05,0,1.05])hAdd(g,box(.16,2.1,.16,0xd8cbb2),x,1.12,-2.05);
+  hAdd(g,box(2.62,1.9,.18,0xe8a3ab),0,3.1,-1.85);
+  for(const x of [-.83,0,.83]){
+    hAdd(g,box(.58,.95,.06,0x223336),x,3.05,-1.94);
+    hAdd(g,box(.48,.85,.04,0x84c2a3),x,3.05,-1.98);
+  }
+  for(let i=0;i<8;i++)hAdd(g,box(.2,.06,.2,[0x1a609e,0xeadfc0,0x84c2a3][i%3]),-.77+i*.22,2.32,-1.96);
+  hAdd(g,box(2.72,.5,.3,0xd8cbb2),0,4.12,-1.8);
+  for(const s of [-1,1])hAdd(g,box(1.55,.12,4.5,0xc06340),s*.68,4.45,.45,0,s*-.38);
+  hAdd(g,box(.75,1.5,.08,0x6b4a2f),0,.9,-1.05);
+  return g;
+}
+function buildKampongHouse(){
+  const g=new THREE.Group(),W=0x9a6527;
+  for(const x of [-1.5,0,1.5])for(const z of [-1.1,.95])
+    hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.1,.11,1.15,8),mat(0x5e3a1d)),x,.58,z);
+  hAdd(g,box(4,.16,2.8,W),0,1.2,0);
+  hAdd(g,box(4,.14,.8,W),0,1.23,-1.7);
+  hAdd(g,box(3.6,1.9,2.4,W),0,2.25,.1);
+  for(const x of [-1.05,1.05]){
+    hAdd(g,box(.68,.7,.06,0x223336),x,2.35,-1.12);
+    hAdd(g,box(.68,.4,.05,0x35796e),x,2.85,-1.2,-.6);
+  }
+  hAdd(g,box(.68,1.5,.08,0x173f3f),0,2.05,-1.13);
+  for(const s of [-1,1])hAdd(g,box(2.6,.14,3.4,0x523418),s*1.12,3.6,.1,0,s*-.58);
+  hAdd(g,box(.22,.18,3.5,0x3d2712),0,4.35,.1);
+  for(let i=0;i<4;i++)hAdd(g,box(1.1,.14,.32,W),0,1.05-i*.26,-2.15-i*.25);
+  const jar=new THREE.Mesh(new THREE.SphereGeometry(.38,10,8),mat(0x94491f));
+  jar.scale.set(1,1.1,1);hAdd(g,jar,2.1,.45,-1.6);
+  return g;
+}
+function buildVoidDeck(){
+  const g=new THREE.Group(),E=0xe4dcc8;
+  hAdd(g,box(5.8,.2,4.6,0xb7b2a4),0,.1,0);
+  hAdd(g,box(5.8,.22,4.6,E),0,2.3,0);
+  for(const x of [-2.3,-1.15,1.15,2.3])for(const z of [-1.73,1.73])hAdd(g,box(.26,2.1,.26,E),x,1.2,z);
+  for(const x of [-2.3,2.3])hAdd(g,box(.26,2.1,.26,E),x,1.2,0);
+  hAdd(g,box(5.3,2.7,4,E),0,3.75,.15);
+  for(let f=0;f<3;f++){
+    hAdd(g,box(5.25,.09,.08,0x1a6060),0,2.95+f*.83,-1.92);
+    for(const x of [-2.1,-1.4,-.7,0,.7,1.4])hAdd(g,box(.3,.36,.05,0x1e474d),x,3.2+f*.83,-1.9);
+  }
+  hAdd(g,box(.75,2.9,.12,0xd0342c),2.25,3.75,-1.9);
+  hAdd(g,box(1.1,2.1,.4,0xd0342c),2.1,1.15,-2.05);
+  hAdd(g,box(.85,1.5,.06,0x1e474d),2.1,1.1,-2.28);
+  hAdd(g,box(1.2,1.4,.24,0x8a8f94),-1.85,1,-2.05);
+  hAdd(g,box(1.1,.8,.12,0x2f7f8c),-1.7,1.35,1.95);
+  hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.36,.36,.08,12),mat(0xb7b2a4)),-1.6,.75,-.2);
+  hAdd(g,box(2.3,.12,2.4,0x1a6060),-.85,2.1,-3.3);
+  for(const x of [-1.7,0])hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,2.1,8),mat(0x3d4a52)),x,1.05,-4.2);
+  for(const bx of [1.4,2.1]){
+    const wheel=new THREE.Mesh(new THREE.TorusGeometry(.2,.04,6,12),mat(0x27302f));
+    wheel.rotation.y=Math.PI/2;hAdd(g,wheel,bx,.22,-3.3);
+  }
+  return g;
+}
+function buildKampongProps(){
+  const g=new THREE.Group();
+  hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.1,.13,3.6,8),mat(0x9a6527)),-1.85,1.8,.7,0,.08);
+  for(let a=0;a<6;a++){
+    const frond=new THREE.Mesh(new THREE.SphereGeometry(.62,8,6),mat([0x0a4020,0x2c752e,0x6e9e2e][a%3]));
+    frond.scale.set(1.1,.16,.28);frond.rotation.y=a*1.05;
+    hAdd(g,frond,-1.85+Math.cos(a*1.05)*.55,3.7,.7+Math.sin(a*1.05)*.55);
+  }
+  for(const x of [.3,.9,1.5])hAdd(g,box(.55,.9,.05,0x8f9c9e),x,.55,1.35);
+  for(const x of [1.05,2.45])hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,1.7,8),mat(0x5e3a1d)),x,.85,-.45);
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.03,.03,1.8,6),mat(0x9a6527));
+  pole.rotation.z=Math.PI/2;hAdd(g,pole,1.75,1.5,-.45);
+  for(const [x,c] of [[1.35,0xc9553e],[1.75,0xeadfc0],[2.15,0x2f6b8f]])hAdd(g,box(.34,.36,.03,c),x,1.28,-.45);
+  hAdd(g,box(.7,.18,1.9,0x8a8f94),-.8,.09,-1.15);
+  hAdd(g,box(.5,.05,1.8,0x2f6b8f),-.8,.16,-1.15);
+  hAdd(g,box(.85,.07,1.1,0x9a6527),-.8,.3,-1.15);
+  const jar=new THREE.Mesh(new THREE.SphereGeometry(.32,10,8),mat(0x94491f));
+  jar.scale.set(1,1.1,1);hAdd(g,jar,.1,.36,-1.1);
+  hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.22,.2,.35,10),mat(0x9a6527)),-.45,.18,-1.05);
+  for(const [x,z,c] of [[.4,-.55,0xede5d2],[.9,-.1,0x85522b]]){
+    const hen=new THREE.Mesh(new THREE.SphereGeometry(.17,8,6),mat(c));
+    hen.scale.set(1.15,.9,.9);hAdd(g,hen,x,.22,z);
+    hAdd(g,new THREE.Mesh(new THREE.SphereGeometry(.09,7,5),mat(c)),x+.15,.35,z-.05);
+  }
+  return g;
+}
+function buildSultanMosque(){
+  const g=new THREE.Group(),C=0xd8cbb2,A=0xd9a01f;
+  hAdd(g,box(6.6,.26,5.2,0x8a8f94),0,.13,0);
+  hAdd(g,box(5.9,2.45,4.3,C),0,1.6,.2);
+  hAdd(g,box(6.2,.22,4.6,0xeadfc0),0,2.9,.2);
+  for(let i=0;i<5;i++)hAdd(g,box(.8,1.5,.08,0x223336),-2+i*1,1.45,-2.02);
+  hAdd(g,box(1.9,2.5,.75,0xeadfc0),0,1.35,-2.25);
+  hAdd(g,box(1.2,1.8,.1,0x223336),0,1.15,-2.6);
+  hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(1.7,1.7,.65,18),mat(C)),0,3.35,.2);
+  const dome=new THREE.Mesh(new THREE.SphereGeometry(1.7,18,12),mat(A));
+  dome.scale.set(1,.8,1);hAdd(g,dome,0,4.3,.2);
+  hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.02,.12,.6,8),mat(A)),0,5.75,.2);
+  for(const sx of [-1,1])for(const sz of [-1,1])
+    hAdd(g,new THREE.Mesh(new THREE.SphereGeometry(.42,10,8),mat(A)),sx*2.75,3.35,.2+sz*1.95);
+  for(const sx of [-1,1]){
+    hAdd(g,box(.8,2.75,.8,C),sx*3.15,1.45,-2.15);
+    hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.3,.34,1.9,12),mat(C)),sx*3.15,3.8,-2.15);
+    hAdd(g,new THREE.Mesh(new THREE.SphereGeometry(.36,10,8),mat(A)),sx*3.15,4.9,-2.15);
+    hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.01,.06,.5,6),mat(A)),sx*3.15,5.35,-2.15);
+  }
+  return g;
+}
+function buildWetMarket(){
+  const g=new THREE.Group();
+  hAdd(g,box(6.5,.2,5,0xb7b2a4),0,.1,0);
+  for(const x of [-2.95,2.95])for(const z of [-2.15,0,2.15])
+    hAdd(g,new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,2.3,10),mat(0x1a6060)),x,1.25,z);
+  for(const s of [-1,1])hAdd(g,box(3.55,.12,5.5,0x1a6060),s*1.65,2.9,0,0,s*-.22);
+  hAdd(g,box(.3,.22,5.6,0xeadfc0),0,3.25,0);
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(1.6,.4),
+    texMat(canvasTex(320,80,(c)=>{
+      c.fillStyle='#eadfc0';c.fillRect(0,0,320,80);
+      c.fillStyle='#1a6060';c.font='bold 46px Trebuchet MS';c.textAlign='center';
+      c.fillText('PASAR',160,58);
+    }),{side:THREE.DoubleSide}));
+  hAdd(g,sign,0,2.55,-2.58);
+  for(const [x,z,c] of [[-2.15,-1.45,0x2c752e],[2.15,-1.45,0x2f6b8f],[-2.15,.15,0xd9a01f],[2.15,.15,0xd0342c]]){
+    hAdd(g,box(1.4,.75,.85,0xeadfc0),x,.55,z);
+    hAdd(g,box(1.4,.1,.06,0x1a609e),x,.85,z-.45);
+    for(let i=0;i<4;i++)hAdd(g,box(.3,.06,.9,i%2?0xeadfc0:c),x-.52+i*.35,1.75,z-.15,-.22);
+    hAdd(g,new THREE.Mesh(new THREE.SphereGeometry(.16,8,6),mat(c)),x,1.05,z);
+  }
+  for(const y of [-1.45,0,1.45])hAdd(g,new THREE.Mesh(new THREE.SphereGeometry(.09,8,6),mat(0xf2c14e)),0,2.25,y);
+  return g;
+}
 function buildHawker(){
   const g=new THREE.Group();
   const slab=box(6.6,.16,4.6,0xd8cdb8); slab.position.y=.08; g.add(slab);
@@ -1205,6 +1356,183 @@ function buildBusStop(){
   sign.position.set(1.4,1.75,.05); g.add(sign);
   return g;
 }
+
+// Singapore transit pass — one authored silhouette, three route instances.
+// The Blender source in blender/create_transit_assets.py exports the same
+// named parts; this procedural version keeps the feature available while the
+// optional GLB is being regenerated.
+function transitRouteTexture(route){
+  return canvasTex(256,72,(c)=>{
+    c.fillStyle='#172b2d';c.fillRect(0,0,256,72);
+    c.fillStyle='#f2c14e';c.font='bold 46px Courier New';c.textAlign='center';
+    c.fillText(route,128,51);
+  });
+}
+function buildSingaporeBus(route='65'){
+  const g=new THREE.Group();
+  const lower=box(1.65,1.55,5.4,0xe7e1d4);lower.position.y=1.12;g.add(lower);
+  const upper=box(1.58,1.1,5.1,0x2f7f8c);upper.position.set(0,2.55,-.12);g.add(upper);
+  const belt=box(1.72,.18,5.46,0xd0342c);belt.position.set(0,1.62,.05);g.add(belt);
+  const upperGlass=box(1.62,.52,5.14,0x1e474d);upperGlass.position.set(0,2.78,-.08);g.add(upperGlass);
+  const roof=box(1.72,.18,5.22,0xf2eee1);roof.position.set(0,3.18,-.12);g.add(roof);
+  const lowerGlass=box(1.05,.52,.08,0x8fc4ca);lowerGlass.position.set(0,1.62,2.73);g.add(lowerGlass);
+  const door=box(.05,1.12,.75,0x3d9aa1);door.position.set(.86,1.13,1.35);g.add(door);
+  for(const x of [-.84,.84])for(const z of [-1.75,1.75]){
+    const w=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.18,16),mat(0x27302f));
+    w.position.set(x,.43,z);w.rotation.z=Math.PI/2;w.userData.noOutline=true;g.add(w);
+    const hub=new THREE.Mesh(new THREE.CylinderGeometry(.14,.14,.20,12),mat(0xa9b4b4));
+    hub.position.set(x>0?x+.1:x-.1,.43,z);hub.rotation.z=Math.PI/2;hub.userData.noOutline=true;g.add(hub);
+  }
+  for(const x of [-.58,.58]){
+    const mirror=new THREE.Mesh(new THREE.BoxGeometry(.06,.06,.56),mat(0x27302f));
+    mirror.position.set(x,2.35,2.86);mirror.rotation.x=Math.PI*.35;g.add(mirror);
+  }
+  const display=new THREE.Mesh(new THREE.PlaneGeometry(1.08,.30),
+    texMat(transitRouteTexture(route),{side:THREE.DoubleSide}));
+  display.position.set(0,2.80,2.76);g.add(display);
+  const sideDisplay=new THREE.Mesh(new THREE.PlaneGeometry(.74,.24),
+    texMat(transitRouteTexture(route),{side:THREE.DoubleSide}));
+  sideDisplay.position.set(.84,2.78,.15);sideDisplay.rotation.y=Math.PI/2;g.add(sideDisplay);
+  const routeLabel=new THREE.Mesh(new THREE.PlaneGeometry(1.9,.18),
+    texMat(canvasTex(380,36,(c)=>{
+      c.fillStyle='#f2eee1';c.font='bold 18px Courier New';c.textAlign='center';
+      c.fillText('KAMPUNG TRANSIT',190,25);
+    }),{side:THREE.DoubleSide}));
+  routeLabel.position.set(0,.58,2.76);g.add(routeLabel);
+  g.userData.route=route;g.userData.wheels=[];g.userData.distance=0;g.userData.displays=[display,sideDisplay,routeLabel];
+  g.traverse(o=>{if(o.isMesh&&o.geometry?.type==='CylinderGeometry')g.userData.wheels.push(o);});
+  return addOutlines(g,1.035);
+}
+function alignTransitObject(obj,unit,forward){
+  const up=unit.clone().normalize();
+  const z=forward.clone().sub(up.clone().multiplyScalar(forward.dot(up))).normalize();
+  const x=V3().crossVectors(up,z).normalize();
+  obj.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,up,z));
+}
+function placeTransitBus(config){
+  const target=latLonPos(config.lat,config.lon).normalize();
+  const pose=nearestRoadPose(target);
+  const bus=buildSingaporeBus(config.route);
+  bus.userData.config=config;bus.userData.unit=pose.unit.clone();bus.userData.forward=pose.forward.clone();
+  bus.position.copy(pose.unit).multiplyScalar(surfR(pose.unit)+.08);
+  alignTransitObject(bus,pose.unit,pose.forward);
+  scene.add(bus);return bus;
+}
+const BUS_INSTANCES=[
+  {route:'65',lat:25.5,lon:32,name:'HDB bus stop',moving:false},
+  {route:'97',lat:MRT.lat,lon:MRT.lon,name:'Kampung Central interchange',moving:false},
+  {route:'143',lat:KOPITIAM.lat,lon:KOPITIAM.lon,name:'Central Corridor service',moving:true},
+];
+const transitBuses=[];
+function stepTransitBuses(dt,t){
+  const route=ROAD_NETWORKS.find(network=>network.name==='CENTRAL CORRIDOR')?.centerUnits;
+  for(const bus of transitBuses){
+    const config=bus.userData.config;
+    if(!config.moving||!route?.length)continue;
+    const max=route.length-1,travel=(t*.22+14)%max,index=Math.floor(travel),mix=travel-index;
+    const unit=slerpUnit(route[index],route[Math.min(max,index+1)],mix);
+    const before=route[Math.max(0,index-1)],after=route[Math.min(max,index+1)];
+    const forward=after.clone().sub(before).sub(unit.clone().multiplyScalar(after.clone().sub(before).dot(unit))).normalize();
+    const distance=unit.angleTo(bus.userData.unit)*R;
+    bus.userData.distance+=distance;
+    bus.userData.unit.copy(unit);bus.userData.forward.copy(forward);
+    bus.position.copy(unit).multiplyScalar(surfR(unit)+.08);alignTransitObject(bus,unit,forward);
+    for(const wheel of bus.userData.wheels)wheel.rotation.x-=distance*.9;
+  }
+}
+
+// ---------- MRT station pocket world ----------
+// The outdoor map is a curved planet. The station is intentionally a small
+// planar pocket placed well below it so the same renderer can switch worlds
+// without asking the spherical controller to solve vertical interiors.
+const STATION_ORIGIN=V3(0,-112,0);
+const stationState={
+  mode:'surface',
+  position:V3(0,0,7.5),
+  forward:V3(0,0,-1),
+  surfacePos:null,
+  surfaceFwd:null,
+  loaded:true,
+};
+function stationSign(text,sub=''){
+  const g=new THREE.Group();
+  const board=new THREE.Mesh(new THREE.PlaneGeometry(3.8,.72),
+    texMat(canvasTex(480,92,(c)=>{
+      c.fillStyle='#d0342c';c.fillRect(0,0,480,92);
+      c.fillStyle='#fff';c.font='bold 35px Courier New';c.textAlign='center';c.fillText(text,240,39);
+      if(sub){c.font='bold 16px Courier New';c.fillText(sub,240,70);}
+    }),{side:THREE.DoubleSide}));
+  board.position.z=.02;g.add(board);return g;
+}
+function buildMRTTrainCar(){
+  const g=new THREE.Group();
+  const body=box(9.2,2.25,2.65,0xe7ecef);body.position.y=1.25;g.add(body);
+  const window=box(8.72,.58,2.70,0x31585e);window.position.set(0,1.83,0);g.add(window);
+  const teal=box(9.32,.24,2.72,0x2f7f8c);teal.position.set(0,1.48,0);g.add(teal);
+  const stripe=box(9.35,.10,2.74,0xd0342c);stripe.position.set(0,1.27,0);g.add(stripe);
+  for(const x of [-3.1,-1.55,0,1.55,3.1]){
+    const seam=box(.04,1.28,2.76,0x27302f);seam.position.set(x,1.25,0);g.add(seam);
+  }
+  for(const side of [-1,1]){
+    for(const x of [-3.1,-1.55,0,1.55,3.1]){
+      const door=box(.48,.96,.04,0x8db6ba);door.position.set(x,1.25,side*1.38);g.add(door);
+    }
+  }
+  const cab=box(1.1,1.70,2.68,0xdfe5e4);cab.position.set(4.45,1.18,0);g.add(cab);
+  const display=new THREE.Mesh(new THREE.PlaneGeometry(1.1,.22),
+    texMat(canvasTex(220,44,(c)=>{c.fillStyle='#172b2d';c.fillRect(0,0,220,44);c.fillStyle='#f2c14e';c.font='bold 21px Courier New';c.textAlign='center';c.fillText('KAMPUNG CENTRAL',110,29);}),{side:THREE.DoubleSide}));
+  display.position.set(4.47,2.05,1.36);display.rotation.y=Math.PI;g.add(display);
+  return addOutlines(g,1.025);
+}
+function buildMRTStationWorld(){
+  const root=new THREE.Group();root.name='Kampung Central MRT station';root.position.copy(STATION_ORIGIN);root.visible=false;
+  const concourse=box(44,.20,22,0x5b7776);concourse.position.set(0,-.10,2);root.add(concourse);
+  const platform=box(44,.20,18,0x4a6264);platform.position.set(0,-4.30,-16);root.add(platform);
+  const ceiling=box(46,.24,36,0x10292a);ceiling.position.set(0,5.25,-7);root.add(ceiling);
+  for(const x of [-22,22]){
+    const wall=box(.22,5.2,36,0x203d3e);wall.position.set(x,2.55,-7);root.add(wall);
+  }
+  const entryRoof=box(11,.28,3.2,0x2f7f8c);entryRoof.position.set(0,3.2,10);root.add(entryRoof);
+  for(const x of [-4.5,4.5]){const p=box(.24,3.25,.24,0xe7ecef);p.position.set(x,1.6,10);root.add(p);}
+  const entrySign=stationSign('MRT · KAMPUNG CENTRAL','EXIT TO SINGAPORE');entrySign.rotation.y=Math.PI;entrySign.position.set(0,2.5,9.82);root.add(entrySign);
+  const gateLine=box(15,.08,.16,0xd0342c);gateLine.position.set(0,.07,5.0);root.add(gateLine);
+  for(const x of [-6,-2,2,6]){
+    const gate=box(.55,1.15,.8,0x2f7f8c);gate.position.set(x,.58,4.5);root.add(gate);
+    const reader=box(.14,.22,.04,0xf2c14e);reader.position.set(x,.98,4.93);root.add(reader);
+  }
+  const stairSteps=[];
+  for(let i=0;i<10;i++){
+    const step=box(7,.34,1.0,0xe7ecef);step.position.set(10.5,-.18-i*.42,-7.35-i*.38);root.add(step);stairSteps.push(step);
+  }
+  const stairRail=box(.12,3.8,4.2,0xd0342c);stairRail.position.set(7.2,-1.6,-9);stairRail.rotation.x=-.46;root.add(stairRail);
+  const platformEdge=box(42,.18,.22,0xf2c14e);platformEdge.position.set(0,-4.02,-10.2);root.add(platformEdge);
+  for(const x of [-18,-13,-8,-3,2,7,12,17]){
+    const door=box(.08,1.9,.16,0xd0342c);door.position.set(x,-2.95,-10.12);root.add(door);
+  }
+  const trackBed=box(40,.18,5.4,0x1c272a);trackBed.position.set(0,-4.62,-18.2);root.add(trackBed);
+  for(const x of [-16,-8,0,8,16]){
+    const rail=box(7,.06,.08,0xaab4ae);rail.position.set(x,-4.36,-17.1);root.add(rail);
+  }
+  const tunnel=box(40,5.0,6.0,0x0c1d20);tunnel.position.set(0,-1.9,-26);root.add(tunnel);
+  const tunnelGlow=new THREE.Mesh(new THREE.BoxGeometry(34,.04,.04),glowMat(0x2f7f8c));tunnelGlow.position.set(0,-3.35,-23.05);tunnelGlow.userData.noShadow=true;root.add(tunnelGlow);
+  const sign=stationSign('PLATFORM 2','TOWARDS KAMPUNG');sign.scale.setScalar(.82);sign.position.set(-12,3.55,-9.3);root.add(sign);
+  const sign2=stationSign('UP TO CONCOURSE','ESCALATOR · EXIT');sign2.scale.setScalar(.62);sign2.position.set(10.1,2.2,-7.0);sign2.rotation.y=Math.PI;root.add(sign2);
+  for(const x of [-16,-8,0,8,16]){
+    const lamp=new THREE.PointLight(0x9dd4d1,1.2,10);lamp.position.set(x,3.7,-8);root.add(lamp);
+  }
+  const train=new THREE.Group();train.name='Stationary MRT three-car set';
+  for(const x of [-10,0,10]){const car=buildMRTTrainCar();car.position.x=x;train.add(car);}
+  train.position.set(0,-4.12,-15.4);root.add(train);
+  root.userData={train,lights:root.children.filter(child=>child.isPointLight)};
+  scene.add(root);return root;
+}
+const stationWorld=buildMRTStationWorld();
+function stationFloorHeight(x,z){
+  if(z>=-7)return 0;
+  if(z<=-11)return -4.2;
+  return (z+7)*1.05;
+}
+function stationWorldPosition(){return STATION_ORIGIN.clone().add(stationState.position);}
 
 function buildFlag(){
   const g=new THREE.Group();
@@ -2412,8 +2740,35 @@ registerSwap('shophouse',placeOnSphere(buildShophouse('#9fd0c3','#c9553e'),SHOPS
 registerSwap('shophouse',placeOnSphere(buildShophouse('#f5d98f','#3d7ea6'),SHOPS.lat,SHOPS.lon+5,10)); addCollider(SHOPS.lat,SHOPS.lon+5,1.7);
 registerSwap('hawker',placeOnSphere(buildHawker(),HAWKER.lat,HAWKER.lon,140)); addCollider(HAWKER.lat,HAWKER.lon,2.2);
 registerSwap('temple',placeOnSphere(buildTemple(),TEMPLE.lat,TEMPLE.lon,100)); addCollider(TEMPLE.lat,TEMPLE.lon,2.0);
+// ---------- Singapore Heritage Expansion Pack placements ----------
+// Headings are solved from the placement quaternion so each front faces its
+// approach route; the zones and flat spots above keep roads and audits aligned.
+registerSwap('peranakan',placeOnSphere(buildPeranakanHouse(),PERANAKAN.lat,PERANAKAN.lon,10)); addCollider(PERANAKAN.lat,PERANAKAN.lon,1.7);
+registerSwap('sultanMosque',placeOnSphere(buildSultanMosque(),KGELAM.lat,KGELAM.lon,-13)); addCollider(KGELAM.lat,KGELAM.lon,2.6);
+registerSwap('kampongHouse',placeOnSphere(buildKampongHouse(),KGREEN.lat,KGREEN.lon,66)); addCollider(KGREEN.lat,KGREEN.lon,2.2);
+const kampongPropsObj=registerSwap('kampongProps',placeOnSphere(buildKampongProps(),KGREEN_PROPS.lat,KGREEN_PROPS.lon,-101));
+addLocalCollider(kampongPropsObj,-1.85,.7,.55);   // coconut tree
+addLocalCollider(kampongPropsObj,.9,1.35,.7);     // zinc fence run
+addLocalCollider(kampongPropsObj,-.8,-1.15,.45);  // open drain
+const voiddeckObj=registerSwap('hdbVoiddeck',placeOnSphere(buildVoidDeck(),VOIDDECK.lat,VOIDDECK.lon,-16));
+// Deck stays walkable: only columns, letterboxes, noticeboard, table and lobby collide — never the aisle.
+for(const cx of [-2.3,2.3])for(const cz of [-1.73,0,1.73])addLocalCollider(voiddeckObj,cx,cz,.4);
+addLocalCollider(voiddeckObj,-1.85,-1.98,.6);     // letterbox bank
+addLocalCollider(voiddeckObj,-1.7,1.96,.5);       // noticeboard
+addLocalCollider(voiddeckObj,-1.6,-.2,.55);       // terrazzo chess table
+addLocalCollider(voiddeckObj,2.1,-2.09,.75);      // lift lobby
+const wetmarketObj=registerSwap('wetmarket',placeOnSphere(buildWetMarket(),WETMKT.lat,WETMKT.lon,-34));
+// Stall rows collide; the central aisle stays navigable end to end.
+for(const cz of [-1.45,.15])for(const cx of [-2.15,2.15])addLocalCollider(wetmarketObj,cx,cz,.95);
+addLocalCollider(wetmarketObj,-1.6,-2.2,.35); addLocalCollider(wetmarketObj,1.6,-2.25,.35);
 placeOnSphere(buildPlayground(),HDB.lat+3,HDB.lon-7,60);
 registerSwap('busstop',placeOnSphere(buildBusStop(),25.5,32,-55));
+// Three route examples share one low-poly hero model and all snap to the
+// authored road network. One bus loops the Central Corridor; the other two
+// remain parked at readable interchange landmarks.
+for(const config of BUS_INSTANCES)transitBuses.push(placeTransitBus(config));
+window.__transitAudit={busCount:transitBuses.length,routes:BUS_INSTANCES.map(bus=>bus.route),moving:BUS_INSTANCES.filter(bus=>bus.moving).length};
+document.documentElement.dataset.transitBusCount=String(transitBuses.length);
 placeOnSphere(buildFlag(),HDB.lat-2,HDB.lon-9,40); addCollider(HDB.lat-2,HDB.lon-9,.35);
 registerSwap('postbox',placeOnSphere(buildPostbox(),KOPITIAM.lat+4,KOPITIAM.lon-8)); addCollider(KOPITIAM.lat+4,KOPITIAM.lon-8,.5);
 registerSwap('postbox',placeOnSphere(buildPostbox(),HDB.lat-4,HDB.lon-8)); addCollider(HDB.lat-4,HDB.lon-8,.5);
@@ -4327,6 +4682,15 @@ function completeAll(){
 // ---------- movement ----------
 let pos=latLonPos(2,-18).normalize().multiplyScalar(R);
 let fwd=V3(0,0,-1);
+// debug/QA hook for visual verification (matches the window.__* audit hooks):
+// teleport the player and face a target so review screenshots can be captured.
+window.__teleport=(lat,lon,faceLat,faceLon)=>{
+  const u=latLonPos(lat,lon).normalize(),t=latLonPos(faceLat??lat+1,faceLon??lon).normalize();
+  pos.copy(u).multiplyScalar(R);
+  const tangent=t.sub(u.clone().multiplyScalar(t.dot(u)));
+  if(tangent.lengthSq()>1e-6)fwd.copy(tangent.normalize());
+  player.position.copy(u).multiplyScalar(surfR(u));
+};
 {
   const up=pos.clone().normalize();
   fwd.sub(up.clone().multiplyScalar(fwd.dot(up))).normalize();
@@ -4352,6 +4716,15 @@ function stageOpening(){
   vanState.forward.copy(roadPose.forward);
   syncVanToParked();
   player.position.copy(startU).multiplyScalar(surfR(startU));
+  if(DEBUG_TRANSIT){
+    const entrance=latLonPos(MRT.lat,MRT.lon).normalize();
+    const access=nearestRoadPose(entrance);
+    const gap=entrance.angleTo(access.unit)*R;
+    const debugU=gap>3.05?slerpUnit(entrance,access.unit,3.05/gap):access.unit.clone();
+    pos.copy(debugU).multiplyScalar(R);
+    fwd.copy(entrance).sub(debugU.clone().multiplyScalar(entrance.dot(debugU))).normalize();
+    player.position.copy(debugU).multiplyScalar(surfR(debugU));
+  }
 }
 const keys={};
 const EMOTE_KINDS=['star','heart','chat','wrench','smile','flag'];
@@ -4364,6 +4737,21 @@ addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;
   if(e.key.toLowerCase()==='f'&&started&&!finished&&!dialogueOpen&&!diagnosing){
     e.preventDefault();
     if(vanState.mode==='driving') tryExitVan(); else tryEnterVan();
+  }
+  // [Enter] enters the MRT station from the outdoor portal and exits only
+  // from the upstairs concourse. Dialogue keeps ownership of Enter above.
+  if(e.key.toLowerCase()==='enter'&&started&&!finished&&!dialogueOpen&&!diagnosing){
+    e.preventDefault();tryEnterMRT();
+  }
+  // Development-only smoke-test shortcut; Vite strips this branch from a
+  // production build, keeping the public control surface unchanged.
+  if(e.key.toLowerCase()==='t'&&import.meta.env.DEV&&started&&!finished&&!dialogueOpen&&!diagnosing&&stationState.mode==='surface'){
+    const entrance=latLonPos(MRT.lat,MRT.lon).normalize(),access=nearestRoadPose(entrance);
+    const gap=entrance.angleTo(access.unit)*R;
+    const debugU=gap>3.05?slerpUnit(entrance,access.unit,3.05/gap):access.unit.clone();
+    pos.copy(debugU).multiplyScalar(R);fwd.copy(entrance).sub(debugU.clone().multiplyScalar(entrance.dot(debugU))).normalize();
+    player.position.copy(debugU).multiplyScalar(surfR(debugU));
+    showToast('Transit smoke test','Spawned beside Kampung Central MRT. Press Enter to enter.');
   }
   // [L] audit hook (plan §6): log draw-call / triangle / texture counts so
   // every phase can be checked against the §6 budget without extra tooling.
@@ -4476,6 +4864,80 @@ function stepPlayer(dt){
     arms[0].rotation.x=-sw*.85; arms[1].rotation.x=sw*.85;
   }
 }
+let stationWalkPhase=0;
+function stepStationPlayer(dt){
+  let throttle=0,turn=0;
+  if(keys['w']||keys['arrowup'])throttle+=1;
+  if(keys['s']||keys['arrowdown'])throttle-=.55;
+  if(keys['a']||keys['arrowleft'])turn-=1;
+  if(keys['d']||keys['arrowright'])turn+=1;
+  throttle+=-joyVec.y;turn+=joyVec.x;
+  throttle=Math.max(-.55,Math.min(1,throttle));turn=Math.max(-1,Math.min(1,turn));
+  if(turn)stationState.forward.applyAxisAngle(UP,-turn*TURN*dt);
+  stationState.forward.y=0;stationState.forward.normalize();
+  if(throttle){
+    stationState.position.x+=stationState.forward.x*throttle*SPEED*dt;
+    stationState.position.z+=stationState.forward.z*throttle*SPEED*dt;
+  }
+  // The station is intentionally a compact navigation volume. Its detailed
+  // meshes are visual; this inexpensive envelope keeps movement predictable.
+  stationState.position.x=THREE.MathUtils.clamp(stationState.position.x,-20.2,20.2);
+  stationState.position.z=THREE.MathUtils.clamp(stationState.position.z,-25.2,10.2);
+  stationState.position.y=stationFloorHeight(stationState.position.x,stationState.position.z);
+  player.position.copy(stationWorldPosition());
+  const z=stationState.forward.clone(),x=V3().crossVectors(UP,z).normalize();
+  player.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,UP,z));
+  const speedAbs=Math.abs(throttle);stationWalkPhase+=dt*(speedAbs>0?11:2);
+  const sw=Math.sin(stationWalkPhase)*.75*speedAbs;
+  if(playerMixer){
+    glbWalkW+=((speedAbs>.05?1:0)-glbWalkW)*Math.min(1,dt*9);
+    if(playerActions.walk){playerActions.walk.setEffectiveWeight(glbWalkW);playerActions.walk.timeScale=.6+speedAbs*.7;}
+    if(playerActions.idle)playerActions.idle.setEffectiveWeight(1-glbWalkW);
+    playerMixer.update(dt);
+  }else{
+    const {legs,arms}=player.userData;legs[0].rotation.x=sw;legs[1].rotation.x=-sw;arms[0].rotation.x=-sw*.85;arms[1].rotation.x=sw*.85;
+  }
+}
+function setWorldMode(mode){
+  stationState.mode=mode;
+  document.documentElement.dataset.worldMode=mode;
+  stationWorld.visible=mode==='station';
+  if(mode==='station'){
+    scene.fog.color.set(0x0c2428);scene.fog.near=18;scene.fog.far=92;
+    renderer.setClearColor(0x0c2428,1);
+  }else{
+    scene.fog.color.set(VOID_COLOR);scene.fog.near=36;scene.fog.far=124;
+    renderer.setClearColor(VOID_COLOR,1);
+  }
+}
+function worldTransition(callback){
+  const fade=document.getElementById('world-fade');
+  if(!fade){callback();return;}
+  fade.classList.add('show');
+  setTimeout(()=>{callback();setTimeout(()=>fade.classList.remove('show'),180);},180);
+}
+function tryEnterMRT(){
+  if(stationState.mode==='station'){tryExitMRT();return;}
+  if(!started||finished||dialogueOpen||diagnosing||vanState.mode!=='foot')return;
+  const entrance=latLonPos(MRT.lat,MRT.lon).normalize(),distance=surfaceDistance(pos,entrance);
+  if(distance>3.4){showToast('MRT',`Kampung Central is ${Math.round(distance)}m away — walk closer to the entrance.`);return;}
+  stationState.surfacePos=pos.clone();stationState.surfaceFwd=fwd.clone();
+  worldTransition(()=>{
+    stationState.position.set(0,0,7.4);stationState.forward.set(0,0,-1);
+    setWorldMode('station');hideCompass();showToast('Kampung Central MRT','Walk down to the platform. Return upstairs and press Enter to exit.');
+  });
+}
+function tryExitMRT(){
+  if(stationState.mode!=='station')return;
+  if(stationState.position.z<6.2){showToast('Kampung Central MRT','Walk back upstairs to the street entrance before exiting.');return;}
+  worldTransition(()=>{
+    const restore=stationState.surfacePos||latLonPos(MRT.lat,MRT.lon).multiplyScalar(surfR(latLonPos(MRT.lat,MRT.lon).normalize())/R);
+    pos.copy(restore);fwd.copy(stationState.surfaceFwd||V3(0,0,1));
+    setWorldMode('surface');
+    const up=pos.clone().normalize();player.position.copy(up).multiplyScalar(surfR(up)+.08);
+    hideCompass();showToast('MRT','Back on the Singapore map.');
+  });
+}
 let prevWalkSin=0;
 let playerMixer=null, playerActions={}, glbWalkW=0;
 
@@ -4535,6 +4997,13 @@ function stepCamera(dt,t){
       .add(radial.clone().multiplyScalar(Math.sin(ang)*3));
     camera.up.copy(TITLE_ANCHOR);
     camera.lookAt(TITLE_ANCHOR.clone().multiplyScalar(1.5));
+    return;
+  }
+  if(stationState.mode==='station'){
+    const base=stationWorldPosition(),z=stationState.forward.clone().normalize();
+    const desired=base.clone().add(UP.clone().multiplyScalar(5.2)).add(z.clone().multiplyScalar(8.6));
+    const look=base.clone().add(UP.clone().multiplyScalar(1.5)).add(z.clone().multiplyScalar(2.6));
+    camera.position.lerp(desired,1-Math.pow(.0015,dt));camera.up.copy(UP);camera.lookAt(look);
     return;
   }
   if(camMode==='swoop'){
@@ -4746,6 +5215,7 @@ repairAction.addEventListener('click',()=>{
 });
 
 function stepQuest(t){
+  if(stationState.mode==='station'){marker.visible=false;hideCompass();return;}
   if(finished||stage>=DELIVERIES.length){hideCompass();return;}
   const target=currentTargetNPC();
   const tp=target.getWorldPosition(new THREE.Vector3());
@@ -4800,10 +5270,23 @@ let lastDist=-1;
 const chitDistEl=document.getElementById('chitDist');
 const actionPrompt=document.getElementById('action-prompt');
 const vanBtn=document.getElementById('vanBtn');
+const stationBtn=document.getElementById('stationBtn');
 function updateActionUI(){
-  if(!started||finished||dialogueOpen||diagnosing){actionPrompt.classList.remove('show');return;}
+  if(!started||finished||dialogueOpen||diagnosing){actionPrompt.classList.remove('show');stationBtn.style.display='none';return;}
+  if(stationState.mode==='station'){
+    vanBtn.style.display='none';
+    const nearExit=stationState.position.z>=6.2;
+    const message=nearExit?(isTouch?'Station exit ready':'ENTER · EXIT MRT')
+      :(stationState.position.z<=-10?'PLATFORM 2 · KAMPUNG CENTRAL':'WALK DOWN TO PLATFORM · STAIRS AHEAD');
+    actionPrompt.textContent=message;actionPrompt.classList.toggle('show',!!message);
+    stationBtn.style.display=isTouch&&nearExit?'block':'none';
+    if(isTouch){stationBtn.textContent=nearExit?'🚇 EXIT':'🚇 MRT';stationBtn.setAttribute('aria-label',nearExit?'Exit MRT station':'Explore MRT station');}
+    return;
+  }
+  stationBtn.style.display='none';
   const vanMeters=distanceMeters(pos,vanState.unit);
   const driving=vanState.mode==='driving';
+  const mrtMeters=surfaceDistance(pos,latLonPos(MRT.lat,MRT.lon).normalize());
   if(isTouch){
     vanBtn.textContent=driving?'🚐 EXIT':(vanMeters<=3?'🚐 ENTER':`🚐 ${vanMeters}m`);
     vanBtn.setAttribute('aria-label',driving?'Exit van':(vanMeters<=3?'Enter van':`Van is ${vanMeters} metres away`));
@@ -4811,16 +5294,21 @@ function updateActionUI(){
   let message='';
   if(driving)message=isTouch?'Use joystick to drive · tap EXIT to park':'WASD / ARROWS · DRIVE  ·  F · EXIT VAN';
   else if(vanMeters<=3)message=isTouch?'Van is ready':'F · ENTER VAN';
+  else if(mrtMeters<=3.4)message=isTouch?'MRT entrance nearby':'ENTER · MRT STATION';
   else if(stage<DELIVERIES.length){
     const jobMeters=distanceMeters(pos,targetUnit(currentTargetNPC()));
     if(jobMeters<7)message='GET VERY CLOSE TO CUSTOMER · CHECK-IN IS AUTOMATIC';
   }
   actionPrompt.textContent=message;
   actionPrompt.classList.toggle('show',!!message);
+  if(isTouch&&!driving&&mrtMeters<=3.4){
+    stationBtn.style.display='block';stationBtn.textContent='🚇 ENTER';stationBtn.setAttribute('aria-label','Enter MRT station');
+  }
 }
 
 // ---------- ambient life ----------
 function stepWorld(dt,t){
+  stepTransitBuses(dt,t);
   for(const c of clouds)c.position.applyAxisAngle(c.userData.axis,c.userData.speed*dt);
   for(const b of birds){
     b.position.applyAxisAngle(b.userData.axis,b.userData.speed*dt);
@@ -5013,7 +5501,8 @@ function loop(now){
   if(started&&!finished){
     questCooldown=Math.max(0,questCooldown-dt);
     if(!dialogueOpen&&!diagnosing){
-      if(vanState.mode==='driving')stepVan(dt,t);else stepPlayer(dt);
+      if(stationState.mode==='station')stepStationPlayer(dt);
+      else if(vanState.mode==='driving')stepVan(dt,t);else stepPlayer(dt);
     }
     stepQuest(t);
     updateActionUI();
@@ -5074,6 +5563,13 @@ const ASSET_MANIFEST={
   hawker:    {url:'assets/hawker-v2.glb',scale:.68,ground:true},
   temple:    {url:'assets/temple-v2.glb',scale:.72,ground:true},
   mamashop:  {url:'assets/mamashop-v2.glb',scale:.70,ground:true},
+  // Singapore Heritage Expansion Pack (scripts/blender/build-singapore-heritage-pack.py)
+  peranakan: {url:'assets/peranakan-house-v2.glb',scale:.72,ground:true},
+  kampongHouse:{url:'assets/kampong-house-v2.glb',scale:.72,ground:true},
+  hdbVoiddeck:{url:'assets/hdb-voiddeck-v2.glb',scale:.72,ground:true},
+  kampongProps:{url:'assets/kampong-props-v2.glb',scale:.72,ground:true},
+  sultanMosque:{url:'assets/sultan-mosque-v2.glb',scale:.72,ground:true},
+  wetmarket: {url:'assets/wetmarket-v2.glb',scale:.72,ground:true},
   busstop:   {url:'assets/busstop-v2.glb',scale:.55},
   overheadbridge:{url:'assets/overheadbridge-v2.glb',scale:.68,ground:true},
   controltower:{url:'assets/controltower-v2.glb',scale:.76},
@@ -5212,6 +5708,35 @@ function swapResident(index,gltf){
     gltf=>swapResident(index,gltf),undefined,()=>{/* procedural resident stays */}));
 })();
 
+// Blender transit exports are optional at runtime. Keep the procedural
+// fallback visible while the files are absent, then hot-swap the authored GLB
+// when a local export is dropped into assets/.
+function loadOptionalTransitAsset(file,onLoad){
+  const loader=new GLTFLoader(),draco=new DRACOLoader();draco.setDecoderPath('/draco/');loader.setDRACOLoader(draco);
+  const url=['assets',file].join('/');
+  loader.load(url,onLoad,undefined,()=>{/* procedural transit fallback remains active */});
+}
+function applyTransitBusGLB(gltf){
+  toonify(gltf.scene);
+  for(const bus of transitBuses){
+    const displays=bus.userData.displays||[];
+    while(bus.children.length)bus.remove(bus.children[0]);
+    const model=gltf.scene.clone(true);model.scale.setScalar(.72);alignLowestPoint(model,.04);bus.add(model);
+    for(const display of displays)bus.add(display);
+    bus.userData.wheels=[];model.traverse(o=>{if((o.name||'').toLowerCase().includes('wheel'))bus.userData.wheels.push(o);});
+  }
+  console.log(`[assets] singapore-bus-v1.glb active × ${transitBuses.length}`);
+}
+function applyMRTTrainGLB(gltf){
+  const train=stationWorld.userData.train;if(!train)return;
+  toonify(gltf.scene);const positions=[-10,0,10];
+  while(train.children.length)train.remove(train.children[0]);
+  for(const x of positions){const car=gltf.scene.clone(true);car.scale.setScalar(.72);car.position.x=x;alignLowestPoint(car,.02);train.add(car);}
+  console.log('[assets] mrt-train-v1.glb active × 3');
+}
+loadOptionalTransitAsset(['singapore','-bus-v1.glb'].join(''),applyTransitBusGLB);
+loadOptionalTransitAsset(['mrt','-train-v1.glb'].join(''),applyMRTTrainGLB);
+
 // ---------- start ----------
 if(isTouch){
   document.getElementById('titleHint').textContent='Drag left side to move · use the on-screen buttons for van and emotes';
@@ -5248,6 +5773,7 @@ vanBtn.addEventListener('click',()=>{
   if(d<=3)tryEnterVan();
   else showToast('Van',`Parked ${Math.round(d)}m away — walk closer to enter.`);
 });
+stationBtn.addEventListener('click',()=>tryEnterMRT());
 document.getElementById('muteBtn').addEventListener('click',()=>{
   document.getElementById('muteBtn').textContent=Snd.toggle()?'🔊':'🔇';
 });

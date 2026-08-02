@@ -155,6 +155,20 @@ assert(/const roadPose=nearestRoadPose[\s\S]{0,300}vanState\.forward\.copy\(road
 assert(/WATER_SURFACE_OFFSET-BOAT_DRAFT/.test(html),
   'Boats must sit at a defined waterline instead of hovering above the map.');
 
+assert(/const BUS_INSTANCES=\[[\s\S]{0,900}route:'65'[\s\S]{0,900}route:'97'[\s\S]{0,900}route:'143'/.test(html),
+  'Transit pass must configure exactly the three route examples 65, 97 and 143.');
+assert(/window\.__transitAudit=\{busCount:transitBuses\.length/.test(html)
+    && /document\.documentElement\.dataset\.transitBusCount/.test(html),
+  'Transit pass must expose a browser-observable bus-count audit.');
+assert(/const stationState=\{[\s\S]{0,500}mode:'surface'/.test(html)
+    && /function tryEnterMRT\(\)/.test(html)
+    && /function tryExitMRT\(\)/.test(html),
+  'MRT station must provide an explicit surface/station world transition.');
+assert(/id=["']stationBtn["']/.test(html) && /id=["']world-fade["']/.test(html),
+  'MRT transition must provide a touch action and visual world-change feedback.');
+assert(fs.existsSync(path.join(root, 'blender/create_transit_assets.py')),
+  'Transit Blender source script is required.');
+
 if (!/<main\b/i.test(html)) warnings.push('No <main> landmark found; add one during the accessibility pass.');
 if (!/<meta[^>]+name=["']description["']/i.test(html)) warnings.push('No meta description found.');
 

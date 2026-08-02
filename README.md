@@ -20,6 +20,8 @@ For each call, the player follows the target compass to a resident, holds a shor
 ## Highlights
 
 - A navigable miniature Singapore built with Three.js, including housing estates, campuses, civic landmarks, roads, bridges, watercraft, and moving street life.
+- Three Singapore bus examples (routes 65, 97, and 143) sharing one reusable transit model, including one moving Central Corridor service.
+- An enterable Kampung Central MRT pocket world with a concourse, stairs, platform, tunnel, and a three-car MRT set. Walk back upstairs and press Enter to return to the map.
 - Walking and drivable-van traversal with route guidance and collision-aware roads.
 - Six resident characters with portraits, dialogue, randomized visit order, and persistent in-progress diagnosis state.
 - Scenario questions with randomized answer order, coaching feedback, scoring, and a completion summary.
@@ -53,6 +55,7 @@ npm run dev -- --port 8080
 | --- | --- | --- |
 | Walk or steer | `WASD` or arrow keys | Drag the joystick on the left |
 | Enter or exit the van | `F` when near the van | Use the van button |
+| Enter or exit the MRT | `Enter` near the MRT entrance or upstairs exit | Use the MRT button when it appears |
 | Send an emote | `E` | Use the emote button |
 | Choose a diagnostic answer | Number keys `1`–`3` or click | Tap an answer |
 | Toggle sound | Click the speaker button | Tap the speaker button |
