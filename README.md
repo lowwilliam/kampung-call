@@ -120,5 +120,6 @@ This repository is currently a prototype, not a production-ready learning platfo
 - [`docs/COMMERCIALISATION-PLAN.md`](docs/COMMERCIALISATION-PLAN.md) — product review, positioning recommendation and phased plan to launch
 - [`docs/COMMERCIAL-READINESS.md`](docs/COMMERCIAL-READINESS.md) — release, accessibility, privacy and learning-platform gates
 - [`ART-DIRECTION.md`](ART-DIRECTION.md) — visual language and asset direction
+- [`docs/ART-REVIEW.md`](docs/ART-REVIEW.md) — measured critique of the models, render pipeline and UI, with a phased art plan
 - [`ASSET-PRODUCTION.md`](ASSET-PRODUCTION.md) — 3D asset-production guidance
 - [`src/capability/README.md`](src/capability/README.md) — scenario-engine integration contract

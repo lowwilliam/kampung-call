@@ -135,7 +135,7 @@ Ordered by how hard they block taking money. Every item is evidence-backed.
 | --- | --- | --- |
 | L1 | **`Singtel` branding is baked into shipped geometry**, not just comments: a ComCentre tower, a satellite earth station, and canvas-painted door panels on the player's van. `NetLink Trust` appears in customer-facing scenario copy. | `src/main.js:2029`, `:2122`, `:2780`, `:4061` — 16 occurrences |
 | L2 | **No LICENSE file.** No documented commercial rights for 3D assets, audio, fonts, or dialogue. | repo root |
-| L3 | **"an AI-built homage to messenger.abeto.co"** is printed on the title screen — a derivative-work acknowledgment of another studio's work, on the front page of a product you intend to sell. | `index.html:21` |
+| L3 | **"an AI-built homage to messenger.abeto.co"** — a written derivative-work acknowledgment of another studio's work, shipped in the HTML of a product you intend to sell. It is hidden from view by `.t-credit{display:none}`, so it is a source-level disclosure rather than a visible one, but it ships and it is discoverable. | `index.html:21`, `src/styles.css:65` |
 | L4 | Real protected landmarks: Merlion (a registered STB mark), Marina Bay Sands, Changi, NUS/NTU/SMU/SUTD. Stylised silhouettes are usually defensible, but "usually" is not a position to sell from. | 24 Merlion references + landmark kits |
 
 Selling a training product branded with a telco's marks to that telco's
@@ -216,10 +216,11 @@ Cheap, unblocking, mostly not code.
 
 - [ ] **Make the positioning call.** Written, one page, dated. Everything else
       depends on it.
-- [ ] **L1/L3:** strip `Singtel` and `NetLink` from geometry, textures, and
-      scenario copy; replace with a neutral in-world brand behind a single
-      config object that later becomes the white-label slot. Remove the
-      abeto.co credit line.
+- [ ] **L1/L3:** strip `Singtel` and `NetLink` from geometry, textures, scenario
+      copy, **and GLB material names** (`Singtel Navy`, `Singtel Red` are baked
+      into the shipped binaries — see `docs/ART-REVIEW.md` §2.2); replace with a
+      neutral in-world brand behind a single config object that later becomes
+      the white-label slot. Remove the abeto.co credit line.
 - [ ] **L2:** add a LICENSE, and an asset provenance register recording origin
       and commercial rights for every GLB, audio file, font, and portrait.
 - [ ] **E1:** add `node --test "tests/*.test.mjs"` to `npm test`. Fix the README
