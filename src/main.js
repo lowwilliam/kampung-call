@@ -4691,6 +4691,7 @@ window.__teleport=(lat,lon,faceLat,faceLon)=>{
   if(tangent.lengthSq()>1e-6)fwd.copy(tangent.normalize());
   player.position.copy(u).multiplyScalar(surfR(u));
 };
+window.__playerPos=()=>{const u=pos.clone().normalize(),ll=latLonFromUnit(u);return{lat:+ll.lat.toFixed(2),lon:+ll.lon.toFixed(2)};};
 {
   const up=pos.clone().normalize();
   fwd.sub(up.clone().multiplyScalar(fwd.dot(up))).normalize();
