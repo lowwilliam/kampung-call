@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "unit": "metre",
+  "procedural": {
+    "MARINA_BAY": 5,
+    "SENTOSA": 1.8,
+    "STUDIOS": 3.8,
+    "CLARKE": 3.8,
+    "CHANGI_JEWEL": 2.4,
+    "COMCENTRE": 2.2,
+    "SATELLITE": 3.6,
+    "CABLEA": 1.6,
+    "NUS": 3.1,
+    "NTU": 3.1,
+    "SMU": 3,
+    "SUTD": 3.1,
+    "HOSPITAL": 3.2,
+    "TUAS": 4,
+    "CIVIC": 2.8,
+    "INTERCHANGE": 3,
+    "CBD": 5,
+    "HOLAND": 3.6
+    ,"SHOPHOUSE_ROW": 3.7,
+    "CHANGI_CAMPUS": 4.7,
+    "CHANGI_JEWEL": 2.4
+  },
+  "heritage": {
+    "PERANAKAN": "peranakan",
+    "KGELAM": "sultanMosque",
+    "KGREEN": "kampongHouse",
+    "KGREEN_PROPS": "kampongProps",
+    "VOIDDECK": "hdbVoiddeck",
+    "WETMKT": "wetmarket"
+  },
+  "local": [1, 1, 1.25, 1, 1, 1.25, 1, 1, 1.25, 1, 1, 1.25]
+}

@@ -1,0 +1,118 @@
+{
+  "unit": "metre",
+  "unitScale": 1,
+  "auditBaselineRadius": 26,
+  "planetRadius": 78,
+  "groundStorey": 3,
+  "stylisedStorey": 1.6,
+  "heightLadder": {
+    "human": {
+      "player": 1.75,
+      "residents": 1.75,
+      "cat": 0.3,
+      "bench": 0.85,
+      "benchSeat": 0.45,
+      "postbox": 1.2,
+      "bicycle": 1.1,
+      "bicycleLength": 1.8,
+      "serviceKits": 0.9,
+      "door": 2.1,
+      "kerb": 0.15,
+      "serviceVan": 2.3,
+      "serviceVanLength": 5.4,
+      "serviceVanWidth": 2,
+      "bus": 3.2,
+      "busLength": 11,
+      "busStopShelter": 2.9,
+      "busStopShelterLength": 6,
+      "streetlamp": 5,
+      "overheadBridgeDeckClearance": 5.2,
+      "overheadBridgeSpan": 24
+    },
+    "nature": {
+      "palm": 9,
+      "rainTree": 12,
+      "rainTreeCanopyWidth": 14
+    },
+    "lowRise": {
+      "mamaShop": 4.6,
+      "kopitiam": 5.4,
+      "kampongHouse": 6,
+      "hawkerCentre": 6.2,
+      "hawkerCentreWidth": 34,
+      "hawkerCentreDepth": 22,
+      "shophousePeranakan": 6.2,
+      "wetMarket": 6.8,
+      "wetMarketWidth": 28,
+      "wetMarketDepth": 20,
+      "landedHouse": 7.6,
+      "school": 8,
+      "mrtStation": 9,
+      "temple": 10
+    },
+    "midRise": {
+      "esplanade": 12,
+      "nus": 12,
+      "ntu": 14,
+      "smu": 16,
+      "sutd": 13,
+      "civic": 14,
+      "airportTerminal": 14,
+      "airportTerminalLength": 90,
+      "airportTerminalDepth": 45,
+      "hospital": 16,
+      "sultanMosqueDome": 18,
+      "sultanMosqueMinaret": 24,
+      "hdbVoidDeckBlock": 20.6,
+      "hdbVoidDeckBlockStoreys": 12
+    },
+    "high": {
+      "supertree": 26,
+      "cbdTowersMin": 26,
+      "cbdTowersMax": 38,
+      "controlTower": 28,
+      "condo": 30,
+      "condoStoreys": 18,
+      "pointBlock": 34,
+      "pointBlockStoreys": 22,
+      "singaporeFlyer": 34,
+      "marinaBaySands": 40
+    }
+  },
+  "speeds": {
+    "walk": 5.5,
+    "van": 20,
+    "npc": 1.4,
+    "npcWanderRadius": 9,
+    "npcLookRadius": 6,
+    "longestCallToCallWalkSecondsMax": 40
+  },
+  "caps": {
+    "maximumHeight": 40,
+    "maximumHeightObject": "Marina Bay Sands",
+    "silhouetteRanking": [
+      "Marina Bay Sands",
+      "CBD tallest",
+      "Singapore Flyer",
+      "point block",
+      "condo",
+      "control tower",
+      "supertree",
+      "HDB",
+      "hospital",
+      "campus",
+      "everything else"
+    ]
+  },
+  "scene": {
+    "fogNear": 36,
+    "fogFar": 124,
+    "cameraFar": 500,
+    "shadowLeft": -24,
+    "shadowRight": 24,
+    "shadowTop": 24,
+    "shadowBottom": -24,
+    "shadowNear": 10,
+    "shadowFar": 170
+  }
+}

@@ -29,9 +29,20 @@ assert(/function auditPublicRouteClearance\(\)[\s\S]{0,1800}window\.__routeClear
   'Runtime QA must audit every public route against the final collision set.');
 assert(/dataset\.routeClearanceBlocked=String\(blocked\.length\)/.test(html),
   'Runtime route-clearance result must be browser-test observable.');
-assert(/if\(cfg\.ground\|\|cfg\.watercraft\)[\s\S]{0,500}alignLowestPoint\(inst,cfg\.watercraft\?0:\(cfg\.groundInset\?\?\.12\)\)/.test(html)
+assert(/alignLowestPoint\(inst,0\)/.test(html)
     && /function alignLowestPoint\(model,inset=0\)[\s\S]{0,1200}o\.userData\.noOutline[\s\S]{0,500}o\.geometry\.boundingBox/.test(html),
   'Imported buildings must be grounded from their rendered bounds.');
+assert(/import worldScale from ['"]\.\.\/world\/scale\.json['"]/.test(html)
+    && /const R\s*=\s*worldScale\.planetRadius/.test(html),
+  'World scale bible must drive the runtime planet radius.');
+assert(/const MIN_BUILDING_VERGE=8\*WORLD_SCALE/.test(html)
+    && /const CITY_BUILDING_FOOTPRINTS=CITY_BUILDING_ZONES\.map/.test(html),
+  'Building spacing must use the audited footprint registry and eight-metre verge.');
+assert(/function onAuthoredRoad\(unit\)/.test(html)
+    && /onWater\(candidate\)\|\|onAuthoredRoad\(candidate\)/.test(html),
+  'Ambient scatter and NPC targets must reject water and authored road corridors.');
+assert(/function auditNpcPlacements\(\)[\s\S]{0,1400}npcSpawnConflicts[\s\S]{0,500}npcPlaceMismatches/.test(html),
+  'NPC placement must expose resident anchor and collision audits.');
 assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingWaterConflicts=String\(wet\.length\)/.test(html),
   'Dry-land buildings must be audited against authored water footprints.');
 assert(/overheadbridge:\{[^}]*ground:true/.test(html),
@@ -132,7 +143,8 @@ assert(/LOCAL_BUILDING_SETBACK>ROAD_STYLES\.local\.width\/2\+1\.25\+\.25/.test(h
 assert(/function buildPath\(a,b,width=1\.5\)[\s\S]{0,1000}buildClearedRoute\(raw,pathWidth\/2\)/.test(html)
   && /function buildClearedRoute\(raw,halfWidth\)[\s\S]{0,1800}relaxed\[i\]=slerpUnit\(centers\[i\],midpoint,\.62\)/.test(html),
   'Neighbourhood streets must use the smoothed shared-footprint clearance pipeline.');
-assert(/const CITY_BUILDING_ZONES=\[[\s\S]{0,2500}\[CBD,5\.0\]/.test(html),
+assert(/const CITY_BUILDING_ZONES=\[[\s\S]{0,5000}\[CBD,'CBD'\]/.test(html)
+    && /const CITY_BUILDING_FOOTPRINTS=CITY_BUILDING_ZONES\.map/.test(html),
   'City building-footprint registry must cover residential, institutional and downtown districts.');
 assert(/const MAJOR_BUILDING_VISUAL_BUFFER=1\.35/.test(html),
   'Major buildings must reserve extra visual footprint beyond gameplay colliders.');
@@ -154,6 +166,9 @@ assert(/const roadPose=nearestRoadPose[\s\S]{0,300}vanState\.forward\.copy\(road
   'Randomized parked vehicles must snap to a road centerline and inherit its heading.');
 assert(/WATER_SURFACE_OFFSET-BOAT_DRAFT/.test(html),
   'Boats must sit at a defined waterline instead of hovering above the map.');
+assert(/const TERRAIN_SEGMENTS=\{width:320,height:240\}/.test(html)
+    && /window\.__terrainAudit=/.test(html),
+  'Terrain sampling density must be explicit and reported at runtime.');
 
 assert(/const BUS_INSTANCES=\[[\s\S]{0,900}route:'65'[\s\S]{0,900}route:'97'[\s\S]{0,900}route:'143'/.test(html),
   'Transit pass must configure exactly the three route examples 65, 97 and 143.');

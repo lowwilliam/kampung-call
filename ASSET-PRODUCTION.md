@@ -14,7 +14,7 @@
 ## Shared world assets
 
 - `kopitiam-v2.glb` — dispatch hub, three stalls, seating and tray return
-- `streetlamp-v2.glb` — 24 route-light replacements
+- `streetlamp-v2.glb` — superseded by the authored road-light treatment and removed from shipping assets
 - `postbox-v2.glb` — two neighbourhood postboxes
 - `bench-v2.glb` — three planter benches
 - `raintree-v2.glb` — hero tropical vegetation
@@ -28,7 +28,32 @@
 - Preview renders are in `assets/previews/` plus the two earlier hero previews in `assets/`.
 - Static assets are joined by material and Draco-compressed before export.
 - Procedural models remain as graceful fallbacks if a GLB cannot load.
-- `kampung-call.html` scopes hero assets to their intended call location; background residences keep lightweight shared models.
+- `index.html` scopes hero assets to their intended call location; background residences keep lightweight shared models.
+
+## World rebuild audit
+
+The runtime uses `world/scale.json` as the metres-per-unit scale bible and
+`world/asset-audit.json` as the generated footprint registry. The repeatable
+asset pass is:
+
+```sh
+npm run audit:world
+node scripts/optimize-glbs.mjs
+node scripts/simplify-all-glbs.mjs
+node scripts/create-low-poly-budget-assets.mjs
+node scripts/ground-glbs.mjs
+node scripts/compress-glbs.mjs
+npm run audit:world -- --strict
+```
+
+The audit reads GLB JSON chunks directly, including node transforms and
+POSITION accessor bounds. It reports world dimensions, required clearance
+radii, triangle/material budgets, Draco compression and ground contact. The
+shipping manifest currently contains 55 entries (including six resident
+models and one optional legacy engineer export) with no unreferenced GLBs.
+The strict audit reports 245,979 triangles, zero over-budget assets, zero
+ungrounded assets, zero material-budget failures and Draco compression on all
+55 entries.
 
 ## Transit pass
 
@@ -49,10 +74,13 @@ for routes 65, 97, and 143 without duplicating the base mesh.
 
 ## Complete export integration
 
-All 51 GLB files in `assets/` are loaded by the game:
+All shipping GLB files in `assets/` are either loaded by the game or are
+explicitly represented by the optional transit fallback:
 
-- 45 explicit asset-manifest references
+- 49 explicit runtime asset references
 - 6 dynamically loaded resident assets
 - 0 unused GLBs and 0 missing paths
 
-The eight superseded or combined exports are preserved as reduced-scale visible variants in the north-island archive ring. They do not replace the V2 production assets or overlap the six service-call locations.
+The eight superseded exports were removed from the shipping asset directory:
+`condo.glb`, `hdb.glb`, `hero-neighbourhood.glb`, `kopitiam.glb`, `landed.glb`,
+`mrt.glb`, `shophouse.glb`, and `streetlamp-v2.glb`.

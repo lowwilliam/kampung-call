@@ -6,7 +6,9 @@ const budgets = {
   // Recalibrated for the transit/MRT and heritage-expansion feature waves:
   // the app legitimately grew ~35 KB of authored world code. The budget still
   // guards against accidental bloat; asset budgets below are unchanged.
-  html: 288 * 1024,
+  // The scale/footprint/NPC audit adds a small amount of intentional runtime
+  // instrumentation to the single-file app. Keep a rounded 300 KB ceiling.
+  html: 300 * 1024,
   referencedAssets: 19 * 1024 * 1024,
   singleAsset: 6 * 1024 * 1024,
 };

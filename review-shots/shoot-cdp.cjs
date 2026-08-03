@@ -90,7 +90,7 @@ async function getTargetWs() {
   await sleep(1200);
   await shot("cur_near.png");
 
-  const st = await evaluate("JSON.stringify({route:window.__routeClearanceAudit||null})");
+  const st = await evaluate("JSON.stringify({route:window.__routeClearanceAudit||null,npc:window.__npcPlacementAudit||null,terrain:window.__terrainAudit||null,callWalk:window.__callWalkAudit||null,spacing:window.__buildingSpacingAudit||null,water:window.__buildingWaterAudit||null})");
   log("STATE " + JSON.stringify(st.result && st.result.result && st.result.result.value));
 
   ws.close();
