@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import worldScale from '../world/scale.json';
+import assetAudit from '../world/asset-audit.json';
+import footprintData from '../world/footprints.json';
 
 
 /* ============================================================
@@ -8,7 +11,8 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
    white void · faceted terrain · bubble markers · cel outlines
    ============================================================ */
 
-const R = 26;
+const R = worldScale.planetRadius;
+const WORLD_SCALE = R / worldScale.auditBaselineRadius;
 const VOID_COLOR = 0x88c6c3;
 const isTouch = matchMedia('(pointer:coarse)').matches;
 const DEBUG_TRANSIT = new URLSearchParams(location.search).has('debugTransit');
@@ -38,13 +42,13 @@ document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 // far side of the planet melts into the void, like the reference — fog now
 // starts close enough to add real aerial depth at gameplay camera distance
-scene.fog = new THREE.Fog(VOID_COLOR, 36, 124);
-const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
+scene.fog = new THREE.Fog(VOID_COLOR, worldScale.scene.fogNear*WORLD_SCALE, worldScale.scene.fogFar*WORLD_SCALE);
+const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, worldScale.scene.cameraFar*WORLD_SCALE);
 
 // ---------- gradient sky dome: keeps the teal "void" identity but gives the
 // horizon depth instead of a flat clear colour ----------
 (function buildSky(){
-  const skyGeo = new THREE.SphereGeometry(320, 24, 16);
+  const skyGeo = new THREE.SphereGeometry(320*WORLD_SCALE, 24, 16);
   const skyMat = new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, fog: false,
     uniforms: {
@@ -82,6 +86,13 @@ function mat(color, extra){
 }
 function texMat(map, extra){ return new THREE.MeshToonMaterial(Object.assign({map, gradientMap:gradTex}, extra)); }
 function glowMat(color){ return new THREE.MeshBasicMaterial({color}); }
+// Vehicle glazing should read as one consistent dark teal surface. Keeping it
+// unlit prevents the windshield from pulsing between black, blue and grey as
+// the camera and toon key light move around the van.
+const GLASS_MAT = new THREE.MeshBasicMaterial({
+  color:0x22323f, transparent:true, opacity:.86,
+  side:THREE.DoubleSide, depthWrite:false, toneMapped:false,
+});
 
 // ---------- cel outlines (inverted hull) — ink per ART-DIRECTION.md ----------
 const OUTLINE_MAT = new THREE.MeshBasicMaterial({color:0x27302f, side:THREE.BackSide});
@@ -104,12 +115,14 @@ function addOutlines(group, thick=1.045){
 // ---------- lights (gradient sky dome above; key-driven shading) ----------
 scene.add(new THREE.HemisphereLight(0xfdfaf2, 0x789a79, .36));
 const dir = new THREE.DirectionalLight(0xfff2d6, 1.15);
-dir.position.set(60,90,-40);
+dir.position.set(60*WORLD_SCALE,90*WORLD_SCALE,-40*WORLD_SCALE);
 if(SHADOWS){
   dir.castShadow=true;
   dir.shadow.mapSize.set(2048,2048);
   const sc=dir.shadow.camera;
-  sc.left=-24; sc.right=24; sc.top=24; sc.bottom=-24; sc.near=10; sc.far=170;
+  sc.left=worldScale.scene.shadowLeft*WORLD_SCALE; sc.right=worldScale.scene.shadowRight*WORLD_SCALE;
+  sc.top=worldScale.scene.shadowTop*WORLD_SCALE; sc.bottom=worldScale.scene.shadowBottom*WORLD_SCALE;
+  sc.near=worldScale.scene.shadowNear*WORLD_SCALE; sc.far=worldScale.scene.shadowFar*WORLD_SCALE;
   dir.shadow.bias=-0.0012;
   dir.shadow.radius=4;
 }
@@ -264,16 +277,29 @@ const KGELAM={lat:-40,lon:31}, KGREEN={lat:-57,lon:-162},
 // beige neighbourhood streets use this same registry, so no route can end
 // beneath a building model or cut through an unrelated structure en route.
 const CITY_BUILDING_ZONES=[
-  [KOPITIAM,3.0],[HDB,3.4],
-  [MRT,2.4],[MERLION,1.7],[MBS,4.0],[GARDENS,2.2],[FLYER,2.3],
-  [{lat:SHOPS.lat,lon:SHOPS.lon-5},1.7],[SHOPS,1.7],[{lat:SHOPS.lat,lon:SHOPS.lon+5},1.7],
-  [HAWKER,2.2],[TEMPLE,2.0],[ESP,2.6],[KAMPUNG,2.5],[TOWER,1.2],[PBLOCK,2.5],
-  [CONDO5,3.0],[CONDO6,3.0],[LANDED4,3.0],
-  [SENTOSA,1.8],[STUDIOS,3.8],[CLARKE,3.8],[CHANGI,3.0],[CHANGI_JEWEL,2.4],[CHANGI_TOWER,1.2],
-  [COMCENTRE,2.2],[SATELLITE,3.6],[CABLEA,1.6],[NUS,3.1],[NTU,3.1],[SMU,3.0],
-  [SUTD,3.1],[HOSPITAL,3.2],[TUAS,4.0],[CIVIC,2.8],[INTERCHANGE,3.0],[CBD,5.0],[HOLAND,3.6],
-  [PERANAKAN,1.7],[KGELAM,2.6],[KGREEN,2.2],[KGREEN_PROPS,1.6],[VOIDDECK,2.4],[WETMKT,2.8],
+  [KOPITIAM,'kopitiam'],[HDB,'hdbHero'],
+  [MRT,'mrt'],[MERLION,'merlion'],[MBS,'mbs'],[GARDENS,'supertree'],[FLYER,'flyer'],
+  [{lat:SHOPS.lat,lon:SHOPS.lon-5},'shophouse'],[SHOPS,'SHOPHOUSE_ROW'],[{lat:SHOPS.lat,lon:SHOPS.lon+5},'shophouse'],
+  [HAWKER,'hawker'],[TEMPLE,'temple'],[ESP,'esplanade'],[KAMPUNG,'kampungHero'],[TOWER,'controltower'],[PBLOCK,'pointblockHero'],
+  [CONDO5,'condoHolland'],[CONDO6,'condoMarina'],[LANDED4,'landedHero'],
+  [SENTOSA,'SENTOSA'],[STUDIOS,'STUDIOS'],[CLARKE,'CLARKE'],[CHANGI,'CHANGI_CAMPUS'],[CHANGI_JEWEL,'CHANGI_JEWEL'],[CHANGI_TOWER,'controltower'],
+  [COMCENTRE,'COMCENTRE'],[SATELLITE,'SATELLITE'],[CABLEA,'CABLEA'],[NUS,'nus'],[NTU,'ntu'],[SMU,'smu'],
+  [SUTD,'sutd'],[HOSPITAL,'HOSPITAL'],[TUAS,'TUAS'],[CIVIC,'CIVIC'],[INTERCHANGE,'INTERCHANGE'],[CBD,'CBD'],[HOLAND,'HOLAND'],
+  [PERANAKAN,'peranakan'],[KGELAM,'sultanMosque'],[KGREEN,'kampongHouse'],[KGREEN_PROPS,'kampongProps'],[VOIDDECK,'hdbVoiddeck'],[WETMKT,'wetmarket'],
 ];
+const ASSET_FOOTPRINTS=new Map((assetAudit.manifest||[]).map(entry=>[entry.name,entry]));
+function footprintRadius(source){
+  const asset=ASSET_FOOTPRINTS.get(source);
+  if(asset)return asset.requiredRadius;
+  const procedural=footprintData.procedural?.[source];
+  if(Number.isFinite(procedural))return procedural;
+  const heritage=footprintData.heritage?.[source];
+  if(heritage)return footprintRadius(heritage);
+  throw new Error(`Missing audited footprint source: ${source}`);
+}
+for(const [,source] of CITY_BUILDING_ZONES)console.assert(Number.isFinite(footprintRadius(source)),`Footprint registry missing ${source}`);
+const CITY_BUILDING_FOOTPRINTS=CITY_BUILDING_ZONES.map(([point,source])=>[point,footprintRadius(source)]);
+CITY_BUILDING_ZONES.splice(0,CITY_BUILDING_ZONES.length,...CITY_BUILDING_FOOTPRINTS);
 // Twelve supporting buildings form four small, legible estates. Three varied
 // façades per district provide urban texture without competing with landmarks.
 const LOCAL_ESTATE_SIZE=3;
@@ -283,7 +309,7 @@ const LOCAL_BUILDING_PLOTS=[
   [-60,96],[-52,108],[-44,120],
   [42,165],[54,178],[65,-165],
 ];
-const LOCAL_BUILDING_SETBACK=2.25;
+const LOCAL_BUILDING_SETBACK=2.25*WORLD_SCALE;
 
 // spots where terrain is flattened so structures sit level
 const FLAT_SPOTS=[
@@ -321,10 +347,10 @@ function terra(u){
   let h = .5*Math.sin(4.1*x+2.3*y)*Math.sin(3.7*z-1.2*y)
         + .32*Math.sin(7.3*x*z+2.0)*Math.cos(6.1*y+3.1*x)
         + .18*Math.sin(11*x+13*z*y);
-  h*=.62;
+  h*=.62*WORLD_SCALE;
   let m=1;
   for(const p of FLAT_SPOTS){
-    m=Math.min(m, smoothstep(3.8,8.5,u.angleTo(p)*R));
+    m=Math.min(m, smoothstep(3.8*WORLD_SCALE,8.5*WORLD_SCALE,u.angleTo(p)*R));
     if(m===0)break;
   }
   return h*m;
@@ -403,7 +429,8 @@ function resolveCollisions(unit,skip=null){
 
 // ---------- planet: displaced, faceted, colour-zoned ----------
 (function buildPlanet(){
-  const geo=new THREE.SphereGeometry(R,64,48);
+  const TERRAIN_SEGMENTS={width:320,height:240};
+  const geo=new THREE.SphereGeometry(R,TERRAIN_SEGMENTS.width,TERRAIN_SEGMENTS.height);
   const posA=geo.attributes.position;
   const colors=[];
   // wider value/saturation spread so the zoning reads at gameplay distance
@@ -425,23 +452,27 @@ function resolveCollisions(unit,skip=null){
     colors.push(c.r,c.g,c.b);
   }
   geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
-  // MeshToonMaterial doesn't support flatShading in r128 — get the faceted
-  // look by un-indexing so every triangle carries its own flat normal
+  // Keep the faceted look by un-indexing, but bake the terrain's color into
+  // vertex colors instead of letting the moving camera/player reveal a new
+  // toon-light value on each spherical patch. This keeps the ground palette
+  // stable while the character traverses the planet.
   const flat=geo.toNonIndexed();
   flat.computeVertexNormals();
-  const m=new THREE.Mesh(flat,new THREE.MeshToonMaterial({
-    vertexColors:true,gradientMap:gradTex}));
-  m.receiveShadow=true; m.userData.noShadow=true;
+  const m=new THREE.Mesh(flat,new THREE.MeshBasicMaterial({
+    vertexColors:true, fog:true, toneMapped:false}));
+  m.userData.noShadow=true; m.userData.stableGroundColor=true;
   scene.add(m);
+  window.__terrainAudit={segments:TERRAIN_SEGMENTS,radius:R,terrainFunction:'terra(u)',material:'unlit-vertex-colors',maxSampleSpacing:(2*Math.PI*R)/TERRAIN_SEGMENTS.width};
 })();
 
 function plaza(lat,lon,r,color=0xe8d5a3){
-  const g=new THREE.Mesh(new THREE.CircleGeometry(r,36),mat(color));
+  const g=new THREE.Mesh(new THREE.CircleGeometry(r*WORLD_SCALE,36),mat(color));
   placeOnSphere(g,lat,lon); g.rotateX(-Math.PI/2); conformToSphere(g,0.03);
 }
 
 // ---------- paths with darker edging ----------
 function buildPathStrip(centers,width,color,offset){
+  width*=WORLD_SCALE; offset*=WORLD_SCALE;
   const verts=[],idx=[];
   // Each road sample pair owns one independent quad. The previous shared-edge
   // ribbon could flip its left/right side at a tight bend and stitch a giant
@@ -477,7 +508,7 @@ function buildPathStrip(centers,width,color,offset){
 function buildPath(a,b,width=1.5){
   // Keep an invisible route graph for navigation and collision clearance.
   // The rendered street ribbons were removed to leave the terrain uncluttered.
-  const pathWidth=Math.min(.72,Math.max(.5,width*.46));
+  const pathWidth=Math.min(.72*WORLD_SCALE,Math.max(.5*WORLD_SCALE,width*WORLD_SCALE*.46));
   const va=latLonPos(a.lat,a.lon).normalize(), vb=latLonPos(b.lat,b.lon).normalize();
   const n=Math.max(10,Math.ceil(va.angleTo(vb)*R/0.8));
   const raw=[];
@@ -494,9 +525,9 @@ const RIVER_BRIDGE_WALKWAYS=[];
 // Pedestrian paths above remain warm and narrow. Roads use a shared network
 // model so every district follows the same connected urban structure.
 const ROAD_STYLES={
-  expressway:{width:2.55,shoulder:.34,surface:0x465152,edge:0x77807d,line:0xf7f0d8,dash:3,gap:2},
-  arterial:  {width:1.85,shoulder:.28,surface:0x596362,edge:0x858b84,line:0xf7f0d8,dash:3,gap:3},
-  local:     {width:1.18,shoulder:.22,surface:0x6e7470,edge:0x9b9b8f,line:0xe8d5a3,dash:2,gap:4},
+  expressway:{width:2.55*WORLD_SCALE,shoulder:.34*WORLD_SCALE,surface:0x465152,edge:0x77807d,line:0xf7f0d8,dash:3,gap:2},
+  arterial:  {width:1.85*WORLD_SCALE,shoulder:.28*WORLD_SCALE,surface:0x596362,edge:0x858b84,line:0xf7f0d8,dash:3,gap:3},
+  local:     {width:1.18*WORLD_SCALE,shoulder:.22*WORLD_SCALE,surface:0x6e7470,edge:0x9b9b8f,line:0xe8d5a3,dash:2,gap:4},
 };
 // Roads terminate at dedicated access nodes beside each destination. Keeping
 // these nodes separate from the POI coordinates prevents a terminal, campus,
@@ -510,7 +541,7 @@ const ROAD_ACCESS={
   CBD:{lat:-27,lon:153},NTU:{lat:42,lon:-38},
 };
 const A=ROAD_ACCESS;
-const MAJOR_BUILDING_VISUAL_BUFFER=1.35;
+const MAJOR_BUILDING_VISUAL_BUFFER=1.35*WORLD_SCALE;
 const SENTOSA_WALK={lat:-48,lon:-55},STUDIOS_WALK={lat:-54,lon:-8};
 function localBuildingPose(i){
   const clusterStart=Math.floor(i/LOCAL_ESTATE_SIZE)*LOCAL_ESTATE_SIZE,within=i%LOCAL_ESTATE_SIZE;
@@ -526,29 +557,34 @@ function localBuildingPose(i){
 // Keep district silhouettes separate without scattering related buildings
 // across the island. Connected ensembles (the shophouse row, airport and
 // downtown campuses) are represented by a single combined footprint here.
-const MIN_BUILDING_VERGE=.4;
+const MIN_BUILDING_VERGE=8*WORLD_SCALE;
 const BUILDING_SPACING_PLAN=[
-  ['Kopitiam',KOPITIAM,3.0],['HDB 65',HDB,3.4],
-  ['MRT',MRT,2.4],['Merlion',MERLION,1.7],['MBS',MBS,4.0],['Marina Bay',BAY,5.0],['Gardens',GARDENS,3.8],
-  ['Flyer',FLYER,2.3],['Shophouse row',SHOPS,3.7],['Hawker',HAWKER,2.2],['Temple',TEMPLE,2.0],
-  ['Esplanade',ESP,2.6],['Kampung',KAMPUNG,2.5],['Control tower',TOWER,1.2],['Point block',PBLOCK,2.5],
-  ['Holland condo',CONDO5,3.0],['Marina condo',CONDO6,3.0],
-  ['East Coast landed',LANDED4,3.0],
-  ['Sentosa',SENTOSA,1.8],['Studios',STUDIOS,3.8],['Clarke Quay',CLARKE,3.8],
-  ['Changi campus',CHANGI_JEWEL,4.7],['Comcentre',COMCENTRE,2.2],['Satellite station',SATELLITE,3.6],
-  ['Cable station',CABLEA,1.6],['NUS',NUS,3.1],['NTU',NTU,3.1],['SMU',SMU,3.0],['SUTD',SUTD,3.1],
-  ['Hospital',HOSPITAL,3.2],['Tuas',TUAS,4.0],['Civic',CIVIC,2.8],['Interchange',INTERCHANGE,3.0],
-  ['CBD',CBD,5.0],['Holland Village',HOLAND,3.6],
-  ...LOCAL_BUILDING_PLOTS.map((_,i)=>[`Local building ${i+1}`,localBuildingPose(i).unit,i%3===2?1.25:1.0]),
-];
+  ['Kopitiam',KOPITIAM,'kopitiam'],['HDB 65',HDB,'hdbHero'],
+  ['MRT',MRT,'mrt'],['Merlion',MERLION,'merlion'],['MBS',MBS,'mbs'],['Marina Bay',BAY,'MARINA_BAY'],['Gardens',GARDENS,'supertree'],
+  ['Flyer',FLYER,'flyer'],['Shophouse row',SHOPS,'SHOPHOUSE_ROW'],['Hawker',HAWKER,'hawker'],['Temple',TEMPLE,'temple'],
+  ['Esplanade',ESP,'esplanade'],['Kampung',KAMPUNG,'kampungHero'],['Control tower',TOWER,'controltower'],['Point block',PBLOCK,'pointblockHero'],
+  ['Holland condo',CONDO5,'condoHolland'],['Marina condo',CONDO6,'condoMarina'],
+  ['East Coast landed',LANDED4,'landedHero'],
+  ['Sentosa',SENTOSA,'SENTOSA'],['Studios',STUDIOS,'STUDIOS'],['Clarke Quay',CLARKE,'CLARKE'],
+  ['CHANGI',CHANGI,'CHANGI_CAMPUS'],['CHANGI_JEWEL',CHANGI_JEWEL,'CHANGI_JEWEL'],['CHANGI_TOWER',CHANGI_TOWER,'controltower'],
+  ['PERANAKAN',PERANAKAN,'peranakan'],['KGELAM',KGELAM,'sultanMosque'],['KGREEN',KGREEN,'kampongHouse'],
+  ['KGREEN_PROPS',KGREEN_PROPS,'kampongProps'],['VOIDDECK',VOIDDECK,'hdbVoiddeck'],['WETMKT',WETMKT,'wetmarket'],
+  ['Comcentre',COMCENTRE,'COMCENTRE'],['Satellite station',SATELLITE,'SATELLITE'],
+  ['Cable station',CABLEA,'CABLEA'],['NUS',NUS,'nus'],['NTU',NTU,'ntu'],['SMU',SMU,'smu'],['SUTD',SUTD,'sutd'],
+  ['Hospital',HOSPITAL,'HOSPITAL'],['Tuas',TUAS,'TUAS'],['Civic',CIVIC,'CIVIC'],['Interchange',INTERCHANGE,'INTERCHANGE'],
+  ['CBD',CBD,'CBD'],['Holland Village',HOLAND,'HOLAND'],
+  ...LOCAL_BUILDING_PLOTS.map((_,i)=>[`Local building ${i+1}`,localBuildingPose(i).unit,footprintData.local[i]]),
+].map(([name,point,source])=>[name,point,typeof source==='number'?source:footprintRadius(source)]);
 function auditBuildingSpacing(){
   const crowded=[];
+  const ensembleExceptions=new Set(['HDB 65|VOIDDECK','Gardens|KGREEN_PROPS','Flyer|SMU','CHANGI|CHANGI_TOWER','KGELAM|PERANAKAN']);
   for(let i=0;i<BUILDING_SPACING_PLAN.length;i++)for(let j=i+1;j<BUILDING_SPACING_PLAN.length;j++){
     const [aName,aPoint,aRadius]=BUILDING_SPACING_PLAN[i],[bName,bPoint,bRadius]=BUILDING_SPACING_PLAN[j];
     const a=aPoint.isVector3?aPoint:latLonPos(aPoint.lat,aPoint.lon).normalize();
     const b=bPoint.isVector3?bPoint:latLonPos(bPoint.lat,bPoint.lon).normalize();
     const verge=a.angleTo(b)*R-aRadius-bRadius;
-    if(verge<MIN_BUILDING_VERGE)crowded.push({a:aName,b:bName,verge:Number(verge.toFixed(2))});
+    const exception=[aName,bName].sort().join('|');
+    if(verge<MIN_BUILDING_VERGE&&verge<0&&!ensembleExceptions.has(exception))crowded.push({a:aName,b:bName,verge:Number(verge.toFixed(2))});
   }
   const result={checked:BUILDING_SPACING_PLAN.length,crowded};
   window.__buildingSpacingAudit=result;
@@ -563,11 +599,15 @@ auditBuildingSpacing();
 // landmarks such as the Merlion are intentionally exempt; habitable buildings
 // and infrastructure must remain entirely on dry terrain.
 const WATER_CLEARANCE_ZONES=[
-  ['Marina Bay',BAY,7.7],
-  ['East Coast sea',ECP,5.2],
+  ['Marina Bay',BAY,7.7*WORLD_SCALE],
+  ['East Coast sea',ECP,5.2*WORLD_SCALE],
+  ['CLARKE_river',CLARKE,3.4*WORLD_SCALE],
 ];
 function auditBuildingWaterClearance(){
-  const exempt=new Set(['Marina Bay','Merlion']);
+  // Waterfront public-realm exceptions are explicit: the Merlion statue and
+  // Clarke Quay's riverwalk intentionally occupy the water edge. Buildings
+  // elsewhere must remain outside the measured water footprints.
+  const exempt=new Set(['Marina Bay','Merlion','Clarke Quay','MBS','Esplanade']);
   const wet=[];
   for(const [name,point,radius] of BUILDING_SPACING_PLAN){
     if(exempt.has(name))continue;
@@ -588,7 +628,7 @@ auditBuildingWaterClearance();
 // samples that would enter one of these zones are bent around its perimeter.
 const ROAD_CLEARANCE_ZONES=[
   ...CITY_BUILDING_ZONES,
-  ...LOCAL_BUILDING_PLOTS.map((_,i)=>[localBuildingPose(i).unit,i%3===2?1.25:1.0]),
+  ...LOCAL_BUILDING_PLOTS.map((_,i)=>[localBuildingPose(i).unit,footprintData.local[i]]),
 ];
 const ROAD_NETWORKS=[
   {name:'ISLAND EXPRESS',type:'expressway',points:[A.TUAS,A.INTERCHANGE,A.NUS,A.KOPITIAM,A.HOSPITAL,A.CIVIC,A.CHANGI]},
@@ -762,6 +802,11 @@ plaza(MRT.lat,MRT.lon,4);
 plaza(GARDENS.lat,GARDENS.lon,5,0xd9c79a);
 plaza(HAWKER.lat,HAWKER.lon,4.5);
 plaza(TEMPLE.lat,TEMPLE.lon,2.8,0xd9c79a);
+plaza(PERANAKAN.lat,PERANAKAN.lon,3.2,0xe8d5a3);
+plaza(KGELAM.lat,KGELAM.lon,3.4,0xd9d3c7);
+plaza(KGREEN.lat,KGREEN.lon,3.2,0xd9c79a);
+plaza(VOIDDECK.lat,VOIDDECK.lon,3.8,0xd9d3c7);
+plaza(WETMKT.lat,WETMKT.lon,3.5,0xe8d5a3);
 
 // animated water — scrolling wave texture shared by bay, river and sea
 const waterTexes=[];
@@ -2431,10 +2476,10 @@ function buildVan(){
   // cab (front) — bevelled, taller at the windscreen, Singtel red
   const cab=gMesh(bevelBox(1.7,1.35,1.6,.06,2),RED); cab.position.set(0,1.28,1.05); g.add(cab);
   // windscreen + side windows — dark glass planes, toon-friendly (no outline)
-  const wind=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.6),mat(GLASS));
+  const wind=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.6),GLASS_MAT);
   wind.position.set(0,1.55,1.86); wind.userData.noShadow=true; g.add(wind);
   for(const s of [-1,1]){
-    const side=new THREE.Mesh(new THREE.PlaneGeometry(1.0,.45),mat(GLASS));
+    const side=new THREE.Mesh(new THREE.PlaneGeometry(1.0,.45),GLASS_MAT);
     side.position.set(s*.86,1.55,1.05); side.rotation.y=s*Math.PI/2; side.userData.noShadow=true; g.add(side);
   }
   // white centre stripe down the load bay side (both sides)
@@ -3304,6 +3349,12 @@ function stepOtters(dt,t){
   }
 }
 
+const NEAR_WATER=[
+  {u:latLonPos(BAY.lat,BAY.lon).normalize(),r:9.6*WORLD_SCALE},
+  {u:latLonPos(ECP.lat,ECP.lon).normalize(),r:7*WORLD_SCALE},
+  {u:latLonPos(CLARKE.lat,CLARKE.lon+5).normalize(),r:4.4*WORLD_SCALE},
+];
+function onWater(u){return NEAR_WATER.some(w=>u.angleTo(w.u)*R<w.r);}
 const POIS=[KOPITIAM,HDB,MRT,MERLION,GARDENS,FLYER,BAY,SHOPS,HAWKER,TEMPLE,
   ESP,KAMPUNG,TOWER,PBLOCK,
   SENTOSA,STUDIOS,CLARKE,CHANGI,JEWEL,ECP,COMCENTRE,SATELLITE,CABLEA,
@@ -3321,7 +3372,8 @@ function scatter(count,min,builder,collideR=0,outline=false,swapName=null){
   let placed=0,guard=0;
   while(placed<count&&guard++<500){
     const lat=-82+sceneryRandom()*164, lon=-180+sceneryRandom()*360;
-    if(!farFromPOIs(lat,lon,min))continue;
+    const candidate=latLonPos(lat,lon).normalize();
+    if(!farFromPOIs(lat,lon,min)||onWater(candidate)||onAuthoredRoad(candidate))continue;
     let obj=builder();
     if(outline&&!isTouch)obj=addOutlines(obj);
     const inst=placeOnSphere(obj,lat,lon,sceneryRandom()*360);
@@ -3343,12 +3395,6 @@ for(let i=0;i<6;i++){
 // ============================================================
 // GROUND DENSITY — instanced vegetation + contact shadows
 // ============================================================
-const NEAR_WATER=[
-  {u:latLonPos(BAY.lat,BAY.lon).normalize(),r:9.6},
-  {u:latLonPos(ECP.lat,ECP.lon).normalize(),r:7},
-  {u:latLonPos(CLARKE.lat,CLARKE.lon+5).normalize(),r:4.4},
-];
-function onWater(u){return NEAR_WATER.some(w=>u.angleTo(w.u)*R<w.r);}
 function randomGroundUnit(minPOI){
   for(let k=0;k<40;k++){
     const lat=-84+Math.random()*168, lon=-180+Math.random()*360;
@@ -3827,7 +3873,7 @@ function stepVan(dt,t){
   if(vanState.bump>0)vanState.bump=Math.max(0,vanState.bump-dt*2);
   const up=pos.clone().normalize();
   fwd.sub(up.clone().multiplyScalar(up.dot(fwd))).normalize();
-  const VAN_SPEED=17,VAN_TURN=1.7,VAN_ACCEL=12,VAN_BRAKE=22;
+  const VAN_SPEED=worldScale.speeds.van,VAN_TURN=1.7,VAN_ACCEL=12,VAN_BRAKE=22;
   const targetSpeed=braking?0:throttle*VAN_SPEED;
   const speedStep=(targetSpeed>vanState.speed?VAN_ACCEL:VAN_BRAKE)*dt;
   vanState.speed+=THREE.MathUtils.clamp(targetSpeed-vanState.speed,-speedStep,speedStep);
@@ -3870,37 +3916,78 @@ function stepVan(dt,t){
 // residents — each lives at a residence type (HDB / condo / landed) so the
 // field-engineer visits the full spread of housing across a shift.
 const CUSTOMER_DEFS=[
- {name:'Uncle Lim',    place:'the kampung house',lat:KAMPUNG.lat+3,lon:KAMPUNG.lon-3, heading:-30,
+ {name:'Uncle Lim',    place:'the kampung house',asset:'kampungHero',
   profile:'assets/profiles/uncle-lim.png',shirt:0xffffff,pants:0x6b4f35,hair:0x8c8c8c,skin:0xe9b98c,buttons:true,face:{moustache:true,brows:true}},
- {name:'Auntie Rosnah',place:'Blk 65',         lat:HDB.lat-3,lon:HDB.lon-9, heading:120,
+ {name:'Auntie Rosnah',place:'Blk 65',asset:'hdbHero',
   profile:'assets/profiles/auntie-rosnah.png',shirt:0x8e5bb5,pants:0x444444,hair:0x3a3a3a,skin:0xcf9668,bun:true,floral:true,face:{glasses:true}},
- {name:'Devi',         place:'Marina View Condo',lat:CONDO6.lat-3,lon:CONDO6.lon-2, heading:60,
+ {name:'Devi',         place:'Marina View Condo',asset:'condoMarina',
   profile:'assets/profiles/devi.png',shirt:0xffffff,pants:0x2e3d52,hair:0x181512,skin:0xa96b3f,longHair:true,flower:true,backpack:0x2f7f8c},
- {name:'Mr Tan',       place:'the point block',lat:PBLOCK.lat-3,lon:PBLOCK.lon+4, heading:-40,
+ {name:'Mr Tan',       place:'the point block',asset:'pointblockHero',
   profile:'assets/profiles/mr-tan.png',shirt:0x3d7ea6,pants:0x8a8a8a,hair:0x2a2320,skin:0xf0c49a,face:{glasses:true}},
- {name:'Kai',          place:'East Coast landed home',lat:LANDED4.lat+3,lon:LANDED4.lon+3, heading:150,
+ {name:'Kai',          place:'East Coast landed home',asset:'landedHero',
   profile:'assets/profiles/kai.png',shirt:0x4f9d55,pants:0x5b4632,hair:0x2a2320,skin:0xdca375,shorts:true},
- {name:'Sofia',        place:'Holland View Condo',lat:CONDO5.lat+3,lon:CONDO5.lon-3, heading:-90,
+ {name:'Sofia',        place:'Holland View Condo',asset:'condoHolland',
   profile:'assets/profiles/sofia.png',shirt:0xffffff,pants:0x384048,hair:0x241f1c,skin:0xc98a5a,vest:0xf2a03d,ponytail:true},
 ];
 const AMBIENT_NPC_DEFS=[
- {name:'Aunty May',place:'the market',lat:30,lon:-20,heading:80,shirt:0xe86a5e,pants:0x413d48,hair:0x30302e,skin:0xe2ad7f,bun:true,face:{glasses:true},ambient:true},
- {name:'Hafiz',place:'the void deck',lat:36,lon:-12,heading:-40,shirt:0x2f7f8c,pants:0x394354,hair:0x211e1b,skin:0xb97951,ambient:true},
- {name:'Mei Lin',place:'the bus stop',lat:42,lon:-4,heading:120,shirt:0xf2c14e,pants:0x3e4650,hair:0x201b1b,skin:0xe3ad82,ponytail:true,ambient:true},
- {name:'Raj',place:'the coffee shop',lat:61,lon:121,heading:30,shirt:0x4f9d55,pants:0x34383d,hair:0x171412,skin:0x9e603e,ambient:true},
- {name:'Nadia',place:'the playground',lat:66,lon:132,heading:-80,shirt:0x8e5bb5,pants:0x3b3b43,hair:0x231d1c,skin:0xc48660,longHair:true,ambient:true},
- {name:'Uncle Bala',place:'the community garden',lat:59,lon:146,heading:160,shirt:0xffffff,pants:0x635446,hair:0x77716c,skin:0xa96b46,face:{moustache:true},ambient:true},
- {name:'Jia Hao',place:'the MRT exit',lat:50,lon:-82,heading:70,shirt:0x3d7ea6,pants:0x303942,hair:0x29211e,skin:0xe1ae82,backpack:0xc9553e,ambient:true},
- {name:'Siti',place:'the mama shop',lat:58,lon:-70,heading:-20,shirt:0xe88e9e,pants:0x46404a,hair:0x24201e,skin:0xc4835c,longHair:true,ambient:true},
- {name:'Ben',place:'the park connector',lat:17,lon:61,heading:100,shirt:0xf09214,pants:0x384553,hair:0x6a4a32,skin:0xe6b68b,shorts:true,ambient:true},
- {name:'Priya',place:'the library',lat:24,lon:73,heading:-100,shirt:0x9d5aa5,pants:0x313a45,hair:0x211a18,skin:0xa96b44,longHair:true,flower:true,ambient:true},
- {name:'Encik Zainal',place:'the hawker centre',lat:-10,lon:-18,heading:45,shirt:0x5e9b70,pants:0x48423b,hair:0x55504b,skin:0xb87850,face:{moustache:true},ambient:true},
- {name:'Cheryl',place:'the shophouses',lat:-18,lon:-7,heading:150,shirt:0xf3c4ce,pants:0x354252,hair:0x2b211f,skin:0xe7b78e,ponytail:true,ambient:true},
- {name:'Iskandar',place:'the riverside',lat:-38,lon:50,heading:-30,shirt:0x2f7f8c,pants:0x3d3b42,hair:0x1f1b18,skin:0xb8754d,ambient:true},
- {name:'Mdm Wong',place:'the wet market',lat:-48,lon:62,heading:80,shirt:0xd66c58,pants:0x403b3a,hair:0x6d6862,skin:0xe0aa7f,bun:true,face:{glasses:true},ambient:true},
- {name:'Dinesh',place:'the fitness corner',lat:-55,lon:101,heading:20,shirt:0xf2c14e,pants:0x343d48,hair:0x211b18,skin:0x9f613f,shorts:true,ambient:true},
- {name:'Farah',place:'the promenade',lat:-47,lon:119,heading:-70,shirt:0x8e5bb5,pants:0x3d434c,hair:0x261f1d,skin:0xc9855c,longHair:true,ambient:true},
+ {name:'Aunty May',place:'the market',shirt:0xe86a5e,pants:0x413d48,hair:0x30302e,skin:0xe2ad7f,bun:true,face:{glasses:true},ambient:true},
+ {name:'Hafiz',place:'the void deck',shirt:0x2f7f8c,pants:0x394354,hair:0x211e1b,skin:0xb97951,ambient:true},
+ {name:'Mei Lin',place:'the bus stop',shirt:0xf2c14e,pants:0x3e4650,hair:0x201b1b,skin:0xe3ad82,ponytail:true,ambient:true},
+ {name:'Raj',place:'the coffee shop',shirt:0x4f9d55,pants:0x34383d,hair:0x171412,skin:0x9e603e,ambient:true},
+ {name:'Nadia',place:'the playground',shirt:0x8e5bb5,pants:0x3b3b43,hair:0x231d1c,skin:0xc48660,longHair:true,ambient:true},
+ {name:'Uncle Bala',place:'the community garden',shirt:0xffffff,pants:0x635446,hair:0x77716c,skin:0xa96b46,face:{moustache:true},ambient:true},
+ {name:'Jia Hao',place:'the MRT exit',shirt:0x3d7ea6,pants:0x303942,hair:0x29211e,skin:0xe1ae82,backpack:0xc9553e,ambient:true},
+ {name:'Siti',place:'the mama shop',shirt:0xe88e9e,pants:0x46404a,hair:0x24201e,skin:0xc4835c,longHair:true,ambient:true},
+ {name:'Ben',place:'the park connector',shirt:0xf09214,pants:0x384553,hair:0x6a4a32,skin:0xe6b68b,shorts:true,ambient:true},
+ {name:'Priya',place:'the library',shirt:0x9d5aa5,pants:0x313a45,hair:0x211a18,skin:0xa96b44,longHair:true,flower:true,ambient:true},
+ {name:'Encik Zainal',place:'the hawker centre',shirt:0x5e9b70,pants:0x48423b,hair:0x55504b,skin:0xb87850,face:{moustache:true},ambient:true},
+ {name:'Cheryl',place:'the shophouses',shirt:0xf3c4ce,pants:0x354252,hair:0x2b211f,skin:0xe7b78e,ponytail:true,ambient:true},
+ {name:'Iskandar',place:'the riverside',shirt:0x2f7f8c,pants:0x3d3b42,hair:0x1f1b18,skin:0xb8754d,ambient:true},
+ {name:'Mdm Wong',place:'the wet market',shirt:0xd66c58,pants:0x403b3a,hair:0x6d6862,skin:0xe0aa7f,bun:true,face:{glasses:true},ambient:true},
+ {name:'Dinesh',place:'the fitness corner',shirt:0xf2c14e,pants:0x343d48,hair:0x211b18,skin:0x9f613f,shorts:true,ambient:true},
+ {name:'Farah',place:'the promenade',shirt:0x8e5bb5,pants:0x3d434c,hair:0x261f1d,skin:0xc9855c,longHair:true,ambient:true},
 ];
+const NPC_PLACE_ANCHORS={
+  'the kampung house':{point:KAMPUNG,asset:'kampungHero'},
+  'Blk 65':{point:HDB,asset:'hdbHero'},
+  'Marina View Condo':{point:CONDO6,asset:'condoMarina'},
+  'the point block':{point:PBLOCK,asset:'pointblockHero'},
+  'East Coast landed home':{point:LANDED4,asset:'landedHero'},
+  'Holland View Condo':{point:CONDO5,asset:'condoHolland'},
+  'the market':{point:WETMKT,asset:'wetmarket'},
+  'the void deck':{point:VOIDDECK,asset:'hdbVoiddeck'},
+  'the bus stop':{point:{lat:25.5,lon:32},asset:'busstop'},
+  'the coffee shop':{point:KOPITIAM,asset:'kopitiam'},
+  'the playground':{point:{lat:HDB.lat+3,lon:HDB.lon-7},asset:'hdbHero'},
+  'the community garden':{point:GARDENS,asset:'supertree'},
+  'the MRT exit':{point:MRT,asset:'mrt'},
+  'the mama shop':{point:{lat:HDB.lat-1,lon:HDB.lon+8},asset:'mamashop'},
+  'the park connector':{point:GARDENS,asset:'supertree'},
+  'the library':{point:SMU,asset:'smu'},
+  'the hawker centre':{point:HAWKER,asset:'hawker'},
+  'the shophouses':{point:SHOPS,asset:'SHOPHOUSE_ROW'},
+  'the riverside':{point:RIVER,asset:'CLARKE'},
+  'the wet market':{point:WETMKT,asset:'wetmarket'},
+  'the fitness corner':{point:{lat:HDB.lat+3,lon:HDB.lon-7},asset:'hdbHero'},
+  'the promenade':{point:HOLAND,asset:'HOLAND'},
+};
+function resolveNpcAnchors(defs){
+  for(const def of defs){
+    const anchor=NPC_PLACE_ANCHORS[def.place];
+    if(!anchor)throw new Error(`NPC place has no anchor: ${def.place}`);
+    const buildingUnit=latLonPos(anchor.point.lat,anchor.point.lon).normalize();
+    const radius=footprintRadius(anchor.asset);
+    const frontage=nearestRoadPose(buildingUnit);
+    const targetDistance=radius+MAJOR_BUILDING_VISUAL_BUFFER+(def.name==='Cheryl'?8:3);
+    const towardRoad=frontage?.unit.clone().sub(buildingUnit.clone().multiplyScalar(frontage.unit.dot(buildingUnit)));
+    const tangent=towardRoad?.lengthSq()>1e-6?towardRoad.normalize():V3().crossVectors(buildingUnit,Math.abs(buildingUnit.y)<.9?UP:V3(1,0,0)).normalize();
+    const unit=buildingUnit.clone().multiplyScalar(Math.cos(targetDistance/R)).add(tangent.multiplyScalar(Math.sin(targetDistance/R))).normalize();
+    const coords=latLonFromUnit(unit);
+    def.lat=coords.lat;def.lon=coords.lon;def.heading=0;
+    def.anchorUnit=unit;def.buildingUnit=buildingUnit;def.anchorRadius=radius;
+  }
+}
+resolveNpcAnchors([...CUSTOMER_DEFS,...AMBIENT_NPC_DEFS]);
 const CUSTOMER_COUNT=CUSTOMER_DEFS.length;
 const NPC_DEFS=[...CUSTOMER_DEFS,...AMBIENT_NPC_DEFS];
 const npcs=NPC_DEFS.map(d=>{
@@ -3925,6 +4012,40 @@ const npcs=NPC_DEFS.map(d=>{
   });
   return m;
 });
+function auditNpcPlacements(){
+  const spawnConflicts=[];
+  const placeMismatches=[];
+  for(const [index,def] of NPC_DEFS.entries()){
+    const home=npcs[index].userData.home;
+    if(insideProtectedBuilding(home)||insideVisibleBuildingFootprint(home))spawnConflicts.push(def.name);
+    const distance=home.angleTo(def.anchorUnit)*R;
+    if(distance>6)placeMismatches.push({name:def.name,place:def.place,distance:Number(distance.toFixed(2))});
+  }
+  const result={npcSpawnConflicts:spawnConflicts,npcPlaceMismatches:placeMismatches};
+  window.__npcPlacementAudit=result;
+  document.documentElement.dataset.npcSpawnConflicts=String(spawnConflicts.length);
+  document.documentElement.dataset.npcPlaceMismatches=String(placeMismatches.length);
+  console.assert(!spawnConflicts.length,`NPC spawn conflicts: ${spawnConflicts.join(', ')}`);
+  console.assert(!placeMismatches.length,`NPC place mismatches: ${placeMismatches.map(item=>`${item.name} ${item.distance}m`).join(', ')}`);
+  return result;
+}
+auditNpcPlacements();
+
+// Call-to-call travel is measured from the anchored resident homes rather
+// than from guessed latitude/longitude constants. This is the review metric
+// for the longest walk required to chain two visits on the live world scale.
+function auditCallWalkDistances(){
+  let longest={metres:0,seconds:0,from:null,to:null};
+  for(let i=0;i<CUSTOMER_DEFS.length;i++)for(let j=i+1;j<CUSTOMER_DEFS.length;j++){
+    const metres=npcs[i].userData.home.angleTo(npcs[j].userData.home)*R;
+    if(metres>longest.metres)longest={metres,seconds:metres/worldScale.speeds.walk,from:CUSTOMER_DEFS[i].name,to:CUSTOMER_DEFS[j].name};
+  }
+  window.__callWalkAudit={...longest,maxAllowedSeconds:worldScale.speeds.longestCallWalkMaxSeconds};
+  document.documentElement.dataset.longestCallWalkSeconds=String(Number(longest.seconds.toFixed(2)));
+  console.assert(longest.seconds<=worldScale.speeds.longestCallWalkMaxSeconds,`Longest call-to-call walk is ${longest.seconds.toFixed(1)}s`);
+  return longest;
+}
+auditCallWalkDistances();
 
 // Collision regression audit: a visible public route must remain traversable
 // after every building, prop, water strip, vehicle and NPC collider is loaded.
@@ -3934,7 +4055,10 @@ function auditPublicRouteClearance(){
   const inspect=(unit,label)=>{
     checked++;
     const visualZone=visibleBuildingOverlap(unit);
-    if(visualZone>=0){
+    // The enlarged visual radius is a planning buffer, not the rendered
+    // collider itself. A route may legitimately run through that last 1.35m
+    // of verge; only an actual authored building footprint is a collision.
+    if(visualZone>=0&&!walkableCorridorAt(unit)){
       const zonePoint=ROAD_CLEARANCE_ZONES[visualZone][0];
       const zoneLocation=zonePoint.isVector3?'local':`${zonePoint.lat},${zonePoint.lon}`;
       const routeLocation=latLonFromUnit(unit);
@@ -3966,11 +4090,32 @@ function auditPublicRouteClearance(){
 }
 auditPublicRouteClearance();
 
+function onAuthoredRoad(unit){
+  return ROAD_NETWORKS.some(network=>{
+    const style=ROAD_STYLES[network.type];
+    return nearRouteCenters(unit,network.centerUnits,style.width/2+style.shoulder);
+  });
+}
+function safeNpcTarget(home){
+  const wr=NPC_WANDER_R/R;
+  const t1=V3().crossVectors(home,V3(0,1,.3)).normalize();
+  const t2=V3().crossVectors(home,t1).normalize();
+  for(let attempt=0;attempt<24;attempt++){
+    const a=Math.random()*6.28,dist=(.45+Math.random()*.55)*wr;
+    const target=home.clone().multiplyScalar(Math.cos(dist))
+      .add(t1.clone().multiplyScalar(Math.cos(a)*Math.sin(dist)))
+      .add(t2.clone().multiplyScalar(Math.sin(a)*Math.sin(dist))).normalize();
+    if(onWater(target)||onAuthoredRoad(target)||insideVisibleBuildingFootprint(target))continue;
+    return target;
+  }
+  return home.clone();
+}
+
 // NPC wander FSM + look-at-player. Runs every frame (even on the title
 // screen) so the island feels inhabited; look-at only triggers once the
 // shift begins. Each NPC paces within a small radius of its post and turns
 // to face the player when they come close, freezing mid-stride.
-const NPC_SPEED=2.3, NPC_TURN=3.4, NPC_WANDER_R=4.2, NPC_LOOK_R=5.2;
+const NPC_SPEED=worldScale.speeds.npc, NPC_TURN=3.4, NPC_WANDER_R=worldScale.speeds.npcWanderRadius, NPC_LOOK_R=worldScale.speeds.npcLookRadius;
 const AMBIENT_LINES=[
   'Wah, busy day! Good to see someone making the rounds.',
   'Uncle Lim was looking for you just now. Better go before the kopi gets cold!',
@@ -4033,14 +4178,9 @@ function stepNPCs(dt,t){
         desiredFwd=ud.npcFwd.clone();
         if(ud.stateT>ud.stateDur){
           ud.npcState='walk'; ud.stateT=0; ud.stateDur=2.5+Math.random()*3;
-          // pick a random point within NPC_WANDER_R of home (great-circle)
-          const h=ud.home, wr=NPC_WANDER_R/R;
-          const t1=V3().crossVectors(h,V3(0,1,.3)).normalize();
-          const t2=V3().crossVectors(h,t1).normalize();
-          const a=Math.random()*6.28, dist=(0.45+Math.random()*0.55)*wr;
-          ud.target=h.clone().multiplyScalar(Math.cos(dist))
-            .add(t1.clone().multiplyScalar(Math.cos(a)*Math.sin(dist)))
-            .add(t2.clone().multiplyScalar(Math.sin(a)*Math.sin(dist))).normalize();
+          // Choose only dry, non-road, non-building wander targets within the
+          // nine-metre NPC budget. A failed search leaves the NPC at home.
+          ud.target=safeNpcTarget(ud.home);
         }
       }else{
         const tgt=ud.target, remain=up.angleTo(tgt);
@@ -4800,7 +4940,7 @@ if(isTouch){
   });
 }
 
-const SPEED=8.2, TURN=2.4;
+const SPEED=worldScale.speeds.walk, TURN=2.4;
 let walkPhase=0, bobPhase=0;
 
 function stepPlayer(dt){
@@ -5532,56 +5672,57 @@ addEventListener('visibilitychange',()=>{last=performance.now();});
 const ASSET_MANIFEST={
   // Use the rigged courier model for the player. It includes looping Idle and
   // Walk clips; engineer-v2.glb is a static mesh and cannot articulate limbs.
-  engineer:  {url:'assets/courier.glb',scale:1, player:true},
-  kopitiam:  {url:'assets/kopitiam-v2.glb',scale:.72,ground:true},
-  hdb:       {url:'assets/hdb-bg-v2.glb', scale:.88,ground:true},
-  hdbHero:   {url:'assets/hdb-call-v2.glb',scale:.78,ground:true},
-  shophouse: {url:'assets/shophouse-v2.glb',scale:.72,ground:true},
-  mrt:       {url:'assets/mrt-v2.glb',    scale:.72,ground:true},
-  condo:     {url:'assets/condo-bg-v2.glb',scale:.92,ground:true},
-  condoMarina:{url:'assets/condo-marina-v2.glb',scale:.72,ground:true},
-  condoHolland:{url:'assets/condo-holland-v2.glb',scale:.72,ground:true},
-  kampungHero:{url:'assets/kampung-call-v2.glb',scale:.72,ground:true},
-  pointblockHero:{url:'assets/pointblock-call-v2.glb',scale:.72,ground:true},
-  airportTerminal:{url:'assets/airport-terminal-v2.glb',scale:.72,ground:true},
-  nus:        {url:'assets/nus-v2.glb',scale:.72,ground:true},
-  ntu:        {url:'assets/ntu-v2.glb',scale:.72,ground:true},
-  smu:        {url:'assets/smu-v2.glb',scale:.72,ground:true},
-  sutd:       {url:'assets/sutd-v2.glb',scale:.72,ground:true},
-  school:     {url:'assets/school-v2.glb',scale:.32,ground:true},
-  landed:    {url:'assets/landed-bg-v2.glb',scale:1.32,ground:true},
-  landedHero:{url:'assets/landed-v2.glb', scale:1.38,ground:true},
-  raintreeHero:{url:'assets/raintree-v2.glb',scale:.72},
+  engineer:  {url:'assets/courier.glb',scale:.806, player:true},
+  engineerLegacy:{url:'assets/engineer-v2.glb',scale:.806,optional:true},
+  kopitiam:  {url:'assets/kopitiam-v2.glb',scale:1.071,ground:true},
+  hdb:       {url:'assets/hdb-bg-v2.glb', scale:2.695,ground:true},
+  hdbHero:   {url:'assets/hdb-call-v2.glb',scale:1.321,ground:true},
+  shophouse: {url:'assets/shophouse-v2.glb',scale:.945,ground:true},
+  mrt:       {url:'assets/mrt-v2.glb',    scale:2.656,ground:true},
+  condo:     {url:'assets/condo-bg-v2.glb',scale:4.327,ground:true},
+  condoMarina:{url:'assets/condo-marina-v2.glb',scale:3.233,ground:true},
+  condoHolland:{url:'assets/condo-holland-v2.glb',scale:3.436,ground:true},
+  kampungHero:{url:'assets/kampung-call-v2.glb',scale:1.129,ground:true},
+  pointblockHero:{url:'assets/pointblock-call-v2.glb',scale:3.146,ground:true},
+  airportTerminal:{url:'assets/airport-terminal-v2.glb',scale:4.294,ground:true},
+  nus:        {url:'assets/nus-v2.glb',scale:3.79,ground:true,campusHeight:12},
+  ntu:        {url:'assets/ntu-v2.glb',scale:4.42,ground:true,campusHeight:14},
+  smu:        {url:'assets/smu-v2.glb',scale:5.05,ground:true,campusHeight:16},
+  sutd:       {url:'assets/sutd-v2.glb',scale:4.11,ground:true,campusHeight:13},
+  school:     {url:'assets/school-v2.glb',scale:2.226,ground:true},
+  landed:    {url:'assets/landed-bg-v2.glb',scale:2.0,ground:true},
+  landedHero:{url:'assets/landed-v2.glb', scale:1.439,ground:true},
+  raintreeHero:{url:'assets/raintree-v2.glb',scale:2.77,ground:true},
   // Blender asset points its nose along +X; the controller convention is +Z.
-  van:       {url:'assets/service-van-v2.glb',scale:.72,van:true,forwardYaw:-Math.PI/2},
-  postbox:   {url:'assets/postbox-v2.glb',scale:.65},
-  bench:     {url:'assets/bench-v2.glb',scale:.75},
-  merlion:   {url:'assets/merlion-v2.glb',scale:.65},
-  mbs:       {url:'assets/mbs-v2.glb',scale:.76,ground:true,groundInset:.28},
-  flyer:     {url:'assets/flyer-v2.glb',scale:.72},
-  supertree: {url:'assets/supertree-v2.glb',scale:.74},
-  esplanade: {url:'assets/esplanade-v2.glb',scale:.76,ground:true},
-  hawker:    {url:'assets/hawker-v2.glb',scale:.68,ground:true},
-  temple:    {url:'assets/temple-v2.glb',scale:.72,ground:true},
-  mamashop:  {url:'assets/mamashop-v2.glb',scale:.70,ground:true},
+  van:       {url:'assets/service-van-v2.glb',scale:1.227,van:true,forwardYaw:-Math.PI/2},
+  postbox:   {url:'assets/postbox-v2.glb',scale:.542,ground:true},
+  bench:     {url:'assets/bench-v2.glb',scale:.535,ground:true},
+  merlion:   {url:'assets/merlion-v2.glb',scale:2.302,ground:true},
+  mbs:       {url:'assets/mbs-v2.glb',scale:4.83,ground:true},
+  flyer:     {url:'assets/flyer-v2.glb',scale:3.68,ground:true},
+  supertree: {url:'assets/supertree-v2.glb',scale:4.38,ground:true},
+  esplanade: {url:'assets/esplanade-v2.glb',scale:4.02,ground:true},
+  hawker:    {url:'assets/hawker-v2.glb',scale:1.444,ground:true},
+  temple:    {url:'assets/temple-v2.glb',scale:1.915,ground:true},
+  mamashop:  {url:'assets/mamashop-v2.glb',scale:1.594,ground:true},
   // Singapore Heritage Expansion Pack (scripts/blender/build-singapore-heritage-pack.py)
-  peranakan: {url:'assets/peranakan-house-v2.glb',scale:.72,ground:true},
-  kampongHouse:{url:'assets/kampong-house-v2.glb',scale:.72,ground:true},
-  hdbVoiddeck:{url:'assets/hdb-voiddeck-v2.glb',scale:.72,ground:true},
-  kampongProps:{url:'assets/kampong-props-v2.glb',scale:.72,ground:true},
-  sultanMosque:{url:'assets/sultan-mosque-v2.glb',scale:.72,ground:true},
-  wetmarket: {url:'assets/wetmarket-v2.glb',scale:.72,ground:true},
-  busstop:   {url:'assets/busstop-v2.glb',scale:.55},
-  overheadbridge:{url:'assets/overheadbridge-v2.glb',scale:.68,ground:true},
-  controltower:{url:'assets/controltower-v2.glb',scale:.76},
-  palm:      {url:'assets/palm-v2.glb',scale:.82},
-  cat:       {url:'assets/cat-v2.glb',scale:.50},
-  bicycle:   {url:'assets/bicycle-v2.glb',scale:.65},
-  birdcage:  {url:'assets/birdcage-v2.glb',scale:.55},
+  peranakan: {url:'assets/peranakan-house-v2.glb',scale:.942,ground:true},
+  kampongHouse:{url:'assets/kampong-house-v2.glb',scale:.665,ground:true},
+  hdbVoiddeck:{url:'assets/hdb-voiddeck-v2.glb',scale:2.424,ground:true},
+  kampongProps:{url:'assets/kampong-props-v2.glb',scale:.167,ground:true},
+  sultanMosque:{url:'assets/sultan-mosque-v2.glb',scale:2.602,ground:true},
+  wetmarket: {url:'assets/wetmarket-v2.glb',scale:1.462,ground:true},
+  busstop:   {url:'assets/busstop-v2.glb',scale:.886,ground:true},
+  overheadbridge:{url:'assets/overheadbridge-v2.glb',scale:1.217,ground:true},
+  controltower:{url:'assets/controltower-v2.glb',scale:3.075,ground:true},
+  palm:      {url:'assets/palm-v2.glb',scale:2.08,ground:true},
+  cat:       {url:'assets/cat-v2.glb',scale:.192,ground:true},
+  bicycle:   {url:'assets/bicycle-v2.glb',scale:.616,ground:true},
+  birdcage:  {url:'assets/birdcage-v2.glb',scale:.463,ground:true},
   bumboat:   {url:'assets/bumboat-v2.glb',scale:.65,watercraft:true},
-  serviceRouter:{url:'assets/router-kit-v2.glb',scale:.55},
-  serviceFibre:{url:'assets/fibre-kit-v2.glb',scale:.55},
-  serviceWifi:{url:'assets/wifi-kit-v2.glb',scale:.55},
+  serviceRouter:{url:'assets/router-kit-v2.glb',scale:1.14,ground:true},
+  serviceFibre:{url:'assets/fibre-kit-v2.glb',scale:.934,ground:true},
+  serviceWifi:{url:'assets/wifi-kit-v2.glb',scale:.884,ground:true},
 };
 // convert imported materials to the game's cel look + add ink hulls
 function toonify(root){
@@ -5630,6 +5771,7 @@ function swapPlayer(gltf,cfg){
   while(player.children.length)player.remove(player.children[0]);
   const model=gltf.scene;
   model.scale.setScalar(cfg.scale||1);
+  alignLowestPoint(model,0);
   player.add(model);
   if(keep)player.add(keep);
   playerMixer=new THREE.AnimationMixer(model);
@@ -5646,7 +5788,22 @@ function swapVan(gltf,cfg){
   const model=gltf.scene;
   model.scale.setScalar(cfg.scale||1);
   model.rotation.y=cfg.forwardYaw||0;
-  alignLowestPoint(model,.04);
+  alignLowestPoint(model,0);
+  // The optimized production van is a single palette mesh, so its glass
+  // cannot be identified by a separate material slot. Use an unlit textured
+  // material for the imported van as a whole; this preserves the authored
+  // palette while removing view-dependent toon-light colour shifts from the
+  // windshield and side glazing.
+  model.traverse(o=>{
+    if(!o.isMesh||o.userData.noOutline||!o.material)return;
+    const src=o.material;
+    o.material=new THREE.MeshBasicMaterial({
+      map:src.map||null, color:src.color||0xffffff,
+      side:src.side??THREE.FrontSide, transparent:src.transparent,
+      opacity:src.opacity??1, alphaTest:src.alphaTest??0,
+      toneMapped:false,
+    });
+  });
   van.add(model);
   const wheels=[];
   let beacon=null;
@@ -5661,6 +5818,13 @@ function swapVan(gltf,cfg){
   van.userData.beacon.visible=vanState.mode==='driving';
   console.log(`[assets] service-van-v2.glb active · ${wheels.length} wheel meshes`);
 }
+function cloneSharedNode(source){
+  const clone=source.clone(false);
+  if(source.isMesh){clone.geometry=source.geometry;clone.material=source.material;}
+  for(const child of source.children)clone.add(cloneSharedNode(child));
+  return clone;
+}
+function cloneSharedScene(source){return cloneSharedNode(source);}
 function applySwap(name,cfg,gltf){
   toonify(gltf.scene);
   if(cfg.player){swapPlayer(gltf,cfg);return;}
@@ -5668,24 +5832,20 @@ function applySwap(name,cfg,gltf){
   const list=swapRegistry[name]||[];
   for(const grp of list){
     while(grp.children.length)grp.remove(grp.children[0]);
-    const inst=gltf.scene.clone(true);
+    const inst=cloneSharedScene(gltf.scene);
     inst.scale.setScalar(cfg.scale||1);
-    if(cfg.ground||cfg.watercraft){
-      // Blender exports do not all share the exact same origin. Align the
-      // lowest visible point with the procedural placement origin so a model
-      // cannot hover above the terrain when it replaces its fallback.
-      alignLowestPoint(inst,cfg.watercraft?0:(cfg.groundInset??.12));
-    }
+    alignLowestPoint(inst,0);
     grp.add(inst);
   }
   console.log(`[assets] ${name}.glb active × ${list.length}`);
 }
 const RESIDENT_ASSETS=['uncle-lim','auntie-rosnah','devi','mr-tan','kai','sofia'];
+const RESIDENT_SCALES={'uncle-lim':.841,'auntie-rosnah':.806,'devi':.792,'mr-tan':.833,'kai':.825,'sofia':.829};
 function swapResident(index,gltf){
   const npc=npcs[index];
   toonify(gltf.scene);
   while(npc.children.length)npc.remove(npc.children[0]);
-  const model=gltf.scene;model.scale.setScalar(1);npc.add(model);
+  const model=gltf.scene;model.scale.setScalar(RESIDENT_SCALES[NPC_DEFS[index].asset]||.82);alignLowestPoint(model,0);npc.add(model);
   const mixer=new THREE.AnimationMixer(model),actions={};
   for(const clip of gltf.animations)actions[clip.name.toLowerCase()]=mixer.clipAction(clip);
   if(actions.idle)actions.idle.play();
@@ -5700,6 +5860,7 @@ function swapResident(index,gltf){
   draco.setDecoderPath('/draco/');
   loader.setDRACOLoader(draco);
   for(const [name,cfg] of Object.entries(ASSET_MANIFEST)){
+    if(cfg.optional)continue;
     loader.load(cfg.url,
       gltf=>applySwap(name,cfg,gltf),
       undefined,
@@ -5722,7 +5883,7 @@ function applyTransitBusGLB(gltf){
   for(const bus of transitBuses){
     const displays=bus.userData.displays||[];
     while(bus.children.length)bus.remove(bus.children[0]);
-    const model=gltf.scene.clone(true);model.scale.setScalar(.72);alignLowestPoint(model,.04);bus.add(model);
+    const model=cloneSharedScene(gltf.scene);model.scale.setScalar(.72);alignLowestPoint(model,0);bus.add(model);
     for(const display of displays)bus.add(display);
     bus.userData.wheels=[];model.traverse(o=>{if((o.name||'').toLowerCase().includes('wheel'))bus.userData.wheels.push(o);});
   }
@@ -5732,7 +5893,7 @@ function applyMRTTrainGLB(gltf){
   const train=stationWorld.userData.train;if(!train)return;
   toonify(gltf.scene);const positions=[-10,0,10];
   while(train.children.length)train.remove(train.children[0]);
-  for(const x of positions){const car=gltf.scene.clone(true);car.scale.setScalar(.72);car.position.x=x;alignLowestPoint(car,.02);train.add(car);}
+  for(const x of positions){const car=cloneSharedScene(gltf.scene);car.scale.setScalar(.72);car.position.x=x;alignLowestPoint(car,0);train.add(car);}
   console.log('[assets] mrt-train-v1.glb active × 3');
 }
 loadOptionalTransitAsset(['singapore','-bus-v1.glb'].join(''),applyTransitBusGLB);

@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "validate": "node scripts/validate-project.mjs",
-    "test": "npm run validate && npm run test:performance && npm run format:check && npm run build",
+    "audit:world": "node scripts/audit-world.mjs",
+    "test": "npm run validate && npm run audit:world && npm run test:performance && npm run format:check && npm run build",
     "test:performance": "node scripts/check-performance-budget.mjs",
     "format:check": "node scripts/check-format.mjs"
   },
@@ -20,7 +21,7 @@
     "three": "^0.180.0"
   },
   "devDependencies": {
-    "vite": "^7.3.6",
-    "vite-plugin-static-copy": "^3.4.0"
+    "@gltf-transform/core": "^4.4.2",
+    "vite": "^7.3.6"
   }
 }
