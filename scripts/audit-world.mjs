@@ -168,10 +168,12 @@ function walk(dir) {
 }
 walk(assetsRoot);
 const unreferenced = allGlbs.filter((file) => !referenced.has(file));
+const legacyBrandedAssets = allGlbs.filter((file) => /(?:smu|nus|ntu|sutd|mbs|merlion|esplanade|singapore-bus|mrt-train)/i.test(path.basename(file)));
 const report = {
   generatedAt: new Date().toISOString(),
   manifest: entries,
   unreferenced,
+  legacyBrandedAssets,
   failures,
   summary: {
     assets: entries.length,
@@ -193,6 +195,7 @@ for (const entry of entries) {
   if (!entry.compressed) failures.push(`${entry.name}: GLB is not Draco-compressed`);
 }
 if (unreferenced.length) failures.push(`Unreferenced GLBs: ${unreferenced.join(', ')}`);
+if (legacyBrandedAssets.length) failures.push(`Legacy branded asset filenames: ${legacyBrandedAssets.join(', ')}`);
 if (failures.length) {
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   if (strict) process.exitCode = 1;

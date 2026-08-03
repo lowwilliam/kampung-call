@@ -1,6 +1,6 @@
 # Kampung Call
 
-Kampung Call is a Three.js browser game set across a playful, stylised Singapore. Explore its neighbourhoods, meet six residents, solve home-connectivity problems, and complete every call before the shift ends.
+Kampung Call is a Three.js browser game set across a playful, stylised island. Explore its neighbourhoods, meet six residents, solve home-connectivity problems, and complete every call before the shift ends.
 
 The game combines a small open-world Three.js experience with hands-on service missions. Each customer visit asks the player to inspect symptoms, choose diagnostic actions, get immediate feedback, and either restore service or make the correct escalation.
 
@@ -19,8 +19,8 @@ For each call, the player follows the target compass to a resident, holds a shor
 
 ## Highlights
 
-- A navigable miniature Singapore built with Three.js, including housing estates, campuses, civic landmarks, roads, bridges, watercraft, and moving street life.
-- Three Singapore bus examples (routes 65, 97, and 143) sharing one reusable transit model, including one moving Central Corridor service.
+- A navigable miniature island built with Three.js, including housing estates, campuses, civic landmarks, roads, bridges, watercraft, and moving street life.
+- Three island bus examples (routes 65, 97, and 143) sharing one reusable transit model, including one moving Central Corridor service.
 - An enterable Kampung Central MRT pocket world with a concourse, stairs, platform, tunnel, and a three-car MRT set. Walk back upstairs and press Enter to return to the map.
 - Walking and drivable-van traversal with route guidance and collision-aware roads.
 - Six resident characters with portraits, dialogue, randomized visit order, and persistent in-progress diagnosis state.

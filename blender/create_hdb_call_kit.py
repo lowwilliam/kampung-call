@@ -145,7 +145,7 @@ def build_hdb():
     cube("Main residential slab", (0, .45, 5.0), (3.15, 1.55, 3.95), CREAM, .14, parent=h)
     cube("Stair core", (-3.55, .58, 4.65), (.62, 1.40, 4.25), TEAL, .16, parent=h)
     cube("Lift core", (3.18, 1.02, 4.65), (.55, 1.0, 4.25), CORAL, .14, parent=h)
-    # Open void deck gives the block a Singapore silhouette.
+    # Open void deck gives the block a Island silhouette.
     cube("Void deck shadow", (0, -.10, .92), (3.02, 1.36, .70), ROAD, .12, parent=h)
     for x in (-2.55, -1.25, .05, 1.35, 2.55):
         cylinder("Void deck column", (x, -.45, 1.05), .15, 1.92, WHITE, 14, parent=h)

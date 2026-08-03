@@ -2,7 +2,7 @@
   "name": "kampung-call",
   "version": "0.1.0",
   "private": true,
-  "description": "A Singapore field-service training experience built with Three.js.",
+  "description": "An island field-service training experience built with Three.js.",
   "type": "module",
   "scripts": {
     "dev": "vite",

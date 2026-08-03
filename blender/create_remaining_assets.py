@@ -35,7 +35,7 @@ WOOD2 = material("Sun timber", (.60, .34, .14), .86)
 GREEN = material("Plant deep", (.035, .25, .12), .9)
 GREEN2 = material("Plant mid", (.17, .46, .18), .9)
 GREEN3 = material("Plant lime", (.43, .62, .18), .9)
-RED = material("Singapore red", (.71, .05, .035), .75)
+RED = material("Island red", (.71, .05, .035), .75)
 BLUE = material("Utility blue", (.08, .32, .54), .76)
 
 
@@ -378,12 +378,12 @@ def build_streetlamp():
 
 
 def build_postbox():
-    r=empty("SINGAPORE POSTBOX")
+    r=empty("ISLAND POSTBOX")
     cube("Postbox body",(0,0,1.08),(1.0,.72,1.85),RED,r,edge=.15)
     cube("Postbox crown",(0,0,2.06),(1.08,.80,.30),CHALK,r,edge=.12)
     cube("Posting slot",(0,-.39,1.55),(.65,.06,.14),INK,r,edge=.035)
     cube("Collection plate",(0,-.40,1.13),(.62,.05,.40),CHALK,r,edge=.035)
-    label("SINGAPORE\nPOST",(0,-.44,1.15),.14,RED,r)
+    label("ISLAND\nPOST",(0,-.44,1.15),.14,RED,r)
     cyl("Postbox foot",(0,0,.18),.32,.36,METAL,r,16)
     return r
 

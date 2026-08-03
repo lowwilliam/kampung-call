@@ -20,7 +20,7 @@ def material(name, color, metallic=0.0, roughness=0.72):
     bsdf.inputs["Metallic"].default_value = metallic
     return m
 
-NAVY = material("Singtel Navy", (0.035, 0.075, 0.12))
+NAVY = material("Islandlink Navy", (0.035, 0.075, 0.12))
 ORANGE = material("Hi-vis Orange", (1.0, 0.29, 0.045))
 REFLECT = material("Reflective Tape", (0.78, 0.86, 0.82), metallic=0.15, roughness=0.3)
 SKIN = material("Skin", (0.58, 0.29, 0.16))
@@ -29,7 +29,7 @@ BLACK = material("Work Boots", (0.025, 0.03, 0.035))
 TOOL = material("Tool Belt", (0.07, 0.06, 0.05))
 METAL = material("Tool Metal", (0.28, 0.33, 0.35), metallic=0.6, roughness=0.3)
 WHITE = material("Badge", (0.9, 0.93, 0.92))
-RED = material("Singtel Red", (0.78, 0.025, 0.02))
+RED = material("Islandlink Red", (0.78, 0.025, 0.02))
 
 def bevel(obj, amount=0.035, segments=2):
     mod = obj.modifiers.new("Soft industrial edges", "BEVEL")
