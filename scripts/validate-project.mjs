@@ -154,7 +154,7 @@ assert(/function localBuildingPose\(i\)[\s\S]{0,1200}LOCAL_BUILDING_SETBACK/.tes
   'Local building placement and road clearance must share one deterministic pose function.');
 assert(/function auditBuildingSpacing\(\)[\s\S]{0,1200}window\.__buildingSpacingAudit=result/.test(html),
   'City planning must expose a runtime spacing audit for major and local buildings.');
-assert(/surfR\(up2\)\+VEHICLE_SURFACE_OFFSET/.test(html),
+assert(/alignTransitObject\(van,up2,fwd,[^)]*VEHICLE_SURFACE_OFFSET\)/.test(html),
   'Moving service vehicles must be aligned to the rendered road surface.');
 assert(/forwardYaw:-Math\.PI\/2/.test(html)
     && /model\.rotation\.y=cfg\.forwardYaw\|\|0/.test(html),

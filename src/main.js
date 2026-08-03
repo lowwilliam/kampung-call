@@ -643,6 +643,8 @@ const ROAD_NETWORKS=[
   {name:'CENTRAL ESTATE',type:'local',points:[{lat:-10,lon:-22},{lat:-24,lon:-2}]},
   {name:'BAY ESTATE',type:'local',points:[{lat:-60,lon:96},{lat:-44,lon:120}]},
   {name:'CHANGI ESTATE',type:'local',points:[{lat:42,lon:165},{lat:65,lon:-165}]},
+  {name:'HDB BUS STOP LINK',type:'local',points:[{lat:25.5,lon:32},A.KOPITIAM]},
+  {name:'MRT INTERCHANGE LINK',type:'local',points:[MRT,A.MRT]},
 ];
 function keepRoadClear(unit,halfWidth,approach=null,detourSide=null){
   const u=unit.clone();
@@ -730,14 +732,27 @@ for(const network of ROAD_NETWORKS){
   const centers=buildRoadRoute(network.points,network.type);
   network.centerUnits=centers;
 }
-function nearestRoadPose(target){
+function tangentForward(unit,raw,fallback=null){
+  const projected=raw.clone().sub(unit.clone().multiplyScalar(raw.dot(unit)));
+  if(projected.lengthSq()>1e-8)return projected.normalize();
+  if(fallback){
+    const prior=fallback.clone().sub(unit.clone().multiplyScalar(fallback.dot(unit)));
+    if(prior.lengthSq()>1e-8)return prior.normalize();
+  }
+  const axis=Math.abs(unit.y)<.9?UP:V3(1,0,0);
+  return V3().crossVectors(axis,unit).normalize();
+}
+function nearestRoadPose(target,allowedTypes=null){
   let best=null,bestDistance=Infinity;
-  for(const network of ROAD_NETWORKS)for(let i=0;i<network.centerUnits.length;i++){
+  for(const network of ROAD_NETWORKS){
+    if(allowedTypes&&!allowedTypes.includes(network.type))continue;
+    for(let i=0;i<network.centerUnits.length;i++){
     const unit=network.centerUnits[i],distance=target.angleTo(unit);
     if(distance>=bestDistance)continue;
     const before=network.centerUnits[Math.max(0,i-1)],after=network.centerUnits[Math.min(network.centerUnits.length-1,i+1)];
-    const forward=after.clone().sub(before).sub(unit.clone().multiplyScalar(after.clone().sub(before).dot(unit))).normalize();
+    const forward=tangentForward(unit,after.clone().sub(before),i?network.centerUnits[i-1].clone().sub(unit):null);
     best={unit:unit.clone(),forward};bestDistance=distance;
+    }
   }
   return best;
 }
@@ -1413,62 +1428,134 @@ function transitRouteTexture(route){
     c.fillText(route,128,51);
   });
 }
+const TRANSIT_BUS_LENGTH=worldScale.heightLadder.human.busLength;
+const TRANSIT_BUS_WIDTH=2.5;
+const TRANSIT_BUS_HEIGHT=worldScale.heightLadder.human.bus;
+const TRANSIT_BUS_SURFACE_OFFSET=.08;
+const TRANSIT_BUS_TOLERANCE={length:.55,width:.3,height:.35,clearance:.02,stop:3};
 function buildSingaporeBus(route='65'){
   const g=new THREE.Group();
-  const lower=box(1.65,1.55,5.4,0xe7e1d4);lower.position.y=1.12;g.add(lower);
-  const upper=box(1.58,1.1,5.1,0x2f7f8c);upper.position.set(0,2.55,-.12);g.add(upper);
-  const belt=box(1.72,.18,5.46,0xd0342c);belt.position.set(0,1.62,.05);g.add(belt);
-  const upperGlass=box(1.62,.52,5.14,0x1e474d);upperGlass.position.set(0,2.78,-.08);g.add(upperGlass);
-  const roof=box(1.72,.18,5.22,0xf2eee1);roof.position.set(0,3.18,-.12);g.add(roof);
-  const lowerGlass=box(1.05,.52,.08,0x8fc4ca);lowerGlass.position.set(0,1.62,2.73);g.add(lowerGlass);
-  const door=box(.05,1.12,.75,0x3d9aa1);door.position.set(.86,1.13,1.35);g.add(door);
-  for(const x of [-.84,.84])for(const z of [-1.75,1.75]){
-    const w=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.18,16),mat(0x27302f));
+  const lower=box(2.4,1.55,10.8,0xe7e1d4);lower.position.y=1.12;g.add(lower);
+  const upper=box(2.35,1.1,10.2,0x2f7f8c);upper.position.set(0,2.48,-.12);g.add(upper);
+  const belt=box(TRANSIT_BUS_WIDTH,.18,10.9,0xd0342c);belt.position.set(0,1.62,.05);g.add(belt);
+  const upperGlass=box(2.38,.52,10.24,0x1e474d);upperGlass.position.set(0,2.71,-.08);g.add(upperGlass);
+  const roof=box(TRANSIT_BUS_WIDTH,.18,10.32,0xf2eee1);roof.position.set(0,3.11,-.12);g.add(roof);
+  const lowerGlass=box(1.65,.52,.08,0x8fc4ca);lowerGlass.position.set(0,1.62,5.51);g.add(lowerGlass);
+  const door=box(.05,1.12,.75,0x3d9aa1);door.position.set(1.26,1.13,3.1);g.add(door);
+  for(const x of [-1.18,1.18])for(const z of [-4.1,4.1]){
+    const w=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,.18,16),mat(0x27302f));
     w.position.set(x,.43,z);w.rotation.z=Math.PI/2;w.userData.noOutline=true;g.add(w);
-    const hub=new THREE.Mesh(new THREE.CylinderGeometry(.14,.14,.20,12),mat(0xa9b4b4));
+    const hub=new THREE.Mesh(new THREE.CylinderGeometry(.15,.15,.20,12),mat(0xa9b4b4));
     hub.position.set(x>0?x+.1:x-.1,.43,z);hub.rotation.z=Math.PI/2;hub.userData.noOutline=true;g.add(hub);
   }
   for(const x of [-.58,.58]){
     const mirror=new THREE.Mesh(new THREE.BoxGeometry(.06,.06,.56),mat(0x27302f));
-    mirror.position.set(x,2.35,2.86);mirror.rotation.x=Math.PI*.35;g.add(mirror);
+    mirror.position.set(x,2.35,5.65);mirror.rotation.x=Math.PI*.35;g.add(mirror);
   }
   const display=new THREE.Mesh(new THREE.PlaneGeometry(1.08,.30),
     texMat(transitRouteTexture(route),{side:THREE.DoubleSide}));
-  display.position.set(0,2.80,2.76);g.add(display);
+  display.position.set(0,2.70,5.51);g.add(display);
   const sideDisplay=new THREE.Mesh(new THREE.PlaneGeometry(.74,.24),
     texMat(transitRouteTexture(route),{side:THREE.DoubleSide}));
-  sideDisplay.position.set(.84,2.78,.15);sideDisplay.rotation.y=Math.PI/2;g.add(sideDisplay);
+  sideDisplay.position.set(1.26,2.70,.15);sideDisplay.rotation.y=Math.PI/2;g.add(sideDisplay);
   const routeLabel=new THREE.Mesh(new THREE.PlaneGeometry(1.9,.18),
     texMat(canvasTex(380,36,(c)=>{
       c.fillStyle='#f2eee1';c.font='bold 18px Courier New';c.textAlign='center';
       c.fillText('KAMPUNG TRANSIT',190,25);
     }),{side:THREE.DoubleSide}));
-  routeLabel.position.set(0,.58,2.76);g.add(routeLabel);
+  routeLabel.position.set(0,.58,5.51);g.add(routeLabel);
   g.userData.route=route;g.userData.wheels=[];g.userData.distance=0;g.userData.displays=[display,sideDisplay,routeLabel];
+  g.userData.dimensions={length:TRANSIT_BUS_LENGTH,width:TRANSIT_BUS_WIDTH,height:TRANSIT_BUS_HEIGHT};
   g.traverse(o=>{if(o.isMesh&&o.geometry?.type==='CylinderGeometry')g.userData.wheels.push(o);});
   return addOutlines(g,1.035);
 }
-function alignTransitObject(obj,unit,forward){
-  const up=unit.clone().normalize();
-  const z=forward.clone().sub(up.clone().multiplyScalar(forward.dot(up))).normalize();
-  const x=V3().crossVectors(up,z).normalize();
-  obj.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,up,z));
+function transitSurfaceFrame(unit,forward,length=TRANSIT_BUS_LENGTH,offset=TRANSIT_BUS_SURFACE_OFFSET){
+  const up0=unit.clone().normalize();
+  const z0=tangentForward(up0,forward);
+  const side=V3().crossVectors(up0,z0).normalize();
+  const axis=V3().crossVectors(up0,z0).normalize();
+  const halfAngle=length*.5/R;
+  const frontUnit=up0.clone().applyAxisAngle(axis,halfAngle).normalize();
+  const rearUnit=up0.clone().applyAxisAngle(axis,-halfAngle).normalize();
+  const frontPoint=frontUnit.clone().multiplyScalar(surfR(frontUnit));
+  const rearPoint=rearUnit.clone().multiplyScalar(surfR(rearUnit));
+  const chord=frontPoint.clone().sub(rearPoint);
+  const z=tangentForward(up0,chord,z0);
+  const x=side.clone().sub(z.clone().multiplyScalar(side.dot(z))).normalize();
+  const up=V3().crossVectors(z,x).normalize();
+  if(up.dot(up0)<0){up.negate();x.negate();}
+  const average=(frontPoint.length()+rearPoint.length())*.5;
+  const high=Math.max(frontPoint.length(),rearPoint.length())-average;
+  const origin=frontPoint.clone().add(rearPoint).multiplyScalar(.5).add(up.multiplyScalar(high+offset));
+  return {origin,up,z,x,frontUnit,rearUnit,frontPoint,rearPoint};
+}
+function alignTransitObject(obj,unit,forward,length=TRANSIT_BUS_LENGTH,offset=TRANSIT_BUS_SURFACE_OFFSET){
+  const fallback=obj.userData.forward||null;
+  const frame=transitSurfaceFrame(unit,tangentForward(unit,forward,fallback),length,offset);
+  obj.position.copy(frame.origin);
+  obj.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(frame.x,frame.up,frame.z));
+  obj.userData.surfaceFrame=frame;
+  if(!obj.userData.forward)obj.userData.forward=new THREE.Vector3();
+  obj.userData.forward.copy(frame.z);
+  return frame;
 }
 function placeTransitBus(config){
   const target=latLonPos(config.lat,config.lon).normalize();
-  const pose=nearestRoadPose(target);
+  const pose=nearestRoadPose(target,config.moving?null:['arterial','local']);
+  console.assert(pose,`Transit route ${config.route} has no eligible road pose`);
   const bus=buildSingaporeBus(config.route);
   bus.userData.config=config;bus.userData.unit=pose.unit.clone();bus.userData.forward=pose.forward.clone();
-  bus.position.copy(pose.unit).multiplyScalar(surfR(pose.unit)+.08);
   alignTransitObject(bus,pose.unit,pose.forward);
   scene.add(bus);return bus;
 }
 const BUS_INSTANCES=[
-  {route:'65',lat:25.5,lon:32,name:'HDB bus stop',moving:false},
-  {route:'97',lat:MRT.lat,lon:MRT.lon,name:'Kampung Central interchange',moving:false},
-  {route:'143',lat:KOPITIAM.lat,lon:KOPITIAM.lon,name:'Central Corridor service',moving:true},
+  {route:'65',lat:25.5,lon:32,name:'HDB bus stop',stop:{lat:25.5,lon:32},moving:false},
+  {route:'97',lat:MRT.lat,lon:MRT.lon,name:'Kampung Central interchange',stop:MRT,moving:false},
+  {route:'143',lat:KOPITIAM.lat,lon:KOPITIAM.lon,name:'Central Corridor service',stop:KOPITIAM,moving:true},
 ];
 const transitBuses=[];
+function measureTransitBounds(bus){
+  bus.updateMatrixWorld(true);
+  const inverse=bus.matrixWorld.clone().invert(),bounds=new THREE.Box3(),corner=new THREE.Vector3();
+  bus.traverse(o=>{
+    if(!o.isMesh||!o.visible||o.userData.noOutline||!o.geometry)return;
+    if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();
+    const box=o.geometry.boundingBox;if(!box||box.isEmpty())return;
+    for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z])
+      bounds.expandByPoint(corner.set(x,y,z).applyMatrix4(o.matrixWorld).applyMatrix4(inverse));
+  });
+  const size=bounds.getSize(new THREE.Vector3());
+  return {length:size.z,width:size.x,height:size.y};
+}
+function transitGroundClearance(bus,sign){
+  const point=bus.localToWorld(new THREE.Vector3(0,0,sign*TRANSIT_BUS_LENGTH*.5));
+  const unit=point.clone().normalize();
+  return point.length()-surfR(unit);
+}
+function auditTransitBuses(){
+  const buses=[],failures=[];
+  for(const bus of transitBuses){
+    const config=bus.userData.config,dimensions=measureTransitBounds(bus);
+    const frontClearance=transitGroundClearance(bus,1),rearClearance=transitGroundClearance(bus,-1);
+    const stop=config.stop||{lat:config.lat,lon:config.lon};
+    const stopUnit=latLonPos(stop.lat,stop.lon).normalize();
+    const distance=bus.userData.unit.angleTo(stopUnit)*R;
+    const within=dimensions.length>TRANSIT_BUS_LENGTH-TRANSIT_BUS_TOLERANCE.length&&dimensions.length<TRANSIT_BUS_LENGTH+TRANSIT_BUS_TOLERANCE.length
+      &&dimensions.width>TRANSIT_BUS_WIDTH-TRANSIT_BUS_TOLERANCE.width&&dimensions.width<TRANSIT_BUS_WIDTH+TRANSIT_BUS_TOLERANCE.width
+      &&dimensions.height>TRANSIT_BUS_HEIGHT-TRANSIT_BUS_TOLERANCE.height&&dimensions.height<TRANSIT_BUS_HEIGHT+TRANSIT_BUS_TOLERANCE.height
+      &&frontClearance>=TRANSIT_BUS_TOLERANCE.clearance&&rearClearance>=TRANSIT_BUS_TOLERANCE.clearance
+      &&(config.moving||distance<=TRANSIT_BUS_TOLERANCE.stop);
+    const report={route:config.route,name:config.name,dimensions:Object.fromEntries(Object.entries(dimensions).map(([key,value])=>[key,Number(value.toFixed(3))])),expected:{length:TRANSIT_BUS_LENGTH,width:TRANSIT_BUS_WIDTH,height:TRANSIT_BUS_HEIGHT},ground:{front:Number(frontClearance.toFixed(3)),rear:Number(rearClearance.toFixed(3))},stopDistance:Number(distance.toFixed(3)),pass:within};
+    buses.push(report);if(!within)failures.push(`${config.route}:${config.name}`);
+  }
+  const previous=window.__transitAudit||{};
+  const result=Object.assign(previous,{buses,failures,pass:failures.length===0});
+  window.__transitAudit=result;
+  document.documentElement.dataset.transitAudit=failures.length?'fail':'pass';
+  document.documentElement.dataset.transitBusFailures=String(failures.length);
+  console.assert(!failures.length,`Transit audit failed: ${failures.join(', ')}`);
+  return result;
+}
 function stepTransitBuses(dt,t){
   const route=ROAD_NETWORKS.find(network=>network.name==='CENTRAL CORRIDOR')?.centerUnits;
   for(const bus of transitBuses){
@@ -1477,13 +1564,14 @@ function stepTransitBuses(dt,t){
     const max=route.length-1,travel=(t*.22+14)%max,index=Math.floor(travel),mix=travel-index;
     const unit=slerpUnit(route[index],route[Math.min(max,index+1)],mix);
     const before=route[Math.max(0,index-1)],after=route[Math.min(max,index+1)];
-    const forward=after.clone().sub(before).sub(unit.clone().multiplyScalar(after.clone().sub(before).dot(unit))).normalize();
+    const forward=tangentForward(unit,after.clone().sub(before),bus.userData.forward);
     const distance=unit.angleTo(bus.userData.unit)*R;
     bus.userData.distance+=distance;
     bus.userData.unit.copy(unit);bus.userData.forward.copy(forward);
-    bus.position.copy(unit).multiplyScalar(surfR(unit)+.08);alignTransitObject(bus,unit,forward);
+    alignTransitObject(bus,unit,forward);
     for(const wheel of bus.userData.wheels)wheel.rotation.x-=distance*.9;
   }
+  if(Math.floor(t*2)!==Math.floor((t-dt)*2))auditTransitBuses();
 }
 
 // ---------- MRT station pocket world ----------
@@ -2814,6 +2902,7 @@ registerSwap('busstop',placeOnSphere(buildBusStop(),25.5,32,-55));
 for(const config of BUS_INSTANCES)transitBuses.push(placeTransitBus(config));
 window.__transitAudit={busCount:transitBuses.length,routes:BUS_INSTANCES.map(bus=>bus.route),moving:BUS_INSTANCES.filter(bus=>bus.moving).length};
 document.documentElement.dataset.transitBusCount=String(transitBuses.length);
+auditTransitBuses();
 placeOnSphere(buildFlag(),HDB.lat-2,HDB.lon-9,40); addCollider(HDB.lat-2,HDB.lon-9,.35);
 registerSwap('postbox',placeOnSphere(buildPostbox(),KOPITIAM.lat+4,KOPITIAM.lon-8)); addCollider(KOPITIAM.lat+4,KOPITIAM.lon-8,.5);
 registerSwap('postbox',placeOnSphere(buildPostbox(),HDB.lat-4,HDB.lon-8)); addCollider(HDB.lat-4,HDB.lon-8,.5);
@@ -3800,18 +3889,14 @@ const vanState={
   speed:0,              // forward-only road speed; reverse input acts as brake
 };
 function orientParkedVan(){
-  const z=vanState.forward.clone().sub(vanState.unit.clone().multiplyScalar(vanState.forward.dot(vanState.unit))).normalize();
-  const x=V3().crossVectors(vanState.unit,z).normalize();
-  van.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,vanState.unit,z));
+  alignTransitObject(van,vanState.unit,vanState.forward,worldScale.heightLadder.human.serviceVanLength,VEHICLE_SURFACE_OFFSET);
 }
 // place the parked van at the depot
 (function placeVan(){
-  van.position.copy(vanState.unit).multiplyScalar(surfR(vanState.unit)+VEHICLE_SURFACE_OFFSET);
   orientParkedVan();
   scene.add(van);
 })();
 function syncVanToParked(){
-  van.position.copy(vanState.unit).multiplyScalar(surfR(vanState.unit)+VEHICLE_SURFACE_OFFSET);
   orientParkedVan();
 }
 // re-sync the parked van whenever the planet/terrain is final (no-op here,
@@ -3897,9 +3982,7 @@ function stepVan(dt,t){
   vanState.collider.u.copy(up2);
   // place the van mesh: on the surface, oriented to fwd, with body roll on turn
   const speedAbs=speedRatio;
-  van.position.copy(up2).multiplyScalar(surfR(up2)+VEHICLE_SURFACE_OFFSET);
-  const z=fwd.clone(), x=V3().crossVectors(up2,z).normalize();
-  van.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,up2,z));
+  alignTransitObject(van,up2,fwd,worldScale.heightLadder.human.serviceVanLength,VEHICLE_SURFACE_OFFSET);
   van.rotateZ(-turn*speedAbs*.06);
   van.rotateX(vanState.bump*.05);             // bump shake
   // wheel spin + roof beacon blink
@@ -5883,21 +5966,29 @@ function applyTransitBusGLB(gltf){
   for(const bus of transitBuses){
     const displays=bus.userData.displays||[];
     while(bus.children.length)bus.remove(bus.children[0]);
-    const model=cloneSharedScene(gltf.scene);model.scale.setScalar(.72);alignLowestPoint(model,0);bus.add(model);
+    const model=cloneSharedScene(gltf.scene);fitTransitModel(model,TRANSIT_BUS_LENGTH);alignLowestPoint(model,0);bus.add(model);
     for(const display of displays)bus.add(display);
     bus.userData.wheels=[];model.traverse(o=>{if((o.name||'').toLowerCase().includes('wheel'))bus.userData.wheels.push(o);});
   }
-  console.log(`[assets] singapore-bus-v1.glb active × ${transitBuses.length}`);
+  auditTransitBuses();
+  console.log(`[assets] island-bus-v1.glb active × ${transitBuses.length}`);
 }
 function applyMRTTrainGLB(gltf){
   const train=stationWorld.userData.train;if(!train)return;
   toonify(gltf.scene);const positions=[-10,0,10];
   while(train.children.length)train.remove(train.children[0]);
-  for(const x of positions){const car=cloneSharedScene(gltf.scene);car.scale.setScalar(.72);car.position.x=x;alignLowestPoint(car,0);train.add(car);}
-  console.log('[assets] mrt-train-v1.glb active × 3');
+  for(const x of positions){const car=cloneSharedScene(gltf.scene);fitTransitModel(car,9.35);car.position.x=x;alignLowestPoint(car,0);train.add(car);}
+  console.log('[assets] metro-train-v1.glb active × 3');
 }
-loadOptionalTransitAsset(['singapore','-bus-v1.glb'].join(''),applyTransitBusGLB);
-loadOptionalTransitAsset(['mrt','-train-v1.glb'].join(''),applyMRTTrainGLB);
+function fitTransitModel(model,targetLength){
+  model.updateMatrixWorld(true);
+  const bounds=new THREE.Box3().setFromObject(model),size=bounds.getSize(new THREE.Vector3());
+  const sourceLength=Math.max(size.x,size.z);
+  if(!Number.isFinite(sourceLength)||sourceLength<1e-4)return 1;
+  const scale=targetLength/sourceLength;model.scale.setScalar(scale);return scale;
+}
+loadOptionalTransitAsset('island-bus-v1.glb',applyTransitBusGLB);
+loadOptionalTransitAsset('metro-train-v1.glb',applyMRTTrainGLB);
 
 // ---------- start ----------
 if(isTouch){
