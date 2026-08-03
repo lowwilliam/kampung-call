@@ -243,7 +243,7 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // POIs + TERRAIN (chunky faceted planet like the reference)
 // ============================================================
 const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
-      MERLION={lat:6,lon:108}, MBS={lat:8,lon:148}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
+      MERLION={lat:6,lon:108}, MBS={lat:8,lon:148}, GARDENS={lat:80,lon:0}, FLYER={lat:-20,lon:62},
       BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
       TEMPLE={lat:-8,lon:12};
 const ESP={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
@@ -254,7 +254,7 @@ const SENTOSA={lat:-56,lon:-50}, STUDIOS={lat:-63,lon:-14},
       COMCENTRE={lat:22,lon:122}, SATELLITE={lat:60,lon:0},
       CABLEA={lat:-40,lon:-36};
 // wave 4 — downtown + river + Holland V
-const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-50,lon:150},
+const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-20,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
 const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
@@ -264,11 +264,11 @@ const NUS={lat:18,lon:-42}, NTU={lat:48,lon:-46}, SMU={lat:-3,lon:58},
 // Mission residences are deliberately separated into three readable housing
 // districts. Background duplicates were removed so these homes remain useful
 // navigation landmarks instead of merging into a ring of similar towers.
-const CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
+const CONDO5={lat:53,lon:150}, CONDO6={lat:-36,lon:75},
       LANDED4={lat:2,lon:-110};
 // Heritage Expansion Pack anchors: Peranakan row end, Kampong Gelam mosque,
 // kampong green, Blk 65 void deck and the neighbourhood wet market.
-const KGELAM={lat:-40,lon:31}, KGREEN={lat:-57,lon:-162},
+const KGELAM={lat:-40,lon:31}, KGREEN={lat:-40,lon:-162},
       VOIDDECK={lat:28,lon:65}, WETMKT={lat:-50,lon:60},
       PERANAKAN={lat:SHOPS.lat,lon:SHOPS.lon+10},
       KGREEN_PROPS={lat:KGREEN.lat+5,lon:KGREEN.lon+7};
@@ -306,7 +306,7 @@ const LOCAL_ESTATE_SIZE=3;
 const LOCAL_BUILDING_PLOTS=[
   [46,-86],[52,-76],[58,-66],
   [-10,-22],[-17,-12],[-24,-2],
-  [-60,96],[-52,108],[-44,120],
+  [20,96],[20,108],[20,120],
   [42,165],[54,178],[65,-165],
 ];
 const LOCAL_BUILDING_SETBACK=2.25*WORLD_SCALE;
@@ -599,10 +599,24 @@ auditBuildingSpacing();
 // landmarks such as the Merlion are intentionally exempt; habitable buildings
 // and infrastructure must remain entirely on dry terrain.
 const WATER_CLEARANCE_ZONES=[
-  ['Marina Bay',BAY,7.7*WORLD_SCALE],
-  ['East Coast sea',ECP,5.2*WORLD_SCALE],
-  ['CLARKE_river',CLARKE,3.4*WORLD_SCALE],
+  {type:'circle',name:'Marina Bay',point:BAY,radius:7.7*WORLD_SCALE},
+  {type:'circle',name:'East Coast sea',point:ECP,radius:5.2*WORLD_SCALE},
+  {type:'circle',name:'Quayside river',point:CLARKE,radius:3.4*WORLD_SCALE},
 ];
+function waterZoneDistance(unit,zone){
+  if(zone.type==='corridor'){
+    let best=Infinity;
+    for(let i=0;i<zone.centers.length;i++){
+      best=Math.min(best,unit.angleTo(zone.centers[i])*R);
+      if(i<zone.centers.length-1){
+        const a=zone.centers[i],b=zone.centers[i+1],steps=Math.max(1,Math.ceil(a.angleTo(b)*R/.5));
+        for(let step=1;step<steps;step++)best=Math.min(best,unit.angleTo(slerpUnit(a,b,step/steps))*R);
+      }
+    }
+    return best;
+  }
+  return unit.angleTo(latLonPos(zone.point.lat,zone.point.lon).normalize())*R;
+}
 function auditBuildingWaterClearance(){
   // Waterfront public-realm exceptions are explicit: the Merlion statue and
   // Clarke Quay's riverwalk intentionally occupy the water edge. Buildings
@@ -612,14 +626,19 @@ function auditBuildingWaterClearance(){
   for(const [name,point,radius] of BUILDING_SPACING_PLAN){
     if(exempt.has(name))continue;
     const unit=point.isVector3?point:latLonPos(point.lat,point.lon).normalize();
-    for(const [waterName,waterPoint,waterRadius] of WATER_CLEARANCE_ZONES){
-      const clearance=unit.angleTo(latLonPos(waterPoint.lat,waterPoint.lon).normalize())*R-waterRadius-radius;
-      if(clearance<0)wet.push({name,water:waterName,clearance:Number(clearance.toFixed(2))});
+    for(const zone of WATER_CLEARANCE_ZONES){
+      const zoneRadius=zone.type==='corridor'?zone.halfWidth:zone.radius;
+      const clearance=waterZoneDistance(unit,zone)-zoneRadius-radius-(zone.verge||0);
+      if(clearance<0)wet.push({name,water:zone.name,clearance:Number(clearance.toFixed(2))});
     }
   }
-  window.__buildingWaterAudit={checked:BUILDING_SPACING_PLAN.length-exempt.size,wet};
+  const corridors=WATER_CLEARANCE_ZONES
+    .filter(zone=>zone.type==='corridor')
+    .map(zone=>({name:zone.name,centers:zone.centers.length,halfWidth:zone.halfWidth}));
+  window.__buildingWaterAudit={checked:BUILDING_SPACING_PLAN.length-exempt.size,wet,corridors};
   document.documentElement.dataset.buildingWaterChecked=String(BUILDING_SPACING_PLAN.length-exempt.size);
   document.documentElement.dataset.buildingWaterConflicts=String(wet.length);
+  document.documentElement.dataset.buildingWaterCorridors=String(corridors.length);
   console.assert(!wet.length,`Buildings overlapping water: ${wet.map(p=>`${p.name}/${p.water} ${p.clearance}m`).join(', ')}`);
   return wet;
 }
@@ -3221,6 +3240,7 @@ for(const s of towerSpots){
   const n=Math.max(14,Math.ceil(a.angleTo(b)*R/1.0));
   const centers=[];
   for(let i=0;i<=n;i++)centers.push(slerpUnit(a,b,i/n));
+  WATER_CLEARANCE_ZONES.push({type:'corridor',name:'Island River ribbon',centers:centers.map(center=>center.clone()),halfWidth:3.0*WORLD_SCALE,verge:MIN_BUILDING_VERGE});
   // river surface
   buildPathStrip(centers,2.4,0x5cc0d8,0.05);
   buildPathStrip(centers,2.0,0x6fd0e4,0.06);
@@ -3281,6 +3301,7 @@ for(const s of towerSpots){
     alignXToDir(bridge,site.unit,site.across);
     RIVER_BRIDGE_WALKWAYS.push({u:site.unit.clone(),axis:site.across.clone(),halfLength:2.35,halfWidth:.72});
   }
+  auditBuildingWaterClearance();
   console.assert(bridgeSites.length>=2,'Singapore River requires multiple connected bridge crossings');
 })();
 

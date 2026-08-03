@@ -45,6 +45,9 @@ assert(/function auditNpcPlacements\(\)[\s\S]{0,1400}npcSpawnConflicts[\s\S]{0,5
   'NPC placement must expose resident anchor and collision audits.');
 assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingWaterConflicts=String\(wet\.length\)/.test(html),
   'Dry-land buildings must be audited against authored water footprints.');
+assert(/WATER_CLEARANCE_ZONES\.push\(\{type:'corridor',[\s\S]{0,260}centers\.map/.test(html)
+    && /halfWidth:3\.0\*WORLD_SCALE/.test(html),
+  'Island River water clearance must remain a center-sourced corridor zone.');
 assert(/overheadbridge:\{[^}]*ground:true/.test(html),
   'The overhead bridge asset must be aligned to the local terrain.');
 assert(/function overheadBridgeHeight\(unit\)/.test(html)
