@@ -58,6 +58,15 @@ assert(/function auditNpcPlacements\(\)[\s\S]{0,1400}npcSpawnConflicts[\s\S]{0,5
   'NPC placement must expose resident anchor and collision audits.');
 assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingWaterConflicts=String\(wet\.length\)/.test(html),
   'Dry-land buildings must be audited against authored water footprints.');
+assert(/window\.__assetLoadAudit=assetLoadAudit/.test(html)
+    && /dataset\.assetsFailed=String\(assetLoadAudit\.failed\)/.test(html),
+  'Asset load outcomes must be browser-test observable.');
+assert(/function auditBuildingFootprintVisibility\(\)[\s\S]{0,1800}window\.__buildingFootprintAudit=result/.test(html)
+    && /dataset\.buildingFootprintSinkConflicts=String\(failures\.length\)/.test(html),
+  'Every authored building footprint must expose a perimeter sink audit.');
+assert(/function auditVisibilityContracts\(\)[\s\S]{0,1000}window\.__visibilityAudit=result/.test(html)
+    && /window\.__visibilityConfigAudit=result/.test(html),
+  'Unconditional hidden nodes and view-range limits must have visibility audits.');
 assert(/overheadbridge:\{[^}]*ground:true/.test(html),
   'The overhead bridge asset must be aligned to the local terrain.');
 assert(/function overheadBridgeHeight\(unit\)/.test(html)

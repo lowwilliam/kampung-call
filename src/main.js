@@ -44,6 +44,16 @@ const scene = new THREE.Scene();
 // starts close enough to add real aerial depth at gameplay camera distance
 scene.fog = new THREE.Fog(VOID_COLOR, worldScale.scene.fogNear*WORLD_SCALE, worldScale.scene.fogFar*WORLD_SCALE);
 const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, worldScale.scene.cameraFar*WORLD_SCALE);
+function auditVisibilityConfig(){
+  const config={fogNear:worldScale.scene.fogNear*WORLD_SCALE,fogFar:worldScale.scene.fogFar*WORLD_SCALE,cameraFar:camera.far,shadowFar:worldScale.scene.shadowFar*WORLD_SCALE,tallestObject:worldScale.caps.maximumHeight*WORLD_SCALE};
+  const pass=config.fogFar>config.tallestObject*2&&config.cameraFar>config.shadowFar&&config.cameraFar>config.tallestObject;
+  const result={config,pass};
+  window.__visibilityConfigAudit=result;
+  document.documentElement.dataset.visibilityConfig=pass?'pass':'fail';
+  console.assert(pass,'Visibility frustum/fog audit failed');
+  return result;
+}
+auditVisibilityConfig();
 
 // ---------- gradient sky dome: keeps the teal "void" identity but gives the
 // horizon depth instead of a flat clear colour ----------
@@ -359,7 +369,7 @@ function surfR(u){ return R+terra(u); }
 
 // place object standing on the (displaced) surface
 function placeAtUnit(obj,unit,headingDeg=0){
-  obj.position.copy(unit).multiplyScalar(surfR(unit));
+  obj.position.copy(unit).multiplyScalar(surfaceSeatRadius(unit));
   obj.quaternion.setFromUnitVectors(UP,unit);
   obj.rotateY(headingDeg*Math.PI/180);
   scene.add(obj); return obj;
@@ -575,6 +585,30 @@ const BUILDING_SPACING_PLAN=[
   ['CBD',CBD,'CBD'],['Holland Village',HOLAND,'HOLAND'],
   ...LOCAL_BUILDING_PLOTS.map((_,i)=>[`Local building ${i+1}`,localBuildingPose(i).unit,footprintData.local[i]]),
 ].map(([name,point,source])=>[name,point,typeof source==='number'?source:footprintRadius(source)]);
+// Keep authored footprints on broad, quiet terrain patches. The terrain is
+// still displaced between districts, but large models are never seated on a
+// single centre sample while their perimeter crosses a different height.
+for(const [,point] of BUILDING_SPACING_PLAN){
+  const unit=point.isVector3?point.clone().normalize():latLonPos(point.lat,point.lon).normalize();
+  FLAT_SPOTS.push(unit);
+}
+function surfaceSeatRadius(unit){
+  let seat=surfR(unit);
+  for(const [,point,radius] of BUILDING_SPACING_PLAN){
+    const center=point.isVector3?point.clone().normalize():latLonPos(point.lat,point.lon).normalize();
+    if(unit.angleTo(center)*R>radius+.4)continue;
+    const axis=Math.abs(center.y)<.9?UP:V3(1,0,0);
+    const tangent=V3().crossVectors(axis,center).normalize(),side=V3().crossVectors(center,tangent).normalize();
+    const sampleAngle=Math.max(0,radius/R);
+    for(let i=0;i<16;i++){
+      const theta=i*Math.PI*2/16;
+      const radial=tangent.clone().multiplyScalar(Math.cos(theta)).add(side.clone().multiplyScalar(Math.sin(theta)));
+      const perimeter=center.clone().multiplyScalar(Math.cos(sampleAngle)).add(radial.multiplyScalar(Math.sin(sampleAngle))).normalize();
+      seat=Math.max(seat,surfR(perimeter));
+    }
+  }
+  return seat;
+}
 function auditBuildingSpacing(){
   const crowded=[];
   const ensembleExceptions=new Set(['HDB 65|VOIDDECK','Gardens|KGREEN_PROPS','Flyer|MGMT_UNI','AIRPORT|AIRPORT_TOWER','KGELAM|PERANAKAN']);
@@ -595,6 +629,35 @@ function auditBuildingSpacing(){
   return result;
 }
 auditBuildingSpacing();
+function auditBuildingFootprintVisibility(){
+  const footprints=[],failures=[];
+  const samples=16;
+  for(const [name,point,radius] of BUILDING_SPACING_PLAN){
+    const center=point.isVector3?point.clone().normalize():latLonPos(point.lat,point.lon).normalize();
+    const axis=Math.abs(center.y)<.9?UP:V3(1,0,0);
+    const tangent=V3().crossVectors(axis,center).normalize();
+    const side=V3().crossVectors(center,tangent).normalize();
+    const centerSurface=surfaceSeatRadius(center),sampleAngle=Math.max(0,radius/R);
+    let worstSink=0,worstFloat=0;
+    for(let i=0;i<samples;i++){
+      const theta=i*Math.PI*2/samples;
+      const radial=tangent.clone().multiplyScalar(Math.cos(theta)).add(side.clone().multiplyScalar(Math.sin(theta)));
+      const perimeter=center.clone().multiplyScalar(Math.cos(sampleAngle)).add(radial.multiplyScalar(Math.sin(sampleAngle))).normalize();
+      const delta=surfR(perimeter)-centerSurface;
+      worstSink=Math.max(worstSink,delta);worstFloat=Math.max(worstFloat,-delta);
+    }
+    const record={name,sink:Number(worstSink.toFixed(3)),float:Number(worstFloat.toFixed(3)),radius:Number(radius.toFixed(3)),pass:worstSink<=.3};
+    footprints.push(record);if(!record.pass)failures.push(`${name}:${record.sink}m`);
+  }
+  const result={checked:footprints.length,samples,footprints,failures,pass:failures.length===0};
+  window.__buildingFootprintAudit=result;
+  document.documentElement.dataset.buildingFootprintChecked=String(result.checked);
+  document.documentElement.dataset.buildingFootprintSinkConflicts=String(failures.length);
+  document.documentElement.dataset.buildingFootprintAudit=failures.length?'fail':'pass';
+  console.assert(!failures.length,`Building footprint sink audit failed: ${failures.join(', ')}`);
+  return result;
+}
+auditBuildingFootprintVisibility();
 // Buildings must clear the full footprint of authored water bodies. Waterfront
 // landmarks such as the Harbour Statue are intentionally exempt; habitable buildings
 // and infrastructure must remain entirely on dry terrain.
@@ -5134,6 +5197,21 @@ function setWorldMode(mode){
     renderer.setClearColor(VOID_COLOR,1);
   }
 }
+function auditVisibilityContracts(){
+  const contracts=[
+    {name:'stationWorld',initiallyHidden:true,reEnabledBy:'setWorldMode(mode)',intent:'station interior is hidden on the surface'},
+    {name:'vanRoofBeacon',initiallyHidden:true,reEnabledBy:'tryEnterVan()/stepVan()',intent:'vehicle beacon only appears while driving'},
+    {name:'targetMarker',initiallyHidden:true,reEnabledBy:'stepQuest()',intent:'target marker is hidden in station mode and shown for active calls'},
+    {name:'targetBeacon',initiallyHidden:false,reEnabledBy:'stepQuest()',intent:'target ring is hidden on completion and restored for a new active call'},
+  ];
+  const result={checked:contracts.length,contracts,pass:contracts.every(contract=>contract.reEnabledBy)};
+  window.__visibilityAudit=result;
+  document.documentElement.dataset.visibilityContracts=String(result.checked);
+  document.documentElement.dataset.visibilityAudit=result.pass?'pass':'fail';
+  console.assert(result.pass,'Visibility contract audit failed');
+  return result;
+}
+auditVisibilityContracts();
 function worldTransition(callback){
   const fade=document.getElementById('world-fade');
   if(!fade){callback();return;}
@@ -5446,6 +5524,7 @@ function stepQuest(t){
   const tu=targetUnit(target);
   beacon.position.copy(tp);
   beacon.quaternion.setFromUnitVectors(UP,tu);
+  beacon.visible=true;
   marker.visible=true;
   marker.position.copy(tu).multiplyScalar(surfR(tu)+3.1+Math.sin(t*2.6)*.15);
   const mk=Math.min(1,(t-markerPopT)/.35);
@@ -5807,6 +5886,19 @@ const ASSET_MANIFEST={
   serviceFibre:{url:'assets/fibre-kit-v2.glb',scale:.934,ground:true},
   serviceWifi:{url:'assets/wifi-kit-v2.glb',scale:.884,ground:true},
 };
+const assetLoadAudit={requested:0,loaded:0,failed:0,fallbackActive:0,optionalRequested:0,optionalLoaded:0,errors:[],outcomes:{}};
+window.__assetLoadAudit=assetLoadAudit;
+function recordAssetOutcome(name,status,error=null,optional=false){
+  if(status==='requested'){assetLoadAudit.requested++;if(optional)assetLoadAudit.optionalRequested++;}
+  if(status==='loaded'){assetLoadAudit.loaded++;if(optional)assetLoadAudit.optionalLoaded++;}
+  if(status==='failed'&&!optional){assetLoadAudit.failed++;}
+  if(status==='fallback')assetLoadAudit.fallbackActive++;
+  if(error)assetLoadAudit.errors.push({name,message:error.message||String(error)});
+  assetLoadAudit.outcomes[name]=status;
+  document.documentElement.dataset.assetsFailed=String(assetLoadAudit.failed);
+  document.documentElement.dataset.assetsLoaded=String(assetLoadAudit.loaded);
+  document.documentElement.dataset.assetsFallback=String(assetLoadAudit.fallbackActive);
+}
 // convert imported materials to the game's cel look + add ink hulls
 function toonify(root){
   const hulls=[];
@@ -5944,13 +6036,19 @@ function swapResident(index,gltf){
   loader.setDRACOLoader(draco);
   for(const [name,cfg] of Object.entries(ASSET_MANIFEST)){
     if(cfg.optional)continue;
+    recordAssetOutcome(name,'requested');
     loader.load(cfg.url,
-      gltf=>applySwap(name,cfg,gltf),
+      gltf=>{recordAssetOutcome(name,'loaded');applySwap(name,cfg,gltf);},
       undefined,
-      err=>console.warn(`[assets] ${name} fallback active`,err));
+      err=>{recordAssetOutcome(name,'failed',err);recordAssetOutcome(name,'fallback');console.warn(`[assets] ${name} fallback active`,err);});
   }
-  RESIDENT_ASSETS.forEach((name,index)=>loader.load(`assets/residents/${name}.glb`,
-    gltf=>swapResident(index,gltf),undefined,()=>{/* procedural resident stays */}));
+  RESIDENT_ASSETS.forEach((name,index)=>{
+    const key=`resident:${name}`;recordAssetOutcome(key,'requested');
+    loader.load(`assets/residents/${name}.glb`,
+      gltf=>{recordAssetOutcome(key,'loaded');swapResident(index,gltf);},
+      undefined,
+      err=>{recordAssetOutcome(key,'failed',err);recordAssetOutcome(key,'fallback');console.warn(`[assets] ${key} fallback active`,err);});
+  });
 })();
 
 // Blender transit exports are optional at runtime. Keep the procedural
@@ -5959,7 +6057,8 @@ function swapResident(index,gltf){
 function loadOptionalTransitAsset(file,onLoad){
   const loader=new GLTFLoader(),draco=new DRACOLoader();draco.setDecoderPath('/draco/');loader.setDRACOLoader(draco);
   const url=['assets',file].join('/');
-  loader.load(url,onLoad,undefined,()=>{/* procedural transit fallback remains active */});
+  const key=`optional:${file}`;recordAssetOutcome(key,'requested',null,true);
+  loader.load(url,gltf=>{recordAssetOutcome(key,'loaded',null,true);onLoad(gltf);},undefined,err=>{recordAssetOutcome(key,'fallback',err,true);});
 }
 function applyTransitBusGLB(gltf){
   toonify(gltf.scene);

@@ -6,6 +6,7 @@ const { spawn } = require("child_process");
 
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const GAME_URL = process.env.GAME_URL || "http://localhost:5199/";
+const VERIFY_ONLY = process.env.VERIFY_ONLY === "1";
 const PORT = 9223;
 const OUT = __dirname + "/";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -62,6 +63,19 @@ async function getTargetWs() {
   await send("Page.navigate", { url: GAME_URL });
   log("navigated");
   await sleep(14000); // GLB load + title world settle
+  if (VERIFY_ONLY) {
+    const state = await evaluate("JSON.stringify({assets:window.__assetLoadAudit||null,footprints:window.__buildingFootprintAudit||null,visibility:window.__visibilityAudit||null,config:window.__visibilityConfigAudit||null})");
+    const value = state.result && state.result.result && state.result.result.value;
+    log("VERIFY " + value);
+    const parsed = JSON.parse(value || "{}");
+    const clean = parsed.assets && parsed.assets.failed === 0 && parsed.footprints && parsed.footprints.failures?.length === 0
+      && parsed.visibility?.pass === true && parsed.config?.pass === true;
+    if (!clean) throw new Error(`Visibility verification failed: ${value}`);
+    ws.close();
+    chrome.kill("SIGKILL");
+    log("VERIFY PASS");
+    process.exit(0);
+  }
   await shot("cur_title.png");
 
   await evaluate("document.getElementById('begin') && document.getElementById('begin').click()");

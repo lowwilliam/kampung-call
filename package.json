@@ -10,9 +10,10 @@
     "preview": "vite preview",
     "validate": "node scripts/validate-project.mjs",
     "audit:world": "node scripts/audit-world.mjs",
-    "test": "npm run validate && npm run audit:world && npm run test:performance && npm run format:check && npm run build",
+    "test": "npm run validate && npm run audit:world && npm run test:performance && npm run format:check && npm run build && npm run test:visibility",
     "test:performance": "node scripts/check-performance-budget.mjs",
-    "format:check": "node scripts/check-format.mjs"
+    "format:check": "node scripts/check-format.mjs",
+    "test:visibility": "node scripts/verify-visibility.mjs"
   },
   "engines": {
     "node": ">=20"
