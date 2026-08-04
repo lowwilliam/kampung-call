@@ -6,7 +6,7 @@ function copyRuntimeAssets(){
   return {
     name:'copy-runtime-assets',
     closeBundle(){
-      const out=path.resolve('dist');
+      const out=path.resolve('dist/client');
       const source=fs.readFileSync(path.resolve('src/main.js'),'utf8');
       const files=new Set([...source.matchAll(/assets\/[A-Za-z0-9_./-]+\.(?:glb|mp3|png|jpg|jpeg|webp)/g)].map(match=>match[0]));
       const residents=source.match(/const RESIDENT_ASSETS=(\[[^;]+\]);/)?.[1]||'[]';
@@ -25,6 +25,7 @@ export default defineConfig({
   publicDir: false,
   plugins: [copyRuntimeAssets()],
   build: {
+    outDir: 'dist/client',
     target: 'es2022',
     sourcemap: true,
     chunkSizeWarningLimit: 700,
