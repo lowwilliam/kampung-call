@@ -37,7 +37,7 @@ CREAM=mat("HDB warm white",(.86,.83,.74));CORAL=mat("HDB coral",(.83,.20,.12))
 TEAL=mat("HDB teal",(.05,.38,.38));DARK=mat("Window dark",(.055,.075,.075),.1,.35)
 GLASS=mat("Window glass",(.20,.43,.47),.12,.25);CONCRETE=mat("Concrete",(.55,.54,.49))
 YELLOW=mat("Wayfinding yellow",(.95,.55,.04));GREEN=mat("Plant green",(.08,.38,.13))
-STEEL=mat("Steel",(.24,.28,.29),.55,.32);RED=mat("Singtel red",(.78,.025,.018))
+STEEL=mat("Steel",(.24,.28,.29),.55,.32);RED=mat("Islandlink red",(.78,.025,.018))
 WOOD=mat("Table wood",(.42,.23,.09));TILE=mat("Kopitiam tile",(.83,.80,.69))
 WHITE=mat("Sign white",(.94,.93,.88));AWNING=mat("Awning green",(.04,.34,.22))
 
@@ -101,8 +101,8 @@ def build_kopitiam():
         p.append(cyl("Fan stem",(x,0,2.40),.025,.48,STEEL,8))
         for a in (0,90):
             blade=cube("Fan blade",(x,0,2.16),(.62,.07,.025),DARK,.015);blade.rotation_euler.z=a*3.14159/180;p.append(blade)
-    # unmistakable Singtel service cue without dominating the neighbourhood stall
-    p.append(cube("Singtel hotspot sign",(-2.70,-2.38,1.82),(.42,.05,.30),RED,.025))
+    # unmistakable Islandlink service cue without dominating the neighbourhood stall
+    p.append(cube("Islandlink hotspot sign",(-2.70,-2.38,1.82),(.42,.05,.30),RED,.025))
     for o in p:o.parent=root
     export("kopitiam")
 

@@ -1,4 +1,4 @@
-"""Build the transit hero assets used by the Singapore transit pass.
+"""Build the transit hero assets used by the Island transit pass.
 
 Run from Blender's background Python environment:
 
@@ -50,7 +50,7 @@ def route_board(root, route, loc, name="Route display"):
 
 
 def build_bus():
-    root = empty("SINGAPORE DOUBLE-DECKER BUS")
+    root = empty("ISLAND DOUBLE-DECKER BUS")
     cube("Lower body", (0, 1.12, 0), (1.65, 1.55, 5.40), CREAM, root, edge=.12)
     cube("Upper body", (0, 2.55, -.12), (1.58, 1.10, 5.10), TEAL, root, edge=.10)
     cube("Lower red belt", (0, 1.62, .05), (1.72, .18, 5.46), RED, root, edge=.035)
@@ -89,10 +89,10 @@ def build_mrt_train():
 def main():
     reset()
     bus = build_bus()
-    export_asset(bus, "singapore-bus-v1", camera_target=(0, 1.55, 0), camera=(8, -11, 6), ground=5.5)
+    export_asset(bus, "island-bus-v1", camera_target=(0, 1.55, 0), camera=(8, -11, 6), ground=5.5)
     reset()
     train = build_mrt_train()
-    export_asset(train, "mrt-train-v1", camera_target=(0, 1.45, 0), camera=(8, -12, 7), ground=5.5)
+    export_asset(train, "metro-train-v1", camera_target=(0, 1.45, 0), camera=(8, -12, 7), ground=5.5)
 
 
 if __name__ == "__main__":

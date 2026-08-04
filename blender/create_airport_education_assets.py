@@ -31,7 +31,7 @@ from create_remaining_assets import (
 
 
 def build_airport_terminal():
-    root = empty("CHANGI AIRPORT TERMINAL")
+    root = empty("AIRPORT TERMINAL")
     cube("Terminal apron", (0, .45, .18), (9.8, 5.5, .32), CONCRETE, root, edge=.16)
     cube("Terminal hall", (0, .55, 1.55), (8.2, 3.5, 2.45), CREAM, root, edge=.18)
     cube("Glass frontage", (0, -1.23, 1.55), (7.45, .12, 1.62), GLASS, root, edge=.04)
@@ -43,8 +43,8 @@ def build_airport_terminal():
     for x in (-2.65, 0, 2.65):
         cube("Jet bridge", (x, -2.25, 1.05), (.72, 2.05, .58), TEAL2, root, edge=.10)
         cube("Gate glass", (x, -3.26, 1.05), (.48, .08, .34), GLASS, root, edge=.025)
-    label("CHANGI", (0, -1.44, 2.55), .42, TEAL, root)
-    label("SINGAPORE AIRPORT", (0, -1.45, 2.10), .18, CORAL, root)
+    label("AIRPORT", (0, -1.44, 2.55), .42, TEAL, root)
+    label("ISLAND AIRPORT", (0, -1.45, 2.10), .18, CORAL, root)
     return root
 
 
@@ -69,7 +69,7 @@ def build_campus(code, accent, modern=False):
 
 
 def build_primary_school():
-    root = empty("KAMPUNG PRIMARY SCHOOL")
+    root = empty("NATIONAL SCHOOL SCHOOL")
     cube("School court", (0, .35, .12), (7.2, 5.0, .22), CONCRETE, root, edge=.13)
     cube("School block", (0, .55, 1.75), (6.3, 2.8, 3.25), CREAM, root, edge=.14)
     for floor, z in enumerate((.85, 1.62, 2.39)):
@@ -79,21 +79,21 @@ def build_primary_school():
     cube("School roof", (0, .55, 3.48), (6.7, 3.18, .22), RED, root, edge=.10)
     cube("Assembly canopy", (0, -1.62, .88), (3.4, 1.4, .18), YELLOW, root, edge=.08)
     cube("School sign", (0, -1.22, 3.02), (4.7, .18, .58), TEAL, root, edge=.07)
-    label("KAMPUNG PRIMARY", (0, -1.34, 3.06), .22, CHALK, root)
+    label("NATIONAL SCHOOL", (0, -1.34, 3.06), .22, CHALK, root)
     for x in (-2.75, 2.75):
         cyl("Flag pole", (x, -2.0, 1.15), .045, 2.2, METAL, root, 12)
-    cube("Singapore flag", (-2.38, -2.0, 1.88), (.72, .05, .42), RED, root, edge=.015)
+    cube("Island flag", (-2.38, -2.0, 1.88), (.72, .05, .42), RED, root, edge=.015)
     cube("Play court", (0, 1.82, .28), (4.7, 1.55, .08), BLUE, root, edge=.025)
     return root
 
 
 ASSETS = [
     ("airport-terminal-v2", build_airport_terminal, (0, 0, 1.8), (13, -18, 10), 6.2),
-    ("nus-v2", lambda: build_campus("NUS", TEAL, False), (0, 0, 1.5), (11, -16, 8), 5.0),
-    ("ntu-v2", lambda: build_campus("NTU", CORAL, True), (0, 0, 1.5), (11, -16, 8), 5.0),
-    ("smu-v2", lambda: build_campus("SMU", BLUE, False), (0, 0, 1.5), (11, -16, 8), 5.0),
-    ("sutd-v2", lambda: build_campus("SUTD", TEAL2, True), (0, 0, 1.5), (11, -16, 8), 5.0),
-    ("school-v2", build_primary_school, (0, 0, 1.6), (11, -16, 8), 5.0),
+    ("national-university-v2", lambda: build_campus("National University", TEAL, False), (0, 0, 1.5), (11, -16, 8), 5.0),
+    ("technological-university-v2", lambda: build_campus("Technological University", CORAL, True), (0, 0, 1.5), (11, -16, 8), 5.0),
+    ("management-university-v2", lambda: build_campus("Management University", BLUE, False), (0, 0, 1.5), (11, -16, 8), 5.0),
+    ("design-university-v2", lambda: build_campus("Design University", TEAL2, True), (0, 0, 1.5), (11, -16, 8), 5.0),
+    ("national-school-v2", build_primary_school, (0, 0, 1.6), (11, -16, 8), 5.0),
 ]
 
 

@@ -36,8 +36,8 @@ def cone(name, loc, r1, r2, depth, mat, parent, vertices=12, rot=(0,0,0)):
 # ---------------------------------------------------------------------------
 # PRIORITY 2 — LANDMARKS
 # ---------------------------------------------------------------------------
-def build_merlion():
-    r=empty("MERLION WATERFRONT KIT")
+def build_harbour_statue():
+    r=empty("HARBOUR STATUE WATERFRONT KIT")
     cyl("Wave pedestal",(0,0,.32),1.45,.55,TEAL,r,20)
     for a in range(8):
         torus("Water ripple",(math.cos(a*.78)*1.15,math.sin(a*.78)*.75,.55),.24,.045,CHALK,r,
@@ -53,12 +53,12 @@ def build_merlion():
         sphere("Eye",(x,-.67,2.91),.09,INK,r)
     cone("Nose",(0,-.97,2.66),.13,.04,.20,INK,r,8,rot=(math.radians(90),0,0))
     cable("Water stream",[(0,-.98,2.48),(0,-1.5,2.18),(0,-2.05,1.55),(0,-2.55,.78)],.10,BLUE,r)
-    label("MERLION",(0,-1.48,.34),.22,CHALK,r)
+    label("HARBOUR STATUE",(0,-1.48,.34),.22,CHALK,r)
     return r
 
 
-def build_mbs():
-    r=empty("MARINA BAY SANDS SKYLINE KIT")
+def build_skypark_hotel():
+    r=empty("SKYPARK HOTEL SKYLINE KIT")
     for i,x in enumerate((-2.25,0,2.25)):
         cube("Hotel tower",(x,.25,3.4),(1.7,2.5,6.6),CHALK,r,rot=(0,math.radians((i-1)*-3),0),edge=.18)
         cube("Glass face",(x,-1.03,3.45),(1.22,.08,5.9),GLASS,r,edge=.035)
@@ -78,7 +78,7 @@ def build_mbs():
 
 
 def build_flyer():
-    r=empty("SINGAPORE FLYER KIT")
+    r=empty("ISLAND FLYER KIT")
     for x in (-1.2,1.2):
         cube("A-frame leg",(x*.55,0,2.35),(.24,.35,4.9),METAL,r,rot=(0,math.radians(x*8),math.radians(-x*7)),edge=.06)
     torus("Observation wheel",(0,0,4.5),3.05,.16,CHALK,r,rot=(math.radians(90),0,0),major_segments=40)
@@ -91,7 +91,7 @@ def build_flyer():
         cube("Flyer capsule",(x,-.18,z),(.52,.38,.38),TEAL2 if i%2 else CORAL,r,edge=.12)
         cube("Capsule glass",(x,-.40,z),(.34,.06,.20),GLASS,r,edge=.035)
     cube("Flyer terminal",(0,.55,.42),(4.8,2.0,.72),TEAL,r,edge=.14)
-    label("SINGAPORE FLYER",(0,-.48,.48),.25,CHALK,r)
+    label("ISLAND FLYER",(0,-.48,.48),.25,CHALK,r)
     return r
 
 
@@ -111,8 +111,8 @@ def build_supertree():
     return r
 
 
-def build_esplanade():
-    r=empty("ESPLANADE TWIN DOME KIT")
+def build_concert_hall():
+    r=empty("CONCERT HALL TWIN DOME KIT")
     cube("Waterfront plinth",(0,.25,.30),(6.8,4.1,.55),CONCRETE,r,edge=.18)
     for x in (-1.7,1.7):
         sphere("Durian dome",(x,.1,1.55),1.55,CHALK,r,scale=(1.12,.92,.72))
@@ -125,7 +125,7 @@ def build_esplanade():
                 cone("Sunshade spike",(x+math.cos(a)*rad,math.sin(a)*rad*.76,z),.11,.015,.52,METAL,r,6,
                      rot=(math.cos(a)*.35,math.sin(a)*.35,0))
     cube("Theatre link",(0,.72,.98),(1.2,2.4,1.2),TEAL,r,edge=.14)
-    label("ESPLANADE",(0,-1.94,.48),.24,CORAL,r)
+    label("CONCERT HALL",(0,-1.94,.48),.24,CORAL,r)
     return r
 
 
@@ -226,7 +226,7 @@ def build_mamashop():
 
 
 def build_busstop():
-    r=empty("SINGAPORE BUS STOP")
+    r=empty("ISLAND BUS STOP")
     cube("Bus stop pad",(0,0,.15),(5.6,2.2,.26),CONCRETE,r,edge=.12)
     for x in (-2.2,2.2):
         cyl("Shelter post",(x,.35,1.65),.09,3.0,METAL,r)
@@ -258,7 +258,7 @@ def build_bridge():
 
 
 def build_controltower():
-    r=empty("CHANGI CONTROL TOWER")
+    r=empty("AIRPORT CONTROL TOWER")
     cone("Tapered shaft",(0,0,3.3),.70,.38,6.6,CHALK,r,16)
     cyl("Cab collar",(0,0,6.65),1.05,.42,CONCRETE,r,16)
     cyl("Control cab",(0,0,7.12),1.18,.78,GLASS,r,16)
@@ -268,7 +268,7 @@ def build_controltower():
     for a in range(8):
         cube("Cab mullion",(math.cos(a*.785)*1.02,math.sin(a*.785)*1.02,7.12),(.08,.08,.72),INK,r,
              rot=(0,0,a*.785),edge=.012)
-    label("CHANGI",(0,-.72,3.75),.22,TEAL,r)
+    label("AIRPORT",(0,-.72,3.75),.22,TEAL,r)
     return r
 
 
@@ -377,7 +377,7 @@ def build_birdcage():
 
 
 def build_bumboat():
-    r=empty("SINGAPORE RIVER BUMBOAT")
+    r=empty("ISLAND RIVER BUMBOAT")
     cube("Boat hull",(0,0,.55),(3.8,1.45,.78),TEAL,r,edge=.24)
     cube("Hull stripe",(0,-.76,.63),(3.0,.08,.26),YELLOW,r,edge=.035)
     cube("Boat cabin",(.25,.05,1.28),(2.15,1.18,1.0),CHALK,r,edge=.12)
@@ -437,11 +437,11 @@ def build_wifikit():
 
 JOBS = [
     # P2
-    ("merlion-v2",build_merlion,(0,-.1,1.7),(8,-12,6.5),4.0),
-    ("mbs-v2",build_mbs,(0,0,3.7),(14,-19,11),6.5),
+    ("harbour_statue-v2",build_harbour_statue,(0,-.1,1.7),(8,-12,6.5),4.0),
+    ("skypark_hotel-v2",build_skypark_hotel,(0,0,3.7),(14,-19,11),6.5),
     ("flyer-v2",build_flyer,(0,0,4.1),(13,-18,10),6.0),
     ("supertree-v2",build_supertree,(0,0,3.0),(9,-13,7.5),4.0),
-    ("esplanade-v2",build_esplanade,(0,0,1.6),(11,-16,7),5.5),
+    ("concert_hall-v2",build_concert_hall,(0,0,1.6),(11,-16,7),5.5),
     # P3
     ("mrt-v2",build_mrt,(0,0,1.7),(10,-14,7),4.5),
     ("shophouse-v2",build_shophouse,(0,0,2.2),(9,-13,7),4.0),

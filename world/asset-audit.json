@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T14:15:59.595Z",
+  "generatedAt": "2026-08-03T14:59:52.248Z",
   "manifest": [
     {
       "name": "engineer",
@@ -262,8 +262,8 @@
       "overBudget": false
     },
     {
-      "name": "nus",
-      "url": "assets/nus-v2.glb",
+      "name": "nationalUniversity",
+      "url": "assets/national-university-v2.glb",
       "scale": 3.79,
       "dimensions": {
         "width": 28.046000361442566,
@@ -282,8 +282,8 @@
       "overBudget": false
     },
     {
-      "name": "ntu",
-      "url": "assets/ntu-v2.glb",
+      "name": "technologicalUniversity",
+      "url": "assets/technological-university-v2.glb",
       "scale": 4.42,
       "dimensions": {
         "width": 32.70800042152405,
@@ -302,8 +302,8 @@
       "overBudget": false
     },
     {
-      "name": "smu",
-      "url": "assets/smu-v2.glb",
+      "name": "managementUniversity",
+      "url": "assets/management-university-v2.glb",
       "scale": 5.05,
       "dimensions": {
         "width": 37.37000048160553,
@@ -322,8 +322,8 @@
       "overBudget": false
     },
     {
-      "name": "sutd",
-      "url": "assets/sutd-v2.glb",
+      "name": "designUniversity",
+      "url": "assets/design-university-v2.glb",
       "scale": 4.11,
       "dimensions": {
         "width": 30.414000391960148,
@@ -342,8 +342,8 @@
       "overBudget": false
     },
     {
-      "name": "school",
-      "url": "assets/school-v2.glb",
+      "name": "nationalSchool",
+      "url": "assets/national-school-v2.glb",
       "scale": 2.226,
       "dimensions": {
         "width": 16.027199575424195,
@@ -482,8 +482,8 @@
       "overBudget": false
     },
     {
-      "name": "merlion",
-      "url": "assets/merlion-v2.glb",
+      "name": "harbourStatue",
+      "url": "assets/harbour-statue-v2.glb",
       "scale": 2.302,
       "dimensions": {
         "width": 6.67591986656189,
@@ -502,8 +502,8 @@
       "overBudget": false
     },
     {
-      "name": "mbs",
-      "url": "assets/mbs-v2.glb",
+      "name": "skypark",
+      "url": "assets/skypark-hotel-v2.glb",
       "scale": 4.83,
       "dimensions": {
         "width": 44.573227656568946,
@@ -562,8 +562,8 @@
       "overBudget": false
     },
     {
-      "name": "esplanade",
-      "url": "assets/esplanade-v2.glb",
+      "name": "concertHall",
+      "url": "assets/concert-hall-v2.glb",
       "scale": 4.02,
       "dimensions": {
         "width": 27.62543608188629,
@@ -1103,6 +1103,7 @@
     }
   ],
   "unreferenced": [],
+  "legacyBrandedAssets": [],
   "failures": [],
   "summary": {
     "assets": 55,

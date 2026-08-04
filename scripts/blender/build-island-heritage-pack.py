@@ -1,4 +1,4 @@
-"""Singapore Heritage Expansion Pack — reproducible Blender production script.
+"""Island Heritage Expansion Pack — reproducible Blender production script.
 
 Builds six stylised low-poly/toon assets for the Kampung Call planet:
 
@@ -14,7 +14,7 @@ Conventions follow blender/create_remaining_assets.py:
   Draco-compressed GLB, preview PNG in assets/previews/, editable .blend
   beside every GLB.
 
-Run:  Blender --background --python scripts/blender/build-singapore-heritage-pack.py
+Run:  Blender --background --python scripts/blender/build-island-heritage-pack.py
 """
 import math
 import os

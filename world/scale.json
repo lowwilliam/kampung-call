@@ -46,16 +46,16 @@
       "wetMarketWidth": 28,
       "wetMarketDepth": 20,
       "landedHouse": 7.6,
-      "school": 8,
+      "nationalSchool": 8,
       "mrtStation": 9,
       "temple": 10
     },
     "midRise": {
-      "esplanade": 12,
-      "nus": 12,
-      "ntu": 14,
-      "smu": 16,
-      "sutd": 13,
+      "concertHall": 12,
+      "nationalUniversity": 12,
+      "technologicalUniversity": 14,
+      "managementUniversity": 16,
+      "designUniversity": 13,
       "civic": 14,
       "airportTerminal": 14,
       "airportTerminalLength": 90,
@@ -75,8 +75,8 @@
       "condoStoreys": 18,
       "pointBlock": 34,
       "pointBlockStoreys": 22,
-      "singaporeFlyer": 34,
-      "marinaBaySands": 40
+      "islandFlyer": 34,
+      "skyparkHotel": 40
     }
   },
   "speeds": {
@@ -89,11 +89,11 @@
   },
   "caps": {
     "maximumHeight": 40,
-    "maximumHeightObject": "Marina Bay Sands",
+    "maximumHeightObject": "Skypark Hotel",
     "silhouetteRanking": [
-      "Marina Bay Sands",
+      "Skypark Hotel",
       "CBD tallest",
-      "Singapore Flyer",
+      "Island Flyer",
       "point block",
       "condo",
       "control tower",

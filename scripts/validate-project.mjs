@@ -8,17 +8,30 @@ const failures = [];
 const warnings = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
 
+const debrandTargets = ['src/main.js', 'index.html', 'package.json', 'world/scale.json'];
+const oldEntityDenylist = [
+  /\bSINGTEL\b/i, /\bSMU\b/i, /\bNUS\b/i, /\bNTU\b/i, /\bSUTD\b/i,
+  /KAMPUNG PRIMARY/i, /\bCHANGI\b/i, /\bMERLION\b/i, /\bMBS\b/i,
+  /MARINA BAY SANDS/i, /\bESPLANADE\b/i, /CLARKE QUAY/i, /\bSENTOSA\b/i,
+  /\bSTUDIOS\b/i, /SGH CAMPUS/i, /TUAS PORT/i, /\bTUAS\b/i,
+  /\bSINGAPORE\b/i, /\bJEWEL\b/i, /CITY CAMPUS LINK/i,
+];
+for (const relative of debrandTargets) {
+  const source = fs.readFileSync(path.join(root, relative), 'utf8');
+  for (const pattern of oldEntityDenylist) assert(!pattern.test(source), `${relative}: de-brand denylist match ${pattern}`);
+}
+
 assert(/^<!doctype html>/i.test(html.trimStart()), 'HTML must begin with a doctype.');
 assert(/<html[^>]+lang=["'][a-z-]+["']/i.test(html), 'HTML must declare a document language.');
 assert(/<meta[^>]+name=["']viewport["']/i.test(html), 'HTML must include a viewport meta tag.');
 assert(/<title>[^<]+<\/title>/i.test(html), 'HTML must have a non-empty title.');
 
 assert(/bridgeSites\.some\(site=>centers\[i\]\.angleTo\(site\.unit\)\*R<3\.4\)/.test(html),
-  'Singapore River collision strip must leave every bridge crossing clear.');
+  'Island River collision strip must leave every bridge crossing clear.');
 assert(/for\(const site of bridgeSites\)[\s\S]{0,300}alignXToDir\(bridge,site\.unit,site\.across\)/.test(html),
-  'Singapore River bridges must align with their detected street crossings.');
+  'Island River bridges must align with their detected street crossings.');
 assert(/console\.assert\(bridgeSites\.length>=2/.test(html),
-  'Singapore River must provide multiple connected bridge crossings.');
+  'Island River must provide multiple connected bridge crossings.');
 assert(/const preserveCorridor=walkableCorridorAt\(unit\)&&!insideProtectedBuilding\(unit\)/.test(html),
   'Authored road corridors must reject invisible incidental blockers while preserving buildings.');
 assert(/RIVER_BRIDGE_WALKWAYS\.push\(\{u:site\.unit\.clone\(\),axis:site\.across\.clone\(\),halfLength:2\.35,halfWidth:\.72\}\)/.test(html),
@@ -126,7 +139,7 @@ if (roadStart >= 0 && roadEnd > roadStart) {
   assert(roadBlock.includes('const ROAD_ACCESS='), 'Road plan must define building-free destination access nodes.');
   assert(/const ROAD_CLEARANCE_ZONES=\[[\s\S]{0,300}LOCAL_BUILDING_PLOTS\.map/.test(roadBlock),
     'Road plan must use major and local building footprints.');
-  for (const accessName of ['TUAS', 'NUS', 'KOPITIAM', 'HOSPITAL', 'CIVIC', 'CHANGI', 'MRT', 'HDB', 'SMU', 'CBD']) {
+  for (const accessName of ['WEST_PORT', 'NATIONAL_UNI', 'KOPITIAM', 'HOSPITAL', 'CIVIC', 'AIRPORT', 'MRT', 'HDB', 'MGMT_UNI', 'CBD']) {
     assert(roadBlock.includes(`A.${accessName}`), `Strategic road plan must use the ${accessName} access node.`);
   }
   for (const roadClass of ['expressway', 'arterial', 'local']) {
