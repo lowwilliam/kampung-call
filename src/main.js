@@ -253,7 +253,7 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // POIs + TERRAIN (chunky faceted planet like the reference)
 // ============================================================
 const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
-      HARBOUR_STATUE={lat:6,lon:108}, SKYPARK={lat:8,lon:148}, GARDENS={lat:-46,lon:-148}, FLYER={lat:-20,lon:62},
+      HARBOUR_STATUE={lat:6,lon:108}, SKYPARK={lat:8,lon:148}, GARDENS={lat:80,lon:0}, FLYER={lat:-20,lon:62},
       BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
       TEMPLE={lat:-8,lon:12};
 const CONCERT_HALL={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
@@ -264,7 +264,7 @@ const RESORT={lat:-56,lon:-50}, FILM_PARK={lat:-63,lon:-14},
       COMCENTRE={lat:22,lon:122}, SATELLITE={lat:60,lon:0},
       CABLEA={lat:-40,lon:-36};
 // wave 4 — downtown + river + Holland V
-const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-50,lon:150},
+const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-20,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
 const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:-3,lon:58},
@@ -274,11 +274,11 @@ const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:-3
 // Mission residences are deliberately separated into three readable housing
 // districts. Background duplicates were removed so these homes remain useful
 // navigation landmarks instead of merging into a ring of similar towers.
-const CONDO5={lat:-68,lon:155}, CONDO6={lat:-36,lon:75},
+const CONDO5={lat:53,lon:150}, CONDO6={lat:-36,lon:75},
       LANDED4={lat:2,lon:-110};
 // Heritage Expansion Pack anchors: Peranakan row end, Kampong Gelam mosque,
 // kampong green, Blk 65 void deck and the neighbourhood wet market.
-const KGELAM={lat:-40,lon:31}, KGREEN={lat:-57,lon:-162},
+const KGELAM={lat:-40,lon:31}, KGREEN={lat:-40,lon:-162},
       VOIDDECK={lat:28,lon:65}, WETMKT={lat:-50,lon:60},
       PERANAKAN={lat:SHOPS.lat,lon:SHOPS.lon+10},
       KGREEN_PROPS={lat:KGREEN.lat+5,lon:KGREEN.lon+7};
@@ -316,7 +316,7 @@ const LOCAL_ESTATE_SIZE=3;
 const LOCAL_BUILDING_PLOTS=[
   [46,-86],[52,-76],[58,-66],
   [-10,-22],[-17,-12],[-24,-2],
-  [-60,96],[-52,108],[-44,120],
+  [20,96],[20,108],[20,120],
   [42,165],[54,178],[65,-165],
 ];
 const LOCAL_BUILDING_SETBACK=2.25*WORLD_SCALE;
@@ -662,10 +662,24 @@ auditBuildingFootprintVisibility();
 // landmarks such as the Harbour Statue are intentionally exempt; habitable buildings
 // and infrastructure must remain entirely on dry terrain.
 const WATER_CLEARANCE_ZONES=[
-  ['Marina Bay',BAY,7.7*WORLD_SCALE],
-  ['East Coast sea',ECP,5.2*WORLD_SCALE],
-  ['QUAYSIDE_river',QUAYSIDE,3.4*WORLD_SCALE],
+  {type:'circle',name:'Marina Bay',point:BAY,radius:7.7*WORLD_SCALE},
+  {type:'circle',name:'East Coast sea',point:ECP,radius:5.2*WORLD_SCALE},
+  {type:'circle',name:'Quayside river',point:QUAYSIDE,radius:3.4*WORLD_SCALE},
 ];
+function waterZoneDistance(unit,zone){
+  if(zone.type==='corridor'){
+    let best=Infinity;
+    for(let i=0;i<zone.centers.length;i++){
+      best=Math.min(best,unit.angleTo(zone.centers[i])*R);
+      if(i<zone.centers.length-1){
+        const a=zone.centers[i],b=zone.centers[i+1],steps=Math.max(1,Math.ceil(a.angleTo(b)*R/.5));
+        for(let step=1;step<steps;step++)best=Math.min(best,unit.angleTo(slerpUnit(a,b,step/steps))*R);
+      }
+    }
+    return best;
+  }
+  return unit.angleTo(latLonPos(zone.point.lat,zone.point.lon).normalize())*R;
+}
 function auditBuildingWaterClearance(){
   // Waterfront public-realm exceptions are explicit: the Harbour Statue statue and
   // Quayside's riverwalk intentionally occupy the water edge. Buildings
@@ -675,14 +689,19 @@ function auditBuildingWaterClearance(){
   for(const [name,point,radius] of BUILDING_SPACING_PLAN){
     if(exempt.has(name))continue;
     const unit=point.isVector3?point:latLonPos(point.lat,point.lon).normalize();
-    for(const [waterName,waterPoint,waterRadius] of WATER_CLEARANCE_ZONES){
-      const clearance=unit.angleTo(latLonPos(waterPoint.lat,waterPoint.lon).normalize())*R-waterRadius-radius;
-      if(clearance<0)wet.push({name,water:waterName,clearance:Number(clearance.toFixed(2))});
+    for(const zone of WATER_CLEARANCE_ZONES){
+      const zoneRadius=zone.type==='corridor'?zone.halfWidth:zone.radius;
+      const clearance=waterZoneDistance(unit,zone)-zoneRadius-radius-(zone.verge||0);
+      if(clearance<0)wet.push({name,water:zone.name,clearance:Number(clearance.toFixed(2))});
     }
   }
-  window.__buildingWaterAudit={checked:BUILDING_SPACING_PLAN.length-exempt.size,wet};
+  const corridors=WATER_CLEARANCE_ZONES
+    .filter(zone=>zone.type==='corridor')
+    .map(zone=>({name:zone.name,centers:zone.centers.length,halfWidth:zone.halfWidth}));
+  window.__buildingWaterAudit={checked:BUILDING_SPACING_PLAN.length-exempt.size,wet,corridors};
   document.documentElement.dataset.buildingWaterChecked=String(BUILDING_SPACING_PLAN.length-exempt.size);
   document.documentElement.dataset.buildingWaterConflicts=String(wet.length);
+  document.documentElement.dataset.buildingWaterCorridors=String(corridors.length);
   console.assert(!wet.length,`Buildings overlapping water: ${wet.map(p=>`${p.name}/${p.water} ${p.clearance}m`).join(', ')}`);
   return wet;
 }
@@ -2487,7 +2506,6 @@ function buildAtrium(){
   return g;
 }
 
-// East Coast Park props
 function buildBBQPit(){
   const g=new THREE.Group();
   const pit=box(.7,.5,.55,0xa8574a); pit.position.y=.25; g.add(pit);
@@ -2532,7 +2550,6 @@ function buildKite(){
   return g;
 }
 
-// Islandlink ComCentre office tower
 function buildComCentre(){
   const g=new THREE.Group();
   const H=8.5;
@@ -2562,7 +2579,6 @@ function buildComCentre(){
   return g;
 }
 
-// Islandlink satellite earth station
 function buildDish(rad){
   const d=new THREE.Group();
   const mount=box(.34,1,.34,0xd9d3c7); mount.position.y=.5; d.add(mount);
@@ -2589,7 +2605,6 @@ function buildSatStationHut(){
   return g;
 }
 
-// little jet plane (flying + parked)
 function buildPlane(){
   const g=new THREE.Group();
   const fus=new THREE.Mesh(new THREE.CylinderGeometry(.16,.12,1.6,8),mat(0xf5f5f2));
@@ -2605,14 +2620,9 @@ function buildPlane(){
   return g;
 }
 
-// Islandlink field-engineer van. Bevelled body so it doesn't read as a box
-// stack; Islandlink-red cab, dark-navy load bay, white stripe, roof beacon
-// (lit while driving — see stepVan), roof ladder + rack, headlamps, and
-// a canvas-textured "Islandlink" door panel. Origin at ground contact, +Z=fwd.
 function buildVan(){
   const g=new THREE.Group();
   const RED=0xd0342c, NAVY=0x2b3a4a, WHITE=0xf3f1ea, DARK=0x1f2a35, GLASS=0x22323f;
-  // wheels (four) — dark torus hubs + black tyres
   const wheels=[];
   for(const sx of [-.78,.78]) for(const sz of [-1.25,1.25]){
     const tyre=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,.26,14),mat(DARK));
@@ -2620,25 +2630,19 @@ function buildVan(){
     const hub=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,.28,8),mat(0x9aa5aa));
     hub.rotation.z=Math.PI/2; hub.position.set(sx,.42,sz); g.add(hub); wheels.push(hub);
   }
-  // chassis skirt — thin dark plinth between the wheels
   const skirt=gMesh(bevelBox(1.7,.18,3.6,.05,1),DARK); skirt.position.y=.42; g.add(skirt);
-  // load bay (rear) — bevelled navy box
   const bay=gMesh(bevelBox(1.7,1.3,2.0,.06,2),NAVY); bay.position.set(0,1.25,-.7); g.add(bay);
-  // cab (front) — bevelled, taller at the windscreen, Islandlink red
   const cab=gMesh(bevelBox(1.7,1.35,1.6,.06,2),RED); cab.position.set(0,1.28,1.05); g.add(cab);
-  // windscreen + side windows — dark glass planes, toon-friendly (no outline)
   const wind=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.6),GLASS_MAT);
   wind.position.set(0,1.55,1.86); wind.userData.noShadow=true; g.add(wind);
   for(const s of [-1,1]){
     const side=new THREE.Mesh(new THREE.PlaneGeometry(1.0,.45),GLASS_MAT);
     side.position.set(s*.86,1.55,1.05); side.rotation.y=s*Math.PI/2; side.userData.noShadow=true; g.add(side);
   }
-  // white centre stripe down the load bay side (both sides)
   for(const s of [-1,1]){
     const stripeSide=new THREE.Mesh(new THREE.PlaneGeometry(1.8,.16),mat(WHITE));
     stripeSide.position.set(s*.86,1.45,-.7); stripeSide.rotation.y=s*Math.PI/2; g.add(stripeSide);
   }
-  // Islandlink door-panel canvas on each side of the bay
   const doorTex=canvasTex(256,160,(c)=>{
     c.fillStyle='#2b3a4a';c.fillRect(0,0,256,160);
     c.fillStyle='#d0342c';c.fillRect(0,0,256,40);
@@ -2650,28 +2654,23 @@ function buildVan(){
     const door=new THREE.Mesh(new THREE.PlaneGeometry(1.6,1.0),texMat(doorTex));
     door.position.set(s*.86,1.2,-.7); door.rotation.y=s*Math.PI/2; g.add(door);
   }
-  // roof rack + ladder (white rungs up the rear-left)
   const rack=gMesh(bevelBox(1.6,.1,1.8,.04,1),0x3d4a52); rack.position.set(0,1.98,-.7); g.add(rack);
   for(let i=0;i<3;i++){
     const rung=box(.06,.5,.06,WHITE); rung.position.set(.7,.7+i*.38,-1.65); g.add(rung);
   }
-  // headlamps (front) + tail lamps (rear) — small glowing meshes
   for(const s of [-.55,.55]){
     const hl=new THREE.Mesh(new THREE.SphereGeometry(.1,8,6),glowMat(0xfff2c4));
     hl.position.set(s,.7,1.86); hl.userData.noShadow=true; g.add(hl);
     const tl=new THREE.Mesh(new THREE.SphereGeometry(.08,7,6),glowMat(0xff4b3b));
     tl.position.set(s,.7,-1.74); tl.userData.noShadow=true; g.add(tl);
   }
-  // roof amber beacon — toggled visible while driving (stepVan)
   const beaconBase=box(.3,.08,.3,DARK); beaconBase.position.set(0,2.08,.2); g.add(beaconBase);
   const beacon=new THREE.Mesh(new THREE.SphereGeometry(.12,10,8),glowMat(0xffc24b));
   beacon.position.set(0,2.18,.2); beacon.userData.noShadow=true; beacon.visible=false; g.add(beacon);
-  // a soft headlight cone follows the van while driving (added lazily in stepVan)
   g.userData={beacon,wheels};
   return addOutlines(g,1.05);
 }
 
-// cable car pylon
 function buildPylon(){
   const g=new THREE.Group();
   const towerP=box(.5,3.8,.5,0x8a939b); towerP.position.y=1.9; g.add(towerP);
@@ -2680,12 +2679,7 @@ function buildPylon(){
   return g;
 }
 
-// ============================================================
-// WAVE 4 BUILDERS — CBD skyline, Island River, Holland V, otters
-// ============================================================
 
-// downtown office tower: bevelled glass shaft + set-back crown + spire.
-// `kind` picks one of three silhouettes so the skyline varies.
 function buildSkyscraper(kind){
   const g=new THREE.Group();
   const palettes=[
@@ -2699,15 +2693,12 @@ function buildSkyscraper(kind){
     for(let r=0;r<22;r++)c.fillRect(5,6+r*11,54,5);
   });
   const H=[11,9.5,7.5][kind%3], W=[1.5,1.7,1.4][kind%3], D=[1.5,1.4,1.7][kind%3];
-  // shaft — bevelled so edges catch the toon ramp instead of reading flat
   const shaft=new THREE.Mesh(bevelBox(W,H,D,.06,2),
     [mat(palettes.frame),mat(palettes.frame),mat(palettes.frame),mat(palettes.frame),
      texMat(winTex),texMat(winTex)]);
   shaft.position.y=H/2; g.add(shaft);
-  // set-back crown: a thinner bevelled box on top
   const crown=gMesh(bevelBox(W*.7,.8,D*.7,.05,2),palettes.crown);
   crown.position.y=H+.4; g.add(crown);
-  // spire — lathe-turned spike with a tiny red beacon at the tip
   const spire=new THREE.Mesh(lathe([[0,0],[.05,.05],[.04,.4],[.02,.8],[0,1.1]],10),mat(palettes.crown));
   spire.position.y=H+.8; g.add(spire);
   const beacon=new THREE.Mesh(new THREE.SphereGeometry(.06,7,6),glowMat(0xff5b4d));
@@ -2716,15 +2707,12 @@ function buildSkyscraper(kind){
   return g;
 }
 
-// Holland Village: a pair of low shophouses with awnings + a windmill on
-// a little green. Distinct from the CBD skyline and the downtown godowns.
 function buildHollandShop(palette){
   const g=new THREE.Group();
   const wallCss=palette.wall, shutCss=palette.shutter;
   const facade=canvasTex(160,140,(c)=>{
     c.fillStyle=wallCss;c.fillRect(0,0,160,140);
     c.fillStyle='rgba(255,255,255,.8)';c.fillRect(0,8,160,6);c.fillRect(0,96,160,5);
-    // shop door + two shuttered windows
     c.fillStyle='#5a4632';c.fillRect(68,70,24,70);
     for(const wx of [16,108]){c.fillStyle='#fff';c.fillRect(wx,40,36,46);c.fillStyle=shutCss;c.fillRect(wx+3,43,30,40);
       c.strokeStyle='rgba(0,0,0,.25)';c.lineWidth=2;
@@ -2743,7 +2731,6 @@ function buildHollandShop(palette){
   }
   const ridge=gMesh(bevelBox(.14,.1,2.42,.02,1),new THREE.Color(palette.roof).offsetHSL(0,0,-.12).getHex());
   ridge.position.y=2.7; g.add(ridge);
-  // striped awning over the shopfront
   const awn=new THREE.Mesh(new THREE.PlaneGeometry(2.6,0.7),
     texMat(canvasTex(260,70,(c)=>{for(let i=0;i<8;i++){c.fillStyle=i%2?palette.shutter:'#fdf8ec';c.fillRect(i*33,0,33,70);}}),
       {side:THREE.DoubleSide}));
@@ -2756,7 +2743,6 @@ function buildWindmill(){
   g.add(tower);
   const cap=new THREE.Mesh(new THREE.SphereGeometry(.16,10,8,0,Math.PI*2,0,Math.PI/2),mat(0x9c4a30));
   cap.position.y=2.0; g.add(cap);
-  // hub + four sails (the sails group spins — see stepWorld)
   const hub=new THREE.Group(); hub.position.y=2.05; g.add(hub);
   const hubCore=new THREE.Mesh(new THREE.SphereGeometry(.07,8,6),mat(0x4a3b2e)); hub.add(hubCore);
   const sails=[];
@@ -2782,35 +2768,28 @@ function buildCafeTable(){
   return g;
 }
 
-// smooth otter: lathe body + head, blob rock, tube tail. Brown top, cream
-// belly. Carries a small group so a whole family can scamper together.
 function buildOtter(scale=1){
   const g=new THREE.Group();
   const body=new THREE.Mesh(tubeMesh([
     [0,.12,0],[-.05,.14,.18],[-.05,.16,.4],[0,.16,.55],[.06,.15,.62]
   ],.13,9,14),mat(0x6b4a32));
   body.rotation.y=Math.PI/2; g.add(body);
-  // cream belly underside
   const belly=new THREE.Mesh(tubeMesh([
     [0,.06,0],[-.04,.07,.2],[-.04,.08,.4],[0,.08,.55],[.05,.07,.62]
   ],.1,8,12),mat(0xf3e6cf));
   belly.rotation.y=Math.PI/2; g.add(belly);
   const head=new THREE.Mesh(new THREE.SphereGeometry(.15,12,10),mat(0x6b4a32));
   head.position.set(.62,.18,0); g.add(head);
-  // cream muzzle
   const muzzle=new THREE.Mesh(new THREE.SphereGeometry(.09,9,7),mat(0xf3e6cf));
   muzzle.scale.set(1,.7,1); muzzle.position.set(.73,.15,0); g.add(muzzle);
-  // dark nose + tiny ears
   const nose=new THREE.Mesh(new THREE.SphereGeometry(.025,6,5),mat(0x2b2622));
   nose.position.set(.8,.17,0); g.add(nose);
   for(const s of [-1,1]){
     const ear=new THREE.Mesh(new THREE.SphereGeometry(.04,6,5),mat(0x5a3d28));
     ear.position.set(.6,.31,s*.08); g.add(ear);
   }
-  // tapered lathe tail
   const tail=new THREE.Mesh(lathe([[.06,0],[.05,-.1],[.035,-.22],[0,-.34]],9),mat(0x6b4a32));
   tail.position.set(-.06,.16,0); tail.rotation.z=Math.PI/2; tail.rotation.y=-.3; g.add(tail);
-  // four short legs
   for(const sx of [.45,-.35])for(const sz of [-.08,.08]){
     const leg=new THREE.Mesh(new THREE.CylinderGeometry(.035,.04,.16,6),mat(0x5a3d28));
     leg.position.set(sx,.04,sz); g.add(leg);
@@ -2819,14 +2798,9 @@ function buildOtter(scale=1){
   return addOutlines(g,1.05);
 }
 
-// arched footbridge spanning the Island River near the CBD
 function buildRiverBridge(){
   const g=new THREE.Group();
-  // Keep the deck on the same walkable surface as the player. The movement
-  // model follows the globe rather than ramps, so an elevated deck looked
-  // usable but could never actually be entered.
   const deck=gMesh(bevelBox(4.2,.12,1.1,.03,2),0x9fc48f); deck.position.y=.12; g.add(deck);
-  // Low arched trim keeps the bridge silhouette without blocking the route.
   const arch=new THREE.Mesh(new THREE.TorusGeometry(1.7,.06,8,20,Math.PI),mat(0x8a939b));
   arch.position.y=.1; arch.rotation.y=Math.PI/2; g.add(arch);
   for(const s of [-1,1]){
@@ -2837,7 +2811,6 @@ function buildRiverBridge(){
   }
   return g;
 }
-// ---------- capability districts: education, health, industry and transport ----------
 function buildDistrictSign(title,sub,color=0x2f7f8c){
   const g=new THREE.Group();
   const tex=canvasTex(512,160,c=>{
@@ -2919,9 +2892,6 @@ function buildInterchange(){
   return addOutlines(g);
 }
 
-// ============================================================
-// PLACE EVERYTHING (with colliders)
-// ============================================================
 const kopitiamObj=registerSwap('kopitiam',placeOnSphere(buildKopitiam(),KOPITIAM.lat,KOPITIAM.lon,180)); addCollider(KOPITIAM.lat,KOPITIAM.lon,3.0);
 registerSwap('hdbHero',placeOnSphere(buildHDB('#e86a5e','BLK 65'),HDB.lat,HDB.lon,160)); addCollider(HDB.lat,HDB.lon,3.4);
 registerSwap('mrt',placeOnSphere(buildMRT(),MRT.lat,MRT.lon,170)); addCollider(MRT.lat,MRT.lon,2.4);
@@ -2936,9 +2906,6 @@ registerSwap('shophouse',placeOnSphere(buildShophouse('#9fd0c3','#c9553e'),SHOPS
 registerSwap('shophouse',placeOnSphere(buildShophouse('#f5d98f','#3d7ea6'),SHOPS.lat,SHOPS.lon+5,10)); addCollider(SHOPS.lat,SHOPS.lon+5,1.7);
 registerSwap('hawker',placeOnSphere(buildHawker(),HAWKER.lat,HAWKER.lon,140)); addCollider(HAWKER.lat,HAWKER.lon,2.2);
 registerSwap('temple',placeOnSphere(buildTemple(),TEMPLE.lat,TEMPLE.lon,100)); addCollider(TEMPLE.lat,TEMPLE.lon,2.0);
-// ---------- Island Heritage Expansion Pack placements ----------
-// Headings are solved from the placement quaternion so each front faces its
-// approach route; the zones and flat spots above keep roads and audits aligned.
 registerSwap('peranakan',placeOnSphere(buildPeranakanHouse(),PERANAKAN.lat,PERANAKAN.lon,10)); addCollider(PERANAKAN.lat,PERANAKAN.lon,1.7);
 registerSwap('sultanMosque',placeOnSphere(buildSultanMosque(),KGELAM.lat,KGELAM.lon,-13)); addCollider(KGELAM.lat,KGELAM.lon,2.6);
 registerSwap('kampongHouse',placeOnSphere(buildKampongHouse(),KGREEN.lat,KGREEN.lon,66)); addCollider(KGREEN.lat,KGREEN.lon,2.2);
@@ -2947,21 +2914,16 @@ addLocalCollider(kampongPropsObj,-1.85,.7,.55);   // coconut tree
 addLocalCollider(kampongPropsObj,.9,1.35,.7);     // zinc fence run
 addLocalCollider(kampongPropsObj,-.8,-1.15,.45);  // open drain
 const voiddeckObj=registerSwap('hdbVoiddeck',placeOnSphere(buildVoidDeck(),VOIDDECK.lat,VOIDDECK.lon,-16));
-// Deck stays walkable: only columns, letterboxes, noticeboard, table and lobby collide — never the aisle.
 for(const cx of [-2.3,2.3])for(const cz of [-1.73,0,1.73])addLocalCollider(voiddeckObj,cx,cz,.4);
 addLocalCollider(voiddeckObj,-1.85,-1.98,.6);     // letterbox bank
 addLocalCollider(voiddeckObj,-1.7,1.96,.5);       // noticeboard
 addLocalCollider(voiddeckObj,-1.6,-.2,.55);       // terrazzo chess table
 addLocalCollider(voiddeckObj,2.1,-2.09,.75);      // lift lobby
 const wetmarketObj=registerSwap('wetmarket',placeOnSphere(buildWetMarket(),WETMKT.lat,WETMKT.lon,-34));
-// Stall rows collide; the central aisle stays navigable end to end.
 for(const cz of [-1.45,.15])for(const cx of [-2.15,2.15])addLocalCollider(wetmarketObj,cx,cz,.95);
 addLocalCollider(wetmarketObj,-1.6,-2.2,.35); addLocalCollider(wetmarketObj,1.6,-2.25,.35);
 placeOnSphere(buildPlayground(),HDB.lat+3,HDB.lon-7,60);
 registerSwap('busstop',placeOnSphere(buildBusStop(),25.5,32,-55));
-// Three route examples share one low-poly hero model and all snap to the
-// authored road network. One bus loops the Central Corridor; the other two
-// remain parked at readable interchange landmarks.
 for(const config of BUS_INSTANCES)transitBuses.push(placeTransitBus(config));
 window.__transitAudit={busCount:transitBuses.length,routes:BUS_INSTANCES.map(bus=>bus.route),moving:BUS_INSTANCES.filter(bus=>bus.moving).length};
 document.documentElement.dataset.transitBusCount=String(transitBuses.length);
@@ -2981,7 +2943,6 @@ placeOnSphere(addOutlines(buildBin()),MRT.lat+3,MRT.lon-4);
 placeOnSphere(addOutlines(buildHydrant()),SHOPS.lat+3,SHOPS.lon+8);
 placeOnSphere(addOutlines(buildHydrant()),HDB.lat-6,HDB.lon+6);
 
-// park-connector fence arc around the bay
 (function bayFence(){
   const B=latLonPos(BAY.lat,BAY.lon).normalize();
   const T0=V3().crossVectors(B,V3(0,1,.3)).normalize();
@@ -2997,7 +2958,6 @@ placeOnSphere(addOutlines(buildHydrant()),HDB.lat-6,HDB.lon+6);
   }
 })();
 
-// ---------- wave 2 placements ----------
 buildPath(MRT,KAMPUNG,1.2);
 buildPath(MRT,TOWER,1.2);
 buildPath(HARBOUR_STATUE,CONCERT_HALL,1.2);
@@ -3007,13 +2967,10 @@ registerSwap('concertHall',placeOnSphere(buildConcertHall(),CONCERT_HALL.lat,CON
 registerSwap('kampungHero',placeOnSphere(buildKampungHouse(),KAMPUNG.lat,KAMPUNG.lon,30)); addCollider(KAMPUNG.lat,KAMPUNG.lon,2.5);
 const towerObj=registerSwap('controltower',placeOnSphere(buildControlTower(),TOWER.lat,TOWER.lon,0)); addCollider(TOWER.lat,TOWER.lon,1.2);
 registerSwap('pointblockHero',placeOnSphere(buildPointBlock(),PBLOCK.lat,PBLOCK.lon,120)); addCollider(PBLOCK.lat,PBLOCK.lon,2.5);
-// Mission residences: one clearly identifiable home for each relevant call.
 registerSwap('condoHolland',placeOnSphere(buildCondo('#82b6a9'),CONDO5.lat,CONDO5.lon,25)); addCollider(CONDO5.lat,CONDO5.lon,3.0);
 registerSwap('condoMarina',placeOnSphere(buildCondo('#d6b8d8'),CONDO6.lat,CONDO6.lon,120)); addCollider(CONDO6.lat,CONDO6.lon,3.0);
 registerSwap('landedHero',placeOnSphere(buildLandedHouse(0xe3e2d5,0x2e7d4f),LANDED4.lat,LANDED4.lon,95)); addCollider(LANDED4.lat,LANDED4.lon,3.0);
 registerSwap('raintreeHero',placeOnSphere(buildRainTree(),LANDED4.lat+5,LANDED4.lon-5,25)); addCollider(LANDED4.lat+5,LANDED4.lon-5,.8);
-// Compact fallback stations keep the service story visible even before the
-// authored equipment GLBs finish loading.
 function buildServiceStation(col=0x2e7d4f){
   const g=new THREE.Group();
   const pad=gMesh(bevelBox(1.5,.12,1.1,.06,2),0xb8aa98);pad.position.y=.06;g.add(pad);
@@ -3037,20 +2994,13 @@ registerSwap('cat',placeOnSphere(addOutlines(buildCat(0xe0862f)),KOPITIAM.lat+2,
 registerSwap('cat',placeOnSphere(addOutlines(buildCat(0x3a3f45)),HDB.lat-2,HDB.lon-5,90));
 registerSwap('cat',placeOnSphere(addOutlines(buildCat(0xfdf8ec)),TEMPLE.lat+3,TEMPLE.lon-4,-60));
 
-// Supporting buildings stay in compact three-building estates, leaving broad
-// green breathing room between named districts.
 LOCAL_BUILDING_PLOTS.forEach(([lat,lon],i)=>{
   let b;
   if(i===1){
-    // One estate plot is a real neighbourhood nationalSchool instead of another
-    // anonymous residential block. Keep a procedural fallback until its GLB
-    // finishes loading, just like the other authored landmarks.
     b=new THREE.Group();
     const fallback=buildCampus('NATIONAL SCHOOL',0xc9553e,0);fallback.scale.setScalar(.32);b.add(fallback);
     registerSwap('nationalSchool',b);
   }else b=buildLocalBuilding(i%3,i%4);
-  // Each five-building estate is organised around its local street rather
-  // than dropping façades directly onto an arbitrary compass heading.
   const {unit:u,tangent,sideSign}=localBuildingPose(i);
   placeAtUnit(b,u,0);alignXToDir(b,u,tangent);if(sideSign<0)b.rotateY(Math.PI);
   addColliderUnit(u,i%3===2?1.25:1.0);
@@ -3062,7 +3012,6 @@ for(const dlon of [-5,0,5]){
 }
 placeOnSphere(addOutlines(buildPottedPlant()),TEMPLE.lat-2,TEMPLE.lon+3,0);
 
-// beach umbrellas on the bay sand
 (function beachSets(){
   const B=latLonPos(BAY.lat,BAY.lon).normalize();
   const T0=V3().crossVectors(B,V3(0,1,.3)).normalize();
@@ -3077,9 +3026,6 @@ placeOnSphere(addOutlines(buildPottedPlant()),TEMPLE.lat-2,TEMPLE.lon+3,0);
   }
 })();
 
-// Walkable surface metadata is kept in world tangent coordinates. The player
-// still travels around the globe by unit vector; only their standing radius is
-// raised while they are over the bridge deck or one of its steps.
 let overheadBridgeWalkway=null;
 function overheadBridgeHeight(unit){
   if(!overheadBridgeWalkway)return 0;
@@ -3093,7 +3039,6 @@ function overheadBridgeHeight(unit){
   return 1.69-step*.258;
 }
 
-// pedestrian overhead bridge spanning the Kopitiam–HDB path
 (function bridge(){
   const va=latLonPos(KOPITIAM.lat,KOPITIAM.lon).normalize();
   const vb=latLonPos(HDB.lat,HDB.lon).normalize();
@@ -3107,7 +3052,6 @@ function overheadBridgeHeight(unit){
   overheadBridgeWalkway={u:u.clone(),axis:side.clone(),across:tan.clone()};
 })();
 
-// bumboats bobbing around the bay
 const WATER_SURFACE_OFFSET=.05,BOAT_DRAFT=.10,BOAT_BOB=.018;
 const boats=[];
 (function spawnBoats(){
@@ -3121,7 +3065,6 @@ const boats=[];
   });
 })();
 
-// butterflies fluttering near the gardens and shophouses
 const butterflies=[];
 function spawnButterfly(lat,lon,col){
   const g=new THREE.Group();
@@ -3139,7 +3082,6 @@ spawnButterfly(GARDENS.lat+4,GARDENS.lon-4,0xe8a4d8);
 spawnButterfly(GARDENS.lat-3,GARDENS.lon-10,0xf2c14e);
 spawnButterfly(SHOPS.lat+4,SHOPS.lon+2,0x9fd0c3);
 
-// ---------- wave 3 placements ----------
 buildPath(TEMPLE,CABLEA,1.2);
 buildPath(RESORT_WALK,FILM_PARK_WALK,1.2);
 buildPath(HAWKER,QUAYSIDE,1.2);
@@ -3148,10 +3090,8 @@ buildPath(ECP,TOWER,1.2);
 buildPath(ECP,LANDED4,1.2);
 buildPath(FLYER,CONDO6,1.2);
 buildPath(PBLOCK,SATELLITE,1.0);
-// field-engineer routes: depot ↔ residences so the van has roads to drive
 buildPath(COMCENTRE,HDB,1.6);
 buildPath(KAMPUNG,HDB,1.4);
-// institutional/economic corridors make the island read as one service network
 buildPath(KOPITIAM,NATIONAL_UNI,1.55);
 buildPath(NATIONAL_UNI,TECH_UNI,1.45);
 buildPath(NATIONAL_UNI,HOSPITAL,1.5);
@@ -3172,7 +3112,6 @@ plaza(WEST_PORT.lat,WEST_PORT.lon,4.6,0x9da19f);
 plaza(CIVIC.lat,CIVIC.lon,3.5,0xd9d3c7);
 plaza(INTERCHANGE.lat,INTERCHANGE.lon,3.5,0xd9d3c7);
 
-// Island capability anchors
 registerSwap('nationalUniversity',placeOnSphere(buildCampus('National University',0x2f7f8c,0),NATIONAL_UNI.lat,NATIONAL_UNI.lon,130));addCollider(NATIONAL_UNI.lat,NATIONAL_UNI.lon,3.1);
 registerSwap('technologicalUniversity',placeOnSphere(buildCampus('Technological University',0xc9553e,1),TECH_UNI.lat,TECH_UNI.lon,155));addCollider(TECH_UNI.lat,TECH_UNI.lon,3.1);
 registerSwap('managementUniversity',placeOnSphere(buildCampus('Management University',0x3d7ea6,0),MGMT_UNI.lat,MGMT_UNI.lon,210));addCollider(MGMT_UNI.lat,MGMT_UNI.lon,3.0);
@@ -3183,7 +3122,6 @@ placeOnSphere(buildEmergencyHub(),CIVIC.lat,CIVIC.lon,195);addCollider(CIVIC.lat
 placeOnSphere(buildInterchange(),INTERCHANGE.lat,INTERCHANGE.lon,150);addCollider(INTERCHANGE.lat,INTERCHANGE.lon,3.0);
 placeOnSphere(buildDistrictSign('GENERAL HOSPITAL','24H HEALTH NETWORK',0xd0342c),HOSPITAL.lat-4,HOSPITAL.lon+5,175);
 
-// Resort Island
 placeOnSphere(addOutlines(buildResortGate()),RESORT.lat,RESORT.lon,20); addCollider(RESORT.lat,RESORT.lon,1.8);
 registerSwap('palm',placeOnSphere(buildPalm(),RESORT.lat+3,RESORT.lon-8,40)); addCollider(RESORT.lat+3,RESORT.lon-8,.7);
 registerSwap('palm',placeOnSphere(buildPalm(),RESORT.lat-3,RESORT.lon+8,190)); addCollider(RESORT.lat-3,RESORT.lon+8,.7);
@@ -3192,7 +3130,6 @@ addCollider(FILM_PARK.lat,FILM_PARK.lon,2.0);
 filmParkObj.updateMatrixWorld(true);
 addColliderUnit(filmParkObj.localToWorld(V3(3.9,0,0)).normalize(),2.4);   // coaster loop
 
-// cable car HarbourFront → Resort Island
 const cabins=[];
 (function cableCar(){
   const uA=latLonPos(CABLEA.lat,CABLEA.lon).normalize();
@@ -3206,14 +3143,12 @@ const cabins=[];
     const a=pyA.localToWorld(V3(so,4,0));
     const b=pyB.localToWorld(V3(so,4,0));
     tube(a,b,.022,0x4a4f55);
-    // cabin on this cable
     const cab=new THREE.Group();
     const hang=box(.05,.4,.05,0x4a4f55); hang.position.y=.2; cab.add(hang);
     const bodyC=box(.5,.42,.42,so<0?0xd0342c:0x2f7f8c); bodyC.position.y=-.12; cab.add(bodyC);
     const win=box(.52,.16,.44,0xbfd8de); win.position.y=-.04; cab.add(win);
     addOutlines(cab);
     scene.add(cab);
-    // static orientation along the cable
     const dirC=b.clone().sub(a).normalize();
     const upC=a.clone().add(b).multiplyScalar(.5).normalize();
     const yC=upC.clone().sub(dirC.clone().multiplyScalar(upC.dot(dirC))).normalize();
@@ -3223,7 +3158,6 @@ const cabins=[];
   }
 })();
 
-// Quayside: river + colorful godowns + canopies + moored boat
 (function quayside(){
   const river=new THREE.Mesh(new THREE.CircleGeometry(3.4,36),makeWaterMat());
   placeOnSphere(river,QUAYSIDE.lat,QUAYSIDE.lon+5); river.rotateX(-Math.PI/2); conformToSphere(river,0.05);
@@ -3240,7 +3174,6 @@ const cabins=[];
   moored.position.copy(mooredU).multiplyScalar(surfR(mooredU)+WATER_SURFACE_OFFSET-BOAT_DRAFT);
 })();
 
-// Airport: a single readable precinct — terminal, Atrium, tower and airfield
 registerSwap('airportTerminal',placeOnSphere(buildTerminal(),AIRPORT.lat,AIRPORT.lon,105)); addCollider(AIRPORT.lat,AIRPORT.lon,3.0);
 const atriumObj=placeOnSphere(buildAtrium(),AIRPORT_ATRIUM.lat,AIRPORT_ATRIUM.lon,0); addCollider(AIRPORT_ATRIUM.lat,AIRPORT_ATRIUM.lon,2.4);
 const airportTowerObj=placeOnSphere(buildControlTower(),AIRPORT_TOWER.lat,AIRPORT_TOWER.lon,0);addCollider(AIRPORT_TOWER.lat,AIRPORT_TOWER.lon,1.2);
@@ -3252,7 +3185,6 @@ buildPath(DESIGN_UNI,AIRPORT,1.8);
   for(let i=0;i<=n;i++)centers.push(slerpUnit(a,b,i/n));
   buildPathStrip(centers,3,0x8a8f94,0.028);
   buildPathStrip(centers,.16,0xfdf8ec,0.042);
-  // edge lights and threshold bars make the runway legible from orbit and ground level
   for(let i=1;i<centers.length-1;i+=3){
     const u=centers[i],next=centers[i+1],tan=next.clone().sub(u).normalize();
     const side=V3().crossVectors(u,tan).normalize();
@@ -3273,7 +3205,6 @@ const flyPlanes=[];
   flyPlanes.push({g:p,axis:V3(.3,1,-.2).normalize(),alt:R+9,ph:0,speed:.09});
 })();
 
-// East Coast Park: sea, beach, palms, BBQ, breakwater, sign, kite
 (function ecp(){
   const sea=new THREE.Mesh(new THREE.CircleGeometry(5,40),makeWaterMat());
   placeOnSphere(sea,ECP.lat,ECP.lon); sea.rotateX(-Math.PI/2); conformToSphere(sea,0.05);
@@ -3291,7 +3222,6 @@ const flyPlanes=[];
     placeAtUnit(obj,u,Math.random()*360);
     addColliderUnit(u,cr);
   }
-  // breakwater rocks marching into the sea
   for(let i=0;i<4;i++){
     const arc2=(4.6-i*.9)/R;
     const D=T0.clone().applyAxisAngle(B,3.6);
@@ -3300,7 +3230,6 @@ const flyPlanes=[];
     placeAtUnit(rk,u,Math.random()*360);
   }
 })();
-// kite flying over ECP
 const kiteAnchorU=latLonPos(ECP.lat+8,ECP.lon+9).normalize();
 const kitePoleTop=(function(){
   const pole=new THREE.Mesh(new THREE.CylinderGeometry(.03,.045,1.2,6),mat(0x8a6f4d));
@@ -3315,7 +3244,6 @@ const kiteLineGeo=new THREE.BufferGeometry().setFromPoints([kitePoleTop.clone(),
 const kiteLine=new THREE.Line(kiteLineGeo,new THREE.LineBasicMaterial({color:0x6b5a44}));
 scene.add(kiteLine);
 
-// Islandlink ComCentre + satellite earth station
 placeOnSphere(buildComCentre(),COMCENTRE.lat,COMCENTRE.lon,-155); addCollider(COMCENTRE.lat,COMCENTRE.lon,2.2);
 const dishes=[];
 (function satStation(){
@@ -3339,7 +3267,6 @@ const dishes=[];
   placeOnSphere(sg,SATELLITE.lat+4,SATELLITE.lon-6,-30);
 })();
 
-// ---------- wave 4 placements — CBD, river, Holland V, otters ----------
 buildPath(HARBOUR_STATUE,CBD,1.4);
 buildPath(CBD,COMCENTRE,1.2);
 buildPath(QUAYSIDE,RIVER,1.3);
@@ -3349,7 +3276,6 @@ plaza(CBD.lat,CBD.lon,5,0xd9d3c7);
 plaza(HOLAND.lat,HOLAND.lon,3.6,0xe8d5a3);
 plaza(RIVER.lat,RIVER.lon,3.4,0xd9c79a);
 
-// CBD skyline — five towers of varying height/silhouette around a plaza
 const cbdTowers=[];
 const towerSpots=[
   {lat:CBD.lat,    lon:CBD.lon,     kind:0},
@@ -3365,22 +3291,16 @@ for(const s of towerSpots){
   cbdTowers.push(t);
 }
 
-// Island River — a ribbon of water from the CBD toward Quayside,
-// with an arched footbridge and a riverside walk.
 (function river(){
   const a=latLonPos(RIVER.lat,RIVER.lon).normalize();
   const b=latLonPos(QUAYSIDE.lat,QUAYSIDE.lon+5).normalize();
   const n=Math.max(14,Math.ceil(a.angleTo(b)*R/1.0));
   const centers=[];
   for(let i=0;i<=n;i++)centers.push(slerpUnit(a,b,i/n));
-  // river surface
+  WATER_CLEARANCE_ZONES.push({type:'corridor',name:'Island River ribbon',centers:centers.map(center=>center.clone()),halfWidth:3.0*WORLD_SCALE,verge:MIN_BUILDING_VERGE});
   buildPathStrip(centers,2.4,0x5cc0d8,0.05);
   buildPathStrip(centers,2.0,0x6fd0e4,0.06);
-  // grassy banks either side
   buildPathStrip(centers,3.0,0x74ac60,0.02);
-  // Find every authored neighbourhood street that actually intersects the
-  // river. A bridge belongs to the route crossing—not to an arbitrary river
-  // fraction—so its deck and approach always form one continuous line.
   const bridgeSites=[];
   const bridgeSiteClear=(unit,across)=>[-2,-1,0,1,2].every(distance=>{
     const sample=unit.clone().multiplyScalar(R).add(across.clone().multiplyScalar(distance)).normalize();
@@ -3399,15 +3319,11 @@ for(const s of towerSpots){
     const riverBefore=centers[wi-1],riverAfter=centers[wi+1];
     const routeTan=routeAfter.clone().sub(routeBefore).sub(routePoint.clone().multiplyScalar(routeAfter.clone().sub(routeBefore).dot(routePoint))).normalize();
     const riverTan=riverAfter.clone().sub(riverBefore).sub(centers[wi].clone().multiplyScalar(riverAfter.clone().sub(riverBefore).dot(centers[wi]))).normalize();
-    // Ignore riverside walks that run along the bank; only transverse routes
-    // receive a bridge deck.
     if(Math.abs(routeTan.dot(riverTan))>.78)continue;
     const site={unit:centers[wi].clone(),across:routeTan};
     if(!bridgeSiteClear(site.unit,site.across))continue;
     if(!bridgeSites.some(existing=>existing.unit.angleTo(site.unit)*R<4.4))bridgeSites.push(site);
   }
-  // Retain a central civic crossing if route sampling does not land close
-  // enough to it, giving the river a dependable second-bank connection.
   for(const fraction of [.3,.5,.68]){
     const preferred=Math.floor(n*fraction);
     let civicSite=null;
@@ -3421,8 +3337,6 @@ for(const s of towerSpots){
     if(!civicSite||bridgeSites.some(site=>site.unit.angleTo(civicSite.unit)*R<4.4))continue;
     bridgeSites.push(civicSite);
   }
-  // Block the water for the player + NPCs, leaving a traversable corridor at
-  // every detected bridge rather than only at one hard-coded location.
   for(let i=2;i<centers.length-2;i+=2){
     if(bridgeSites.some(site=>centers[i].angleTo(site.unit)*R<3.4))continue;
     addColliderUnit(centers[i],1.2);
@@ -3433,10 +3347,10 @@ for(const s of towerSpots){
     alignXToDir(bridge,site.unit,site.across);
     RIVER_BRIDGE_WALKWAYS.push({u:site.unit.clone(),axis:site.across.clone(),halfLength:2.35,halfWidth:.72});
   }
+  auditBuildingWaterClearance();
   console.assert(bridgeSites.length>=2,'Island River requires multiple connected bridge crossings');
 })();
 
-// Holland Village — windmill, two shophouses, cafe tables
 const hvWindmill=placeOnSphere(buildWindmill(),HOLAND.lat,HOLAND.lon,20);
 placeOnSphere(buildHollandShop({wall:'#f5d98f',shutter:'#3d7ea6',roof:'#8f979e',sign:'HOLLAND V'}),
   HOLAND.lat-3,HOLAND.lon-3,10); addCollider(HOLAND.lat-3,HOLAND.lon-3,1.6);
@@ -3445,12 +3359,9 @@ placeOnSphere(buildHollandShop({wall:'#f2b6c1',shutter:'#2e7d4f',roof:'#9c4a30',
 for(const off of [[-1.5,-1,0],[1.5,1,90],[0,2.2,-20]]){
   placeOnSphere(addOutlines(buildCafeTable()),HOLAND.lat+off[0],HOLAND.lon+off[1],off[2]);
 }
-// a couple of palms + raintrees to green it up
 registerSwap('palm',placeOnSphere(buildPalm(),HOLAND.lat+4,HOLAND.lon-6,40)); addCollider(HOLAND.lat+4,HOLAND.lon-6,.7);
 placeOnSphere(buildRainTree(),HOLAND.lat-5,HOLAND.lon+5,-30); addCollider(HOLAND.lat-5,HOLAND.lon+5,.7);
 
-// Otter family — four otters that scamper along the riverbank near the CBD.
-// Each has its own little FSM (idle ↔ walk along the river tangent).
 const otters=[];
 (function spawnOtters(){
   const home=latLonPos(OTTER.lat,OTTER.lon).normalize();
@@ -3461,7 +3372,6 @@ const otters=[];
     scene.add(g);
     otters.push({
       g, home, fwd:fwd0.clone(),
-      // stagger along the river tangent so the family spreads out
       offset:(i-1.5)*1.4,
       state:'idle', stateT:0, stateDur:1+Math.random()*2,
       walkPhase:0, dir: i%2?1:-1,
@@ -3480,23 +3390,19 @@ function stepOtters(dt,t){
       o.state='idle'; o.stateT=0; o.stateDur=1+Math.random()*2;
     }
     if(o.state==='walk'){
-      // pace back and forth along the river tangent, within ±3 of home
       o.offset=THREE.MathUtils.clamp(o.offset+o.dir*dt*1.2, -3, 3);
       if(Math.abs(o.offset)>2.9)o.dir*=-1;
       moving=true;
     }
-    // place along the tangent from home
     const tan=V3().crossVectors(o.home,radial).normalize();
     const u=o.home.clone().multiplyScalar(Math.cos((o.offset)/R))
       .add(tan.clone().multiplyScalar(Math.sin((o.offset)/R)*Math.sign(o.offset))).normalize();
     const surf= surfR(u);
     o.g.position.copy(u).multiplyScalar(surf);
-    // face the travel direction when walking, else face forward
     const facing = moving ? tan.clone().multiplyScalar(o.dir) : o.fwd;
     facing.sub(u.clone().multiplyScalar(facing.dot(u))).normalize();
     const x=V3().crossVectors(u,facing).normalize();
     o.g.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,u,facing));
-    // bob + leg-shuffle read as a little hop while moving
     o.g.position.y += moving ? Math.abs(Math.sin(t*10+o.offset))*0.04 : Math.sin(t*2+o.offset)*0.01;
   }
 }
@@ -3544,9 +3450,6 @@ for(let i=0;i<6;i++){
   placeOnSphere(addOutlines(buildFlower()),GARDENS.lat+(sceneryRandom()-.5)*14,GARDENS.lon+(sceneryRandom()-.5)*18);
 }
 
-// ============================================================
-// GROUND DENSITY — instanced vegetation + contact shadows
-// ============================================================
 function randomGroundUnit(minPOI){
   for(let k=0;k<40;k++){
     const lat=-84+Math.random()*168, lon=-180+Math.random()*360;
@@ -3561,7 +3464,6 @@ function randomGroundUnit(minPOI){
   const dummy=new THREE.Object3D();
   const col=new THREE.Color();
 
-  // grass blades — three-triangle fans
   const bladePos=[];
   for(let b=0;b<3;b++){
     const a=b*2.09, dx=Math.cos(a)*.06, dz=Math.sin(a)*.06;
@@ -3592,7 +3494,6 @@ function randomGroundUnit(minPOI){
   grass.userData.noShadow=true; grass.userData.noOutline=true;
   scene.add(grass);
 
-  // flower buds
   const budGeo=new THREE.ConeGeometry(.06,.14,6);
   budGeo.translate(0,.3,0);
   const nBud=isTouch?140:280;
@@ -3614,7 +3515,6 @@ function randomGroundUnit(minPOI){
   buds.userData.noShadow=true; buds.userData.noOutline=true;
   scene.add(buds);
 
-  // pebbles
   const pebGeo=new THREE.DodecahedronGeometry(.09,0);
   pebGeo.translate(0,.05,0);
   const nPeb=isTouch?120:240;
@@ -3637,7 +3537,6 @@ function randomGroundUnit(minPOI){
   scene.add(pebs);
 })();
 
-// soft contact-shadow discs under everything with a footprint
 (function contactAO(){
   const aoMat=new THREE.MeshBasicMaterial({color:0x22301c,transparent:true,opacity:.15,depthWrite:false});
   for(const c of colliders){
@@ -3647,7 +3546,6 @@ function randomGroundUnit(minPOI){
   }
 })();
 
-// kopitiam chimney smoke
 const smokes=[];
 (function chimneySmoke(){
   kopitiamObj.updateMatrixWorld(true);
@@ -3662,8 +3560,6 @@ const smokes=[];
   }
 })();
 
-// clouds — white puffs floating in the void, like the reference
-// more of them now, some lower and larger, so they read from ground level too
 const clouds=[];
 for(let i=0;i<14;i++){
   const c=new THREE.Group();
@@ -3697,9 +3593,6 @@ for(let i=0;i<3;i++){
   scene.add(b); birds.push(b);
 }
 
-// ============================================================
-// CHARACTERS — detailed chibi rig
-// ============================================================
 const faces=[];   // blink registry
 function makeFace(o={}){
   const draw=(closed)=>canvasTex(128,96,(c)=>{
@@ -3753,9 +3646,6 @@ function buildPerson(o){
   }=o||{};
   const g=new THREE.Group();
 
-  // legs — tapered lathe limbs (one continuous silhouette per leg, swings
-  // as a rigid lever like a sculpted chibi). Thigh + calf split at the knee
-  // so shorts/skin-tone lower legs still read. Bevelled shoes + lathe socks.
   const legs=[];
   const thighProf=[[.135,0],[.125,-.14],[.10,-.28]];
   const calfProf =[[.10,.02],[.09,-.12],[.08,-.26],[.072,-.40]];
@@ -3772,10 +3662,6 @@ function buildPerson(o){
     const sole=gMesh(bevelBox(.225,.05,.36,.02,1),0xfdf8ec); sole.position.set(0,-.775,.05); hip.add(sole);
     g.add(hip); legs.push(hip);
   }
-  // torso — revolved lathe: narrow waist → fuller chest → capped shoulder.
-  // One continuous silhouette instead of a featureless box. The Z radius
-  // is built into the profile, and the result still takes the toon ramp +
-  // ink hull cleanly. Floral variant keeps its painted texture.
   const torso=floral
     ? new THREE.Mesh(new THREE.BoxGeometry(.6,.6,.38),texMat(floralTex))
     : new THREE.Mesh(lathe([[.235,-.32],[.255,-.22],[.275,-.08],[.285,.08],[.28,.2],[.265,.28],[.18,.32]],18),mat(shirt));
@@ -3824,9 +3710,6 @@ function buildPerson(o){
       strapB.position.set(s*.17,1.12,.2); g.add(strapB);
     }
   }
-  // arms — one tapered lathe from shoulder to wrist (continuous silhouette,
-  // swings as a rigid lever). Sphere shoulder blends into the torso, sphere
-  // hand caps the wrist. Glove colour applies to the hand only.
   const arms=[];
   const handCol=gloves!==null?gloves:skin;
   const sleeveCol=vest!==null?shirt:(floral?0x9a6bc0:shirt);
@@ -3843,10 +3726,6 @@ function buildPerson(o){
     hand.position.y=-.6; sh.add(hand);
     g.add(sh); arms.push(sh);
   }
-  // neck + head — tapered lathe neck blends the head into the torso.
-  // The neck stays on the torso; everything above it (head sphere, ears,
-  // face, hair, hats) goes into headGrp so it can be tilted/tracked as one
-  // unit (invariant I2: userData.head = the head group).
   const neck=new THREE.Mesh(lathe([[.075,-.06],[.085,.0],[.08,.06]],10),mat(skin)); neck.position.y=1.4; g.add(neck);
   const HEAD_PIVOT_Y=1.55;   // neck/head junction — the natural tilt axis
   const headGrp=new THREE.Group(); headGrp.position.y=HEAD_PIVOT_Y; g.add(headGrp);
@@ -3857,14 +3736,11 @@ function buildPerson(o){
     const ear=new THREE.Mesh(new THREE.SphereGeometry(.055,8,6),mat(skin));
     ear.scale.set(.7,1,.5); ear.position.set(s*.29,hy(1.7),0); headGrp.add(ear);
   }
-  // blinking face
   const ft=makeFace(face);
   const facePlane=new THREE.Mesh(new THREE.PlaneGeometry(.46,.36),
     new THREE.MeshBasicMaterial({map:ft.open,transparent:true}));
   facePlane.position.set(0,hy(1.7),.276); facePlane.userData.noShadow=true; headGrp.add(facePlane);
   faces.push({mesh:facePlane,open:ft.open,closed:ft.closed,next:1+Math.random()*4,closing:false,reopen:0});
-  // hair — gently distorted dome (blob) over the upper cranium, fuller
-  // than a bare hemisphere so the head doesn't read as bald under the cap.
   const hairShell=new THREE.Mesh(blobMesh(.34,1,.06,0.3),mat(hair));
   hairShell.position.y=hy(1.74); hairShell.rotation.x=-.55; hairShell.scale.y=.85; headGrp.add(hairShell);
   const fringe=new THREE.Mesh(new THREE.SphereGeometry(.27,12,9,0,Math.PI*2,0,1.2),mat(hair));
@@ -3910,8 +3786,6 @@ function buildPerson(o){
   return g;
 }
 
-// Islandlink field engineer: navy work polo, hi-vis safety vest, lanyard,
-// cargo shorts, safety-cap. Tool belt replaces the old mail satchel.
 const player=buildPerson({
   shirt:0x2b3a4a,           // navy work polo
   pants:0x33404d,shorts:true,
@@ -3921,7 +3795,6 @@ const player=buildPerson({
   vest:0xf2a03d,            // hi-vis safety vest (orange)
   lanyard:true,
 });
-// tool belt: a dark hip belt + two pouches (front + side) + a screwdriver
 const tBelt=box(.62,.1,.42,0x2e2a25); tBelt.position.set(0,.78,0); player.add(tBelt);
 const pouch=box(.2,.22,.14,0x3a352e); pouch.position.set(.2,.66,.2); player.add(pouch);
 const pouch2=box(.16,.2,.12,0x3a352e); pouch2.position.set(-.24,.68,.2); player.add(pouch2);
@@ -3932,19 +3805,12 @@ dTip.position.set(.2,.72,.49); dTip.rotation.x=Math.PI/2; player.add(dTip);
 addOutlines(player,1.06);
 scene.add(player);
 
-// ============================================================
-// THE VAN — Islandlink field-engineer vehicle. Enter/exit with F.
-// The van parks at the ComCentre depot at shift start. In driving mode
-// the player mesh hides, the camera widens, and stepVan drives the van
-// along the same pos/fwd great-circle movement the player uses on foot.
-// ============================================================
 const VEHICLE_SURFACE_OFFSET=.058;
 const van=registerSwap('van',buildVan());
 const depotRoadPose=nearestRoadPose(latLonPos(COMCENTRE.lat+2,COMCENTRE.lon-3).normalize());
 const vanState={
   mode:'foot',          // 'foot' | 'driving'
   parked:true,
-  // parking unit + heading on the sphere
   unit:depotRoadPose.unit,
   forward:depotRoadPose.forward,
   collider:null,        // dynamic collider that tracks the van (created on enter)
@@ -3954,7 +3820,6 @@ const vanState={
 function orientParkedVan(){
   alignTransitObject(van,vanState.unit,vanState.forward,worldScale.heightLadder.human.serviceVanLength,VEHICLE_SURFACE_OFFSET);
 }
-// place the parked van at the depot
 (function placeVan(){
   orientParkedVan();
   scene.add(van);
@@ -3962,18 +3827,13 @@ function orientParkedVan(){
 function syncVanToParked(){
   orientParkedVan();
 }
-// re-sync the parked van whenever the planet/terrain is final (no-op here,
-// but kept as a hook)
 function tryEnterVan(){
   if(vanState.mode==='driving')return;
-  // only when on foot and close to the van
   const pu=pos.clone().normalize();
   const d=pu.angleTo(vanState.unit)*R;
   if(d>3.0)return;
   vanState.mode='driving';
   vanState.parked=false;
-  // Entering never inherits a held/stale movement input. The next deliberate
-  // WASD, arrow, or joystick action is what starts the van moving.
   for(const key of ['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'])keys[key]=false;
   joyVec={x:0,y:0};
   vanState.speed=0;

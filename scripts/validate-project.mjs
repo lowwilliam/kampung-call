@@ -67,6 +67,9 @@ assert(/function auditBuildingFootprintVisibility\(\)[\s\S]{0,1800}window\.__bui
 assert(/function auditVisibilityContracts\(\)[\s\S]{0,1000}window\.__visibilityAudit=result/.test(html)
     && /window\.__visibilityConfigAudit=result/.test(html),
   'Unconditional hidden nodes and view-range limits must have visibility audits.');
+assert(/WATER_CLEARANCE_ZONES\.push\(\{type:'corridor',[\s\S]{0,260}centers\.map/.test(html)
+    && /halfWidth:3\.0\*WORLD_SCALE/.test(html),
+  'Island River water clearance must remain a center-sourced corridor zone.');
 assert(/overheadbridge:\{[^}]*ground:true/.test(html),
   'The overhead bridge asset must be aligned to the local terrain.');
 assert(/function overheadBridgeHeight\(unit\)/.test(html)
