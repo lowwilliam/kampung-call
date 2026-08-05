@@ -4,6 +4,7 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import worldScale from '../world/scale.json';
 import assetAudit from '../world/asset-audit.json';
 import footprintData from '../world/footprints.json';
+import vendorAssetData from '../world/vendor-assets.json';
 
 
 /* ============================================================
@@ -267,18 +268,18 @@ const RESORT={lat:-56,lon:-50}, FILM_PARK={lat:-63,lon:-14},
 const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-20,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
-const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:-3,lon:58},
+const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:3,lon:72},
       DESIGN_UNI={lat:28,lon:-137}, HOSPITAL={lat:15,lon:28}, WEST_PORT={lat:42,lon:-120},
       CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:30,lon:-72},
       AIRPORT_TOWER={lat:13,lon:-169}, AIRPORT_ATRIUM={lat:18,lon:-163};
 // Mission residences are deliberately separated into three readable housing
 // districts. Background duplicates were removed so these homes remain useful
 // navigation landmarks instead of merging into a ring of similar towers.
-const CONDO5={lat:53,lon:150}, CONDO6={lat:-36,lon:75},
+const CONDO5={lat:53,lon:150}, CONDO6={lat:-46,lon:92},
       LANDED4={lat:2,lon:-110};
 // Heritage Expansion Pack anchors: Peranakan row end, Kampong Gelam mosque,
 // kampong green, Blk 65 void deck and the neighbourhood wet market.
-const KGELAM={lat:-40,lon:31}, KGREEN={lat:-40,lon:-162},
+const KGELAM={lat:-46,lon:25}, KGREEN={lat:-40,lon:-162},
       VOIDDECK={lat:28,lon:65}, WETMKT={lat:-50,lon:60},
       PERANAKAN={lat:SHOPS.lat,lon:SHOPS.lon+10},
       KGREEN_PROPS={lat:KGREEN.lat+5,lon:KGREEN.lon+7};
@@ -310,14 +311,12 @@ function footprintRadius(source){
 for(const [,source] of CITY_BUILDING_ZONES)console.assert(Number.isFinite(footprintRadius(source)),`Footprint registry missing ${source}`);
 const CITY_BUILDING_FOOTPRINTS=CITY_BUILDING_ZONES.map(([point,source])=>[point,footprintRadius(source)]);
 CITY_BUILDING_ZONES.splice(0,CITY_BUILDING_ZONES.length,...CITY_BUILDING_FOOTPRINTS);
-// Twelve supporting buildings form four small, legible estates. Three varied
-// façades per district provide urban texture without competing with landmarks.
-const LOCAL_ESTATE_SIZE=3;
+// Four supporting buildings form two small, legible estates. Two varied
+// façades per district leave deliberate breathing room around hero landmarks.
+const LOCAL_ESTATE_SIZE=2;
 const LOCAL_BUILDING_PLOTS=[
-  [46,-86],[52,-76],[58,-66],
-  [-10,-22],[-17,-12],[-24,-2],
-  [20,96],[20,108],[20,120],
-  [42,165],[54,178],[65,-165],
+  [45,-100],[58,-85],
+  [-10,-22],[-24,-2],
 ];
 const LOCAL_BUILDING_SETBACK=2.25*WORLD_SCALE;
 
@@ -384,6 +383,16 @@ const swapRegistry={};
 function registerSwap(name,grp){
   (swapRegistry[name]=swapRegistry[name]||[]).push(grp);
   return grp;
+}
+function placeVendorFallback(name,obj,lat,lon,headingDeg=0,{outline=true,collider=0,altitude=0}={}){
+  const fallback=outline?addOutlines(obj):obj;
+  const instance=registerSwap(name,placeOnSphere(fallback,lat,lon,headingDeg));
+  if(altitude){
+    const unit=latLonPos(lat,lon).normalize();
+    instance.position.addScaledVector(unit,altitude);
+  }
+  if(collider)addCollider(lat,lon,collider);
+  return instance;
 }
 // bend flat geometry onto the displaced surface
 function conformToSphere(mesh,offset=0.04){
@@ -568,6 +577,7 @@ function localBuildingPose(i){
 // across the island. Connected ensembles (the shophouse row, airport and
 // downtown campuses) are represented by a single combined footprint here.
 const MIN_BUILDING_VERGE=8*WORLD_SCALE;
+const MIN_AUDITED_BUILDING_VERGE=1*WORLD_SCALE;
 const BUILDING_SPACING_PLAN=[
   ['Kopitiam',KOPITIAM,'kopitiam'],['HDB 65',HDB,'hdbHero'],
   ['MRT',MRT,'mrt'],['Harbour Statue',HARBOUR_STATUE,'harbourStatue'],['Skypark Hotel',SKYPARK,'skypark'],['Marina Bay',BAY,'MARINA_BAY'],['Gardens',GARDENS,'supertree'],
@@ -611,19 +621,25 @@ function surfaceSeatRadius(unit){
 }
 function auditBuildingSpacing(){
   const crowded=[];
-  const ensembleExceptions=new Set(['HDB 65|VOIDDECK','Gardens|KGREEN_PROPS','Flyer|MGMT_UNI','AIRPORT|AIRPORT_TOWER','KGELAM|PERANAKAN']);
+  const ensembleExceptions=new Set([
+    'HDB 65|VOIDDECK','Gardens|KGREEN_PROPS','Airport|Airport Tower',
+    'Airport Atrium|Airport Tower','KGELAM|PERANAKAN',
+  ]);
   for(let i=0;i<BUILDING_SPACING_PLAN.length;i++)for(let j=i+1;j<BUILDING_SPACING_PLAN.length;j++){
     const [aName,aPoint,aRadius]=BUILDING_SPACING_PLAN[i],[bName,bPoint,bRadius]=BUILDING_SPACING_PLAN[j];
     const a=aPoint.isVector3?aPoint:latLonPos(aPoint.lat,aPoint.lon).normalize();
     const b=bPoint.isVector3?bPoint:latLonPos(bPoint.lat,bPoint.lon).normalize();
     const verge=a.angleTo(b)*R-aRadius-bRadius;
     const exception=[aName,bName].sort().join('|');
-    if(verge<MIN_BUILDING_VERGE&&verge<0&&!ensembleExceptions.has(exception))crowded.push({a:aName,b:bName,verge:Number(verge.toFixed(2))});
+    if(verge<MIN_AUDITED_BUILDING_VERGE&&!ensembleExceptions.has(exception)){
+      crowded.push({a:aName,b:bName,verge:Number(verge.toFixed(2)),required:MIN_AUDITED_BUILDING_VERGE});
+    }
   }
   const result={checked:BUILDING_SPACING_PLAN.length,crowded};
   window.__buildingSpacingAudit=result;
   document.documentElement.dataset.buildingSpacingChecked=String(result.checked);
   document.documentElement.dataset.buildingSpacingCrowded=String(crowded.length);
+  document.documentElement.dataset.buildingSpacingLabels=crowded.map(item=>`${item.a}/${item.b}:${item.verge}`).join('|');
   console.assert(!crowded.length,`Building spacing audit failed: ${crowded.map(p=>`${p.a}/${p.b} ${p.verge}m`).join(', ')}`);
   if(!crowded.length)console.log(`[city] building spacing audit passed (${result.checked} footprints)`);
   return result;
@@ -721,7 +737,7 @@ const ROAD_NETWORKS=[
   {name:'CENTRAL CORRIDOR',type:'arterial',points:[A.KAMPUNG,A.MRT,A.KOPITIAM,A.HDB,A.PBLOCK,A.HARBOUR_STATUE,A.CBD]},
   {name:'CAMPUS LINK',type:'arterial',points:[A.TECH_UNI,A.NATIONAL_UNI]},
   {name:'UNIVERSITY CAMPUS LINK',type:'arterial',points:[A.MGMT_UNI,A.CIVIC]},
-  {name:'WEST ESTATE',type:'local',points:[{lat:46,lon:-86},{lat:58,lon:-66}]},
+  {name:'WEST ESTATE',type:'local',points:[{lat:45,lon:-100},{lat:58,lon:-85}]},
   {name:'CENTRAL ESTATE',type:'local',points:[{lat:-10,lon:-22},{lat:-24,lon:-2}]},
   {name:'BAY ESTATE',type:'local',points:[{lat:-60,lon:96},{lat:-44,lon:120}]},
   {name:'AIRPORT ESTATE',type:'local',points:[{lat:42,lon:165},{lat:65,lon:-165}]},
@@ -1826,6 +1842,144 @@ function buildFence(){
   }
   return g;
 }
+// Licensed-pack fallbacks. These deliberately match the game's existing shape
+// language and footprint budgets. A purchased threejsassets GLB hot-swaps each
+// registered group without changing its authored city placement.
+function buildTrafficSignal(){
+  const g=new THREE.Group();
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.055,.075,3.8,7),mat(0x343d42));
+  pole.position.y=1.9;g.add(pole);
+  const head=gMesh(bevelBox(.34,1.05,.3,.05,1),0x27302f);head.position.y=3.65;g.add(head);
+  for(const [y,color] of [[3.98,0xd0342c],[3.66,0xf2c14e],[3.34,0x4f9d55]]){
+    const lens=new THREE.Mesh(new THREE.SphereGeometry(.09,8,6),glowMat(color));
+    lens.position.set(0,y,.17);lens.userData.noShadow=true;g.add(lens);
+  }
+  const pedestrian=gMesh(bevelBox(.28,.38,.24,.04,1),0x27302f);
+  pedestrian.position.set(0,2.75,0);g.add(pedestrian);
+  return g;
+}
+function buildRoadGantry(){
+  const g=new THREE.Group();
+  for(const x of [-3.1,3.1]){
+    const post=new THREE.Mesh(new THREE.CylinderGeometry(.09,.13,4.5,8),mat(0x5a6468));
+    post.position.set(x,2.25,0);g.add(post);
+  }
+  const beam=box(6.5,.16,.18,0x5a6468);beam.position.y=4.43;g.add(beam);
+  const sign=buildDistrictSign('CITY / AIRPORT','KEEP LEFT · FIELD ROUTES',0x2e5e52);
+  sign.scale.setScalar(.55);sign.position.set(0,4.0,.18);g.add(sign);
+  return g;
+}
+function buildRooftopUnits(){
+  const g=new THREE.Group();
+  for(const [x,z,s] of [[-.72,0,.78],[.18,.12,.62],[.78,-.18,.5]]){
+    const unit=gMesh(bevelBox(s,.48,s*.72,.05,1),0x9aa2a1);unit.position.set(x,.24,z);g.add(unit);
+    const fan=new THREE.Mesh(new THREE.CylinderGeometry(s*.2,s*.2,.025,10),mat(0x38464a));
+    fan.position.set(x,.495,z);g.add(fan);
+  }
+  return g;
+}
+function buildDeliveryVan(){
+  const g=new THREE.Group();
+  for(const x of [-.72,.72])for(const z of [-1.35,1.25]){
+    const wheel=new THREE.Mesh(new THREE.CylinderGeometry(.34,.34,.2,12),mat(0x27302f));
+    wheel.position.set(x,.36,z);wheel.rotation.z=Math.PI/2;g.add(wheel);
+  }
+  const cargo=gMesh(bevelBox(1.55,1.35,2.55,.08,2),0xe5dfd0);cargo.position.set(0,1.15,-.45);g.add(cargo);
+  const cab=gMesh(bevelBox(1.55,1.2,1.45,.08,2),0x2f7f8c);cab.position.set(0,1.02,1.45);g.add(cab);
+  const wind=new THREE.Mesh(new THREE.PlaneGeometry(1.18,.46),GLASS_MAT);
+  wind.position.set(0,1.27,2.19);wind.userData.noShadow=true;g.add(wind);
+  const stripe=box(1.58,.14,2.62,0xd0342c);stripe.position.set(0,1.2,-.45);g.add(stripe);
+  return g;
+}
+function buildPalmVariant(kind='royal'){
+  const g=buildPalm();
+  if(kind==='royal')g.scale.set(.9,1.12,.9);
+  else{
+    g.scale.set(1.08,1,1.08);
+    g.rotation.z=.08;
+  }
+  return g;
+}
+function buildMarinaDock(){
+  const g=new THREE.Group();
+  const deck=box(4.8,.16,1.25,0x9c7a4f);deck.position.y=.12;g.add(deck);
+  for(const x of [-2.1,-.7,.7,2.1])for(const z of [-.5,.5]){
+    const post=new THREE.Mesh(new THREE.CylinderGeometry(.07,.09,1.15,7),mat(0x5e4936));
+    post.position.set(x,-.35,z);g.add(post);
+  }
+  return g;
+}
+function buildMooringPilings(){
+  const g=new THREE.Group();
+  for(const [x,z,h] of [[-.55,0,1.55],[.2,.32,1.35],[.55,-.28,1.7]]){
+    const post=new THREE.Mesh(new THREE.CylinderGeometry(.1,.13,h,8),mat(0x6b513a));
+    post.position.set(x,h*.5-.35,z);g.add(post);
+  }
+  return g;
+}
+function buildBoardwalk(){
+  const g=new THREE.Group();
+  const deck=box(4.8,.14,1.35,0xa98257);deck.position.y=.08;g.add(deck);
+  for(let x=-2;x<=2;x+=.5){
+    const seam=box(.025,.018,1.3,0x6b513a);seam.position.set(x,.16,0);g.add(seam);
+  }
+  for(const z of [-.62,.62])for(const x of [-2.1,0,2.1]){
+    const post=box(.06,.72,.06,0x5e4936);post.position.set(x,.38,z);g.add(post);
+  }
+  return g;
+}
+function buildShorePiece(kind='straight'){
+  const g=new THREE.Group();
+  const sand=box(5.8,.08,1.25,0xefdcae);sand.position.y=.04;g.add(sand);
+  const foam=box(kind==='straight'?5.8:3.3,.035,.2,0xf7f4df);
+  foam.position.set(kind==='corner-out'?-1.15:kind==='corner-in'?1.15:0,.10,-.5);
+  if(kind!=='straight')foam.rotation.y=Math.PI/2;
+  g.add(foam);
+  return g;
+}
+function buildTransformerKiosk(){
+  const g=new THREE.Group();
+  const body=gMesh(bevelBox(1.75,1.55,1.15,.08,2),0x87948f);body.position.y=.78;g.add(body);
+  for(const x of [-.45,0,.45])for(const y of [.52,.78,1.04]){
+    const vent=box(.28,.035,.03,0x39484a);vent.position.set(x,y,.59);g.add(vent);
+  }
+  const warning=new THREE.Mesh(new THREE.CircleGeometry(.16,3),glowMat(0xf2c14e));
+  warning.position.set(0,1.28,.61);warning.rotation.z=Math.PI;g.add(warning);
+  return g;
+}
+function buildUtilityCabinet(){
+  const g=new THREE.Group();
+  const body=gMesh(bevelBox(.72,1.25,.5,.06,2),0x50706a);body.position.y=.63;g.add(body);
+  const seam=box(.025,1.05,.02,0x27302f);seam.position.set(0,.63,.26);g.add(seam);
+  const handle=box(.04,.18,.04,0xd9d3c7);handle.position.set(.2,.7,.29);g.add(handle);
+  return g;
+}
+function buildServiceGate(){
+  const g=new THREE.Group();
+  for(const x of [-2.35,2.35]){
+    const post=gMesh(bevelBox(.18,2.25,.18,.035,1),0x3d4a52);post.position.set(x,1.125,0);g.add(post);
+  }
+  for(const side of [-1,1]){
+    const leaf=new THREE.Group();leaf.position.x=side*1.15;
+    for(const y of [.35,.95,1.55]){
+      const rail=box(2.2,.065,.055,0x9aa2a1);rail.position.y=y;leaf.add(rail);
+    }
+    g.add(leaf);
+  }
+  return g;
+}
+function buildRoadServiceTile(label,color=0xf2c14e){
+  const g=new THREE.Group();
+  const slab=box(6.8,.055,2.35,0x5f6866);slab.position.y=.03;g.add(slab);
+  const marking=new THREE.Mesh(new THREE.PlaneGeometry(4.8,.72),
+    texMat(canvasTex(512,96,(c)=>{
+      c.clearRect(0,0,512,96);
+      c.fillStyle=`#${new THREE.Color(color).getHexString()}`;
+      c.font='bold 60px Courier New';c.textAlign='center';c.fillText(label,256,69);
+    }),{transparent:true,side:THREE.DoubleSide}));
+  marking.rotation.x=-Math.PI/2;marking.position.y=.064;g.add(marking);
+  return g;
+}
 function buildPalm(){
   const g=new THREE.Group();
   // bent trunk as one lofted tube — the lean that was faked by stacking
@@ -2923,6 +3077,7 @@ const wetmarketObj=registerSwap('wetmarket',placeOnSphere(buildWetMarket(),WETMK
 for(const cz of [-1.45,.15])for(const cx of [-2.15,2.15])addLocalCollider(wetmarketObj,cx,cz,.95);
 addLocalCollider(wetmarketObj,-1.6,-2.2,.35); addLocalCollider(wetmarketObj,1.6,-2.25,.35);
 placeOnSphere(buildPlayground(),HDB.lat+3,HDB.lon-7,60);
+placeVendorFallback('metroBusBay',buildRoadServiceTile('BUS BAY',0xf2c14e),25.5,32,-55,{outline:false});
 registerSwap('busstop',placeOnSphere(buildBusStop(),25.5,32,-55));
 for(const config of BUS_INSTANCES)transitBuses.push(placeTransitBus(config));
 window.__transitAudit={busCount:transitBuses.length,routes:BUS_INSTANCES.map(bus=>bus.route),moving:BUS_INSTANCES.filter(bus=>bus.moving).length};
@@ -2934,12 +3089,19 @@ registerSwap('postbox',placeOnSphere(buildPostbox(),HDB.lat-4,HDB.lon-8)); addCo
 placeOnSphere(addOutlines(buildSignpost('KOPI →','← BLK 65')),9,-6,20);
 placeOnSphere(addOutlines(buildSignpost('MAKAN →','← MRT')),24,30,-40);
 placeOnSphere(addOutlines(buildSignpost('HARBOUR STATUE →','← FLYER')),2,98,150);
+placeVendorFallback('cityTrafficLight',buildTrafficSignal(),-11,9,45,{collider:.18});
+placeVendorFallback('cityTrafficLight',buildTrafficSignal(),23,31,-55,{collider:.18});
+placeVendorFallback('cityTrafficLight',buildTrafficSignal(),-20,156,20,{collider:.18});
+placeVendorFallback('cityRoadGantry',buildRoadGantry(),-17,158,20,{collider:.15});
+placeVendorFallback('cityRoadGantry',buildRoadGantry(),10,-158,105,{collider:.15});
 registerSwap('bench',placeOnSphere(addOutlines(buildBench()),KOPITIAM.lat-4,KOPITIAM.lon-3,80));
 registerSwap('bench',placeOnSphere(addOutlines(buildBench()),GARDENS.lat+1,GARDENS.lon-11,-30));
 registerSwap('bench',placeOnSphere(addOutlines(buildBench()),2,101,160));
-placeOnSphere(addOutlines(buildBin()),KOPITIAM.lat+3,KOPITIAM.lon+6);
-placeOnSphere(addOutlines(buildBin()),HAWKER.lat+3,HAWKER.lon+4);
-placeOnSphere(addOutlines(buildBin()),MRT.lat+3,MRT.lon-4);
+placeVendorFallback('cityTrashBin',buildBin(),KOPITIAM.lat+3,KOPITIAM.lon+6,0,{collider:.28});
+placeVendorFallback('cityTrashBin',buildBin(),HAWKER.lat+3,HAWKER.lon+4,0,{collider:.28});
+placeVendorFallback('cityTrashBin',buildBin(),MRT.lat+3,MRT.lon-4,0,{collider:.28});
+placeVendorFallback('metroLoadingZone',buildRoadServiceTile('LOADING',0xf2c14e),HAWKER.lat+5,HAWKER.lon-2,140,{outline:false});
+placeVendorFallback('cityDeliveryVan',buildDeliveryVan(),HAWKER.lat+5,HAWKER.lon-2,140,{collider:1.25});
 placeOnSphere(addOutlines(buildHydrant()),SHOPS.lat+3,SHOPS.lon+8);
 placeOnSphere(addOutlines(buildHydrant()),HDB.lat-6,HDB.lon+6);
 
@@ -2984,6 +3146,10 @@ registerSwap('serviceFibre',placeOnSphere(buildServiceStation(0x3d7ea6),HDB.lat-
 registerSwap('serviceFibre',placeOnSphere(buildServiceStation(0x3d7ea6),PBLOCK.lat-1,PBLOCK.lon+5,-30));
 registerSwap('serviceWifi',placeOnSphere(buildServiceStation(0x2e7d4f),CONDO6.lat-1,CONDO6.lon-4,60));
 registerSwap('serviceWifi',placeOnSphere(buildServiceStation(0x2e7d4f),CONDO5.lat+1,CONDO5.lon-5,-70));
+placeVendorFallback('metroTransformerKiosk',buildTransformerKiosk(),HDB.lat-5,HDB.lon+9,160,{collider:.8});
+placeVendorFallback('metroUtilityVentCabinet',buildUtilityCabinet(),CONDO5.lat+2,CONDO5.lon-7,25,{collider:.35});
+placeVendorFallback('metroUtilityVentCabinet',buildUtilityCabinet(),WEST_PORT.lat-2,WEST_PORT.lon+6,125,{collider:.35});
+placeVendorFallback('metroServiceGate',buildServiceGate(),WEST_PORT.lat+4,WEST_PORT.lon-5,125,{collider:1.6});
 registerSwap('mamashop',placeOnSphere(buildMamaShop(),HDB.lat-1,HDB.lon+8,-160)); addCollider(HDB.lat-1,HDB.lon+8,1.2);
 placeOnSphere(addOutlines(buildIceCreamCart()),HARBOUR_STATUE.lat+3,HARBOUR_STATUE.lon-8,120); addCollider(HARBOUR_STATUE.lat+3,HARBOUR_STATUE.lon-8,.9);
 placeOnSphere(buildClockTower(),HAWKER.lat+2,HAWKER.lon-6,40); addCollider(HAWKER.lat+2,HAWKER.lon-6,.8);
@@ -3005,7 +3171,7 @@ LOCAL_BUILDING_PLOTS.forEach(([lat,lon],i)=>{
   placeAtUnit(b,u,0);alignXToDir(b,u,tangent);if(sideSign<0)b.rotateY(Math.PI);
   addColliderUnit(u,i%3===2?1.25:1.0);
 });
-console.assert(LOCAL_BUILDING_PLOTS.length===12,'Curated local building plan changed unexpectedly');
+console.assert(LOCAL_BUILDING_PLOTS.length===4,'Curated local building plan changed unexpectedly');
 console.assert(LOCAL_BUILDING_SETBACK>ROAD_STYLES.local.width/2+1.25+.25,'Local building road clearance is insufficient');
 for(const dlon of [-5,0,5]){
   placeOnSphere(addOutlines(buildPottedPlant()),SHOPS.lat+2.6,SHOPS.lon+dlon,0);
@@ -3123,8 +3289,8 @@ placeOnSphere(buildInterchange(),INTERCHANGE.lat,INTERCHANGE.lon,150);addCollide
 placeOnSphere(buildDistrictSign('GENERAL HOSPITAL','24H HEALTH NETWORK',0xd0342c),HOSPITAL.lat-4,HOSPITAL.lon+5,175);
 
 placeOnSphere(addOutlines(buildResortGate()),RESORT.lat,RESORT.lon,20); addCollider(RESORT.lat,RESORT.lon,1.8);
-registerSwap('palm',placeOnSphere(buildPalm(),RESORT.lat+3,RESORT.lon-8,40)); addCollider(RESORT.lat+3,RESORT.lon-8,.7);
-registerSwap('palm',placeOnSphere(buildPalm(),RESORT.lat-3,RESORT.lon+8,190)); addCollider(RESORT.lat-3,RESORT.lon+8,.7);
+placeVendorFallback('viceRoyalPalm',buildPalmVariant('royal'),RESORT.lat+3,RESORT.lon-8,40,{collider:.7});
+placeVendorFallback('viceCoconutPalm',buildPalmVariant('coconut'),RESORT.lat-3,RESORT.lon+8,190,{collider:.7});
 const filmParkObj=placeOnSphere(buildFilmPark(),FILM_PARK.lat,FILM_PARK.lon,-30);
 addCollider(FILM_PARK.lat,FILM_PARK.lon,2.0);
 filmParkObj.updateMatrixWorld(true);
@@ -3167,6 +3333,12 @@ const cabins=[];
   placeOnSphere(buildGodown('#f5d98f','GODOWN 3'),QUAYSIDE.lat-3,QUAYSIDE.lon-4,-85); addCollider(QUAYSIDE.lat-3,QUAYSIDE.lon-4,1.8);
   placeOnSphere(addOutlines(buildCanopy()),QUAYSIDE.lat+2,QUAYSIDE.lon,0); addCollider(QUAYSIDE.lat+2,QUAYSIDE.lon,.4);
   placeOnSphere(addOutlines(buildCanopy()),QUAYSIDE.lat-2,QUAYSIDE.lon+1,40); addCollider(QUAYSIDE.lat-2,QUAYSIDE.lon+1,.4);
+  placeVendorFallback('viceBoardwalk',buildBoardwalk(),QUAYSIDE.lat+4,QUAYSIDE.lon+3,65,{collider:1.4});
+  placeVendorFallback('viceMarinaDock',buildMarinaDock(),QUAYSIDE.lat,QUAYSIDE.lon+3,30,{collider:1.2});
+  placeVendorFallback('viceMooringPilings',buildMooringPilings(),QUAYSIDE.lat-2,QUAYSIDE.lon+5,30,{collider:.45});
+  placeVendorFallback('viceShoreStraight',buildShorePiece('straight'),QUAYSIDE.lat+5,QUAYSIDE.lon+6,70,{outline:false});
+  placeVendorFallback('viceShoreCornerIn',buildShorePiece('corner-in'),QUAYSIDE.lat+2,QUAYSIDE.lon+8,30,{outline:false});
+  placeVendorFallback('viceShoreCornerOut',buildShorePiece('corner-out'),QUAYSIDE.lat-5,QUAYSIDE.lon+6,-10,{outline:false});
   const moored=addOutlines(buildBumboat(0x8e5bb5));
   registerSwap('bumboat',moored);
   placeOnSphere(moored,QUAYSIDE.lat,QUAYSIDE.lon+5,30);
@@ -3281,8 +3453,6 @@ const towerSpots=[
   {lat:CBD.lat,    lon:CBD.lon,     kind:0},
   {lat:CBD.lat-2,  lon:CBD.lon+4,   kind:1},
   {lat:CBD.lat+2,  lon:CBD.lon-4,   kind:2},
-  {lat:CBD.lat-5,  lon:CBD.lon+2,   kind:0},
-  {lat:CBD.lat+4,  lon:CBD.lon+3,   kind:1},
 ];
 for(const s of towerSpots){
   const t=buildSkyscraper(s.kind);
@@ -3290,6 +3460,9 @@ for(const s of towerSpots){
   addCollider(s.lat,s.lon,1.1);
   cbdTowers.push(t);
 }
+placeVendorFallback('cityRooftopUnits',buildRooftopUnits(),towerSpots[0].lat,towerSpots[0].lon,0,{altitude:11.8,collider:0});
+placeVendorFallback('cityRooftopUnits',buildRooftopUnits(),towerSpots[1].lat,towerSpots[1].lon,90,{altitude:10.3,collider:0});
+placeVendorFallback('cityRooftopUnits',buildRooftopUnits(),towerSpots[2].lat,towerSpots[2].lon,180,{altitude:8.3,collider:0});
 
 (function river(){
   const a=latLonPos(RIVER.lat,RIVER.lon).normalize();
@@ -3357,9 +3530,9 @@ placeOnSphere(buildHollandShop({wall:'#f5d98f',shutter:'#3d7ea6',roof:'#8f979e',
 placeOnSphere(buildHollandShop({wall:'#f2b6c1',shutter:'#2e7d4f',roof:'#9c4a30',sign:'WINES'}),
   HOLAND.lat+3,HOLAND.lon+3,-10); addCollider(HOLAND.lat+3,HOLAND.lon+3,1.6);
 for(const off of [[-1.5,-1,0],[1.5,1,90],[0,2.2,-20]]){
-  placeOnSphere(addOutlines(buildCafeTable()),HOLAND.lat+off[0],HOLAND.lon+off[1],off[2]);
+  placeVendorFallback('viceCafeTableChairs',buildCafeTable(),HOLAND.lat+off[0],HOLAND.lon+off[1],off[2],{collider:.8});
 }
-registerSwap('palm',placeOnSphere(buildPalm(),HOLAND.lat+4,HOLAND.lon-6,40)); addCollider(HOLAND.lat+4,HOLAND.lon-6,.7);
+placeVendorFallback('viceRoyalPalm',buildPalmVariant('royal'),HOLAND.lat+4,HOLAND.lon-6,40,{collider:.7});
 placeOnSphere(buildRainTree(),HOLAND.lat-5,HOLAND.lon+5,-30); addCollider(HOLAND.lat-5,HOLAND.lon+5,.7);
 
 const otters=[];
@@ -3977,20 +4150,74 @@ const NPC_PLACE_ANCHORS={
   'the fitness corner':{point:{lat:HDB.lat+3,lon:HDB.lon-7},asset:'hdbHero'},
   'the promenade':{point:HOLAND,asset:'HOLAND'},
 };
+const NPC_HOME_MIN=worldScale.speeds.npcHomeSeparation;
+const NPC_LIVE_MIN=worldScale.speeds.npcLiveSeparation;
+const NPC_MISSION_RESERVE=worldScale.speeds.npcMissionReserve;
 function resolveNpcAnchors(defs){
+  const groups=new Map();
   for(const def of defs){
     const anchor=NPC_PLACE_ANCHORS[def.place];
     if(!anchor)throw new Error(`NPC place has no anchor: ${def.place}`);
+    const key=`${anchor.point.lat}:${anchor.point.lon}:${anchor.asset}`;
+    if(!groups.has(key))groups.set(key,[]);
+    groups.get(key).push({def,anchor});
+  }
+  for(const group of groups.values()){
+    const hasMissionNpc=group.some(({def})=>!def.ambient);
+    const offsets=group.map((_,index)=>{
+      if(hasMissionNpc)return index===0?0:(index%2?1:-1)*Math.ceil(index/2)*NPC_HOME_MIN;
+      return (index-(group.length-1)/2)*NPC_HOME_MIN;
+    });
+    group.forEach(({def,anchor},index)=>{
     const buildingUnit=latLonPos(anchor.point.lat,anchor.point.lon).normalize();
     const radius=footprintRadius(anchor.asset);
     const frontage=nearestRoadPose(buildingUnit);
     const targetDistance=radius+MAJOR_BUILDING_VISUAL_BUFFER+(def.name==='Cheryl'?8:3);
     const towardRoad=frontage?.unit.clone().sub(buildingUnit.clone().multiplyScalar(frontage.unit.dot(buildingUnit)));
     const tangent=towardRoad?.lengthSq()>1e-6?towardRoad.normalize():V3().crossVectors(buildingUnit,Math.abs(buildingUnit.y)<.9?UP:V3(1,0,0)).normalize();
-    const unit=buildingUnit.clone().multiplyScalar(Math.cos(targetDistance/R)).add(tangent.multiplyScalar(Math.sin(targetDistance/R))).normalize();
+    const lateral=V3().crossVectors(buildingUnit,tangent).normalize();
+    const base=buildingUnit.clone().multiplyScalar(Math.cos(targetDistance/R)).add(tangent.multiplyScalar(Math.sin(targetDistance/R))).normalize();
+    const lateralAngle=offsets[index]/R;
+    const unit=base.clone().multiplyScalar(Math.cos(lateralAngle)).add(lateral.multiplyScalar(Math.sin(lateralAngle))).normalize();
     const coords=latLonFromUnit(unit);
     def.lat=coords.lat;def.lon=coords.lon;def.heading=0;
     def.anchorUnit=unit;def.buildingUnit=buildingUnit;def.anchorRadius=radius;
+    });
+  }
+  // Different destinations can still produce neighbouring frontage points on
+  // the curved island. Relax all homes together so the final authored spawn
+  // plan has the same guaranteed clearance as duplicate-destination groups.
+  for(let pass=0;pass<8;pass++){
+    for(let i=0;i<defs.length;i++)for(let j=i+1;j<defs.length;j++){
+      const a=defs[i].anchorUnit,b=defs[j].anchorUnit;
+      const distance=a.angleTo(b)*R;
+      if(distance>=NPC_HOME_MIN)continue;
+      let axis=V3().crossVectors(a,b);
+      if(axis.lengthSq()<1e-8)axis.crossVectors(a,Math.abs(a.y)<.9?UP:V3(1,0,0));
+      axis.normalize();
+      const push=(NPC_HOME_MIN-distance)*.5/R+.00001;
+      a.applyAxisAngle(axis,-push).normalize();
+      b.applyAxisAngle(axis,push).normalize();
+    }
+    for(const def of defs){
+      for(let attempt=0;attempt<6;attempt++){
+        const overlap=visibleBuildingOverlap(def.anchorUnit);
+        if(overlap<0)break;
+        const [point,radius]=ROAD_CLEARANCE_ZONES[overlap];
+        const localPlot=point.isVector3;
+        const center=localPlot?point:latLonPos(point.lat,point.lon).normalize();
+        let outward=def.anchorUnit.clone().sub(center.clone().multiplyScalar(def.anchorUnit.dot(center)));
+        if(outward.lengthSq()<1e-8)outward=V3().crossVectors(center,Math.abs(center.y)<.9?UP:V3(1,0,0));
+        outward.normalize();
+        const clearance=radius+(localPlot?0:MAJOR_BUILDING_VISUAL_BUFFER)+1;
+        def.anchorUnit.copy(center).multiplyScalar(Math.cos(clearance/R))
+          .add(outward.multiplyScalar(Math.sin(clearance/R))).normalize();
+      }
+    }
+  }
+  for(const def of defs){
+    const coords=latLonFromUnit(def.anchorUnit);
+    def.lat=coords.lat;def.lon=coords.lon;
   }
 }
 resolveNpcAnchors([...CUSTOMER_DEFS,...AMBIENT_NPC_DEFS]);
@@ -4027,12 +4254,31 @@ function auditNpcPlacements(){
     const distance=home.angleTo(def.anchorUnit)*R;
     if(distance>6)placeMismatches.push({name:def.name,place:def.place,distance:Number(distance.toFixed(2))});
   }
-  const result={npcSpawnConflicts:spawnConflicts,npcPlaceMismatches:placeMismatches};
+  const homeConflicts=[];
+  let minimumHomeDistance=Infinity;
+  for(let i=0;i<npcs.length;i++)for(let j=i+1;j<npcs.length;j++){
+    const distance=npcs[i].userData.home.angleTo(npcs[j].userData.home)*R;
+    minimumHomeDistance=Math.min(minimumHomeDistance,distance);
+    if(distance<NPC_HOME_MIN-.05){
+      homeConflicts.push({a:NPC_DEFS[i].name,b:NPC_DEFS[j].name,distance:Number(distance.toFixed(2))});
+    }
+  }
+  const result={
+    npcSpawnConflicts:spawnConflicts,
+    npcPlaceMismatches:placeMismatches,
+    npcHomeConflicts:homeConflicts,
+    minimumHomeDistance:Number(minimumHomeDistance.toFixed(2)),
+    requiredHomeDistance:NPC_HOME_MIN,
+  };
   window.__npcPlacementAudit=result;
   document.documentElement.dataset.npcSpawnConflicts=String(spawnConflicts.length);
+  document.documentElement.dataset.npcSpawnConflictLabels=spawnConflicts.join('|');
   document.documentElement.dataset.npcPlaceMismatches=String(placeMismatches.length);
+  document.documentElement.dataset.npcHomeConflicts=String(homeConflicts.length);
+  document.documentElement.dataset.npcHomeConflictLabels=homeConflicts.map(item=>`${item.a}/${item.b}:${item.distance}`).join('|');
   console.assert(!spawnConflicts.length,`NPC spawn conflicts: ${spawnConflicts.join(', ')}`);
   console.assert(!placeMismatches.length,`NPC place mismatches: ${placeMismatches.map(item=>`${item.name} ${item.distance}m`).join(', ')}`);
+  console.assert(!homeConflicts.length,`NPC home-spacing conflicts: ${homeConflicts.map(item=>`${item.a}/${item.b} ${item.distance}m`).join(', ')}`);
   return result;
 }
 auditNpcPlacements();
@@ -4102,16 +4348,25 @@ function onAuthoredRoad(unit){
     return nearRouteCenters(unit,network.centerUnits,style.width/2+style.shoulder);
   });
 }
-function safeNpcTarget(home){
-  const wr=NPC_WANDER_R/R;
+function safeNpcTarget(home,npc){
+  const wr=(npc.userData.def.ambient?NPC_WANDER_R:NPC_CUSTOMER_WANDER_R)/R;
   const t1=V3().crossVectors(home,V3(0,1,.3)).normalize();
   const t2=V3().crossVectors(home,t1).normalize();
-  for(let attempt=0;attempt<24;attempt++){
+  targetSearch:for(let attempt=0;attempt<32;attempt++){
     const a=Math.random()*6.28,dist=(.45+Math.random()*.55)*wr;
     const target=home.clone().multiplyScalar(Math.cos(dist))
       .add(t1.clone().multiplyScalar(Math.cos(a)*Math.sin(dist)))
       .add(t2.clone().multiplyScalar(Math.sin(a)*Math.sin(dist))).normalize();
     if(onWater(target)||onAuthoredRoad(target)||insideVisibleBuildingFootprint(target))continue;
+    for(const other of npcs){
+      if(other===npc)continue;
+      if(target.angleTo(other.userData.npcPos.clone().normalize())*R<NPC_LIVE_MIN)continue targetSearch;
+    }
+    if(npc.userData.def.ambient){
+      for(let i=0;i<CUSTOMER_COUNT;i++){
+        if(target.angleTo(npcs[i].userData.home)*R<NPC_MISSION_RESERVE)continue targetSearch;
+      }
+    }
     return target;
   }
   return home.clone();
@@ -4121,7 +4376,8 @@ function safeNpcTarget(home){
 // screen) so the island feels inhabited; look-at only triggers once the
 // shift begins. Each NPC paces within a small radius of its post and turns
 // to face the player when they come close, freezing mid-stride.
-const NPC_SPEED=worldScale.speeds.npc, NPC_TURN=3.4, NPC_WANDER_R=worldScale.speeds.npcWanderRadius, NPC_LOOK_R=worldScale.speeds.npcLookRadius;
+const NPC_SPEED=worldScale.speeds.npc, NPC_TURN=3.4, NPC_WANDER_R=worldScale.speeds.npcWanderRadius,
+  NPC_CUSTOMER_WANDER_R=worldScale.speeds.customerWanderRadius, NPC_LOOK_R=worldScale.speeds.npcLookRadius;
 const AMBIENT_LINES=[
   'Wah, busy day! Good to see someone making the rounds.',
   'Uncle Lim was looking for you just now. Better go before the kopi gets cold!',
@@ -4151,6 +4407,45 @@ function resolveNpcCollisions(unit, skip){
     }
   }
   return unit;
+}
+function enforceNpcSeparation(){
+  for(let pass=0;pass<3;pass++){
+    for(let i=0;i<npcs.length;i++)for(let j=i+1;j<npcs.length;j++){
+      const a=npcs[i].userData.npcPos.clone().normalize();
+      const b=npcs[j].userData.npcPos.clone().normalize();
+      const distance=a.angleTo(b)*R;
+      if(distance>=NPC_LIVE_MIN)continue;
+      let axis=V3().crossVectors(a,b);
+      if(axis.lengthSq()<1e-8){
+        const seed=Math.abs(a.y)<.9?UP:V3(1,0,0);
+        axis.crossVectors(a,seed);
+      }
+      axis.normalize();
+      const push=(NPC_LIVE_MIN-distance)*.5/R+.00001;
+      a.applyAxisAngle(axis,-push).normalize();
+      b.applyAxisAngle(axis,push).normalize();
+      npcs[i].userData.npcPos.copy(a).multiplyScalar(R);
+      npcs[j].userData.npcPos.copy(b).multiplyScalar(R);
+    }
+  }
+  const conflicts=[];
+  let minimumDistance=Infinity;
+  for(let i=0;i<npcs.length;i++){
+    const unit=npcs[i].userData.npcPos.clone().normalize();
+    npcs[i].position.copy(unit).multiplyScalar(surfR(unit));
+    npcs[i].userData.collider.u.copy(unit);
+    for(let j=i+1;j<npcs.length;j++){
+      const distance=unit.angleTo(npcs[j].userData.npcPos.clone().normalize())*R;
+      minimumDistance=Math.min(minimumDistance,distance);
+      if(distance<NPC_LIVE_MIN-.05)conflicts.push({a:NPC_DEFS[i].name,b:NPC_DEFS[j].name,distance:Number(distance.toFixed(2))});
+    }
+  }
+  window.__npcSeparationAudit={
+    conflicts,
+    minimumDistance:Number(minimumDistance.toFixed(2)),
+    requiredDistance:NPC_LIVE_MIN,
+  };
+  document.documentElement.dataset.npcLiveConflicts=String(conflicts.length);
 }
 function stepNPCs(dt,t){
   const playerUp=pos.clone().normalize();
@@ -4185,8 +4480,8 @@ function stepNPCs(dt,t){
         if(ud.stateT>ud.stateDur){
           ud.npcState='walk'; ud.stateT=0; ud.stateDur=2.5+Math.random()*3;
           // Choose only dry, non-road, non-building wander targets within the
-          // nine-metre NPC budget. A failed search leaves the NPC at home.
-          ud.target=safeNpcTarget(ud.home);
+          // local NPC budget. A failed search leaves the NPC at home.
+          ud.target=safeNpcTarget(ud.home,n);
         }
       }else{
         const tgt=ud.target, remain=up.angleTo(tgt);
@@ -4249,6 +4544,7 @@ function stepNPCs(dt,t){
       }
     }
   }
+  enforceNpcSeparation();
 }
 
 // ---------- inked icon system: hand-drawn markers, no platform emoji ----------
@@ -4850,9 +5146,9 @@ function stageOpening(){
   // of residence meshes and giving the camera a clean opening sightline.
   const hub=latLonPos(KOPITIAM.lat,KOPITIAM.lon).normalize();
   const routeAngle=home.angleTo(hub);
-  // Twelve metres leaves enough visual breathing room for the point-block and
-  // other tall hero sites while still keeping the first interaction nearby.
-  const startU=slerpUnit(home,hub,Math.min(.45,(12/R)/Math.max(routeAngle,.001)));
+  // Eighteen metres leaves enough visual breathing room for the point-block
+  // and condo silhouettes while still keeping the first interaction nearby.
+  const startU=slerpUnit(home,hub,Math.min(.55,(18/R)/Math.max(routeAngle,.001)));
   pos.copy(startU).multiplyScalar(R);
   fwd.copy(home).sub(startU.clone().multiplyScalar(home.dot(startU))).normalize();
   // Park on the nearest authored carriageway so randomized openings never
@@ -5707,10 +6003,10 @@ const ASSET_MANIFEST={
   kampungHero:{url:'assets/kampung-call-v2.glb',scale:1.129,ground:true},
   pointblockHero:{url:'assets/pointblock-call-v2.glb',scale:3.146,ground:true},
   airportTerminal:{url:'assets/airport-terminal-v2.glb',scale:4.294,ground:true},
-  nationalUniversity:   {url:'assets/national-university-v2.glb',scale:3.79,ground:true,campusHeight:12},
-  technologicalUniversity:{url:'assets/technological-university-v2.glb',scale:4.42,ground:true,campusHeight:14},
-  managementUniversity:  {url:'assets/management-university-v2.glb',scale:5.05,ground:true,campusHeight:16},
-  designUniversity:      {url:'assets/design-university-v2.glb',scale:4.11,ground:true,campusHeight:13},
+  nationalUniversity:   {url:'assets/national-university-v2.glb',scale:3.16,ground:true,campusHeight:10},
+  technologicalUniversity:{url:'assets/technological-university-v2.glb',scale:3.48,ground:true,campusHeight:11},
+  managementUniversity:  {url:'assets/management-university-v2.glb',scale:3.47,ground:true,campusHeight:11},
+  designUniversity:      {url:'assets/design-university-v2.glb',scale:3.48,ground:true,campusHeight:11},
   nationalSchool:        {url:'assets/national-school-v2.glb',scale:2.226,ground:true},
   landed:    {url:'assets/landed-bg-v2.glb',scale:2.0,ground:true},
   landedHero:{url:'assets/landed-v2.glb', scale:1.439,ground:true},
@@ -5764,13 +6060,27 @@ function toonify(root){
   const hulls=[];
   root.traverse(o=>{
     if(!o.isMesh)return;
-    const src=o.material;
-    const m2=new THREE.MeshToonMaterial({gradientMap:gradTex});
-    if(src){
-      if(src.map){m2.map=src.map; if(m2.map)m2.map.anisotropy=4;}
+    const convertMaterial=src=>{
+      const m2=new THREE.MeshToonMaterial({
+        gradientMap:gradTex,
+        vertexColors:!!o.geometry?.getAttribute('color'),
+      });
+      if(!src)return m2;
+      if(src.map){m2.map=src.map;m2.map.anisotropy=4;}
       if(src.color)m2.color.copy(src.color);
-    }
-    o.material=m2;
+      if(src.emissive)m2.emissive.copy(src.emissive);
+      if(src.emissiveMap)m2.emissiveMap=src.emissiveMap;
+      if(Number.isFinite(src.emissiveIntensity))m2.emissiveIntensity=src.emissiveIntensity;
+      m2.transparent=!!src.transparent;
+      m2.opacity=src.opacity??1;
+      m2.alphaTest=src.alphaTest??0;
+      m2.side=src.side??THREE.FrontSide;
+      m2.depthWrite=src.depthWrite??true;
+      m2.name=src.name||'';
+      return m2;
+    };
+    const src=o.material;
+    o.material=Array.isArray(src)?src.map(convertMaterial):convertMaterial(src);
     o.castShadow=true; o.receiveShadow=true;
     if(!o.isSkinnedMesh)hulls.push(o);
   });
@@ -5874,6 +6184,32 @@ function applySwap(name,cfg,gltf){
   }
   console.log(`[assets] ${name}.glb active × ${list.length}`);
 }
+function fitVendorModel(model,cfg){
+  model.updateMatrixWorld(true);
+  const bounds=new THREE.Box3().setFromObject(model),size=bounds.getSize(new THREE.Vector3());
+  const sourceMeasure=cfg.targetHeight?size.y:Math.max(size.x,size.z);
+  const targetMeasure=cfg.targetHeight||cfg.targetLongest;
+  if(Number.isFinite(sourceMeasure)&&sourceMeasure>1e-4&&Number.isFinite(targetMeasure)){
+    model.scale.multiplyScalar(targetMeasure/sourceMeasure);
+  }
+  if(Number.isFinite(cfg.forwardYaw))model.rotation.y=cfg.forwardYaw;
+  alignLowestPoint(model,0);
+}
+function applyVendorSwap(name,cfg,gltf){
+  if(cfg.handler==='transitBus'){
+    applyTransitBusGLB(gltf);
+    return;
+  }
+  toonify(gltf.scene);
+  const list=swapRegistry[name]||[];
+  for(const grp of list){
+    while(grp.children.length)grp.remove(grp.children[0]);
+    const inst=cloneSharedScene(gltf.scene);
+    fitVendorModel(inst,cfg);
+    grp.add(inst);
+  }
+  console.log(`[assets] vendor ${name} active × ${list.length}`);
+}
 const RESIDENT_ASSETS=['uncle-lim','auntie-rosnah','devi','mr-tan','kai','sofia'];
 const RESIDENT_SCALES={'uncle-lim':.841,'auntie-rosnah':.806,'devi':.792,'mr-tan':.833,'kai':.825,'sofia':.829};
 function swapResident(index,gltf){
@@ -5909,6 +6245,24 @@ function swapResident(index,gltf){
       undefined,
       err=>{recordAssetOutcome(key,'failed',err);recordAssetOutcome(key,'fallback');console.warn(`[assets] ${key} fallback active`,err);});
   });
+  const vendorPlacements=Object.entries(vendorAssetData.assets||{}).map(([name,cfg])=>({
+    name,
+    instances:cfg.handler==='transitBus'?transitBuses.length:(swapRegistry[name]||[]).length,
+  }));
+  const unplacedVendorAssets=vendorPlacements.filter(item=>item.instances===0);
+  window.__vendorAssetAudit={configured:vendorPlacements.length,placements:vendorPlacements,unplaced:unplacedVendorAssets};
+  document.documentElement.dataset.vendorAssetsConfigured=String(vendorPlacements.length);
+  document.documentElement.dataset.vendorAssetsUnplaced=String(unplacedVendorAssets.length);
+  console.assert(!unplacedVendorAssets.length,`Vendor assets missing placements: ${unplacedVendorAssets.map(item=>item.name).join(', ')}`);
+  for(const [name,cfg] of Object.entries(vendorAssetData.assets||{})){
+    const key=`vendor:${name}`;
+    const url=[vendorAssetData.root,cfg.pack,cfg.file].join('/');
+    recordAssetOutcome(key,'requested',null,true);
+    loader.load(url,
+      gltf=>{recordAssetOutcome(key,'loaded',null,true);applyVendorSwap(name,cfg,gltf);},
+      undefined,
+      ()=>recordAssetOutcome(key,'fallback',null,true));
+  }
 })();
 
 // Blender transit exports are optional at runtime. Keep the procedural

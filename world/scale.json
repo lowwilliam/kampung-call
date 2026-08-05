@@ -83,7 +83,11 @@
     "walk": 5.5,
     "van": 20,
     "npc": 1.4,
-    "npcWanderRadius": 9,
+    "npcWanderRadius": 4,
+    "customerWanderRadius": 2.25,
+    "npcHomeSeparation": 7,
+    "npcLiveSeparation": 3,
+    "npcMissionReserve": 5,
     "npcLookRadius": 6,
     "longestCallToCallWalkSecondsMax": 40
   },
