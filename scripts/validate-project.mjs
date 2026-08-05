@@ -56,11 +56,35 @@ assert(/function onAuthoredRoad\(unit\)/.test(html)
   'Ambient scatter and NPC targets must reject water and authored road corridors.');
 assert(/function auditNpcPlacements\(\)[\s\S]{0,1400}npcSpawnConflicts[\s\S]{0,500}npcPlaceMismatches/.test(html),
   'NPC placement must expose resident anchor and collision audits.');
+assert(/const NPC_HOME_MIN=worldScale\.speeds\.npcHomeSeparation/.test(html)
+    && /function enforceNpcSeparation\(\)/.test(html)
+    && /dataset\.npcLiveConflicts=String\(conflicts\.length\)/.test(html),
+  'NPC placement must enforce authored-home and live minimum distances.');
 assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingWaterConflicts=String\(wet\.length\)/.test(html),
   'Dry-land buildings must be audited against authored water footprints.');
 assert(/window\.__assetLoadAudit=assetLoadAudit/.test(html)
     && /dataset\.assetsFailed=String\(assetLoadAudit\.failed\)/.test(html),
   'Asset load outcomes must be browser-test observable.');
+const vendorManifestPath = path.join(root, 'world/vendor-assets.json');
+assert(fs.existsSync(vendorManifestPath), 'Licensed vendor asset manifest is required.');
+if (fs.existsSync(vendorManifestPath)) {
+  try {
+    const vendorManifest = JSON.parse(fs.readFileSync(vendorManifestPath, 'utf8'));
+    const vendorAssets = Object.entries(vendorManifest.assets || {});
+    assert(vendorAssets.length === 20, `Expected 20 reviewed High-priority vendor assets, found ${vendorAssets.length}.`);
+    for (const [name, config] of vendorAssets) {
+      assert(['free', 'premium'].includes(config.license), `Vendor asset ${name} must declare its license tier.`);
+      if (config.handler !== 'transitBus') {
+        assert(html.includes(`placeVendorFallback('${name}'`), `Vendor asset ${name} has no procedural placement.`);
+      }
+    }
+    assert(/window\.__vendorAssetAudit=\{configured:vendorPlacements\.length/.test(html)
+        && /dataset\.vendorAssetsUnplaced=String\(unplacedVendorAssets\.length\)/.test(html),
+      'Vendor placements must expose a browser-observable completeness audit.');
+  } catch (error) {
+    failures.push(`Could not parse vendor asset manifest: ${error.message}`);
+  }
+}
 assert(/function auditBuildingFootprintVisibility\(\)[\s\S]{0,1800}window\.__buildingFootprintAudit=result/.test(html)
     && /dataset\.buildingFootprintSinkConflicts=String\(failures\.length\)/.test(html),
   'Every authored building footprint must expose a perimeter sink audit.');

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T14:59:52.248Z",
+  "generatedAt": "2026-08-04T15:05:08.935Z",
   "manifest": [
     {
       "name": "engineer",
@@ -264,15 +264,15 @@
     {
       "name": "nationalUniversity",
       "url": "assets/national-university-v2.glb",
-      "scale": 3.79,
+      "scale": 3.16,
       "dimensions": {
-        "width": 28.046000361442566,
-        "height": 11.976427433490754,
-        "depth": 19.707352294921876
+        "width": 23.384000301361084,
+        "height": 9.985622873306275,
+        "depth": 16.431459960937502
       },
       "minY": 0,
-      "maxY": 11.976427433490754,
-      "requiredRadius": 17.13882923911519,
+      "maxY": 9.985622873306275,
+      "requiredRadius": 14.289894563483905,
       "triangles": 2630,
       "materials": 1,
       "meshCount": 1,
@@ -284,15 +284,15 @@
     {
       "name": "technologicalUniversity",
       "url": "assets/technological-university-v2.glb",
-      "scale": 4.42,
+      "scale": 3.48,
       "dimensions": {
-        "width": 32.70800042152405,
-        "height": 13.967231993675231,
-        "depth": 22.98324462890625
+        "width": 25.752000331878662,
+        "height": 10.996825189590455,
+        "depth": 18.0954052734375
       },
       "minY": 0,
-      "maxY": 13.967231993675231,
-      "requiredRadius": 19.987763914746473,
+      "maxY": 10.996825189590455,
+      "requiredRadius": 15.736972493963288,
       "triangles": 2620,
       "materials": 1,
       "meshCount": 1,
@@ -304,15 +304,15 @@
     {
       "name": "managementUniversity",
       "url": "assets/management-university-v2.glb",
-      "scale": 5.05,
+      "scale": 3.47,
       "dimensions": {
-        "width": 37.37000048160553,
-        "height": 15.95803655385971,
-        "depth": 26.259136962890626
+        "width": 25.678000330924988,
+        "height": 10.965225117206574,
+        "depth": 18.043406982421875
       },
       "minY": 0,
-      "maxY": 15.95803655385971,
-      "requiredRadius": 22.83669859037776,
+      "maxY": 10.965225117206574,
+      "requiredRadius": 15.691751308635807,
       "triangles": 2634,
       "materials": 1,
       "meshCount": 1,
@@ -324,15 +324,15 @@
     {
       "name": "designUniversity",
       "url": "assets/design-university-v2.glb",
-      "scale": 4.11,
+      "scale": 3.48,
       "dimensions": {
-        "width": 30.414000391960148,
-        "height": 12.987629749774934,
-        "depth": 21.371297607421877
+        "width": 25.752000331878662,
+        "height": 10.996825189590455,
+        "depth": 18.0954052734375
       },
       "minY": 0,
-      "maxY": 12.987629749774934,
-      "requiredRadius": 18.585907169594574,
+      "maxY": 10.996825189590455,
+      "requiredRadius": 15.736972493963288,
       "triangles": 2650,
       "materials": 1,
       "meshCount": 1,

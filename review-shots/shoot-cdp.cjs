@@ -64,12 +64,16 @@ async function getTargetWs() {
   log("navigated");
   await sleep(14000); // GLB load + title world settle
   if (VERIFY_ONLY) {
-    const state = await evaluate("JSON.stringify({assets:window.__assetLoadAudit||null,footprints:window.__buildingFootprintAudit||null,visibility:window.__visibilityAudit||null,config:window.__visibilityConfigAudit||null})");
+    const state = await evaluate("JSON.stringify({assets:window.__assetLoadAudit||null,footprints:window.__buildingFootprintAudit||null,visibility:window.__visibilityAudit||null,config:window.__visibilityConfigAudit||null,buildings:window.__buildingSpacingAudit||null,route:window.__routeClearanceAudit||null,npcHomes:window.__npcPlacementAudit||null,npcLive:window.__npcSeparationAudit||null,vendor:window.__vendorAssetAudit||null})");
     const value = state.result && state.result.result && state.result.result.value;
     log("VERIFY " + value);
     const parsed = JSON.parse(value || "{}");
     const clean = parsed.assets && parsed.assets.failed === 0 && parsed.footprints && parsed.footprints.failures?.length === 0
-      && parsed.visibility?.pass === true && parsed.config?.pass === true;
+      && parsed.visibility?.pass === true && parsed.config?.pass === true
+      && parsed.buildings?.crowded?.length === 0 && parsed.route?.blocked?.length === 0
+      && parsed.npcHomes?.npcSpawnConflicts?.length === 0 && parsed.npcHomes?.npcPlaceMismatches?.length === 0
+      && parsed.npcHomes?.npcHomeConflicts?.length === 0 && parsed.npcLive?.conflicts?.length === 0
+      && parsed.vendor?.unplaced?.length === 0;
     if (!clean) throw new Error(`Visibility verification failed: ${value}`);
     ws.close();
     chrome.kill("SIGKILL");
