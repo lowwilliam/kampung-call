@@ -125,6 +125,11 @@
     box-shadow:0 20px 55px rgba(30,25,18,.3);border:2px solid rgba(46,42,37,.12);
   }
   #dialogue-panel.show{display:block;animation:dialogueIn .24s cubic-bezier(.2,.9,.3,1) forwards;}
+  body:has(#dialogue-panel.show)::before,
+  body:has(#repair-panel.show)::before{
+    content:"";position:fixed;inset:0;z-index:24;pointer-events:none;
+    background:rgba(246,243,236,.75);backdrop-filter:blur(4px);
+  }
   @keyframes dialogueIn{to{transform:translate(-50%,0) scale(1)}}
   .dialogue-avatar{
     position:absolute;left:20px;bottom:18px;width:128px;height:128px;overflow:hidden;
