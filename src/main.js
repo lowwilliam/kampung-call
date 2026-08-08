@@ -10,6 +10,7 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const R = 26;
 const VOID_COLOR = 0x88c6c3;
+const SKY_HORIZON_COLOR = 0xf2e2bd;
 const isTouch = matchMedia('(pointer:coarse)').matches;
 // A stable scenery seed keeps the authored composition identical on every
 // reload. Gameplay and character timing can continue using Math.random().
@@ -25,8 +26,8 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, isTouch?1.75:2));
 renderer.setSize(innerWidth,innerHeight);
 renderer.setClearColor(VOID_COLOR,1);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.98;
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.toneMappingExposure = 1;
 const SHADOWS = !isTouch;
 if(SHADOWS){
   renderer.shadowMap.enabled = true;
@@ -37,7 +38,7 @@ document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 // far side of the planet melts into the void, like the reference — fog now
 // starts close enough to add real aerial depth at gameplay camera distance
-scene.fog = new THREE.Fog(VOID_COLOR, 36, 124);
+scene.fog = new THREE.Fog(SKY_HORIZON_COLOR, 36, 124);
 const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
 
 // ---------- gradient sky dome: keeps the teal "void" identity but gives the
@@ -49,7 +50,7 @@ const camera = new THREE.PerspectiveCamera(47, innerWidth/innerHeight, .1, 500);
     uniforms: {
       top: { value: new THREE.Color(0x4f9d9b) },
       mid: { value: new THREE.Color(VOID_COLOR) },
-      bot: { value: new THREE.Color(0xf2e2bd) },
+      bot: { value: new THREE.Color(SKY_HORIZON_COLOR) },
     },
     vertexShader: `
       varying vec3 vDir;
@@ -73,11 +74,9 @@ gradTex.needsUpdate = true;
 
 const matCache = {};
 function mat(color, extra){
-  if(!extra){
-    if(!matCache[color]) matCache[color] = new THREE.MeshToonMaterial({color, gradientMap:gradTex});
-    return matCache[color];
-  }
-  return new THREE.MeshToonMaterial(Object.assign({color, gradientMap:gradTex}, extra));
+  const key=JSON.stringify([color,extra||{}]);
+  if(!matCache[key]) matCache[key]=new THREE.MeshToonMaterial(Object.assign({color,gradientMap:gradTex},extra));
+  return matCache[key];
 }
 function texMat(map, extra){ return new THREE.MeshToonMaterial(Object.assign({map, gradientMap:gradTex}, extra)); }
 function glowMat(color){ return new THREE.MeshBasicMaterial({color}); }
@@ -101,8 +100,8 @@ function addOutlines(group, thick=1.045){
 }
 
 // ---------- lights (gradient sky dome above; key-driven shading) ----------
-scene.add(new THREE.HemisphereLight(0xfdfaf2, 0x789a79, .36));
-const dir = new THREE.DirectionalLight(0xfff2d6, 1.15);
+scene.add(new THREE.HemisphereLight(0xfdfaf2, 0x789a79, .34));
+const dir = new THREE.DirectionalLight(0xfff2d6, 1.05);
 dir.position.set(60,90,-40);
 if(SHADOWS){
   dir.castShadow=true;
@@ -116,7 +115,7 @@ const dirTarget=new THREE.Object3D();
 scene.add(dirTarget); dir.target=dirTarget;
 scene.add(dir);
 // cool rim/back light for cel pop — follows the player like the sun does
-const rim=new THREE.DirectionalLight(0xbfe3ec,.42);
+const rim=new THREE.DirectionalLight(0xbfe3ec,.35);
 rim.target=dirTarget;
 scene.add(rim);
 
@@ -939,7 +938,8 @@ function buildMerlion(){
   g.userData.spout=[];
   for(let i=0;i<9;i++){
     const d=new THREE.Mesh(new THREE.SphereGeometry(.11,8,6),
-      mat(0xaee3f0,{transparent:true}));
+      // Each droplet animates its own opacity, so keep its material local.
+      new THREE.MeshToonMaterial({color:0xaee3f0,gradientMap:gradTex,transparent:true}));
     d.userData.noShadow=true; g.add(d); g.userData.spout.push(d);
   }
   const splash=new THREE.Mesh(new THREE.TorusGeometry(.4,.06,6,16),
@@ -3110,20 +3110,20 @@ const smokes=[];
 })();
 
 // clouds — white puffs floating in the void, like the reference
-// more of them now, some lower and larger, so they read from ground level too
+// keep the puffs high and compact so the gameplay camera stays clear
 const clouds=[];
 for(let i=0;i<14;i++){
   const c=new THREE.Group();
   const n=3+(Math.random()*2|0);
   for(let j=0;j<n;j++){
-    const p=new THREE.Mesh(new THREE.SphereGeometry(1.2+Math.random()*1.4,8,6),
-      new THREE.MeshToonMaterial({color:0xffffff,gradientMap:gradTex,transparent:true,opacity:.97}));
+    const p=new THREE.Mesh(new THREE.SphereGeometry(.85+Math.random()*.85,8,6),
+      new THREE.MeshToonMaterial({color:0xffffff,gradientMap:gradTex}));
     p.position.set(j*1.5-n*.7,Math.random()*.6,Math.random()*1.1);
     p.userData.noShadow=true;
     c.add(p);
   }
   const axis=V3(Math.random()-.5,Math.random()-.5,Math.random()-.5).normalize();
-  const start=V3().crossVectors(axis,V3(0,1,.3)).normalize().multiplyScalar(R+5+Math.random()*8);
+  const start=V3().crossVectors(axis,V3(0,1,.3)).normalize().multiplyScalar(R+18+Math.random()*12);
   c.position.copy(start);
   c.userData={axis,speed:.012+Math.random()*.02};
   scene.add(c); clouds.push(c);
@@ -4613,7 +4613,7 @@ function updateCompass(target,targetU,meters){
   // card. This is calmer and clearer than pretending it belongs to an edge.
   if(forward){
     const card=chit.getBoundingClientRect();
-    compassEl.style.left='50%';
+    compassEl.style.left=(card.left+card.width/2)+'px';
     compassEl.style.top=(card.bottom+34)+'px';
     compassEl.querySelector('svg').style.transform='rotate(0deg)';
     compassLbl.textContent=meters+'m';
