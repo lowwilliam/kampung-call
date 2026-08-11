@@ -13,8 +13,17 @@ const tabs: { id: CollectionTab; label: string }[] = [
   { id: "all", label: "All" },
 ];
 
+const collectionDownload = {
+  archiveUrl: "/downloads/kampung-call-3d-assets.zip",
+  manifestUrl: "/downloads/kampung-call-3d-assets-manifest.json",
+};
+
 function formatCategory(category: string) {
   return category.replace(" & ", " + ");
+}
+
+function downloadFileName(asset: CollectionAsset) {
+  return asset.file.split("/").at(-1) ?? `${asset.slug}.glb`;
 }
 
 function AssetCard({ asset, onOpen, eager }: { asset: CollectionAsset; onOpen: () => void; eager: boolean }) {
@@ -29,14 +38,22 @@ function AssetCard({ asset, onOpen, eager }: { asset: CollectionAsset; onOpen: (
           <span>Open 360°</span>
         </button>
       </div>
-      <button className="asset-card-copy" type="button" onClick={onOpen}>
-        <span className="asset-index">{asset.collection === "game" ? String(GAME_ASSETS.indexOf(asset) + 1).padStart(2, "0") : "SG"}</span>
-        <span>
-          <strong>{asset.name}</strong>
-          <small>{formatCategory(asset.category)}</small>
-        </span>
-        <span className="card-arrow" aria-hidden="true">↗</span>
-      </button>
+      <div className="asset-card-footer">
+        <button className="asset-card-copy" type="button" onClick={onOpen}>
+          <span className="asset-index">{asset.collection === "game" ? String(GAME_ASSETS.indexOf(asset) + 1).padStart(2, "0") : "SG"}</span>
+          <span>
+            <strong>{asset.name}</strong>
+            <small>{formatCategory(asset.category)}</small>
+          </span>
+          <span className="card-arrow" aria-hidden="true">↗</span>
+        </button>
+        {asset.collection === "game" && (
+          <a className="asset-download-button" href={asset.modelUrl} download={downloadFileName(asset)} aria-label={`Download ${asset.name} as a GLB file`} title={`Download ${asset.name}`}>
+            <span aria-hidden="true">↓</span>
+            <span className="sr-only">Download GLB</span>
+          </a>
+        )}
+      </div>
     </article>
   );
 }
@@ -117,6 +134,20 @@ function DetailOverlay({ asset, onClose }: { asset: CollectionAsset; onClose: ()
             <div><dt>Format</dt><dd>GLB · {asset.metrics.compressed ? "Draco" : "Web ready"}</dd></div>
           </dl>
           <p className="provenance-note">{asset.provenanceDetail}</p>
+
+          <div className="download-panel">
+            {asset.collection === "game" ? (
+              <>
+                <a className="asset-download-link" href={asset.modelUrl} download={downloadFileName(asset)}>
+                  <span>Download GLB</span>
+                  <small>{downloadFileName(asset)} · ↓</small>
+                </a>
+                <p>For personal evaluation and project review. Downloading does not grant redistribution, resale or reuse rights.</p>
+              </>
+            ) : (
+              <p>Community models do not receive a download button unless their creator grants it. Like any web-rendered 3D file, model data must still be delivered to the visitor’s browser for viewing.</p>
+            )}
+          </div>
 
           {asset.collection === "community" && (
             <div className="report-area">
@@ -205,6 +236,21 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
           <div className="intro-note">
             <strong>{GAME_ASSETS.length}</strong>
             <p>Objects, places and people behind the game—made to turn, inspect and remember.</p>
+          </div>
+        </section>
+
+        <section className="download-band" aria-labelledby="download-title">
+          <div>
+            <p className="eyebrow">Complete asset archive</p>
+            <h2 id="download-title">Take all 55 models.</h2>
+            <p>One ZIP with every canonical Kampung Call GLB, its provenance and a machine-readable manifest.</p>
+          </div>
+          <div className="download-band-actions">
+            <a className="download-all-link" href={collectionDownload.archiveUrl} download="kampung-call-3d-assets.zip">
+              <span>Download all {GAME_ASSETS.length}</span>
+              <small>ZIP · GLB + manifest ↓</small>
+            </a>
+            <a className="manifest-link" href={collectionDownload.manifestUrl} target="_blank" rel="noreferrer">Inspect the manifest ↗</a>
           </div>
         </section>
 

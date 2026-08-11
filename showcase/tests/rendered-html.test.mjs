@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
+import { access } from "node:fs/promises";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -23,6 +28,12 @@ test("server-renders the public collection", async () => {
   assert.match(html, /The Kampung Call Collection/i);
   assert.match(html, /55 objects/i);
   assert.match(html, /Made in Singapore/i);
+  assert.match(html, /Download all/i);
+  assert.match(html, /\/downloads\/kampung-call-3d-assets\.zip/i);
+  const downloadUrls = [...html.matchAll(/class="asset-download-button" href="([^"]+\.glb)"/g)].map((match) => match[1]);
+  assert.equal(downloadUrls.length, 55);
+  assert.equal(new Set(downloadUrls).size, 55);
+  await Promise.all(downloadUrls.map((url) => access(path.join(siteRoot, "public", url.replace(/^\//, "")))));
   assert.doesNotMatch(html, /Your site is taking shape/i);
 });
 
