@@ -373,7 +373,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
         </section>
 
         <section className="results-line" aria-live="polite">
-          <span>{filtered.length} {filtered.length === 1 ? "object" : "objects"}</span>
+          <span>{`${filtered.length} ${filtered.length === 1 ? "object" : "objects"}`}</span>
           <span>Each model rotates automatically</span>
         </section>
 
