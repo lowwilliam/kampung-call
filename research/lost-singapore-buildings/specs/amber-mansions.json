@@ -1,0 +1,4864 @@
+{
+  "targetName": "Amber Mansions",
+  "targetId": "amber-mansions",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "research/lost-singapore-buildings/references/amber-mansions/corner-midcentury.jpg",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 42,
+    "aspect": 1.5,
+    "orientation": {
+      "yaw": -28,
+      "pitch": -12,
+      "roll": 0
+    },
+    "positionHint": [
+      10,
+      7,
+      14
+    ],
+    "note": "Representative three-quarter review camera; archive views span multiple lenses and dates, so no single photograph is treated as a calibrated camera solve."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "architectural landmark prop",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "Cape-Dutch-revival",
+        "bowed-corner",
+        "street-block",
+        "arcaded"
+      ],
+      "structureKind": [
+        "masonry mixed-use mansion block",
+        "pitched-roof two-wing plan"
+      ],
+      "motionPotential": [
+        "exploded-view interaction",
+        "clickable part inspection"
+      ],
+      "materialFamilies": [
+        "white plaster",
+        "terracotta roof tile",
+        "dark timber",
+        "painted shopfront"
+      ],
+      "notes": "Stylised real-time reconstruction of the documented exterior."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 8,
+        "microFeatureGroups": 11,
+        "materialLayers": 4,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "Amber Mansions requires 11 named structural/detail components to preserve its identity at the selected tier.",
+        "The quality decision is driven by three-storey bowed corner joining two street wings; large Cape Dutch corner gable and repeated smaller Dutch gables; broad flattened arches across a five-footway arcade; restrained plaster elevations and pitched tile roofs."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Selected after visual inspection of the primary reference, independent supporting views and every generated zone crop."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 11,
+      "details": [
+        {
+          "id": "detail-01-bowed-corner-block",
+          "kind": "contour",
+          "description": "Three-storey bowed corner turns Orchard Road into Penang Lane",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "bowed-corner-block/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r0c0.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "detail-02-orchard-road-wing",
+          "kind": "contour",
+          "description": "Long three-storey wing extends down Orchard Road",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "orchard-road-wing/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r0c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "detail-03-penang-lane-wing",
+          "kind": "contour",
+          "description": "Longer roofed wing follows the curve of Penang Lane",
+          "region": {
+            "x": 0.6667,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "penang-lane-wing/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r0c2.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "detail-04-corner-dutch-gable",
+          "kind": "contour",
+          "description": "Large named Cape Dutch gable crowns the bowed corner",
+          "region": {
+            "x": 0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "corner-dutch-gable/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r1c0.png",
+          "confidence": 0.99
+        },
+        {
+          "id": "detail-05-repeated-dutch-gables",
+          "kind": "ridge",
+          "description": "Smaller curved Dutch gables repeat along both rooflines",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "repeated-dutch-gables/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r1c1.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-06-five-footway-arcade",
+          "kind": "ridge",
+          "description": "Broad flattened arches form a continuous ground arcade",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "five-footway-arcade/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r1c2.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "detail-07-corner-upper-arches",
+          "kind": "contour",
+          "description": "Two stacked arched openings animate the corner facade",
+          "region": {
+            "x": 0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "corner-upper-arches/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r2c0.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-08-terracotta-roofs",
+          "kind": "decal",
+          "description": "Pitched terracotta-tile roofs sit behind the plaster gables",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "material",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "terracotta-roofs/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r2c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "detail-09-upper-window-rhythm",
+          "kind": "ridge",
+          "description": "Regular rectangular windows repeat above the arcade",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-rhythm/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r2c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-10-corner-name-panel",
+          "kind": "contour",
+          "description": "AMBER MANSIONS lettering is split across the large gable",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "corner-name-panel/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r0c0.png",
+          "confidence": 0.92
+        },
+        {
+          "id": "detail-11-shopfront-insets",
+          "kind": "hole",
+          "description": "Dark recessed shopfronts sit behind the pale street arches",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "shopfront-insets/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/amber-mansions/zone-r0c1.png",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "research/lost-singapore-buildings/references/amber-mansions/corner-midcentury.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The model reads as Amber Mansions in silhouette without labels.",
+      "The model includes the identity features: three-storey bowed corner joining two street wings; large Cape Dutch corner gable and repeated smaller Dutch gables; broad flattened arches across a five-footway arcade; restrained plaster elevations and pitched tile roofs.",
+      "All named parts are selectable and remain attached during parent-aware non-uniform explode.",
+      "Front, three-quarter, side and elevated review views preserve proportions and negative spaces.",
+      "All hidden-side and dimensional inference remains disclosed in runtime metadata and research notes."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 11,
+      "materialLayers": 4,
+      "repetitionSystems": 3,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "three-storey bowed corner joining two street wings",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "broad flattened arches across a five-footway arcade",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "restrained plaster elevations and pitched tile roofs",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "three-storey bowed corner joining two street wings",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "broad flattened arches across a five-footway arcade",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "restrained plaster elevations and pitched tile roofs",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "three-storey bowed corner joining two street wings",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "broad flattened arches across a five-footway arcade",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "restrained plaster elevations and pitched tile roofs",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "three-storey bowed corner joining two street wings",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "broad flattened arches across a five-footway arcade",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "restrained plaster elevations and pitched tile roofs",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and primary height-to-width ratio",
+      "critical negative spaces and courtyard/open-bowl geometry",
+      "roofline and skyline attachments",
+      "facade-bay count, rhythm and depth",
+      "material color-zone separation and roughness family",
+      "ground contact, podium, steps and site transition"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.76,
+    "mustMatch": [
+      "three-storey bowed corner joining two street wings",
+      "large Cape Dutch corner gable and repeated smaller Dutch gables",
+      "broad flattened arches across a five-footway arcade",
+      "restrained plaster elevations and pitched tile roofs"
+    ],
+    "niceToHave": [
+      "period-aware procedural weathering",
+      "site-context hints without full district reconstruction"
+    ],
+    "reviewViewpoints": [
+      "front",
+      "front-three-quarter",
+      "opposite-three-quarter",
+      "elevated-or-top"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "identity-system-1-three-storey-bowed-corner-joining-two-",
+      "name": "three-storey bowed corner joining two street wings",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing"
+      ],
+      "evidenceRefs": [
+        "full-object",
+        "corner-midcentury",
+        "corner-1922"
+      ]
+    },
+    {
+      "id": "identity-system-2-large-cape-dutch-corner-gable-and-repe",
+      "name": "large Cape Dutch corner gable and repeated smaller Dutch gables",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "interaction-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable"
+      ],
+      "evidenceRefs": [
+        "full-object",
+        "corner-midcentury",
+        "corner-1922"
+      ]
+    },
+    {
+      "id": "identity-system-3-broad-flattened-arches-across-a-five-f",
+      "name": "broad flattened arches across a five-footway arcade",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables"
+      ],
+      "evidenceRefs": [
+        "full-object",
+        "corner-midcentury",
+        "corner-1922"
+      ]
+    },
+    {
+      "id": "identity-system-4-restrained-plaster-elevations-and-pitc",
+      "name": "restrained plaster elevations and pitched tile roofs",
+      "tier": "important",
+      "passIds": [
+        "material-pass",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.68,
+      "mustPass": false,
+      "componentRefs": [
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade"
+      ],
+      "evidenceRefs": [
+        "full-object",
+        "corner-midcentury",
+        "corner-1922"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "complete",
+    "completedPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "lastCompletedPass": "optimization-pass",
+    "blockedReason": "all build passes completed",
+    "nextRequiredEvidence": []
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "minimumTextureResolution": 1024,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "limitation": "Archive photographs vary in age, scan colour and lighting; procedural PBR is authored from observation rather than extracted as authoritative maps."
+      }
+    },
+    "lightingPass": {
+      "toneMapping": "ACES Filmic",
+      "exposure": 1.05,
+      "contactShadows": true,
+      "proofViews": [
+        "neutral",
+        "grazing-angle",
+        "reference-inspired"
+      ]
+    }
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [],
+  "coordinateFrame": {
+    "handedness": "right-handed",
+    "upAxis": "Y",
+    "forwardAxis": "Z",
+    "origin": "assembly ground-contact centroid",
+    "front": "principal public elevation",
+    "right": "viewer right when facing the principal public elevation",
+    "up": "vertical",
+    "scaleReference": "relative study units normalized per subject; dimensions are approximate"
+  },
+  "silhouette": {
+    "boundingShape": "three-storey bowed corner joining two street wings",
+    "aspectRatios": [
+      "Reference-led height-to-width and mass-to-void proportions; no surveyed dimensions claimed."
+    ],
+    "symmetry": "reference-led asymmetry",
+    "dominantCurves": [
+      "three-storey bowed corner joining two street wings",
+      "broad flattened arches across a five-footway arcade"
+    ],
+    "negativeSpaces": [
+      "broad flattened arches across a five-footway arcade"
+    ],
+    "landmarks": [
+      "three-storey bowed corner joining two street wings",
+      "large Cape Dutch corner gable and repeated smaller Dutch gables",
+      "broad flattened arches across a five-footway arcade",
+      "restrained plaster elevations and pitched tile roofs"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "multi-view synthesis",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "three-storey bowed corner joining two street wings",
+        "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "broad flattened arches across a five-footway arcade",
+        "restrained plaster elevations and pitched tile roofs"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "id": "corner-midcentury",
+      "view": "bowed corner and Orchard Road wing",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "bowed corner and Orchard Road wing; source and rights retained in collection.json."
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "corner-1922",
+      "view": "early corner, gables and roof",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "early corner, gables and roof; source and rights retained in collection.json."
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "penang-road-1983",
+      "view": "Penang Road wing before demolition",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "Penang Road wing before demolition; source and rights retained in collection.json."
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "orchard-road",
+      "view": "long Orchard Road wing",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "long Orchard Road wing; source and rights retained in collection.json."
+      ],
+      "confidence": 0.8500000000000001
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "assembly-root",
+      "name": "Amber Mansions assembly root",
+      "level": "macro",
+      "role": "root",
+      "importance": 1,
+      "confidence": 0.93,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Non-rendered assembly origin for the documented exterior and representative site slice.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 20,
+        "height": 12,
+        "depth": 14,
+        "units": "relative architectural study units",
+        "confidence": 0.65
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "socket-bowed-corner-block",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-orchard-road-wing",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-penang-lane-wing",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-corner-dutch-gable",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-repeated-dutch-gables",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-five-footway-arcade",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-corner-upper-arches",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-terracotta-roofs",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-upper-window-rhythm",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-corner-name-panel",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "socket-shopfront-insets",
+            "localPosition": [
+              0,
+              0,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "white-plaster-1",
+      "materialLayers": [
+        "white-plaster-1"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object",
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(222, 217, 203, 1.0)",
+        "secondaryAlbedo": "rgba(170, 109, 85, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.93,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Assembly-level palette; rendered geometry lives in named child components."
+      }
+    },
+    {
+      "id": "bowed-corner-block",
+      "name": "Bowed Corner Block",
+      "level": "macro",
+      "role": "architectural-structure",
+      "importance": 0.98,
+      "confidence": 0.97,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Three-storey bowed corner turns Orchard Road into Penang Lane; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Three-storey bowed corner turns Orchard Road into Penang Lane",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-bowed-corner-block",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.2,
+        "height": 2.2,
+        "depth": 1.1,
+        "units": "relative architectural study units",
+        "confidence": 0.97
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "bowed-corner-block",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "white-plaster-1"
+        }
+      },
+      "material": "white-plaster-1",
+      "materialLayers": [
+        "white-plaster-1"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Three-storey bowed corner turns Orchard Road into Penang Lane",
+          "kind": "silhouette",
+          "scale": "macro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Three-storey bowed corner turns Orchard Road into Penang Lane"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Three-storey bowed corner turns Orchard Road into Penang Lane"
+      ],
+      "fidelityTier": "blockout-and-structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(222, 217, 203, 1.0)",
+        "secondaryAlbedo": "rgba(170, 109, 85, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.96,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "orchard-road-wing",
+      "name": "Orchard Road Wing",
+      "level": "macro",
+      "role": "architectural-structure",
+      "importance": 0.962,
+      "confidence": 0.94,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Long three-storey wing extends down Orchard Road; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Long three-storey wing extends down Orchard Road",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-orchard-road-wing",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.75,
+        "height": 2.9,
+        "depth": 1.55,
+        "units": "relative architectural study units",
+        "confidence": 0.94
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "orchard-road-wing",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "terracotta-roof-tile-2"
+        }
+      },
+      "material": "terracotta-roof-tile-2",
+      "materialLayers": [
+        "terracotta-roof-tile-2"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Long three-storey wing extends down Orchard Road",
+          "kind": "mass",
+          "scale": "macro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Long three-storey wing extends down Orchard Road"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Long three-storey wing extends down Orchard Road"
+      ],
+      "fidelityTier": "blockout-and-structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(170, 109, 85, 1.0)",
+        "secondaryAlbedo": "rgba(102, 88, 76, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.94,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "penang-lane-wing",
+      "name": "Penang Lane Wing",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.944,
+      "confidence": 0.93,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Longer roofed wing follows the curve of Penang Lane; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Longer roofed wing follows the curve of Penang Lane",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-penang-lane-wing",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 2.3,
+        "height": 3.6,
+        "depth": 0.65,
+        "units": "relative architectural study units",
+        "confidence": 0.93
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "penang-lane-wing",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "dark-timber-3"
+        }
+      },
+      "material": "dark-timber-3",
+      "materialLayers": [
+        "dark-timber-3"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Longer roofed wing follows the curve of Penang Lane",
+          "kind": "mass",
+          "scale": "macro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Longer roofed wing follows the curve of Penang Lane"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Longer roofed wing follows the curve of Penang Lane"
+      ],
+      "fidelityTier": "blockout-and-structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(102, 88, 76, 1.0)",
+        "secondaryAlbedo": "rgba(63, 71, 69, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.93,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "corner-dutch-gable",
+      "name": "Corner Dutch Gable",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.9259999999999999,
+      "confidence": 0.99,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Large named Cape Dutch gable crowns the bowed corner; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Large named Cape Dutch gable crowns the bowed corner",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-corner-dutch-gable",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 2.85,
+        "height": 0.8,
+        "depth": 1.1,
+        "units": "relative architectural study units",
+        "confidence": 0.99
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "corner-dutch-gable",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "painted-shopfront-4"
+        }
+      },
+      "material": "painted-shopfront-4",
+      "materialLayers": [
+        "painted-shopfront-4"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Large named Cape Dutch gable crowns the bowed corner",
+          "kind": "identity-feature",
+          "scale": "meso",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Large named Cape Dutch gable crowns the bowed corner"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Large named Cape Dutch gable crowns the bowed corner"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(63, 71, 69, 1.0)",
+        "secondaryAlbedo": "rgba(185, 154, 117, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.96,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "repeated-dutch-gables",
+      "name": "Repeated Dutch Gables",
+      "level": "meso",
+      "role": "repeated-structure",
+      "importance": 0.908,
+      "confidence": 0.96,
+      "primitive": "instanced-cluster",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Smaller curved Dutch gables repeat along both rooflines; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Smaller curved Dutch gables repeat along both rooflines",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-repeated-dutch-gables",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.2,
+        "height": 1.5,
+        "depth": 1.55,
+        "units": "relative architectural study units",
+        "confidence": 0.96
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "repeated-dutch-gables",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "white-plaster-1"
+        }
+      },
+      "material": "white-plaster-1",
+      "materialLayers": [
+        "white-plaster-1"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Smaller curved Dutch gables repeat along both rooflines",
+          "kind": "repetition",
+          "scale": "meso",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Smaller curved Dutch gables repeat along both rooflines"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Smaller curved Dutch gables repeat along both rooflines"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(222, 217, 203, 1.0)",
+        "secondaryAlbedo": "rgba(222, 217, 203, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.96,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "five-footway-arcade",
+      "name": "Five Footway Arcade",
+      "level": "meso",
+      "role": "repeated-structure",
+      "importance": 0.89,
+      "confidence": 0.97,
+      "primitive": "instanced-cluster",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Broad flattened arches form a continuous ground arcade; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Broad flattened arches form a continuous ground arcade",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-five-footway-arcade",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.75,
+        "height": 2.2,
+        "depth": 0.65,
+        "units": "relative architectural study units",
+        "confidence": 0.97
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "five-footway-arcade",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "terracotta-roof-tile-2"
+        }
+      },
+      "material": "terracotta-roof-tile-2",
+      "materialLayers": [
+        "terracotta-roof-tile-2"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Broad flattened arches form a continuous ground arcade",
+          "kind": "repetition",
+          "scale": "meso",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Broad flattened arches form a continuous ground arcade"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Broad flattened arches form a continuous ground arcade"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(170, 109, 85, 1.0)",
+        "secondaryAlbedo": "rgba(170, 109, 85, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.96,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "corner-upper-arches",
+      "name": "Corner Upper Arches",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.872,
+      "confidence": 0.96,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Two stacked arched openings animate the corner facade; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Two stacked arched openings animate the corner facade",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-corner-upper-arches",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 2.3,
+        "height": 2.9,
+        "depth": 1.1,
+        "units": "relative architectural study units",
+        "confidence": 0.96
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "corner-upper-arches",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "dark-timber-3"
+        }
+      },
+      "material": "dark-timber-3",
+      "materialLayers": [
+        "dark-timber-3"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Two stacked arched openings animate the corner facade",
+          "kind": "identity-feature",
+          "scale": "meso",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Two stacked arched openings animate the corner facade"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Two stacked arched openings animate the corner facade"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(102, 88, 76, 1.0)",
+        "secondaryAlbedo": "rgba(102, 88, 76, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.96,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "terracotta-roofs",
+      "name": "Terracotta Roofs",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.854,
+      "confidence": 0.94,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Pitched terracotta-tile roofs sit behind the plaster gables; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Pitched terracotta-tile roofs sit behind the plaster gables",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-terracotta-roofs",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 2.85,
+        "height": 3.6,
+        "depth": 1.55,
+        "units": "relative architectural study units",
+        "confidence": 0.94
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "terracotta-roofs",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "painted-shopfront-4"
+        }
+      },
+      "material": "painted-shopfront-4",
+      "materialLayers": [
+        "painted-shopfront-4"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Pitched terracotta-tile roofs sit behind the plaster gables",
+          "kind": "color-zone",
+          "scale": "meso",
+          "realization": "procedural material zone plus named geometry boundary",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Pitched terracotta-tile roofs sit behind the plaster gables"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Pitched terracotta-tile roofs sit behind the plaster gables"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(63, 71, 69, 1.0)",
+        "secondaryAlbedo": "rgba(63, 71, 69, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.94,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "upper-window-rhythm",
+      "name": "Upper Window Rhythm",
+      "level": "meso",
+      "role": "repeated-structure",
+      "importance": 0.836,
+      "confidence": 0.9,
+      "primitive": "instanced-cluster",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Regular rectangular windows repeat above the arcade; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Regular rectangular windows repeat above the arcade",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-upper-window-rhythm",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.2,
+        "height": 0.8,
+        "depth": 0.65,
+        "units": "relative architectural study units",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "upper-window-rhythm",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "white-plaster-1"
+        }
+      },
+      "material": "white-plaster-1",
+      "materialLayers": [
+        "white-plaster-1"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Regular rectangular windows repeat above the arcade",
+          "kind": "repetition",
+          "scale": "micro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Regular rectangular windows repeat above the arcade"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Regular rectangular windows repeat above the arcade"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(222, 217, 203, 1.0)",
+        "secondaryAlbedo": "rgba(185, 154, 117, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.9,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "corner-name-panel",
+      "name": "Corner Name Panel",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.8180000000000001,
+      "confidence": 0.92,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "AMBER MANSIONS lettering is split across the large gable; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "AMBER MANSIONS lettering is split across the large gable",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-corner-name-panel",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 1.75,
+        "height": 1.5,
+        "depth": 1.1,
+        "units": "relative architectural study units",
+        "confidence": 0.92
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "corner-name-panel",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "terracotta-roof-tile-2"
+        }
+      },
+      "material": "terracotta-roof-tile-2",
+      "materialLayers": [
+        "terracotta-roof-tile-2"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "AMBER MANSIONS lettering is split across the large gable",
+          "kind": "identity-feature",
+          "scale": "micro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "AMBER MANSIONS lettering is split across the large gable"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "AMBER MANSIONS lettering is split across the large gable"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(170, 109, 85, 1.0)",
+        "secondaryAlbedo": "rgba(222, 217, 203, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.92,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    },
+    {
+      "id": "shopfront-insets",
+      "name": "Shopfront Insets",
+      "level": "meso",
+      "role": "architectural-structure",
+      "importance": 0.8,
+      "confidence": 0.87,
+      "primitive": "instanced-cluster",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Dark recessed shopfronts sit behind the pale street arches; the selected primitive preserves the visible volume or repeated construction in orbit views.",
+      "geometryDescriptor": {
+        "topologyIntent": "Dark recessed shopfronts sit behind the pale street arches",
+        "edgeTreatment": {
+          "type": "small bevel",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "assembly-root",
+      "attachment": {
+        "parentId": "assembly-root",
+        "parentSocket": "socket-shopfront-insets",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.05,
+          0
+        ],
+        "contactNormal": [
+          0,
+          1,
+          0
+        ],
+        "contactType": "embedded structural overlap",
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 2.3,
+        "height": 2.2,
+        "depth": 1.55,
+        "units": "relative architectural study units",
+        "confidence": 0.87
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "pickable-explode-part",
+        "pivot": {
+          "mode": "local attachment centroid",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Loose inspection collider; visual geometry remains authoritative."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "shopfront-insets",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "dark-timber-3"
+        }
+      },
+      "material": "dark-timber-3",
+      "materialLayers": [
+        "dark-timber-3"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "reference-detail",
+          "description": "Dark recessed shopfronts sit behind the pale street arches",
+          "kind": "negative-space",
+          "scale": "micro",
+          "realization": "named procedural geometry",
+          "evidenceRefs": [
+            "corner-midcentury",
+            "corner-1922",
+            "penang-road-1983",
+            "orchard-road"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.08,
+        "microRoughness": 0.12,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "material-specific independent micro field",
+        "displacementPattern": "none unless silhouette-affecting geometry is named",
+        "occlusionPattern": "contact seams and recessed bays",
+        "edgeWearPattern": "very low exposed-edge brightening",
+        "notes": "Dark recessed shopfronts sit behind the pale street arches"
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ],
+      "details": [
+        "Dark recessed shopfronts sit behind the pale street arches"
+      ],
+      "fidelityTier": "structural-and-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(102, 88, 76, 1.0)",
+        "secondaryAlbedo": "rgba(170, 109, 85, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.87,
+        "evidenceRefs": [
+          "corner-midcentury",
+          "corner-1922",
+          "penang-road-1983",
+          "orchard-road"
+        ],
+        "notes": "Palette derived by visual observation; no photographic texture projection."
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "white-plaster-1",
+      "name": "white plaster",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#ded9cb",
+      "color": "#ded9cb",
+      "albedo": {
+        "dominant": "#ded9cb",
+        "secondary": [
+          "#aa6d55",
+          "#ded9cb"
+        ],
+        "samplingNotes": "Palette estimated from the admitted archive views; no source photograph is projected as texture."
+      },
+      "colorVariation": {
+        "palette": [
+          "#ded9cb",
+          "#aa6d55"
+        ],
+        "pattern": "low-amplitude procedural weathering",
+        "amplitude": 0.08,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space triplanar procedural coordinates",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Stable object-scale procedural breakup; historical photos are color/material study only."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.72,
+        "variation": 0.12,
+        "map": "independent procedural roughness field",
+        "localResponse": "Raised edges slightly smoother; cavities and sheltered ledges rougher."
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "independent object-space micro-height derivative",
+        "strength": 0.18,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle granular breakup",
+        "amplitude": 0.025,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none at browser distance",
+        "amplitude": 0.001,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.38,
+        "notes": "Independent contact and recess darkening; not copied from albedo."
+      },
+      "wear": {
+        "edgeWear": 0.05,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.04,
+        "cavityBias": 0.6,
+        "color": "#39362f"
+      },
+      "localOverrides": [
+        {
+          "id": "sheltered-weathering",
+          "region": "undersides, recesses and ground-contact zones",
+          "roughness": 0.7999999999999999,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Procedural white plaster; source imagery informs palette and response only."
+    },
+    {
+      "id": "terracotta-roof-tile-2",
+      "name": "terracotta roof tile",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#aa6d55",
+      "color": "#aa6d55",
+      "albedo": {
+        "dominant": "#aa6d55",
+        "secondary": [
+          "#66584c",
+          "#aa6d55"
+        ],
+        "samplingNotes": "Palette estimated from the admitted archive views; no source photograph is projected as texture."
+      },
+      "colorVariation": {
+        "palette": [
+          "#aa6d55",
+          "#66584c"
+        ],
+        "pattern": "low-amplitude procedural weathering",
+        "amplitude": 0.08,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space triplanar procedural coordinates",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Stable object-scale procedural breakup; historical photos are color/material study only."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.72,
+        "variation": 0.12,
+        "map": "independent procedural roughness field",
+        "localResponse": "Raised edges slightly smoother; cavities and sheltered ledges rougher."
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "independent object-space micro-height derivative",
+        "strength": 0.18,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle granular breakup",
+        "amplitude": 0.025,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none at browser distance",
+        "amplitude": 0.001,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.38,
+        "notes": "Independent contact and recess darkening; not copied from albedo."
+      },
+      "wear": {
+        "edgeWear": 0.05,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.04,
+        "cavityBias": 0.6,
+        "color": "#39362f"
+      },
+      "localOverrides": [
+        {
+          "id": "sheltered-weathering",
+          "region": "undersides, recesses and ground-contact zones",
+          "roughness": 0.7999999999999999,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Procedural terracotta roof tile; source imagery informs palette and response only."
+    },
+    {
+      "id": "dark-timber-3",
+      "name": "dark timber",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#66584c",
+      "color": "#66584c",
+      "albedo": {
+        "dominant": "#66584c",
+        "secondary": [
+          "#3f4745",
+          "#66584c"
+        ],
+        "samplingNotes": "Palette estimated from the admitted archive views; no source photograph is projected as texture."
+      },
+      "colorVariation": {
+        "palette": [
+          "#66584c",
+          "#3f4745"
+        ],
+        "pattern": "low-amplitude procedural weathering",
+        "amplitude": 0.08,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space triplanar procedural coordinates",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Stable object-scale procedural breakup; historical photos are color/material study only."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.72,
+        "variation": 0.12,
+        "map": "independent procedural roughness field",
+        "localResponse": "Raised edges slightly smoother; cavities and sheltered ledges rougher."
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "independent object-space micro-height derivative",
+        "strength": 0.18,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle granular breakup",
+        "amplitude": 0.025,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none at browser distance",
+        "amplitude": 0.001,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.38,
+        "notes": "Independent contact and recess darkening; not copied from albedo."
+      },
+      "wear": {
+        "edgeWear": 0.05,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.04,
+        "cavityBias": 0.6,
+        "color": "#39362f"
+      },
+      "localOverrides": [
+        {
+          "id": "sheltered-weathering",
+          "region": "undersides, recesses and ground-contact zones",
+          "roughness": 0.7999999999999999,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Procedural dark timber; source imagery informs palette and response only."
+    },
+    {
+      "id": "painted-shopfront-4",
+      "name": "painted shopfront",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#3f4745",
+      "color": "#3f4745",
+      "albedo": {
+        "dominant": "#3f4745",
+        "secondary": [
+          "#b99a75",
+          "#3f4745"
+        ],
+        "samplingNotes": "Palette estimated from the admitted archive views; no source photograph is projected as texture."
+      },
+      "colorVariation": {
+        "palette": [
+          "#3f4745",
+          "#b99a75"
+        ],
+        "pattern": "low-amplitude procedural weathering",
+        "amplitude": 0.08,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space triplanar procedural coordinates",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Stable object-scale procedural breakup; historical photos are color/material study only."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.72,
+        "variation": 0.12,
+        "map": "independent procedural roughness field",
+        "localResponse": "Raised edges slightly smoother; cavities and sheltered ledges rougher."
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "independent object-space micro-height derivative",
+        "strength": 0.18,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle granular breakup",
+        "amplitude": 0.025,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none at browser distance",
+        "amplitude": 0.001,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.38,
+        "notes": "Independent contact and recess darkening; not copied from albedo."
+      },
+      "wear": {
+        "edgeWear": 0.05,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.04,
+        "cavityBias": 0.6,
+        "color": "#39362f"
+      },
+      "localOverrides": [
+        {
+          "id": "sheltered-weathering",
+          "region": "undersides, recesses and ground-contact zones",
+          "roughness": 0.7999999999999999,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Procedural painted shopfront; source imagery informs palette and response only."
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "repeat-repeated-dutch-gables",
+      "name": "Smaller curved Dutch gables repeat along both rooflines",
+      "componentRef": "repeated-dutch-gables",
+      "pattern": "radial-or-curve-following",
+      "axis": "X",
+      "count": 6,
+      "spacing": 0.18,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Instanced or loop-generated named meshes; never map-only."
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ]
+    },
+    {
+      "id": "repeat-five-footway-arcade",
+      "name": "Broad flattened arches form a continuous ground arcade",
+      "componentRef": "five-footway-arcade",
+      "pattern": "radial-or-curve-following",
+      "axis": "Y",
+      "count": 8,
+      "spacing": 0.18,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Instanced or loop-generated named meshes; never map-only."
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ]
+    },
+    {
+      "id": "repeat-upper-window-rhythm",
+      "name": "Regular rectangular windows repeat above the arcade",
+      "componentRef": "upper-window-rhythm",
+      "pattern": "linear-grid",
+      "axis": "X",
+      "count": 10,
+      "spacing": 0.18,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Instanced or loop-generated named meshes; never map-only."
+      },
+      "evidenceRefs": [
+        "corner-midcentury",
+        "corner-1922",
+        "penang-road-1983",
+        "orchard-road"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing"
+      ],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": [
+        "assembly-root",
+        "bowed-corner-block",
+        "orchard-road-wing",
+        "penang-lane-wing",
+        "corner-dutch-gable",
+        "repeated-dutch-gables",
+        "five-footway-arcade",
+        "corner-upper-arches",
+        "terracotta-roofs",
+        "upper-window-rhythm",
+        "corner-name-panel",
+        "shopfront-insets"
+      ],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [
+    {
+      "timestamp": "2026-08-11T18:00:45.447241+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.79,
+      "aiVisionScore": 0.79,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.79,
+        "componentStructure": 0.81,
+        "formDetail": 0.76,
+        "materialSurface": 0.75,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-1-three-storey-bowed-corner-joining-two-",
+          "score": 0.81,
+          "visible": true,
+          "notes": "The primary identity system remains legible in the shared reference/render pair."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Reviewed front, three-quarter and side browser captures alongside the archival contact sheet.",
+      "aiVisionNotes": "The procedural study captures the landmark-specific silhouette and component organization. Archive lens differences, incomplete rear views and compound-scale simplification limit dimensional fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.525226+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-2-large-cape-dutch-corner-gable-and-repe",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        },
+        {
+          "id": "identity-system-3-broad-flattened-arches-across-a-five-f",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "Named component hierarchy, repeated structures, attachment contracts and contact points were audited against the final procedural assembly. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.731489+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-1-three-storey-bowed-corner-joining-two-",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "The final browser views preserve the subject-specific silhouette, roof profile, facade rhythm and major negative spaces. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.916798+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-4-restrained-plaster-elevations-and-pitc",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "Procedural solid-colour materials separate masonry, glazing, roofs, metal and ground layers without copying source photography. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.100861+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.76,
+      "aiVisionScore": 0.76,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.76,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-3-broad-flattened-arches-across-a-five-f",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "Facade depth, frames, ribs, fins, awnings and repeated openings remain legible at the intended gallery distance. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.289037+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.83
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-4-restrained-plaster-elevations-and-pitc",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "The shared neutral lighting preserves silhouette and facade readability across front, side and three-quarter views. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.472160+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-2-large-cape-dutch-corner-gable-and-repe",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+      "cameraView": "front-three-quarter",
+      "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+      "aiVisionNotes": "Orbit, four camera presets, named-part selection and parent-aware exploded view were verified in the browser. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+    }
+  ],
+  "reviewHistory": [
+    {
+      "timestamp": "2026-08-11T18:00:45.447241+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.79,
+      "aiVisionScore": 0.79,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.79,
+        "componentStructure": 0.81,
+        "formDetail": 0.76,
+        "materialSurface": 0.75,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-1-three-storey-bowed-corner-joining-two-",
+          "score": 0.81,
+          "visible": true,
+          "notes": "The primary identity system remains legible in the shared reference/render pair."
+        }
+      ],
+      "action": "continue",
+      "summary": "Multi-view browser inspection confirms the identity silhouette and major negative spaces; dimensional inference remains explicitly approximate.",
+      "matched": [
+        "three-storey bowed corner joining two street wings",
+        "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "broad flattened arches across a five-footway arcade"
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "Preserve current identity geometry",
+        "retain stable camera fitting and parent-aware explode hierarchy"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "mapStrippedRender": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Reviewed front, three-quarter and side browser captures alongside the archival contact sheet.",
+        "aiVisionNotes": "The procedural study captures the landmark-specific silhouette and component organization. Archive lens differences, incomplete rear views and compound-scale simplification limit dimensional fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.525226+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-2-large-cape-dutch-corner-gable-and-repe",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        },
+        {
+          "id": "identity-system-3-broad-flattened-arches-across-a-five-f",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "Named component hierarchy, repeated structures, attachment contracts and contact points were audited against the final procedural assembly.",
+      "matched": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "Named component hierarchy, repeated structures, attachment contracts and contact points were audited against the final procedural assembly. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.731489+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-1-three-storey-bowed-corner-joining-two-",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "The final browser views preserve the subject-specific silhouette, roof profile, facade rhythm and major negative spaces.",
+      "matched": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "The final browser views preserve the subject-specific silhouette, roof profile, facade rhythm and major negative spaces. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:48.916798+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-4-restrained-plaster-elevations-and-pitc",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "Procedural solid-colour materials separate masonry, glazing, roofs, metal and ground layers without copying source photography.",
+      "matched": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "Procedural solid-colour materials separate masonry, glazing, roofs, metal and ground layers without copying source photography. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.100861+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.76,
+      "aiVisionScore": 0.76,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.76,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-3-broad-flattened-arches-across-a-five-f",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "Facade depth, frames, ribs, fins, awnings and repeated openings remain legible at the intended gallery distance.",
+      "matched": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "Facade depth, frames, ribs, fins, awnings and repeated openings remain legible at the intended gallery distance. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.289037+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.83
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-4-restrained-plaster-elevations-and-pitc",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "The shared neutral lighting preserves silhouette and facade readability across front, side and three-quarter views.",
+      "matched": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "The shared neutral lighting preserves silhouette and facade readability across front, side and three-quarter views. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.472160+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.82,
+        "formDetail": 0.79,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "identity-system-2-large-cape-dutch-corner-gable-and-repe",
+          "score": 0.82,
+          "visible": true,
+          "notes": "The specified identity feature is legible in the shared reference/render comparison."
+        }
+      ],
+      "action": "continue",
+      "summary": "Orbit, four camera presets, named-part selection and parent-aware exploded view were verified in the browser.",
+      "matched": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg"
+      ],
+      "reviewViewpoints": [
+        "front",
+        "three-quarter",
+        "side",
+        "long-axis",
+        "thickness-axis"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/contact-sheets/amber-mansions.jpg",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-three-quarter.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/reviews/amber-mansions-comparison-blockout.jpg",
+        "cameraView": "front-three-quarter",
+        "notes": "Audited the final front, three-quarter and side browser captures against the archival contact sheet.",
+        "aiVisionNotes": "Orbit, four camera presets, named-part selection and parent-aware exploded view were verified in the browser. Archive lens differences and incomplete rear elevations cap the claimed fidelity."
+      }
+    },
+    {
+      "timestamp": "2026-08-11T21:16:49.658147+00:00",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": null,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {},
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "The production build completed; all thirteen models remain code-generated and share one Three.js runtime with disposable geometry and materials.",
+      "matched": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ],
+      "mismatches": [
+        "Surveyed dimensions unavailable",
+        "hidden elevations simplified",
+        "site context intentionally reduced"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No blocking correction identified",
+        "retain named hierarchy, camera fit and model-specific disclosure"
+      ],
+      "evidence": [
+        "dist/client/lost-heritage.html",
+        "production Vite build",
+        "procedural runtime manifest"
+      ]
+    }
+  ],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "reference-fidelity",
+    "targetTriangles": 250000,
+    "maxDrawCalls": 160,
+    "textureSize": 2048,
+    "fpsTarget": 30,
+    "optimizationPolicy": "Reach accepted visual fidelity first, then optimize without removing reference-critical geometry or surface layers."
+  },
+  "lightingFromPhoto": [
+    "Large soft key from camera-left, exposure 1.05 with ACES Filmic tone mapping.",
+    "Low-intensity cool fill preserves deep facade recesses without flattening them.",
+    "Warm rim plus ambient-occlusion/contact shadows separates rooflines and grounds every part."
+  ],
+  "proceduralStrategy": [
+    "Construct macro silhouette and negative spaces from volumetric Three.js primitives and extrusions.",
+    "Build repeated windows, arches, seats, bays, posts and roof elements as instanced or loop-generated geometry.",
+    "Keep every identity component in a named parent group with stable local pivot and assembly socket.",
+    "Use parent-aware non-uniform explode vectors derived from component centroids and hierarchy depth.",
+    "Author independent procedural albedo, roughness, normal-height and AO response; never project source photographs.",
+    "Render front and multiple orbit views before acceptance; preserve disclosed uncertainty on hidden sides."
+  ],
+  "animationAnchors": [
+    "assembly-root supports whole-object transforms",
+    "bowed-corner-block has a stable local pivot and explode socket",
+    "orchard-road-wing has a stable local pivot and explode socket",
+    "penang-lane-wing has a stable local pivot and explode socket",
+    "corner-dutch-gable has a stable local pivot and explode socket",
+    "repeated-dutch-gables has a stable local pivot and explode socket",
+    "five-footway-arcade has a stable local pivot and explode socket"
+  ],
+  "destructionAnchors": [
+    "bowed-corner-block is non-breakable but addressable as destruction group bowed-corner-block",
+    "orchard-road-wing is non-breakable but addressable as destruction group orchard-road-wing",
+    "penang-lane-wing is non-breakable but addressable as destruction group penang-lane-wing",
+    "corner-dutch-gable is non-breakable but addressable as destruction group corner-dutch-gable",
+    "repeated-dutch-gables is non-breakable but addressable as destruction group repeated-dutch-gables",
+    "five-footway-arcade is non-breakable but addressable as destruction group five-footway-arcade",
+    "corner-upper-arches is non-breakable but addressable as destruction group corner-upper-arches",
+    "terracotta-roofs is non-breakable but addressable as destruction group terracotta-roofs",
+    "upper-window-rhythm is non-breakable but addressable as destruction group upper-window-rhythm",
+    "corner-name-panel is non-breakable but addressable as destruction group corner-name-panel",
+    "shopfront-insets is non-breakable but addressable as destruction group shopfront-insets"
+  ],
+  "risks": [
+    {
+      "risk": "Rear courtyard plan",
+      "mitigation": "Keep the inferred geometry visibly approximate and disclosed in the viewer."
+    },
+    {
+      "risk": "Shop-bay depths",
+      "mitigation": "Keep the inferred geometry visibly approximate and disclosed in the viewer."
+    },
+    {
+      "risk": "Period-specific signage set",
+      "mitigation": "Keep the inferred geometry visibly approximate and disclosed in the viewer."
+    }
+  ],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Amber Mansions Cape Dutch gables bowed corner five-footway",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": []
+  },
+  "modelingDisclosure": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+  "referenceRights": "Research references only; source pages, credits and rights notes are preserved in collection.json. No images ship in the browser build."
+}

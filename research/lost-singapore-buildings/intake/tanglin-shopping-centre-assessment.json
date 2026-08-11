@@ -1,0 +1,731 @@
+{
+  "targetName": "Tanglin Shopping Centre",
+  "sourceImage": "research/lost-singapore-buildings/references/tanglin-shopping-centre/street-overall.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "architectural landmark prop",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "long-horizontal",
+        "podium-and-slab",
+        "incremental-modernist",
+        "arcaded"
+      ],
+      "structureKind": [
+        "retail podium with office additions",
+        "reinforced concrete frame"
+      ],
+      "motionPotential": [
+        "exploded-view interaction",
+        "clickable part inspection"
+      ],
+      "materialFamilies": [
+        "white render",
+        "pink-grey panels",
+        "dark glazing",
+        "green signage"
+      ],
+      "notes": "Stylised real-time reconstruction of the documented exterior."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 8,
+        "microFeatureGroups": 11,
+        "materialLayers": 4,
+        "repetitionSystems": 2
+      },
+      "reasoning": [
+        "Tanglin Shopping Centre requires 11 named structural/detail components to preserve its identity at the selected tier.",
+        "The quality decision is driven by six-storey original podium with deep horizontal ledges; later 12-storey office slab and stepped annex; recessed retail arcade with green wordmark; repetitive square office windows and planted terrace edges."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Selected after visual inspection of the primary reference, independent supporting views and every generated zone crop."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Construction phase boundaries",
+      "Rear loading elevation",
+      "Exact mature-complex plan"
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 11,
+      "details": [
+        {
+          "id": "detail-01-retail-podium",
+          "kind": "contour",
+          "description": "Long original retail podium establishes the street wall",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "retail-podium/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c0.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-02-office-slab",
+          "kind": "contour",
+          "description": "Taller pale office slab rises behind the podium",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "office-slab/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-03-stepped-annex",
+          "kind": "contour",
+          "description": "Rounded stepped annex and terrace edge terminate one end",
+          "region": {
+            "x": 0.6667,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "stepped-annex/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c2.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "detail-04-ground-arcade",
+          "kind": "hole",
+          "description": "Deep shaded ground-level retail arcade runs along the frontage",
+          "region": {
+            "x": 0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "ground-arcade/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c0.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-05-square-window-bays",
+          "kind": "ridge",
+          "description": "Regular square windows sit within broad framed facade bays",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "square-window-bays/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "detail-06-horizontal-ledges",
+          "kind": "ridge",
+          "description": "Deep ledges split the podium and office additions",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "horizontal-ledges/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c2.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "detail-07-clerestory-band",
+          "kind": "decal",
+          "description": "Dark continuous clerestory strip separates podium layers",
+          "region": {
+            "x": 0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "material",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "clerestory-band/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c0.png",
+          "confidence": 0.88
+        },
+        {
+          "id": "detail-08-entrance-stairs",
+          "kind": "contour",
+          "description": "Broad entrance stairs rise from the recessed pavement edge",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "entrance-stairs/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-09-green-wordmark",
+          "kind": "contour",
+          "description": "Long green Tanglin Shopping Centre wordmark marks the planter edge",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "green-wordmark/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c2.png",
+          "confidence": 0.91
+        },
+        {
+          "id": "detail-10-arched-feature-window",
+          "kind": "contour",
+          "description": "Large arched glazed opening punctuates one entrance bay",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "arched-feature-window/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c0.png",
+          "confidence": 0.84
+        },
+        {
+          "id": "detail-11-terrace-rail",
+          "kind": "bevel",
+          "description": "Thin rails and planted ledges articulate the stepped roof terraces",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "terrace-rail/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c1.png",
+          "confidence": 0.76
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "research/lost-singapore-buildings/references/tanglin-shopping-centre/street-overall.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The model reads as Tanglin Shopping Centre in silhouette without labels.",
+      "The model includes the identity features: six-storey original podium with deep horizontal ledges; later 12-storey office slab and stepped annex; recessed retail arcade with green wordmark; repetitive square office windows and planted terrace edges.",
+      "All named parts are selectable and remain attached during parent-aware non-uniform explode.",
+      "Front, three-quarter, side and elevated review views preserve proportions and negative spaces.",
+      "All hidden-side and dimensional inference remains disclosed in runtime metadata and research notes."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 11,
+      "materialLayers": 4,
+      "repetitionSystems": 2,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "six-storey original podium with deep horizontal ledges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "later 12-storey office slab and stepped annex",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "recessed retail arcade with green wordmark",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "repetitive square office windows and planted terrace edges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "six-storey original podium with deep horizontal ledges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "later 12-storey office slab and stepped annex",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "recessed retail arcade with green wordmark",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "repetitive square office windows and planted terrace edges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "six-storey original podium with deep horizontal ledges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "later 12-storey office slab and stepped annex",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "recessed retail arcade with green wordmark",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "repetitive square office windows and planted terrace edges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "six-storey original podium with deep horizontal ledges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "later 12-storey office slab and stepped annex",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "recessed retail arcade with green wordmark",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "repetitive square office windows and planted terrace edges",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tanglin-shopping-centre/artist-impression.jpg",
+          "tanglin-shopping-centre/podium.jpg",
+          "tanglin-shopping-centre/front-signage.jpg",
+          "tanglin-shopping-centre/street-overall.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and primary height-to-width ratio",
+      "critical negative spaces and courtyard/open-bowl geometry",
+      "roofline and skyline attachments",
+      "facade-bay count, rhythm and depth",
+      "material color-zone separation and roughness family",
+      "ground contact, podium, steps and site transition"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Assessment completed. Author the ObjectSculptSpec with the attached detail inventory and modeling disclosures.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Tanglin Shopping Centre modern shopping centre podium office slab arcade",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": []
+  }
+}

@@ -1,0 +1,832 @@
+{
+  "targetName": "Tank Road Railway Station",
+  "sourceImage": "research/lost-singapore-buildings/references/tank-road-railway-station/roots-front.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "architectural landmark prop",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "colonial-utilitarian",
+        "low-linear",
+        "clock-tower-anchor",
+        "platform"
+      ],
+      "structureKind": [
+        "timber passenger station",
+        "railway platform and yard"
+      ],
+      "motionPotential": [
+        "exploded-view interaction",
+        "clickable part inspection"
+      ],
+      "materialFamilies": [
+        "pale timber",
+        "red-brown roof tile",
+        "dark structural timber",
+        "steel rail",
+        "gravel"
+      ],
+      "notes": "The 1907 passenger station is modeled; surviving photographs sometimes conflate it with the nearby 1903 Singapore Station and later goods facilities."
+    },
+    "complexity": {
+      "tier": "ultra-complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 12,
+        "microFeatureGroups": 16,
+        "materialLayers": 5,
+        "repetitionSystems": 6
+      },
+      "reasoning": [
+        "Tank Road Railway Station requires 16 named structural/detail components to preserve its identity at the selected tier.",
+        "The quality decision is driven by long low timber station range beneath a red-tile hipped roof; central square clock tower and prominent street entrance; covered platform canopy and parallel passenger tracks; adjacent sidings, footbridge and Fort Canning embankment."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "ultra-complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Selected after visual inspection of the primary reference, independent supporting views and every generated zone crop."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Boundary between 1903 and 1907 station fabric",
+      "Exact yard extent",
+      "Demolition date"
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 16,
+      "details": [
+        {
+          "id": "detail-01-station-range",
+          "kind": "contour",
+          "description": "Long low passenger range parallels Tank Road and the tracks",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "station-range/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c0.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-02-clock-tower",
+          "kind": "contour",
+          "description": "Square central clock tower rises above the otherwise low roofline",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "clock-tower/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c1.png",
+          "confidence": 0.99
+        },
+        {
+          "id": "detail-03-platform-and-track-bed",
+          "kind": "contour",
+          "description": "Covered platform and parallel track bed define the rail frontage",
+          "region": {
+            "x": 0.6667,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "platform-and-track-bed/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c2.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-04-hipped-tile-roofs",
+          "kind": "decal",
+          "description": "Overlapping hipped roofs use warm red-brown tiles",
+          "region": {
+            "x": 0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "material",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "hipped-tile-roofs/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c0.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-05-clock-faces",
+          "kind": "contour",
+          "description": "Large pale circular clock faces occupy the tower sides",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "clock-faces/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c1.png",
+          "confidence": 0.98
+        },
+        {
+          "id": "detail-06-tower-louvres",
+          "kind": "groove",
+          "description": "Tall inset louvred panels sit below the clock faces",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tower-louvres/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c2.png",
+          "confidence": 0.91
+        },
+        {
+          "id": "detail-07-platform-canopy",
+          "kind": "contour",
+          "description": "Long lightweight canopy shades the boarding edge",
+          "region": {
+            "x": 0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "platform-canopy/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r2c0.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "detail-08-canopy-posts",
+          "kind": "ridge",
+          "description": "Slender posts repeat along the platform canopy",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "canopy-posts/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r2c1.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "detail-09-passenger-windows",
+          "kind": "ridge",
+          "description": "Regular small windows punctuate the timber station walls",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "passenger-windows/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r2c2.png",
+          "confidence": 0.88
+        },
+        {
+          "id": "detail-10-parallel-rails",
+          "kind": "ridge",
+          "description": "Multiple shiny steel rails run past the platform",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "parallel-rails/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c0.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "detail-11-sleepers",
+          "kind": "ridge",
+          "description": "Close-spaced transverse sleepers give the track bed scale",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "sleepers/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "detail-12-street-picket-fence",
+          "kind": "ridge",
+          "description": "Low pale picket fence separates jinrickshaws from the station",
+          "region": {
+            "x": 0.6667,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "street-picket-fence/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r0c2.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "detail-13-pedestrian-footbridge",
+          "kind": "fastener",
+          "description": "Timber footbridge and stair connect across the tracks",
+          "region": {
+            "x": 0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "pedestrian-footbridge/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c0.png",
+          "confidence": 0.86
+        },
+        {
+          "id": "detail-14-station-signboard",
+          "kind": "contour",
+          "description": "Tank Road station name board sits near the platform edge",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "station-signboard/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c1.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "detail-15-forecourt",
+          "kind": "contour",
+          "description": "Flat street forecourt accommodates waiting jinrickshaws",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "forecourt/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r1c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-16-yard-sidings",
+          "kind": "ridge",
+          "description": "Branching sidings and points fan into the compact yard slice",
+          "region": {
+            "x": 0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "yard-sidings/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tank-road-railway-station/zone-r2c0.png",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "research/lost-singapore-buildings/references/tank-road-railway-station/roots-front.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "ultra-complex",
+    "definitionOfDone": [
+      "The model reads as Tank Road Railway Station in silhouette without labels.",
+      "The model includes the identity features: long low timber station range beneath a red-tile hipped roof; central square clock tower and prominent street entrance; covered platform canopy and parallel passenger tracks; adjacent sidings, footbridge and Fort Canning embankment.",
+      "All named parts are selectable and remain attached during parent-aware non-uniform explode.",
+      "Front, three-quarter, side and elevated review views preserve proportions and negative spaces.",
+      "All hidden-side and dimensional inference remains disclosed in runtime metadata and research notes."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 4,
+      "mesoComponents": 12,
+      "microFeatureGroups": 16,
+      "materialLayers": 5,
+      "repetitionSystems": 6,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "long low timber station range beneath a red-tile hipped roof",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central square clock tower and prominent street entrance",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "covered platform canopy and parallel passenger tracks",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "adjacent sidings, footbridge and Fort Canning embankment",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "long low timber station range beneath a red-tile hipped roof",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central square clock tower and prominent street entrance",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "covered platform canopy and parallel passenger tracks",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "adjacent sidings, footbridge and Fort Canning embankment",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "long low timber station range beneath a red-tile hipped roof",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central square clock tower and prominent street entrance",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "covered platform canopy and parallel passenger tracks",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "adjacent sidings, footbridge and Fort Canning embankment",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "long low timber station range beneath a red-tile hipped roof",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central square clock tower and prominent street entrance",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "covered platform canopy and parallel passenger tracks",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "adjacent sidings, footbridge and Fort Canning embankment",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "tank-road-railway-station/roots-front.jpg",
+          "tank-road-railway-station/station-postcard.jpg",
+          "tank-road-railway-station/platform-view.jpg",
+          "tank-road-railway-station/track-yard.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and primary height-to-width ratio",
+      "critical negative spaces and courtyard/open-bowl geometry",
+      "roofline and skyline attachments",
+      "facade-bay count, rhythm and depth",
+      "material color-zone separation and roughness family",
+      "ground contact, podium, steps and site transition"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Assessment completed. Author the ObjectSculptSpec with the attached detail inventory and modeling disclosures.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Tank Road Railway Station colonial timber railway station clock tower platform",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": []
+  }
+}

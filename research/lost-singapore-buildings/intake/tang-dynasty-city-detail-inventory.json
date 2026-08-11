@@ -1,0 +1,331 @@
+{
+  "sourceImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/formal-entrance.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city",
+  "detailInventory": {
+    "scanMethod": "grid-4x4",
+    "targetMinDetails": 16,
+    "details": [
+      {
+        "id": "detail-01-crenellated-city-wall",
+        "kind": "contour",
+        "description": "Long high grey-brick wall creates the monumental street silhouette",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "crenellated-city-wall/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r0c0.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "detail-02-central-gatehouse",
+        "kind": "contour",
+        "description": "Central arched gatehouse projects above the wall",
+        "region": {
+          "x": 0.25,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "central-gatehouse/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r0c1.png",
+        "confidence": 0.98
+      },
+      {
+        "id": "detail-03-courtyard-hall",
+        "kind": "contour",
+        "description": "Two-storey white-and-dark-timber hall anchors the internal court",
+        "region": {
+          "x": 0.5,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "courtyard-hall/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r0c2.png",
+        "confidence": 0.92
+      },
+      {
+        "id": "detail-04-seven-storey-pagoda",
+        "kind": "contour",
+        "description": "Slender multi-tier pagoda acts as the representative vertical landmark",
+        "region": {
+          "x": 0.75,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "seven-storey-pagoda/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r0c3.png",
+        "confidence": 0.78
+      },
+      {
+        "id": "detail-05-gate-arch",
+        "kind": "hole",
+        "description": "Deep round-headed stone arch forms the principal entrance void",
+        "region": {
+          "x": 0,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "gate-arch/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r1c0.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "detail-06-gate-tile-roof",
+        "kind": "contour",
+        "description": "Broad dark tiled roof with upturned corners caps the gatehouse",
+        "region": {
+          "x": 0.25,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "gate-tile-roof/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r1c1.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "detail-07-wall-merlons",
+        "kind": "ridge",
+        "description": "Square crenellations repeat along the full wall top",
+        "region": {
+          "x": 0.5,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "wall-merlons/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r1c2.png",
+        "confidence": 0.98
+      },
+      {
+        "id": "detail-08-courtyard-tile-roofs",
+        "kind": "ridge",
+        "description": "Layered dark roofs repeat across the internal halls",
+        "region": {
+          "x": 0.75,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "courtyard-tile-roofs/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r1c3.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "detail-09-timber-frame-bays",
+        "kind": "ridge",
+        "description": "Dark timber posts and beams divide the pale hall facades",
+        "region": {
+          "x": 0,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "timber-frame-bays/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r2c0.png",
+        "confidence": 0.93
+      },
+      {
+        "id": "detail-10-arched-stone-bridge",
+        "kind": "contour",
+        "description": "Pale arched bridge crosses the formal pond",
+        "region": {
+          "x": 0.25,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "arched-stone-bridge/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r2c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "detail-11-formal-pond",
+        "kind": "decal",
+        "description": "Rectangular green pond and stone edge structure the courtyard",
+        "region": {
+          "x": 0.5,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "formal-pond/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r2c2.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "detail-12-stone-lions",
+        "kind": "fastener",
+        "description": "Paired guardian lions flank the main gate",
+        "region": {
+          "x": 0.75,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "stone-lions/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r2c3.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "detail-13-red-banners",
+        "kind": "decal",
+        "description": "Large red calligraphic banners hang symmetrically on the wall",
+        "region": {
+          "x": 0,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "material",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "red-banners/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r3c0.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "detail-14-white-balustrades",
+        "kind": "ridge",
+        "description": "Pale carved-looking balustrades line bridge and forecourt edges",
+        "region": {
+          "x": 0.25,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "white-balustrades/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r3c1.png",
+        "confidence": 0.88
+      },
+      {
+        "id": "detail-15-ceremonial-plaza",
+        "kind": "contour",
+        "description": "Broad pale paved plaza preserves the strong axial approach",
+        "region": {
+          "x": 0.5,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "ceremonial-plaza/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r3c2.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "detail-16-watchtower-corners",
+        "kind": "fastener",
+        "description": "Small roofed watchtowers punctuate selected wall corners",
+        "region": {
+          "x": 0.75,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "watchtower-corners/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tang-dynasty-city/zone-r3c3.png",
+        "confidence": 0.82
+      }
+    ]
+  },
+  "authoringInstruction": "Completed after whole-image and zone-sheet visual inspection. Every detail maps to a planned spec component or material override."
+}

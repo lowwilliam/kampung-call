@@ -30,6 +30,10 @@ export default defineConfig({
     sourcemap: true,
     chunkSizeWarningLimit: 700,
     rollupOptions: {
+      input: {
+        main: path.resolve('index.html'),
+        lostHeritage: path.resolve('lost-heritage.html'),
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three';

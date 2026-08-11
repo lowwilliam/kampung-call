@@ -1,0 +1,6 @@
+references/**/*
+!references/.gitkeep
+contact-sheets/**/*
+!contact-sheets/.gitkeep
+intake/zones/**/*
+!intake/zones/.gitkeep

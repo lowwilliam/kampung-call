@@ -1,0 +1,231 @@
+{
+  "sourceImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/front.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 11,
+    "details": [
+      {
+        "id": "detail-01-main-brick-wing",
+        "kind": "contour",
+        "description": "Long red-brick library wing with three stacked window bands",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "main-brick-wing/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r0c0.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-02-cross-wing",
+        "kind": "contour",
+        "description": "Taller cross-wing projects forward and closes one side of the courtyard",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "cross-wing/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r0c1.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "detail-03-entrance-porch",
+        "kind": "contour",
+        "description": "Broad flat entrance canopy projects over the curved arrival drive",
+        "region": {
+          "x": 0.6667,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "entrance-porch/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r0c2.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "detail-04-brick-porch-piers",
+        "kind": "ridge",
+        "description": "Chunky square brick piers support the entrance canopy",
+        "region": {
+          "x": 0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "brick-porch-piers/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r1c0.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-05-window-bands",
+        "kind": "ridge",
+        "description": "Deep-set horizontal window bands repeat across the red masonry",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "window-bands/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r1c1.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "detail-06-end-lattice-screen",
+        "kind": "contour",
+        "description": "Tall decorative concrete lattice fills the cross-wing end bay",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "end-lattice-screen/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r1c2.png",
+        "confidence": 0.93
+      },
+      {
+        "id": "detail-07-courtyard-void",
+        "kind": "hole",
+        "description": "Open-air internal courtyard creates the key negative space",
+        "region": {
+          "x": 0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "courtyard-void/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r2c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "detail-08-courtyard-fountain",
+        "kind": "contour",
+        "description": "Small tiered white fountain stands near the court centre",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "courtyard-fountain/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r2c1.png",
+        "confidence": 0.84
+      },
+      {
+        "id": "detail-09-roof-parapets",
+        "kind": "bevel",
+        "description": "Low flat parapets cap the brick masses",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "roof-parapets/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r2c2.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "detail-10-external-stair",
+        "kind": "fastener",
+        "description": "Secondary external stair and landing connect a rear wing",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "external-stair/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r0c0.png",
+        "confidence": 0.76
+      },
+      {
+        "id": "detail-11-brick-vent-course",
+        "kind": "ridge",
+        "description": "Small square vents form a low repeated course near the base",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "brick-vent-course/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-library-stamford/zone-r0c1.png",
+        "confidence": 0.86
+      }
+    ]
+  },
+  "authoringInstruction": "Completed after whole-image and zone-sheet visual inspection. Every detail maps to a planned spec component or material override."
+}

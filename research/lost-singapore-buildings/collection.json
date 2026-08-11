@@ -1,0 +1,779 @@
+{
+  "schemaVersion": 1,
+  "title": "Lost Singapore: Thirteen Demolished Heritage Buildings and Compounds",
+  "createdOn": "2026-08-12",
+  "intendedUse": "Stylized, real-time browser reconstructions with explodable and clickable procedural Three.js assemblies",
+  "referencePolicy": "Downloaded photographs are research inputs only. They are ignored by Git and are not texture-projected or redistributed. Preserve each source page, credit line, and rights note.",
+  "modelingDisclosure": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+  "buildings": [
+    {
+      "id": "comcentre",
+      "name": "Singtel Comcentre",
+      "opened": "1979",
+      "removed": "2024–2025",
+      "location": "31 Exeter Road",
+      "architectOrDesigner": "BEP Akitekt",
+      "heritageCase": "Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
+      "evidenceConfidence": 0.94,
+      "geometryIdentity": [
+        "33-storey rectilinear tower with two opaque east-west service cores",
+        "repetitive horizontal office-window bands",
+        "five-storey equipment podium joined by a plaza",
+        "cluster of large rooftop microwave dishes"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre",
+        "https://www.singtel.com/about-us/media-centre/news-releases/singtel-to-redevelop-comcentre-headquarters--into-next-generatio",
+        "https://www.singtel.com/about-us/media-centre/news-releases/singtel-and-lendlease-break-ground-on-new-comcentre"
+      ],
+      "references": [
+        {
+          "id": "front-three-quarter",
+          "view": "front three-quarter with podium",
+          "imageUrl": "https://www.roots.gov.sg/-/media/Roots/Images/heritage-sites/comcentre/2_comcentre_2016-04-16_c-0131-p-0006.jpg",
+          "sourcePage": "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "comcentre/front-three-quarter.jpg"
+        },
+        {
+          "id": "tower-portrait",
+          "view": "long-elevation portrait",
+          "imageUrl": "https://images.skyscrapercenter.com/building/Comcentre-Daniel-Safarik-1679610241063.JPG",
+          "sourcePage": "https://www.skyscrapercenter.com/singapore/comcentre/10199",
+          "credit": "Daniel Safarik / CTBUH Skyscraper Center",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "comcentre/tower-portrait.jpg"
+        },
+        {
+          "id": "tower-skatepark",
+          "view": "street-level tower and service core",
+          "imageUrl": "https://images.skyscrapercenter.com/building/Comcentre-1679610236886.JPG",
+          "sourcePage": "https://www.skyscrapercenter.com/singapore/comcentre/10199",
+          "credit": "CTBUH Skyscraper Center",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "comcentre/tower-skatepark.jpg"
+        },
+        {
+          "id": "brutalist-elevation",
+          "view": "opposite three-quarter elevation",
+          "imageUrl": "https://www.artchitectours.com/wp-content/uploads/2020/03/Singapore_Brutalism_Copyright_Wikimedia_Commons-1.jpg",
+          "sourcePage": "https://www.artchitectours.com/tour/singapore-brutalism/",
+          "credit": "Wikimedia Commons, as credited by Artchitectours",
+          "rights": "Research reference; verify original Commons licence before reuse",
+          "filename": "comcentre/opposite-elevation.jpg"
+        }
+      ]
+    },
+    {
+      "id": "national-theatre",
+      "name": "National Theatre",
+      "opened": "1963",
+      "removed": "1986",
+      "location": "Clemenceau Avenue and River Valley Road",
+      "architectOrDesigner": "Alfred Wong Partnership",
+      "heritageCase": "The publicly funded 'People's Theatre', built as a post-self-government cultural landmark and used for national ceremonies and performance.",
+      "evidenceConfidence": 0.97,
+      "geometryIdentity": [
+        "five tall diamond-pointed facade bays",
+        "crescent fountain and reflecting pool",
+        "semi-open auditorium beneath a 150-tonne cantilever roof",
+        "terraced entrance deck against the Fort Canning slope"
+      ],
+      "sources": [
+        "https://www.nlb.gov.sg/main/article-detail?cmsuuid=90755dd9-1c83-4642-ba0b-4a0050d7ec94",
+        "https://www.roots.gov.sg/Collection-Landing/listing/1192683",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-15-issue-1-apr-jun-2019-making-history/"
+      ],
+      "references": [
+        {
+          "id": "front",
+          "view": "formal front elevation",
+          "imageUrl": "https://images.squarespace-cdn.com/content/v1/606e953e34b9b62727154e98/1618223057779-W4HSO5ZSHFZ4SC9CHWYI/National%2BTheatre.jpeg",
+          "sourcePage": "https://www.docomomo.sg/modernist-100/national-theatre",
+          "credit": "Docomomo Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-theatre/front.jpg"
+        },
+        {
+          "id": "front-left",
+          "view": "front-left with fountain",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1192683.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1192683",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-theatre/front-left.jpg"
+        },
+        {
+          "id": "front-right",
+          "view": "front-right facade rhythm",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1191716.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1192683",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-theatre/front-right.jpg"
+        },
+        {
+          "id": "architect-view",
+          "view": "facade and roof relationship",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1193020.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1193020",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-theatre/architect-view.jpg"
+        }
+      ]
+    },
+    {
+      "id": "national-library-stamford",
+      "name": "National Library at Stamford Road",
+      "opened": "1960",
+      "removed": "2005",
+      "location": "91 Stamford Road",
+      "architectOrDesigner": "Lionel Bintley, Public Works Department",
+      "heritageCase": "Singapore's first free public-library building, remembered for its red brickwork and role as a civic study and meeting place.",
+      "evidenceConfidence": 0.98,
+      "geometryIdentity": [
+        "low T-shaped red-brick modernist massing",
+        "deep entrance porch with broad concrete canopy",
+        "horizontal window bands in thick brick reveals",
+        "courtyard, external stair and decorative brick lattice"
+      ],
+      "sources": [
+        "https://www.nlb.gov.sg/main/article-detail?cmsuuid=62e46445-56be-4ea1-917d-f0b0fb5220eb",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-21-issue-2-jul-sep-2025-national-library-stamford-road-photos/",
+        "https://www.docomomo.sg/modernist-100/national-library-at-stamford-road"
+      ],
+      "references": [
+        {
+          "id": "front",
+          "view": "front elevation and entrance porch",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1191657.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1191657",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-library-stamford/front.jpg"
+        },
+        {
+          "id": "front-1973",
+          "view": "front three-quarter and driveway",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1042365.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1042365",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-library-stamford/front-1973.jpg"
+        },
+        {
+          "id": "side-architecture",
+          "view": "side wing, stair and rear relationship",
+          "imageUrl": "https://images.squarespace-cdn.com/content/v1/606e953e34b9b62727154e98/1620784887997-50I0BJAD1AAK7IM9GULZ/National%2BLibrary%2B2%2B-%2BJeremy%2BSan.jpg?format=1000w",
+          "sourcePage": "https://www.docomomo.sg/modernist-100/national-library-at-stamford-road",
+          "credit": "Jeremy San / Docomomo Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-library-stamford/side-architecture.jpg"
+        },
+        {
+          "id": "courtyard",
+          "view": "courtyard spatial evidence",
+          "imageUrl": "https://images.squarespace-cdn.com/content/v1/606e953e34b9b62727154e98/1620784908004-ERTR4XV0CS3WV6TIX9AV/National%2BLibrary%2B4%2B-%2BJeremy%2BSan.jpg",
+          "sourcePage": "https://www.docomomo.sg/modernist-100/national-library-at-stamford-road",
+          "credit": "Jeremy San / Docomomo Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "national-library-stamford/courtyard.jpg"
+        }
+      ]
+    },
+    {
+      "id": "van-kleef-aquarium",
+      "name": "Van Kleef Aquarium",
+      "opened": "1955",
+      "removed": "1998",
+      "location": "Clemenceau Avenue and River Valley Road",
+      "architectOrDesigner": "Singapore City Council / Public Works design team",
+      "heritageCase": "Singapore's first public aquarium and a popular post-war family attraction at the foot of Fort Canning.",
+      "evidenceConfidence": 0.91,
+      "geometryIdentity": [
+        "symmetrical low modernist composition embedded in a slope",
+        "central recessed entrance framed by tall white piers",
+        "stepped flat-roof wings with long ribbon windows",
+        "terraced lawn, broad stair and illuminated entrance forecourt"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/Collection-Landing/listing/1193052",
+        "https://www.nlb.gov.sg/main/image-detail?cmsuuid=e65eae09-7164-45d6-bde2-93169709ee8b",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-16-issue-3-oct-dec-2020-tiger-georges-clemenceaus-visit-1920/"
+      ],
+      "references": [
+        {
+          "id": "night-front",
+          "view": "night front elevation",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1082647.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1082647",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "van-kleef-aquarium/night-front.jpg"
+        },
+        {
+          "id": "front-1968",
+          "view": "day front and terraced lawn",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1193052.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1193052",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "van-kleef-aquarium/front-1968.jpg"
+        },
+        {
+          "id": "exterior-1976",
+          "view": "front-right exterior",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1192546.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1192546",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "van-kleef-aquarium/exterior-1976.jpg"
+        },
+        {
+          "id": "general-1970",
+          "view": "front-left general view",
+          "imageUrl": "https://thesmartlocal.com/wp-content/uploads/2024/05/van-kleef-jurong-bird-park-1024x667.png",
+          "sourcePage": "https://thesmartlocal.com/read/van-kleef-aquarium-singapore/",
+          "credit": "TheSmartLocal",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "van-kleef-aquarium/general-1970.jpg"
+        },
+        {
+          "id": "timeout-front",
+          "view": "front elevation with lawn and entrance steps",
+          "imageUrl": "https://media.timeout.com/images/105643638/750/422/image.jpg",
+          "sourcePage": "https://www.timeout.com/singapore/things-to-do/the-lost-landmarks-and-buildings-in-singapore",
+          "credit": "National Archives of Singapore, via Time Out Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "van-kleef-aquarium/timeout-front.jpg"
+        }
+      ]
+    },
+    {
+      "id": "former-national-stadium",
+      "name": "Former National Stadium",
+      "opened": "1973",
+      "removed": "2010–2011",
+      "location": "Kallang",
+      "architectOrDesigner": "Public Works Department, Singapore",
+      "heritageCase": "The venue of the 'Kallang Roar', 18 National Day Parades, landmark football matches, concerts, and national sporting memories.",
+      "evidenceConfidence": 0.98,
+      "geometryIdentity": [
+        "open elliptical seating bowl around track and pitch",
+        "single covered west grandstand with shallow cantilever canopy",
+        "four lattice floodlight towers",
+        "repeated concrete raker frames and broad entrance stairs"
+      ],
+      "sources": [
+        "https://www.sg101.gov.sg/resources/archives/national-stadium/",
+        "https://www.roots.gov.sg/stories-landing/stories/kallangs-grand-old-dame/story",
+        "https://www.sportsingapore.gov.sg/media-centre/the-dream-lives-on"
+      ],
+      "references": [
+        {
+          "id": "aerial",
+          "view": "aerial plan and context",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1189706.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1189706",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "former-national-stadium/aerial.jpg"
+        },
+        {
+          "id": "exterior-one",
+          "view": "external bowl and floodlights",
+          "imageUrl": "https://www.europlan-online.de/files/838f2c7e0c51d8d80bde9de832d90933.jpg",
+          "sourcePage": "https://www.europlan-online.de/national-stadium-1973/stadion-6473.html",
+          "credit": "Europlan Online",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "former-national-stadium/exterior-one.jpg"
+        },
+        {
+          "id": "exterior-two",
+          "view": "opposite exterior and support frames",
+          "imageUrl": "https://www.europlan-online.de/files/454aeb1a64be915d60594fb7ee8e2e86.jpg",
+          "sourcePage": "https://www.europlan-online.de/national-stadium-1973/stadion-6473.html",
+          "credit": "Europlan Online",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "former-national-stadium/exterior-two.jpg"
+        },
+        {
+          "id": "facade",
+          "view": "broad entrance facade",
+          "imageUrl": "https://thesmartlocal.com/wp-content/uploads/2025/07/Singapore-Sports-Hub-old-Singapore-National-Stadium-min.png",
+          "sourcePage": "https://thesmartlocal.com/read/singapore-sports-hub/",
+          "credit": "TheSmartLocal",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "former-national-stadium/facade.png"
+        }
+      ]
+    },
+    {
+      "id": "pearl-bank-apartments",
+      "name": "Pearl Bank Apartments",
+      "opened": "1976",
+      "removed": "2020",
+      "location": "1 Pearl Bank",
+      "architectOrDesigner": "Tan Cheng Siong and Mok Yew Fun, Archurban Architects & Planners",
+      "heritageCase": "A pioneering high-density, mixed-use residential tower and one of the strongest local expressions of post-independence modernism.",
+      "evidenceConfidence": 0.97,
+      "geometryIdentity": [
+        "38-storey horseshoe cylindrical tower",
+        "deep open inner court and segmented radial party walls",
+        "alternating balcony and window ribbons",
+        "podium car park and the 28th-floor Sky Park band"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Former-Pearl-Bank-Apartments",
+        "https://www.ura.gov.sg/Corporate/Media-Room/Forum-Replies/forum15-09",
+        "https://www.roots.gov.sg/stories-landing/stories/moderns-in-our-midst/story"
+      ],
+      "references": [
+        {
+          "id": "inner-court",
+          "view": "inner horseshoe court",
+          "imageUrl": "https://images.squarespace-cdn.com/content/v1/5bcf33578dfc8cede6a069ff/1561952330224-P1KZHYJDEOHDW1U5WNIA/darren-soh-pearl-bank-apartments-3.jpg?format=2500w",
+          "sourcePage": "https://singaplex.com/from-pearl-bank-apartments-to-tiong-bahru-with-love-",
+          "credit": "Darren Soh / Singaplex",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "pearl-bank-apartments/inner-court.jpg"
+        },
+        {
+          "id": "outer-curve",
+          "view": "outer curved elevation",
+          "imageUrl": "https://remembersingapore.files.wordpress.com/2019/05/pearl-bank-apartments07.jpg?w=1200",
+          "sourcePage": "https://remembersingapore.org/2019/05/20/pearl-bank-apartments-legacy/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "pearl-bank-apartments/outer-curve.jpg"
+        },
+        {
+          "id": "facade-close",
+          "view": "facade rhythm and vertical fins",
+          "imageUrl": "https://remembersingapore.files.wordpress.com/2019/05/pearl-bank-apartments02.jpg?w=1200",
+          "sourcePage": "https://remembersingapore.org/2019/05/20/pearl-bank-apartments-legacy/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "pearl-bank-apartments/facade-close.jpg"
+        },
+        {
+          "id": "aerial",
+          "view": "aerial horseshoe plan",
+          "imageUrl": "https://cdn.coconuts.co/coconuts/wp-content/uploads/2019/05/pearl-bank-apartments-singapore.jpg",
+          "sourcePage": "https://coconuts.co/singapore/news/ode-pearl-banks-apartments-building-digitally-archived-before-redevelopment/",
+          "credit": "Coconuts Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "pearl-bank-apartments/aerial.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tanglin-shopping-centre",
+      "name": "Tanglin Shopping Centre",
+      "opened": "1972",
+      "removed": "2024",
+      "location": "19 Tanglin Road",
+      "architectOrDesigner": "William Lim",
+      "heritageCase": "The first modern shopping mall in the Tanglin-Orchard belt and Singapore's second-oldest modern shopping centre.",
+      "evidenceConfidence": 0.95,
+      "geometryIdentity": [
+        "six-storey original podium with deep horizontal ledges",
+        "later 12-storey office slab and stepped annex",
+        "recessed retail arcade with green wordmark",
+        "repetitive square office windows and planted terrace edges"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/Collection-Landing/listing/1214419",
+        "https://www.channelnewsasia.com/singapore/tanglin-shopping-centre-sold-s868-million-4th-collective-sale-attempt-2514501",
+        "https://remembersingapore.org/2025/01/29/tanglin-shopping-centre-orchard-road-demolition/"
+      ],
+      "references": [
+        {
+          "id": "artist-impression",
+          "view": "historic overall composition",
+          "imageUrl": "https://www.roots.gov.sg/api/media/6fb7714a-45d5-4cd6-b321-e6da0fa31a92/1214419.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1214419",
+          "credit": "National Museum of Singapore / Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tanglin-shopping-centre/artist-impression.jpg"
+        },
+        {
+          "id": "podium",
+          "view": "podium and entrance",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2025/01/tanglin-shopping-centre1-2023.jpg",
+          "sourcePage": "https://remembersingapore.org/2025/01/29/tanglin-shopping-centre-orchard-road-demolition/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tanglin-shopping-centre/podium.jpg"
+        },
+        {
+          "id": "front-signage",
+          "view": "front wordmark and arcade",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2025/01/tanglin-shopping-centre9-2023.jpg",
+          "sourcePage": "https://remembersingapore.org/2025/01/29/tanglin-shopping-centre-orchard-road-demolition/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tanglin-shopping-centre/front-signage.jpg"
+        },
+        {
+          "id": "street-overall",
+          "view": "overall tower and podium",
+          "imageUrl": "https://dam.mediacorp.sg/image/upload/s--RrsXSiOc--/c_crop%2Ch_543%2Cw_965%2Cx_88%2Cy_1/c_fill%2Cg_auto%2Ch_468%2Cw_830/f_auto%2Cq_auto/v1/mediacorp/cna/image/2022/02/23/tanglin_shopping_centre_1.jpg?itok=oUz0EjOp",
+          "sourcePage": "https://www.channelnewsasia.com/singapore/tanglin-shopping-centre-sold-s868-million-4th-collective-sale-attempt-2514501",
+          "credit": "CNA / Mediacorp",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tanglin-shopping-centre/street-overall.jpg"
+        }
+      ]
+    },
+    {
+      "id": "amber-mansions",
+      "name": "Amber Mansions",
+      "opened": "1922",
+      "removed": "1984",
+      "location": "Orchard Road and Penang Lane",
+      "architectOrDesigner": "Swan & Maclaren; design attributed to Denis Santry",
+      "heritageCase": "An early mixed-use mansion block associated with the arrival of apartment living and modern retail on Orchard Road.",
+      "evidenceConfidence": 0.93,
+      "geometryIdentity": [
+        "three-storey bowed corner joining two street wings",
+        "large Cape Dutch corner gable and repeated smaller Dutch gables",
+        "broad flattened arches across a five-footway arcade",
+        "restrained plaster elevations and pitched tile roofs"
+      ],
+      "sources": [
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-17-issue-2-jul-sep-2021-swan-and-maclaren-apartment-living/",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-10-issue-3-oct-dec-2014-singapore-orchard-road-history/"
+      ],
+      "references": [
+        {
+          "id": "corner-midcentury",
+          "view": "bowed corner and Orchard Road wing",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1045683.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1045683",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "amber-mansions/corner-midcentury.jpg"
+        },
+        {
+          "id": "corner-1922",
+          "view": "early corner, gables and roof",
+          "imageUrl": "https://www.cdl.com.sg/60years/assets/img/milestones/60-70/1/1-amber-mansions-singapore.jpg",
+          "sourcePage": "https://www.cdl.com.sg/60years/milestones.html",
+          "credit": "City Developments Limited",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "amber-mansions/corner-1922.jpg"
+        },
+        {
+          "id": "penang-road-1983",
+          "view": "Penang Road wing before demolition",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19990007461-0004-3012-0986/img051.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/84b3144e-1162-11e3-83d5-0050568939ad",
+          "credit": "Ronni Pinsler Collection / National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "amber-mansions/penang-road-1983.jpg"
+        },
+        {
+          "id": "orchard-road",
+          "view": "long Orchard Road wing",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1048430.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1048430",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "amber-mansions/orchard-road.jpg"
+        }
+      ]
+    },
+    {
+      "id": "eu-court",
+      "name": "Eu Court",
+      "opened": "1925",
+      "removed": "1992",
+      "location": "Hill Street and Stamford Road",
+      "architectOrDesigner": "Swan & Maclaren",
+      "heritageCase": "An early apartment and retail block combining Stripped Classical planning with a Chinese Art Deco corner pavilion.",
+      "evidenceConfidence": 0.91,
+      "geometryIdentity": [
+        "three-storey L-shaped block around a rear courtyard",
+        "symmetrical stripped-classical elevations",
+        "corner Chinese-style rooftop pavilion",
+        "ground-floor five-footway arcade with regularly spaced bays"
+      ],
+      "sources": [
+        "https://biblioasia.nlb.gov.sg/files/pdf/vol-17/issue-2/v17-issue2_MansionBlocks.pdf",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-13-issue-3-oct-dec-2017-rambling-around-bras-basah/",
+        "https://www.nlb.gov.sg/main/image-detail?cmsuuid=3224ee4f-8044-4604-a39c-4edfb9cae022"
+      ],
+      "references": [
+        {
+          "id": "general-two",
+          "view": "corner general view",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19980006625-8105-3181-1815/img0068.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/892fee5c-1162-11e3-83d5-0050568939ad",
+          "credit": "Singapore Tourist Promotion Board Collection / National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "eu-court/general-two.jpg"
+        },
+        {
+          "id": "general-three",
+          "view": "opposite corner general view",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19990007088-9357-3072-0008/img033.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/84e03443-1162-11e3-83d5-0050568939ad",
+          "credit": "Ronni Pinsler Collection / National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "eu-court/general-three.jpg"
+        },
+        {
+          "id": "corner-1984",
+          "view": "corner massing and street context",
+          "imageUrl": "https://isomer-user-content.by.gov.sg/339/2f2522fb-719e-4c95-9fc4-2d937c5cb27c/03b_brasbasah.png",
+          "sourcePage": "https://biblioasia.nlb.gov.sg/all-sections/vol-13-issue-3-oct-dec-2017-rambling-around-bras-basah/",
+          "credit": "Lee Kip Lin Collection / National Library Board Singapore",
+          "rights": "All rights reserved; research reference only",
+          "filename": "eu-court/corner-1984.png"
+        }
+      ]
+    },
+    {
+      "id": "alkaff-arcade",
+      "name": "Alkaff Arcade (The Arcade)",
+      "opened": "1909",
+      "removed": "1978",
+      "location": "Collyer Quay to Raffles Place",
+      "architectOrDesigner": "David McLeod Craik",
+      "heritageCase": "Singapore's first indoor shopping centre, an Indo-Saracenic commercial passage joining the waterfront to Raffles Place.",
+      "evidenceConfidence": 0.88,
+      "geometryIdentity": [
+        "long three-storey passage block with glass-covered central atrium",
+        "paired copper onion domes at the waterfront elevation",
+        "Moorish horseshoe arches and small corner turrets",
+        "two storeys of offices above arcaded shops"
+      ],
+      "sources": [
+        "https://biblioasia.nlb.gov.sg/chapters-of-asia/chapters-on-asia-2015-on-the-waterfront-the-building-of-singapore-s-first-high-rise-skyline-1918-1928/",
+        "https://www.roots.gov.sg/Collection-Landing/listing/1473622",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-14-issue-2-jul-sep-2018-going-shopping-in-60s/"
+      ],
+      "references": [
+        {
+          "id": "waterfront-front",
+          "view": "waterfront front elevation",
+          "imageUrl": "https://isomer-user-content.by.gov.sg/339/ee7e8917-77fb-4230-be1b-b5ae6e63393d/Fig%2017_%20Arcade.jpg",
+          "sourcePage": "https://biblioasia.nlb.gov.sg/chapters-of-asia/chapters-on-asia-2015-on-the-waterfront-the-building-of-singapore-s-first-high-rise-skyline-1918-1928/",
+          "credit": "National Archives of Singapore, via BiblioAsia",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "alkaff-arcade/waterfront-front.jpg"
+        },
+        {
+          "id": "collyer-1908",
+          "view": "waterfront street and depth evidence",
+          "imageUrl": "https://isomer-user-content.by.gov.sg/339/a7a873cd-9fbb-45f5-bd89-4fc17005f903/Fig%2018_Collyer%20Quay%201908.jpg",
+          "sourcePage": "https://biblioasia.nlb.gov.sg/chapters-of-asia/chapters-on-asia-2015-on-the-waterfront-the-building-of-singapore-s-first-high-rise-skyline-1918-1928/",
+          "credit": "BCA / National Archives of Singapore, via BiblioAsia",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "alkaff-arcade/collyer-1908.jpg"
+        },
+        {
+          "id": "postcard",
+          "view": "oblique waterfront postcard",
+          "imageUrl": "https://www.roots.gov.sg/api/media/51a047b7-841a-4ec2-a36a-a14177f34af6/1473643.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1473622",
+          "credit": "National Museum of Singapore / Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "alkaff-arcade/postcard.jpg"
+        },
+        {
+          "id": "interior-passage",
+          "view": "central shopping passage and shopfront arches",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/PCD0500-EA16-11F2-3F10/img0068.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/b7b51e28-1162-11e3-83d5-0050568939ad",
+          "credit": "National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "alkaff-arcade/interior-passage.jpg"
+        }
+      ]
+    },
+    {
+      "id": "beauty-world-market",
+      "name": "Beauty World Market and Town",
+      "opened": "1947 (market); 1962 (town extension)",
+      "removed": "1984",
+      "location": "Upper Bukit Timah Road, Jalan Jurong Kechil and Chun Tin Road",
+      "architectOrDesigner": "Incremental vernacular commercial compound; no single architect established",
+      "heritageCase": "A beloved market, shopping and performance district that grew out of the wartime Tai Tong Ah amusement park and eventually held more than 160 stalls.",
+      "evidenceConfidence": 0.84,
+      "modelingScope": "Representative modular reconstruction of the market-and-town compound, not a claim to reproduce every stall or its exact full-site plan.",
+      "geometryIdentity": [
+        "dense lanes of one- and two-storey timber and masonry shop units",
+        "corrugated zinc, canvas and tiled roofs with irregular awnings",
+        "continuous hand-painted signboards and open merchandise fronts",
+        "small cinema and performance-stage anchors within a porous market fabric"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/places/places-landing/Places/landmarks/Bukit-Timah-Heritage-Trail-WWII-Legacy-Trail/Former-Beauty-World",
+        "https://www.nlb.gov.sg/main/article-detail?cmsuuid=73b0cff5-f2ec-4d3e-b340-58f964d70cb2",
+        "https://remembersingapore.org/2019/09/22/old-new-beauty-world/"
+      ],
+      "references": [
+        {
+          "id": "roots-overall",
+          "view": "market lane and roofscape",
+          "imageUrl": "https://www.roots.gov.sg/api/media/c3ac3435-732d-4589-a591-5610c1fad1ff/former-beauty-world.jpg",
+          "sourcePage": "https://www.roots.gov.sg/places/places-landing/Places/landmarks/Bukit-Timah-Heritage-Trail-WWII-Legacy-Trail/Former-Beauty-World",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "beauty-world-market/roots-overall.jpg"
+        },
+        {
+          "id": "roots-street",
+          "view": "Tiong Hwa Cinema and adjacent market frontage",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2019/09/beauty-world-market-tiong-hwa-cinema-1972.jpg?w=640",
+          "sourcePage": "https://remembersingapore.org/2019/09/22/old-new-beauty-world/",
+          "credit": "National Archives of Singapore, via Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "beauty-world-market/roots-street.jpg"
+        },
+        {
+          "id": "market-1970s",
+          "view": "stall construction, awnings and lane density",
+          "imageUrl": "https://southeastasianlives.home.blog/wp-content/uploads/2019/11/beauty-world-market-ian-andrew-1970s.jpg",
+          "sourcePage": "https://southeastasianlives.home.blog/2019/11/17/a-brief-history-of-beauty-world/",
+          "credit": "Ian Andrew, via Southeast Asian Lives",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "beauty-world-market/market-1970s.jpg"
+        },
+        {
+          "id": "demolition-era-shop",
+          "view": "shop interior and frontage construction before demolition",
+          "imageUrl": "https://remembersingapore.files.wordpress.com/2019/09/old-beauty-world-demolition5-1984.jpg?w=427",
+          "sourcePage": "https://remembersingapore.org/2019/09/22/old-new-beauty-world/",
+          "credit": "National Archives of Singapore, via Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "beauty-world-market/demolition-era-shop.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tang-dynasty-city",
+      "name": "Tang Dynasty City (Tang Dynasty Village)",
+      "opened": "1992",
+      "removed": "2008–2009 (sources differ on completion of clearance)",
+      "location": "Jalan Ahmad Ibrahim and Yuan Ching Road, beside Jurong Lake",
+      "architectOrDesigner": "Tang Dynasty Village Singapore Pte Ltd and specialist Hui'an craftsmen",
+      "heritageCase": "A short-lived 12-hectare movie studio and theme park that recreated an idealised Chang'an beside Jurong Lake and became a conspicuous 1990s west-side landmark.",
+      "evidenceConfidence": 0.88,
+      "modelingScope": "Representative entrance-city-wall-pagoda compound; the original 12-hectare park and its unfinished attractions are not reconstructed in full.",
+      "geometryIdentity": [
+        "monumental grey-brick city gate with layered dark-tile roofs",
+        "high crenellated perimeter walls and watchtowers",
+        "courtyard halls with white walls, dark timber frames and upturned eaves",
+        "seven-storey pagoda, ceremonial bridge and axial plazas"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/Collection-Landing/listing/1184277",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-22-issue-2-jul-sep-2026-an-ancient-chinese-city-in-jurong-/",
+        "https://remembersingapore.org/2023/07/26/tang-dynasty-city-jurong/"
+      ],
+      "references": [
+        {
+          "id": "formal-entrance",
+          "view": "formal entrance gate",
+          "imageUrl": "https://www.roots.gov.sg/CollectionImages/1184277.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1184277",
+          "credit": "National Heritage Board, Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tang-dynasty-city/formal-entrance.jpg"
+        },
+        {
+          "id": "city-courtyard",
+          "view": "ceremonial court, walls and roofscape",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2023/07/tang-dynasty-city-1990s.jpg?h=421&w=640",
+          "sourcePage": "https://remembersingapore.org/2023/07/26/tang-dynasty-city-jurong/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tang-dynasty-city/city-courtyard.jpg"
+        },
+        {
+          "id": "bridge-and-hall",
+          "view": "arched bridge, pond and two-storey hall",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2023/07/tang-dynasty-city2-1992.jpg?h=408&w=640",
+          "sourcePage": "https://remembersingapore.org/2023/07/26/tang-dynasty-city-jurong/",
+          "credit": "Ministry of Information and the Arts, via Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tang-dynasty-city/bridge-and-hall.jpg"
+        },
+        {
+          "id": "internal-street",
+          "view": "internal street and watchtower",
+          "imageUrl": "https://remembersingapore.org/wp-content/uploads/2023/07/tang-dynasty-city2-1993.jpg",
+          "sourcePage": "https://remembersingapore.org/2023/07/26/tang-dynasty-city-jurong/",
+          "credit": "Remember Singapore",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tang-dynasty-city/internal-street.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tank-road-railway-station",
+      "name": "Tank Road Railway Station",
+      "opened": "1907 (second Tank Road passenger terminus)",
+      "removed": "After closure in 1932; exact demolition date not established",
+      "location": "Tank Road and River Valley Road, below Fort Canning",
+      "architectOrDesigner": "Singapore-Kranji Railway / Federated Malay States Railways",
+      "heritageCase": "Singapore's principal passenger terminus before Tanjong Pagar, linking the town to Kranji, Johor and Malaya during the first decades of island railway travel.",
+      "evidenceConfidence": 0.87,
+      "modelingScope": "The 1907 passenger station is modeled; surviving photographs sometimes conflate it with the nearby 1903 Singapore Station and later goods facilities.",
+      "geometryIdentity": [
+        "long low timber station range beneath a red-tile hipped roof",
+        "central square clock tower and prominent street entrance",
+        "covered platform canopy and parallel passenger tracks",
+        "adjacent sidings, footbridge and Fort Canning embankment"
+      ],
+      "sources": [
+        "https://www.roots.gov.sg/Collection-Landing/listing/1115403",
+        "https://www.roots.gov.sg/places/places-landing/Places/national-monuments/former-tanjong-pagar-railway-station",
+        "https://biblioasia.nlb.gov.sg/all-sections/vol-7-issue-3-oct-dec-2011-singapore-railway-lines/"
+      ],
+      "references": [
+        {
+          "id": "roots-front",
+          "view": "street front and clock tower",
+          "imageUrl": "https://www.roots.gov.sg/api/media/5298ed97-ce1d-453e-aa97-3d02b8e0dfd8/1115403.jpg",
+          "sourcePage": "https://www.roots.gov.sg/Collection-Landing/listing/1115403",
+          "credit": "National Museum of Singapore / Roots.sg",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tank-road-railway-station/roots-front.jpg"
+        },
+        {
+          "id": "station-postcard",
+          "view": "street elevation with clock tower and jinrickshaws",
+          "imageUrl": "https://isomer-user-content.by.gov.sg/339/6c35c8c7-95a4-4cef-8958-4ee31f5c7e91/2%20-%20tank%20road%20station%20lkc.jpg",
+          "sourcePage": "https://biblioasia.nlb.gov.sg/all-sections/vol-7-issue-3-oct-dec-2011-singapore-railway-lines/",
+          "credit": "Lim Kheng Chye Collection, via BiblioAsia",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "tank-road-railway-station/station-postcard.jpg"
+        },
+        {
+          "id": "platform-view",
+          "view": "platform, canopy, tracks and footbridge",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19980005114-8073-3222-4722/img0101.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/35e738d4-1162-11e3-83d5-0050568939ad",
+          "credit": "National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "tank-road-railway-station/platform-view.jpg"
+        },
+        {
+          "id": "track-yard",
+          "view": "track yard, embankment and overall station context",
+          "imageUrl": "https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19980005146-8073-3222-0231/img0054.jpg",
+          "sourcePage": "https://www.nas.gov.sg/archivesonline/photographs/record-details/aeff4bbf-1161-11e3-83d5-0050568939ad",
+          "credit": "Mrs J A Bennett Collection / National Archives of Singapore",
+          "rights": "Viewing permitted; reuse requires permission",
+          "filename": "tank-road-railway-station/track-yard.jpg"
+        }
+      ]
+    }
+  ]
+}

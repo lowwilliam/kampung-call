@@ -1,0 +1,231 @@
+{
+  "sourceImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/street-overall.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 11,
+    "details": [
+      {
+        "id": "detail-01-retail-podium",
+        "kind": "contour",
+        "description": "Long original retail podium establishes the street wall",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "retail-podium/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c0.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-02-office-slab",
+        "kind": "contour",
+        "description": "Taller pale office slab rises behind the podium",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "office-slab/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "detail-03-stepped-annex",
+        "kind": "contour",
+        "description": "Rounded stepped annex and terrace edge terminate one end",
+        "region": {
+          "x": 0.6667,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "stepped-annex/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c2.png",
+        "confidence": 0.82
+      },
+      {
+        "id": "detail-04-ground-arcade",
+        "kind": "hole",
+        "description": "Deep shaded ground-level retail arcade runs along the frontage",
+        "region": {
+          "x": 0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "ground-arcade/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c0.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-05-square-window-bays",
+        "kind": "ridge",
+        "description": "Regular square windows sit within broad framed facade bays",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "square-window-bays/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c1.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "detail-06-horizontal-ledges",
+        "kind": "ridge",
+        "description": "Deep ledges split the podium and office additions",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "horizontal-ledges/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r1c2.png",
+        "confidence": 0.93
+      },
+      {
+        "id": "detail-07-clerestory-band",
+        "kind": "decal",
+        "description": "Dark continuous clerestory strip separates podium layers",
+        "region": {
+          "x": 0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "material",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "clerestory-band/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c0.png",
+        "confidence": 0.88
+      },
+      {
+        "id": "detail-08-entrance-stairs",
+        "kind": "contour",
+        "description": "Broad entrance stairs rise from the recessed pavement edge",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "entrance-stairs/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "detail-09-green-wordmark",
+        "kind": "contour",
+        "description": "Long green Tanglin Shopping Centre wordmark marks the planter edge",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "green-wordmark/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r2c2.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "detail-10-arched-feature-window",
+        "kind": "contour",
+        "description": "Large arched glazed opening punctuates one entrance bay",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "arched-feature-window/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c0.png",
+        "confidence": 0.84
+      },
+      {
+        "id": "detail-11-terrace-rail",
+        "kind": "bevel",
+        "description": "Thin rails and planted ledges articulate the stepped roof terraces",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "terrace-rail/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/tanglin-shopping-centre/zone-r0c1.png",
+        "confidence": 0.76
+      }
+    ]
+  },
+  "authoringInstruction": "Completed after whole-image and zone-sheet visual inspection. Every detail maps to a planned spec component or material override."
+}

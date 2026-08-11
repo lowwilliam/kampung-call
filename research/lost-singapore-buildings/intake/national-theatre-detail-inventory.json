@@ -1,0 +1,231 @@
+{
+  "sourceImage": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 11,
+    "details": [
+      {
+        "id": "detail-01-five-point-facade",
+        "kind": "contour",
+        "description": "Five soaring pointed bays form the unmistakable national-symbol facade",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "five-point-facade/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r0c0.png",
+        "confidence": 0.99
+      },
+      {
+        "id": "detail-02-cantilever-roof",
+        "kind": "contour",
+        "description": "Deep wedge-shaped roof cantilevers back toward Fort Canning",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "cantilever-roof/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r0c1.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "detail-03-auditorium-volume",
+        "kind": "contour",
+        "description": "Semi-open auditorium volume sits beneath the roof behind the facade",
+        "region": {
+          "x": 0.6667,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "auditorium-volume/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r0c2.png",
+        "confidence": 0.72
+      },
+      {
+        "id": "detail-04-concrete-fins",
+        "kind": "ridge",
+        "description": "Slender pale structural fins define the five facade points",
+        "region": {
+          "x": 0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "concrete-fins/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r1c0.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "detail-05-red-infill-panels",
+        "kind": "decal",
+        "description": "Warm red triangular infill planes sit between the concrete fins",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "material",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "red-infill-panels/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r1c1.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-06-side-colonnade",
+        "kind": "ridge",
+        "description": "Low side galleries use evenly spaced slender columns",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "side-colonnade/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r1c2.png",
+        "confidence": 0.86
+      },
+      {
+        "id": "detail-07-crescent-fountain",
+        "kind": "contour",
+        "description": "Crescent sculpture and circular basin anchor the forecourt",
+        "region": {
+          "x": 0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "crescent-fountain/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r2c0.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "detail-08-water-jets",
+        "kind": "fastener",
+        "description": "Tall central jet with repeated arcing side jets",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "water-jets/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r2c1.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "detail-09-terraced-forecourt",
+        "kind": "contour",
+        "description": "Broad steps and raised public deck mediate the sloping site",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "terraced-forecourt/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r2c2.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "detail-10-vertical-screens",
+        "kind": "ridge",
+        "description": "Dense vertical screens line the low front galleries",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "vertical-screens/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r0c0.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "detail-11-roof-edge-rib",
+        "kind": "bevel",
+        "description": "Thin pale rim traces the roof wedge against the sky",
+        "region": {
+          "x": 0.3333,
+          "y": 0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "roof-edge-rib/reference-detail"
+        },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/national-theatre/zone-r0c1.png",
+        "confidence": 0.83
+      }
+    ]
+  },
+  "authoringInstruction": "Completed after whole-image and zone-sheet visual inspection. Every detail maps to a planned spec component or material override."
+}

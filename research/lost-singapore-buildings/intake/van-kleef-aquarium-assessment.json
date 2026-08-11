@@ -1,0 +1,820 @@
+{
+  "targetName": "Van Kleef Aquarium",
+  "sourceImage": "research/lost-singapore-buildings/references/van-kleef-aquarium/timeout-front.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "architectural landmark prop",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "low-modernist",
+        "asymmetric",
+        "horizontal",
+        "landscaped"
+      ],
+      "structureKind": [
+        "split-level public pavilion",
+        "masonry and concrete frame"
+      ],
+      "motionPotential": [
+        "exploded-view interaction",
+        "clickable part inspection"
+      ],
+      "materialFamilies": [
+        "pink-white render",
+        "perforated concrete screen",
+        "dark glazing",
+        "brick-red steps"
+      ],
+      "notes": "Stylised real-time reconstruction of the documented exterior."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 8,
+        "microFeatureGroups": 11,
+        "materialLayers": 4,
+        "repetitionSystems": 5
+      },
+      "reasoning": [
+        "Van Kleef Aquarium requires 11 named structural/detail components to preserve its identity at the selected tier.",
+        "The quality decision is driven by symmetrical low modernist composition embedded in a slope; central recessed entrance framed by tall white piers; stepped flat-roof wings with long ribbon windows; terraced lawn, broad stair and illuminated entrance forecourt."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Selected after visual inspection of the primary reference, independent supporting views and every generated zone crop."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Interior aquarium layout",
+      "Rear slope retaining structure",
+      "Exact phase of clock-tower remodelling"
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 11,
+      "details": [
+        {
+          "id": "detail-01-long-display-wing",
+          "kind": "contour",
+          "description": "Long low wing stretches horizontally along the foot of the hill",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "long-display-wing/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r0c0.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "detail-02-entrance-block",
+          "kind": "contour",
+          "description": "Taller two-storey entrance block projects at the right",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "entrance-block/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r0c1.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "detail-03-landscaped-terrace",
+          "kind": "contour",
+          "description": "Raised lawn and planted terrace form the building base",
+          "region": {
+            "x": 0.6667,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "landscaped-terrace/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r0c2.png",
+          "confidence": 0.86
+        },
+        {
+          "id": "detail-04-entrance-piers",
+          "kind": "ridge",
+          "description": "Four deep rectangular piers create a shaded entrance loggia",
+          "region": {
+            "x": 0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "entrance-piers/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r1c0.png",
+          "confidence": 0.98
+        },
+        {
+          "id": "detail-05-perforated-screen",
+          "kind": "ridge",
+          "description": "Small repeated perforations texture the long wing wall",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "perforated-screen/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r1c1.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "detail-06-clerestory-openings",
+          "kind": "ridge",
+          "description": "Small square openings run beneath the long wing roof",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "clerestory-openings/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r1c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-07-broad-entry-stair",
+          "kind": "contour",
+          "description": "Broad red-toned entrance steps span the loggia width",
+          "region": {
+            "x": 0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "broad-entry-stair/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r2c0.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "detail-08-right-window-bands",
+          "kind": "ridge",
+          "description": "Two compact horizontal window groups puncture the entrance block",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "right-window-bands/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r2c1.png",
+          "confidence": 0.91
+        },
+        {
+          "id": "detail-09-flat-roof-slabs",
+          "kind": "bevel",
+          "description": "Thin flat roofs maintain the long low silhouette",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "flat-roof-slabs/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r2c2.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "detail-10-crest-emblem",
+          "kind": "contour",
+          "description": "Small red crest marks the otherwise plain entrance wall",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "material",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "crest-emblem/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r0c0.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "detail-11-forecourt-planters",
+          "kind": "ridge",
+          "description": "Low brick planters and tropical specimens edge the stair",
+          "region": {
+            "x": 0.3333,
+            "y": 0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "forecourt-planters/reference-detail"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/intake/zones/van-kleef-aquarium/zone-r0c1.png",
+          "confidence": 0.79
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "research/lost-singapore-buildings/references/van-kleef-aquarium/timeout-front.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The model reads as Van Kleef Aquarium in silhouette without labels.",
+      "The model includes the identity features: symmetrical low modernist composition embedded in a slope; central recessed entrance framed by tall white piers; stepped flat-roof wings with long ribbon windows; terraced lawn, broad stair and illuminated entrance forecourt.",
+      "All named parts are selectable and remain attached during parent-aware non-uniform explode.",
+      "Front, three-quarter, side and elevated review views preserve proportions and negative spaces.",
+      "All hidden-side and dimensional inference remains disclosed in runtime metadata and research notes."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 11,
+      "materialLayers": 4,
+      "repetitionSystems": 5,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "symmetrical low modernist composition embedded in a slope",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central recessed entrance framed by tall white piers",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "stepped flat-roof wings with long ribbon windows",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "terraced lawn, broad stair and illuminated entrance forecourt",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "symmetrical low modernist composition embedded in a slope",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central recessed entrance framed by tall white piers",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "stepped flat-roof wings with long ribbon windows",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "terraced lawn, broad stair and illuminated entrance forecourt",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "symmetrical low modernist composition embedded in a slope",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central recessed entrance framed by tall white piers",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "stepped flat-roof wings with long ribbon windows",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "terraced lawn, broad stair and illuminated entrance forecourt",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-1",
+        "name": "symmetrical low modernist composition embedded in a slope",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-2",
+        "name": "central recessed entrance framed by tall white piers",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-3",
+        "name": "stepped flat-roof wings with long ribbon windows",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      },
+      {
+        "id": "identity-4",
+        "name": "terraced lawn, broad stair and illuminated entrance forecourt",
+        "required": true,
+        "qualityCriteria": [
+          "Visible in at least two review viewpoints and represented by named geometry or an explicit repetition system."
+        ],
+        "evidenceRefs": [
+          "van-kleef-aquarium/night-front.jpg",
+          "van-kleef-aquarium/front-1968.jpg",
+          "van-kleef-aquarium/exterior-1976.jpg",
+          "van-kleef-aquarium/general-1970.jpg",
+          "van-kleef-aquarium/timeout-front.jpg"
+        ],
+        "failureModes": [
+          "The model can no longer be distinguished from a generic architectural landmark prop."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and primary height-to-width ratio",
+      "critical negative spaces and courtyard/open-bowl geometry",
+      "roofline and skyline attachments",
+      "facade-bay count, rhythm and depth",
+      "material color-zone separation and roughness family",
+      "ground contact, podium, steps and site transition"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Assessment completed. Author the ObjectSculptSpec with the attached detail inventory and modeling disclosures.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Van Kleef Aquarium modernist aquarium entrance colonnade perforated wall",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-anisotropy",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[6]",
+        "score": 2.219601441929,
+        "snippets": [
+          "... phản xạ specular kéo dài theo một hướng, thấy trên kim loại được chải xước hoặc có rãnh, phản xạ kéo dài theo hướng vân. Recognition cues: Elongated, streaky highlights (not round) that stay aligned with visible brush/groove marks as ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[6]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-cdwa-semantic-field-mapping",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[0]",
+        "score": 2.197821154425,
+        "snippets": [
+          "... Dấu hiệu nhận diện: Dùng làm các khóa schema cấp cao nhất bất cứ khi nào agent phải tạo mô tả có cấu trúc (không phải văn xuôi) cho ảnh tham chiếu Three.js target: Top-level JSON keys: objectType, classification, measurements, materials, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[0]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-scene-graph-relational-triplets",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[2]",
+        "score": 2.171189608663,
+        "snippets": [
+          "... parts relate spatially Dấu hiệu nhận diện: Dùng khi pipeline cần một bản thiết kế lắp ráp máy đọc được thay vì mô tả văn bản tự do về cách các bộ phận liên hệ không gian Three.js target: Array of {subject, predicate, object} triplets ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[2]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

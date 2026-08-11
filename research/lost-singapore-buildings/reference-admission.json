@@ -1,0 +1,1748 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-11T20:52:29.417Z",
+  "policy": "Deterministic technical probe and img2threejs reference-admission gate. Semantic suitability still requires visual inspection.",
+  "totals": {
+    "buildings": 13,
+    "references": 52,
+    "admitted": 38,
+    "rejected": 14
+  },
+  "buildings": [
+    {
+      "id": "comcentre",
+      "admitted": 4,
+      "rejected": 0,
+      "references": [
+        {
+          "id": "front-three-quarter",
+          "view": "front three-quarter with podium",
+          "filename": "comcentre/front-three-quarter.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/front-three-quarter.jpg",
+            "type": "jpeg",
+            "bytes": 175500,
+            "width": 645,
+            "height": 430,
+            "aspectRatio": 1.5,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "front three-quarter with podium",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/front-three-quarter.jpg",
+              "width": 645,
+              "height": 430,
+              "foregroundCoverage": 0.395,
+              "largestComponentFraction": 1,
+              "pHash": "17433590354303530023",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "tower-portrait",
+          "view": "long-elevation portrait",
+          "filename": "comcentre/tower-portrait.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/tower-portrait.jpg",
+            "type": "jpeg",
+            "bytes": 139023,
+            "width": 600,
+            "height": 800,
+            "aspectRatio": 0.75,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "long-elevation portrait",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/tower-portrait.jpg",
+              "width": 600,
+              "height": 800,
+              "foregroundCoverage": 0.667,
+              "largestComponentFraction": 0.9956,
+              "pHash": "11954540076489939361",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "tower-skatepark",
+          "view": "street-level tower and service core",
+          "filename": "comcentre/tower-skatepark.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/tower-skatepark.jpg",
+            "type": "jpeg",
+            "bytes": 128387,
+            "width": 600,
+            "height": 800,
+            "aspectRatio": 0.75,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "street-level tower and service core",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/tower-skatepark.jpg",
+              "width": 600,
+              "height": 800,
+              "foregroundCoverage": 0.6244,
+              "largestComponentFraction": 0.9874,
+              "pHash": "16547591010547194561",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "brutalist-elevation",
+          "view": "opposite three-quarter elevation",
+          "filename": "comcentre/opposite-elevation.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/opposite-elevation.jpg",
+            "type": "jpeg",
+            "bytes": 239452,
+            "width": 1440,
+            "height": 960,
+            "aspectRatio": 1.5,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "opposite three-quarter elevation",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/comcentre/opposite-elevation.jpg",
+              "width": 1440,
+              "height": 960,
+              "foregroundCoverage": 0.3902,
+              "largestComponentFraction": 0.7949,
+              "pHash": "13537117099239173234",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "national-theatre",
+      "admitted": 1,
+      "rejected": 3,
+      "references": [
+        {
+          "id": "front",
+          "view": "formal front elevation",
+          "filename": "national-theatre/front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front.jpg",
+            "type": "webp",
+            "bytes": 168682,
+            "width": 1029,
+            "height": 644,
+            "aspectRatio": 1.5978260869565217,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "formal front elevation",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front.jpg",
+              "width": 1029,
+              "height": 644,
+              "foregroundCoverage": 0.7032,
+              "largestComponentFraction": 0.9953,
+              "pHash": "11090578720715921002",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "front-left",
+          "view": "front-left with fountain",
+          "filename": "national-theatre/front-left.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front-left.jpg",
+            "type": "jpeg",
+            "bytes": 190757,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "front-left with fountain",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front-left.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9998,
+              "largestComponentFraction": 1,
+              "pHash": "9638054077416958629",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "front-right",
+          "view": "front-right facade rhythm",
+          "filename": "national-theatre/front-right.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front-right.jpg",
+            "type": "jpeg",
+            "bytes": 206511,
+            "width": 782,
+            "height": 1200,
+            "aspectRatio": 0.6516666666666666,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "front-right facade rhythm",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/front-right.jpg",
+              "width": 782,
+              "height": 1200,
+              "foregroundCoverage": 0.9998,
+              "largestComponentFraction": 1,
+              "pHash": "15056957525866527366",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "architect-view",
+          "view": "facade and roof relationship",
+          "filename": "national-theatre/architect-view.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/architect-view.jpg",
+            "type": "jpeg",
+            "bytes": 217234,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.998 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "facade and roof relationship",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-theatre/architect-view.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9984,
+              "largestComponentFraction": 1,
+              "pHash": "13970233244149377847",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "national-library-stamford",
+      "admitted": 4,
+      "rejected": 0,
+      "references": [
+        {
+          "id": "front",
+          "view": "front elevation and entrance porch",
+          "filename": "national-library-stamford/front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/front.jpg",
+            "type": "jpeg",
+            "bytes": 360166,
+            "width": 1200,
+            "height": 801,
+            "aspectRatio": 1.4981273408239701,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "front elevation and entrance porch",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/front.jpg",
+              "width": 1200,
+              "height": 801,
+              "foregroundCoverage": 0.8532,
+              "largestComponentFraction": 1,
+              "pHash": "16918010828444504249",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "front-1973",
+          "view": "front three-quarter and driveway",
+          "filename": "national-library-stamford/front-1973.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/front-1973.jpg",
+            "type": "jpeg",
+            "bytes": 208782,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "front three-quarter and driveway",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/front-1973.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.8744,
+              "largestComponentFraction": 0.9996,
+              "pHash": "9339204952200693106",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "side-architecture",
+          "view": "side wing, stair and rear relationship",
+          "filename": "national-library-stamford/side-architecture.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/side-architecture.jpg",
+            "type": "webp",
+            "bytes": 136676,
+            "width": 1000,
+            "height": 672,
+            "aspectRatio": 1.4880952380952381,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "side wing, stair and rear relationship",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/side-architecture.jpg",
+              "width": 1000,
+              "height": 672,
+              "foregroundCoverage": 0.7193,
+              "largestComponentFraction": 0.9941,
+              "pHash": "10706425866735891638",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "courtyard",
+          "view": "courtyard spatial evidence",
+          "filename": "national-library-stamford/courtyard.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/courtyard.jpg",
+            "type": "webp",
+            "bytes": 575084,
+            "width": 2343,
+            "height": 1590,
+            "aspectRatio": 1.4735849056603774,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "courtyard spatial evidence",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/national-library-stamford/courtyard.jpg",
+              "width": 2343,
+              "height": 1590,
+              "foregroundCoverage": 0.7745,
+              "largestComponentFraction": 1,
+              "pHash": "15242764731303195552",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "van-kleef-aquarium",
+      "admitted": 1,
+      "rejected": 4,
+      "references": [
+        {
+          "id": "night-front",
+          "view": "night front elevation",
+          "filename": "van-kleef-aquarium/night-front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/night-front.jpg",
+            "type": "jpeg",
+            "bytes": 297334,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.978 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "night front elevation",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/night-front.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9777,
+              "largestComponentFraction": 1,
+              "pHash": "15344269175761432802",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "front-1968",
+          "view": "day front and terraced lawn",
+          "filename": "van-kleef-aquarium/front-1968.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/front-1968.jpg",
+            "type": "jpeg",
+            "bytes": 268945,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "day front and terraced lawn",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/front-1968.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9995,
+              "largestComponentFraction": 1,
+              "pHash": "9615883124359527362",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "exterior-1976",
+          "view": "front-right exterior",
+          "filename": "van-kleef-aquarium/exterior-1976.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/exterior-1976.jpg",
+            "type": "jpeg",
+            "bytes": 153199,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "front-right exterior",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/exterior-1976.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9995,
+              "largestComponentFraction": 1,
+              "pHash": "13889214248105230137",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "general-1970",
+          "view": "front-left general view",
+          "filename": "van-kleef-aquarium/general-1970.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/general-1970.jpg",
+            "type": "webp",
+            "bytes": 48782,
+            "width": 1024,
+            "height": 667,
+            "aspectRatio": 1.535232383808096,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.999 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "front-left general view",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/general-1970.jpg",
+              "width": 1024,
+              "height": 667,
+              "foregroundCoverage": 0.9993,
+              "largestComponentFraction": 1,
+              "pHash": "13944621538919660461",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "timeout-front",
+          "view": "front elevation with lawn and entrance steps",
+          "filename": "van-kleef-aquarium/timeout-front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/timeout-front.jpg",
+            "type": "jpeg",
+            "bytes": 58236,
+            "width": 750,
+            "height": 422,
+            "aspectRatio": 1.7772511848341233,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "front elevation with lawn and entrance steps",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/van-kleef-aquarium/timeout-front.jpg",
+              "width": 750,
+              "height": 422,
+              "foregroundCoverage": 0.77,
+              "largestComponentFraction": 0.9759,
+              "pHash": "15310489988036950370",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "former-national-stadium",
+      "admitted": 4,
+      "rejected": 0,
+      "references": [
+        {
+          "id": "aerial",
+          "view": "aerial plan and context",
+          "filename": "former-national-stadium/aerial.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/aerial.jpg",
+            "type": "jpeg",
+            "bytes": 232858,
+            "width": 1200,
+            "height": 900,
+            "aspectRatio": 1.3333333333333333,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "aerial plan and context",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/aerial.jpg",
+              "width": 1200,
+              "height": 900,
+              "foregroundCoverage": 0.8923,
+              "largestComponentFraction": 1,
+              "pHash": "15030066083626188512",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "exterior-one",
+          "view": "external bowl and floodlights",
+          "filename": "former-national-stadium/exterior-one.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/exterior-one.jpg",
+            "type": "jpeg",
+            "bytes": 110257,
+            "width": 600,
+            "height": 450,
+            "aspectRatio": 1.3333333333333333,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "external bowl and floodlights",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/exterior-one.jpg",
+              "width": 600,
+              "height": 450,
+              "foregroundCoverage": 0.7719,
+              "largestComponentFraction": 0.9908,
+              "pHash": "13961692642704294880",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "exterior-two",
+          "view": "opposite exterior and support frames",
+          "filename": "former-national-stadium/exterior-two.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/exterior-two.jpg",
+            "type": "jpeg",
+            "bytes": 112461,
+            "width": 600,
+            "height": 450,
+            "aspectRatio": 1.3333333333333333,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "opposite exterior and support frames",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/exterior-two.jpg",
+              "width": 600,
+              "height": 450,
+              "foregroundCoverage": 0.8534,
+              "largestComponentFraction": 0.9935,
+              "pHash": "15337732236418684502",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "facade",
+          "view": "broad entrance facade",
+          "filename": "former-national-stadium/facade.png",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/facade.png",
+            "type": "webp",
+            "bytes": 339158,
+            "width": 1999,
+            "height": 1338,
+            "aspectRatio": 1.4940209267563527,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "broad entrance facade",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/former-national-stadium/facade.png",
+              "width": 1999,
+              "height": 1338,
+              "foregroundCoverage": 0.8159,
+              "largestComponentFraction": 0.9998,
+              "pHash": "10732445678789779586",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pearl-bank-apartments",
+      "admitted": 3,
+      "rejected": 1,
+      "references": [
+        {
+          "id": "inner-court",
+          "view": "inner horseshoe court",
+          "filename": "pearl-bank-apartments/inner-court.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/inner-court.jpg",
+            "type": "webp",
+            "bytes": 695488,
+            "width": 1366,
+            "height": 2048,
+            "aspectRatio": 0.6669921875,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.991 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "inner horseshoe court",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/inner-court.jpg",
+              "width": 1366,
+              "height": 2048,
+              "foregroundCoverage": 0.9906,
+              "largestComponentFraction": 1,
+              "pHash": "16631325949646509089",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "outer-curve",
+          "view": "outer curved elevation",
+          "filename": "pearl-bank-apartments/outer-curve.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/outer-curve.jpg",
+            "type": "webp",
+            "bytes": 61860,
+            "width": 480,
+            "height": 613,
+            "aspectRatio": 0.7830342577487766,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "outer curved elevation",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/outer-curve.jpg",
+              "width": 480,
+              "height": 613,
+              "foregroundCoverage": 0.5172,
+              "largestComponentFraction": 0.9832,
+              "pHash": "12529947817951505027",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "facade-close",
+          "view": "facade rhythm and vertical fins",
+          "filename": "pearl-bank-apartments/facade-close.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/facade-close.jpg",
+            "type": "webp",
+            "bytes": 59632,
+            "width": 640,
+            "height": 473,
+            "aspectRatio": 1.3530655391120507,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "facade rhythm and vertical fins",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/facade-close.jpg",
+              "width": 640,
+              "height": 473,
+              "foregroundCoverage": 0.3854,
+              "largestComponentFraction": 0.9838,
+              "pHash": "18446384405502042305",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "aerial",
+          "view": "aerial horseshoe plan",
+          "filename": "pearl-bank-apartments/aerial.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/aerial.jpg",
+            "type": "jpeg",
+            "bytes": 172153,
+            "width": 800,
+            "height": 462,
+            "aspectRatio": 1.7316017316017316,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "aerial horseshoe plan",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/pearl-bank-apartments/aerial.jpg",
+              "width": 800,
+              "height": 462,
+              "foregroundCoverage": 0.5957,
+              "largestComponentFraction": 0.9967,
+              "pHash": "10210498481257593916",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tanglin-shopping-centre",
+      "admitted": 3,
+      "rejected": 1,
+      "references": [
+        {
+          "id": "artist-impression",
+          "view": "historic overall composition",
+          "filename": "tanglin-shopping-centre/artist-impression.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/artist-impression.jpg",
+            "type": "jpeg",
+            "bytes": 252386,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.999 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "historic overall composition",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/artist-impression.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9994,
+              "largestComponentFraction": 1,
+              "pHash": "15338723702238161552",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "podium",
+          "view": "podium and entrance",
+          "filename": "tanglin-shopping-centre/podium.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/podium.jpg",
+            "type": "jpeg",
+            "bytes": 133939,
+            "width": 485,
+            "height": 640,
+            "aspectRatio": 0.7578125,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "podium and entrance",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/podium.jpg",
+              "width": 485,
+              "height": 640,
+              "foregroundCoverage": 0.4776,
+              "largestComponentFraction": 0.9826,
+              "pHash": "15048898331888229081",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "front-signage",
+          "view": "front wordmark and arcade",
+          "filename": "tanglin-shopping-centre/front-signage.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/front-signage.jpg",
+            "type": "jpeg",
+            "bytes": 122881,
+            "width": 640,
+            "height": 450,
+            "aspectRatio": 1.4222222222222223,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "front wordmark and arcade",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/front-signage.jpg",
+              "width": 640,
+              "height": 450,
+              "foregroundCoverage": 0.5543,
+              "largestComponentFraction": 0.9627,
+              "pHash": "14106225984963068806",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "street-overall",
+          "view": "overall tower and podium",
+          "filename": "tanglin-shopping-centre/street-overall.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/street-overall.jpg",
+            "type": "jpeg",
+            "bytes": 66958,
+            "width": 830,
+            "height": 468,
+            "aspectRatio": 1.7735042735042734,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "overall tower and podium",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tanglin-shopping-centre/street-overall.jpg",
+              "width": 830,
+              "height": 468,
+              "foregroundCoverage": 0.623,
+              "largestComponentFraction": 0.9971,
+              "pHash": "14233390354852754382",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "amber-mansions",
+      "admitted": 4,
+      "rejected": 0,
+      "references": [
+        {
+          "id": "corner-midcentury",
+          "view": "bowed corner and Orchard Road wing",
+          "filename": "amber-mansions/corner-midcentury.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/corner-midcentury.jpg",
+            "type": "jpeg",
+            "bytes": 179143,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "bowed corner and Orchard Road wing",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/corner-midcentury.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.8557,
+              "largestComponentFraction": 0.999,
+              "pHash": "10197824629992404290",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "corner-1922",
+          "view": "early corner, gables and roof",
+          "filename": "amber-mansions/corner-1922.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/corner-1922.jpg",
+            "type": "webp",
+            "bytes": 77956,
+            "width": 689,
+            "height": 482,
+            "aspectRatio": 1.429460580912863,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "early corner, gables and roof",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/corner-1922.jpg",
+              "width": 689,
+              "height": 482,
+              "foregroundCoverage": 0.1997,
+              "largestComponentFraction": 0.9326,
+              "pHash": "15962628831489467688",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "penang-road-1983",
+          "view": "Penang Road wing before demolition",
+          "filename": "amber-mansions/penang-road-1983.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/penang-road-1983.jpg",
+            "type": "jpeg",
+            "bytes": 84930,
+            "width": 725,
+            "height": 471,
+            "aspectRatio": 1.5392781316348196,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "Penang Road wing before demolition",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/penang-road-1983.jpg",
+              "width": 725,
+              "height": 471,
+              "foregroundCoverage": 0.3864,
+              "largestComponentFraction": 0.9115,
+              "pHash": "16105024976254694687",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "orchard-road",
+          "view": "long Orchard Road wing",
+          "filename": "amber-mansions/orchard-road.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/orchard-road.jpg",
+            "type": "jpeg",
+            "bytes": 136538,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "long Orchard Road wing",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/amber-mansions/orchard-road.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.895,
+              "largestComponentFraction": 1,
+              "pHash": "14172180876302757712",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eu-court",
+      "admitted": 3,
+      "rejected": 0,
+      "references": [
+        {
+          "id": "general-two",
+          "view": "corner general view",
+          "filename": "eu-court/general-two.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/general-two.jpg",
+            "type": "jpeg",
+            "bytes": 86658,
+            "width": 768,
+            "height": 512,
+            "aspectRatio": 1.5,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "corner general view",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/general-two.jpg",
+              "width": 768,
+              "height": 512,
+              "foregroundCoverage": 0.5567,
+              "largestComponentFraction": 0.9817,
+              "pHash": "15326974557274848324",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "general-three",
+          "view": "opposite corner general view",
+          "filename": "eu-court/general-three.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/general-three.jpg",
+            "type": "jpeg",
+            "bytes": 70361,
+            "width": 725,
+            "height": 472,
+            "aspectRatio": 1.5360169491525424,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "opposite corner general view",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/general-three.jpg",
+              "width": 725,
+              "height": 472,
+              "foregroundCoverage": 0.7967,
+              "largestComponentFraction": 0.9896,
+              "pHash": "11428053608814728718",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "corner-1984",
+          "view": "corner massing and street context",
+          "filename": "eu-court/corner-1984.png",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/corner-1984.png",
+            "type": null,
+            "bytes": 29448,
+            "width": null,
+            "height": null,
+            "aspectRatio": null,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "unknown image type",
+              "could not read image dimensions"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "corner massing and street context",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/eu-court/corner-1984.png",
+              "width": 402,
+              "height": 610,
+              "foregroundCoverage": 0.3554,
+              "largestComponentFraction": 0.7876,
+              "pHash": "18439255190608972866",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alkaff-arcade",
+      "admitted": 3,
+      "rejected": 1,
+      "references": [
+        {
+          "id": "waterfront-front",
+          "view": "waterfront front elevation",
+          "filename": "alkaff-arcade/waterfront-front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/waterfront-front.jpg",
+            "type": null,
+            "bytes": 14542,
+            "width": null,
+            "height": null,
+            "aspectRatio": null,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "unknown image type",
+              "could not read image dimensions"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "waterfront front elevation",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/waterfront-front.jpg",
+              "width": 218,
+              "height": 297,
+              "foregroundCoverage": 1,
+              "largestComponentFraction": 1,
+              "pHash": "13537136053040883755",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "collyer-1908",
+          "view": "waterfront street and depth evidence",
+          "filename": "alkaff-arcade/collyer-1908.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/collyer-1908.jpg",
+            "type": null,
+            "bytes": 8540,
+            "width": null,
+            "height": null,
+            "aspectRatio": null,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "unknown image type",
+              "could not read image dimensions"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "waterfront street and depth evidence",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/collyer-1908.jpg",
+              "width": 178,
+              "height": 214,
+              "foregroundCoverage": 0.5514,
+              "largestComponentFraction": 0.9978,
+              "pHash": "12308571530705236012",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "postcard",
+          "view": "oblique waterfront postcard",
+          "filename": "alkaff-arcade/postcard.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/postcard.jpg",
+            "type": "jpeg",
+            "bytes": 326826,
+            "width": 1200,
+            "height": 801,
+            "aspectRatio": 1.4981273408239701,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "oblique waterfront postcard",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/postcard.jpg",
+              "width": 1200,
+              "height": 801,
+              "foregroundCoverage": 0.8341,
+              "largestComponentFraction": 0.9984,
+              "pHash": "10779584839135998771",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "interior-passage",
+          "view": "central shopping passage and shopfront arches",
+          "filename": "alkaff-arcade/interior-passage.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/interior-passage.jpg",
+            "type": "jpeg",
+            "bytes": 76961,
+            "width": 512,
+            "height": 768,
+            "aspectRatio": 0.6666666666666666,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "central shopping passage and shopfront arches",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/alkaff-arcade/interior-passage.jpg",
+              "width": 512,
+              "height": 768,
+              "foregroundCoverage": 0.4484,
+              "largestComponentFraction": 0.9762,
+              "pHash": "14428460956215463388",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "beauty-world-market",
+      "admitted": 2,
+      "rejected": 2,
+      "references": [
+        {
+          "id": "roots-overall",
+          "view": "market lane and roofscape",
+          "filename": "beauty-world-market/roots-overall.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/roots-overall.jpg",
+            "type": "jpeg",
+            "bytes": 272548,
+            "width": 645,
+            "height": 430,
+            "aspectRatio": 1.5,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.987 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "market lane and roofscape",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/roots-overall.jpg",
+              "width": 645,
+              "height": 430,
+              "foregroundCoverage": 0.9873,
+              "largestComponentFraction": 1,
+              "pHash": "14382418706304804135",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "roots-street",
+          "view": "Tiong Hwa Cinema and adjacent market frontage",
+          "filename": "beauty-world-market/roots-street.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/roots-street.jpg",
+            "type": "webp",
+            "bytes": 35436,
+            "width": 640,
+            "height": 407,
+            "aspectRatio": 1.5724815724815724,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.974 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "Tiong Hwa Cinema and adjacent market frontage",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/roots-street.jpg",
+              "width": 640,
+              "height": 407,
+              "foregroundCoverage": 0.9743,
+              "largestComponentFraction": 1,
+              "pHash": "14095595705036514599",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "market-1970s",
+          "view": "stall construction, awnings and lane density",
+          "filename": "beauty-world-market/market-1970s.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/market-1970s.jpg",
+            "type": "jpeg",
+            "bytes": 69693,
+            "width": 640,
+            "height": 422,
+            "aspectRatio": 1.5165876777251184,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "stall construction, awnings and lane density",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/market-1970s.jpg",
+              "width": 640,
+              "height": 422,
+              "foregroundCoverage": 0.5783,
+              "largestComponentFraction": 0.9812,
+              "pHash": "9914346537753326181",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "demolition-era-shop",
+          "view": "shop interior and frontage construction before demolition",
+          "filename": "beauty-world-market/demolition-era-shop.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/demolition-era-shop.jpg",
+            "type": "webp",
+            "bytes": 48218,
+            "width": 427,
+            "height": 640,
+            "aspectRatio": 0.6671875,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "shop interior and frontage construction before demolition",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/beauty-world-market/demolition-era-shop.jpg",
+              "width": 427,
+              "height": 640,
+              "foregroundCoverage": 0.5837,
+              "largestComponentFraction": 0.9563,
+              "pHash": "12406810463190804947",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tang-dynasty-city",
+      "admitted": 3,
+      "rejected": 1,
+      "references": [
+        {
+          "id": "formal-entrance",
+          "view": "formal entrance gate",
+          "filename": "tang-dynasty-city/formal-entrance.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/formal-entrance.jpg",
+            "type": "jpeg",
+            "bytes": 202276,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 0.999 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "formal entrance gate",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/formal-entrance.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.9993,
+              "largestComponentFraction": 1,
+              "pHash": "10779248921152142900",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "city-courtyard",
+          "view": "ceremonial court, walls and roofscape",
+          "filename": "tang-dynasty-city/city-courtyard.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/city-courtyard.jpg",
+            "type": "webp",
+            "bytes": 38942,
+            "width": 640,
+            "height": 421,
+            "aspectRatio": 1.520190023752969,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "ceremonial court, walls and roofscape",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/city-courtyard.jpg",
+              "width": 640,
+              "height": 421,
+              "foregroundCoverage": 0.3423,
+              "largestComponentFraction": 0.9383,
+              "pHash": "14608213634461315496",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "bridge-and-hall",
+          "view": "arched bridge, pond and two-storey hall",
+          "filename": "tang-dynasty-city/bridge-and-hall.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/bridge-and-hall.jpg",
+            "type": "webp",
+            "bytes": 73062,
+            "width": 640,
+            "height": 408,
+            "aspectRatio": 1.5686274509803921,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "arched bridge, pond and two-storey hall",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/bridge-and-hall.jpg",
+              "width": 640,
+              "height": 408,
+              "foregroundCoverage": 0.6378,
+              "largestComponentFraction": 0.9843,
+              "pHash": "14162332017989044690",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "internal-street",
+          "view": "internal street and watchtower",
+          "filename": "tang-dynasty-city/internal-street.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/internal-street.jpg",
+            "type": "jpeg",
+            "bytes": 108119,
+            "width": 427,
+            "height": 640,
+            "aspectRatio": 0.6671875,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "internal street and watchtower",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tang-dynasty-city/internal-street.jpg",
+              "width": 427,
+              "height": 640,
+              "foregroundCoverage": 0.7959,
+              "largestComponentFraction": 0.9996,
+              "pHash": "9588057566740572964",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tank-road-railway-station",
+      "admitted": 3,
+      "rejected": 1,
+      "references": [
+        {
+          "id": "roots-front",
+          "view": "street front and clock tower",
+          "filename": "tank-road-railway-station/roots-front.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/roots-front.jpg",
+            "type": "jpeg",
+            "bytes": 187574,
+            "width": 1200,
+            "height": 782,
+            "aspectRatio": 1.5345268542199488,
+            "technicalSuitability": "pass",
+            "warnings": [],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "street front and clock tower",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/roots-front.jpg",
+              "width": 1200,
+              "height": 782,
+              "foregroundCoverage": 0.8988,
+              "largestComponentFraction": 1,
+              "pHash": "10419289317399034856",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "station-postcard",
+          "view": "street elevation with clock tower and jinrickshaws",
+          "filename": "tank-road-railway-station/station-postcard.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/station-postcard.jpg",
+            "type": null,
+            "bytes": 318671,
+            "width": null,
+            "height": null,
+            "aspectRatio": null,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "unknown image type",
+              "could not read image dimensions"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "street elevation with clock tower and jinrickshaws",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/station-postcard.jpg",
+              "width": 1181,
+              "height": 732,
+              "foregroundCoverage": 0.7694,
+              "largestComponentFraction": 0.9724,
+              "pHash": "9558029677134046991",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "platform-view",
+          "view": "platform, canopy, tracks and footbridge",
+          "filename": "tank-road-railway-station/platform-view.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/platform-view.jpg",
+            "type": "jpeg",
+            "bytes": 69586,
+            "width": 708,
+            "height": 442,
+            "aspectRatio": 1.6018099547511313,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": true,
+            "reasons": [],
+            "provenance": {
+              "viewpoint": "platform, canopy, tracks and footbridge",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/platform-view.jpg",
+              "width": 708,
+              "height": 442,
+              "foregroundCoverage": 0.9241,
+              "largestComponentFraction": 0.9996,
+              "pHash": "10704152998672326197",
+              "duplicateOfHash": null
+            }
+          }
+        },
+        {
+          "id": "track-yard",
+          "view": "track yard, embankment and overall station context",
+          "filename": "tank-road-railway-station/track-yard.jpg",
+          "technical": {
+            "path": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/track-yard.jpg",
+            "type": "jpeg",
+            "bytes": 61148,
+            "width": 600,
+            "height": 386,
+            "aspectRatio": 1.5544041450777202,
+            "technicalSuitability": "conditional",
+            "warnings": [
+              "low resolution; small geometry/material details may be unreliable"
+            ],
+            "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+          },
+          "admission": {
+            "admitted": false,
+            "reasons": [
+              "foreground coverage 1.000 > 0.97 (no background to segment against — silhouette not isolable)"
+            ],
+            "provenance": {
+              "viewpoint": "track yard, embankment and overall station context",
+              "sourcePath": "/Users/william/Documents/Massanger/research/lost-singapore-buildings/references/tank-road-railway-station/track-yard.jpg",
+              "width": 600,
+              "height": 386,
+              "foregroundCoverage": 1,
+              "largestComponentFraction": 1,
+              "pHash": "10659111134198881156",
+              "duplicateOfHash": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
