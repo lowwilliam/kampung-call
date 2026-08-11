@@ -152,8 +152,8 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.dampingFactor = 0.07;
-      controls.autoRotate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      controls.autoRotateSpeed = expanded ? 0.8 : 1.15;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = expanded ? 1.15 : 1.8;
       controls.enablePan = false;
 
       const clock = new THREE.Clock();
@@ -225,7 +225,7 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
         frame = requestAnimationFrame(render);
         const delta = Math.min(clock.getDelta(), 0.05);
         mixer?.update(delta);
-        controls.update();
+        controls.update(delta);
         renderer.render(scene, camera);
       };
       render();
