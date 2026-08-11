@@ -1,4 +1,4 @@
-# The Kampung Call Collection
+# 3D Singapore Collection
 
 A standalone, editorial 3D catalogue for the 55 objects made for Kampung Call. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
 

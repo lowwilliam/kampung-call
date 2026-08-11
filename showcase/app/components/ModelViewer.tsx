@@ -93,7 +93,15 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
   const [clips, setClips] = useState<string[]>([]);
   const [activeClip, setActiveClip] = useState<string>("");
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const animationApi = useRef<{ play(name: string): void } | null>(null);
+
+  useEffect(() => {
+    const syncFullscreenState = () => setIsFullscreen(document.fullscreenElement === hostRef.current);
+    document.addEventListener("fullscreenchange", syncFullscreenState);
+    syncFullscreenState();
+    return () => document.removeEventListener("fullscreenchange", syncFullscreenState);
+  }, []);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -261,6 +269,14 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
     animationApi.current?.play(name);
   };
 
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement === hostRef.current) {
+      await document.exitFullscreen?.();
+    } else {
+      await hostRef.current?.requestFullscreen?.();
+    }
+  };
+
   return (
     <div className={`model-viewer ${expanded ? "is-expanded" : ""}`} ref={hostRef}>
       {status !== "ready" && (
@@ -272,7 +288,7 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
       {expanded && status === "ready" && (
         <div className="viewer-controls" aria-label="3D viewer controls">
           <button type="button" onClick={() => hostRef.current?.dispatchEvent(new Event("viewer-reset"))}>Reset</button>
-          <button type="button" onClick={() => void hostRef.current?.requestFullscreen?.()}>Fullscreen</button>
+          <button type="button" onClick={() => void toggleFullscreen()}>{isFullscreen ? "Exit fullscreen" : "Fullscreen"}</button>
         </div>
       )}
       {expanded && clips.length > 0 && (

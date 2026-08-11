@@ -39,7 +39,7 @@ export async function GET() {
     modelUrl: `/api/models/${row.id}`,
     category: row.category,
     intro: row.description,
-    gameContext: "Published in the Made in Singapore collection; community work remains distinct from the assets shipped in Kampung Call.",
+    gameContext: "Published in the 3D Singapore Collection; community work remains clearly credited alongside the original archive.",
     singaporeContext: row.singapore_connection,
     productionStory: `${row.mesh_count.toLocaleString()} meshes, ${row.material_count.toLocaleString()} materials, ${row.triangle_count.toLocaleString()} triangles and ${row.animation_count.toLocaleString()} animation clips.`,
     provenance: row.source_name || "Community submission",

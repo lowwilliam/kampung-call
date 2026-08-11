@@ -66,6 +66,13 @@ const schemaStatements = [
     created_at TEXT NOT NULL
   )`,
   `CREATE INDEX IF NOT EXISTS idx_audit_submission_created ON audit_events(submission_id, created_at)`,
+  `CREATE TABLE IF NOT EXISTS likes (
+    asset_id TEXT NOT NULL,
+    voter_fingerprint TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    PRIMARY KEY (asset_id, voter_fingerprint)
+  )`,
+  `PRAGMA optimize`,
 ];
 
 let schemaReady: Promise<void> | null = null;

@@ -21,7 +21,7 @@ const statusCopy: Record<string, { label: string; note: string }> = {
   submitted: { label: "Submitted", note: "Your model passed its first checks and is waiting for an administrator." },
   "needs-review": { label: "Needs review", note: "The model is safe in quarantine, with one or more technical checks for the administrator." },
   "changes-requested": { label: "Changes requested", note: "Read the note below, revise your GLB and send a replacement through this receipt." },
-  published: { label: "Published", note: "Your model is live in Made in Singapore." },
+  published: { label: "Published", note: "Your model is live in the community collection." },
   rejected: { label: "Rejected", note: "This submission will not be published. The quarantined model is scheduled for removal." },
   unpublished: { label: "Unpublished", note: "The model is no longer visible in the public collection." },
 };
@@ -110,7 +110,7 @@ export function ReceiptPortal({ token }: { token: string }) {
         )}
         {message && <p className="receipt-message" role="status">{message}</p>}
         <div className="receipt-actions">
-          {submission.status === "published" && <Link href="/?collection=community">View Made in Singapore ↗</Link>}
+          {submission.status === "published" && <Link href="/?collection=community">View community collection ↗</Link>}
           {canWithdraw && <button type="button" onClick={() => void withdraw()} disabled={state === "updating"}>Withdraw submission</button>}
         </div>
       </section>

@@ -124,11 +124,11 @@ export function SubmitExperience() {
     <div className="submission-page">
       <header className="submission-header">
         <Link href="/">← The Collection</Link>
-        <span>Made in Singapore · Open call</span>
+        <span>Community collection · Open call</span>
       </header>
       <main className="submission-main">
         <section className="submission-intro">
-          <p className="eyebrow">Submit a model</p>
+          <p className="eyebrow">Community submission</p>
           <h1>Add your piece<br />of Singapore.</h1>
           <p>One self-contained GLB. One meaningful connection. Every accepted object receives a live 360° stage and creator credit.</p>
           <ol className="step-list">
@@ -178,7 +178,7 @@ export function SubmitExperience() {
                 <div><span>Creator</span><strong>{draft.contributorName}</strong><p>{draft.displayLinkedin ? "LinkedIn will be public" : "LinkedIn remains private"}</p></div>
                 <div><span>Story</span><strong>{draft.category}</strong><p>{draft.singaporeConnection}</p></div>
               </div>
-              <label className="rights-grant"><input type="checkbox" checked={rights} onChange={(event) => setRights(event.target.checked)} /><span><strong>I own this model or have permission to submit it.</strong>I grant The Kampung Call Collection a revocable, non-exclusive right to store, render, resize, promote and display it. Ownership stays with me. The gallery will not offer a download button without separate permission, but any web-rendered model must be delivered to visitors’ browsers and cannot be made copy-proof.</span></label>
+              <label className="rights-grant"><input type="checkbox" checked={rights} onChange={(event) => setRights(event.target.checked)} /><span><strong>I own this model or have permission to submit it.</strong>I grant the 3D Singapore Collection a revocable, non-exclusive right to store, render, resize, promote and display it. Ownership stays with me. The gallery will not offer a download button without separate permission, but any web-rendered model must be delivered to visitors’ browsers and cannot be made copy-proof.</span></label>
             </div>
           )}
 

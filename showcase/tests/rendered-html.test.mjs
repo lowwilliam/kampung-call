@@ -25,16 +25,26 @@ test("server-renders the public collection", async () => {
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
-  assert.match(html, /The Kampung Call Collection/i);
+  assert.match(html, /3D Singapore/i);
   assert.match(html, /55 objects/i);
-  assert.match(html, /Made in Singapore/i);
-  assert.match(html, /Download all/i);
-  assert.match(html, /\/downloads\/kampung-call-3d-assets\.zip/i);
-  const downloadUrls = [...html.matchAll(/class="asset-download-button" href="([^"]+\.glb)"/g)].map((match) => match[1]);
-  assert.equal(downloadUrls.length, 55);
-  assert.equal(new Set(downloadUrls).size, 55);
-  await Promise.all(downloadUrls.map((url) => access(path.join(siteRoot, "public", url.replace(/^\//, "")))));
+  assert.match(html, /Community/i);
+  assert.match(html, /One model at a time/i);
+  assert.doesNotMatch(html, /Download all/i);
+  assert.doesNotMatch(html, /\/downloads\//i);
+  assert.doesNotMatch(html, /asset-download-button/i);
+  assert.match(html, /Peranakan House/i);
+  assert.ok(html.indexOf("Peranakan House") < html.indexOf("Field Engineer"));
   assert.doesNotMatch(html, /Your site is taking shape/i);
+});
+
+test("offers an individual download only inside an original model detail page", async () => {
+  const response = await render("/asset/peranakan-house");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /class="asset-download-link"/i);
+  assert.match(html, /peranakan-house-v2\.glb/i);
+  assert.doesNotMatch(html, /Download all/i);
+  await access(path.join(siteRoot, "public", "models", "peranakan-house-v2.glb"));
 });
 
 test("server-renders submission and admin entry points", async () => {

@@ -38,6 +38,44 @@ export type CollectionAsset = {
   };
 };
 
+const ICONIC_ASSET_IDS = [
+  "peranakan-house",
+  "harbour-statue",
+  "skypark-hotel",
+  "supertree",
+  "sultan-mosque",
+  "concert-hall",
+  "singapore-flyer",
+  "hdb-void-deck",
+  "shophouse",
+  "wet-market",
+  "kopitiam",
+  "kampong-house",
+  "mrt",
+  "airport-terminal",
+  "hawker",
+  "mama-shop",
+  "bumboat",
+] as const;
+
+const categoryPriority: Record<AssetCategory, number> = {
+  "Homes & Neighbourhoods": 200,
+  "Culture & Landmarks": 300,
+  "Transit & Movement": 400,
+  "Street Life & Nature": 500,
+  "Service Gear": 600,
+  People: 1_000,
+};
+
+export function sortAssetsByIconicLevel(assets: CollectionAsset[]) {
+  const iconicRank = new Map<string, number>(ICONIC_ASSET_IDS.map((id, index) => [id, index]));
+  return [...assets].sort((left, right) => {
+    const leftRank = iconicRank.get(left.id) ?? categoryPriority[left.category] + (left.featured ? -40 : 0);
+    const rightRank = iconicRank.get(right.id) ?? categoryPriority[right.category] + (right.featured ? -40 : 0);
+    return leftRank - rightRank || left.name.localeCompare(right.name);
+  });
+}
+
 type MetricsMap = Record<
   string,
   {
@@ -170,4 +208,4 @@ const seeds: AssetSeed[] = [
   { id: "wifi-kit", name: "Wi-Fi Mesh Kit", file: "wifi-kit-v2.glb", category: "Service Gear", intro: "Three compact nodes designed for placement, range and line-of-sight decisions.", gameContext: "Forms the physical vocabulary of the mesh-deployment scenario.", singaporeContext: "Represents the indoor layer of connectivity shaped by walls, layouts and dense vertical living." },
 ];
 
-export const GAME_ASSETS = seeds.map(buildAsset);
+export const GAME_ASSETS = sortAssetsByIconicLevel(seeds.map(buildAsset));

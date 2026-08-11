@@ -1,4 +1,4 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const submissions = sqliteTable(
   "submissions",
@@ -66,4 +66,14 @@ export const auditEvents = sqliteTable(
     createdAt: text("created_at").notNull(),
   },
   (table) => [index("idx_audit_submission_created").on(table.submissionId, table.createdAt)],
+);
+
+export const likes = sqliteTable(
+  "likes",
+  {
+    assetId: text("asset_id").notNull(),
+    voterFingerprint: text("voter_fingerprint").notNull(),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.assetId, table.voterFingerprint] })],
 );
