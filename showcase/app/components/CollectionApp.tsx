@@ -17,11 +17,11 @@ function formatCategory(category: string) {
   return category.replace(" & ", " + ");
 }
 
-function AssetCard({ asset, onOpen }: { asset: CollectionAsset; onOpen: () => void }) {
+function AssetCard({ asset, onOpen, eager }: { asset: CollectionAsset; onOpen: () => void; eager: boolean }) {
   return (
     <article className="asset-card" data-category={asset.category}>
       <div className="asset-stage">
-        <ModelViewer url={asset.modelUrl} label={asset.name} />
+        <ModelViewer url={asset.modelUrl} label={asset.name} eager={eager} />
         <span className={`provenance-badge ${asset.collection === "community" ? "is-community" : ""}`}>
           {asset.collection === "community" ? "Community made" : "Kampung Call original"}
         </span>
@@ -234,7 +234,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
 
         {filtered.length ? (
           <section className="asset-grid" aria-label="3D asset collection">
-            {filtered.map((asset) => <AssetCard key={`${asset.collection}-${asset.id}`} asset={asset} onOpen={() => openAsset(asset)} />)}
+            {filtered.map((asset, index) => <AssetCard key={`${asset.collection}-${asset.id}`} asset={asset} eager={index < 3} onOpen={() => openAsset(asset)} />)}
           </section>
         ) : tab === "community" && !query ? (
           <section className="empty-community">

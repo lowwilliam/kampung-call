@@ -1,5 +1,6 @@
 "use client";
 
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useEffect, useRef, useState } from "react";
 
 type ModelViewerProps = {
@@ -8,6 +9,83 @@ type ModelViewerProps = {
   expanded?: boolean;
   eager?: boolean;
 };
+
+type LoaderInstance = InstanceType<typeof import("three/examples/jsm/loaders/GLTFLoader.js").GLTFLoader>;
+
+const MAX_SIMULTANEOUS_LOADS = 3;
+let activeLoads = 0;
+const priorityQueue: Array<() => void> = [];
+const standardQueue: Array<() => void> = [];
+const modelCache = new Map<string, Promise<GLTF>>();
+
+const runtimePromise = Promise.all([
+  import("three"),
+  import("three/examples/jsm/loaders/GLTFLoader.js"),
+  import("three/examples/jsm/loaders/DRACOLoader.js"),
+  import("three/examples/jsm/controls/OrbitControls.js"),
+  import("three/examples/jsm/utils/SkeletonUtils.js"),
+]).then(([THREE, gltfModule, dracoModule, controlsModule, skeletonUtils]) => {
+  THREE.Cache.enabled = true;
+  return {
+    THREE,
+    GLTFLoader: gltfModule.GLTFLoader,
+    DRACOLoader: dracoModule.DRACOLoader,
+    OrbitControls: controlsModule.OrbitControls,
+    cloneScene: skeletonUtils.clone,
+  };
+});
+
+let loaderPromise: Promise<LoaderInstance> | null = null;
+
+function getLoader() {
+  if (!loaderPromise) {
+    loaderPromise = runtimePromise.then(({ GLTFLoader, DRACOLoader }) => {
+      const draco = new DRACOLoader();
+      draco.setDecoderPath("/draco/");
+      draco.setWorkerLimit(2);
+      draco.preload();
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(draco);
+      return loader;
+    });
+  }
+  return loaderPromise;
+}
+
+function drainLoadQueue() {
+  while (activeLoads < MAX_SIMULTANEOUS_LOADS) {
+    const next = priorityQueue.shift() ?? standardQueue.shift();
+    if (!next) return;
+    activeLoads += 1;
+    next();
+  }
+}
+
+function scheduleLoad<T>(task: () => Promise<T>, priority: boolean) {
+  return new Promise<T>((resolve, reject) => {
+    const run = () => {
+      void task()
+        .then(resolve, reject)
+        .finally(() => {
+          activeLoads -= 1;
+          drainLoadQueue();
+        });
+    };
+    (priority ? priorityQueue : standardQueue).push(run);
+    drainLoadQueue();
+  });
+}
+
+function loadModel(url: string, priority: boolean) {
+  const existing = modelCache.get(url);
+  if (existing) return existing;
+  const request = scheduleLoad(async () => (await getLoader()).loadAsync(url), priority).catch((error) => {
+    modelCache.delete(url);
+    throw error;
+  });
+  modelCache.set(url, request);
+  return request;
+}
 
 export function ModelViewer({ url, label, expanded = false, eager = false }: ModelViewerProps) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -19,14 +97,14 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
 
   useEffect(() => {
     const host = hostRef.current;
-    if (!host || eager) return;
+    if (!host) return;
     const observer = new IntersectionObserver(
       ([entry]) => setNearViewport(entry.isIntersecting),
-      { rootMargin: "260px" },
+      { rootMargin: expanded ? "0px" : "160px 0px", threshold: 0.01 },
     );
     observer.observe(host);
     return () => observer.disconnect();
-  }, [eager]);
+  }, [expanded]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -38,16 +116,21 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
     setStatus("loading");
 
     void (async () => {
-      const THREE = await import("three");
-      const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
-      const { DRACOLoader } = await import("three/examples/jsm/loaders/DRACOLoader.js");
-      const { OrbitControls } = await import("three/examples/jsm/controls/OrbitControls.js");
+      const [{ THREE, OrbitControls, cloneScene }, gltf] = await Promise.all([
+        runtimePromise,
+        loadModel(url, eager || expanded),
+      ]);
       if (disposed || !hostRef.current) return;
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(34, 1, 0.01, 2000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, expanded ? 2 : 1.5));
+      camera.position.set(4, 2.4, 6);
+      const renderer = new THREE.WebGLRenderer({
+        antialias: expanded,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, expanded ? 1.75 : 1.15));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.05;
@@ -72,69 +155,44 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
       controls.autoRotate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       controls.autoRotateSpeed = expanded ? 0.8 : 1.15;
       controls.enablePan = false;
-      controls.minDistance = 0.7;
-      controls.maxDistance = 120;
 
-      const draco = new DRACOLoader();
-      draco.setDecoderPath("/draco/");
-      const loader = new GLTFLoader();
-      loader.setDRACOLoader(draco);
       const clock = new THREE.Clock();
       let mixer: InstanceType<typeof THREE.AnimationMixer> | null = null;
-      let objectRoot: InstanceType<typeof THREE.Object3D> | null = null;
-      let baseDistance = 5;
+      const objectRoot = cloneScene(gltf.scene);
+      let fitDistance = 5;
 
-      const fit = (root: InstanceType<typeof THREE.Object3D>) => {
-        const box = new THREE.Box3().setFromObject(root);
-        const size = box.getSize(new THREE.Vector3());
-        const centre = box.getCenter(new THREE.Vector3());
-        root.position.sub(centre);
-        root.position.y += size.y / 2;
-        const maxDim = Math.max(size.x, size.y, size.z, 0.5);
-        baseDistance = maxDim / (2 * Math.tan((camera.fov * Math.PI) / 360));
-        camera.position.set(baseDistance * 0.72, baseDistance * 0.4, baseDistance * 1.12);
-        camera.near = Math.max(maxDim / 100, 0.01);
-        camera.far = Math.max(maxDim * 50, 100);
+      objectRoot.traverse((child) => {
+        if ("isMesh" in child && child.isMesh) {
+          const mesh = child as InstanceType<typeof THREE.Mesh>;
+          mesh.castShadow = expanded;
+          mesh.receiveShadow = true;
+        }
+      });
+      scene.add(objectRoot);
+
+      const fit = () => {
+        const bounds = new THREE.Box3().setFromObject(objectRoot);
+        if (bounds.isEmpty()) return;
+        const centre = bounds.getCenter(new THREE.Vector3());
+        objectRoot.position.sub(centre);
+        const centredBounds = new THREE.Box3().setFromObject(objectRoot);
+        const sphere = centredBounds.getBoundingSphere(new THREE.Sphere());
+        const radius = Math.max(sphere.radius, 0.25);
+        const verticalFov = THREE.MathUtils.degToRad(camera.fov);
+        const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * camera.aspect);
+        const limitingFov = Math.min(verticalFov, horizontalFov);
+        fitDistance = (radius / Math.sin(limitingFov / 2)) * (expanded ? 1.12 : 1.2);
+        const viewDirection = new THREE.Vector3(0.72, 0.34, 1.08).normalize();
+        camera.position.copy(viewDirection.multiplyScalar(fitDistance));
+        camera.near = Math.max(fitDistance - radius * 2.5, radius / 100, 0.01);
+        camera.far = Math.max(fitDistance + radius * 5, 100);
         camera.updateProjectionMatrix();
-        controls.target.set(0, size.y * 0.08, 0);
-        controls.minDistance = baseDistance * 0.55;
-        controls.maxDistance = baseDistance * 2.1;
+        controls.target.set(0, 0, 0);
+        controls.minDistance = Math.max(fitDistance * 0.55, radius * 1.05);
+        controls.maxDistance = fitDistance * 2.4;
         controls.update();
+        controls.saveState();
       };
-
-      loader.load(
-        url,
-        (gltf) => {
-          if (disposed) return;
-          objectRoot = gltf.scene;
-          objectRoot.traverse((child) => {
-            if ("isMesh" in child && child.isMesh) {
-              const mesh = child as InstanceType<typeof THREE.Mesh>;
-              mesh.castShadow = expanded;
-              mesh.receiveShadow = true;
-            }
-          });
-          scene.add(objectRoot);
-          fit(objectRoot);
-          if (gltf.animations.length) {
-            mixer = new THREE.AnimationMixer(objectRoot);
-            const clipNames = gltf.animations.map((clip) => clip.name || `Clip ${gltf.animations.indexOf(clip) + 1}`);
-            setClips(clipNames);
-            const first = clipNames.find((name) => /idle/i.test(name)) ?? clipNames[0];
-            setActiveClip(first);
-            const play = (name: string) => {
-              mixer?.stopAllAction();
-              const clip = gltf.animations.find((item) => (item.name || "") === name) ?? gltf.animations[0];
-              mixer?.clipAction(clip).reset().fadeIn(0.2).play();
-            };
-            animationApi.current = { play };
-            play(first);
-          }
-          setStatus("ready");
-        },
-        undefined,
-        () => setStatus("error"),
-      );
 
       const resize = () => {
         const width = Math.max(host.clientWidth, 1);
@@ -142,10 +200,26 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
+        fit();
       };
       resizeObserver = new ResizeObserver(resize);
       resizeObserver.observe(host);
       resize();
+
+      if (gltf.animations.length) {
+        mixer = new THREE.AnimationMixer(objectRoot);
+        const clipNames = gltf.animations.map((clip, index) => clip.name || `Clip ${index + 1}`);
+        setClips(clipNames);
+        const first = clipNames.find((name) => /idle/i.test(name)) ?? clipNames[0];
+        setActiveClip(first);
+        const play = (name: string) => {
+          mixer?.stopAllAction();
+          const clip = gltf.animations.find((item) => (item.name || "") === name) ?? gltf.animations[0];
+          mixer?.clipAction(clip, objectRoot).reset().fadeIn(0.2).play();
+        };
+        animationApi.current = { play };
+        play(first);
+      }
 
       const render = () => {
         frame = requestAnimationFrame(render);
@@ -155,31 +229,24 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
         renderer.render(scene, camera);
       };
       render();
+      setStatus("ready");
 
-      const reset = () => {
-        camera.position.set(baseDistance * 0.72, baseDistance * 0.4, baseDistance * 1.12);
-        controls.reset();
-      };
+      const reset = () => controls.reset();
       host.dataset.viewerReady = "true";
       host.addEventListener("viewer-reset", reset);
       cleanup = () => {
         host.removeEventListener("viewer-reset", reset);
+        delete host.dataset.viewerReady;
         cancelAnimationFrame(frame);
         resizeObserver?.disconnect();
         controls.dispose();
-        draco.dispose();
-        scene.traverse((child) => {
-          if ("geometry" in child) (child as InstanceType<typeof THREE.Mesh>).geometry?.dispose?.();
-          if ("material" in child) {
-            const material = (child as InstanceType<typeof THREE.Mesh>).material;
-            (Array.isArray(material) ? material : [material]).forEach((item) => item?.dispose?.());
-          }
-        });
         renderer.dispose();
         renderer.domElement.remove();
-        objectRoot = null;
+        mixer?.stopAllAction();
       };
-    })().catch(() => setStatus("error"));
+    })().catch(() => {
+      if (!disposed) setStatus("error");
+    });
 
     return () => {
       disposed = true;
@@ -199,7 +266,7 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
       {status !== "ready" && (
         <div className={`viewer-status ${status === "error" ? "is-error" : ""}`}>
           <span className="viewer-orbit" aria-hidden="true" />
-          <span>{status === "error" ? "Model unavailable" : "Preparing 360° view"}</span>
+          <span>{status === "error" ? "Model unavailable" : "Loading 360° view"}</span>
         </div>
       )}
       {expanded && status === "ready" && (
