@@ -26,10 +26,14 @@ test("server-renders the public collection", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /3D Singapore/i);
-  assert.match(html.replaceAll("<!-- -->", ""), /55\s+objects/i);
+  assert.match(html.replaceAll("<!-- -->", ""), /68\s+objects/i);
   assert.match(html, /Community/i);
-  assert.match(html, /One model at a time/i);
+  assert.doesNotMatch(html, /One model at a time/i);
+  assert.match(html, /Buildings gone/i);
+  assert.match(html, /National Theatre/i);
+  assert.match(html, /Lost Heritage/i);
   assert.match(html, /Move the globe/i);
+  assert.match(html, /collection-globe-fallback/i);
   assert.doesNotMatch(html, /Download all/i);
   assert.doesNotMatch(html, /\/downloads\//i);
   assert.doesNotMatch(html, /asset-download-button/i);
@@ -65,4 +69,15 @@ test("server-renders submission and admin entry points", async () => {
   assert.equal(admin.status, 200);
   assert.match(await submit.text(), /Add your piece(?:<br\/>)?of Singapore/i);
   assert.match(await admin.text(), /Opening the review room/i);
+});
+
+test("server-renders the CLI and terminal guide", async () => {
+  const response = await render("/cli");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Command line \+ terminal/i);
+  assert.match(html, /kampung-assets list --query heritage/i);
+  assert.match(html, /game:lost-national-theatre/i);
+  assert.match(html, /kampung-call-collection\.will-ai\.chatgpt\.site/i);
+  assert.match(html, /npm run mcp/i);
 });

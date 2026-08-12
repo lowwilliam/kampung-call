@@ -8,9 +8,11 @@ import { fileURLToPath } from "node:url";
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 test("publishes the approved revised GLB bytes", async () => {
-  const expected = JSON.parse(
-    await readFile(path.join(siteRoot, "app", "data", "release-model-hashes.json"), "utf8"),
-  );
+  const [releaseHashes, heritageHashes] = await Promise.all([
+    readFile(path.join(siteRoot, "app", "data", "release-model-hashes.json"), "utf8"),
+    readFile(path.join(siteRoot, "app", "data", "heritage-model-hashes.json"), "utf8"),
+  ]);
+  const expected = { ...JSON.parse(releaseHashes), ...JSON.parse(heritageHashes) };
 
   for (const [fileName, expectedHash] of Object.entries(expected)) {
     const bytes = await readFile(path.join(siteRoot, "public", "models", fileName));

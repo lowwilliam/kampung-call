@@ -10,6 +10,8 @@ const dataRoot = path.join(siteRoot, "app", "data");
 const dracoSource = path.join(siteRoot, "node_modules", "three", "examples", "jsm", "libs", "draco");
 const dracoOutput = path.join(siteRoot, "public", "draco");
 const downloadOutput = path.join(siteRoot, "public", "downloads");
+const globeSpecSource = path.join(gameRoot, "shared", "kampung-call-globe.json");
+const globeSpecOutput = path.join(dataRoot, "kampung-call-globe.json");
 
 await access(auditPath);
 const audit = JSON.parse(await readFile(auditPath, "utf8"));
@@ -37,6 +39,7 @@ await Promise.all(audit.manifest.map(async (item) => {
 await rm(dracoOutput, { recursive: true, force: true });
 await cp(dracoSource, dracoOutput, { recursive: true });
 await mkdir(dataRoot, { recursive: true });
+await copyFile(globeSpecSource, globeSpecOutput);
 await writeFile(
   path.join(dataRoot, "asset-metrics.json"),
   `${JSON.stringify(metrics, null, 2)}\n`,

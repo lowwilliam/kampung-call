@@ -18,10 +18,19 @@ test("Asset API v1 lists namespaced game assets with permission-aware download U
   assert.equal(response.headers.get("x-api-version"), "1");
   const payload = await response.json();
   assert.equal(payload.assets.length, 2);
-  assert.equal(payload.pagination.total, 55);
+  assert.equal(payload.pagination.total, 68);
   assert.match(payload.assets[0].id, /^game:/);
   assert.equal(payload.assets[0].downloadAllowed, true);
   assert.match(payload.assets[0].downloadUrl, /^http:\/\/localhost\/api\/v1\/assets\/game%3A.+\/download$/);
+});
+
+test("Asset API v1 publishes the Lost Heritage reconstructions", async () => {
+  const detail = await request("/api/v1/assets/game%3Alost-national-theatre");
+  assert.equal(detail.status, 200);
+  const payload = await detail.json();
+  assert.equal(payload.asset.name, "National Theatre");
+  assert.equal(payload.asset.category, "Lost Heritage");
+  assert.equal(payload.asset.fileName, "national-theatre.glb");
 });
 
 test("Asset API v1 resolves one asset and redirects its permitted download", async () => {

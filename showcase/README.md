@@ -1,10 +1,10 @@
 # 3D Singapore Collection
 
-A standalone, editorial 3D catalogue for the 55 objects made for Kampung Call. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
+A standalone, editorial 3D catalogue for 68 Singapore objects, places and people: 55 made for Kampung Call plus 13 research-led Lost Heritage reconstructions. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
 
 The site also includes an anonymous community-submission workflow for Singapore 3D assets, receipt-based status and withdrawal, a password-protected moderation desk, D1 metadata storage, and R2 quarantine/publishing storage.
 
-It now ships a versioned Asset API, the `kampung-assets` CLI and a local stdio MCP server for permission-aware asset search, upload, download and submission recovery. See [docs/ASSET-API.md](docs/ASSET-API.md).
+It now ships a versioned Asset API, the `kampung-assets` CLI and a local stdio MCP server for permission-aware asset search, upload, download and submission recovery. The public `/cli` route provides a visual quick-start; see [docs/ASSET-API.md](docs/ASSET-API.md) for the protocol reference.
 
 ## Local development
 

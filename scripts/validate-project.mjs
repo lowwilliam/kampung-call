@@ -65,6 +65,18 @@ assert(/function auditBuildingWaterClearance\(\)[\s\S]{0,1400}dataset\.buildingW
 assert(/window\.__assetLoadAudit=assetLoadAudit/.test(html)
     && /dataset\.assetsFailed=String\(assetLoadAudit\.failed\)/.test(html),
   'Asset load outcomes must be browser-test observable.');
+const sharedGlobePath = path.join(root, 'shared', 'kampung-call-globe.json');
+const collectionGlobePath = path.join(root, 'showcase', 'app', 'data', 'kampung-call-globe.json');
+assert(fs.existsSync(sharedGlobePath), 'The Kampung Call globe must have a shared canonical specification.');
+assert(fs.existsSync(collectionGlobePath), 'The collection must receive the shared Kampung Call globe specification.');
+if (fs.existsSync(sharedGlobePath) && fs.existsSync(collectionGlobePath)) {
+  const gameGlobe = JSON.parse(fs.readFileSync(sharedGlobePath, 'utf8'));
+  const collectionGlobe = JSON.parse(fs.readFileSync(collectionGlobePath, 'utf8'));
+  assert(JSON.stringify(gameGlobe) === JSON.stringify(collectionGlobe),
+    'The collection globe must exactly match the Kampung Call Film Park globe specification.');
+  assert(/import kampungCallGlobe from ['"]\.\.\/shared\/kampung-call-globe\.json['"]/.test(html),
+    'The Kampung Call game must build its Film Park globe from the shared specification.');
+}
 const vendorManifestPath = path.join(root, 'world/vendor-assets.json');
 assert(fs.existsSync(vendorManifestPath), 'Licensed vendor asset manifest is required.');
 if (fs.existsSync(vendorManifestPath)) {

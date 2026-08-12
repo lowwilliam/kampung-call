@@ -1,0 +1,379 @@
+[
+  {
+    "id": "lost-comcentre",
+    "name": "Singtel Comcentre",
+    "file": "lost-heritage/comcentre.glb",
+    "category": "Lost Heritage",
+    "intro": "Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1979 at 31 Exeter Road; removed 2024–2025. Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
+    "inspiration": "Opened 1979 · Removed 2024–2025 · 31 Exeter Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1980,
+      "materials": 7,
+      "meshCount": 68,
+      "compressed": true,
+      "dimensions": {
+        "width": 13,
+        "height": 25.993545161127535,
+        "depth": 9.600000047683716
+      }
+    }
+  },
+  {
+    "id": "lost-national-theatre",
+    "name": "National Theatre",
+    "file": "lost-heritage/national-theatre.glb",
+    "category": "Lost Heritage",
+    "intro": "The publicly funded 'People's Theatre', built as a post-self-government cultural landmark and used for national ceremonies and performance.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1963 at Clemenceau Avenue and River Valley Road; removed 1986. The publicly funded 'People's Theatre', built as a post-self-government cultural landmark and used for national ceremonies and performance.",
+    "inspiration": "Opened 1963 · Removed 1986 · Clemenceau Avenue and River Valley Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.nlb.gov.sg/main/article-detail?cmsuuid=90755dd9-1c83-4642-ba0b-4a0050d7ec94"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1252,
+      "materials": 6,
+      "meshCount": 37,
+      "compressed": true,
+      "dimensions": {
+        "width": 15,
+        "height": 12.141396522521973,
+        "depth": 16.23499994277954
+      }
+    }
+  },
+  {
+    "id": "lost-national-library-stamford",
+    "name": "National Library at Stamford Road",
+    "file": "lost-heritage/national-library-stamford.glb",
+    "category": "Lost Heritage",
+    "intro": "Singapore's first free public-library building, remembered for its red brickwork and role as a civic study and meeting place.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1960 at 91 Stamford Road; removed 2005. Singapore's first free public-library building, remembered for its red brickwork and role as a civic study and meeting place.",
+    "inspiration": "Opened 1960 · Removed 2005 · 91 Stamford Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.nlb.gov.sg/main/article-detail?cmsuuid=62e46445-56be-4ea1-917d-f0b0fb5220eb"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1288,
+      "materials": 7,
+      "meshCount": 85,
+      "compressed": true,
+      "dimensions": {
+        "width": 15.95,
+        "height": 8.335000000596047,
+        "depth": 10.450000095367432
+      }
+    }
+  },
+  {
+    "id": "lost-van-kleef-aquarium",
+    "name": "Van Kleef Aquarium",
+    "file": "lost-heritage/van-kleef-aquarium.glb",
+    "category": "Lost Heritage",
+    "intro": "Singapore's first public aquarium and a popular post-war family attraction at the foot of Fort Canning.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1955 at Clemenceau Avenue and River Valley Road; removed 1998. Singapore's first public aquarium and a popular post-war family attraction at the foot of Fort Canning.",
+    "inspiration": "Opened 1955 · Removed 1998 · Clemenceau Avenue and River Valley Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/Collection-Landing/listing/1193052"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1512,
+      "materials": 7,
+      "meshCount": 126,
+      "compressed": true,
+      "dimensions": {
+        "width": 20,
+        "height": 7.2699999970197675,
+        "depth": 10.55
+      }
+    }
+  },
+  {
+    "id": "lost-former-national-stadium",
+    "name": "Former National Stadium",
+    "file": "lost-heritage/former-national-stadium.glb",
+    "category": "Lost Heritage",
+    "intro": "The venue of the 'Kallang Roar', 18 National Day Parades, landmark football matches, concerts, and national sporting memories.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1973 at Kallang; removed 2010–2011. The venue of the 'Kallang Roar', 18 National Day Parades, landmark football matches, concerts, and national sporting memories.",
+    "inspiration": "Opened 1973 · Removed 2010–2011 · Kallang",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.sg101.gov.sg/resources/archives/national-stadium/"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 8132,
+      "materials": 7,
+      "meshCount": 78,
+      "compressed": true,
+      "dimensions": {
+        "width": 24.200000047683716,
+        "height": 11.43999999165535,
+        "depth": 16.539994161065856
+      }
+    }
+  },
+  {
+    "id": "lost-pearl-bank-apartments",
+    "name": "Pearl Bank Apartments",
+    "file": "lost-heritage/pearl-bank-apartments.glb",
+    "category": "Lost Heritage",
+    "intro": "A pioneering high-density, mixed-use residential tower and one of the strongest local expressions of post-independence modernism.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1976 at 1 Pearl Bank; removed 2020. A pioneering high-density, mixed-use residential tower and one of the strongest local expressions of post-independence modernism.",
+    "inspiration": "Opened 1976 · Removed 2020 · 1 Pearl Bank",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Former-Pearl-Bank-Apartments"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 11936,
+      "materials": 5,
+      "meshCount": 971,
+      "compressed": true,
+      "dimensions": {
+        "width": 20,
+        "height": 23.65000001192093,
+        "depth": 20
+      }
+    }
+  },
+  {
+    "id": "lost-tanglin-shopping-centre",
+    "name": "Tanglin Shopping Centre",
+    "file": "lost-heritage/tanglin-shopping-centre.glb",
+    "category": "Lost Heritage",
+    "intro": "The first modern shopping mall in the Tanglin-Orchard belt and Singapore's second-oldest modern shopping centre.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1972 at 19 Tanglin Road; removed 2024. The first modern shopping mall in the Tanglin-Orchard belt and Singapore's second-oldest modern shopping centre.",
+    "inspiration": "Opened 1972 · Removed 2024 · 19 Tanglin Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/Collection-Landing/listing/1214419"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1212,
+      "materials": 6,
+      "meshCount": 70,
+      "compressed": true,
+      "dimensions": {
+        "width": 19.200000095367432,
+        "height": 10.400000095367432,
+        "depth": 7.875000053644181
+      }
+    }
+  },
+  {
+    "id": "lost-amber-mansions",
+    "name": "Amber Mansions",
+    "file": "lost-heritage/amber-mansions.glb",
+    "category": "Lost Heritage",
+    "intro": "An early mixed-use mansion block associated with the arrival of apartment living and modern retail on Orchard Road.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1922 at Orchard Road and Penang Lane; removed 1984. An early mixed-use mansion block associated with the arrival of apartment living and modern retail on Orchard Road.",
+    "inspiration": "Opened 1922 · Removed 1984 · Orchard Road and Penang Lane",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://biblioasia.nlb.gov.sg/all-sections/vol-17-issue-2-jul-sep-2021-swan-and-maclaren-apartment-living/"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 7720,
+      "materials": 4,
+      "meshCount": 92,
+      "compressed": true,
+      "dimensions": {
+        "width": 18.5700000166893,
+        "height": 9.290606474876403,
+        "depth": 15
+      }
+    }
+  },
+  {
+    "id": "lost-eu-court",
+    "name": "Eu Court",
+    "file": "lost-heritage/eu-court.glb",
+    "category": "Lost Heritage",
+    "intro": "An early apartment and retail block combining Stripped Classical planning with a Chinese Art Deco corner pavilion.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1925 at Hill Street and Stamford Road; removed 1992. An early apartment and retail block combining Stripped Classical planning with a Chinese Art Deco corner pavilion.",
+    "inspiration": "Opened 1925 · Removed 1992 · Hill Street and Stamford Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://biblioasia.nlb.gov.sg/files/pdf/vol-17/issue-2/v17-issue2_MansionBlocks.pdf"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 6336,
+      "materials": 6,
+      "meshCount": 90,
+      "compressed": true,
+      "dimensions": {
+        "width": 20.672539809311534,
+        "height": 12.15,
+        "depth": 16.572539904678965
+      }
+    }
+  },
+  {
+    "id": "lost-alkaff-arcade",
+    "name": "Alkaff Arcade (The Arcade)",
+    "file": "lost-heritage/alkaff-arcade.glb",
+    "category": "Lost Heritage",
+    "intro": "Singapore's first indoor shopping centre, an Indo-Saracenic commercial passage joining the waterfront to Raffles Place.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1909 at Collyer Quay to Raffles Place; removed 1978. Singapore's first indoor shopping centre, an Indo-Saracenic commercial passage joining the waterfront to Raffles Place.",
+    "inspiration": "Opened 1909 · Removed 1978 · Collyer Quay to Raffles Place",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://biblioasia.nlb.gov.sg/chapters-of-asia/chapters-on-asia-2015-on-the-waterfront-the-building-of-singapore-s-first-high-rise-skyline-1918-1928/"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 9540,
+      "materials": 7,
+      "meshCount": 120,
+      "compressed": true,
+      "dimensions": {
+        "width": 19.810000009536743,
+        "height": 10.660000015497207,
+        "depth": 8.05
+      }
+    }
+  },
+  {
+    "id": "lost-beauty-world-market",
+    "name": "Beauty World Market and Town",
+    "file": "lost-heritage/beauty-world-market.glb",
+    "category": "Lost Heritage",
+    "intro": "A beloved market, shopping and performance district that grew out of the wartime Tai Tong Ah amusement park and eventually held more than 160 stalls.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1947 (market); 1962 (town extension) at Upper Bukit Timah Road, Jalan Jurong Kechil and Chun Tin Road; removed 1984. A beloved market, shopping and performance district that grew out of the wartime Tai Tong Ah amusement park and eventually held more than 160 stalls.",
+    "inspiration": "Opened 1947 (market); 1962 (town extension) · Removed 1984 · Upper Bukit Timah Road, Jalan Jurong Kechil and Chun Tin Road",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/places/places-landing/Places/landmarks/Bukit-Timah-Heritage-Trail-WWII-Legacy-Trail/Former-Beauty-World"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1664,
+      "materials": 6,
+      "meshCount": 97,
+      "compressed": true,
+      "dimensions": {
+        "width": 12.750000023841858,
+        "height": 7.180071020126343,
+        "depth": 22.25
+      }
+    }
+  },
+  {
+    "id": "lost-tang-dynasty-city",
+    "name": "Tang Dynasty City (Tang Dynasty Village)",
+    "file": "lost-heritage/tang-dynasty-city.glb",
+    "category": "Lost Heritage",
+    "intro": "A short-lived 12-hectare movie studio and theme park that recreated an idealised Chang'an beside Jurong Lake and became a conspicuous 1990s west-side landmark.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1992 at Jalan Ahmad Ibrahim and Yuan Ching Road, beside Jurong Lake; removed 2008–2009 (sources differ on completion of clearance). A short-lived 12-hectare movie studio and theme park that recreated an idealised Chang'an beside Jurong Lake and became a conspicuous 1990s west-side landmark.",
+    "inspiration": "Opened 1992 · Removed 2008–2009 (sources differ on completion of clearance) · Jalan Ahmad Ibrahim and Yuan Ching Road, beside Jurong Lake",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/Collection-Landing/listing/1184277"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1400,
+      "materials": 6,
+      "meshCount": 76,
+      "compressed": true,
+      "dimensions": {
+        "width": 19.099999952316285,
+        "height": 11.57999997973442,
+        "depth": 25.099999952316285
+      }
+    }
+  },
+  {
+    "id": "lost-tank-road-railway-station",
+    "name": "Tank Road Railway Station",
+    "file": "lost-heritage/tank-road-railway-station.glb",
+    "category": "Lost Heritage",
+    "intro": "Singapore's principal passenger terminus before Tanjong Pagar, linking the town to Kranji, Johor and Malaya during the first decades of island railway travel.",
+    "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
+    "singaporeContext": "Opened 1907 (second Tank Road passenger terminus) at Tank Road and River Valley Road, below Fort Canning; removed After closure in 1932; exact demolition date not established. Singapore's principal passenger terminus before Tanjong Pagar, linking the town to Kranji, Johor and Malaya during the first decades of island railway travel.",
+    "inspiration": "Opened 1907 (second Tank Road passenger terminus) · Removed After closure in 1932; exact demolition date not established · Tank Road and River Valley Road, below Fort Canning",
+    "historySource": {
+      "label": "Read the historical source",
+      "url": "https://www.roots.gov.sg/Collection-Landing/listing/1115403"
+    },
+    "featured": true,
+    "provenance": "Lost Singapore reconstruction",
+    "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
+    "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "metrics": {
+      "triangles": 1544,
+      "materials": 8,
+      "meshCount": 87,
+      "compressed": true,
+      "dimensions": {
+        "width": 25,
+        "height": 10.950000071525574,
+        "depth": 24
+      }
+    }
+  }
+]

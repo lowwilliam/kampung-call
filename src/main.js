@@ -5,6 +5,7 @@ import worldScale from '../world/scale.json';
 import assetAudit from '../world/asset-audit.json';
 import footprintData from '../world/footprints.json';
 import vendorAssetData from '../world/vendor-assets.json';
+import kampungCallGlobe from '../shared/kampung-call-globe.json';
 
 
 /* ============================================================
@@ -2535,21 +2536,20 @@ function buildResortGate(){
 // theme park: rotating globe fountain + roller coaster loop with car
 function buildFilmPark(){
   const g=new THREE.Group();
-  const fountain=new THREE.Mesh(new THREE.CylinderGeometry(1.5,1.7,.4,14),mat(0xd9d3c7));
-  fountain.position.y=.2; g.add(fountain);
-  const water=new THREE.Mesh(new THREE.CylinderGeometry(1.35,1.35,.1,14),mat(0x5cc0d8));
-  water.position.y=.42; g.add(water);
-  const globeTex=canvasTex(128,64,(c)=>{
-    c.fillStyle='#3d7ea6';c.fillRect(0,0,128,64);
-    c.fillStyle='#35c46b';
-    c.beginPath();c.ellipse(30,26,16,12,.4,0,7);c.fill();
-    c.beginPath();c.ellipse(84,40,20,10,-.3,0,7);c.fill();
-    c.beginPath();c.ellipse(110,18,10,8,.2,0,7);c.fill();
+  const {fountain:globeBase,ring, sphere,texture}=kampungCallGlobe;
+  const fountain=new THREE.Mesh(new THREE.CylinderGeometry(globeBase.baseTopRadius,globeBase.baseBottomRadius,globeBase.baseHeight,globeBase.baseSegments),mat(globeBase.baseColor));
+  fountain.position.y=globeBase.baseHeight/2; g.add(fountain);
+  const water=new THREE.Mesh(new THREE.CylinderGeometry(globeBase.waterRadius,globeBase.waterRadius,globeBase.waterHeight,globeBase.waterSegments),mat(globeBase.waterColor));
+  water.position.y=globeBase.baseHeight+globeBase.waterHeight/2-.03; g.add(water);
+  const globeTex=canvasTex(texture.width,texture.height,(c)=>{
+    c.fillStyle=texture.ocean;c.fillRect(0,0,texture.width,texture.height);
+    c.fillStyle=texture.land;
+    for(const [x,y,rx,ry,rotation] of texture.continents){c.beginPath();c.ellipse(x,y,rx,ry,rotation,0,7);c.fill();}
   });
-  const globe=new THREE.Mesh(new THREE.SphereGeometry(1.1,16,12),texMat(globeTex));
-  globe.position.y=1.9; g.add(globe); g.userData.globe=globe;
-  const ringG=new THREE.Mesh(new THREE.TorusGeometry(1.4,.07,8,26),mat(0xf2c14e));
-  ringG.position.y=1.9; ringG.rotation.x=.5; g.add(ringG);
+  const globe=new THREE.Mesh(new THREE.SphereGeometry(sphere.radius,sphere.widthSegments,sphere.heightSegments),texMat(globeTex));
+  globe.position.y=sphere.height; g.add(globe); g.userData.globe=globe;
+  const ringG=new THREE.Mesh(new THREE.TorusGeometry(ring.radius,ring.tube,ring.radialSegments,ring.tubularSegments),mat(ring.color));
+  ringG.position.y=ring.height; ringG.rotation.x=ring.rotationX; g.add(ringG);
   const signS=new THREE.Mesh(new THREE.PlaneGeometry(2.4,.5),
     texMat(canvasTex(384,80,(c)=>{
       c.fillStyle='#2e2a25';c.fillRect(0,0,384,80);

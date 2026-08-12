@@ -13,6 +13,8 @@ const tabs: { id: CollectionTab; label: string }[] = [
   { id: "all", label: "All" },
 ];
 
+const LOST_HERITAGE_COUNT = GAME_ASSETS.filter((asset) => asset.category === "Lost Heritage").length;
+
 function formatCategory(category: string) {
   return category.replace(" & ", " + ");
 }
@@ -47,7 +49,7 @@ function AssetCard({
       <div className="asset-stage">
         <ModelViewer url={asset.modelUrl} label={asset.name} eager={eager} />
         <span className={`provenance-badge ${asset.collection === "community" ? "is-community" : ""}`}>
-          {asset.collection === "community" ? "Community" : "Original"}
+          {asset.category === "Lost Heritage" ? "Lost Heritage" : asset.collection === "community" ? "Community" : "Original"}
         </span>
         <button className="stage-open" type="button" onClick={onOpen} aria-label={`Open ${asset.name} details`}>
           <span>Open 360°</span>
@@ -132,7 +134,7 @@ function DetailOverlay({
     <div className="detail-shell" role="dialog" aria-modal="true" aria-labelledby="detail-title">
       <header className="detail-bar">
         <button type="button" className="icon-button" onClick={onClose} aria-label="Close asset details">←</button>
-        <span>{asset.collection === "game" ? "Original" : "Community"}</span>
+        <span>{asset.category === "Lost Heritage" ? "Lost Heritage" : asset.collection === "game" ? "Original" : "Community"}</span>
         <a href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
       </header>
       <main className="detail-grid">
@@ -154,11 +156,15 @@ function DetailOverlay({
             {liked ? "Liked" : "Like this model"}
             <strong>{likeCount.toLocaleString()}</strong>
           </button>
-          {asset.inspiration && <p className="inspiration">Inspired by <strong>{asset.inspiration}</strong></p>}
+          {asset.inspiration && (
+            <p className="inspiration">
+              {asset.category === "Lost Heritage" ? <strong>{asset.inspiration}</strong> : <>Inspired by <strong>{asset.inspiration}</strong></>}
+            </p>
+          )}
           <p className="detail-lede">{asset.intro}</p>
 
           <div className="story-block">
-            <span>01 · In Kampung Call</span>
+            <span>01 · {asset.category === "Lost Heritage" ? "In the collection" : "In Kampung Call"}</span>
             <p>{asset.gameContext}</p>
           </div>
           <div className="story-block">
@@ -327,6 +333,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
       <header className="site-header">
         <a href="/" className="wordmark"><span>3D</span><strong>Singapore Collection</strong></a>
         <nav aria-label="Primary navigation">
+          <a className="cli-link" href="/cli">CLI</a>
           <a className="submit-link" href="/submit">Submit your model</a>
           <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
         </nav>
@@ -347,13 +354,15 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
           </div>
         </section>
 
-        <section className="collection-principle" aria-labelledby="collection-principle-title">
+        <section className="heritage-feature" aria-labelledby="heritage-feature-title">
           <div>
-            <p className="eyebrow">Curated for close looking</p>
-            <h2 id="collection-principle-title">One model at a time.</h2>
-            <p>Open an item to explore its story, rotate it in 360°, add your like and—where permitted—download the individual GLB.</p>
+            <p className="eyebrow">Lost Singapore · {LOST_HERITAGE_COUNT} reconstructions</p>
+            <h2 id="heritage-feature-title">Buildings gone.<br />Stories still here.</h2>
+            <p>Explore research-led 3D reconstructions of demolished landmarks, from the National Theatre to Pearl Bank Apartments.</p>
           </div>
-          <span>Individual downloads only</span>
+          <button type="button" onClick={() => { setTab("game"); setCategory("Lost Heritage"); setQuery(""); }}>
+            Explore lost heritage <span>{LOST_HERITAGE_COUNT} ↘</span>
+          </button>
         </section>
 
         <section className="catalogue-controls" aria-label="Collection controls">

@@ -30,6 +30,13 @@ function readManifest() {
       manifest.push({ name: `resident:${name[1]}`, url: `assets/residents/${name[1]}.glb`, scale: 1 });
     }
   }
+  const heritageCatalogPath = path.join(root, 'showcase', 'app', 'data', 'lost-heritage-assets.json');
+  if (fs.existsSync(heritageCatalogPath)) {
+    const heritageAssets = JSON.parse(fs.readFileSync(heritageCatalogPath, 'utf8'));
+    for (const asset of heritageAssets) {
+      manifest.push({ name: asset.id, url: `assets/${asset.file}`, scale: 1 });
+    }
+  }
   return manifest;
 }
 

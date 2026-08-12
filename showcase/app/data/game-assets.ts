@@ -1,12 +1,14 @@
 import metricsJson from "./asset-metrics.json";
+import lostHeritageJson from "./lost-heritage-assets.json";
 
 export const CATEGORIES = [
-  "People",
+  "Lost Heritage",
   "Homes & Neighbourhoods",
   "Culture & Landmarks",
   "Transit & Movement",
   "Street Life & Nature",
   "Service Gear",
+  "People",
 ] as const;
 
 export type AssetCategory = (typeof CATEGORIES)[number];
@@ -61,6 +63,7 @@ const ICONIC_ASSET_IDS = [
 ] as const;
 
 const categoryPriority: Record<AssetCategory, number> = {
+  "Lost Heritage": 100,
   "Homes & Neighbourhoods": 200,
   "Culture & Landmarks": 300,
   "Transit & Movement": 400,
@@ -123,6 +126,10 @@ type AssetSeed = {
   singaporeContext: string;
   inspiration?: string;
   historySource?: { label: string; url: string };
+  featured?: boolean;
+  provenance?: string;
+  provenanceDetail?: string;
+  productionStory?: string;
 };
 
 function buildAsset(seed: AssetSeed): CollectionAsset {
@@ -134,16 +141,17 @@ function buildAsset(seed: AssetSeed): CollectionAsset {
     compressed: true,
   };
   const slug = seed.id.replace(/:/g, "-");
+  const metricSummary = `${itemMetrics.meshCount.toLocaleString()} mesh${itemMetrics.meshCount === 1 ? "" : "es"}, ${itemMetrics.materials.toLocaleString()} material${itemMetrics.materials === 1 ? "" : "s"}, and ${itemMetrics.triangles.toLocaleString()} triangles. ${itemMetrics.compressed ? "Draco-compressed for the browser." : "Prepared for browser delivery."}`;
   return {
     ...seed,
     slug,
     modelUrl: `/models/${seed.file}`,
     collection: "game",
     downloadAllowed: true,
-    provenance: "Made for Kampung Call",
-    provenanceDetail:
+    provenance: seed.provenance ?? "Made for Kampung Call",
+    provenanceDetail: seed.provenanceDetail ??
       "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present.",
-    productionStory: `${itemMetrics.meshCount.toLocaleString()} mesh${itemMetrics.meshCount === 1 ? "" : "es"}, ${itemMetrics.materials.toLocaleString()} material${itemMetrics.materials === 1 ? "" : "s"}, and ${itemMetrics.triangles.toLocaleString()} triangles. ${itemMetrics.compressed ? "Draco-compressed for the browser." : "Prepared for browser delivery."}`,
+    productionStory: seed.productionStory ? `${seed.productionStory} ${metricSummary}` : metricSummary,
     metrics: itemMetrics,
   };
 }
@@ -211,4 +219,6 @@ const seeds: AssetSeed[] = [
   { id: "wifi-kit", name: "Wi-Fi Mesh Kit", file: "wifi-kit-v2.glb", category: "Service Gear", intro: "Three compact nodes designed for placement, range and line-of-sight decisions.", gameContext: "Forms the physical vocabulary of the mesh-deployment scenario.", singaporeContext: "Represents the indoor layer of connectivity shaped by walls, layouts and dense vertical living." },
 ];
 
-export const GAME_ASSETS = sortAssetsByIconicLevel(seeds.map(buildAsset));
+const lostHeritageSeeds = lostHeritageJson as AssetSeed[];
+
+export const GAME_ASSETS = sortAssetsByIconicLevel([...seeds, ...lostHeritageSeeds].map(buildAsset));

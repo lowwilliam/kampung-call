@@ -21,7 +21,7 @@ async function listFiles(root, prefix = "") {
 
 test("keeps individual models available without publishing a mass-download archive", async () => {
   const modelFiles = (await listFiles(modelsRoot)).filter((name) => name.endsWith(".glb"));
-  assert.equal(modelFiles.length, 55);
+  assert.equal(modelFiles.length, 68);
   await Promise.all(modelFiles.map((name) => access(path.join(modelsRoot, name))));
   await assert.rejects(access(downloadsRoot));
 });

@@ -1,0 +1,39 @@
+{
+  "texture": {
+    "width": 128,
+    "height": 64,
+    "ocean": "#3d7ea6",
+    "land": "#35c46b",
+    "continents": [
+      [30, 26, 16, 12, 0.4],
+      [84, 40, 20, 10, -0.3],
+      [110, 18, 10, 8, 0.2]
+    ]
+  },
+  "sphere": {
+    "radius": 1.1,
+    "widthSegments": 16,
+    "heightSegments": 12,
+    "height": 1.9
+  },
+  "ring": {
+    "radius": 1.4,
+    "tube": 0.07,
+    "radialSegments": 8,
+    "tubularSegments": 26,
+    "color": "#f2c14e",
+    "height": 1.9,
+    "rotationX": 0.5
+  },
+  "fountain": {
+    "baseTopRadius": 1.5,
+    "baseBottomRadius": 1.7,
+    "baseHeight": 0.4,
+    "baseSegments": 14,
+    "baseColor": "#d9d3c7",
+    "waterRadius": 1.35,
+    "waterHeight": 0.1,
+    "waterSegments": 14,
+    "waterColor": "#5cc0d8"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T07:02:57.037Z",
+  "generatedAt": "2026-08-12T07:48:19.023Z",
   "manifest": [
     {
       "name": "engineer",
@@ -1100,17 +1100,277 @@
       "kind": "hero",
       "budget": 35000,
       "overBudget": false
+    },
+    {
+      "name": "lost-comcentre",
+      "url": "assets/lost-heritage/comcentre.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 13,
+        "height": 25.770000030100345,
+        "depth": 9.600000047683716
+      },
+      "minY": 0,
+      "maxY": 25.770000030100345,
+      "requiredRadius": 8.080222783369393,
+      "triangles": 1980,
+      "materials": 7,
+      "meshCount": 68,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-national-theatre",
+      "url": "assets/lost-heritage/national-theatre.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 15,
+        "height": 12.141396522521973,
+        "depth": 16.23499994277954
+      },
+      "minY": 0,
+      "maxY": 12.141396522521973,
+      "requiredRadius": 11.05186888202683,
+      "triangles": 1252,
+      "materials": 6,
+      "meshCount": 37,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-national-library-stamford",
+      "url": "assets/lost-heritage/national-library-stamford.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 15.95,
+        "height": 8.335000000596047,
+        "depth": 10.450000095367432
+      },
+      "minY": 0,
+      "maxY": 8.335000000596047,
+      "requiredRadius": 9.534214728979773,
+      "triangles": 1288,
+      "materials": 7,
+      "meshCount": 85,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-van-kleef-aquarium",
+      "url": "assets/lost-heritage/van-kleef-aquarium.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 20,
+        "height": 7.2699999970197675,
+        "depth": 10.55
+      },
+      "minY": 0,
+      "maxY": 7.2699999970197675,
+      "requiredRadius": 11.305999513532628,
+      "triangles": 1512,
+      "materials": 7,
+      "meshCount": 126,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-former-national-stadium",
+      "url": "assets/lost-heritage/former-national-stadium.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 24.200000047683716,
+        "height": 11.43999999165535,
+        "depth": 16.300938946045974
+      },
+      "minY": 0,
+      "maxY": 11.43999999165535,
+      "requiredRadius": 14.589042230648746,
+      "triangles": 8132,
+      "materials": 7,
+      "meshCount": 78,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-pearl-bank-apartments",
+      "url": "assets/lost-heritage/pearl-bank-apartments.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 20,
+        "height": 23.65000001192093,
+        "depth": 20
+      },
+      "minY": 0,
+      "maxY": 23.65000001192093,
+      "requiredRadius": 14.142135623730951,
+      "triangles": 11936,
+      "materials": 5,
+      "meshCount": 971,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-tanglin-shopping-centre",
+      "url": "assets/lost-heritage/tanglin-shopping-centre.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 19.200000095367432,
+        "height": 10.400000095367432,
+        "depth": 7.875000053644181
+      },
+      "minY": -4.7683715642676816e-8,
+      "maxY": 10.400000047683715,
+      "requiredRadius": 10.376121981585957,
+      "triangles": 1212,
+      "materials": 6,
+      "meshCount": 70,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-amber-mansions",
+      "url": "assets/lost-heritage/amber-mansions.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 18.5700000166893,
+        "height": 9.290606474876403,
+        "depth": 15
+      },
+      "minY": 0,
+      "maxY": 9.290606474876403,
+      "requiredRadius": 11.935712176278386,
+      "triangles": 7720,
+      "materials": 4,
+      "meshCount": 92,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-eu-court",
+      "url": "assets/lost-heritage/eu-court.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 20.672539809311534,
+        "height": 12.15,
+        "depth": 16.572539904678965
+      },
+      "minY": 0,
+      "maxY": 12.15,
+      "requiredRadius": 13.247669427674316,
+      "triangles": 6336,
+      "materials": 6,
+      "meshCount": 90,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-alkaff-arcade",
+      "url": "assets/lost-heritage/alkaff-arcade.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 19.810000009536743,
+        "height": 10.660000015497207,
+        "depth": 8.05
+      },
+      "minY": 0,
+      "maxY": 10.660000015497207,
+      "requiredRadius": 10.691569112831916,
+      "triangles": 9477,
+      "materials": 7,
+      "meshCount": 120,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-beauty-world-market",
+      "url": "assets/lost-heritage/beauty-world-market.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 12.750000023841858,
+        "height": 7.180071020126343,
+        "depth": 22.25
+      },
+      "minY": -2.3841857821338408e-8,
+      "maxY": 7.180070996284485,
+      "requiredRadius": 12.822100067929272,
+      "triangles": 1664,
+      "materials": 6,
+      "meshCount": 97,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-tang-dynasty-city",
+      "url": "assets/lost-heritage/tang-dynasty-city.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 19.099999952316285,
+        "height": 11.57999997973442,
+        "depth": 25.099999952316285
+      },
+      "minY": 0,
+      "maxY": 11.57999997973442,
+      "requiredRadius": 15.770383601745072,
+      "triangles": 1400,
+      "materials": 6,
+      "meshCount": 76,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
+    },
+    {
+      "name": "lost-tank-road-railway-station",
+      "url": "assets/lost-heritage/tank-road-railway-station.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 25,
+        "height": 10.950000071525574,
+        "depth": 24
+      },
+      "minY": -4.768371586472142e-8,
+      "maxY": 10.950000023841858,
+      "requiredRadius": 17.327723451163457,
+      "triangles": 1544,
+      "materials": 8,
+      "meshCount": 87,
+      "compressed": true,
+      "kind": "hero",
+      "budget": 35000,
+      "overBudget": false
     }
   ],
   "unreferenced": [],
   "legacyBrandedAssets": [],
   "failures": [],
   "summary": {
-    "assets": 55,
-    "triangles": 343195,
+    "assets": 68,
+    "triangles": 398648,
     "unreferenced": 0,
     "assetsOverBudget": 6,
-    "materialsOverBudget": 9,
+    "materialsOverBudget": 21,
     "ungrounded": 9,
     "uncompressed": 0
   }
