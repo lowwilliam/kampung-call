@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES } from "../data/game-assets";
 import { ModelViewer } from "./ModelViewer";
@@ -107,7 +106,7 @@ export function SubmitExperience() {
     const fullUrl = typeof window === "undefined" ? receipt.receiptUrl : `${window.location.origin}${receipt.receiptUrl}`;
     return (
       <main className="submit-success-page">
-        <Link className="back-link" href="/">← The Collection</Link>
+        <a className="back-link" href="/">← The Collection</a>
         <section className="success-card">
           <span className="success-mark">✓</span>
           <p className="eyebrow">Submission received</p>
@@ -116,7 +115,7 @@ export function SubmitExperience() {
           <div className="receipt-box"><span>Private receipt link</span><code>{fullUrl}</code><button type="button" onClick={() => void navigator.clipboard.writeText(fullUrl)}>Copy link</button></div>
           <div className="receipt-box"><span>Recovery code</span><code>{receipt.recoveryCode}</code><button type="button" onClick={() => void navigator.clipboard.writeText(receipt.recoveryCode)}>Copy code</button></div>
           <ul>{receipt.checks.map((check) => <li key={check}>{check}</li>)}</ul>
-          <Link className="primary-link" href={receipt.receiptUrl}>Open my receipt ↗</Link>
+          <a className="primary-link" href={receipt.receiptUrl}>Open my receipt ↗</a>
         </section>
       </main>
     );
@@ -125,7 +124,7 @@ export function SubmitExperience() {
   return (
     <div className="submission-page">
       <header className="submission-header">
-        <Link href="/">← The Collection</Link>
+        <a href="/">← The Collection</a>
         <span>Community collection · Open call</span>
       </header>
       <main className="submission-main">

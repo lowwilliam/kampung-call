@@ -26,6 +26,11 @@ const eslintConfig = defineConfig([
   jsxA11y.flatConfigs.recommended,
   next.configs["core-web-vitals"],
   {
+    // vinext's production Link prefetch shim currently throws during setup.
+    // Plain anchors keep these same-origin routes reliable until that shim is fixed.
+    rules: {
+      "@next/next/no-html-link-for-pages": "off",
+    },
     languageOptions: {
       globals: {
         ...globals.browser,

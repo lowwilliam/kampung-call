@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 type SubmissionStatus = {
@@ -81,7 +80,7 @@ export function ReceiptPortal({ token }: { token: string }) {
   };
 
   if (state === "loading") return <main className="receipt-page"><div className="receipt-loading">Opening your private receipt…</div></main>;
-  if (state === "missing") return <main className="receipt-page"><Link className="back-link" href="/">← The Collection</Link><section className="receipt-lookup"><p className="eyebrow">Receipt not found</p><h1>This private link is incomplete or invalid.</h1><Link className="primary-link" href="/receipt">Enter a recovery code →</Link></section></main>;
+  if (state === "missing") return <main className="receipt-page"><a className="back-link" href="/">← The Collection</a><section className="receipt-lookup"><p className="eyebrow">Receipt not found</p><h1>This private link is incomplete or invalid.</h1><a className="primary-link" href="/receipt">Enter a recovery code →</a></section></main>;
   if (!submission) return null;
 
   const status = statusCopy[submission.status] ?? { label: submission.status, note: "This submission is being reviewed." };
@@ -90,7 +89,7 @@ export function ReceiptPortal({ token }: { token: string }) {
 
   return (
     <main className="receipt-page">
-      <Link className="back-link" href="/">← The Collection</Link>
+      <a className="back-link" href="/">← The Collection</a>
       <section className="receipt-card">
         <div className="receipt-heading">
           <div><p className="eyebrow">Private receipt</p><h1>{submission.displayName}</h1><p>Submitted by {submission.contributorName}</p></div>
@@ -112,7 +111,7 @@ export function ReceiptPortal({ token }: { token: string }) {
         )}
         {message && <p className="receipt-message" role="status">{message}</p>}
         <div className="receipt-actions">
-          {submission.status === "published" && <Link href="/?collection=community">View community collection ↗</Link>}
+          {submission.status === "published" && <a href="/?collection=community">View community collection ↗</a>}
           {canWithdraw && <button type="button" onClick={() => void withdraw()} disabled={state === "updating"}>Withdraw submission</button>}
         </div>
       </section>

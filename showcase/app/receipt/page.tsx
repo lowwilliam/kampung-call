@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 export default function ReceiptLookup() {
   const [code, setCode] = useState("");
   return (
     <main className="receipt-page">
-      <Link className="back-link" href="/">← The Collection</Link>
+      <a className="back-link" href="/">← The Collection</a>
       <section className="receipt-lookup">
         <p className="eyebrow">Private submission receipt</p>
         <h1>Return to your model.</h1>

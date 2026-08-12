@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { CATEGORIES } from "../data/game-assets";
 import { ModelViewer } from "./ModelViewer";
@@ -163,7 +162,7 @@ export function AdminPortal() {
   if (authenticated === null) return <main className="admin-login-page"><div className="receipt-loading">Opening the review room…</div></main>;
   if (!authenticated) return (
     <main className="admin-login-page">
-      <Link className="back-link" href="/">← Public collection</Link>
+      <a className="back-link" href="/">← Public collection</a>
       <section className="admin-login-card">
         <span className="admin-seal">KC</span>
         <p className="eyebrow">Collection administration</p>
@@ -178,7 +177,7 @@ export function AdminPortal() {
   const reviewCount = submissions.filter((item) => ["submitted", "needs-review", "changes-requested"].includes(item.status)).length;
   return (
     <div className="admin-page">
-      <header className="admin-header"><Link href="/">KC / The Collection</Link><div><span>Password-protected review room</span><button type="button" onClick={() => void logout()}>Lock</button></div></header>
+      <header className="admin-header"><a href="/">KC / The Collection</a><div><span>Password-protected review room</span><button type="button" onClick={() => void logout()}>Lock</button></div></header>
       <main className="admin-main">
         <section className="admin-intro"><div><p className="eyebrow">Administrator</p><h1>Review with care.<br />Publish with confidence.</h1></div><div className="queue-count"><strong>{reviewCount}</strong><span>waiting for review</span></div></section>
         <nav className="admin-filters" aria-label="Submission states">

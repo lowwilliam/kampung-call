@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { CATEGORIES, CollectionAsset, GAME_ASSETS, sortAssetsByIconicLevel } from "../data/game-assets";
 import { CollectionGlobe } from "./CollectionGlobe";
@@ -326,9 +325,9 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
   return (
     <div className="collection-page">
       <header className="site-header">
-        <Link href="/" className="wordmark"><span>3D</span><strong>Singapore Collection</strong></Link>
+        <a href="/" className="wordmark"><span>3D</span><strong>Singapore Collection</strong></a>
         <nav aria-label="Primary navigation">
-          <Link className="submit-link" href="/submit">Submit your model</Link>
+          <a className="submit-link" href="/submit">Submit your model</a>
           <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
         </nav>
       </header>
@@ -401,7 +400,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
             <span>Community collection · Open call</span>
             <h2>The first community object could be yours.</h2>
             <p>Submit a self-contained GLB with a meaningful Singapore connection. Every accepted model receives the same 360° stage and creator credit.</p>
-            <Link href="/submit">Submit a model ↗</Link>
+            <a href="/submit">Submit a model ↗</a>
           </section>
         ) : (
           <section className="no-results"><h2>No objects found.</h2><button type="button" onClick={() => { setQuery(""); setCategory("All objects"); }}>Clear filters</button></section>
@@ -417,7 +416,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} 3D Singapore Collection</span>
         <p>Canonical shipped models only. Third-party placeholders are excluded until licensed files are present.</p>
-        <Link href="/admin">Admin</Link>
+        <a href="/admin">Admin</a>
       </footer>
 
       {activeAsset && (
