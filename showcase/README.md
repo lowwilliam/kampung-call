@@ -4,6 +4,8 @@ A standalone, editorial 3D catalogue for the 55 objects made for Kampung Call. E
 
 The site also includes an anonymous community-submission workflow for Singapore 3D assets, receipt-based status and withdrawal, a password-protected moderation desk, D1 metadata storage, and R2 quarantine/publishing storage.
 
+It now ships a versioned Asset API, the `kampung-assets` CLI and a local stdio MCP server for permission-aware asset search, upload, download and submission recovery. See [docs/ASSET-API.md](docs/ASSET-API.md).
+
 ## Local development
 
 ```bash
@@ -18,6 +20,8 @@ npm run dev
 ```bash
 npm test
 ```
+
+Run the focused CLI and MCP protocol tests with `npm run test:tooling`.
 
 ## Required hosted secrets
 

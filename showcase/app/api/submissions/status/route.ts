@@ -5,7 +5,7 @@ async function findByReceipt(receipt: string) {
   const { DB } = bindings();
   return DB.prepare(
     `SELECT id, display_name, contributor_name, status, admin_notes, validation_status,
-      validation_checks, file_key, public_file_key, file_name, file_size, created_at,
+      validation_checks, file_key, public_file_key, file_name, file_size, download_allowed, created_at,
       updated_at, published_at FROM submissions WHERE receipt_hash = ?`,
   )
     .bind(await sha256(receipt))
@@ -23,6 +23,7 @@ function publicStatus(row: Record<string, string | number | null>) {
     validationChecks: JSON.parse(String(row.validation_checks || "[]")),
     fileName: row.file_name,
     fileSize: row.file_size,
+    downloadAllowed: Boolean(row.download_allowed),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     publishedAt: row.published_at,

@@ -17,6 +17,7 @@ type PublishedRow = {
   animation_count: number;
   mesh_count: number;
   featured: number;
+  download_allowed: number;
 };
 
 export async function GET() {
@@ -26,7 +27,7 @@ export async function GET() {
   const result = await DB.prepare(
     `SELECT id, slug, display_name, contributor_name, linkedin_url, display_linkedin,
       description, singapore_connection, source_name, source_url, category,
-      triangle_count, material_count, animation_count, mesh_count, featured
+      triangle_count, material_count, animation_count, mesh_count, featured, download_allowed
      FROM submissions WHERE status = 'published'
      ORDER BY featured DESC, published_at DESC`,
   ).all<PublishedRow>();
@@ -48,6 +49,8 @@ export async function GET() {
     creator: row.contributor_name,
     linkedinUrl: row.display_linkedin ? row.linkedin_url : undefined,
     featured: Boolean(row.featured),
+    downloadAllowed: Boolean(row.download_allowed),
+    downloadUrl: row.download_allowed ? `/api/v1/assets/${encodeURIComponent(`community:${row.id}`)}/download` : undefined,
     metrics: {
       triangles: row.triangle_count,
       materials: row.material_count,

@@ -374,8 +374,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .collection-intro h1 { font-size: clamp(3.8rem, 19vw, 6.8rem); }
   .intro-note { grid-template-columns: 70px 1fr; }
   .intro-note strong { font-size: 4rem; }
-  .intro-side { grid-template-columns: minmax(0, 1fr) auto; align-items: end; justify-items: stretch; }
-  .collection-globe-wrap { justify-self: end; width: 145px; }
+  .intro-side { grid-template-columns: minmax(0, 1fr) 145px; gap: 1rem; align-items: end; justify-items: stretch; }
+  .intro-note { grid-column: 1; grid-row: 1; }
+  .collection-globe-wrap { grid-column: 2; grid-row: 1; justify-self: end; width: 145px; }
   .collection-principle { grid-template-columns: 1fr; padding: 2.5rem 1rem; }
   .collection-principle > span { justify-self: start; }
   .catalogue-controls { padding-right: 1rem; padding-left: 1rem; }

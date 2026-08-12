@@ -12,6 +12,7 @@ type SubmissionStatus = {
   validationChecks: string[];
   fileName: string;
   fileSize: number;
+  downloadAllowed: boolean;
   createdAt: string;
   updatedAt: string;
   publishedAt?: string | null;
@@ -100,6 +101,7 @@ export function ReceiptPortal({ token }: { token: string }) {
         <div className="receipt-columns">
           <div><span>File</span><strong>{submission.fileName}</strong><small>{(submission.fileSize / 1024 / 1024).toFixed(2)} MB</small></div>
           <div><span>Submitted</span><strong>{new Date(submission.createdAt).toLocaleDateString()}</strong><small>Updated {new Date(submission.updatedAt).toLocaleDateString()}</small></div>
+          <div><span>Downloads</span><strong>{submission.downloadAllowed ? "Allowed" : "Not granted"}</strong><small>This permission stays with the submission.</small></div>
         </div>
         <ul className="check-list">{submission.validationChecks.map((check) => <li key={check}><span>✓</span>{check}</li>)}</ul>
         {canRevise && (

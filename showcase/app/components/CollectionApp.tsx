@@ -22,6 +22,10 @@ function downloadFileName(asset: CollectionAsset) {
   return asset.file.split("/").at(-1) ?? `${asset.slug}.glb`;
 }
 
+function downloadUrl(asset: CollectionAsset) {
+  return asset.downloadUrl ?? asset.modelUrl;
+}
+
 function AssetCard({
   asset,
   onOpen,
@@ -178,13 +182,13 @@ function DetailOverlay({
           <p className="provenance-note">{asset.provenanceDetail}</p>
 
           <div className="download-panel">
-            {asset.collection === "game" ? (
+            {asset.downloadAllowed ? (
               <>
-                <a className="asset-download-link" href={asset.modelUrl} download={downloadFileName(asset)}>
+                <a className="asset-download-link" href={downloadUrl(asset)} download={downloadFileName(asset)}>
                   <span>Download GLB</span>
                   <small>{downloadFileName(asset)} · ↓</small>
                 </a>
-                <p>For personal evaluation and project review. Downloading does not grant redistribution, resale or reuse rights.</p>
+                <p>{asset.collection === "game" ? "For personal evaluation and project review. Downloading does not grant redistribution, resale or reuse rights." : "The creator has allowed individual GLB downloads. The credited licence and source terms still apply."}</p>
               </>
             ) : (
               <p>Community models do not receive a download button unless their creator grants it. Like any web-rendered 3D file, model data must still be delivered to the visitor’s browser for viewing.</p>
@@ -373,7 +377,7 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
         </section>
 
         <section className="results-line" aria-live="polite">
-          <span>{`${filtered.length} ${filtered.length === 1 ? "object" : "objects"}`}</span>
+          <span>{filtered.length} {filtered.length === 1 ? "object" : "objects"}</span>
           <span>Each model rotates automatically</span>
         </section>
 

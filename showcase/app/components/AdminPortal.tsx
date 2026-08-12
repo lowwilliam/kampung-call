@@ -27,6 +27,7 @@ type AdminSubmission = {
   status: string;
   admin_notes: string;
   featured: number;
+  download_allowed: number;
   created_at: string;
   updated_at: string;
   published_at: string | null;
@@ -79,7 +80,7 @@ function AdminCard({ item, onUpdated }: { item: AdminSubmission; onUpdated: () =
           {item.open_reports > 0 && <strong className="report-count">{item.open_reports} open {item.open_reports === 1 ? "report" : "reports"}</strong>}
         </div>
         <div className="technical-strip">
-          <span>{(item.file_size / 1024 / 1024).toFixed(2)} MB</span><span>{item.triangle_count.toLocaleString()} tris</span><span>{item.material_count} materials</span><span>{item.animation_count} clips</span>
+          <span>{(item.file_size / 1024 / 1024).toFixed(2)} MB</span><span>{item.triangle_count.toLocaleString()} tris</span><span>{item.material_count} materials</span><span>{item.animation_count} clips</span><span>{item.download_allowed ? "Downloads granted" : "View only"}</span>
         </div>
         <ul className="admin-checks">{item.validation_checks.map((check) => <li key={check}>{check}</li>)}</ul>
         <details className="admin-edit" open={item.status !== "published"}>

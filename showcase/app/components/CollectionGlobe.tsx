@@ -121,7 +121,7 @@ export function CollectionGlobe() {
   return (
     <div className="collection-globe-wrap">
       <div className="collection-globe" ref={hostRef} />
-      <span>Drag the globe</span>
+      <span>Move the globe</span>
     </div>
   );
 }

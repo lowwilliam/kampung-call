@@ -15,6 +15,7 @@ export const submissions = sqliteTable(
     sourceName: text("source_name").notNull(),
     sourceUrl: text("source_url"),
     rightsAttested: integer("rights_attested", { mode: "boolean" }).notNull().default(false),
+    downloadAllowed: integer("download_allowed", { mode: "boolean" }).notNull().default(false),
     category: text("category").notNull().default("Street Life & Nature"),
     fileKey: text("file_key").notNull(),
     publicFileKey: text("public_file_key"),

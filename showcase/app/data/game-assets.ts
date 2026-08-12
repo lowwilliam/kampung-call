@@ -30,6 +30,8 @@ export type CollectionAsset = {
   creator?: string;
   linkedinUrl?: string;
   featured?: boolean;
+  downloadAllowed?: boolean;
+  downloadUrl?: string;
   metrics: {
     triangles: number;
     materials: number;
@@ -137,6 +139,7 @@ function buildAsset(seed: AssetSeed): CollectionAsset {
     slug,
     modelUrl: `/models/${seed.file}`,
     collection: "game",
+    downloadAllowed: true,
     provenance: "Made for Kampung Call",
     provenanceDetail:
       "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present.",

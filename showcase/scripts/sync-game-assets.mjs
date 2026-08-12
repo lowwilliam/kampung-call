@@ -1,4 +1,4 @@
-import { access, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, copyFile, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -19,13 +19,12 @@ await mkdir(outputRoot, { recursive: true });
 await rm(downloadOutput, { recursive: true, force: true });
 
 const metrics = {};
-for (const item of audit.manifest) {
+await Promise.all(audit.manifest.map(async (item) => {
   const relative = item.url.replace(/^assets\//, "");
   const source = path.join(gameRoot, item.url);
   const destination = path.join(outputRoot, relative);
-  const model = await readFile(source);
   await mkdir(path.dirname(destination), { recursive: true });
-  await writeFile(destination, model);
+  await copyFile(source, destination);
   metrics[item.url] = {
     triangles: item.triangles,
     materials: item.materials,
@@ -33,7 +32,7 @@ for (const item of audit.manifest) {
     compressed: item.compressed,
     dimensions: item.dimensions,
   };
-}
+}));
 
 await rm(dracoOutput, { recursive: true, force: true });
 await cp(dracoSource, dracoOutput, { recursive: true });

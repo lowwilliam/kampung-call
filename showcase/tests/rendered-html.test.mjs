@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -26,15 +26,27 @@ test("server-renders the public collection", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /3D Singapore/i);
-  assert.match(html, /55 objects/i);
+  assert.match(html.replaceAll("<!-- -->", ""), /55\s+objects/i);
   assert.match(html, /Community/i);
   assert.match(html, /One model at a time/i);
+  assert.match(html, /Move the globe/i);
   assert.doesNotMatch(html, /Download all/i);
   assert.doesNotMatch(html, /\/downloads\//i);
   assert.doesNotMatch(html, /asset-download-button/i);
   assert.match(html, /Peranakan House/i);
   assert.ok(html.indexOf("Peranakan House") < html.indexOf("Field Engineer"));
+  const categories = [...html.matchAll(/data-category="([^"]+)"/g)].map((match) => match[1]);
+  const firstPerson = categories.indexOf("People");
+  assert.ok(firstPerson > 0, "people should appear after non-people assets");
+  assert.ok(categories.slice(firstPerson).every((item) => item === "People"), "people should remain at the back of the collection");
   assert.doesNotMatch(html, /Your site is taking shape/i);
+});
+
+test("keeps the movable globe in the right-hand hero column", async () => {
+  const css = await readFile(path.join(siteRoot, "app", "globals.css"), "utf8");
+  assert.match(css, /\.collection-intro\s*\{[^}]*grid-template-columns:/s);
+  assert.match(css, /\.intro-side\s*\{[^}]*justify-items:\s*end/s);
+  assert.match(css, /\.collection-globe\s*\{[^}]*cursor:\s*grab/s);
 });
 
 test("offers an individual download only inside an original model detail page", async () => {

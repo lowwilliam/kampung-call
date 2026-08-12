@@ -2,6 +2,10 @@
   "name": "3d-singapore-collection",
   "version": "0.1.0",
   "private": true,
+  "bin": {
+    "kampung-assets": "./bin/kampung-assets.mjs",
+    "kampung-assets-mcp": "./mcp/server.mjs"
+  },
   "engines": {
     "node": ">=22.13.0"
   },
@@ -13,17 +17,23 @@
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "cli": "node bin/kampung-assets.mjs",
+    "mcp": "node mcp/server.mjs",
+    "test:tooling": "node --test tests/asset-tooling.test.mjs tests/mcp-server.test.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
     "drizzle-orm": "0.45.2",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "three": "0.180.0"
+    "three": "0.180.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
     "@eslint/js": "9.39.4",
+    "@modelcontextprotocol/client": "^2.0.0",
     "@next/eslint-plugin-next": "16.2.6",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",

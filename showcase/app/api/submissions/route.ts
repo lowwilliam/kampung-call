@@ -39,6 +39,7 @@ export async function POST(request: Request) {
   const sourceUrl = text(form, "sourceUrl").slice(0, 500);
   const category = text(form, "category").slice(0, 80) || "Street Life & Nature";
   const rightsAttested = text(form, "rightsAttested") === "true";
+  const downloadAllowed = text(form, "allowDownload") === "true";
   const displayLinkedin = text(form, "displayLinkedin") === "true";
   const file = form.get("model");
 
@@ -82,14 +83,14 @@ export async function POST(request: Request) {
   await DB.prepare(
     `INSERT INTO submissions (
       id, receipt_hash, slug, display_name, contributor_name, linkedin_url, display_linkedin,
-      description, singapore_connection, source_name, source_url, rights_attested, category,
+      description, singapore_connection, source_name, source_url, rights_attested, download_allowed, category,
       file_key, file_name, file_size, triangle_count, material_count, animation_count, mesh_count,
       validation_status, validation_checks, status, submitter_fingerprint, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   )
     .bind(
       id, receiptHash, slug, displayName, contributorName, linkedinUrl || null, displayLinkedin ? 1 : 0,
-      description, singaporeConnection, sourceName, sourceUrl || null, 1, category,
+      description, singaporeConnection, sourceName, sourceUrl || null, 1, downloadAllowed ? 1 : 0, category,
       fileKey, file.name, file.size, inspection.triangles, inspection.materials, inspection.animations, inspection.meshes,
       inspection.status, JSON.stringify(inspection.checks), status, fingerprint, now, now,
     )
@@ -100,6 +101,8 @@ export async function POST(request: Request) {
     {
       receiptUrl: `/receipt/${receipt}`,
       recoveryCode: receipt,
+      submissionId: id,
+      assetId: `community:${id}`,
       status,
       checks: inspection.checks,
     },

@@ -43,6 +43,7 @@ export function SubmitExperience() {
   const [model, setModel] = useState<File | null>(null);
   const [modelUrl, setModelUrl] = useState("");
   const [rights, setRights] = useState(false);
+  const [allowDownload, setAllowDownload] = useState(false);
   const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [receipt, setReceipt] = useState<{ receiptUrl: string; recoveryCode: string; checks: string[] } | null>(null);
@@ -87,6 +88,7 @@ export function SubmitExperience() {
     form.set("model", model);
     Object.entries(draft).forEach(([key, value]) => form.set(key, String(value)));
     form.set("rightsAttested", "true");
+    form.set("allowDownload", String(allowDownload));
     form.set("website", "");
     try {
       const response = await fetch("/api/submissions", { method: "POST", body: form });
@@ -179,6 +181,7 @@ export function SubmitExperience() {
                 <div><span>Story</span><strong>{draft.category}</strong><p>{draft.singaporeConnection}</p></div>
               </div>
               <label className="rights-grant"><input type="checkbox" checked={rights} onChange={(event) => setRights(event.target.checked)} /><span><strong>I own this model or have permission to submit it.</strong>I grant the 3D Singapore Collection a revocable, non-exclusive right to store, render, resize, promote and display it. Ownership stays with me. The gallery will not offer a download button without separate permission, but any web-rendered model must be delivered to visitors’ browsers and cannot be made copy-proof.</span></label>
+              <label className="rights-grant"><input type="checkbox" checked={allowDownload} onChange={(event) => setAllowDownload(event.target.checked)} /><span><strong>Allow individual GLB downloads.</strong>This optional grant lets visitors, the CLI and the MCP server download the published model. It does not grant redistribution or resale rights beyond the licence you provide.</span></label>
             </div>
           )}
 

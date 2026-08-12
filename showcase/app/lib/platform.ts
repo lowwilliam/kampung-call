@@ -25,6 +25,7 @@ const schemaStatements = [
     source_name TEXT NOT NULL,
     source_url TEXT,
     rights_attested INTEGER NOT NULL DEFAULT 0,
+    download_allowed INTEGER NOT NULL DEFAULT 0,
     category TEXT NOT NULL DEFAULT 'Street Life & Nature',
     file_key TEXT NOT NULL,
     public_file_key TEXT,
@@ -77,11 +78,18 @@ const schemaStatements = [
 
 let schemaReady: Promise<void> | null = null;
 
-export function ensureSchema() {
-  if (!schemaReady) {
-    const { DB } = bindings();
-    schemaReady = DB.batch(schemaStatements.map((statement) => DB.prepare(statement))).then(() => undefined);
+async function prepareSchema() {
+  const { DB } = bindings();
+  await DB.batch(schemaStatements.map((statement) => DB.prepare(statement)));
+  const columns = await DB.prepare("PRAGMA table_info(submissions)").all<{ name: string }>();
+  if (!(columns.results ?? []).some((column) => column.name === "download_allowed")) {
+    await DB.prepare("ALTER TABLE submissions ADD COLUMN download_allowed INTEGER NOT NULL DEFAULT 0").run();
   }
+  await DB.prepare("PRAGMA optimize").run();
+}
+
+export function ensureSchema() {
+  schemaReady ??= prepareSchema();
   return schemaReady;
 }
 
