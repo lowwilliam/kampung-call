@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { root } from './lib/project.mjs';
 
 const assetsRoot = path.join(root, 'assets');
@@ -158,15 +159,13 @@ for (const entry of manifest) {
   catch (error) { failures.push(`${entry.name}: ${error.message}`); }
 }
 const referenced = new Set(manifest.map((entry) => entry.url));
-const allGlbs = [];
-function walk(dir) {
-  for (const name of fs.readdirSync(dir)) {
-    const file = path.join(dir, name);
-    if (fs.statSync(file).isDirectory()) walk(file);
-    else if (name.endsWith('.glb')) allGlbs.push(path.relative(root, file).split(path.sep).join('/'));
-  }
-}
-walk(assetsRoot);
+// Only versioned assets can enter a reproducible release. Local Blender exports,
+// legacy aliases, and Finder-created " 2" duplicates must not contaminate the
+// canonical audit or make a clean CI checkout disagree with a developer machine.
+const allGlbs = execFileSync('git', ['ls-files', '--', 'assets/*.glb', 'assets/**/*.glb'], {
+  cwd: root,
+  encoding: 'utf8',
+}).trim().split('\n').filter(Boolean);
 const unreferenced = allGlbs.filter((file) => !referenced.has(file));
 const legacyBrandedAssets = allGlbs.filter((file) => /(?:smu|nus|ntu|sutd|mbs|merlion|esplanade|singapore-bus|mrt-train)/i.test(path.basename(file)));
 const report = {

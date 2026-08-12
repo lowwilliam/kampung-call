@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T15:05:08.935Z",
+  "generatedAt": "2026-08-12T07:02:57.037Z",
   "manifest": [
     {
       "name": "engineer",
@@ -266,16 +266,16 @@
       "url": "assets/national-university-v2.glb",
       "scale": 3.16,
       "dimensions": {
-        "width": 23.384000301361084,
-        "height": 9.985622873306275,
-        "depth": 16.431459960937502
+        "width": 27.176001205444337,
+        "height": 13.113999948203563,
+        "depth": 17.380000000000003
       },
-      "minY": 0,
-      "maxY": 9.985622873306275,
-      "requiredRadius": 14.289894563483905,
-      "triangles": 2630,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.03159999340772629,
+      "maxY": 13.145599941611291,
+      "requiredRadius": 16.12916180027896,
+      "triangles": 14192,
+      "materials": 9,
+      "meshCount": 44,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -286,16 +286,16 @@
       "url": "assets/technological-university-v2.glb",
       "scale": 3.48,
       "dimensions": {
-        "width": 25.752000331878662,
-        "height": 10.996825189590455,
-        "depth": 18.0954052734375
+        "width": 29.23199867248535,
+        "height": 11.257800023853779,
+        "depth": 20.184000663757324
       },
-      "minY": 0,
-      "maxY": 10.996825189590455,
-      "requiredRadius": 15.736972493963288,
-      "triangles": 2620,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.034799992740154266,
+      "maxY": 11.292600016593934,
+      "requiredRadius": 17.761641458369926,
+      "triangles": 28904,
+      "materials": 6,
+      "meshCount": 124,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -306,16 +306,16 @@
       "url": "assets/management-university-v2.glb",
       "scale": 3.47,
       "dimensions": {
-        "width": 25.678000330924988,
-        "height": 10.965225117206574,
-        "depth": 18.043406982421875
+        "width": 29.495,
+        "height": 12.734899825230242,
+        "depth": 18.73800033092499
       },
-      "minY": 0,
-      "maxY": 10.965225117206574,
-      "requiredRadius": 15.691751308635807,
-      "triangles": 2634,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.034699992761015895,
+      "maxY": 12.769599817991258,
+      "requiredRadius": 17.471889432755585,
+      "triangles": 11516,
+      "materials": 8,
+      "meshCount": 36,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -326,16 +326,16 @@
       "url": "assets/design-university-v2.glb",
       "scale": 3.48,
       "dimensions": {
-        "width": 25.752000331878662,
-        "height": 10.996825189590455,
-        "depth": 18.0954052734375
+        "width": 30.624000663757325,
+        "height": 11.310000362992287,
+        "depth": 20.184000663757324
       },
-      "minY": 0,
-      "maxY": 10.996825189590455,
-      "requiredRadius": 15.736972493963288,
-      "triangles": 2650,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.034799992740154266,
+      "maxY": 11.34480035573244,
+      "requiredRadius": 18.33864293948959,
+      "triangles": 10488,
+      "materials": 7,
+      "meshCount": 40,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -446,20 +446,20 @@
       "url": "assets/postbox-v2.glb",
       "scale": 0.542,
       "dimensions": {
-        "width": 0.585347424030304,
-        "height": 1.1978200206756593,
-        "depth": 0.46828331166505816
+        "width": 0.5853600232601166,
+        "height": 1.197819972217083,
+        "depth": 0.46828800993160535
       },
       "minY": 0,
-      "maxY": 1.1978200206756593,
-      "requiredRadius": 0.374806905887187,
-      "triangles": 786,
-      "materials": 2,
-      "meshCount": 2,
+      "maxY": 1.197819972217083,
+      "requiredRadius": 0.37481329254603135,
+      "triangles": 7380,
+      "materials": 4,
+      "meshCount": 6,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "bench",
@@ -526,16 +526,16 @@
       "url": "assets/flyer-v2.glb",
       "scale": 3.68,
       "dimensions": {
-        "width": 24.36073272705078,
-        "height": 28.76202814559279,
-        "depth": 7.5578698083411835
+        "width": 25.74159957885742,
+        "height": 27.784000354507928,
+        "depth": 7.369199867844582
       },
-      "minY": 0,
-      "maxY": 28.76202814559279,
-      "requiredRadius": 12.753104475368323,
-      "triangles": 5004,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.2575999736785889,
+      "maxY": 28.04160032818652,
+      "requiredRadius": 13.387821476723472,
+      "triangles": 13972,
+      "materials": 6,
+      "meshCount": 99,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -766,20 +766,20 @@
       "url": "assets/busstop-v2.glb",
       "scale": 0.886,
       "dimensions": {
-        "width": 4.961600126743317,
-        "height": 2.900399851019696,
-        "depth": 2.237157233833394
+        "width": 5.1388001689910885,
+        "height": 2.918047542196147,
+        "depth": 2.231682338749064
       },
-      "minY": 0,
-      "maxY": 2.900399851019696,
-      "requiredRadius": 2.7213208330970633,
-      "triangles": 944,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.01772000950574875,
+      "maxY": 2.935767551701896,
+      "requiredRadius": 2.801235139983224,
+      "triangles": 2004,
+      "materials": 10,
+      "meshCount": 17,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "overheadbridge",
@@ -846,60 +846,60 @@
       "url": "assets/cat-v2.glb",
       "scale": 0.192,
       "dimensions": {
-        "width": 0.12479999542236328,
-        "height": 0.24671999001502992,
-        "depth": 0.13439999771118163
+        "width": 0.2672381286621094,
+        "height": 0.3239040012359619,
+        "depth": 0.3468212585449219
       },
-      "minY": 0,
-      "maxY": 0.24671999001502992,
-      "requiredRadius": 0.09170386884176088,
-      "triangles": 48,
-      "materials": 3,
-      "meshCount": 1,
+      "minY": 0.004416000366210937,
+      "maxY": 0.32832000160217284,
+      "requiredRadius": 0.2189184795703127,
+      "triangles": 5464,
+      "materials": 4,
+      "meshCount": 22,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "bicycle",
       "url": "assets/bicycle-v2.glb",
       "scale": 0.616,
       "dimensions": {
-        "width": 1.8418400058746338,
-        "height": 0.9517803354263306,
-        "depth": 0.2956747245788574
+        "width": 2.2052799530029294,
+        "height": 1.1118801044002236,
+        "depth": 0.4913539295196533
       },
-      "minY": 0,
-      "maxY": 0.9517803354263306,
-      "requiredRadius": 0.9327108541765576,
-      "triangles": 1536,
-      "materials": 1,
-      "meshCount": 1,
+      "minY": 0.0492799218520462,
+      "maxY": 1.1611600262522697,
+      "requiredRadius": 1.1296778694799468,
+      "triangles": 7892,
+      "materials": 7,
+      "meshCount": 44,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "birdcage",
       "url": "assets/birdcage-v2.glb",
       "scale": 0.463,
       "dimensions": {
-        "width": 0.8333999779224396,
-        "height": 0.3472499965503812,
-        "depth": 0.4861499779224396
+        "width": 0.6852400088310242,
+        "height": 1.1951317018774514,
+        "depth": 0.6852400088310242
       },
-      "minY": 0,
-      "maxY": 0.3472499965503812,
-      "requiredRadius": 0.4824151024364576,
-      "triangles": 72,
-      "materials": 3,
-      "meshCount": 1,
+      "minY": 0.06018999779224396,
+      "maxY": 1.2553216996696954,
+      "requiredRadius": 0.48453785698474694,
+      "triangles": 9456,
+      "materials": 9,
+      "meshCount": 29,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "bumboat",
@@ -926,20 +926,20 @@
       "url": "assets/router-kit-v2.glb",
       "scale": 1.14,
       "dimensions": {
-        "width": 2.621999945640564,
-        "height": 1.5503999844565985,
-        "depth": 1.9380000543594358
+        "width": 3.591000108718872,
+        "height": 1.7216627757681953,
+        "depth": 2.3369999456405637
       },
-      "minY": 0,
-      "maxY": 1.5503999844565985,
-      "requiredRadius": 1.6302398539506613,
-      "triangles": 60,
-      "materials": 3,
-      "meshCount": 1,
+      "minY": -0.041306742919837255,
+      "maxY": 1.680356032848358,
+      "requiredRadius": 2.1422447646535954,
+      "triangles": 4932,
+      "materials": 10,
+      "meshCount": 26,
       "compressed": true,
       "kind": "prop",
       "budget": 2000,
-      "overBudget": false
+      "overBudget": true
     },
     {
       "name": "serviceFibre",
@@ -1107,11 +1107,11 @@
   "failures": [],
   "summary": {
     "assets": 55,
-    "triangles": 245979,
+    "triangles": 343195,
     "unreferenced": 0,
-    "assetsOverBudget": 0,
-    "materialsOverBudget": 0,
-    "ungrounded": 0,
+    "assetsOverBudget": 6,
+    "materialsOverBudget": 9,
+    "ungrounded": 9,
     "uncompressed": 0
   }
 }

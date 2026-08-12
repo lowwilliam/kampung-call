@@ -1,6 +1,7 @@
 import bpy
 import math
 import os
+import sys
 from mathutils import Vector
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -136,13 +137,15 @@ def descendants(root):
     return out
 
 
-def optimise(root):
+def optimise(root, join_by_material=True):
     for obj in list(descendants(root)):
         if obj.type in {"FONT", "CURVE"}:
             bpy.ops.object.select_all(action="DESELECT")
             obj.select_set(True)
             bpy.context.view_layer.objects.active = obj
             bpy.ops.object.convert(target="MESH")
+    if not join_by_material:
+        return
     groups = {}
     for obj in descendants(root):
         if obj.type == "MESH":
@@ -159,8 +162,11 @@ def optimise(root):
         objs[0].parent = root
 
 
-def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9), ground=5.2):
-    optimise(root)
+def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9), ground=5.2,
+                 preserve_parts=False):
+    # Curves and text must become meshes for glTF.  Identity-critical assets can
+    # keep their semantic object hierarchy instead of being fused by material.
+    optimise(root, join_by_material=not preserve_parts)
     scene = bpy.context.scene
     scene.render.engine = "BLENDER_EEVEE"
     scene.render.resolution_x = 840
@@ -383,7 +389,7 @@ def build_postbox():
     cube("Postbox crown",(0,0,2.06),(1.08,.80,.30),CHALK,r,edge=.12)
     cube("Posting slot",(0,-.39,1.55),(.65,.06,.14),INK,r,edge=.035)
     cube("Collection plate",(0,-.40,1.13),(.62,.05,.40),CHALK,r,edge=.035)
-    label("ISLAND\nPOST",(0,-.44,1.15),.14,RED,r)
+    label("POST",(0,-.44,1.15),.20,RED,r)
     cyl("Postbox foot",(0,0,.18),.32,.36,METAL,r,16)
     return r
 
@@ -415,9 +421,12 @@ ASSET_JOBS = [
 
 
 if __name__ == "__main__":
+    requested = set(sys.argv[sys.argv.index("--") + 1:]) if "--" in sys.argv else None
     for slug, builder, target, camera, ground in ASSET_JOBS:
+        if requested and slug not in requested:
+            continue
         reset()
         root = builder()
-        export_asset(root, slug, target, camera, ground)
+        export_asset(root, slug, target, camera, ground, preserve_parts=(slug == "postbox-v2"))
 
     print("All remaining assets created")
