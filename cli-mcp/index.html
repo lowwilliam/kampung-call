@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A practical, beginner-friendly field guide to using Codex CLI and connecting tools with MCP.">
+  <meta name="theme-color" content="#11130f">
+  <title>Codex CLI + MCP — The Field Guide</title>
+  <link rel="stylesheet" href="/src/cli-mcp-guide.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the guide</a>
+
+  <header class="site-header">
+    <a class="brand" href="/cli-mcp/" aria-label="CLI and MCP Field Guide home">
+      <span class="brand-mark" aria-hidden="true">&gt;_</span>
+      <span>Field Guide <small>01</small></span>
+    </a>
+    <nav aria-label="Guide navigation">
+      <a href="#quickstart">Quickstart</a>
+      <a href="#cli-loop">CLI loop</a>
+      <a href="#mcp">MCP</a>
+      <a href="#cheatsheet">Cheat sheet</a>
+    </nav>
+    <a class="back-link" href="/">Back to Kampung Call <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>12 minute guide</span> · no prior agent experience needed</p>
+        <h1 id="hero-title">Give your terminal <em>hands.</em><br>Give it <em>reach.</em></h1>
+        <p class="hero-deck">Codex CLI works inside your project. MCP connects it to the tools and context outside your project. Learn both, then put them together.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#quickstart">Start at the prompt <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="#mcp">I know the CLI—show me MCP</a>
+        </div>
+        <dl class="hero-facts" aria-label="Guide highlights">
+          <div><dt>4</dt><dd>steps to first task</dd></div>
+          <div><dt>2</dt><dd>MCP transport types</dd></div>
+          <div><dt>1</dt><dd>repeatable workflow</dd></div>
+        </dl>
+      </div>
+
+      <div class="terminal-card" aria-label="Interactive Codex CLI example">
+        <div class="terminal-bar">
+          <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>~/projects/my-app</span>
+          <span class="terminal-status"><i></i> codex</span>
+        </div>
+        <div class="terminal-body" aria-live="polite">
+          <p class="terminal-muted">OpenAI Codex · working in my-app</p>
+          <p class="terminal-prompt"><span>›</span> <strong id="demo-prompt">Explain how authentication works in this project.</strong></p>
+          <div class="terminal-output" id="demo-output">
+            <p><span class="terminal-step">•</span> Reading routes and middleware</p>
+            <p><span class="terminal-step">•</span> Tracing the session flow</p>
+            <p class="terminal-success"><span>✓</span> I found the entry point and mapped the request path.</p>
+          </div>
+          <div class="terminal-cursor" aria-hidden="true"><span>›</span><i></i></div>
+        </div>
+        <div class="demo-switcher" role="group" aria-label="Try example Codex tasks">
+          <button class="active" data-demo="explain" aria-pressed="true">Explain</button>
+          <button data-demo="fix" aria-pressed="false">Fix</button>
+          <button data-demo="review" aria-pressed="false">Review</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="definition-strip" aria-label="CLI and MCP in one sentence">
+      <article>
+        <span class="definition-number">01</span>
+        <div><p class="mini-label">Codex CLI</p><h2>The workbench</h2><p>You describe a goal. Codex reads the repository, edits files, and runs local tools from your terminal.</p></div>
+      </article>
+      <div class="plus" aria-hidden="true">+</div>
+      <article>
+        <span class="definition-number">02</span>
+        <div><p class="mini-label">MCP</p><h2>The adapter</h2><p>A shared protocol that lets Codex discover and use external tools or context through an MCP server.</p></div>
+      </article>
+    </section>
+
+    <section class="guide-section quickstart" id="quickstart" aria-labelledby="quickstart-title">
+      <div class="section-heading">
+        <p class="eyebrow">Part one · get moving</p>
+        <h2 id="quickstart-title">Your first useful CLI session</h2>
+        <p>Work from a real project folder. Keep the task small enough that you can understand and review the result.</p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <div class="step-marker"><span>01</span><button class="check-button" aria-label="Mark install step complete" aria-pressed="false">✓</button></div>
+          <div class="step-content">
+            <p class="mini-label">Install</p>
+            <h3>Put Codex on your machine</h3>
+            <p>On macOS or Linux, use the standalone installer. Running it again updates Codex.</p>
+            <div class="code-block">
+              <code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code>
+              <button class="copy-button" data-copy="curl -fsSL https://chatgpt.com/codex/install.sh | sh" aria-label="Copy install command">Copy</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-marker"><span>02</span><button class="check-button" aria-label="Mark open project step complete" aria-pressed="false">✓</button></div>
+          <div class="step-content">
+            <p class="mini-label">Open a project</p>
+            <h3>Start where the code lives</h3>
+            <p>Move into the repository you want Codex to understand, then launch the interactive terminal UI.</p>
+            <div class="code-block">
+              <code>cd ~/projects/my-app<br>codex</code>
+              <button class="copy-button" data-copy="cd ~/projects/my-app&#10;codex" aria-label="Copy launch commands">Copy</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-marker"><span>03</span><button class="check-button" aria-label="Mark first task step complete" aria-pressed="false">✓</button></div>
+          <div class="step-content">
+            <p class="mini-label">Ask</p>
+            <h3>Describe an outcome, not keystrokes</h3>
+            <p>Say what should change, where to look, what must stay true, and how to prove it worked.</p>
+            <div class="prompt-card">
+              <span class="prompt-caret" aria-hidden="true">›</span>
+              <p>In the checkout form, fix the empty-state bug. Keep the current visual design, add a regression test, and run the relevant checks.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-marker"><span>04</span><button class="check-button" aria-label="Mark review step complete" aria-pressed="false">✓</button></div>
+          <div class="step-content">
+            <p class="mini-label">Review</p>
+            <h3>Inspect before you ship</h3>
+            <p>Watch commands as they run, read the diff, ask follow-up questions, and use <code>/review</code> for a dedicated pass.</p>
+            <div class="code-block compact">
+              <code>/review</code>
+              <button class="copy-button" data-copy="/review" aria-label="Copy review command">Copy</button>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="progress-card" aria-live="polite">
+        <div><span id="progress-count">0 of 4 complete</span><strong id="progress-message">Start with the installer when you’re ready.</strong></div>
+        <div class="progress-track" role="progressbar" aria-label="Quickstart progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i id="progress-fill"></i></div>
+      </div>
+    </section>
+
+    <section class="guide-section cli-loop" id="cli-loop" aria-labelledby="loop-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Part two · build the habit</p>
+        <h2 id="loop-title">The four-beat CLI loop</h2>
+        <p>Good sessions are conversations with checkpoints—not one giant prompt and a leap of faith.</p>
+      </div>
+      <div class="loop-layout">
+        <ol class="loop-list">
+          <li><span>1</span><div><h3>Ask</h3><p>Set a concrete outcome and useful boundaries.</p></div></li>
+          <li><span>2</span><div><h3>Watch</h3><p>See what Codex reads, runs, and changes.</p></div></li>
+          <li><span>3</span><div><h3>Steer</h3><p>Correct assumptions early or add missing context.</p></div></li>
+          <li><span>4</span><div><h3>Review</h3><p>Check the diff and evidence before committing.</p></div></li>
+        </ol>
+
+        <article class="prompt-anatomy">
+          <div class="anatomy-top"><p class="mini-label">A prompt with leverage</p><span>four ingredients</span></div>
+          <p class="anatomy-prompt"><mark data-tone="context">In the checkout form,</mark> <mark data-tone="outcome">fix the empty-state bug.</mark> <mark data-tone="constraint">Keep the current visual design,</mark> <mark data-tone="proof">add a regression test, and run the relevant checks.</mark></p>
+          <dl>
+            <div><dt><i data-tone="context"></i>Context</dt><dd>Where should it look?</dd></div>
+            <div><dt><i data-tone="outcome"></i>Outcome</dt><dd>What should be true?</dd></div>
+            <div><dt><i data-tone="constraint"></i>Constraint</dt><dd>What must not change?</dd></div>
+            <div><dt><i data-tone="proof"></i>Proof</dt><dd>How will we know?</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="command-row" aria-label="Useful slash commands">
+        <article><code>/init</code><p>Create project instructions in <code>AGENTS.md</code>.</p></article>
+        <article><code>/status</code><p>See the active model, directory, and session settings.</p></article>
+        <article><code>/permissions</code><p>Choose what Codex may do without asking.</p></article>
+        <article><code>/model</code><p>Change model and reasoning effort.</p></article>
+        <article><code>/review</code><p>Run a focused review of changes.</p></article>
+      </div>
+    </section>
+
+    <section class="mcp-section" id="mcp" aria-labelledby="mcp-title">
+      <div class="mcp-intro">
+        <p class="eyebrow">Part three · extend the reach</p>
+        <h2 id="mcp-title">MCP, without the mystery</h2>
+        <p>MCP stands for Model Context Protocol. An MCP server publishes a set of tools and context in a format Codex understands. That can turn “tell me what’s in the issue tracker” into a tool call instead of a copy-and-paste chore.</p>
+      </div>
+
+      <div class="mcp-diagram" aria-label="Codex connects through an MCP server to tools and data">
+        <div class="diagram-node node-codex"><span class="node-icon" aria-hidden="true">&gt;_</span><strong>Codex</strong><small>the agent</small></div>
+        <div class="connector"><span>request</span><i aria-hidden="true"></i><span>result</span></div>
+        <div class="diagram-node node-mcp"><span class="node-icon" aria-hidden="true">M</span><strong>MCP server</strong><small>the adapter</small></div>
+        <div class="connector"><span>tools</span><i aria-hidden="true"></i><span>context</span></div>
+        <div class="tool-stack">
+          <span>Docs</span><span>Browser</span><span>Figma</span><span>Your API</span>
+        </div>
+      </div>
+
+      <div class="transport-grid">
+        <article><p class="mini-label">Local · STDIO</p><h3>Started as a process</h3><p>Codex runs a command on your machine and communicates with that server directly.</p><code>npx -y @upstash/context7-mcp</code></article>
+        <article><p class="mini-label">Remote · HTTP</p><h3>Reached at a URL</h3><p>Codex connects to a Streamable HTTP endpoint, optionally using a bearer token or OAuth.</p><code>https://example.com/mcp</code></article>
+      </div>
+
+      <div class="connect-card">
+        <div class="connect-heading"><div><p class="eyebrow">Try a real connection</p><h3>Add a documentation server</h3></div><span class="time-chip">about 2 min</span></div>
+        <ol class="connect-steps">
+          <li><span>1</span><div><strong>Add it</strong><div class="code-block"><code>codex mcp add context7 -- npx -y @upstash/context7-mcp</code><button class="copy-button" data-copy="codex mcp add context7 -- npx -y @upstash/context7-mcp" aria-label="Copy MCP add command">Copy</button></div></div></li>
+          <li><span>2</span><div><strong>Confirm it</strong><div class="code-block"><code>codex mcp list</code><button class="copy-button" data-copy="codex mcp list" aria-label="Copy MCP list command">Copy</button></div></div></li>
+          <li><span>3</span><div><strong>See it in a session</strong><div class="code-block"><code>/mcp</code><button class="copy-button" data-copy="/mcp" aria-label="Copy MCP slash command">Copy</button></div></div></li>
+        </ol>
+        <p class="connect-note"><strong>OAuth server?</strong> Run <code>codex mcp login &lt;server-name&gt;</code>, then complete sign-in in your browser.</p>
+      </div>
+    </section>
+
+    <section class="guide-section safety" aria-labelledby="safety-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Before you connect everything</p>
+        <h2 id="safety-title">Access is a feature. Scope it.</h2>
+      </div>
+      <div class="safety-grid">
+        <article><span>01</span><h3>Start read-only</h3><p>Begin with tools that inspect data. Add write actions only when the workflow needs them.</p></article>
+        <article><span>02</span><h3>Keep secrets out of prompts</h3><p>Pass tokens through environment variables or the server’s supported authentication flow.</p></article>
+        <article><span>03</span><h3>Limit the tool set</h3><p>Enable only the tools the task needs, especially for servers with broad access.</p></article>
+        <article><span>04</span><h3>Review consequential actions</h3><p>Keep approval prompts for writes, messages, deployments, and anything hard to undo.</p></article>
+      </div>
+    </section>
+
+    <section class="cheatsheet" id="cheatsheet" aria-labelledby="cheatsheet-title">
+      <div class="cheatsheet-heading"><div><p class="eyebrow">Keep this nearby</p><h2 id="cheatsheet-title">Pocket cheat sheet</h2></div><button class="print-button" id="print-guide">Print / save PDF</button></div>
+      <div class="cheat-table" role="table" aria-label="Codex CLI and MCP commands">
+        <div class="cheat-row header" role="row"><span role="columnheader">When you want to…</span><span role="columnheader">Use</span></div>
+        <div class="cheat-row" role="row"><span role="cell">Start an interactive session</span><code role="cell">codex</code></div>
+        <div class="cheat-row" role="row"><span role="cell">Resume a saved session</span><code role="cell">codex resume</code></div>
+        <div class="cheat-row" role="row"><span role="cell">Run a non-interactive task</span><code role="cell">codex exec "your task"</code></div>
+        <div class="cheat-row" role="row"><span role="cell">See current session settings</span><code role="cell">/status</code></div>
+        <div class="cheat-row" role="row"><span role="cell">Review current changes</span><code role="cell">/review</code></div>
+        <div class="cheat-row" role="row"><span role="cell">List configured MCP servers</span><code role="cell">codex mcp list</code></div>
+        <div class="cheat-row" role="row"><span role="cell">Inspect active MCP connections</span><code role="cell">/mcp</code></div>
+        <div class="cheat-row" role="row"><span role="cell">See every MCP subcommand</span><code role="cell">codex mcp --help</code></div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">The whole idea</p>
+      <h2>Ask clearly. Connect carefully.<br>Review what changed.</h2>
+      <p>The CLI gives Codex a place to work. MCP gives it useful reach. Your judgment stays in the loop.</p>
+      <div class="closing-actions">
+        <a class="button button-primary" href="#quickstart">Run the quickstart again</a>
+        <a class="text-link" href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noreferrer">Official Codex CLI docs ↗</a>
+        <a class="text-link" href="https://learn.chatgpt.com/docs/extend/mcp?surface=cli" target="_blank" rel="noreferrer">Official MCP docs ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Codex CLI + MCP Field Guide</span>
+    <span>Built from official OpenAI documentation · Updated August 2026</span>
+  </footer>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Copied to clipboard</div>
+  <script type="module" src="/src/cli-mcp-guide.js"></script>
+</body>
+</html>
