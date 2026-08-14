@@ -8,6 +8,7 @@ const CARD_ASSETS = GAME_ASSETS.map((asset): CatalogueCardAsset => ({
   category: asset.category,
   curatedOrder: asset.curatedOrder ?? 0,
   intro: asset.intro,
+  modelUrl: asset.modelUrl,
   cardPreviewUrl: asset.cardPreviewUrl,
 }));
 

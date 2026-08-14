@@ -49,12 +49,10 @@ test("Asset API v1 resolves one asset and denies its uncleared download", async 
   assert.deepEqual(await download.json(), { error: "This asset does not have a cleared Download Grant" });
 });
 
-test("public Community and interaction endpoints are retired without touching storage", async () => {
+test("public Community submission endpoints are retired without touching storage", async () => {
   const responses = await Promise.all([
     request("/api/assets"),
     request("/api/models/legacy-id"),
-    request("/api/likes"),
-    request("/api/likes", { method: "POST" }),
     request("/api/reports", { method: "POST" }),
     request("/api/submissions", { method: "POST" }),
     request("/api/submissions/status", { method: "POST" }),

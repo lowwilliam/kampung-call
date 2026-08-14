@@ -25,19 +25,18 @@ test("server-renders the public collection", async () => {
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
-  assert.match(html, /3D Singapore/i);
+  assert.match(html, /Kampung 3D/i);
   assert.match(html.replaceAll("<!-- -->", ""), /68\s+objects/i);
   assert.doesNotMatch(html, /Community collection/i);
   assert.doesNotMatch(html, /Submit your model/i);
-  assert.doesNotMatch(html, /asset-like-button/i);
-  assert.doesNotMatch(html, /class="model-viewer/i);
+  assert.match(html, /asset-like-button/i);
+  assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 68);
   assert.doesNotMatch(html, /One model at a time/i);
-  assert.match(html, /Buildings gone/i);
-  assert.match(html, /National Theatre/i);
+  assert.doesNotMatch(html, /Buildings gone/i);
   assert.match(html, /Lost Heritage/i);
-  assert.match(html, /Catalogue edition 01/i);
+  assert.doesNotMatch(html, /Catalogue edition 01/i);
   assert.match(html, /collection-globe-fallback/i);
-  assert.match(html, /Static previews/i);
+  assert.match(html, /Live 360° previews/i);
   assert.doesNotMatch(html, /three\.module-/i);
   assert.doesNotMatch(html, /Download all/i);
   assert.doesNotMatch(html, /\/downloads\//i);
@@ -51,27 +50,29 @@ test("server-renders the public collection", async () => {
   assert.doesNotMatch(html, /Your site is taking shape/i);
 });
 
-test("keeps a no-WebGL catalogue mark in the right-hand hero column", async () => {
+test("uses the shared Kampung Call globe and lazy 3D viewers", async () => {
   const css = await readFile(path.join(siteRoot, "app", "globals.css"), "utf8");
   const source = await readFile(path.join(siteRoot, "app", "components", "CollectionApp.tsx"), "utf8");
   assert.match(css, /\.collection-intro\s*\{[^}]*grid-template-columns:/s);
   assert.match(css, /\.intro-side\s*\{[^}]*justify-items:\s*end/s);
-  assert.match(css, /\.collection-globe\.is-static\s*\{[^}]*cursor:\s*default/s);
-  assert.doesNotMatch(source, /CollectionGlobe|ModelViewer/);
+  assert.match(source, /CollectionGlobe/);
+  assert.match(source, /ModelViewer/);
+  assert.match(source, /posterUrl=\{asset\.cardPreviewUrl\}/);
 });
 
 test("server-renders one standalone detail viewer with canonical asset metadata", async () => {
   const response = await render("/asset/peranakan-house?category=Homes%20%26%20Neighbourhoods&sort=alphabetical");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<title>Peranakan House · 3D Singapore Collection<\/title>/i);
+  assert.match(html, /<title>Peranakan House · Kampung 3D Collection<\/title>/i);
   assert.match(html, /rel="canonical" href="http:\/\/localhost:3000\/asset\/peranakan-house"/i);
   assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 1);
   assert.match(html, /model-viewer-poster/i);
   assert.doesNotMatch(html, /class="asset-grid"/i);
-  assert.match(html, /href="\/\?category=Homes\+%26\+Neighbourhoods&amp;sort=alphabetical"/i);
-  assert.doesNotMatch(html, /class="asset-download-link"/i);
-  assert.match(html, /view-only until its asset-specific Download Grant is cleared/i);
+  assert.match(html, /href="\/\?category=Homes\+%26\+Neighbourhoods&amp;sort=alphabetical#asset-peranakan-house"/i);
+  assert.match(html, /class="asset-download-link"/i);
+  assert.match(html, /Download GLB/i);
+  assert.match(html, /detail-like-button/i);
   assert.doesNotMatch(html, /Download all/i);
   await access(path.join(siteRoot, "public", "models", "peranakan-house-v2.glb"));
 });

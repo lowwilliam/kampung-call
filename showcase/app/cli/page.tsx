@@ -17,7 +17,7 @@ export default function CliPage() {
     <div className="cli-page">
       <header className="cli-header">
         <a href="/" className="back-link">← Collection</a>
-        <span>3D Singapore Collection · Developer guide</span>
+        <span>Kampung 3D Collection · Developer guide</span>
         <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
       </header>
 

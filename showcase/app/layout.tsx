@@ -6,19 +6,19 @@ const origin = CATALOGUE_MANIFEST.release.productionDomain ?? "http://localhost:
 
 export const metadata: Metadata = {
   metadataBase: new URL(origin),
-  title: "3D Singapore Collection",
+  title: "Kampung 3D Collection",
   description: "Explore 68 curated Singapore-connected 3D assets through a read-only public catalogue.",
   openGraph: {
-    title: "3D Singapore Collection",
+    title: "Kampung 3D Collection",
     description: "Singapore, modelled one carefully sourced object at a time.",
-    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "3D Singapore Collection" }],
+    images: [{ url: "/og-kampung-3d.png", width: 1536, height: 1024, alt: "Kampung 3D Collection" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "3D Singapore Collection",
+    title: "Kampung 3D Collection",
     description: "Singapore, modelled one carefully sourced object at a time.",
-    images: ["/og.png"],
+    images: ["/og-kampung-3d.png"],
   },
 };
 
