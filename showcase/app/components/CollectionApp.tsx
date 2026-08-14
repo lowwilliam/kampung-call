@@ -1,340 +1,122 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { CATEGORIES, CollectionAsset, GAME_ASSETS, sortAssetsByIconicLevel } from "../data/game-assets";
-import { CollectionGlobe } from "./CollectionGlobe";
-import { ModelViewer } from "./ModelViewer";
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import type { AssetCategory } from "../data/game-assets";
 
-type CollectionTab = "game" | "community" | "all";
+type CatalogueSort = "curated" | "alphabetical";
 
-const tabs: { id: CollectionTab; label: string }[] = [
-  { id: "game", label: "Original" },
-  { id: "community", label: "Community" },
-  { id: "all", label: "All" },
-];
-
-const LOST_HERITAGE_COUNT = GAME_ASSETS.filter((asset) => asset.category === "Lost Heritage").length;
+export type CatalogueCardAsset = {
+  id: string;
+  slug: string;
+  name: string;
+  category: AssetCategory;
+  curatedOrder: number;
+  intro: string;
+  cardPreviewUrl?: string;
+};
 
 function formatCategory(category: string) {
   return category.replace(" & ", " + ");
 }
 
-function downloadFileName(asset: CollectionAsset) {
-  return asset.file.split("/").at(-1) ?? `${asset.slug}.glb`;
-}
-
-function downloadUrl(asset: CollectionAsset) {
-  return asset.downloadUrl ?? asset.modelUrl;
+function catalogueQuery(category: string, query: string, sort: CatalogueSort) {
+  const params = new URLSearchParams();
+  if (category !== "All objects") params.set("category", category);
+  if (query.trim()) params.set("q", query.trim());
+  if (sort !== "curated") params.set("sort", sort);
+  return params;
 }
 
 function AssetCard({
   asset,
-  onOpen,
+  href,
   eager,
-  likeCount,
-  liked,
-  likePending,
-  onLike,
 }: {
-  asset: CollectionAsset;
-  onOpen: () => void;
+  asset: CatalogueCardAsset;
+  href: string;
   eager: boolean;
-  likeCount: number;
-  liked: boolean;
-  likePending: boolean;
-  onLike: () => void;
 }) {
   return (
-    <article className="asset-card" data-category={asset.category}>
+    <a className="asset-card" data-category={asset.category} href={href} aria-label={`View ${asset.name} details`}>
       <div className="asset-stage">
-        <ModelViewer url={asset.modelUrl} label={asset.name} eager={eager} />
-        <span className={`provenance-badge ${asset.collection === "community" ? "is-community" : ""}`}>
-          {asset.category === "Lost Heritage" ? "Lost Heritage" : asset.collection === "community" ? "Community" : "Original"}
+        {asset.cardPreviewUrl ? (
+          <Image
+            className="asset-card-preview"
+            src={asset.cardPreviewUrl}
+            alt=""
+            fill
+            priority={eager}
+            sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="asset-card-placeholder" aria-hidden="true">
+            <strong>{String(asset.curatedOrder ?? 0).padStart(2, "0")}</strong>
+            <span>Preview in production</span>
+          </div>
+        )}
+        <span className="provenance-badge">
+          {asset.category === "Lost Heritage" ? "Lost Heritage" : "Game Asset"}
         </span>
-        <button className="stage-open" type="button" onClick={onOpen} aria-label={`Open ${asset.name} details`}>
-          <span>Open 360°</span>
-        </button>
+        <span className="stage-open"><span>View detail</span></span>
       </div>
       <div className="asset-card-footer">
-        <button className="asset-card-copy" type="button" onClick={onOpen}>
-          <span className="asset-index">{asset.collection === "game" ? String(GAME_ASSETS.indexOf(asset) + 1).padStart(2, "0") : "SG"}</span>
+        <span className="asset-card-copy">
+          <span className="asset-index">{String(asset.curatedOrder ?? 0).padStart(2, "0")}</span>
           <span>
             <strong>{asset.name}</strong>
             <small>{formatCategory(asset.category)}</small>
           </span>
           <span className="card-arrow" aria-hidden="true">↗</span>
-        </button>
-        <button
-          className={`asset-like-button ${liked ? "is-liked" : ""}`}
-          type="button"
-          aria-pressed={liked}
-          aria-label={`${liked ? "Unlike" : "Like"} ${asset.name}. ${likeCount} likes`}
-          disabled={likePending}
-          onClick={onLike}
-        >
-          <span aria-hidden="true">♥</span>
-          <strong>{likeCount.toLocaleString()}</strong>
-        </button>
+        </span>
       </div>
-    </article>
+    </a>
   );
 }
 
-function DetailOverlay({
-  asset,
-  onClose,
-  likeCount,
-  liked,
-  likePending,
-  onLike,
+export function CollectionApp({
+  assets,
+  categories,
+  initialCategory = "All objects",
+  initialQuery = "",
+  initialSort = "curated",
 }: {
-  asset: CollectionAsset;
-  onClose: () => void;
-  likeCount: number;
-  liked: boolean;
-  likePending: boolean;
-  onLike: () => void;
+  assets: readonly CatalogueCardAsset[];
+  categories: readonly AssetCategory[];
+  initialCategory?: string;
+  initialQuery?: string;
+  initialSort?: CatalogueSort;
 }) {
-  const [reportOpen, setReportOpen] = useState(false);
-  const [reportState, setReportState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [category, setCategory] = useState(initialCategory);
+  const [query, setQuery] = useState(initialQuery);
+  const [sort, setSort] = useState<CatalogueSort>(initialSort);
 
-  useEffect(() => {
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = previous;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [onClose]);
-
-  const sendReport = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    setReportState("sending");
-    try {
-      const response = await fetch("/api/reports", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          assetId: asset.id,
-          reason: form.get("reason"),
-          details: form.get("details"),
-        }),
-      });
-      if (!response.ok) throw new Error("Unable to report");
-      setReportState("sent");
-    } catch {
-      setReportState("error");
-    }
-  };
-
-  return (
-    <div className="detail-shell" role="dialog" aria-modal="true" aria-labelledby="detail-title">
-      <header className="detail-bar">
-        <button type="button" className="icon-button" onClick={onClose} aria-label="Close asset details">←</button>
-        <span>{asset.category === "Lost Heritage" ? "Lost Heritage" : asset.collection === "game" ? "Original" : "Community"}</span>
-        <a href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
-      </header>
-      <main className="detail-grid">
-        <section className="detail-stage-wrap">
-          <ModelViewer url={asset.modelUrl} label={asset.name} expanded eager />
-          <div className="detail-stage-note">Drag to rotate · Pinch or scroll to zoom</div>
-        </section>
-        <section className="detail-copy">
-          <p className="eyebrow">{asset.category}</p>
-          <h1 id="detail-title">{asset.name}</h1>
-          <button
-            className={`detail-like-button ${liked ? "is-liked" : ""}`}
-            type="button"
-            aria-pressed={liked}
-            disabled={likePending}
-            onClick={onLike}
-          >
-            <span aria-hidden="true">♥</span>
-            {liked ? "Liked" : "Like this model"}
-            <strong>{likeCount.toLocaleString()}</strong>
-          </button>
-          {asset.inspiration && (
-            <p className="inspiration">
-              {asset.category === "Lost Heritage" ? <strong>{asset.inspiration}</strong> : <>Inspired by <strong>{asset.inspiration}</strong></>}
-            </p>
-          )}
-          <p className="detail-lede">{asset.intro}</p>
-
-          <div className="story-block">
-            <span>01 · {asset.category === "Lost Heritage" ? "In the collection" : "In Kampung Call"}</span>
-            <p>{asset.gameContext}</p>
-          </div>
-          <div className="story-block">
-            <span>02 · In Singapore</span>
-            <p>{asset.singaporeContext}</p>
-            {asset.historySource && <a href={asset.historySource.url} target="_blank" rel="noreferrer">Read the source ↗</a>}
-          </div>
-          <div className="story-block">
-            <span>03 · Making the model</span>
-            <p>{asset.productionStory}</p>
-          </div>
-
-          <dl className="asset-facts">
-            <div><dt>Source</dt><dd>{asset.provenance}</dd></div>
-            {asset.creator && <div><dt>Creator</dt><dd>{asset.linkedinUrl ? <a href={asset.linkedinUrl} target="_blank" rel="noreferrer">{asset.creator} ↗</a> : asset.creator}</dd></div>}
-            <div><dt>Triangles</dt><dd>{asset.metrics.triangles.toLocaleString()}</dd></div>
-            <div><dt>Materials</dt><dd>{asset.metrics.materials}</dd></div>
-            <div><dt>Format</dt><dd>GLB · {asset.metrics.compressed ? "Draco" : "Web ready"}</dd></div>
-          </dl>
-          <p className="provenance-note">{asset.provenanceDetail}</p>
-
-          <div className="download-panel">
-            {asset.downloadAllowed ? (
-              <>
-                <a className="asset-download-link" href={downloadUrl(asset)} download={downloadFileName(asset)}>
-                  <span>Download GLB</span>
-                  <small>{downloadFileName(asset)} · ↓</small>
-                </a>
-                <p>{asset.collection === "game" ? "For personal evaluation and project review. Downloading does not grant redistribution, resale or reuse rights." : "The creator has allowed individual GLB downloads. The credited licence and source terms still apply."}</p>
-              </>
-            ) : (
-              <p>Community models do not receive a download button unless their creator grants it. Like any web-rendered 3D file, model data must still be delivered to the visitor’s browser for viewing.</p>
-            )}
-          </div>
-
-          {asset.collection === "community" && (
-            <div className="report-area">
-              {!reportOpen ? (
-                <button type="button" className="text-button" onClick={() => setReportOpen(true)}>Report this asset</button>
-              ) : reportState === "sent" ? (
-                <p className="form-success">Report received. Thank you for helping us curate responsibly.</p>
-              ) : (
-                <form onSubmit={sendReport} className="report-form">
-                  <label>Reason<select name="reason" required><option value="attribution">Incorrect attribution</option><option value="rights">Rights concern</option><option value="content">Inappropriate content</option><option value="other">Something else</option></select></label>
-                  <label>Details<textarea name="details" rows={3} required /></label>
-                  <button type="submit" disabled={reportState === "sending"}>{reportState === "sending" ? "Sending…" : "Send report"}</button>
-                  {reportState === "error" && <p role="alert">Could not send the report. Please try again.</p>}
-                </form>
-              )}
-            </div>
-          )}
-        </section>
-      </main>
-    </div>
-  );
-}
-
-export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
-  const [tab, setTab] = useState<CollectionTab>("game");
-  const [category, setCategory] = useState<string>("All objects");
-  const [query, setQuery] = useState("");
-  const [community, setCommunity] = useState<CollectionAsset[]>([]);
-  const [activeSlug, setActiveSlug] = useState(initialSlug ?? "");
-  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
-  const [likedAssets, setLikedAssets] = useState<Set<string>>(new Set());
-  const [pendingLikes, setPendingLikes] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    void fetch("/api/assets")
-      .then((response) => (response.ok ? response.json() : { assets: [] }))
-      .then((payload) => setCommunity(payload.assets ?? []))
-      .catch(() => setCommunity([]));
-  }, []);
-
-  useEffect(() => {
-    void fetch("/api/likes", { cache: "no-store" })
-      .then((response) => (response.ok ? response.json() : { counts: {}, liked: [] }))
-      .then((payload) => {
-        setLikeCounts(payload.counts ?? {});
-        setLikedAssets(new Set(payload.liked ?? []));
-      })
-      .catch(() => {
-        setLikeCounts({});
-        setLikedAssets(new Set());
-      });
-  }, []);
-
-  useEffect(() => {
-    const onPop = () => {
-      const match = window.location.pathname.match(/^\/asset\/([^/]+)/);
-      setActiveSlug(match?.[1] ?? "");
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
-
-  const allAssets = useMemo(() => sortAssetsByIconicLevel([...GAME_ASSETS, ...community]), [community]);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    return allAssets.filter((asset) => {
-      const collectionMatch = tab === "all" || asset.collection === tab;
+    const matching = assets.filter((asset) => {
       const categoryMatch = category === "All objects" || asset.category === category;
-      const queryMatch = !normalized || `${asset.name} ${asset.category} ${asset.intro} ${asset.creator ?? ""}`.toLowerCase().includes(normalized);
-      return collectionMatch && categoryMatch && queryMatch;
+      const queryMatch = !normalized || `${asset.name} ${asset.category} ${asset.intro}`.toLowerCase().includes(normalized);
+      return categoryMatch && queryMatch;
     });
-  }, [allAssets, tab, category, query]);
+    if (sort === "alphabetical") return [...matching].sort((left, right) => left.name.localeCompare(right.name));
+    return [...matching].sort((left, right) => left.curatedOrder - right.curatedOrder || left.name.localeCompare(right.name));
+  }, [assets, category, query, sort]);
 
-  const activeAsset = allAssets.find((asset) => asset.slug === activeSlug);
+  const lostHeritageCount = useMemo(() => assets.filter((asset) => asset.category === "Lost Heritage").length, [assets]);
 
-  const openAsset = (asset: CollectionAsset) => {
-    setActiveSlug(asset.slug);
-    window.history.pushState({}, "", `/asset/${asset.slug}`);
-  };
+  useEffect(() => {
+    const params = catalogueQuery(category, query, sort);
+    const nextUrl = params.size ? `/?${params}` : "/";
+    window.history.replaceState(window.history.state, "", nextUrl);
+  }, [category, query, sort]);
 
-  const closeAsset = useCallback(() => {
-    setActiveSlug("");
-    window.history.pushState({}, "", "/");
-  }, []);
-
-  const toggleLike = useCallback(async (assetId: string) => {
-    if (pendingLikes.has(assetId)) return;
-    const wasLiked = likedAssets.has(assetId);
-    const previousCount = likeCounts[assetId] ?? 0;
-    setPendingLikes((current) => new Set(current).add(assetId));
-    setLikedAssets((current) => {
-      const next = new Set(current);
-      if (wasLiked) next.delete(assetId);
-      else next.add(assetId);
-      return next;
-    });
-    setLikeCounts((current) => ({ ...current, [assetId]: Math.max(0, previousCount + (wasLiked ? -1 : 1)) }));
-    try {
-      const response = await fetch("/api/likes", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ assetId }),
-      });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || "Unable to save like");
-      setLikeCounts((current) => ({ ...current, [assetId]: payload.count ?? 0 }));
-      setLikedAssets((current) => {
-        const next = new Set(current);
-        if (payload.liked) next.add(assetId);
-        else next.delete(assetId);
-        return next;
-      });
-    } catch {
-      setLikeCounts((current) => ({ ...current, [assetId]: previousCount }));
-      setLikedAssets((current) => {
-        const next = new Set(current);
-        if (wasLiked) next.add(assetId);
-        else next.delete(assetId);
-        return next;
-      });
-    } finally {
-      setPendingLikes((current) => {
-        const next = new Set(current);
-        next.delete(assetId);
-        return next;
-      });
-    }
-  }, [likeCounts, likedAssets, pendingLikes]);
+  const currentQuery = catalogueQuery(category, query, sort);
 
   return (
     <div className="collection-page">
       <header className="site-header">
         <a href="/" className="wordmark"><span>3D</span><strong>Singapore Collection</strong></a>
         <nav aria-label="Primary navigation">
-          <a className="cli-link" href="/cli">CLI</a>
-          <a className="submit-link" href="/submit">Submit your model</a>
           <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
         </nav>
       </header>
@@ -342,43 +124,55 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
       <main>
         <section className="collection-intro" aria-labelledby="collection-title">
           <div>
-            <p className="eyebrow">Interactive 3D archive · Singapore</p>
+            <p className="eyebrow">Read-only digital catalogue · Singapore</p>
             <h1 id="collection-title">3D Singapore<br /><em>Collection</em></h1>
           </div>
           <div className="intro-side">
-            <CollectionGlobe />
+            <div className="collection-globe-wrap" aria-hidden="true">
+              <div className="collection-globe is-static">
+                <div className="collection-globe-fallback">
+                  <span className="fallback-orbit" />
+                  <span className="fallback-planet"><i /><i /><i /></span>
+                  <span className="fallback-water" />
+                  <span className="fallback-base" />
+                </div>
+              </div>
+              <span>Catalogue edition 01</span>
+            </div>
             <div className="intro-note">
-              <strong>{GAME_ASSETS.length}</strong>
-              <p>Objects, places and people from Singapore—made to turn, inspect and remember.</p>
+              <strong>{assets.length}</strong>
+              <p>Curated objects, places and people from Singapore, each with a stable record and inspectable story.</p>
             </div>
           </div>
         </section>
 
         <section className="heritage-feature" aria-labelledby="heritage-feature-title">
           <div>
-            <p className="eyebrow">Lost Singapore · {LOST_HERITAGE_COUNT} reconstructions</p>
+            <p className="eyebrow">Lost Singapore · {lostHeritageCount} reconstructions</p>
             <h2 id="heritage-feature-title">Buildings gone.<br />Stories still here.</h2>
             <p>Explore research-led 3D reconstructions of demolished landmarks, from the National Theatre to Pearl Bank Apartments.</p>
           </div>
-          <button type="button" onClick={() => { setTab("game"); setCategory("Lost Heritage"); setQuery(""); }}>
-            Explore lost heritage <span>{LOST_HERITAGE_COUNT} ↘</span>
+          <button type="button" onClick={() => { setCategory("Lost Heritage"); setQuery(""); setSort("curated"); }}>
+            Explore lost heritage <span>{lostHeritageCount} ↘</span>
           </button>
         </section>
 
         <section className="catalogue-controls" aria-label="Collection controls">
-          <div className="collection-tabs" role="tablist" aria-label="Collections">
-            {tabs.map((item) => (
-              <button key={item.id} type="button" role="tab" aria-selected={tab === item.id} className={tab === item.id ? "is-active" : ""} onClick={() => setTab(item.id)}>
-                {item.label}<sup>{item.id === "game" ? GAME_ASSETS.length : item.id === "community" ? community.length : allAssets.length}</sup>
-              </button>
-            ))}
+          <div className="catalogue-toolbar">
+            <label className="search-box">
+              <span>Search</span>
+              <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find an object…" />
+            </label>
+            <label className="sort-box">
+              <span>Order</span>
+              <select value={sort} onChange={(event) => setSort(event.target.value as CatalogueSort)}>
+                <option value="curated">Curated</option>
+                <option value="alphabetical">A–Z</option>
+              </select>
+            </label>
           </div>
-          <label className="search-box">
-            <span>Search</span>
-            <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find an object…" />
-          </label>
           <div className="category-row" aria-label="Filter by category">
-            {["All objects", ...CATEGORIES].map((item) => (
+            {["All objects", ...categories].map((item) => (
               <button key={item} type="button" className={category === item ? "is-active" : ""} onClick={() => setCategory(item)}>{item}</button>
             ))}
           </div>
@@ -386,37 +180,29 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
 
         <section className="results-line" aria-live="polite">
           <span>{filtered.length} {filtered.length === 1 ? "object" : "objects"}</span>
-          <span>Each model rotates automatically</span>
+          <span>{sort === "curated" ? "Responsible Publisher’s curated order" : "Alphabetical order"} · Static previews</span>
         </section>
 
         {filtered.length ? (
           <section className="asset-grid" aria-label="3D asset collection">
-            {filtered.map((asset, index) => (
-              <AssetCard
-                key={`${asset.collection}-${asset.id}`}
-                asset={asset}
-                eager={index < 3}
-                likeCount={likeCounts[asset.id] ?? 0}
-                liked={likedAssets.has(asset.id)}
-                likePending={pendingLikes.has(asset.id)}
-                onLike={() => void toggleLike(asset.id)}
-                onOpen={() => openAsset(asset)}
-              />
-            ))}
-          </section>
-        ) : tab === "community" && !query ? (
-          <section className="empty-community">
-            <span>Community collection · Open call</span>
-            <h2>The first community object could be yours.</h2>
-            <p>Submit a self-contained GLB with a meaningful Singapore connection. Every accepted model receives the same 360° stage and creator credit.</p>
-            <a href="/submit">Submit a model ↗</a>
+            {filtered.map((asset, index) => {
+              const detailParams = new URLSearchParams(currentQuery);
+              return (
+                <AssetCard
+                  key={asset.id}
+                  asset={asset}
+                  eager={index < 3}
+                  href={`/asset/${asset.slug}${detailParams.size ? `?${detailParams}` : ""}`}
+                />
+              );
+            })}
           </section>
         ) : (
           <section className="no-results"><h2>No objects found.</h2><button type="button" onClick={() => { setQuery(""); setCategory("All objects"); }}>Clear filters</button></section>
         )}
 
         <section className="collection-cta">
-          <p className="eyebrow">The world beyond the cards</p>
+          <p className="eyebrow">The world beyond the catalogue</p>
           <h2>Meet these objects where they belong.</h2>
           <a href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call <span>↗</span></a>
         </section>
@@ -424,20 +210,9 @@ export function CollectionApp({ initialSlug }: { initialSlug?: string }) {
 
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} 3D Singapore Collection</span>
-        <p>Canonical shipped models only. Third-party placeholders are excluded until licensed files are present.</p>
-        <a href="/admin">Admin</a>
+        <p>Catalogue records are published separately from creator credit, source provenance and download permission.</p>
+        <a href="https://www.linkedin.com/in/ruiqian-liu/" target="_blank" rel="noreferrer">Publisher ↗</a>
       </footer>
-
-      {activeAsset && (
-        <DetailOverlay
-          asset={activeAsset}
-          likeCount={likeCounts[activeAsset.id] ?? 0}
-          liked={likedAssets.has(activeAsset.id)}
-          likePending={pendingLikes.has(activeAsset.id)}
-          onLike={() => void toggleLike(activeAsset.id)}
-          onClose={closeAsset}
-        />
-      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type ModelViewerProps = {
@@ -8,6 +9,7 @@ type ModelViewerProps = {
   label: string;
   expanded?: boolean;
   eager?: boolean;
+  posterUrl?: string;
 };
 
 type LoaderInstance = InstanceType<typeof import("three/examples/jsm/loaders/GLTFLoader.js").GLTFLoader>;
@@ -87,7 +89,7 @@ function loadModel(url: string, priority: boolean) {
   return request;
 }
 
-export function ModelViewer({ url, label, expanded = false, eager = false }: ModelViewerProps) {
+export function ModelViewer({ url, label, expanded = false, eager = false, posterUrl }: ModelViewerProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const [nearViewport, setNearViewport] = useState(eager);
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
@@ -279,10 +281,13 @@ export function ModelViewer({ url, label, expanded = false, eager = false }: Mod
 
   return (
     <div className={`model-viewer ${expanded ? "is-expanded" : ""}`} ref={hostRef}>
+      {posterUrl && status !== "ready" && (
+        <Image className="model-viewer-poster" src={posterUrl} alt="" fill priority={eager} sizes="(max-width: 980px) 100vw, 60vw" />
+      )}
       {status !== "ready" && (
         <div className={`viewer-status ${status === "error" ? "is-error" : ""}`}>
-          <span className="viewer-orbit" aria-hidden="true" />
-          <span>{status === "error" ? "Model unavailable" : "Loading 360° view"}</span>
+          {status !== "error" && <span className="viewer-orbit" aria-hidden="true" />}
+          <span>{status === "error" ? (posterUrl ? "Interactive model unavailable · Static preview shown" : "Interactive model unavailable") : "Loading 360° view"}</span>
         </div>
       )}
       {expanded && status === "ready" && (

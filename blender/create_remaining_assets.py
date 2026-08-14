@@ -1,13 +1,16 @@
 import bpy
 import math
 import os
+import subprocess
 import sys
+import tempfile
 from mathutils import Vector
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ASSETS = os.path.join(ROOT, "assets")
 PREVIEWS = os.path.join(ASSETS, "previews")
 os.makedirs(PREVIEWS, exist_ok=True)
+GLTF_TRANSFORM = os.path.join(ROOT, "node_modules", ".bin", "gltf-transform")
 
 
 def material(name, colour, rough=.8, metal=0.0):
@@ -115,7 +118,11 @@ def cable(name, points, radius, mat, parent):
     curve = bpy.data.curves.new(name, "CURVE")
     curve.dimensions = "3D"
     curve.bevel_depth = radius
-    curve.bevel_resolution = 1
+    # These assets are read at neighbourhood scale.  Extra curve subdivisions
+    # did not change their silhouette, but multiplied triangles in bicycles,
+    # cages, cables and small service props.
+    curve.resolution_u = 2
+    curve.bevel_resolution = 0
     spline = curve.splines.new("BEZIER")
     spline.bezier_points.add(len(points)-1)
     for p, co in zip(spline.bezier_points, points):
@@ -162,20 +169,107 @@ def optimise(root, join_by_material=True):
         objs[0].parent = root
 
 
+def ground_root(root):
+    """Put the exported asset's evaluated lowest point on Blender Z=0."""
+    bpy.context.view_layer.update()
+    points = [
+        (obj.matrix_world @ Vector(corner)).z
+        for obj in descendants(root)
+        if obj.type == "MESH"
+        for corner in obj.bound_box
+    ]
+    if points:
+        # Move top-level contents instead of the Empty itself. Blender's glTF
+        # export_apply can discard an Empty translation for joined meshes whose
+        # data origin is far from their visible base (the birdcage exposed this).
+        shift = min(points)
+        for child in root.children:
+            child.location.z -= shift
+        bpy.context.view_layer.update()
+
+
+SIMPLIFY_RATIOS = {
+    "airport-terminal-v2": .35,
+    "bench-v2": .50,
+    "kampung-call-v2": .50,
+    "national-school-v2": .35,
+    "shophouse-v2": .35,
+}
+
+
+def postprocess_glb(glb, preserve_hierarchy=False, simplify_ratio=None):
+    """Apply the same deterministic web optimization to every static export."""
+    if not os.path.exists(GLTF_TRANSFORM):
+        raise RuntimeError("Run npm install before exporting GLBs")
+    paths = []
+    for stage in ("prepared", "centered", "optimized"):
+        handle, filepath = tempfile.mkstemp(prefix="kampung-glb-" + stage + "-", suffix=".glb")
+        os.close(handle)
+        os.unlink(filepath)
+        paths.append(filepath)
+    prepared, centered, optimized = paths
+    try:
+        source = glb
+        if preserve_hierarchy:
+            subprocess.run([
+                GLTF_TRANSFORM, "optimize", glb, prepared,
+                "--compress", "false",
+                "--texture-compress", "false",
+                "--palette", "true",
+                "--flatten", "false",
+                "--join", "false",
+                "--instance", "true",
+                "--simplify", "false",
+            ], cwd=ROOT, check=True)
+            source = prepared
+        subprocess.run([GLTF_TRANSFORM, "center", source, centered, "--pivot", "below"],
+                       cwd=ROOT, check=True)
+        if preserve_hierarchy:
+            subprocess.run([GLTF_TRANSFORM, "draco", centered, optimized], cwd=ROOT, check=True)
+            os.replace(optimized, glb)
+            return
+        command = [
+            GLTF_TRANSFORM, "optimize", glb, optimized,
+            "--compress", "draco",
+            "--texture-compress", "false",
+            "--palette", "true",
+            "--flatten", str(not preserve_hierarchy).lower(),
+            "--join", str(not preserve_hierarchy).lower(),
+            "--instance", "true",
+            "--simplify", str(simplify_ratio is not None).lower(),
+        ]
+        command[2] = centered
+        if simplify_ratio is not None:
+            command.extend(["--simplify-ratio", str(simplify_ratio), "--simplify-error", ".01"])
+        subprocess.run(command, cwd=ROOT, check=True)
+        os.replace(optimized, glb)
+    finally:
+        for filepath in paths:
+            if os.path.exists(filepath):
+                os.unlink(filepath)
+
+
 def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9), ground=5.2,
                  preserve_parts=False):
     # Curves and text must become meshes for glTF.  Identity-critical assets can
     # keep their semantic object hierarchy instead of being fused by material.
     optimise(root, join_by_material=not preserve_parts)
+    ground_root(root)
     scene = bpy.context.scene
-    scene.render.engine = "BLENDER_EEVEE"
+    try:
+        scene.render.engine = "BLENDER_EEVEE"
+    except TypeError:
+        scene.render.engine = "BLENDER_EEVEE_NEXT"
     scene.render.resolution_x = 840
     scene.render.resolution_y = 680
     scene.render.resolution_percentage = 100
     scene.render.image_settings.file_format = "PNG"
     scene.render.filepath = os.path.join(PREVIEWS, slug + ".png")
     scene.world.color = (.045, .20, .21)
-    scene.view_settings.look = "AgX - Medium High Contrast"
+    try:
+        scene.view_settings.look = "AgX - Medium High Contrast"
+    except TypeError:
+        pass
 
     preview = empty("PREVIEW ONLY")
     cube("Ground", (0, 0, -.18), (ground*2, ground*1.55, .3), CONCRETE, preview, edge=.22)
@@ -205,8 +299,9 @@ def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9), gro
         obj.select_set(True)
     bpy.context.view_layer.objects.active = root
     bpy.ops.export_scene.gltf(filepath=glb, export_format="GLB", use_selection=True,
-        export_animations=False, export_yup=True, export_apply=True,
-        export_draco_mesh_compression_enable=True, export_draco_mesh_compression_level=6)
+        export_animations=False, export_yup=True, export_apply=True)
+    postprocess_glb(glb, preserve_hierarchy=preserve_parts,
+                    simplify_ratio=SIMPLIFY_RATIOS.get(slug))
     bpy.ops.render.render(write_still=True)
     print("Created", glb)
 
@@ -389,7 +484,12 @@ def build_postbox():
     cube("Postbox crown",(0,0,2.06),(1.08,.80,.30),CHALK,r,edge=.12)
     cube("Posting slot",(0,-.39,1.55),(.65,.06,.14),INK,r,edge=.035)
     cube("Collection plate",(0,-.40,1.13),(.62,.05,.40),CHALK,r,edge=.035)
-    label("POST",(0,-.44,1.15),.20,RED,r)
+    # A tiny font mesh accounted for most of this prop's triangle count.  The
+    # inset envelope motif remains legible at the asset's in-world size.
+    cube("Envelope flap",(-.09,-.435,1.16),(.28,.025,.035),RED,r,
+         rot=(0,0,math.radians(28)),edge=.008)
+    cube("Envelope flap",(.09,-.437,1.16),(.28,.025,.035),RED,r,
+         rot=(0,0,math.radians(-28)),edge=.008)
     cyl("Postbox foot",(0,0,.18),.32,.36,METAL,r,16)
     return r
 
@@ -404,7 +504,8 @@ def build_bench():
         cube("Timber seat slat",(0,0,z),(2.75,.68,.16),WOOD2,r,edge=.065)
     cube("Bench back",(0,.31,1.25),(2.75,.14,.72),TEAL,r,rot=(math.radians(-8),0,0),edge=.07)
     cube("Bench badge",(0,-.08,1.28),(.62,.06,.32),CORAL,r,edge=.045)
-    label("REST",(0,-.12,1.29),.11,CHALK,r)
+    for x in (-.16, 0, .16):
+        cube("Bench badge mark",(x,-.115,1.29),(.07,.025,.16),CHALK,r,edge=.01)
     return r
 
 
@@ -427,6 +528,6 @@ if __name__ == "__main__":
             continue
         reset()
         root = builder()
-        export_asset(root, slug, target, camera, ground, preserve_parts=(slug == "postbox-v2"))
+        export_asset(root, slug, target, camera, ground)
 
     print("All remaining assets created")

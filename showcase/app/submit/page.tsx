@@ -1,10 +1,19 @@
-import { SubmitExperience } from "../components/SubmitExperience";
-
 export const metadata = {
-  title: "Submit a model — 3D Singapore Collection",
-  description: "Contribute a Singapore-related 3D model to the community collection.",
+  title: "Submissions closed · 3D Singapore Collection",
+  description: "The 3D Singapore Collection is now a read-only catalogue.",
+  robots: { index: false, follow: false },
 };
 
 export default function SubmitPage() {
-  return <SubmitExperience />;
+  return (
+    <main className="receipt-page">
+      <a className="back-link" href="/">← The Collection</a>
+      <section className="receipt-lookup">
+        <p className="eyebrow">Read-only catalogue</p>
+        <h1>Submissions are closed.</h1>
+        <p>The Community programme has been retired. The public Collection now documents 68 curated Game Assets through one versioned Catalogue Manifest.</p>
+        <a className="primary-link" href="/">Browse the catalogue →</a>
+      </section>
+    </main>
+  );
 }

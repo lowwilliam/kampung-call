@@ -1,17 +1,24 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { getBounds, NodeIO } from '@gltf-transform/core';
+import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
+import draco3d from 'draco3dgltf';
 import { root } from './lib/project.mjs';
 
 const assetsRoot = path.join(root, 'assets');
 const sourcePath = path.join(root, 'src/main.js');
 const outputPath = path.join(root, 'world/asset-audit.json');
 const strict = process.argv.includes('--strict');
+const io = new NodeIO()
+  .registerExtensions(ALL_EXTENSIONS)
+  .registerDependencies({ 'draco3d.decoder': await draco3d.createDecoderModule() });
 
 const budgets = {
   hero: 35000,
   vehicle: 18000,
   tree: 8000,
+  kit: 12000,
   prop: 2000,
 };
 
@@ -47,87 +54,29 @@ function readGlb(file) {
   return { json: JSON.parse(data.subarray(20, 20 + jsonLength).toString('utf8').trim()), data };
 }
 
-function quatMatrix(q) {
-  const [x, y, z, w] = q;
-  return [
-    1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w), 0,
-    2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w), 0,
-    2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y), 0,
-    0, 0, 0, 1,
-  ];
-}
-
-function multiply(a, b) {
-  const out = Array(16).fill(0);
-  for (let col = 0; col < 4; col += 1) for (let row = 0; row < 4; row += 1) {
-    for (let k = 0; k < 4; k += 1) out[col * 4 + row] += a[k * 4 + row] * b[col * 4 + k];
-  }
-  return out;
-}
-
-function nodeMatrix(node) {
-  if (node.matrix) return node.matrix;
-  const translation = node.translation || [0, 0, 0];
-  const scale = node.scale || [1, 1, 1];
-  const rotation = quatMatrix(node.rotation || [0, 0, 0, 1]);
-  rotation[0] *= scale[0]; rotation[1] *= scale[0]; rotation[2] *= scale[0];
-  rotation[4] *= scale[1]; rotation[5] *= scale[1]; rotation[6] *= scale[1];
-  rotation[8] *= scale[2]; rotation[9] *= scale[2]; rotation[10] *= scale[2];
-  rotation[12] = translation[0]; rotation[13] = translation[1]; rotation[14] = translation[2];
-  return rotation;
-}
-
-function transform(m, p) {
-  return [
-    m[0] * p[0] + m[4] * p[1] + m[8] * p[2] + m[12],
-    m[1] * p[0] + m[5] * p[1] + m[9] * p[2] + m[13],
-    m[2] * p[0] + m[6] * p[1] + m[10] * p[2] + m[14],
-  ];
-}
-
-function accessorBounds(gltf, accessorIndex) {
-  const accessor = gltf.accessors?.[accessorIndex];
-  if (!accessor?.min || !accessor?.max) throw new Error(`POSITION accessor ${accessorIndex} has no min/max`);
-  return [accessor.min, accessor.max];
-}
-
-function inspect(entry) {
+async function inspect(entry) {
   const file = path.resolve(root, entry.url);
   const { json } = readGlb(file);
-  const nodes = json.nodes || [];
-  const meshes = json.meshes || [];
-  const parents = Array(nodes.length).fill(-1);
-  nodes.forEach((node, index) => (node.children || []).forEach((child) => { parents[child] = index; }));
-  const worldMatrices = Array(nodes.length);
-  const matrixFor = (index) => {
-    if (worldMatrices[index]) return worldMatrices[index];
-    const local = nodeMatrix(nodes[index]);
-    worldMatrices[index] = parents[index] < 0 ? local : multiply(matrixFor(parents[index]), local);
-    return worldMatrices[index];
-  };
-  nodes.forEach((_, index) => matrixFor(index));
-  const min = [Infinity, Infinity, Infinity];
-  const max = [-Infinity, -Infinity, -Infinity];
+  const document = await io.read(file);
+  const scene = document.getRoot().listScenes()[0];
+  if (!scene) throw new Error(`${file}: GLB has no scene`);
+  // Read decoded geometry bounds. Draco-compressed accessors may retain stale
+  // JSON min/max metadata after transforms, so parsing the GLB JSON alone can
+  // incorrectly report a grounded model as floating (or the reverse).
+  const { min, max } = getBounds(scene);
   let triangles = 0;
   const materials = new Set();
   let meshCount = 0;
-  for (const [nodeIndex, node] of nodes.entries()) {
-    if (node.mesh === undefined) continue;
+  for (const node of document.getRoot().listNodes()) {
+    const mesh = node.getMesh();
+    if (!mesh) continue;
     meshCount += 1;
-    const mesh = meshes[node.mesh];
-    for (const primitive of mesh.primitives || []) {
-      const positionIndex = primitive.attributes?.POSITION;
-      if (positionIndex === undefined) continue;
-      const [pMin, pMax] = accessorBounds(json, positionIndex);
-      const corners = [];
-      for (const x of [pMin[0], pMax[0]]) for (const y of [pMin[1], pMax[1]]) for (const z of [pMin[2], pMax[2]]) corners.push(transform(worldMatrices[nodeIndex], [x, y, z]));
-      for (const point of corners) for (let axis = 0; axis < 3; axis += 1) {
-        min[axis] = Math.min(min[axis], point[axis]);
-        max[axis] = Math.max(max[axis], point[axis]);
-      }
-      if (primitive.material !== undefined) materials.add(primitive.material);
-      const indexCount = primitive.indices === undefined ? json.accessors[positionIndex].count : json.accessors[primitive.indices]?.count;
-      const mode = primitive.mode ?? 4;
+    for (const primitive of mesh.listPrimitives()) {
+      const positions = primitive.getAttribute('POSITION');
+      if (!positions) continue;
+      if (primitive.getMaterial()) materials.add(primitive.getMaterial());
+      const indexCount = primitive.getIndices()?.getCount() ?? positions.getCount();
+      const mode = primitive.getMode();
       if (mode === 4) triangles += Math.floor((indexCount || 0) / 3);
       else if (mode === 5 || mode === 6) triangles += Math.max(0, (indexCount || 0) - 2);
     }
@@ -138,6 +87,7 @@ function inspect(entry) {
   const scaledMaxY = max[1] * scale;
   const kind = entry.name === 'engineer' || entry.name === 'van' ? 'vehicle' :
     /palm|tree|supertree|raintree/.test(entry.name) ? 'tree' :
+      /props/i.test(entry.name) ? 'kit' :
       /bench|postbox|kit|busstop|bridge|bicycle|birdcage|cat|prop|service/.test(entry.name) ? 'prop' : 'hero';
   const budget = budgets[kind];
   return {
@@ -162,7 +112,7 @@ const manifest = readManifest();
 const entries = [];
 const failures = [];
 for (const entry of manifest) {
-  try { entries.push(inspect(entry)); }
+  try { entries.push(await inspect(entry)); }
   catch (error) { failures.push(`${entry.name}: ${error.message}`); }
 }
 const referenced = new Set(manifest.map((entry) => entry.url));

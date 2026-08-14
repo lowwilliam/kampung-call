@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kampung Call asset review</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #07191b; color: #f2ead9; }
+    header { position: sticky; top: 0; z-index: 2; display: flex; gap: 24px; align-items: baseline; padding: 18px 24px; background: #07191bee; border-bottom: 1px solid #275358; }
+    h1 { margin: 0; font-size: 22px; }
+    #summary { color: #9fc5bd; font-size: 13px; }
+    main { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; padding: 16px; }
+    article { overflow: hidden; min-width: 0; border: 1px solid #275358; border-radius: 10px; background: #0c2528; }
+    article.fail { border-color: #e46d59; }
+    img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: linear-gradient(#123c40, #0b292c); }
+    h2 { overflow: hidden; margin: 10px 12px 4px; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+    p { margin: 0 12px 10px; color: #a6c9c1; font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .bad { color: #ff9d89; }
+  </style>
+</head>
+<body>
+  <header><h1>Canonical GLB review</h1><div id="summary">Loading…</div></header>
+  <main id="grid"></main>
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+
+    const report = await fetch('/world/asset-audit.json').then((response) => response.json());
+    const grid = document.querySelector('#grid');
+    const summary = document.querySelector('#summary');
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(1);
+    renderer.setSize(480, 360, false);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    const loader = new GLTFLoader();
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+    loader.setDRACOLoader(draco);
+
+    function dispose(root) {
+      root.traverse((object) => {
+        object.geometry?.dispose();
+        const materials = Array.isArray(object.material) ? object.material : [object.material];
+        for (const material of materials) material?.dispose();
+      });
+    }
+
+    function reviewFlags(entry) {
+      return [
+        entry.overBudget && `${entry.triangles.toLocaleString()} tris > ${entry.budget.toLocaleString()}`,
+        entry.materials > 4 && `${entry.materials} material families`,
+        Math.abs(entry.minY) > .01 && `ground ${entry.minY.toFixed(3)}m`,
+        !entry.compressed && 'not Draco compressed',
+      ].filter(Boolean);
+    }
+
+    async function render(entry) {
+      const gltf = await loader.loadAsync(`/${entry.url}`);
+      const model = gltf.scene;
+      model.scale.setScalar(entry.scale || 1);
+      model.updateMatrixWorld(true);
+      const bounds = new THREE.Box3().setFromObject(model);
+      const centre = bounds.getCenter(new THREE.Vector3());
+      model.position.y -= bounds.min.y;
+      model.position.x -= centre.x;
+      model.position.z -= centre.z;
+      model.updateMatrixWorld(true);
+      const size = new THREE.Box3().setFromObject(model).getSize(new THREE.Vector3());
+      const maxDimension = Math.max(size.x, size.y, size.z, .1);
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x123c40);
+      scene.add(model);
+      const ground = new THREE.Mesh(
+        new THREE.CircleGeometry(maxDimension * .9, 48),
+        new THREE.MeshStandardMaterial({ color: 0x315e55, roughness: 1 }),
+      );
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -.01;
+      ground.receiveShadow = true;
+      scene.add(ground);
+      model.traverse((object) => {
+        if (!object.isMesh) return;
+        object.castShadow = true;
+        object.receiveShadow = true;
+      });
+      scene.add(new THREE.HemisphereLight(0xdff8f0, 0x18322c, 2.25));
+      const key = new THREE.DirectionalLight(0xffd6a4, 3.2);
+      key.position.set(-4, 7, -5).multiplyScalar(maxDimension);
+      key.castShadow = true;
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0x88bbff, 1.7);
+      fill.position.set(5, 3, 4).multiplyScalar(maxDimension);
+      scene.add(fill);
+
+      const camera = new THREE.PerspectiveCamera(34, 4 / 3, maxDimension / 100, maxDimension * 20);
+      const target = new THREE.Vector3(0, size.y * .46, 0);
+      const distance = maxDimension * 2.15;
+      camera.position.set(distance * .82, size.y * .62 + distance * .28, -distance);
+      camera.lookAt(target);
+      renderer.render(scene, camera);
+      const url = renderer.domElement.toDataURL('image/png');
+      dispose(scene);
+      return url;
+    }
+
+    let rendered = 0;
+    const failed = report.manifest.filter((entry) => reviewFlags(entry).length).length;
+    summary.textContent = `${report.manifest.length} assets · ${failed} need technical attention`;
+    for (const entry of report.manifest) {
+      const flags = reviewFlags(entry);
+      const card = document.createElement('article');
+      card.className = flags.length ? 'fail' : '';
+      card.innerHTML = `<img alt=""><h2></h2><p></p>`;
+      card.querySelector('h2').textContent = entry.name;
+      card.querySelector('p').innerHTML = [
+        `${entry.triangles.toLocaleString()} tris · ${entry.materials} mats · ${entry.meshCount} meshes`,
+        `${entry.dimensions.width.toFixed(1)} × ${entry.dimensions.height.toFixed(1)} × ${entry.dimensions.depth.toFixed(1)}m`,
+        flags.length ? `<span class="bad">${flags.join(' · ')}</span>` : 'PASS',
+      ].join('<br>');
+      grid.append(card);
+      try { card.querySelector('img').src = await render(entry); }
+      catch (error) { card.querySelector('p').innerHTML += `<br><span class="bad">LOAD ERROR ${error.message}</span>`; }
+      rendered += 1;
+      summary.textContent = `${rendered}/${report.manifest.length} rendered · ${failed} need technical attention`;
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+    }
+    summary.textContent = `${report.manifest.length} assets rendered · ${failed} need technical attention · REVIEW_READY`;
+    document.documentElement.dataset.reviewReady = 'true';
+  </script>
+</body>
+</html>

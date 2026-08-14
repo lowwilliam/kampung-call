@@ -18,7 +18,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1980,
-      "materials": 7,
+      "materials": 3,
       "meshCount": 68,
       "compressed": true,
       "dimensions": {
@@ -47,7 +47,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1252,
-      "materials": 6,
+      "materials": 4,
       "meshCount": 37,
       "compressed": true,
       "dimensions": {
@@ -76,7 +76,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1288,
-      "materials": 7,
+      "materials": 3,
       "meshCount": 85,
       "compressed": true,
       "dimensions": {
@@ -105,7 +105,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1512,
-      "materials": 7,
+      "materials": 4,
       "meshCount": 126,
       "compressed": true,
       "dimensions": {
@@ -134,7 +134,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 8132,
-      "materials": 7,
+      "materials": 4,
       "meshCount": 78,
       "compressed": true,
       "dimensions": {
@@ -163,7 +163,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 11936,
-      "materials": 5,
+      "materials": 3,
       "meshCount": 971,
       "compressed": true,
       "dimensions": {
@@ -192,7 +192,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1212,
-      "materials": 6,
+      "materials": 4,
       "meshCount": 70,
       "compressed": true,
       "dimensions": {
@@ -250,7 +250,7 @@
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 6336,
-      "materials": 6,
+      "materials": 4,
       "meshCount": 90,
       "compressed": true,
       "dimensions": {
@@ -279,7 +279,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 9540,
-      "materials": 7,
+      "materials": 4,
       "meshCount": 120,
       "compressed": true,
       "dimensions": {
@@ -308,7 +308,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1664,
-      "materials": 6,
+      "materials": 4,
       "meshCount": 97,
       "compressed": true,
       "dimensions": {
@@ -337,7 +337,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1400,
-      "materials": 6,
+      "materials": 4,
       "meshCount": 76,
       "compressed": true,
       "dimensions": {
@@ -366,7 +366,7 @@
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
       "triangles": 1544,
-      "materials": 8,
+      "materials": 4,
       "meshCount": 87,
       "compressed": true,
       "dimensions": {

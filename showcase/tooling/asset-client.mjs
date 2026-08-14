@@ -1,10 +1,8 @@
 import { createWriteStream } from "node:fs";
-import { mkdir, readFile, rename, stat, unlink } from "node:fs/promises";
+import { mkdir, rename, stat, unlink } from "node:fs/promises";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
-
-const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
 
 export class AssetClientError extends Error {
   constructor(message, { status = 0, code = "asset_client_error", details } = {}) {
@@ -16,42 +14,8 @@ export class AssetClientError extends Error {
   }
 }
 
-export function normalizeReceipt(value) {
-  const input = String(value ?? "").trim();
-  if (!input) throw new AssetClientError("A recovery receipt is required", { code: "missing_receipt" });
-  try {
-    const url = new URL(input);
-    const match = url.pathname.match(/\/receipt\/([^/]+)\/?$/);
-    return decodeURIComponent(match?.[1] ?? input);
-  } catch {
-    const match = input.match(/(?:^|\/)receipt\/([^/?#]+)/);
-    return decodeURIComponent(match?.[1] ?? input);
-  }
-}
-
 export function safeFileName(value) {
   return String(value || "asset.glb").replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "asset.glb";
-}
-
-async function uploadBlob(filePath) {
-  const resolved = path.resolve(filePath);
-  const fileStat = await stat(resolved).catch(() => null);
-  if (!fileStat?.isFile()) throw new AssetClientError(`File not found: ${resolved}`, { code: "file_not_found" });
-  if (!resolved.toLowerCase().endsWith(".glb")) throw new AssetClientError("Only .glb files can be uploaded", { code: "invalid_file_type" });
-  if (fileStat.size > MAX_UPLOAD_BYTES) throw new AssetClientError("The GLB must be 20 MB or smaller", { code: "file_too_large" });
-  const bytes = await readFile(resolved);
-  return { blob: new Blob([bytes], { type: "model/gltf-binary" }), name: path.basename(resolved), size: fileStat.size };
-}
-
-function requiredMetadata(metadata) {
-  const required = ["displayName", "contributorName", "description", "singaporeConnection", "sourceName"];
-  const missing = required.filter((key) => !String(metadata?.[key] ?? "").trim());
-  if (missing.length) {
-    throw new AssetClientError(`Missing upload metadata: ${missing.join(", ")}`, { code: "invalid_metadata" });
-  }
-  if (metadata.rightsAttested !== true) {
-    throw new AssetClientError("Upload requires an explicit rights attestation", { code: "rights_required" });
-  }
 }
 
 export class AssetClient {
@@ -106,25 +70,6 @@ export class AssetClient {
     return payload.asset;
   }
 
-  async uploadAsset(filePath, metadata) {
-    requiredMetadata(metadata);
-    const file = await uploadBlob(filePath);
-    const form = new FormData();
-    form.set("model", file.blob, file.name);
-    for (const [key, value] of Object.entries(metadata)) {
-      if (value !== undefined && value !== null) form.set(key, String(value));
-    }
-    form.set("rightsAttested", "true");
-    form.set("allowDownload", String(metadata.allowDownload === true));
-    form.set("website", "");
-    const payload = await this.requestJson("/api/v1/assets", { method: "POST", body: form });
-    return {
-      ...payload,
-      receiptUrl: payload.receiptUrl ? this.resolve(payload.receiptUrl) : null,
-      uploadedFile: { path: path.resolve(filePath), name: file.name, size: file.size },
-    };
-  }
-
   async downloadAsset(id, outputPath = "") {
     const asset = await this.getAsset(id);
     if (!asset.downloadAllowed || !asset.downloadUrl) {
@@ -153,24 +98,5 @@ export class AssetClient {
     }
     const downloaded = await stat(target);
     return { asset, path: target, bytes: downloaded.size };
-  }
-
-  async getSubmission(receipt) {
-    return this.requestJson(`/api/v1/submissions/${encodeURIComponent(normalizeReceipt(receipt))}`);
-  }
-
-  async replaceSubmission(receipt, filePath) {
-    const file = await uploadBlob(filePath);
-    const form = new FormData();
-    form.set("model", file.blob, file.name);
-    const payload = await this.requestJson(`/api/v1/submissions/${encodeURIComponent(normalizeReceipt(receipt))}`, {
-      method: "PUT",
-      body: form,
-    });
-    return { ...payload, uploadedFile: { path: path.resolve(filePath), name: file.name, size: file.size } };
-  }
-
-  async withdrawSubmission(receipt) {
-    return this.requestJson(`/api/v1/submissions/${encodeURIComponent(normalizeReceipt(receipt))}`, { method: "DELETE" });
   }
 }

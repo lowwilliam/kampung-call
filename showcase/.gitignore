@@ -39,6 +39,7 @@ yarn-error.log*
 /outputs/
 /work/
 /public/models/
+/public/previews/
 /public/draco/
 /public/downloads/
 /app/data/asset-metrics.json

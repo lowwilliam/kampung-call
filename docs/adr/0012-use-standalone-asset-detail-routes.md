@@ -1,0 +1,3 @@
+# Use standalone asset detail routes
+
+Every Game Asset will have a server-resolved Detail View at a stable canonical URL rather than a client modal. Normal navigation and browser history return Visitors to their prior Collection filters and scroll position, while standalone routes provide reliable focus semantics, link sharing, asset-specific metadata, caching, and real 404 responses with one behaviour across mobile and desktop. Published assets include canonical URLs, unique titles and descriptions, Open Graph Card Previews, structured data, and sitemap entries; a Withdrawn Asset retains a `noindex` tombstone.

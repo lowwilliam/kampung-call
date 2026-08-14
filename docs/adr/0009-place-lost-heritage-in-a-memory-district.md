@@ -1,0 +1,3 @@
+# Place Lost Heritage in a lazily loaded Memory District
+
+The game will integrate all 13 Lost Heritage reconstructions as explorable content in a dedicated Memory District with collision, sourced story interactions, and explicit framing as reconstructions of demolished places. Visitors can enter through a discoverable portal on the main island or open the district directly from a menu or URL. Its first release is a demolition-era timeline walk with 13 sourced interactions and a reliable return to the main island, not a geographic reconstruction or a new mission system. Loading the district only when entered preserves the modern island's historical meaning and startup performance while making the models real playable content rather than merely bundled files.

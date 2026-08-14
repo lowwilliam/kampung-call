@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { AssetClient, AssetClientError } from "../tooling/asset-client.mjs";
 
-const booleanFlags = new Set(["json", "help", "display-linkedin", "allow-download", "yes-rights", "yes"]);
+const booleanFlags = new Set(["json", "help"]);
 
 export function parseArgs(argv) {
   const flags = {};
@@ -34,22 +33,16 @@ Usage:
   kampung-assets [--base-url URL] [--json] <command>
 
 Commands:
-  list [--query TEXT] [--collection all|game|community] [--category NAME]
+  list [--query TEXT] [--collection all|game] [--category NAME]
   get <asset-id>
   download <asset-id> [-o FILE]
-  upload <model.glb> --metadata submission.json --yes-rights [--allow-download]
-  upload <model.glb> --name NAME --contributor NAME --description TEXT \\
-    --singapore-connection TEXT --source NAME --yes-rights [--allow-download]
-  status <receipt-or-receipt-url>
-  replace <receipt> <model.glb>
-  withdraw <receipt> --yes
 
 Environment:
   KAMPUNG_ASSET_API_URL    Default site origin (defaults to http://localhost:3000)
   KAMPUNG_ASSET_API_TOKEN  Optional bearer token for protected deployments
 
-Asset IDs are namespaced, for example game:peranakan-house or community:<uuid>.
-The recovery receipt returned by upload is required to inspect, replace or withdraw a submission.`;
+Asset IDs are namespaced, for example game:peranakan-house.
+The catalogue is read-only; download succeeds only for an asset with a cleared Download Grant.`;
 }
 
 function output(value, asJson) {
@@ -71,28 +64,6 @@ function output(value, asJson) {
     return;
   }
   process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
-}
-
-async function uploadMetadata(flags) {
-  let metadata = {};
-  if (flags.metadata) {
-    const metadataPath = path.resolve(flags.metadata);
-    metadata = JSON.parse(await readFile(metadataPath, "utf8"));
-  }
-  return {
-    ...metadata,
-    displayName: flags.name ?? metadata.displayName,
-    contributorName: flags.contributor ?? metadata.contributorName,
-    description: flags.description ?? metadata.description,
-    singaporeConnection: flags["singapore-connection"] ?? metadata.singaporeConnection,
-    sourceName: flags.source ?? metadata.sourceName,
-    sourceUrl: flags["source-url"] ?? metadata.sourceUrl ?? "",
-    category: flags.category ?? metadata.category ?? "Street Life & Nature",
-    linkedinUrl: flags.linkedin ?? metadata.linkedinUrl ?? "",
-    displayLinkedin: flags["display-linkedin"] ?? metadata.displayLinkedin ?? false,
-    allowDownload: flags["allow-download"] ?? metadata.allowDownload ?? false,
-    rightsAttested: flags["yes-rights"] === true,
-  };
 }
 
 function need(value, message) {
@@ -125,22 +96,6 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
       break;
     case "download":
       result = await client.downloadAsset(need(args[0], "download requires an asset ID"), flags.output ?? "");
-      break;
-    case "upload":
-      result = await client.uploadAsset(need(args[0], "upload requires a .glb file"), await uploadMetadata(flags));
-      break;
-    case "status":
-      result = await client.getSubmission(need(args[0], "status requires a recovery receipt"));
-      break;
-    case "replace":
-      result = await client.replaceSubmission(
-        need(args[0], "replace requires a recovery receipt"),
-        need(args[1], "replace requires a .glb file"),
-      );
-      break;
-    case "withdraw":
-      if (!flags.yes) throw new AssetClientError("withdraw is destructive; rerun with --yes", { code: "confirmation_required" });
-      result = await client.withdrawSubmission(need(args[0], "withdraw requires a recovery receipt"));
       break;
     default:
       throw new AssetClientError(`Unknown command: ${command}`, { code: "usage_error" });

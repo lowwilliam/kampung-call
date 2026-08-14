@@ -4,18 +4,24 @@ const PI = Math.PI;
 
 function materials(palette) {
   const make = (color, roughness = 0.72, metalness = 0) => new THREE.MeshStandardMaterial({ color, roughness, metalness });
+  // Four visual families keep downloadable GLBs cheap to draw while preserving
+  // each reconstruction's silhouette and palette hierarchy.
+  const primary = make(palette[0]);
+  const secondary = make(palette[1]);
+  const dark = make(palette[2], 0.48);
+  const accent = make(palette[3], 0.66);
   return {
-    primary: make(palette[0]),
-    secondary: make(palette[1]),
-    dark: make(palette[2], 0.48),
-    accent: make(palette[3], 0.66),
-    extra: make(palette[4] || palette[0], 0.75),
-    glass: new THREE.MeshPhysicalMaterial({ color: palette[2], roughness: 0.2, metalness: 0.08, transmission: 0.08, transparent: true, opacity: 0.88 }),
-    metal: make('#657174', 0.36, 0.72),
-    water: new THREE.MeshPhysicalMaterial({ color: '#4b8290', roughness: 0.16, transparent: true, opacity: 0.72 }),
-    green: make('#4f7354', 0.9),
-    earth: make('#75654d', 0.96),
-    white: make('#e6e0d2', 0.62),
+    primary,
+    secondary,
+    dark,
+    accent,
+    extra: primary,
+    glass: dark,
+    metal: dark,
+    water: dark,
+    green: secondary,
+    earth: primary,
+    white: secondary,
   };
 }
 

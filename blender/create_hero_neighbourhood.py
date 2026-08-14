@@ -267,12 +267,22 @@ def export_component(root, filepath, offset):
     original = root.location.copy()
     root.location = Vector(offset)
     bpy.context.view_layer.update()
+    lowest = min(
+        (obj.matrix_world @ Vector(corner)).z
+        for obj in descendants(root)
+        if obj.type == "MESH"
+        for corner in obj.bound_box
+    )
+    root.location.z -= lowest
+    bpy.context.view_layer.update()
     bpy.ops.object.select_all(action="DESELECT")
     for obj in descendants(root):
         obj.select_set(True)
     bpy.context.view_layer.objects.active = root
     bpy.ops.export_scene.gltf(filepath=filepath, export_format="GLB", use_selection=True,
-                              export_animations=False, export_yup=True, export_apply=True)
+                              export_animations=False, export_yup=True, export_apply=True,
+                              export_draco_mesh_compression_enable=True,
+                              export_draco_mesh_compression_level=6)
     root.location = original
     bpy.context.view_layer.update()
 

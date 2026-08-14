@@ -11,6 +11,8 @@ function copyRuntimeAssets(){
       const files=new Set([...source.matchAll(/assets\/[A-Za-z0-9_./-]+\.(?:glb|mp3|png|jpg|jpeg|webp)/g)].map(match=>match[0]));
       const residents=source.match(/const RESIDENT_ASSETS=(\[[^;]+\]);/)?.[1]||'[]';
       for(const resident of residents.matchAll(/'([^']+)'/g))files.add(`assets/residents/${resident[1]}.glb`);
+      const memoryDistrict=JSON.parse(fs.readFileSync(path.resolve('world/memory-district.json'),'utf8'));
+      for(const entry of memoryDistrict.entries||[])files.add(entry.modelPath);
       for(const relative of files){
         const input=path.resolve(relative),output=path.join(out,relative);
         fs.mkdirSync(path.dirname(output),{recursive:true});

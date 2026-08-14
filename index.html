@@ -16,7 +16,10 @@
   <div class="t-eyebrow">Six neighbours · one mission</div>
   <div class="t-name">KAMPUNG <span>CALL</span></div>
   <div class="t-tag">The kampung needs a hand. Make your rounds across the island, solve each neighbour’s problem, and bring the community back together.</div>
-  <button id="begin">START ROUNDS</button>
+  <div class="title-actions">
+    <button id="begin">START ROUNDS</button>
+    <button id="memoryBegin">EXPLORE MEMORY DISTRICT</button>
+  </div>
   <div class="t-hint" id="titleHint">WASD / arrows to move · E to emote · F to enter/exit van</div>
   <div class="t-credit">an AI-built homage to messenger.abeto.co · made on the island</div>
 </div>
@@ -53,7 +56,24 @@
 <button id="emoteBtn" aria-label="Send emote">🎉</button>
 <button id="vanBtn" aria-label="Enter or exit van">🚐 ENTER</button>
 <button id="stationBtn" aria-label="Enter or exit the MRT station">🚇 ENTER</button>
+<button id="memoryBtn" aria-label="Enter or exit the Memory District">MEMORY</button>
 <div id="joy"><div class="knob" id="joyKnob"></div></div>
+
+<aside id="memoryHud" aria-live="polite">
+  <span>Lost Heritage · 13 reconstructions</span>
+  <strong>Memory District</strong>
+  <small>A curated demolition timeline, not a geographic reconstruction.</small>
+</aside>
+
+<section id="memoryStory" role="dialog" aria-modal="true" aria-labelledby="memoryStoryName">
+  <button id="memoryStoryClose" aria-label="Close heritage story">×</button>
+  <p class="memory-story-kicker" id="memoryStoryYears"></p>
+  <h2 id="memoryStoryName"></h2>
+  <p class="memory-story-location" id="memoryStoryLocation"></p>
+  <p id="memoryStoryText"></p>
+  <p class="memory-story-disclosure" id="memoryStoryDisclosure"></p>
+  <div class="memory-story-actions"><a id="memoryStorySource" target="_blank" rel="noreferrer">Historical source ↗</a><span id="memoryStoryEvidence"></span></div>
+</section>
 
 <div id="compass" aria-hidden="true">
   <svg viewBox="-27 -27 54 54">

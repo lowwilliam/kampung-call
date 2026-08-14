@@ -1,40 +1,67 @@
 {
   "schema": 1,
+  "recordType": "scenery-component-registry",
+  "collectionAsset": false,
   "provider": "threejsassets.com",
   "licenseUrl": "https://threejsassets.com/license",
   "root": "assets/vendor/threejsassets",
+  "activeVariantRule": "Use and credit the threejsassets variant only when its configured GLB loads successfully; otherwise use and credit the Kampung Call procedural fallback.",
+  "sourceVariants": {
+    "kampung-call-procedural-fallback": {
+      "creator": "Kampung Call",
+      "productionMethod": "procedural Three.js geometry",
+      "rightsStatus": "unreviewed"
+    },
+    "threejsassets-licensed-glb": {
+      "creator": "threejsassets.com",
+      "licenseUrl": "https://threejsassets.com/license",
+      "standaloneRedistributionAllowed": false
+    }
+  },
   "assets": {
     "cityTrafficLight": {
+      "displayName": "City traffic light",
+      "fallbackImplementation": "buildTrafficSignal",
       "pack": "city",
       "file": "traffic-light-01.glb",
       "targetHeight": 5,
       "license": "free"
     },
     "cityRoadGantry": {
+      "displayName": "City road gantry",
+      "fallbackImplementation": "buildRoadGantry",
       "pack": "city",
       "file": "road-gantry-01.glb",
       "targetLongest": 7,
       "license": "premium"
     },
     "cityRooftopUnits": {
+      "displayName": "City rooftop units",
+      "fallbackImplementation": "buildRooftopUnits",
       "pack": "city",
       "file": "rooftop-units-01.glb",
       "targetLongest": 2.4,
       "license": "premium"
     },
     "cityTrashBin": {
+      "displayName": "City trash bin",
+      "fallbackImplementation": "buildBin",
       "pack": "city",
       "file": "trash-bin-01.glb",
       "targetHeight": 1,
       "license": "free"
     },
     "cityDeliveryVan": {
+      "displayName": "City delivery van",
+      "fallbackImplementation": "buildDeliveryVan",
       "pack": "city",
       "file": "delivery-van-01.glb",
       "targetLongest": 5,
       "license": "premium"
     },
     "cityBus": {
+      "displayName": "City bus",
+      "fallbackImplementation": "buildIslandBus",
       "pack": "city",
       "file": "city-bus-01.glb",
       "handler": "transitBus",
@@ -42,84 +69,112 @@
       "license": "premium"
     },
     "viceCafeTableChairs": {
+      "displayName": "Café table and chairs",
+      "fallbackImplementation": "buildCafeTable",
       "pack": "vice-beach",
       "file": "cafe-table-chairs.glb",
       "targetLongest": 2.8,
       "license": "free"
     },
     "viceRoyalPalm": {
+      "displayName": "Royal palm",
+      "fallbackImplementation": "buildPalmVariant('royal')",
       "pack": "vice-beach",
       "file": "royal-palm.glb",
       "targetHeight": 9,
       "license": "free"
     },
     "viceCoconutPalm": {
+      "displayName": "Coconut palm",
+      "fallbackImplementation": "buildPalmVariant('coconut')",
       "pack": "vice-beach",
       "file": "coconut-palm.glb",
       "targetHeight": 9,
       "license": "free"
     },
     "viceMarinaDock": {
+      "displayName": "Marina dock module",
+      "fallbackImplementation": "buildMarinaDock",
       "pack": "vice-beach",
       "file": "marina-dock-module.glb",
       "targetLongest": 5,
       "license": "free"
     },
     "viceMooringPilings": {
+      "displayName": "Mooring piling cluster",
+      "fallbackImplementation": "buildMooringPilings",
       "pack": "vice-beach",
       "file": "mooring-piling-cluster.glb",
       "targetLongest": 2.2,
       "license": "free"
     },
     "viceBoardwalk": {
+      "displayName": "Straight boardwalk",
+      "fallbackImplementation": "buildBoardwalk",
       "pack": "vice-beach",
       "file": "boardwalk-straight.glb",
       "targetLongest": 5,
       "license": "free"
     },
     "viceShoreStraight": {
+      "displayName": "Straight shoreline",
+      "fallbackImplementation": "buildShorePiece('straight')",
       "pack": "vice-beach",
       "file": "shore-straight.glb",
       "targetLongest": 6,
       "license": "free"
     },
     "viceShoreCornerIn": {
+      "displayName": "Inner shoreline corner",
+      "fallbackImplementation": "buildShorePiece('corner-in')",
       "pack": "vice-beach",
       "file": "shore-corner-in.glb",
       "targetLongest": 6,
       "license": "free"
     },
     "viceShoreCornerOut": {
+      "displayName": "Outer shoreline corner",
+      "fallbackImplementation": "buildShorePiece('corner-out')",
       "pack": "vice-beach",
       "file": "shore-corner-out.glb",
       "targetLongest": 6,
       "license": "free"
     },
     "metroTransformerKiosk": {
+      "displayName": "Transformer kiosk",
+      "fallbackImplementation": "buildTransformerKiosk",
       "pack": "metropolis",
       "file": "transformer-kiosk-01.glb",
       "targetLongest": 2.4,
       "license": "premium"
     },
     "metroUtilityVentCabinet": {
+      "displayName": "Utility vent cabinet",
+      "fallbackImplementation": "buildUtilityCabinet",
       "pack": "metropolis",
       "file": "utility-vent-cabinet-01.glb",
       "targetHeight": 1.35,
       "license": "premium"
     },
     "metroServiceGate": {
+      "displayName": "Service gate",
+      "fallbackImplementation": "buildServiceGate",
       "pack": "metropolis",
       "file": "service-gate-01.glb",
       "targetLongest": 5,
       "license": "premium"
     },
     "metroBusBay": {
+      "displayName": "Road bus bay",
+      "fallbackImplementation": "buildRoadServiceTile('BUS BAY')",
       "pack": "metropolis",
       "file": "road-bus-bay-straight-01.glb",
       "targetLongest": 7,
       "license": "premium"
     },
     "metroLoadingZone": {
+      "displayName": "Road loading zone",
+      "fallbackImplementation": "buildRoadServiceTile('LOADING')",
       "pack": "metropolis",
       "file": "road-loading-zone-straight-01.glb",
       "targetLongest": 7,

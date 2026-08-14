@@ -179,7 +179,6 @@ function faceTangent(obj,unit,center){
   const ang=Math.atan2(V3().crossVectors(localX,tan).dot(unit), localX.dot(tan));
   obj.rotateY(ang);
 }
-// rotate a placed object so its local +X points along an arbitrary direction (projected to the surface)
 function alignXToDir(obj,unit,dirVec){
   const tan=dirVec.clone().sub(unit.clone().multiplyScalar(dirVec.dot(unit))).normalize();
   const localX=V3(1,0,0).applyQuaternion(obj.quaternion);
@@ -187,20 +186,10 @@ function alignXToDir(obj,unit,dirVec){
   obj.rotateY(ang);
 }
 
-// ============================================================
-// SCULPTED GEOMETRY — continuous silhouettes instead of box stacks.
-// Revolved lathes, capsules, bevelled extrusions, organic blobs and
-// lofted tubes. They read like DCC-authored meshes while staying
-// compatible with the toon material + inverted-hull ink outlines.
-// ============================================================
-
-// Revolve a [[r, y], ...] profile (bottom→top) around Y. r≈0 → closed apex.
-// LatheGeometry generates clean outward normals + usable UVs.
 function lathe(points, segments=18){
   const pts = points.map(([r,y])=>new THREE.Vector2(Math.max(0.0004, r), y));
   return new THREE.LatheGeometry(pts, segments);
 }
-// Round-capped cylinder. (CapsuleGeometry is r142+, so hand-roll via lathe.)
 function capsule(radius, length, segments=12){
   const profile=[], capSeg=Math.max(4, Math.floor(segments/2)), half=length/2;
   for(let i=0;i<=capSeg;i++){
@@ -259,6 +248,7 @@ const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
       TEMPLE={lat:-8,lon:12};
 const CONCERT_HALL={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
       TOWER={lat:8,lon:-143}, PBLOCK={lat:67,lon:115};
+const MEMORY_PORTAL={lat:-4,lon:54};
 const RESORT={lat:-56,lon:-50}, FILM_PARK={lat:-63,lon:-14},
       QUAYSIDE={lat:-40,lon:-100}, AIRPORT={lat:16,lon:-176},
       ATRIUM={lat:16,lon:-152}, ECP={lat:-4,lon:-132},
@@ -268,7 +258,7 @@ const RESORT={lat:-56,lon:-50}, FILM_PARK={lat:-63,lon:-14},
 const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-20,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
-const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:3,lon:72},
+const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:2.7,lon:73.2},
       DESIGN_UNI={lat:28,lon:-137}, HOSPITAL={lat:15,lon:28}, WEST_PORT={lat:42,lon:-120},
       CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:30,lon:-72},
       AIRPORT_TOWER={lat:13,lon:-169}, AIRPORT_ATRIUM={lat:18,lon:-163};
@@ -387,6 +377,8 @@ function registerSwap(name,grp){
 function placeVendorFallback(name,obj,lat,lon,headingDeg=0,{outline=true,collider=0,altitude=0}={}){
   const fallback=outline?addOutlines(obj):obj;
   const instance=registerSwap(name,placeOnSphere(fallback,lat,lon,headingDeg));
+  instance.userData.sceneryComponent=name;
+  instance.userData.sourceVariant='kampung-call-procedural-fallback';
   if(altitude){
     const unit=latLonPos(lat,lon).normalize();
     instance.position.addScaledVector(unit,altitude);
@@ -767,17 +759,10 @@ function keepRoadClear(unit,halfWidth,approach=null,detourSide=null){
   u.copy(center).multiplyScalar(Math.cos(required/R)).add(away.multiplyScalar(Math.sin(required/R))).normalize();
   return u;
 }
-// Apply one controlled deflection, then relax it into a continuous civil-style
-// alignment. A single final clearance pass is important: relaxation can pull a
-// route back beneath a large landmark even when its initial samples were safe.
-// Since roads are navigation corridors rather than rendered ribbons, this
-// final projection prioritises dependable access over cosmetic interpolation.
 function buildClearedRoute(raw,halfWidth){
   const mid=Math.floor(raw.length/2);
   const before=raw[Math.max(0,mid-1)],after=raw[Math.min(raw.length-1,mid+1)];
   const tangent=after.clone().sub(before).sub(raw[mid].clone().multiplyScalar(after.clone().sub(before).dot(raw[mid]))).normalize();
-  // A single side vector per authored segment prevents adjacent samples from
-  // trying to pass opposite sides of the same footprint.
   const routeSide=V3().crossVectors(raw[mid],tangent).normalize();
   let centers=raw.map((unit,i)=>{
     const approach=i===0?raw[1]:i===raw.length-1?raw[raw.length-2]:raw[i];
@@ -1765,6 +1750,35 @@ function stationFloorHeight(x,z){
   return (z+7)*1.05;
 }
 function stationWorldPosition(){return STATION_ORIGIN.clone().add(stationState.position);}
+
+// ---------- Memory District pocket world ----------
+let memoryRuntime,memoryPreparePromise,memoryEntering=false;
+const memoryPortal=placeOnSphere(box(2.6,3,.3,0xd0342c),MEMORY_PORTAL.lat,MEMORY_PORTAL.lon,12);
+memoryPortal.userData.memoryPortal=true;
+function memorySurfaceState(){
+  const portalUnit=latLonPos(MEMORY_PORTAL.lat,MEMORY_PORTAL.lon).normalize();
+  return{position:pos.clone(),forward:fwd.clone(),portalUnit,directForward:latLonPos(MEMORY_PORTAL.lat+1,MEMORY_PORTAL.lon).sub(portalUnit.clone().multiplyScalar(R)).normalize(),radius:R};
+}
+function updateMemoryAudit(){
+  if(memoryRuntime)return memoryRuntime.audit();
+  return window.__memoryDistrictAudit={registered:0,chunks:[],loadedEntries:0,failed:0,mode:stationState.mode,sourceManifestVersion:null};
+}
+function prepareMemoryDistrict(){
+  if(!memoryPreparePromise)memoryPreparePromise=import('./memory-district.js').then(({createMemoryDistrictRuntime})=>memoryRuntime=createMemoryDistrictRuntime({
+    scene,player,camera,dir,rim,dirTarget,gradientTexture:gradTex,outlineMaterial:OUTLINE_MAT,toonify,alignLowestPoint,showToast,hideCompass,worldTransition,setWorldMode,
+    getControls:()=>({keys,joyVec,speed:SPEED,turnSpeed:TURN}),getWorldMode:()=>stationState.mode,getSurface:memorySurfaceState,
+    getLifecycle:()=>({started,finished,mode:stationState.mode,dialogueOpen,diagnosing,vanMode:vanState.mode}),
+    restoreSurface:(savedPosition,savedForward)=>{pos.copy(savedPosition||latLonPos(MEMORY_PORTAL.lat,MEMORY_PORTAL.lon).normalize().multiplyScalar(R));fwd.copy(savedForward||V3(0,0,-1));const up=pos.clone().normalize();player.position.copy(up).multiplyScalar(surfR(up)+.08);},
+    getAnimation:()=>({mixer:playerMixer,actions:playerActions,getWalkWeight:()=>glbWalkW,setWalkWeight:value=>{glbWalkW=value;}}),
+  }));
+  return memoryPreparePromise;
+}
+async function enterMemoryDistrict(options={}){
+  if(memoryEntering)return;memoryEntering=true;
+  try{(await prepareMemoryDistrict()).enter(options);}catch(error){memoryPreparePromise=null;showToast('Memory District',`Could not open the district: ${error?.message||'registry unavailable'}`);}finally{memoryEntering=false;}
+}
+function exitMemoryDistrict(){memoryRuntime?.returnToSurface();}
+function tryMemoryAction(){if(stationState.mode==='memory')memoryRuntime?.tryAction();}
 
 function buildFlag(){
   const g=new THREE.Group();
@@ -4849,11 +4863,6 @@ const Snd={
   },
 };
 
-// ---------- deliveries ----------
-// Scheduled field-service work orders. Each visit follows the public Islandlink
-// support sequence: confirm symptoms, inspect equipment/LED state, isolate the
-// fault, restore service, validate, then close or escalate the ticket.
-// `holding` means diagnosis is in progress at the current premises.
 const FUTURE_DELIVERIES=[
  {item:'LOS / red PON',icon:'los',from:0,to:0,
   pickup:"Appointment verified. Customer reports no service. Inspect power, fibre patch cord and ONT PON/LOS indicators before touching the equipment.",
@@ -5176,17 +5185,22 @@ const EMOTE_KINDS=['star','heart','chat','wrench','smile','flag'];
 addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;
   // One-shot actions must ignore the browser's held-key repeat. Without this,
   // holding F for a fraction of a second can enter and immediately exit.
-  if(e.repeat&&(e.key.toLowerCase()==='f'||e.key.toLowerCase()==='e'))return;
+  if(e.repeat&&['f','e','enter'].includes(e.key.toLowerCase()))return;
   if(e.key.toLowerCase()==='e')popEmote(player,EMOTE_KINDS[(Math.random()*EMOTE_KINDS.length)|0]);
   // [F] enter/exit the van (only during a shift, not on the title screen)
-  if(e.key.toLowerCase()==='f'&&started&&!finished&&!dialogueOpen&&!diagnosing){
+  if(e.key.toLowerCase()==='f'&&started&&!finished&&!dialogueOpen&&!diagnosing&&stationState.mode==='surface'){
     e.preventDefault();
     if(vanState.mode==='driving') tryExitVan(); else tryEnterVan();
   }
   // [Enter] enters the MRT station from the outdoor portal and exits only
   // from the upstairs concourse. Dialogue keeps ownership of Enter above.
   if(e.key.toLowerCase()==='enter'&&started&&!finished&&!dialogueOpen&&!diagnosing){
-    e.preventDefault();tryEnterMRT();
+    e.preventDefault();
+    if(stationState.mode==='memory')tryMemoryAction();
+    else if(stationState.mode==='surface'){
+      const portalDistance=surfaceDistance(pos,latLonPos(MEMORY_PORTAL.lat,MEMORY_PORTAL.lon).normalize());
+      if(portalDistance<=3.8)enterMemoryDistrict();else tryEnterMRT();
+    }else tryEnterMRT();
   }
   // Development-only smoke-test shortcut; Vite strips this branch from a
   // production build, keeping the public control surface unchanged.
@@ -5343,21 +5357,29 @@ function stepStationPlayer(dt){
     const {legs,arms}=player.userData;legs[0].rotation.x=sw;legs[1].rotation.x=-sw;arms[0].rotation.x=-sw*.85;arms[1].rotation.x=sw*.85;
   }
 }
+function stepMemoryPlayer(dt){memoryRuntime?.stepPlayer(dt);}
+function stepMemoryDistrict(dt){memoryRuntime?.step(dt);}
 function setWorldMode(mode){
   stationState.mode=mode;
   document.documentElement.dataset.worldMode=mode;
   stationWorld.visible=mode==='station';
+  memoryRuntime?.setVisible(mode==='memory');
   if(mode==='station'){
     scene.fog.color.set(0x0c2428);scene.fog.near=18;scene.fog.far=92;
     renderer.setClearColor(0x0c2428,1);
+  }else if(mode==='memory'){
+    scene.fog.color.set(0x203d3e);scene.fog.near=34;scene.fog.far=150;
+    renderer.setClearColor(0x203d3e,1);
   }else{
     scene.fog.color.set(VOID_COLOR);scene.fog.near=36;scene.fog.far=124;
     renderer.setClearColor(VOID_COLOR,1);
   }
+  updateMemoryAudit();
 }
 function auditVisibilityContracts(){
   const contracts=[
     {name:'stationWorld',initiallyHidden:true,reEnabledBy:'setWorldMode(mode)',intent:'station interior is hidden on the surface'},
+    {name:'memoryWorld',initiallyHidden:true,reEnabledBy:'setWorldMode(mode)',intent:'Memory District loads only after an explicit entry'},
     {name:'vanRoofBeacon',initiallyHidden:true,reEnabledBy:'tryEnterVan()/stepVan()',intent:'vehicle beacon only appears while driving'},
     {name:'targetMarker',initiallyHidden:true,reEnabledBy:'stepQuest()',intent:'target marker is hidden in station mode and shown for active calls'},
     {name:'targetBeacon',initiallyHidden:false,reEnabledBy:'stepQuest()',intent:'target ring is hidden on completion and restored for a new active call'},
@@ -5401,18 +5423,12 @@ function tryExitMRT(){
 let prevWalkSin=0;
 let playerMixer=null, playerActions={}, glbWalkW=0;
 
-// camera has three modes: a slow title orbit, an eased swoop into the
-// follow pose on Begin, then the gameplay follow. playFollowPose() returns
-// the {pos, look, up} the follow cam wants so it can be blended during the
-// swoop; updateLights() moves the sun/rim to match the active frame.
 let camMode='title', swoopT=0;
 const swoopFromPos=new THREE.Vector3();
 const TITLE_ANCHOR=latLonPos((KOPITIAM.lat+HDB.lat)/2,(KOPITIAM.lon+HDB.lon)/2).normalize();
 function playFollowPose(){
   const up=pos.clone().normalize();
   const surf=up.clone().multiplyScalar(surfR(up));
-  // driving mode sits the camera higher + further back so the road ahead
-  // and the van are both visible at the faster speed
   const driving=vanState.mode==='driving';
   const upOff=driving?8.8:7.8, backOff=driving?-18:-15;
   const shoulder=V3().crossVectors(up,fwd).normalize();
@@ -5458,6 +5474,9 @@ function stepCamera(dt,t){
     camera.up.copy(TITLE_ANCHOR);
     camera.lookAt(TITLE_ANCHOR.clone().multiplyScalar(1.5));
     return;
+  }
+  if(stationState.mode==='memory'){
+    memoryRuntime?.stepCamera(dt);return;
   }
   if(stationState.mode==='station'){
     const base=stationWorldPosition(),z=stationState.forward.clone().normalize();
@@ -5675,7 +5694,7 @@ repairAction.addEventListener('click',()=>{
 });
 
 function stepQuest(t){
-  if(stationState.mode==='station'){marker.visible=false;hideCompass();return;}
+  if(stationState.mode!=='surface'){marker.visible=false;beacon.visible=false;hideCompass();return;}
   if(finished||stage>=DELIVERIES.length){hideCompass();return;}
   const target=currentTargetNPC();
   const tp=target.getWorldPosition(new THREE.Vector3());
@@ -5732,8 +5751,13 @@ const chitDistEl=document.getElementById('chitDist');
 const actionPrompt=document.getElementById('action-prompt');
 const vanBtn=document.getElementById('vanBtn');
 const stationBtn=document.getElementById('stationBtn');
+const memoryBtn=document.getElementById('memoryBtn');
 function updateActionUI(){
-  if(!started||finished||dialogueOpen||diagnosing){actionPrompt.classList.remove('show');stationBtn.style.display='none';return;}
+  if(!started||finished||dialogueOpen||diagnosing||memoryRuntime?.storyOpen){actionPrompt.classList.remove('show');stationBtn.style.display='none';memoryBtn.style.display='none';return;}
+  if(stationState.mode==='memory'){
+    memoryRuntime.updateActionUi({isTouch,actionPrompt,vanBtn,stationBtn,memoryBtn});return;
+  }
+  memoryBtn.style.display='none';
   if(stationState.mode==='station'){
     vanBtn.style.display='none';
     const nearExit=stationState.position.z>=6.2;
@@ -5748,6 +5772,7 @@ function updateActionUI(){
   const vanMeters=distanceMeters(pos,vanState.unit);
   const driving=vanState.mode==='driving';
   const mrtMeters=surfaceDistance(pos,latLonPos(MRT.lat,MRT.lon).normalize());
+  const memoryMeters=surfaceDistance(pos,latLonPos(MEMORY_PORTAL.lat,MEMORY_PORTAL.lon).normalize());
   if(isTouch){
     vanBtn.textContent=driving?'🚐 EXIT':(vanMeters<=3?'🚐 ENTER':`🚐 ${vanMeters}m`);
     vanBtn.setAttribute('aria-label',driving?'Exit van':(vanMeters<=3?'Enter van':`Van is ${vanMeters} metres away`));
@@ -5755,6 +5780,7 @@ function updateActionUI(){
   let message='';
   if(driving)message=isTouch?'Use joystick to drive · tap EXIT to park':'WASD / ARROWS · DRIVE  ·  F · EXIT VAN';
   else if(vanMeters<=3)message=isTouch?'Van is ready':'F · ENTER VAN';
+  else if(memoryMeters<=3.8)message=isTouch?'Memory portal nearby · tap ENTER':'ENTER · MEMORY DISTRICT';
   else if(mrtMeters<=3.4)message=isTouch?'MRT entrance nearby':'ENTER · MRT STATION';
   else if(stage<DELIVERIES.length){
     const jobMeters=distanceMeters(pos,targetUnit(currentTargetNPC()));
@@ -5764,6 +5790,9 @@ function updateActionUI(){
   actionPrompt.classList.toggle('show',!!message);
   if(isTouch&&!driving&&mrtMeters<=3.4){
     stationBtn.style.display='block';stationBtn.textContent='🚇 ENTER';stationBtn.setAttribute('aria-label','Enter MRT station');
+  }
+  if(isTouch&&!driving&&memoryMeters<=3.8){
+    memoryBtn.style.display='block';memoryBtn.textContent='MEMORY';memoryBtn.setAttribute('aria-label','Enter the Memory District');
   }
 }
 
@@ -5961,16 +5990,23 @@ function loop(now){
   const t=now/1000;
   if(started&&!finished){
     questCooldown=Math.max(0,questCooldown-dt);
-    if(!dialogueOpen&&!diagnosing){
-      if(stationState.mode==='station')stepStationPlayer(dt);
-      else if(vanState.mode==='driving')stepVan(dt,t);else stepPlayer(dt);
+    if(stationState.mode==='memory'){
+      if(!memoryRuntime?.storyOpen)stepMemoryPlayer(dt);
+      stepMemoryDistrict(dt);
+    }else{
+      if(!dialogueOpen&&!diagnosing){
+        if(stationState.mode==='station')stepStationPlayer(dt);
+        else if(vanState.mode==='driving')stepVan(dt,t);else stepPlayer(dt);
+      }
+      stepQuest(t);
     }
-    stepQuest(t);
     updateActionUI();
   }
-  stepNPCs(dt,t);
+  if(stationState.mode!=='memory'){
+    stepNPCs(dt,t);
+    stepWorld(dt,t);
+  }
   stepCamera(dt,t);
-  stepWorld(dt,t);
   renderer.render(scene,camera);
 }
 stepCamera(1,performance.now()/1000);
@@ -5983,15 +6019,7 @@ addEventListener('resize',()=>{
 });
 addEventListener('visibilitychange',()=>{last=performance.now();});
 
-// ============================================================
-// BLENDER ASSET PIPELINE
-// Drop .glb files into an assets/ folder next to this HTML and
-// they replace the procedural stand-ins on refresh. Missing files retain the
-// procedural fallback and emit a development warning.
-// ============================================================
 const ASSET_MANIFEST={
-  // Use the rigged courier model for the player. It includes looping Idle and
-  // Walk clips; engineer-v2.glb is a static mesh and cannot articulate limbs.
   engineer:  {url:'assets/courier.glb',scale:.806, player:true},
   engineerLegacy:{url:'assets/engineer-v2.glb',scale:.806,optional:true},
   kopitiam:  {url:'assets/kopitiam-v2.glb',scale:1.071,ground:true},
@@ -6136,11 +6164,6 @@ function swapVan(gltf,cfg){
   model.scale.setScalar(cfg.scale||1);
   model.rotation.y=cfg.forwardYaw||0;
   alignLowestPoint(model,0);
-  // The optimized production van is a single palette mesh, so its glass
-  // cannot be identified by a separate material slot. Use an unlit textured
-  // material for the imported van as a whole; this preserves the authored
-  // palette while removing view-dependent toon-light colour shifts from the
-  // windshield and side glazing.
   model.traverse(o=>{
     if(!o.isMesh||o.userData.noOutline||!o.material)return;
     const src=o.material;
@@ -6198,6 +6221,7 @@ function fitVendorModel(model,cfg){
   alignLowestPoint(model,0);
 }
 function applyVendorSwap(name,cfg,gltf){
+  if(window.__vendorAssetAudit?.sourceVariants)window.__vendorAssetAudit.sourceVariants[name]='threejsassets-licensed-glb';
   if(cfg.handler==='transitBus'){
     applyTransitBusGLB(gltf);
     return;
@@ -6206,6 +6230,8 @@ function applyVendorSwap(name,cfg,gltf){
   const list=swapRegistry[name]||[];
   for(const grp of list){
     while(grp.children.length)grp.remove(grp.children[0]);
+    grp.userData.sceneryComponent=name;
+    grp.userData.sourceVariant='threejsassets-licensed-glb';
     const inst=cloneSharedScene(gltf.scene);
     fitVendorModel(inst,cfg);
     grp.add(inst);
@@ -6252,7 +6278,12 @@ function swapResident(index,gltf){
     instances:cfg.handler==='transitBus'?transitBuses.length:(swapRegistry[name]||[]).length,
   }));
   const unplacedVendorAssets=vendorPlacements.filter(item=>item.instances===0);
-  window.__vendorAssetAudit={configured:vendorPlacements.length,placements:vendorPlacements,unplaced:unplacedVendorAssets};
+  window.__vendorAssetAudit={
+    configured:vendorPlacements.length,
+    placements:vendorPlacements,
+    unplaced:unplacedVendorAssets,
+    sourceVariants:Object.fromEntries(vendorPlacements.map(item=>[item.name,'kampung-call-procedural-fallback'])),
+  };
   document.documentElement.dataset.vendorAssetsConfigured=String(vendorPlacements.length);
   document.documentElement.dataset.vendorAssetsUnplaced=String(unplacedVendorAssets.length);
   console.assert(!unplacedVendorAssets.length,`Vendor assets missing placements: ${unplacedVendorAssets.map(item=>item.name).join(', ')}`);
@@ -6309,7 +6340,8 @@ loadOptionalTransitAsset('metro-train-v1.glb',applyMRTTrainGLB);
 if(isTouch){
   document.getElementById('titleHint').textContent='Drag left side to move · use the on-screen buttons for van and emotes';
 }
-document.getElementById('begin').addEventListener('click',()=>{
+function startExperience(destination='surface',{userInitiated=true}={}){
+  if(started)return;
   document.body.classList.add('is-playing');
   document.getElementById('title').classList.add('hidden');
   chit.classList.add('show');
@@ -6319,21 +6351,26 @@ document.getElementById('begin').addEventListener('click',()=>{
     vanBtn.style.display='block';
   }
   document.getElementById('muteBtn').style.display='block';
-  Snd.init();
+  if(userInitiated)Snd.init();
   buildRoute();
   stageOpening();
   updateChit();
-  const firstCall=cur(),firstCustomer=NPC_DEFS[firstCall.from];
-  showToast('Kampung Mission', `${firstCustomer.name} is waiting at ${firstCustomer.place}. Go see how you can help.`);
   started=true; startTime=performance.now();
   const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
   swoopFromPos.copy(camera.position);
-  camMode=reduceMotion?'play':'swoop'; swoopT=0;
+  camMode=destination==='memory'||reduceMotion?'play':'swoop'; swoopT=0;
+  if(destination==='memory')enterMemoryDistrict({direct:true});
+  else{
+    const firstCall=cur(),firstCustomer=NPC_DEFS[firstCall.from];
+    showToast('Kampung Mission', `${firstCustomer.name} is waiting at ${firstCustomer.place}. Go see how you can help.`);
+  }
   setTimeout(()=>{
     const hint=document.getElementById('controls-hint');
     hint.style.transition='opacity .6s ease';hint.style.opacity='0';
   },9000);
-});
+}
+document.getElementById('begin').addEventListener('click',()=>startExperience('surface'));
+document.getElementById('memoryBegin').addEventListener('click',()=>startExperience('memory'));
 vanBtn.addEventListener('click',()=>{
   if(!started||finished)return;
   if(vanState.mode==='driving'){tryExitVan();return;}
@@ -6342,7 +6379,9 @@ vanBtn.addEventListener('click',()=>{
   else showToast('Van',`Parked ${Math.round(d)}m away — walk closer to enter.`);
 });
 stationBtn.addEventListener('click',()=>tryEnterMRT());
+memoryBtn.addEventListener('click',()=>stationState.mode==='memory'?tryMemoryAction():enterMemoryDistrict());
 document.getElementById('muteBtn').addEventListener('click',()=>{
   document.getElementById('muteBtn').textContent=Snd.toggle()?'🔊':'🔇';
 });
 document.getElementById('again').addEventListener('click',()=>location.reload());
+if(new URLSearchParams(location.search).get('district')==='memory')requestAnimationFrame(()=>startExperience('memory',{userInitiated:false}));

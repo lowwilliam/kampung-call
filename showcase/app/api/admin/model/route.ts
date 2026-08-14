@@ -1,8 +1,7 @@
-import { bindings, ensureSchema, isAdmin, privateNoStore } from "../../../lib/platform";
+import { bindings, isAdmin, privateNoStore } from "../../../lib/platform";
 
 export async function GET(request: Request) {
   if (!(await isAdmin(request))) return privateNoStore("Unauthorized", { status: 401 });
-  await ensureSchema();
   const id = new URL(request.url).searchParams.get("id") ?? "";
   const { DB, ASSET_BUCKET } = bindings();
   const row = await DB.prepare("SELECT file_key FROM submissions WHERE id = ?").bind(id).first<{ file_key: string }>();
