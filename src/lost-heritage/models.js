@@ -89,26 +89,31 @@ function footprintPrism(group, points, height, material, name = 'footprint-prism
   return addMesh(group, geometry, material, [0, 0, 0], [0, 0, 0], [1, 1, 1], name);
 }
 
-function pixelText(group, text, origin, cell, material, name = 'lettering') {
+function pixelText(group, text, origin, cell, material, name = 'lettering', mirror = false) {
   const glyphs = {
     A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001'],
     B: ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
     E: ['11111', '10000', '10000', '11110', '10000', '10000', '11111'],
+    G: ['01110', '10001', '10000', '10111', '10001', '10001', '01110'],
+    H: ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
     I: ['11111', '00100', '00100', '00100', '00100', '00100', '11111'],
     M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
     N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
     O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
     R: ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
     S: ['01111', '10000', '10000', '01110', '00001', '00001', '11110'],
+    T: ['11111', '00100', '00100', '00100', '00100', '00100', '00100'],
+    W: ['10001', '10001', '10001', '10101', '10101', '11011', '10001'],
   };
   let cursor = origin[0];
-  [...text].forEach((character, characterIndex) => {
+  const characters = mirror ? [...text].reverse() : [...text];
+  characters.forEach((character, characterIndex) => {
     const glyph = glyphs[character];
     if (!glyph) { cursor += cell * 3; return; }
     glyph.forEach((row, rowIndex) => [...row].forEach((value, columnIndex) => {
       if (value !== '1') return;
       box(group, [cell * .82, cell * .82, .07], material,
-        [cursor + columnIndex * cell, origin[1] - rowIndex * cell, origin[2]], undefined,
+        [cursor + (mirror ? 4 - columnIndex : columnIndex) * cell, origin[1] - rowIndex * cell, origin[2]], undefined,
         `${name}-${characterIndex}-${rowIndex}-${columnIndex}`);
     }));
     cursor += cell * 6;
@@ -147,6 +152,36 @@ function roofPair(group, width, depth, y, material, z = 0, pitch = 0.36, name = 
   const panel = Math.hypot(width / 2, Math.tan(pitch) * width / 2);
   box(group, [panel, 0.18, depth], material, [-width / 4, y, z], [0, 0, pitch], `${name}-left`);
   box(group, [panel, 0.18, depth], material, [width / 4, y, z], [0, 0, -pitch], `${name}-right`);
+}
+
+function hippedRoof(group, width, depth, eaveY, rise, material, z = 0, name = 'hipped-roof') {
+  const halfWidth = width / 2;
+  const halfDepth = depth / 2;
+  const ridgeHalf = width * 0.22;
+  const vertices = [
+    -halfWidth, eaveY, z - halfDepth,
+    halfWidth, eaveY, z - halfDepth,
+    halfWidth, eaveY, z + halfDepth,
+    -halfWidth, eaveY, z + halfDepth,
+    -ridgeHalf, eaveY + rise, z,
+    ridgeHalf, eaveY + rise, z,
+  ];
+  const indices = [
+    0, 1, 5, 0, 5, 4,
+    3, 4, 5, 3, 5, 2,
+    0, 4, 3,
+    1, 2, 5,
+    0, 3, 2, 0, 2, 1,
+  ];
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const roof = addMesh(group, geometry, material, [0, 0, 0], [0, 0, 0], [1, 1, 1], name);
+  box(group, [width + .22, .12, .16], material, [0, eaveY + .02, z - halfDepth], undefined, `${name}-front-eave`);
+  box(group, [width + .22, .12, .16], material, [0, eaveY + .02, z + halfDepth], undefined, `${name}-rear-eave`);
+  box(group, [ridgeHalf * 2 + .22, .14, .14], material, [0, eaveY + rise + .03, z], undefined, `${name}-ridge`);
+  return roof;
 }
 
 function repeatedBoxes(group, count, size, material, origin, step, name) {
@@ -529,11 +564,29 @@ function beautyWorld(meta){
       box(stalls,[w,2.2,1.55],i%2?m.primary:m.secondary,[side*(3.7+(i%2)*.25),1.1,z],undefined,`stall-${side}-${i}`);
     }
   });
+  const stallFronts=component(root,'lane-facing-stall-fronts');
+  [-1,1].forEach((side)=>{
+    for(let i=0;i<9;i++){
+      const z=-7.2+i*1.8;
+      box(stallFronts,[.12,1.36,1.02],m.dark,[side*2.28,1.08,z],undefined,`open-stall-${side}-${i}`);
+      box(stallFronts,[.18,.12,1.28],m.accent,[side*2.20,1.86,z],undefined,`stall-header-${side}-${i}`);
+      repeatedBoxes(stallFronts,3,[.12,.07,.22],m.extra,[side*2.16,.43,z-.34],[0,0,.34],`produce-crate-${side}-${i}`);
+    }
+  });
   const roofs=component(root,'corrugated-roofs');
   [-1,1].forEach(side=>{for(let i=0;i<9;i++){const z=-7.2+i*1.8;box(roofs,[3.2,.14,2],i%3===0?m.accent:m.extra,[side*3.7,2.35,z],[0,0,side*.08],`roof-${side}-${i}`)}});
   const awnings=component(root,'shop-awnings');
   [-1,1].forEach(side=>{for(let i=0;i<8;i++)box(awnings,[1.2,.08,1.45],i%2?m.accent:m.primary,[side*2.45,2,-6.4+i*1.8],[0,0,side*.35],`awning-${side}-${i}`)});
   const cinema=component(root,'tiong-hwa-cinema'); box(cinema,[9,5.5,5],m.primary,[0,2.75,-11]); extrudedShape(cinema,[[-4.2,0],[-3.4,1.2],[0,2.3],[3.4,1.2],[4.2,0]],.35,m.secondary,[0,6,-8.45],undefined,'cinema-parapet');
+  const cinemaFront=component(root,'tiong-hwa-street-front');
+  box(cinemaFront,[7.8,.72,.20],m.secondary,[0,4.48,-13.58],undefined,'marquee-sign-band');
+  pixelText(cinemaFront,'TIONG HWA',[-2.65,4.67,-13.71],.10,m.dark,'cinema-name',true);
+  box(cinemaFront,[6.8,.22,1.25],m.accent,[0,3.72,-13.90],undefined,'deep-cinema-marquee');
+  repeatedBoxes(cinemaFront,5,[1.02,2.25,.18],m.dark,[-2.56,1.45,-13.59],[1.28,0,0],'cinema-door');
+  repeatedBoxes(cinemaFront,6,[.12,3.25,.20],m.secondary,[-3.25,1.80,-13.72],[1.30,0,0],'cinema-pilaster');
+  box(cinemaFront,[2.4,1.05,.20],m.extra,[0,.72,-13.72],undefined,'ticket-lobby');
+  repeatedBoxes(cinemaFront,2,[.72,.62,.18],m.dark,[-.52,.74,-13.84],[1.04,0,0],'ticket-window');
+  hippedRoof(cinemaFront,9.5,5.5,5.52,1.10,m.secondary,-11,'cinema-roof');
   const stage=component(root,'entertainment-stage'); box(stage,[5,1.3,3],m.dark,[4.7,.65,7]); roofPair(stage,5.6,3.5,2.2,m.accent,7,.3,'stage-roof');
   const signs=component(root,'painted-signboards');
   [-1,1].forEach(side=>{for(let i=0;i<7;i++)box(signs,[1.6,.65,.12],i%2?m.accent:m.extra,[side*2.25,2.75,-5.5+i*1.9],[0,side*PI/2,0],`sign-${side}-${i}`)});
@@ -547,23 +600,48 @@ function beautyWorld(meta){
 
 function tangDynasty(meta){
   const root=rootFor(meta.id); const m=materials(meta.palette);
-  const walls=component(root,'city-wall'); box(walls,[19,4,1.3],m.secondary,[0,2,-2]); box(walls,[1.3,4,13],m.secondary,[-8.9,2,3.5]); box(walls,[1.3,4,13],m.secondary,[8.9,2,3.5]);
+  const walls=component(root,'city-wall'); box(walls,[19,4,1.3],m.primary,[0,2,-2]); box(walls,[1.3,4,13],m.primary,[-8.9,2,3.5]); box(walls,[1.3,4,13],m.primary,[8.9,2,3.5]);
   const gate=component(root,'great-gate');
-  box(gate,[8.8,7,3.4],m.accent,[0,3.5,-1.8]); arch(gate,0,.1,.02,3.4,4.8,3.7,m.dark,'gate-opening');
-  const merlons=component(root,'wall-merlons'); repeatedBoxes(merlons,18,[.65,.7,1.5],m.secondary,[-8.3,4.35,-2],[.98,0,0],'merlon');
-  const gateRoof=component(root,'gate-roof'); roofPair(gateRoof,10.5,5.4,7.55,m.dark,-1.8,.42,'lower-roof'); roofPair(gateRoof,7.3,4.4,9,m.dark,-1.8,.42,'upper-roof'); box(gateRoof,[.45,1.8,.45],m.accent,[0,8.15,-1.8]);
-  const hall=component(root,'palace-hall'); box(hall,[11,4.6,5.5],m.accent,[0,2.3,7]); roofPair(hall,12.8,7,5.6,m.dark,7,.43,'hall-roof');
-  const columns=component(root,'hall-columns'); repeatedBoxes(columns,8,[.38,3.8,.38],m.secondary,[-4.7,1.9,10],[1.35,0,0],'column');
+  box(gate,[8.8,7,3.4],m.dark,[0,3.5,-1.8]);
+  box(gate,[3.25,3.75,.20],m.secondary,[0,1.90,-3.56],undefined,'deep-gate-opening');
+  addMesh(gate,new THREE.SphereGeometry(1,20,12),m.secondary,[0,3.72,-3.57],undefined,[1.63,1.40,.12],'round-gate-head');
+  repeatedBoxes(gate,4,[.24,5.2,.22],m.accent,[-3.45,3.65,-3.60],[2.30,0,0],'gate-front-post');
+  box(gate,[8.3,.30,.28],m.accent,[0,6.05,-3.62],undefined,'gate-front-beam');
+  repeatedBoxes(gate,5,[.62,.62,.20],m.accent,[-2.50,5.18,-3.62],[1.25,0,0],'gate-upper-window');
+  box(gate,[3.6,.56,.22],m.primary,[0,6.55,-3.64],undefined,'gate-name-plaque');
+  const merlons=component(root,'wall-merlons'); repeatedBoxes(merlons,18,[.65,.7,1.5],m.primary,[-8.3,4.35,-2],[.98,0,0],'merlon');
+  const gateRoof=component(root,'gate-roof');
+  hippedRoof(gateRoof,10.8,5.5,7.18,1.35,m.secondary,-1.8,'great-gate-lower-roof');
+  box(gateRoof,[6.4,1.05,3.6],m.dark,[0,8.15,-1.8],undefined,'upper-gate-storey');
+  hippedRoof(gateRoof,7.5,4.5,8.70,1.15,m.secondary,-1.8,'great-gate-upper-roof');
+  taperedCylinder(gateRoof,.04,.25,1.20,m.metal,[0,10.38,-1.8],10,undefined,'gate-finial');
+  const cornerPavilions=component(root,'gate-corner-pavilions');
+  [-6.1,6.1].forEach((x,index)=>{
+    box(cornerPavilions,[2.7,4.9,2.7],m.dark,[x,4.25,-1.8],undefined,`corner-tower-${index}`);
+    hippedRoof(cornerPavilions,4.0,4.0,6.72,1.15,m.secondary,-1.8,`corner-roof-${index}`);
+    repeatedBoxes(cornerPavilions,3,[.42,1.20,.18],m.accent,[x-.65,4.35,-3.20],[.65,0,0],`corner-window-${index}`);
+  });
+  const hall=component(root,'palace-hall'); box(hall,[11,4.6,5.5],m.dark,[0,2.3,7]); hippedRoof(hall,13.0,7.2,4.72,1.35,m.secondary,7,'daming-hall-roof');
+  const columns=component(root,'hall-columns'); repeatedBoxes(columns,8,[.38,3.8,.38],m.accent,[-4.7,1.9,10],[1.35,0,0],'column');
+  box(columns,[11.8,.28,1.8],m.primary,[0,.22,10.15],undefined,'hall-terrace');
   const courtyard=component(root,'ceremonial-courtyard'); box(courtyard,[15,.18,7],m.extra,[0,.06,3]);
   const bridge=component(root,'arched-bridge');
   for(let i=0;i<9;i++){const t=(i-4)/4; box(bridge,[1.1,.28,3.1],m.secondary,[t*4.5,.6+(1-t*t)*1.5,13],undefined,`bridge-segment-${i}`)}
-  const pond=component(root,'palace-pond'); box(pond,[13,.12,4.5],m.water,[0,.04,15]);
+  const pond=component(root,'palace-pond'); box(pond,[13,.12,4.5],m.primary,[0,.04,15]);
+  const lions=component(root,'guardian-lions');
+  [-2.65,2.65].forEach((x,index)=>{
+    box(lions,[1.05,.24,1.05],m.primary,[x,.12,-4.05],undefined,`lion-plinth-${index}`);
+    addMesh(lions,new THREE.SphereGeometry(.48,12,8),m.dark,[x,.72,-4.05],undefined,[1,.78,1.12],`lion-body-${index}`);
+    addMesh(lions,new THREE.SphereGeometry(.34,12,8),m.dark,[x,1.28,-4.22],undefined,[1,.92,1],`lion-head-${index}`);
+  });
   const pagoda=component(root,'multi-storey-pagoda');
   for(let floor=0;floor<5;floor++){
-    const y=1+floor*1.9; box(pagoda,[3.6-floor*.28,1.45,3.6-floor*.28],m.accent,[6,y,18]);
-    roofPair(pagoda,5.2-floor*.34,5.2-floor*.34,y+1,m.dark,18,.38,`pagoda-roof-${floor}`);
+    const y=.95+floor*1.75; const body=3.45-floor*.34; const roof=5.0-floor*.48;
+    box(pagoda,[body,1.28,body],m.dark,[6,y,18],undefined,`pagoda-storey-${floor}`);
+    hippedRoof(pagoda,roof,roof,y+.72,.72,m.secondary,18,`pagoda-roof-${floor}`);
+    repeatedBoxes(pagoda,3,[.28,.66,.12],m.accent,[6-body*.30,y,18-body*.52],[body*.30,0,0],`pagoda-window-${floor}`);
   }
-  taperedCylinder(pagoda,.04,.25,1.3,m.metal,[6,10.9,18],12);
+  taperedCylinder(pagoda,.04,.25,1.3,m.metal,[6,10.20,18],12);
   const banners=component(root,'ceremonial-banners'); [-5,-2.5,2.5,5].forEach((x,i)=>{cylinder(banners,.06,4,m.dark,[x,2,4],8);box(banners,[.75,1.5,.06],i%2?m.accent:m.secondary,[x,2.8,4.1])});
   return finalize(root,meta);
 }

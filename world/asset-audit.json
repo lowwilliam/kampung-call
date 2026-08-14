@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T11:07:21.457Z",
+  "generatedAt": "2026-08-14T12:20:28.941Z",
   "manifest": [
     {
       "name": "engineer",
@@ -126,14 +126,14 @@
       "url": "assets/mrt-v2.glb",
       "scale": 2.656,
       "dimensions": {
-        "width": 14.608,
-        "height": 8.978975645065308,
-        "depth": 12.813095870971681
+        "width": 14.66111994934082,
+        "height": 8.97941044330597,
+        "depth": 12.813155395507813
       },
       "minY": 0,
-      "maxY": 8.978975645065308,
-      "requiredRadius": 9.715568560289093,
-      "triangles": 4192,
+      "maxY": 8.97941044330597,
+      "requiredRadius": 9.735571238484036,
+      "triangles": 17950,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -506,14 +506,14 @@
       "url": "assets/skypark-hotel-v2.glb",
       "scale": 4.83,
       "dimensions": {
-        "width": 43.991467519330904,
-        "height": 39.476452937659474,
-        "depth": 13.31778615474701
+        "width": 46.67249319076538,
+        "height": 39.490574015378954,
+        "depth": 13.215753178596497
       },
-      "minY": 0.0005572973654862334,
-      "maxY": 39.47701023502496,
-      "requiredRadius": 22.981583075192606,
-      "triangles": 6328,
+      "minY": 0,
+      "maxY": 39.490574015378954,
+      "requiredRadius": 24.253751012573417,
+      "triangles": 9536,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -566,14 +566,14 @@
       "url": "assets/concert-hall-v2.glb",
       "scale": 4.02,
       "dimensions": {
-        "width": 27.62543608188629,
-        "height": 10.616477007865905,
-        "depth": 17.140484247207638
+        "width": 27.336000766754147,
+        "height": 11.172669925689696,
+        "depth": 17.141105318069457
       },
       "minY": 0,
-      "maxY": 10.616477007865905,
-      "requiredRadius": 16.25546768739028,
-      "triangles": 2600,
+      "maxY": 11.172669925689696,
+      "requiredRadius": 16.132842507174086,
+      "triangles": 14888,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -786,15 +786,15 @@
       "url": "assets/overheadbridge-v2.glb",
       "scale": 1.217,
       "dimensions": {
-        "width": 17.67084055709839,
-        "height": 6.328683068364859,
-        "depth": 2.068770793795586
+        "width": 22.830919698238375,
+        "height": 6.307314754486084,
+        "depth": 4.338195080041886
       },
-      "minY": 3.377853552422039e-17,
-      "maxY": 6.328683068364859,
-      "requiredRadius": 8.89576329765545,
-      "triangles": 48,
-      "materials": 3,
+      "minY": 0,
+      "maxY": 6.307314754486084,
+      "requiredRadius": 11.619712031929929,
+      "triangles": 744,
+      "materials": 1,
       "meshCount": 1,
       "compressed": true,
       "kind": "prop",
@@ -806,14 +806,14 @@
       "url": "assets/controltower-v2.glb",
       "scale": 3.075,
       "dimensions": {
-        "width": 7.87236785888672,
-        "height": 28.013248211145402,
-        "depth": 7.87236785888672
+        "width": 8.97897824048996,
+        "height": 29.397001290321352,
+        "depth": 8.97897824048996
       },
       "minY": 0,
-      "maxY": 28.013248211145402,
-      "requiredRadius": 5.566604697013822,
-      "triangles": 1964,
+      "maxY": 29.397001290321352,
+      "requiredRadius": 6.349096401976906,
+      "triangles": 8944,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -906,14 +906,14 @@
       "url": "assets/bumboat-v2.glb",
       "scale": 0.65,
       "dimensions": {
-        "width": 2.5220000743865967,
-        "height": 1.2024257838726045,
-        "depth": 1.0821986019611358
+        "width": 3.314984750747681,
+        "height": 1.293578577041626,
+        "depth": 1.189574259519577
       },
       "minY": 0,
-      "maxY": 1.2024257838726045,
-      "requiredRadius": 1.3721915126261197,
-      "triangles": 2840,
+      "maxY": 1.293578577041626,
+      "requiredRadius": 1.7609806086809427,
+      "triangles": 12946,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -1308,14 +1308,14 @@
       "dimensions": {
         "width": 12.750000023841858,
         "height": 7.180183792114258,
-        "depth": 22.25
+        "depth": 23.275
       },
       "minY": -2.3841857821338408e-8,
       "maxY": 7.1801837682724,
-      "requiredRadius": 12.822100067929272,
-      "triangles": 1664,
+      "requiredRadius": 13.269213669317102,
+      "triangles": 4528,
       "materials": 4,
-      "meshCount": 97,
+      "meshCount": 336,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1327,15 +1327,15 @@
       "scale": 1,
       "dimensions": {
         "width": 19.099761891365052,
-        "height": 11.57999997973442,
-        "depth": 25.099999952316285
+        "height": 11.010000027418137,
+        "depth": 25.209948721528054
       },
       "minY": 0,
-      "maxY": 11.57999997973442,
-      "requiredRadius": 15.770311521281995,
-      "triangles": 1400,
+      "maxY": 11.010000027418137,
+      "requiredRadius": 15.814095127835444,
+      "triangles": 2848,
       "materials": 4,
-      "meshCount": 76,
+      "meshCount": 141,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1367,7 +1367,7 @@
   "failures": [],
   "summary": {
     "assets": 68,
-    "triangles": 531348,
+    "triangles": 582696,
     "unreferenced": 0,
     "assetsOverBudget": 0,
     "materialsOverBudget": 0,

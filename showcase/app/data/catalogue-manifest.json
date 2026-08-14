@@ -244,7 +244,7 @@
           "intro": "Three towers joined by a dramatic horizontal crown.",
           "gameContext": "Cuts a bold silhouette into the central skyline.",
           "singaporeContext": "A fictionalised nod to the architecture around Marina Bay.",
-          "productionStory": "1 mesh, 1 material, and 3,732 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with three curved lofted hotel slabs, two-sided curtain-wall bands, a tapered cantilevered SkyPark hull, infinity-pool edge and roof planting. 1 mesh, 1 material, and 9,536 triangles. Draco-compressed for the browser.",
           "inspiration": "Marina Bay Sands"
         }
       },
@@ -252,17 +252,17 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "511990bd3d4527f31055fb54e9b6620119fad5c0e34f42bd5d245398b16b5ebd",
-        "byteLength": 22188,
+        "sha256": "c8a0e5b189d4fd94d3cec9752582867dc97bbac5b73c60a16ea1218d0bab2502",
+        "byteLength": 28160,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
+        "status": "legacy",
+        "sourcePath": "assets/previews/skypark-hotel-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "511990bd3d4527f31055fb54e9b6620119fad5c0e34f42bd5d245398b16b5ebd",
-        "sha256": null,
-        "contentType": null
+        "sourceModelSha256": "c8a0e5b189d4fd94d3cec9752582867dc97bbac5b73c60a16ea1218d0bab2502",
+        "sha256": "b862a449e803ea34aa2fd08d80a69f619d87cb45369b8ebbadba78d94fc7cee9",
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -275,17 +275,23 @@
         "label": "Made for Kampung Call",
         "detail": "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present."
       },
-      "sources": [],
-      "evidenceStatus": "not-applicable",
+      "sources": [
+        {
+          "kind": "design-reference",
+          "label": "Marina Bay Sands — Architecture",
+          "url": "https://www.marinabaysands.com/guides/exceptional-experiences/marina-bay-sands-architecture.html"
+        }
+      ],
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 3732,
+        "triangles": 9536,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 44.573227656568946,
-          "height": 43.088411859585236,
-          "depth": 12.799078989028931
+          "width": 9.663042068481445,
+          "height": 8.17610228061676,
+          "depth": 2.7361807823181152
         }
       },
       "publication": {
@@ -544,7 +550,7 @@
           "intro": "A spiked, low-slung performing-arts form beside the water.",
           "gameContext": "Gives the civic waterfront a textured silhouette distinct from offices and hotels.",
           "singaporeContext": "A fictionalised homage to Singapore’s best-known waterfront performing-arts architecture.",
-          "productionStory": "1 mesh, 1 material, and 2,600 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with twin glazed performance domes, a dense pale aluminium sunshade field, central waterfront foyer and rear service link. 1 mesh, 1 material, and 14,888 triangles. Draco-compressed for the browser.",
           "inspiration": "Esplanade — Theatres on the Bay"
         }
       },
@@ -552,17 +558,17 @@
         "file": "concert-hall-v2.glb",
         "sourcePath": "assets/concert-hall-v2.glb",
         "publicPath": "/models/concert-hall-v2.glb",
-        "sha256": "ce760cb6f055bead3aaa85cdf912c32a185fad1c866b55d3ad56bcfed2f8b468",
-        "byteLength": 13676,
+        "sha256": "2f287f2cec1f37ab959238f0ffe0c3d4aa31ca3ec389ef839bfcadfaf84f7cd7",
+        "byteLength": 44696,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
+        "status": "legacy",
+        "sourcePath": "assets/previews/concert-hall-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "ce760cb6f055bead3aaa85cdf912c32a185fad1c866b55d3ad56bcfed2f8b468",
-        "sha256": null,
-        "contentType": null
+        "sourceModelSha256": "2f287f2cec1f37ab959238f0ffe0c3d4aa31ca3ec389ef839bfcadfaf84f7cd7",
+        "sha256": "a89c9b941a7ae9f25a562e50c4e6b604f46281bd31d014261a79c8ec353642d8",
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -575,17 +581,23 @@
         "label": "Made for Kampung Call",
         "detail": "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present."
       },
-      "sources": [],
-      "evidenceStatus": "not-applicable",
+      "sources": [
+        {
+          "kind": "design-reference",
+          "label": "Esplanade — Architecture",
+          "url": "https://www.esplanade.com/architecture"
+        }
+      ],
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 2600,
+        "triangles": 14888,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 27.62543608188629,
-          "height": 10.616477007865905,
-          "depth": 17.140484247207638
+          "width": 6.800000190734863,
+          "height": 2.779271125793457,
+          "depth": 4.263956546783447
         }
       },
       "publication": {
@@ -1248,7 +1260,7 @@
           "intro": "An enterable station pocket world with concourse, platform and train.",
           "gameContext": "Lets players step out of the street world, ride below grade and return upstairs.",
           "singaporeContext": "Singapore’s rail network grew from the 1980s into an integrated backbone connecting homes, work and public life.",
-          "productionStory": "1 mesh, 1 material, and 4,192 triangles. Draco-compressed for the browser.",
+          "productionStory": "Four-view Blender refinement replacing the solid portal block with structural jambs and a real entry void, plus a service-louvred rear and accessible lift shaft. 1 mesh, 1 material, and 17,950 triangles. Draco-compressed for the browser.",
           "inspiration": null
         }
       },
@@ -1256,16 +1268,16 @@
         "file": "mrt-v2.glb",
         "sourcePath": "assets/mrt-v2.glb",
         "publicPath": "/models/mrt-v2.glb",
-        "sha256": "cf13f9bc6d78c475ebd5497365052191583895a0a4a602bd01f02138d40960a8",
-        "byteLength": 17716,
+        "sha256": "a19e836942d88d5e9ad6d8e36cfd22e0871ed1fe2e10da052430af8cc6c7da80",
+        "byteLength": 44788,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/mrt-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "cf13f9bc6d78c475ebd5497365052191583895a0a4a602bd01f02138d40960a8",
-        "sha256": "3fdbf2beba0183a6e0bda665dbdf8ff0b7aac4fd11095b445ed031044081903b",
+        "sourceModelSha256": "a19e836942d88d5e9ad6d8e36cfd22e0871ed1fe2e10da052430af8cc6c7da80",
+        "sha256": "c923db943718d38fba0ce0272df9ed832ffc50454d3051f7cfe799ee2e5118f7",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -1281,21 +1293,21 @@
       },
       "sources": [
         {
-          "kind": "history",
-          "label": "Land Transport Authority — The LTA Story",
-          "url": "https://www.lta.gov.sg/content/ltagov/en/who_we_are/our_organisation/the_lta_story.html"
+          "kind": "design-reference",
+          "label": "LTA — Circle Line design and architecture",
+          "url": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/circle_line.html"
         }
       ],
-      "evidenceStatus": "not-applicable",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 4192,
+        "triangles": 17950,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 14.608,
-          "height": 8.978975645065308,
-          "depth": 12.813095870971681
+          "width": 5.519999980926514,
+          "height": 3.3808021247386932,
+          "depth": 4.824230194091797
         }
       },
       "publication": {
@@ -1652,7 +1664,7 @@
           "intro": "A low wooden passenger boat with a bright, purposeful profile.",
           "gameContext": "Moves across the harbour and keeps the waterfront from feeling static.",
           "singaporeContext": "Its form nods to the workboats and passenger craft associated with Singapore’s river and offshore connections.",
-          "productionStory": "1 mesh, 1 material, and 2,840 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with a pointed keeled twakow-style hull, two gunwales, passenger cabin, wheelhouse, fenders and connected bow/stern rails. 1 mesh, 1 material, and 12,946 triangles. Draco-compressed for the browser.",
           "inspiration": null
         }
       },
@@ -1660,16 +1672,16 @@
         "file": "bumboat-v2.glb",
         "sourcePath": "assets/bumboat-v2.glb",
         "publicPath": "/models/bumboat-v2.glb",
-        "sha256": "dd42e50bb8b319e9b1ae206e38cad5569eda9e8dc941a11e9333411aadc8110e",
-        "byteLength": 12436,
+        "sha256": "ab99963f9cc5a8822b785d50d91f63e4875ad37613e6f455c569fb67c428fd55",
+        "byteLength": 32764,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/bumboat-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "dd42e50bb8b319e9b1ae206e38cad5569eda9e8dc941a11e9333411aadc8110e",
-        "sha256": "a8c4e87f5ff591850511d6fd8fdeae7ea8044c0f0df227439af2a3447a3df174",
+        "sourceModelSha256": "ab99963f9cc5a8822b785d50d91f63e4875ad37613e6f455c569fb67c428fd55",
+        "sha256": "f1e2a2bce1676a24e0cc75649b616359823eab9bd04113ae3f4700807586011b",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -1683,17 +1695,23 @@
         "label": "Made for Kampung Call",
         "detail": "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present."
       },
-      "sources": [],
-      "evidenceStatus": "not-applicable",
+      "sources": [
+        {
+          "kind": "history",
+          "label": "Roots.sg — Bumboats along the Singapore River",
+          "url": "https://www.roots.gov.sg/Collection-Landing/listing/1109499"
+        }
+      ],
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 2840,
+        "triangles": 12946,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 2.5220000743865967,
-          "height": 1.2024257838726045,
-          "depth": 1.0821986019611358
+          "width": 5.099976539611816,
+          "height": 1.9901208877563474,
+          "depth": 1.8301142454147339
         }
       },
       "publication": {
@@ -1968,7 +1986,7 @@
           "intro": "A beloved market, shopping and performance district that grew out of the wartime Tai Tong Ah amusement park and eventually held more than 160 stalls.",
           "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
           "singaporeContext": "Opened 1947 (market); 1962 (town extension) at Upper Bukit Timah Road, Jalan Jurong Kechil and Chun Tin Road; removed 1984. A beloved market, shopping and performance district that grew out of the wartime Tai Tong Ah amusement park and eventually held more than 160 stalls.",
-          "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate. 97 meshes, 6 materials, and 1,664 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led procedural reconstruction of the patchwork market lane, augmented with open lane-facing stalls and a complete Tiong Hwa cinema street front. Hidden elevations and the full historic site plan remain approximate. 336 meshes, 4 materials, and 4,528 triangles. Draco-compressed for the browser.",
           "inspiration": "Opened 1947 (market); 1962 (town extension) · Removed 1984 · Upper Bukit Timah Road, Jalan Jurong Kechil and Chun Tin Road"
         }
       },
@@ -1976,15 +1994,15 @@
         "file": "lost-heritage/beauty-world-market.glb",
         "sourcePath": "assets/lost-heritage/beauty-world-market.glb",
         "publicPath": "/models/lost-heritage/beauty-world-market.glb",
-        "sha256": "2e9ff31b60d6c63b32d06781b512d2bf5e642479e64eb45c26d9aaef8e32d128",
-        "byteLength": 95300,
+        "sha256": "6e760f5248955f5b6a32bf7772745de4f9cef9546eb3f0696486b2f02e8eeb68",
+        "byteLength": 320420,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "2e9ff31b60d6c63b32d06781b512d2bf5e642479e64eb45c26d9aaef8e32d128",
+        "sourceModelSha256": "6e760f5248955f5b6a32bf7772745de4f9cef9546eb3f0696486b2f02e8eeb68",
         "sha256": null,
         "contentType": null
       },
@@ -2002,20 +2020,25 @@
       "sources": [
         {
           "kind": "history",
-          "label": "Read the historical source",
+          "label": "Roots.sg — Former Beauty World",
           "url": "https://www.roots.gov.sg/places/places-landing/Places/landmarks/Bukit-Timah-Heritage-Trail-WWII-Legacy-Trail/Former-Beauty-World"
+        },
+        {
+          "kind": "image-reference",
+          "label": "National Archives of Singapore — Beauty World market photograph",
+          "url": "https://www.nas.gov.sg/archivesonline/photographs/record-details/43e2fbb5-1162-11e3-83d5-0050568939ad"
         }
       ],
-      "evidenceStatus": "unreviewed",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 1664,
-        "materials": 6,
-        "meshCount": 97,
+        "triangles": 4528,
+        "materials": 4,
+        "meshCount": 336,
         "compressed": true,
         "dimensions": {
           "width": 12.750000023841858,
-          "height": 7.180071020126343,
-          "depth": 22.25
+          "height": 7.180183792114258,
+          "depth": 23.275
         }
       },
       "publication": {
@@ -2696,7 +2719,7 @@
           "intro": "A short-lived 12-hectare movie studio and theme park that recreated an idealised Chang'an beside Jurong Lake and became a conspicuous 1990s west-side landmark.",
           "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
           "singaporeContext": "Opened 1992 at Jalan Ahmad Ibrahim and Yuan Ching Road, beside Jurong Lake; removed 2008–2009 (sources differ on completion of clearance). A short-lived 12-hectare movie studio and theme park that recreated an idealised Chang'an beside Jurong Lake and became a conspicuous 1990s west-side landmark.",
-          "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate. 76 meshes, 6 materials, and 1,400 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led procedural reconstruction with a deep framed city gate, guardian lions, dark hipped roof hierarchy, corner pavilions, ceremonial court and revised pagoda. Hidden elevations and the complete 12-hectare plan remain approximate. 141 meshes, 4 materials, and 2,848 triangles. Draco-compressed for the browser.",
           "inspiration": "Opened 1992 · Removed 2008–2009 (sources differ on completion of clearance) · Jalan Ahmad Ibrahim and Yuan Ching Road, beside Jurong Lake"
         }
       },
@@ -2704,15 +2727,15 @@
         "file": "lost-heritage/tang-dynasty-city.glb",
         "sourcePath": "assets/lost-heritage/tang-dynasty-city.glb",
         "publicPath": "/models/lost-heritage/tang-dynasty-city.glb",
-        "sha256": "157d0875b7e97d6abdd88244372659bb5e421a8b6a08ea1ae277bf6221c357e9",
-        "byteLength": 72716,
+        "sha256": "2828660d026615d93ef7e56ce8a92f675394de3b9621ab39a523396306644bb1",
+        "byteLength": 134520,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "157d0875b7e97d6abdd88244372659bb5e421a8b6a08ea1ae277bf6221c357e9",
+        "sourceModelSha256": "2828660d026615d93ef7e56ce8a92f675394de3b9621ab39a523396306644bb1",
         "sha256": null,
         "contentType": null
       },
@@ -2730,20 +2753,25 @@
       "sources": [
         {
           "kind": "history",
-          "label": "Read the historical source",
+          "label": "Roots.sg — The Tang Dynasty Village at Jurong",
           "url": "https://www.roots.gov.sg/Collection-Landing/listing/1184277"
+        },
+        {
+          "kind": "image-reference",
+          "label": "NLB BiblioAsia — An Ancient Chinese City in Jurong",
+          "url": "https://biblioasia.nlb.gov.sg/all-sections/vol-22-issue-2-jul-sep-2026-an-ancient-chinese-city-in-jurong-/"
         }
       ],
-      "evidenceStatus": "unreviewed",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 1400,
-        "materials": 6,
-        "meshCount": 76,
+        "triangles": 2848,
+        "materials": 4,
+        "meshCount": 141,
         "compressed": true,
         "dimensions": {
-          "width": 19.099999952316285,
-          "height": 11.57999997973442,
-          "depth": 25.099999952316285
+          "width": 19.099761891365052,
+          "height": 11.010000027418137,
+          "depth": 25.209948721528054
         }
       },
       "publication": {
@@ -4110,7 +4138,7 @@
           "intro": "A slender aviation marker with a wide-eyed top.",
           "gameContext": "Pairs with the terminal to make the airport district readable at a glance.",
           "singaporeContext": "Its form celebrates the systems of coordination behind Singapore’s global connections.",
-          "productionStory": "1 mesh, 1 material, and 1,964 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild of the Changi landmark with a tapered ribbed shaft, equipment collar, wraparound glazed cab, shallow roof and gold radar radome. 1 mesh, 1 material, and 8,944 triangles. Draco-compressed for the browser.",
           "inspiration": null
         }
       },
@@ -4118,16 +4146,16 @@
         "file": "controltower-v2.glb",
         "sourcePath": "assets/controltower-v2.glb",
         "publicPath": "/models/controltower-v2.glb",
-        "sha256": "6f8fdd8811c21171c9f79716ebdd3729976a6255e66653994d9045dd3de70edf",
-        "byteLength": 8924,
+        "sha256": "dd3f362afcd8fabe1507f9c32f3672bd3d7dc5d6ce6090ba278a1193e1e69d20",
+        "byteLength": 26060,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/controltower-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "6f8fdd8811c21171c9f79716ebdd3729976a6255e66653994d9045dd3de70edf",
-        "sha256": "79e909947a40d2a833b11a4f9cf6ef36a12c8426108fbc6e2d5a98253db11f4d",
+        "sourceModelSha256": "dd3f362afcd8fabe1507f9c32f3672bd3d7dc5d6ce6090ba278a1193e1e69d20",
+        "sha256": "9a527ed6a940cb28e21d3e26ea47cb025c7ae4866033e123bcd79c4d072d0b82",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -4141,17 +4169,23 @@
         "label": "Made for Kampung Call",
         "detail": "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present."
       },
-      "sources": [],
-      "evidenceStatus": "not-applicable",
+      "sources": [
+        {
+          "kind": "image-reference",
+          "label": "Changi Airport — Life of an air traffic controller",
+          "url": "https://nowboarding.changiairport.com/discover-changi/clear-for-take-off-life-of-an-air-traffic-controller.html"
+        }
+      ],
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 1964,
+        "triangles": 8944,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 7.87236785888672,
-          "height": 28.013248211145402,
-          "depth": 7.87236785888672
+          "width": 2.9199929237365723,
+          "height": 9.5600004196167,
+          "depth": 2.9199929237365723
         }
       },
       "publication": {
@@ -4998,7 +5032,7 @@
           "intro": "A slim pedestrian crossing lifted above the traffic stream.",
           "gameContext": "Clarifies road hierarchy and adds vertical movement to the streetscape.",
           "singaporeContext": "A familiar piece of everyday pedestrian infrastructure, interpreted at miniature scale.",
-          "productionStory": "1 mesh, 3 materials, and 48 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with a covered deck, infill rails, twin stair and landing systems, tactile ground ends and accessible lift towers. Simplified after review to 1 mesh, 1 material, and 744 triangles. Draco-compressed for the browser.",
           "inspiration": null
         }
       },
@@ -5006,16 +5040,16 @@
         "file": "overheadbridge-v2.glb",
         "sourcePath": "assets/overheadbridge-v2.glb",
         "publicPath": "/models/overheadbridge-v2.glb",
-        "sha256": "6fac120b672e7da99ed3df98ec35c2d06eae7b91aa35ae7968ce2c4f0d56f683",
-        "byteLength": 2800,
+        "sha256": "9a57247278be7c46b59216a2669bfe85d69ffef2d3f459ad27228066265ef853",
+        "byteLength": 4292,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/overheadbridge-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "6fac120b672e7da99ed3df98ec35c2d06eae7b91aa35ae7968ce2c4f0d56f683",
-        "sha256": "d7518c1945e8e721bd257d506d209ff01e2933bc2dace68ab23ab9f299fbad50",
+        "sourceModelSha256": "9a57247278be7c46b59216a2669bfe85d69ffef2d3f459ad27228066265ef853",
+        "sha256": "1e7c7a63435cd8d45fe6f3a7c53fe3511261d272fb5055c1650a6679f5cf90fb",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -5031,21 +5065,26 @@
       },
       "sources": [
         {
-          "kind": "history",
-          "label": "Land Transport Authority — The LTA Story",
-          "url": "https://www.lta.gov.sg/content/ltagov/en/who_we_are/our_organisation/the_lta_story.html"
+          "kind": "design-reference",
+          "label": "LTA — Walking infrastructure",
+          "url": "https://www.lta.gov.sg/content/ltagov/en/getting_around/active_mobility/walking_cycling_infrastructure/walking.html"
+        },
+        {
+          "kind": "design-reference",
+          "label": "LTA — Walking and Cycling Design Guide",
+          "url": "https://www.lta.gov.sg/content/dam/ltagov/industry_innovations/industry_matters/development_construction_resources/walking_cycling_plan/pdf/walking-and-cycling-design-guide.pdf"
         }
       ],
-      "evidenceStatus": "not-applicable",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 48,
-        "materials": 3,
+        "triangles": 744,
+        "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 17.67084055709839,
-          "height": 6.32839987668395,
-          "depth": 2.0689000580310823
+          "width": 18.759999752044678,
+          "height": 5.182674407958984,
+          "depth": 3.5646631717681885
         }
       },
       "publication": {

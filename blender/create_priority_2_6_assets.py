@@ -2,6 +2,7 @@ import math
 import os
 import sys
 import bpy
+from mathutils import Vector
 
 sys.path.insert(0, os.path.dirname(__file__))
 from create_remaining_assets import (
@@ -33,6 +34,39 @@ def cone(name, loc, r1, r2, depth, mat, parent, vertices=12, rot=(0,0,0)):
         depth=depth, location=loc, rotation=rot)
     o=bpy.context.object;o.name=name;o.data.materials.append(mat);o.parent=parent
     return o
+
+
+def cone_between(name, start, end, r1, r2, mat, parent, vertices=8):
+    """Create a tapered member whose local Z axis follows start -> end."""
+    a = Vector(start)
+    b = Vector(end)
+    direction = b - a
+    midpoint = (a + b) * .5
+    bpy.ops.mesh.primitive_cone_add(
+        vertices=vertices, radius1=r1, radius2=r2, depth=direction.length,
+        location=midpoint,
+    )
+    o = bpy.context.object
+    o.name = name
+    o.rotation_mode = 'QUATERNION'
+    o.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(direction.normalized())
+    o.data.materials.append(mat)
+    o.parent = parent
+    return o
+
+
+def mesh_object(name, vertices, faces, mat, parent, edge=0):
+    mesh = bpy.data.meshes.new(name)
+    mesh.from_pydata(vertices, [], faces)
+    mesh.validate()
+    mesh.update()
+    obj = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(obj)
+    obj.data.materials.append(mat)
+    obj.parent = parent
+    if edge:
+        bevel(obj, edge, 2)
+    return obj
 
 
 # ---------------------------------------------------------------------------
@@ -223,21 +257,53 @@ def build_harbour_statue():
 
 def build_skypark_hotel():
     r=empty("SKYPARK HOTEL SKYLINE KIT")
-    for i,x in enumerate((-2.25,0,2.25)):
-        cube("Hotel tower",(x,.25,3.4),(1.7,2.5,6.6),CHALK,r,rot=(0,math.radians((i-1)*-3),0),edge=.18)
-        cube("Glass face",(x,-1.03,3.45),(1.22,.08,5.9),GLASS,r,edge=.035)
-        # The reference establishes the harbour elevation, not a blank back.
-        # A quieter guest-room curtain wall keeps the inferred rear credible
-        # during a full orbit without pretending to reproduce exact plans.
-        cube("Rear glass face",(x,1.53,3.45),(1.22,.08,5.9),GLASS,r,edge=.035)
-        for f in range(7):
-            cube("Hotel floor band",(x,-1.09,1.05+f*.75),(1.28,.045,.055),INK,r,edge=.008)
-            cube("Rear hotel floor band",(x,1.59,1.05+f*.75),(1.28,.045,.055),INK,r,edge=.008)
-    cube("SkyPark hull",(0,.18,7.12),(7.6,2.65,.48),TEAL,r,edge=.22)
-    cube("SkyPark deck",(.45,.18,7.50),(7.2,2.45,.22),CHALK,r,edge=.12)
-    for x in (-2.7,2.7):
-        ico("SkyPark tree",(x,-.2,7.92),.43,(GREEN2 if x<0 else GREEN3),r,scale=(1.4,.8,.75))
-    cube("Infinity pool",(.7,-.55,7.68),(3.4,.72,.10),BLUE,r,edge=.05)
+    # Official MBS references show three paired slabs whose lower legs slope
+    # before joining near level 23. A ring loft captures that curved section
+    # and stops the hotel reading as three unrelated cuboids.
+    for tower_index,x in enumerate((-2.25,0,2.25)):
+        vertices=[]
+        rings=9
+        for level in range(rings):
+            t=level/(rings-1)
+            z=.25+t*6.65
+            front=-1.14+.62*(t**1.35)
+            back=1.46-.10*t
+            half=.84-.04*t
+            x_shift=(tower_index-1)*.08*math.sin(t*math.pi)
+            vertices.extend(((x+x_shift-half,front,z),(x+x_shift+half,front,z),
+                             (x+x_shift+half,back,z),(x+x_shift-half,back,z)))
+        faces=[]
+        for level in range(rings-1):
+            a=level*4;b=(level+1)*4
+            faces.extend(((a,a+1,b+1,b),(a+1,a+2,b+2,b+1),
+                          (a+2,a+3,b+3,b+2),(a+3,a,b,b+3)))
+        faces.extend(((0,3,2,1),tuple(range((rings-1)*4,rings*4))))
+        mesh_object("Curved paired hotel tower",vertices,faces,CHALK,r,.055)
+        for floor in range(9):
+            t=(floor+.55)/9
+            z=.25+t*6.55
+            front=-1.14+.62*(t**1.35)-.035
+            back=1.46-.10*t+.035
+            half=.77-.04*t
+            cube("Harbour curtain-wall band",(x,front,z),(half*2,.055,.075),GLASS,r,edge=.010)
+            cube("Garden curtain-wall band",(x,back,z),(half*2,.055,.075),GLASS,r,edge=.010)
+        for mullion in (-.46,0,.46):
+            cube("Tower vertical mullion",(x+mullion,-.85,3.55),(.035,.045,5.95),TEAL,r,edge=.006)
+
+    profile=[(-4.25,-.12),(-3.95,.38),(3.35,.42),(4.38,.18),(4.65,.02),(4.05,-.30),(-4.05,-.30)]
+    vertices=[]
+    for y in (-1.22,1.34):
+        vertices.extend((x,y,7.08+z) for x,z in profile)
+    n=len(profile);faces=[tuple(range(n-1,-1,-1)),tuple(range(n,n*2))]
+    for i in range(n):
+        j=(i+1)%n;faces.append((i,j,n+j,n+i))
+    mesh_object("Tapered SkyPark hull",vertices,faces,TEAL,r,.10)
+    cube("SkyPark deck",(.20,.08,7.54),(8.45,2.35,.18),CHALK,r,edge=.10)
+    cube("Infinity pool",(.85,-.63,7.67),(3.95,.70,.10),BLUE,r,edge=.045)
+    cube("Pool glass edge",(.85,-1.01,7.82),(3.95,.045,.34),GLASS,r,edge=.018)
+    for x in (-3.15,-1.95,2.45,3.15):
+        cyl("SkyPark palm trunk",(x,.50,7.86),.035,.52,WOOD,r,8)
+        ico("SkyPark planted crown",(x,.50,8.17),.26,GREEN2 if x<0 else GREEN3,r,scale=(1.35,.85,.60))
     # ArtScience Museum silhouette beside the towers.
     cyl("Museum base",(-4.2,.15,.42),.62,.54,CONCRETE,r,18)
     for a in range(8):
@@ -300,16 +366,22 @@ def build_concert_hall():
     r=empty("CONCERT HALL TWIN DOME KIT")
     cube("Waterfront plinth",(0,.25,.30),(6.8,4.1,.55),CONCRETE,r,edge=.18)
     for x in (-1.7,1.7):
-        sphere("Durian dome",(x,.1,1.55),1.55,CHALK,r,scale=(1.12,.92,.72))
-        for ring in range(4):
-            z=.82+ring*.44
-            count=8+ring*2
-            rad=1.35*(1-ring*.12)
-            for i in range(count):
-                a=i*math.tau/count
-                cone("Sunshade spike",(x+math.cos(a)*rad,math.sin(a)*rad*.76,z),.11,.015,.52,METAL,r,6,
-                     rot=(math.cos(a)*.35,math.sin(a)*.35,0))
-    cube("Theatre link",(0,.72,.98),(1.2,2.4,1.2),TEAL,r,edge=.14)
+        centre=Vector((x,.10,1.34))
+        sphere("Glazed performance dome",centre,1.50,GLASS,r,scale=(1.08,.90,.78),segments=24)
+        # Esplanade's identity comes from triangular aluminium sunshades.
+        for ring,theta in enumerate((.28,.52,.76,1.00,1.22)):
+            count=8+ring*3
+            for index in range(count):
+                angle=index*math.tau/count+(ring%2)*math.pi/count
+                radial=Vector((math.cos(angle)*1.62*math.sin(theta),
+                               math.sin(angle)*1.27*math.sin(theta),
+                               1.30*math.cos(theta)))
+                start=centre+radial
+                end=start+radial.normalized()*(.22 if ring<4 else .16)
+                cone_between("Triangular aluminium sunshade",start,end,.115,.012,CHALK,r,6)
+    cube("Central foyer link",(0,.72,1.08),(1.28,2.55,1.45),TEAL,r,edge=.16)
+    cube("Waterfront glass foyer",(0,-.78,.92),(1.10,.42,.92),GLASS,r,edge=.08)
+    cube("Rear service link",(0,1.72,.84),(3.40,.65,.95),CHALK,r,edge=.12)
     label("CONCERT HALL",(0,-1.94,.48),.24,CORAL,r)
     return r
 
@@ -322,14 +394,22 @@ def build_mrt():
     cube("Station plinth",(0,.2,.18),(5.5,4.2,.32),CONCRETE,r,edge=.15)
     for i in range(6):
         cube("Descending stair",(0,-1.6+i*.42,.34+i*.18),(2.45,.48,.16),CHALK,r,edge=.035)
-    cube("Entrance portal",(0,.3,1.85),(3.6,2.1,2.9),TEAL,r,edge=.14)
-    cube("Portal void",(0,-.79,1.55),(2.55,.16,1.95),INK,r,edge=.06)
+    for x in (-1.62,1.62):
+        cube("Entrance portal jamb",(x,.30,1.72),(.36,2.10,2.64),TEAL,r,edge=.12)
+    cube("Entrance portal head",(0,.30,3.02),(3.60,2.10,.42),TEAL,r,edge=.13)
+    cube("Portal stair void",(0,-.79,1.45),(2.70,.12,1.78),INK,r,edge=.045)
     cube("Glass canopy",(0,-1.28,3.18),(4.4,2.5,.20),GLASS,r,rot=(math.radians(-6),0,0),edge=.09)
     for x in (-1.7,1.7):
         cyl("Canopy column",(x,-1.0,1.72),.10,2.8,METAL,r)
     cube("MRT roundel",(-1.55,-1.58,2.45),(.85,.16,.85),CORAL,r,edge=.16)
     label("MRT",(-1.55,-1.69,2.47),.25,CHALK,r)
     label("KAMPUNG CENTRAL",(.35,-1.68,2.72),.18,CHALK,r)
+    cube("Rear station service wall",(0,1.38,1.48),(3.18,.16,2.15),CONCRETE,r,edge=.08)
+    for x in (-1.00,-.50,0,.50,1.00):
+        cube("Rear ventilation louvre",(x,1.49,1.62),(.30,.05,.92),INK,r,edge=.018)
+    cube("Side lift shaft",(2.15,.55,1.68),(1.02,1.55,2.85),CHALK,r,edge=.12)
+    cube("Lift door",(2.15,-.25,1.20),(.66,.08,1.62),GLASS,r,edge=.040)
+    cube("Lift roof",(2.15,.55,3.22),(1.24,1.78,.20),TEAL,r,edge=.09)
     return r
 
 
@@ -453,34 +533,54 @@ def build_busstop():
 
 def build_bridge():
     r=empty("PEDESTRIAN OVERHEAD BRIDGE")
-    cube("Bridge deck",(0,0,3.05),(8.2,1.6,.28),CONCRETE,r,edge=.10)
+    cube("Bridge deck",(0,0,3.05),(8.8,1.75,.28),CONCRETE,r,edge=0)
     for side in (-1,1):
-        cube("Bridge rail",(0,side*.72,3.72),(8.1,.10,1.12),TEAL,r,edge=.045)
-        for x in (-3.5,-2.5,-1.5,-.5,.5,1.5,2.5,3.5):
-            cube("Rail opening",(x,side*.79,3.72),(.55,.04,.58),GLASS,r,edge=.025)
+        cube("Bridge handrail",(0,side*.78,3.72),(8.65,.10,1.12),TEAL,r,edge=0)
+        for x in (-3.4,-2.04,-.68,.68,2.04,3.4):
+            cube("Rail infill",(x,side*.84,3.68),(1.05,.04,.62),GLASS,r,edge=0)
+    for x in (-3.8,-1.9,0,1.9,3.8):
+        cube("Shelter column",(x,.67,4.10),(.10,.10,1.95),TEAL,r,edge=0)
+    cube("Covered bridge roof",(0,.08,5.02),(9.15,2.22,.22),TEAL,r,
+         rot=(math.radians(-3),0,0),edge=0)
     for x in (-3.25,3.25):
-        cyl("Bridge pier",(x,0,1.48),.20,2.95,METAL,r,16)
+        cube("Bridge pier",(x,0,1.48),(.40,.40,2.95),METAL,r,edge=0)
     for side in (-1,1):
-        for i in range(7):
-            x=side*(4.25+i*.45)
-            cube("Bridge stair",(x,0,2.75-i*.38),(.62,1.48,.20),CHALK,r,edge=.035)
-    cube("Bridge sign",(0,-.84,3.70),(2.6,.10,.56),CORAL,r,edge=.055)
-    label("CROSS SAFELY",(0,-.91,3.72),.20,CHALK,r)
+        cube("Upper stair landing",(side*4.72,0,2.93),(.74,1.68,.22),CONCRETE,r,edge=0)
+        for i in range(9):
+            x=side*(5.05+i*.43)
+            cube("Covered bridge stair",(x,0,2.70-i*.31),(.58,1.58,.18),CHALK,r,edge=0)
+        cable("Outer stair handrail",[(side*4.70,-.72,3.74),(side*8.55,-.72,.98)],.050,TEAL,r)
+        cable("Inner stair handrail",[(side*4.70,.72,3.74),(side*8.55,.72,.98)],.050,TEAL,r)
+        cable("Stair roof spine",[(side*4.55,.05,4.97),(side*8.55,.05,2.10)],.090,TEAL,r)
+        cube("Ground tactile landing",(side*8.78,0,.16),(1.20,1.82,.24),YELLOW,r,edge=0)
+        lift_x=side*4.92
+        cube("Lift tower",(lift_x,1.72,2.10),(1.28,1.38,4.12),CHALK,r,edge=0)
+        cube("Lift glazing",(lift_x,.99,2.26),(.82,.08,2.70),GLASS,r,edge=0)
+        cube("Lift ground door",(lift_x,1.00,.95),(.78,.09,1.60),TEAL,r,edge=0)
+        cube("Lift overrun roof",(lift_x,1.72,4.30),(1.52,1.62,.22),TEAL,r,edge=0)
+    cube("Bridge sign",(0,-.84,3.70),(2.6,.10,.56),CORAL,r,edge=0)
     return r
 
 
 def build_controltower():
     r=empty("AIRPORT CONTROL TOWER")
-    cone("Tapered shaft",(0,0,3.3),.70,.38,6.6,CHALK,r,16)
-    cyl("Cab collar",(0,0,6.65),1.05,.42,CONCRETE,r,16)
-    cyl("Control cab",(0,0,7.12),1.18,.78,GLASS,r,16)
-    cone("Cab roof",(0,0,7.72),1.28,.55,.42,CORAL,r,16)
-    cyl("Beacon mast",(0,0,8.38),.07,1.1,METAL,r,10)
-    sphere("Beacon",(0,0,8.98),.13,YELLOW,r)
-    for a in range(8):
-        cube("Cab mullion",(math.cos(a*.785)*1.02,math.sin(a*.785)*1.02,7.12),(.08,.08,.72),INK,r,
-             rot=(0,0,a*.785),edge=.012)
-    label("AIRPORT",(0,-.72,3.75),.22,TEAL,r)
+    cone("Tapered concrete shaft",(0,0,3.35),.74,.46,6.70,CHALK,r,20)
+    for angle in (0,math.pi*.5,math.pi,math.pi*1.5):
+        cable("Vertical shaft rib",[(math.cos(angle)*.66,math.sin(angle)*.66,.28),
+              (math.cos(angle)*.44,math.sin(angle)*.44,6.45)],.055,CONCRETE,r)
+    cyl("Cab service collar",(0,0,6.62),1.08,.42,CONCRETE,r,20)
+    cyl("Lower equipment ring",(0,0,6.90),1.22,.26,TEAL,r,20)
+    cyl("Wraparound control cab",(0,0,7.30),1.34,.66,GLASS,r,20)
+    for index in range(12):
+        angle=index*math.tau/12
+        cube("Control cab mullion",(math.cos(angle)*1.25,math.sin(angle)*1.25,7.30),
+             (.065,.065,.62),INK,r,rot=(0,0,angle),edge=.010)
+    cone("Shallow cab roof",(0,0,7.73),1.46,1.13,.22,CONCRETE,r,20)
+    cyl("Radome pedestal",(0,0,7.97),.45,.34,METAL,r,16)
+    sphere("Golden radar radome",(0,0,8.46),.58,YELLOW,r,scale=(1,1,1.08),segments=24)
+    cyl("Lightning mast",(0,0,9.13),.035,.62,METAL,r,8)
+    sphere("Obstruction beacon",(0,0,9.47),.09,CORAL,r,segments=12)
+    label("CHANGI",(0,-.66,3.75),.20,TEAL,r)
     return r
 
 
@@ -654,15 +754,36 @@ def build_birdcage():
 
 def build_bumboat():
     r=empty("ISLAND RIVER BUMBOAT")
-    cube("Boat hull",(0,0,.55),(3.8,1.45,.78),TEAL,r,edge=.24)
-    cube("Hull stripe",(0,-.76,.63),(3.0,.08,.26),YELLOW,r,edge=.035)
-    cube("Boat cabin",(.25,.05,1.28),(2.15,1.18,1.0),CHALK,r,edge=.12)
-    cube("Cabin windows",(.25,-.57,1.35),(1.72,.08,.48),GLASS,r,edge=.035)
-    cube("Canopy",(.12,.05,1.93),(2.65,1.55,.16),CORAL,r,edge=.08)
-    for x in (-1.15,1.15):
-        cyl("Tyre fender",(x,-.78,.50),.24,.12,INK,r,14,rot=(math.radians(90),0,0))
-    cube("Bow eye",(-1.90,-.02,.74),(.16,.42,.24),METAL,r,edge=.05)
-    label("SG RIVER",(.25,-.64,1.35),.15,CHALK,r)
+    sections=[(-2.55,.08,.30,.66),(-2.15,.52,.10,.78),(-1.15,.76,.00,.84),
+              (.75,.78,.00,.86),(1.85,.58,.12,.82),(2.55,.06,.38,.70)]
+    vertices=[]
+    for x,half,keel,gunwale in sections:
+        vertices.extend(((x,-half,keel),(x,half,keel),(x,-half,gunwale),(x,half,gunwale)))
+    faces=[]
+    for index in range(len(sections)-1):
+        a=index*4;b=(index+1)*4
+        faces.extend(((a,b,b+2,a+2),(a+1,a+3,b+3,b+1),
+                      (a,a+1,b+1,b),(a+2,b+2,b+3,a+3)))
+    faces.extend(((0,2,3,1),tuple(range((len(sections)-1)*4,len(sections)*4))))
+    mesh_object("Pointed timber bumboat hull",vertices,faces,TEAL,r,.06)
+    cube("Painted gunwale",(0,-.77,.80),(3.75,.08,.18),YELLOW,r,edge=.045)
+    cube("Opposite gunwale",(0,.77,.80),(3.75,.08,.18),YELLOW,r,edge=.045)
+    cube("Passenger cabin",(.10,.04,1.28),(2.55,1.25,.92),CHALK,r,edge=.13)
+    cube("Curved canopy",(.05,.04,1.89),(3.18,1.58,.20),CORAL,r,edge=.11)
+    cube("Wheelhouse",(-1.20,.04,1.40),(.78,1.02,.86),TEAL2,r,edge=.10)
+    cube("Front windshield",(-1.61,-.18,1.50),(.08,.52,.38),GLASS,r,edge=.025)
+    for side in (-1,1):
+        for x in (-.70,0,.70):
+            cube("Passenger window",(x,side*.67,1.39),(.45,.055,.34),GLASS,r,edge=.025)
+        for x in (-1.62,-.55,.55,1.62):
+            torus("Tyre fender",(x,side*.86,.62),.20,.055,INK,r,
+                  rot=(math.radians(90),0,0),major_segments=14)
+    cube("Open bow deck",(1.72,.04,.92),(1.15,1.22,.14),WOOD2,r,edge=.07)
+    cable("Bow safety rail",[(1.30,-.54,1.04),(2.15,-.42,1.16),(2.43,0,1.10),
+          (2.15,.42,1.16),(1.30,.54,1.04)],.035,METAL,r)
+    cable("Stern rail",[(-1.75,-.56,1.02),(-2.30,-.34,1.10),(-2.42,.34,1.10),
+          (-1.75,.56,1.02)],.035,METAL,r)
+    label("SG RIVER",(.20,-.83,.62),.13,CHALK,r)
     return r
 
 
