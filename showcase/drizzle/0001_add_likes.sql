@@ -1,4 +1,4 @@
-CREATE TABLE `likes` (
+CREATE TABLE IF NOT EXISTS `likes` (
 	`asset_id` text NOT NULL,
 	`voter_fingerprint` text NOT NULL,
 	`created_at` text NOT NULL,
