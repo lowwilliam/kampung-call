@@ -145,8 +145,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .results-line { display: flex; justify-content: space-between; padding: 1rem 3.2vw; border-top: 1px solid var(--line); color: var(--muted); font: 700 0.64rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 
 .asset-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; padding: 1px 3.2vw 4rem; background: var(--line); }
-.asset-card { display: block; min-width: 0; background: var(--paper); }
-.asset-stage { position: relative; aspect-ratio: 1.08 / 1; overflow: hidden; background: var(--stage, #d5d1b6); }
+.asset-card { display: block; min-width: 0; scroll-margin-top: 90px; background: var(--paper); }
+.asset-stage { position: relative; display: block; aspect-ratio: 1.08 / 1; overflow: hidden; background: var(--stage, #d5d1b6); }
 .asset-card[data-category="Lost Heritage"] { --stage: #c6b48a; }
 .asset-card[data-category="People"] { --stage: #d3a76f; }
 .asset-card[data-category="Homes & Neighbourhoods"] { --stage: #b7d4ca; }
@@ -163,10 +163,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .asset-card-placeholder span { font: 700 0.58rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
 .provenance-badge { position: absolute; z-index: 4; top: 0.9rem; left: 0.9rem; padding: 0.45rem 0.65rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; color: var(--chalk); background: rgba(6,56,59,0.86); font: 700 0.58rem/1 var(--mono); text-transform: uppercase; backdrop-filter: blur(8px); }
 .provenance-badge.is-community { color: var(--ink); background: rgba(240,146,20,0.9); }
-.stage-open { position: absolute; z-index: 5; inset: 0; width: 100%; padding: 1rem; border: 0; background: transparent; text-align: right; }
+.stage-open { position: absolute; z-index: 5; inset: 0; display: block; width: 100%; padding: 1rem; border: 0; background: transparent; text-align: right; }
 .stage-open span { position: absolute; right: 1rem; bottom: 1rem; padding: 0.65rem 0.8rem; border-radius: 999px; opacity: 0; color: var(--chalk); background: var(--ink); font: 700 0.62rem/1 var(--mono); transition: opacity 180ms ease, transform 180ms ease; transform: translateY(6px); }
 .asset-card:hover .stage-open span, .stage-open:focus-visible span { opacity: 1; transform: none; }
-.asset-card-footer { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--paper-soft); }
+.asset-card-footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; background: var(--paper-soft); }
 .asset-card-copy { display: grid; grid-template-columns: auto 1fr auto; gap: 0.8rem; align-items: center; min-width: 0; width: 100%; padding: 1.1rem 1rem 1.3rem; border: 0; background: transparent; text-align: left; }
 .asset-index { align-self: start; color: var(--terracotta); font: 800 0.63rem/1.2 var(--mono); }
 .asset-card-copy strong { display: block; font: 900 clamp(1.25rem, 2vw, 2rem)/0.95 var(--display); letter-spacing: -0.02em; text-transform: uppercase; }

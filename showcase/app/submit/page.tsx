@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Submissions closed · 3D Singapore Collection",
-  description: "The 3D Singapore Collection is now a read-only catalogue.",
+  title: "Submissions closed · Kampung 3D Collection",
+  description: "Kampung 3D Collection is now a read-only catalogue.",
   robots: { index: false, follow: false },
 };
 

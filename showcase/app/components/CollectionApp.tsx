@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { AssetCategory } from "../data/game-assets";
+import { rememberCollectionPosition } from "./CollectionBackLink";
+import { CollectionGlobe } from "./CollectionGlobe";
+import { ModelViewer } from "./ModelViewer";
 
 type CatalogueSort = "curated" | "alphabetical";
 
@@ -13,6 +15,7 @@ export type CatalogueCardAsset = {
   category: AssetCategory;
   curatedOrder: number;
   intro: string;
+  modelUrl: string;
   cardPreviewUrl?: string;
 };
 
@@ -32,45 +35,53 @@ function AssetCard({
   asset,
   href,
   eager,
+  likeCount,
+  liked,
+  likePending,
+  onLike,
 }: {
   asset: CatalogueCardAsset;
   href: string;
   eager: boolean;
+  likeCount: number;
+  liked: boolean;
+  likePending: boolean;
+  onLike: () => void;
 }) {
   return (
-    <a className="asset-card" data-category={asset.category} href={href} aria-label={`View ${asset.name} details`}>
-      <div className="asset-stage">
-        {asset.cardPreviewUrl ? (
-          <Image
-            className="asset-card-preview"
-            src={asset.cardPreviewUrl}
-            alt=""
-            fill
-            priority={eager}
-            sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="asset-card-placeholder" aria-hidden="true">
-            <strong>{String(asset.curatedOrder ?? 0).padStart(2, "0")}</strong>
-            <span>Preview in production</span>
-          </div>
-        )}
-        <span className="provenance-badge">
-          {asset.category === "Lost Heritage" ? "Lost Heritage" : "Game Asset"}
-        </span>
-        <span className="stage-open"><span>View detail</span></span>
-      </div>
+    <article className="asset-card" data-category={asset.category} id={`asset-${asset.slug}`}>
+      <a className="asset-stage" href={href} onClick={rememberCollectionPosition} aria-label={`View ${asset.name} details`}>
+        <ModelViewer
+          url={asset.modelUrl}
+          label={asset.name}
+          posterUrl={asset.cardPreviewUrl}
+          eager={eager}
+        />
+        <span className="provenance-badge">{asset.category === "Lost Heritage" ? "Lost Heritage" : "Game Asset"}</span>
+        <span className="stage-open"><span>Open 360°</span></span>
+      </a>
       <div className="asset-card-footer">
-        <span className="asset-card-copy">
+        <a className="asset-card-copy" href={href} onClick={rememberCollectionPosition}>
           <span className="asset-index">{String(asset.curatedOrder ?? 0).padStart(2, "0")}</span>
           <span>
             <strong>{asset.name}</strong>
             <small>{formatCategory(asset.category)}</small>
           </span>
           <span className="card-arrow" aria-hidden="true">↗</span>
-        </span>
+        </a>
+        <button
+          className={`asset-like-button ${liked ? "is-liked" : ""}`}
+          type="button"
+          aria-pressed={liked}
+          aria-label={`${liked ? "Unlike" : "Like"} ${asset.name}. ${likeCount} likes`}
+          disabled={likePending}
+          onClick={onLike}
+        >
+          <span aria-hidden="true">♥</span>
+          <strong>{likeCount.toLocaleString()}</strong>
+        </button>
       </div>
-    </a>
+    </article>
   );
 }
 
@@ -90,6 +101,9 @@ export function CollectionApp({
   const [category, setCategory] = useState(initialCategory);
   const [query, setQuery] = useState(initialQuery);
   const [sort, setSort] = useState<CatalogueSort>(initialSort);
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
+  const [likedAssets, setLikedAssets] = useState<Set<string>>(new Set());
+  const [pendingLikes, setPendingLikes] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -102,20 +116,75 @@ export function CollectionApp({
     return [...matching].sort((left, right) => left.curatedOrder - right.curatedOrder || left.name.localeCompare(right.name));
   }, [assets, category, query, sort]);
 
-  const lostHeritageCount = useMemo(() => assets.filter((asset) => asset.category === "Lost Heritage").length, [assets]);
-
   useEffect(() => {
     const params = catalogueQuery(category, query, sort);
     const nextUrl = params.size ? `/?${params}` : "/";
     window.history.replaceState(window.history.state, "", nextUrl);
   }, [category, query, sort]);
 
+  useEffect(() => {
+    void fetch("/api/likes", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : { counts: {}, liked: [] }))
+      .then((payload) => {
+        setLikeCounts(payload.counts ?? {});
+        setLikedAssets(new Set(payload.liked ?? []));
+      })
+      .catch(() => {
+        setLikeCounts({});
+        setLikedAssets(new Set());
+      });
+  }, []);
+
+  const toggleLike = useCallback(async (assetId: string) => {
+    if (pendingLikes.has(assetId)) return;
+    const wasLiked = likedAssets.has(assetId);
+    const previousCount = likeCounts[assetId] ?? 0;
+    setPendingLikes((current) => new Set(current).add(assetId));
+    setLikedAssets((current) => {
+      const next = new Set(current);
+      if (wasLiked) next.delete(assetId);
+      else next.add(assetId);
+      return next;
+    });
+    setLikeCounts((current) => ({ ...current, [assetId]: Math.max(0, previousCount + (wasLiked ? -1 : 1)) }));
+    try {
+      const response = await fetch("/api/likes", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ assetId }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Unable to save like");
+      setLikeCounts((current) => ({ ...current, [assetId]: payload.count ?? 0 }));
+      setLikedAssets((current) => {
+        const next = new Set(current);
+        if (payload.liked) next.add(assetId);
+        else next.delete(assetId);
+        return next;
+      });
+    } catch {
+      setLikeCounts((current) => ({ ...current, [assetId]: previousCount }));
+      setLikedAssets((current) => {
+        const next = new Set(current);
+        if (wasLiked) next.add(assetId);
+        else next.delete(assetId);
+        return next;
+      });
+    } finally {
+      setPendingLikes((current) => {
+        const next = new Set(current);
+        next.delete(assetId);
+        return next;
+      });
+    }
+  }, [likeCounts, likedAssets, pendingLikes]);
+
   const currentQuery = catalogueQuery(category, query, sort);
 
   return (
     <div className="collection-page">
       <header className="site-header">
-        <a href="/" className="wordmark"><span>3D</span><strong>Singapore Collection</strong></a>
+        <a href="/" className="wordmark"><span>3D</span><strong>Kampung 3D Collection</strong></a>
         <nav aria-label="Primary navigation">
           <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
         </nav>
@@ -125,36 +194,15 @@ export function CollectionApp({
         <section className="collection-intro" aria-labelledby="collection-title">
           <div>
             <p className="eyebrow">Read-only digital catalogue · Singapore</p>
-            <h1 id="collection-title">3D Singapore<br /><em>Collection</em></h1>
+            <h1 id="collection-title">Kampung 3D<br /><em>Collection</em></h1>
           </div>
           <div className="intro-side">
-            <div className="collection-globe-wrap" aria-hidden="true">
-              <div className="collection-globe is-static">
-                <div className="collection-globe-fallback">
-                  <span className="fallback-orbit" />
-                  <span className="fallback-planet"><i /><i /><i /></span>
-                  <span className="fallback-water" />
-                  <span className="fallback-base" />
-                </div>
-              </div>
-              <span>Catalogue edition 01</span>
-            </div>
+            <CollectionGlobe />
             <div className="intro-note">
               <strong>{assets.length}</strong>
               <p>Curated objects, places and people from Singapore, each with a stable record and inspectable story.</p>
             </div>
           </div>
-        </section>
-
-        <section className="heritage-feature" aria-labelledby="heritage-feature-title">
-          <div>
-            <p className="eyebrow">Lost Singapore · {lostHeritageCount} reconstructions</p>
-            <h2 id="heritage-feature-title">Buildings gone.<br />Stories still here.</h2>
-            <p>Explore research-led 3D reconstructions of demolished landmarks, from the National Theatre to Pearl Bank Apartments.</p>
-          </div>
-          <button type="button" onClick={() => { setCategory("Lost Heritage"); setQuery(""); setSort("curated"); }}>
-            Explore lost heritage <span>{lostHeritageCount} ↘</span>
-          </button>
         </section>
 
         <section className="catalogue-controls" aria-label="Collection controls">
@@ -180,7 +228,7 @@ export function CollectionApp({
 
         <section className="results-line" aria-live="polite">
           <span>{filtered.length} {filtered.length === 1 ? "object" : "objects"}</span>
-          <span>{sort === "curated" ? "Responsible Publisher’s curated order" : "Alphabetical order"} · Static previews</span>
+          <span>{sort === "curated" ? "Responsible Publisher’s curated order" : "Alphabetical order"} · Live 360° previews</span>
         </section>
 
         {filtered.length ? (
@@ -193,6 +241,10 @@ export function CollectionApp({
                   asset={asset}
                   eager={index < 3}
                   href={`/asset/${asset.slug}${detailParams.size ? `?${detailParams}` : ""}`}
+                  likeCount={likeCounts[asset.id] ?? 0}
+                  liked={likedAssets.has(asset.id)}
+                  likePending={pendingLikes.has(asset.id)}
+                  onLike={() => void toggleLike(asset.id)}
                 />
               );
             })}
@@ -209,7 +261,7 @@ export function CollectionApp({
       </main>
 
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} 3D Singapore Collection</span>
+        <span>© {new Date().getFullYear()} Kampung 3D Collection</span>
         <p>Catalogue records are published separately from creator credit, source provenance and download permission.</p>
         <a href="https://www.linkedin.com/in/ruiqian-liu/" target="_blank" rel="noreferrer">Publisher ↗</a>
       </footer>

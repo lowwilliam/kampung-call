@@ -20,28 +20,37 @@ const priorityQueue: Array<() => void> = [];
 const standardQueue: Array<() => void> = [];
 const modelCache = new Map<string, Promise<GLTF>>();
 
-const runtimePromise = Promise.all([
-  import("three"),
-  import("three/examples/jsm/loaders/GLTFLoader.js"),
-  import("three/examples/jsm/loaders/DRACOLoader.js"),
-  import("three/examples/jsm/controls/OrbitControls.js"),
-  import("three/examples/jsm/utils/SkeletonUtils.js"),
-]).then(([THREE, gltfModule, dracoModule, controlsModule, skeletonUtils]) => {
-  THREE.Cache.enabled = true;
-  return {
-    THREE,
-    GLTFLoader: gltfModule.GLTFLoader,
-    DRACOLoader: dracoModule.DRACOLoader,
-    OrbitControls: controlsModule.OrbitControls,
-    cloneScene: skeletonUtils.clone,
-  };
-});
+function createRuntime() {
+  return Promise.all([
+    import("three"),
+    import("three/examples/jsm/loaders/GLTFLoader.js"),
+    import("three/examples/jsm/loaders/DRACOLoader.js"),
+    import("three/examples/jsm/controls/OrbitControls.js"),
+    import("three/examples/jsm/utils/SkeletonUtils.js"),
+  ]).then(([THREE, gltfModule, dracoModule, controlsModule, skeletonUtils]) => {
+    THREE.Cache.enabled = true;
+    return {
+      THREE,
+      GLTFLoader: gltfModule.GLTFLoader,
+      DRACOLoader: dracoModule.DRACOLoader,
+      OrbitControls: controlsModule.OrbitControls,
+      cloneScene: skeletonUtils.clone,
+    };
+  });
+}
+
+let runtimePromise: ReturnType<typeof createRuntime> | null = null;
+
+function getRuntime() {
+  runtimePromise ??= createRuntime();
+  return runtimePromise;
+}
 
 let loaderPromise: Promise<LoaderInstance> | null = null;
 
 function getLoader() {
   if (!loaderPromise) {
-    loaderPromise = runtimePromise.then(({ GLTFLoader, DRACOLoader }) => {
+    loaderPromise = getRuntime().then(({ GLTFLoader, DRACOLoader }) => {
       const draco = new DRACOLoader();
       draco.setDecoderPath("/draco/");
       draco.setWorkerLimit(2);
@@ -127,7 +136,7 @@ export function ModelViewer({ url, label, expanded = false, eager = false, poste
 
     void (async () => {
       const [{ THREE, OrbitControls, cloneScene }, gltf] = await Promise.all([
-        runtimePromise,
+        getRuntime(),
         loadModel(url, eager || expanded),
       ]);
       if (disposed || !hostRef.current) return;
@@ -282,7 +291,15 @@ export function ModelViewer({ url, label, expanded = false, eager = false, poste
   return (
     <div className={`model-viewer ${expanded ? "is-expanded" : ""}`} ref={hostRef}>
       {posterUrl && status !== "ready" && (
-        <Image className="model-viewer-poster" src={posterUrl} alt="" fill priority={eager} sizes="(max-width: 980px) 100vw, 60vw" />
+        <Image
+          className="model-viewer-poster"
+          src={posterUrl}
+          alt=""
+          fill
+          priority={eager}
+          unoptimized
+          sizes={expanded ? "(max-width: 980px) 100vw, 60vw" : "(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"}
+        />
       )}
       {status !== "ready" && (
         <div className={`viewer-status ${status === "error" ? "is-error" : ""}`}>

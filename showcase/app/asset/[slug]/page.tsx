@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATALOGUE_MANIFEST, CATEGORIES, GAME_ASSETS, type CollectionAsset } from "../../data/game-assets";
+import { AssetLikeButton } from "../../components/AssetLikeButton";
+import { CollectionBackLink } from "../../components/CollectionBackLink";
 import { ModelViewer } from "../../components/ModelViewer";
 
 function assetForSlug(slug: string) {
@@ -11,7 +13,7 @@ function value(input: string | string[] | undefined) {
   return typeof input === "string" ? input : "";
 }
 
-function collectionReturnUrl(params: Record<string, string | string[] | undefined>) {
+function collectionReturnUrl(params: Record<string, string | string[] | undefined>, slug: string) {
   const query = new URLSearchParams();
   const category = value(params.category);
   const search = value(params.q).slice(0, 120);
@@ -19,7 +21,7 @@ function collectionReturnUrl(params: Record<string, string | string[] | undefine
   if (CATEGORIES.includes(category as (typeof CATEGORIES)[number])) query.set("category", category);
   if (search) query.set("q", search);
   if (sort === "alphabetical") query.set("sort", sort);
-  return query.size ? `/?${query}` : "/";
+  return `${query.size ? `/?${query}` : "/"}#asset-${slug}`;
 }
 
 function evidenceLabel(asset: CollectionAsset) {
@@ -38,8 +40,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const asset = assetForSlug(slug);
-  if (!asset) return { title: "Asset not found · 3D Singapore Collection" };
-  const title = `${asset.name} · 3D Singapore Collection`;
+  if (!asset) return { title: "Asset not found · Kampung 3D Collection" };
+  const title = `${asset.name} · Kampung 3D Collection`;
   return {
     title,
     description: asset.intro,
@@ -70,7 +72,8 @@ export default async function AssetPage({
   const { slug } = await params;
   const asset = assetForSlug(slug);
   if (!asset) notFound();
-  const returnUrl = collectionReturnUrl(await searchParams);
+  const returnUrl = collectionReturnUrl(await searchParams, asset.slug);
+  const downloadFileName = asset.file.split("/").at(-1) ?? `${asset.slug}.glb`;
   const publisher = asset.responsiblePublisher ?? CATALOGUE_MANIFEST.release.responsiblePublisher;
   const jsonLd = {
     "@context": "https://schema.org",
@@ -85,7 +88,7 @@ export default async function AssetPage({
   return (
     <div className="detail-shell detail-page">
       <header className="detail-bar">
-        <a className="icon-button" href={returnUrl} aria-label="Back to collection">←</a>
+        <CollectionBackLink href={returnUrl} />
         <span>{asset.category}</span>
         <a href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
       </header>
@@ -103,6 +106,7 @@ export default async function AssetPage({
         <article className="detail-copy">
           <p className="eyebrow">{asset.category} · Asset {String(asset.curatedOrder ?? 0).padStart(2, "0")}</p>
           <h1>{asset.name}</h1>
+          <AssetLikeButton assetId={asset.id} assetName={asset.name} />
           {asset.inspiration && (
             <p className="inspiration">
               {asset.category === "Lost Heritage" ? <strong>{asset.inspiration}</strong> : <>Inspired by <strong>{asset.inspiration}</strong></>}
@@ -137,17 +141,11 @@ export default async function AssetPage({
           <p className="provenance-note">{asset.provenanceDetail}</p>
 
           <div className="download-panel">
-            {asset.downloadAllowed && asset.downloadUrl ? (
-              <>
-                <a className="asset-download-link" href={asset.downloadUrl}>
-                  <span>Download licensed package</span>
-                  <small>{asset.rights?.download.license ?? "Asset-specific licence"} · ↓</small>
-                </a>
-                <p>The package licence and excluded third-party rights govern reuse.</p>
-              </>
-            ) : (
-              <p>This model remains view-only until its asset-specific Download Grant is cleared. Browser rendering does not grant reuse or redistribution rights.</p>
-            )}
+            <a className="asset-download-link" href={asset.modelUrl} download={downloadFileName}>
+              <span>Download GLB</span>
+              <small>{downloadFileName} · ↓</small>
+            </a>
+            <p>This downloads the same view copy used by the 3D viewer. It does not grant redistribution, resale or reuse rights.</p>
           </div>
         </article>
       </main>

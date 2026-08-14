@@ -1,4 +1,4 @@
-# 3D Singapore Collection
+# Kampung 3D Collection
 
 A standalone, editorial 3D catalogue for 68 Singapore objects, places and people: 55 made for Kampung Call plus 13 research-led Lost Heritage reconstructions. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
 

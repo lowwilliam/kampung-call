@@ -46,7 +46,9 @@ test("runtime catalogue is derived from the Manifest instead of parallel seed ar
   const syncSource = await readFile(new URL("scripts/sync-game-assets.mjs", siteRoot), "utf8");
   assert.match(source, /import catalogueManifestJson from "\.\/catalogue-manifest\.json"/);
   assert.doesNotMatch(source, /lostHeritageSeeds|const gameAssetSeeds|const GAME_ASSETS\s*=\s*\[/);
-  assert.doesNotMatch(collectionSource, /ModelViewer|CollectionGlobe|\/api\/likes|\/api\/assets/);
+  assert.match(collectionSource, /ModelViewer|CollectionGlobe/);
+  assert.match(collectionSource, /\/api\/likes/);
+  assert.doesNotMatch(collectionSource, /\/api\/assets/);
   assert.doesNotMatch(collectionSource, /GAME_ASSETS|CATALOGUE_MANIFEST|catalogue-manifest\.json/);
   assert.match(syncSource, /catalogue-manifest\.json/);
   assert.doesNotMatch(syncSource, /asset-audit\.json/);
