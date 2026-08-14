@@ -64,8 +64,13 @@ def build_skypark_hotel():
     for i,x in enumerate((-2.25,0,2.25)):
         cube("Hotel tower",(x,.25,3.4),(1.7,2.5,6.6),CHALK,r,rot=(0,math.radians((i-1)*-3),0),edge=.18)
         cube("Glass face",(x,-1.03,3.45),(1.22,.08,5.9),GLASS,r,edge=.035)
+        # The reference establishes the harbour elevation, not a blank back.
+        # A quieter guest-room curtain wall keeps the inferred rear credible
+        # during a full orbit without pretending to reproduce exact plans.
+        cube("Rear glass face",(x,1.53,3.45),(1.22,.08,5.9),GLASS,r,edge=.035)
         for f in range(7):
             cube("Hotel floor band",(x,-1.09,1.05+f*.75),(1.28,.045,.055),INK,r,edge=.008)
+            cube("Rear hotel floor band",(x,1.59,1.05+f*.75),(1.28,.045,.055),INK,r,edge=.008)
     cube("SkyPark hull",(0,.18,7.12),(7.6,2.65,.48),TEAL,r,edge=.22)
     cube("SkyPark deck",(.45,.18,7.50),(7.2,2.45,.22),CHALK,r,edge=.12)
     for x in (-2.7,2.7):
@@ -182,6 +187,16 @@ def build_shophouse():
     cube("Peranakan parapet",(0,.20,4.42),(3.45,3.15,.45),TEAL,r,edge=.10)
     for x in (-1.0,0,1.0):
         ico("Parapet ornament",(x,-1.25,4.75),.24,YELLOW,r,scale=(1,.55,1))
+    # Inferred service elevation: rear shutters, back door, rain canopy and
+    # drain stack replace the single-image reconstruction's empty wall.
+    for x in (-1.05,1.05):
+        for z in (2.2,3.35):
+            cube("Rear window recess",(x,1.78,z),(.72,.10,.66),INK,r,edge=.035)
+            cube("Rear timber shutter",(x,1.84,z),(.56,.06,.54),TEAL2,r,edge=.025)
+    cube("Rear service door",(0,1.79,1.12),(.82,.12,1.82),WOOD,r,edge=.045)
+    cube("Rear rain canopy",(0,2.08,2.08),(1.65,.66,.12),CORAL,r,
+         rot=(math.radians(8),0,0),edge=.035)
+    cyl("Rear drain stack",(2.72,1.84,2.15),.055,3.65,METAL,r,10)
     label("KEDAI 88",(0,-1.46,1.28),.22,CHALK,r)
     return r
 
@@ -240,6 +255,14 @@ def build_mamashop():
     for x in (-1.65,1.65):
         cyl("Snack jar",(x,-1.72,1.18),.18,.40,CHALK,r,14)
         cyl("Jar lid",(x,-1.72,1.42),.20,.08,YELLOW,r,14)
+    # A small loading/service elevation is a safer hidden-side inference than
+    # the previous featureless box.
+    cube("Rear service door",(-1.0,1.72,1.12),(1.05,.12,1.85),METAL,r,edge=.045)
+    cube("Rear stockroom window",(.95,1.72,1.65),(1.15,.10,.82),GLASS,r,edge=.035)
+    cube("Rear service canopy",(-.25,1.98,2.45),(3.3,.62,.14),TEAL,r,
+         rot=(math.radians(7),0,0),edge=.045)
+    for x in (.55,1.2):
+        cube("Rear ventilation grille",(x,1.79,.70),(.42,.06,.22),INK,r,edge=.015)
     return r
 
 
@@ -312,6 +335,16 @@ def build_bg_hdb():
     cube("Void deck",(0,-.80,.55),(4.8,.45,.80),INK,r,edge=.08)
     cube("Block panel",(1.85,-1.12,.82),(.72,.10,.82),CORAL,r,edge=.06)
     label("BLK",(1.85,-1.20,.83),.22,CHALK,r)
+    # Inferred service-yard elevation, deliberately simpler than the public
+    # corridor but complete enough to survive a rear camera.
+    for f in range(6):
+        z=1.25+f*.98
+        cube("Rear service ledge",(0,1.78,z),(4.65,.22,.09),CONCRETE,r,edge=.02)
+        for x in (-1.65,0,1.65):
+            cube("Rear service window",(x,1.82,z+.12),(.58,.07,.54),GLASS,r,edge=.025)
+            cube("Rear AC shelf",(x+.38,1.92,z-.18),(.28,.30,.08),TEAL,r,edge=.018)
+    for z in (2.0,3.5,5.0,6.5):
+        cube("Stair-core vent",(-3.09,.55,z),(.08,1.25,.32),INK,r,edge=.018)
     cube("Roof cap",(0,.4,7.68),(5.3,3.0,.22),CHALK,r,edge=.10)
     return r
 
@@ -321,11 +354,15 @@ def build_bg_condo():
     for i,(x,h) in enumerate(((-1.2,6.8),(1.0,5.7))):
         cube("Condo wing",(x,.4,h/2),(2.15,2.7,h),CHALK if i else CREAM,r,edge=.13)
         cube("Glass spine",(x,-.98,h/2),(.72,.08,h-.5),GLASS,r,edge=.03)
+        cube("Rear glass spine",(x,1.78,h/2),(.72,.08,h-.5),GLASS,r,edge=.03)
         for f in range(int(h/.85)):
             cube("Condo balcony",(x,-1.16,.65+f*.85),(1.65,.35,.10),CONCRETE,r,edge=.025)
             cube("Condo rail",(x,-1.36,.83+f*.85),(1.58,.04,.30),TEAL,r,edge=.012)
+            cube("Rear condo balcony",(x,1.96,.65+f*.85),(1.65,.35,.10),CONCRETE,r,edge=.025)
+            cube("Rear condo rail",(x,2.16,.83+f*.85),(1.58,.04,.30),TEAL,r,edge=.012)
     cube("Condo lobby",(0,-.15,.52),(4.8,3.5,.90),TEAL2,r,edge=.12)
     cube("Lobby glass",(0,-1.92,.75),(2.4,.10,1.15),GLASS,r,edge=.04)
+    cube("Rear lobby service entry",(0,1.66,.75),(2.4,.10,1.15),GLASS,r,edge=.04)
     return r
 
 
@@ -340,6 +377,12 @@ def build_bg_landed():
     cube("Gate",(0,-1.62,.78),(4.0,.10,1.1),INK,r,edge=.035)
     for x in (-1.6,-.8,0,.8,1.6):
         cube("Gate slat",(x,-1.68,.78),(.08,.04,1.0),CHALK,r,edge=.01)
+    cube("Rear kitchen door",(-1.0,1.98,1.22),(1.0,.12,1.85),WOOD,r,edge=.045)
+    cube("Rear kitchen window",(.82,1.98,1.70),(1.25,.10,.92),GLASS,r,edge=.035)
+    cube("Rear utility canopy",(-.15,2.28,2.45),(3.6,.70,.14),TEAL,r,
+         rot=(math.radians(8),0,0),edge=.045)
+    for z in (.65,1.15):
+        cube("Rear AC condenser",(1.62,2.09,z),(.48,.30,.34),METAL,r,edge=.035)
     return r
 
 

@@ -12,6 +12,7 @@
     h1 { margin: 0; font-size: 22px; }
     #summary { color: #9fc5bd; font-size: 13px; }
     main { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; padding: 16px; }
+    main.single { grid-template-columns: minmax(0, 960px); }
     article { overflow: hidden; min-width: 0; border: 1px solid #275358; border-radius: 10px; background: #0c2528; }
     article.fail { border-color: #e46d59; }
     img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: linear-gradient(#123c40, #0b292c); }
@@ -21,7 +22,7 @@
   </style>
 </head>
 <body>
-  <header><h1>Canonical GLB review</h1><div id="summary">Loading…</div></header>
+  <header><h1>Canonical GLB orbit review</h1><div id="summary">Loading…</div></header>
   <main id="grid"></main>
   <script type="module">
     import * as THREE from 'three';
@@ -31,6 +32,11 @@
     const report = await fetch('/world/asset-audit.json').then((response) => response.json());
     const grid = document.querySelector('#grid');
     const summary = document.querySelector('#summary');
+    const assetFilter = new URLSearchParams(location.search).get('asset');
+    const reviewEntries = assetFilter
+      ? report.manifest.filter((entry) => entry.name === assetFilter)
+      : report.manifest;
+    if (assetFilter) grid.classList.add('single');
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
     renderer.setPixelRatio(1);
     renderer.setSize(480, 360, false);
@@ -49,6 +55,13 @@
         for (const material of materials) material?.dispose();
       });
     }
+
+    const REVIEW_VIEWS = [
+      { label: 'FRONT', direction: new THREE.Vector3(.28, .28, -1) },
+      { label: 'REAR', direction: new THREE.Vector3(-.28, .28, 1) },
+      { label: 'LEFT', direction: new THREE.Vector3(-1, .28, -.28) },
+      { label: 'RIGHT', direction: new THREE.Vector3(1, .28, .28) },
+    ];
 
     function reviewFlags(entry) {
       return [
@@ -101,18 +114,35 @@
       const camera = new THREE.PerspectiveCamera(34, 4 / 3, maxDimension / 100, maxDimension * 20);
       const target = new THREE.Vector3(0, size.y * .46, 0);
       const distance = maxDimension * 2.15;
-      camera.position.set(distance * .82, size.y * .62 + distance * .28, -distance);
-      camera.lookAt(target);
-      renderer.render(scene, camera);
-      const url = renderer.domElement.toDataURL('image/png');
+      const sheet = document.createElement('canvas');
+      sheet.width = 960;
+      sheet.height = 720;
+      const context = sheet.getContext('2d');
+      context.fillStyle = '#123c40';
+      context.fillRect(0, 0, sheet.width, sheet.height);
+      for (const [index, view] of REVIEW_VIEWS.entries()) {
+        camera.position.copy(view.direction).normalize().multiplyScalar(distance);
+        camera.position.y += size.y * .62;
+        camera.lookAt(target);
+        renderer.render(scene, camera);
+        const x = (index % 2) * 480;
+        const y = Math.floor(index / 2) * 360;
+        context.drawImage(renderer.domElement, x, y, 480, 360);
+        context.fillStyle = '#07191bcc';
+        context.fillRect(x + 12, y + 12, 68, 24);
+        context.fillStyle = '#f2ead9';
+        context.font = '600 13px ui-monospace, SFMono-Regular, Menlo, monospace';
+        context.fillText(view.label, x + 20, y + 29);
+      }
+      const url = sheet.toDataURL('image/png');
       dispose(scene);
       return url;
     }
 
     let rendered = 0;
-    const failed = report.manifest.filter((entry) => reviewFlags(entry).length).length;
-    summary.textContent = `${report.manifest.length} assets · ${failed} need technical attention`;
-    for (const entry of report.manifest) {
+    const failed = reviewEntries.filter((entry) => reviewFlags(entry).length).length;
+    summary.textContent = `${reviewEntries.length} assets · ${failed} need technical attention`;
+    for (const entry of reviewEntries) {
       const flags = reviewFlags(entry);
       const card = document.createElement('article');
       card.className = flags.length ? 'fail' : '';
@@ -130,7 +160,7 @@
       summary.textContent = `${rendered}/${report.manifest.length} rendered · ${failed} need technical attention`;
       await new Promise((resolve) => requestAnimationFrame(resolve));
     }
-    summary.textContent = `${report.manifest.length} assets rendered · ${failed} need technical attention · REVIEW_READY`;
+    summary.textContent = `${reviewEntries.length} assets rendered · ${failed} need technical attention · REVIEW_READY`;
     document.documentElement.dataset.reviewReady = 'true';
   </script>
 </body>

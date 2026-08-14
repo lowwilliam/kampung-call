@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T16:14:56.144Z",
+  "generatedAt": "2026-08-14T06:52:20.505Z",
   "manifest": [
     {
       "name": "engineer",
@@ -66,14 +66,14 @@
       "url": "assets/hdb-bg-v2.glb",
       "scale": 2.695,
       "dimensions": {
-        "width": 15.429467163085937,
+        "width": 15.576510715484618,
         "height": 20.58979964017868,
-        "depth": 8.892963352203369
+        "depth": 9.351687986850738
       },
       "minY": 0,
       "maxY": 20.58979964017868,
-      "requiredRadius": 8.904398549598668,
-      "triangles": 3788,
+      "requiredRadius": 9.084076098770524,
+      "triangles": 11672,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -86,14 +86,14 @@
       "url": "assets/hdb-call-v2.glb",
       "scale": 1.321,
       "dimensions": {
-        "width": 7.563015258789062,
+        "width": 7.635091152191162,
         "height": 10.09243982362747,
-        "depth": 4.359036952972412
+        "depth": 4.583888619899749
       },
       "minY": 0,
       "maxY": 10.09243982362747,
-      "requiredRadius": 4.364642109098271,
-      "triangles": 3788,
+      "requiredRadius": 4.4527141100095955,
+      "triangles": 11672,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -106,14 +106,14 @@
       "url": "assets/shophouse-v2.glb",
       "scale": 0.945,
       "dimensions": {
-        "width": 3.354865536689758,
+        "width": 4.297240163683891,
         "height": 4.621049407982847,
-        "depth": 3.7745758969998944
+        "depth": 4.37480797920399
       },
-      "minY": -1.8341928469056688e-7,
-      "maxY": 4.621049224563563,
-      "requiredRadius": 2.5250022758148765,
-      "triangles": 4820,
+      "minY": -1.8340638903602267e-7,
+      "maxY": 4.621049224576458,
+      "requiredRadius": 3.066154671542389,
+      "triangles": 5294,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -148,12 +148,12 @@
       "dimensions": {
         "width": 20.770457084178926,
         "height": 29.986111320495606,
-        "depth": 16.095822688937186
+        "depth": 17.957256740093232
       },
       "minY": 0,
       "maxY": 29.986111320495606,
-      "requiredRadius": 13.138563425270506,
-      "triangles": 3672,
+      "requiredRadius": 13.72839172222426,
+      "triangles": 7020,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -168,12 +168,12 @@
       "dimensions": {
         "width": 17.78195477628708,
         "height": 30.002242219924927,
-        "depth": 16.082505508542063
+        "depth": 18.04016904401779
       },
       "minY": 0,
       "maxY": 30.002242219924927,
-      "requiredRadius": 11.987961660538925,
-      "triangles": 8536,
+      "requiredRadius": 12.665362359627307,
+      "triangles": 27092,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -186,14 +186,14 @@
       "url": "assets/condo-holland-v2.glb",
       "scale": 3.436,
       "dimensions": {
-        "width": 18.898955194473267,
+        "width": 18.897125087738036,
         "height": 29.99627986073494,
-        "depth": 17.09364910888672
+        "depth": 19.17359736251831
       },
       "minY": 0,
       "maxY": 29.99627986073494,
-      "requiredRadius": 12.741304361214866,
-      "triangles": 8658,
+      "requiredRadius": 13.46038792533101,
+      "triangles": 27540,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -226,14 +226,14 @@
       "url": "assets/pointblock-call-v2.glb",
       "scale": 3.146,
       "dimensions": {
-        "width": 17.538842890739442,
+        "width": 18.466308578491212,
         "height": 33.99253096008301,
-        "depth": 15.808405778884888
+        "depth": 17.555441825866698
       },
       "minY": 0,
       "maxY": 33.99253096008301,
-      "requiredRadius": 11.80589580692548,
-      "triangles": 6822,
+      "requiredRadius": 12.739682984845503,
+      "triangles": 30392,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -246,14 +246,14 @@
       "url": "assets/airport-terminal-v2.glb",
       "scale": 4.294,
       "dimensions": {
-        "width": 42.08102118272945,
-        "height": 13.946486650228204,
-        "depth": 27.911309178352354
+        "width": 42.0812008190155,
+        "height": 13.946545701267507,
+        "depth": 29.823206938398048
       },
-      "minY": 0.00009937765092841388,
-      "maxY": 13.946586027879132,
-      "requiredRadius": 25.24803717039654,
-      "triangles": 8582,
+      "minY": -0.0007962246238431669,
+      "maxY": 13.945749476643664,
+      "requiredRadius": 25.78881120980969,
+      "triangles": 9374,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -346,14 +346,14 @@
       "url": "assets/national-school-v2.glb",
       "scale": 2.226,
       "dimensions": {
-        "width": 16.027199575424195,
-        "height": 7.969089541982849,
-        "depth": 11.508513806791928
+        "width": 16.97325,
+        "height": 7.969128656387329,
+        "depth": 11.508201513290405
       },
-      "minY": -0.000008700902175266201,
-      "maxY": 7.969080841080674,
-      "requiredRadius": 9.865558984056578,
-      "triangles": 5952,
+      "minY": 0,
+      "maxY": 7.969128656387329,
+      "requiredRadius": 10.253413061427395,
+      "triangles": 6822,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -367,13 +367,13 @@
       "scale": 2,
       "dimensions": {
         "width": 8.999999761581421,
-        "height": 7.385460376739502,
-        "depth": 7.7502288818359375
+        "height": 7.384911060333252,
+        "depth": 8.659952163696289
       },
       "minY": 0,
-      "maxY": 7.385460376739502,
-      "requiredRadius": 5.938561345757691,
-      "triangles": 1272,
+      "maxY": 7.384911060333252,
+      "requiredRadius": 6.244893257413886,
+      "triangles": 1812,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -508,12 +508,12 @@
       "dimensions": {
         "width": 43.991467519330904,
         "height": 39.476452937659474,
-        "depth": 12.799078989028931
+        "depth": 13.31778615474701
       },
       "minY": 0.0005572973654862334,
       "maxY": 39.47701023502496,
-      "requiredRadius": 22.90778054216377,
-      "triangles": 3736,
+      "requiredRadius": 22.981583075192606,
+      "triangles": 6328,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -628,12 +628,12 @@
       "dimensions": {
         "width": 7.172999809980393,
         "height": 4.591105162143707,
-        "depth": 6.088052647590637
+        "depth": 7.029828586578369
       },
       "minY": 0,
       "maxY": 4.591105162143707,
-      "requiredRadius": 4.704155378859581,
-      "triangles": 2984,
+      "requiredRadius": 5.021713259203804,
+      "triangles": 11560,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -686,14 +686,14 @@
       "url": "assets/hdb-voiddeck-v2.glb",
       "scale": 2.424,
       "dimensions": {
-        "width": 19.620817914962768,
-        "height": 19.755756704807283,
-        "depth": 23.028
+        "width": 19.62139584159851,
+        "height": 19.754912931919097,
+        "depth": 23.270400924682615
       },
       "minY": 0,
-      "maxY": 19.755756704807283,
-      "requiredRadius": 15.126675772060132,
-      "triangles": 15464,
+      "maxY": 19.754912931919097,
+      "requiredRadius": 15.219319416190798,
+      "triangles": 25708,
       "materials": 1,
       "meshCount": 1,
       "compressed": true,
@@ -1108,14 +1108,14 @@
       "dimensions": {
         "width": 13,
         "height": 25.767348896781016,
-        "depth": 9.599939012527466
+        "depth": 10.219938964843749
       },
       "minY": 0,
       "maxY": 25.767348896781016,
-      "requiredRadius": 8.080204654652116,
-      "triangles": 1980,
+      "requiredRadius": 8.268118777042506,
+      "triangles": 2244,
       "materials": 3,
-      "meshCount": 68,
+      "meshCount": 90,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1128,14 +1128,14 @@
       "dimensions": {
         "width": 15,
         "height": 12.141396522521973,
-        "depth": 16.23499994277954
+        "depth": 16.57000010728836
       },
       "minY": 0,
       "maxY": 12.141396522521973,
-      "requiredRadius": 11.05186888202683,
-      "triangles": 1252,
+      "requiredRadius": 11.17547430263629,
+      "triangles": 1396,
       "materials": 4,
-      "meshCount": 37,
+      "meshCount": 49,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1153,9 +1153,9 @@
       "minY": 0,
       "maxY": 8.335247210860253,
       "requiredRadius": 9.534205328709083,
-      "triangles": 1288,
+      "triangles": 1708,
       "materials": 3,
-      "meshCount": 85,
+      "meshCount": 120,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1173,9 +1173,9 @@
       "minY": 0,
       "maxY": 7.269942001700401,
       "requiredRadius": 11.306008051069067,
-      "triangles": 1512,
+      "triangles": 1776,
       "materials": 4,
-      "meshCount": 126,
+      "meshCount": 148,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1228,14 +1228,14 @@
       "dimensions": {
         "width": 19.200000095367432,
         "height": 10.399926662445068,
-        "depth": 7.87496035695076
+        "depth": 8.514960309267044
       },
       "minY": -4.7683715642676816e-8,
       "maxY": 10.399926614761352,
-      "requiredRadius": 10.376114449610405,
-      "triangles": 1212,
+      "requiredRadius": 10.501720724844363,
+      "triangles": 1728,
       "materials": 4,
-      "meshCount": 70,
+      "meshCount": 113,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1253,9 +1253,9 @@
       "minY": 0,
       "maxY": 9.290513491630554,
       "requiredRadius": 11.935712176278386,
-      "triangles": 7720,
+      "triangles": 8200,
       "materials": 4,
-      "meshCount": 92,
+      "meshCount": 132,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1273,9 +1273,9 @@
       "minY": 0,
       "maxY": 12.15,
       "requiredRadius": 11.190456882932697,
-      "triangles": 6336,
+      "triangles": 6828,
       "materials": 4,
-      "meshCount": 90,
+      "meshCount": 131,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1288,14 +1288,14 @@
       "dimensions": {
         "width": 19.810000009536743,
         "height": 10.660000015497207,
-        "depth": 8.05
+        "depth": 8.399999994635582
       },
       "minY": 0,
       "maxY": 10.660000015497207,
-      "requiredRadius": 10.691569112831916,
-      "triangles": 9477,
+      "requiredRadius": 10.758672086829808,
+      "triangles": 13377,
       "materials": 4,
-      "meshCount": 120,
+      "meshCount": 166,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1367,7 +1367,7 @@
   "failures": [],
   "summary": {
     "assets": 68,
-    "triangles": 369886,
+    "triangles": 480578,
     "unreferenced": 0,
     "assetsOverBudget": 0,
     "materialsOverBudget": 0,

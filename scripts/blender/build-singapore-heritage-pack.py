@@ -207,7 +207,7 @@ def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9),
     bpy.context.view_layer.objects.active = root
     bpy.ops.export_scene.gltf(filepath=glb, export_format="GLB", use_selection=True,
         export_animations=False, export_yup=True, export_apply=True)
-    simplify = .35 if slug == "wetmarket-v2" else None
+    simplify = .35 if slug == "wetmarket-v2" else .70 if slug == "hdb-voiddeck-v2" else None
     postprocess_glb(glb, preserve_hierarchy=not join, simplify_ratio=simplify)
     bpy.ops.render.render(write_still=True)
     print("Created", glb)
@@ -396,6 +396,19 @@ def build_voiddeck():
         for x in (-2.9, -2.05, -1.2, -.35, .5, 1.35, 2.2):
             cube("Flat window", (x, -2.65, z + .15), (.42, .06, .5), GLASS, r, edge=.015)
             cube("Window shade", (x, -2.72, z + .5), (.5, .18, .06), CREAM, r, edge=.012)
+        # Rear service yards are inferred from the typology.  They use a
+        # quieter rhythm than the public corridor but close the former blank
+        # upper slab in a 360-degree inspection.
+        cube("Rear service band", (0, 3.02, z - .35), (7.3, .10, .12), TEAL, r, edge=.02)
+        for x in (-2.55, -1.7, -.85, 0, .85, 1.7, 2.55):
+            cube("Rear service window", (x, 3.03, z + .15), (.42, .06, .5), GLASS, r, edge=.015)
+            cube("Rear laundry shelf", (x, 3.16, z - .10), (.46, .28, .06), CONCRETE, r, edge=.012)
+    for side in (-1, 1):
+        for floor in range(3):
+            z = 4.20 + floor*1.15
+            for y in (-1.55, -.50, .55, 1.60):
+                cube("End-wall ventilation", (side*3.72, y, z), (.07, .54, .30),
+                     TEAL if (floor + int(y > 0)) % 2 else GLASS, r, edge=.015)
     cube("Lift core stripe", (3.1, -2.62, 5.2), (1.05, .16, 3.9), CORAL, r, edge=.04)
     cube("Roof parapet", (0, .2, 7.25), (7.6, 5.8, .3), CONCRETE, r, edge=.06)
     cyl("Roof water tank", (-2.2, .8, 7.75), .5, .8, METAL, r, 14)

@@ -367,6 +367,11 @@ def tower_shell(root, name, sign, accent, garden=False, point=False):
                 cube("Corner balcony", (side*1.75,-1.25,z), (.78,.48,.14), CONCRETE, root, edge=.035)
                 cube("Balcony rail", (side*1.75,-1.53,z+.28), (.72,.045,.42), INK, root, edge=.018)
             cube("Window band", (0,-.98,z+.10), (1.75,.07,.48), GLASS, root, edge=.025)
+            cube("Rear landing band", (0,2.08,z+.10), (1.75,.07,.48), GLASS, root, edge=.025)
+            for side in (-1, 1):
+                cube("Rear service window", (side*1.42,2.08,z+.10), (.55,.07,.48), GLASS, root, edge=.022)
+        for z in (2.0,3.9,5.8,7.7):
+            cube("Lift-core rear vent", (0,2.22,z), (.72,.08,.30), INK, root, edge=.018)
         cube("Roof crown", (0,.5,9.1), (4.45,3.2,.22), CHALK, root, edge=.10)
         cyl("Comms antenna", (0,.6,10.0), .10, 1.75, METAL, root)
         for z in (9.65,10.15):
@@ -377,12 +382,16 @@ def tower_shell(root, name, sign, accent, garden=False, point=False):
         for i,(x,h) in enumerate(zip(xs,heights)):
             cube("Stepped tower", (x,.6,1.05+h/2), (1.72,2.8,h), CREAM if i!=1 else CHALK, root, edge=.13)
             cube("Vertical glass fin", (x,-.84,1.1+h/2), (.62,.08,h-.4), GLASS, root, edge=.03)
+            cube("Rear vertical glass fin", (x,2.04,1.1+h/2), (.62,.08,h-.4), GLASS, root, edge=.03)
             cube("Accent spine", (x+.58,-.90,1.1+h/2), (.16,.09,h-.2), accent, root, edge=.025)
+            cube("Rear accent spine", (x-.58,2.10,1.1+h/2), (.16,.09,h-.2), accent, root, edge=.025)
             floors = int(h/.9)
             for f in range(floors):
                 z=1.55+f*.90
                 cube("Balcony ledge", (x,-1.04,z), (1.38,.35,.10), CONCRETE, root, edge=.025)
                 cube("Balcony rail", (x,-1.24,z+.18), (1.28,.035,.28), INK, root, edge=.012)
+                cube("Rear balcony ledge", (x,2.24,z), (1.38,.35,.10), CONCRETE, root, edge=.025)
+                cube("Rear balcony rail", (x,2.44,z+.18), (1.28,.035,.28), INK, root, edge=.012)
         if garden:
             for i,(x,z) in enumerate(((-2.05,5.6),(-.55,4.7),(1.0,3.9),(2.05,2.8))):
                 cube("Sky planter", (x,-1.42,z), (.72,.36,.25), CONCRETE, root, edge=.04)
@@ -400,6 +409,10 @@ def tower_shell(root, name, sign, accent, garden=False, point=False):
     label("COMMS", (1.82,-2.18,1.04), .12, YELLOW, root)
     for i,c in enumerate((GREEN2,YELLOW,CORAL)):
         cyl("Riser LED", (1.63+i*.18,-2.29,.83), .025,.025,c,root,10,rot=(math.radians(90),0,0))
+    cube("Rear service lobby", (0,1.90,.88), (2.5,.12,1.40), GLASS, root, edge=.045)
+    cube("Rear loading canopy", (0,2.28,1.72), (3.4,.90,.16), accent, root, edge=.065)
+    for x in (-2.15,2.15):
+        cube("Rear utility grille", (x,1.92,.92), (.72,.10,.72), METAL, root, edge=.035)
     return root
 
 
