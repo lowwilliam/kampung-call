@@ -220,74 +220,181 @@ def export_asset(root, slug, camera_target=(0, 0, 2.5), camera=(11, -15, 9),
 # ---------------------------------------------------------------------------
 def build_peranakan():
     r = empty("PERANAKAN TERRACE HOUSE")
-    W, D = 3.6, 6.0           # narrow frontage, deep plan
-    # deep side walls + rear (party-wall terrace); front face stops flush with
-    # the recessed ground façade so the door and pintu pagar stay visible
-    cube("Deep party walls", (0, .6, 2.9), (W, 4.3, 5.8), PERANAKAN_PINK, r, edge=.09)
-    # five-foot way: recessed ground floor front at y=-1.55, covered walkway
-    cube("Five-foot way floor", (0, -2.35, .09), (W, 1.75, .18), TERRAZZO, r, edge=.04)
-    for x in (-1.45, 0, 1.45):
-        cube("Five-foot way column", (x, -2.95, 1.55), (.22, .22, 2.9), CREAM, r, edge=.04)
-        cube("Column base", (x, -2.95, .32), (.34, .34, .46), CONCRETE, r, edge=.05)
-    # recessed ground façade
-    cube("Ground façade", (0, -1.55, 1.6), (W - .4, .22, 2.75), PERANAKAN_MINT, r, edge=.05)
-    # entrance: timber door + warm fanlight + pintu pagar half gate
-    cube("Door frame", (0, -1.62, 1.32), (1.15, .16, 2.2), WOOD, r, edge=.04)
-    cube("Timber door", (-.27, -1.70, 1.18), (.5, .07, 1.95), WOOD2, r, edge=.02)
-    cube("Timber door", (.27, -1.70, 1.18), (.5, .07, 1.95), WOOD2, r, edge=.02)
-    cube("Warm fanlight", (0, -1.70, 2.45), (.95, .06, .34), WARM, r, edge=.02)
-    # pintu pagar: half-height slatted gate in front of the door
-    cube("Pintu pagar rail", (0, -1.86, 1.14), (1.05, .06, .07), WOOD, r, edge=.015)
-    cube("Pintu pagar rail", (0, -1.86, .42), (1.05, .06, .07), WOOD, r, edge=.015)
-    for i in range(6):
-        cube("Pintu pagar slat", (-.44 + i*.176, -1.86, .78), (.07, .05, .76), WOOD2, r, edge=.012)
-    # ground-floor louvred windows flanking the door
-    for x in (-1.05, 1.05):
-        cube("Ground window recess", (x, -1.63, 1.62), (.82, .10, 1.15), INK, r, edge=.03)
-        cube("Ground shutter", (x, -1.70, 1.62), (.68, .05, 1.02), TEAL2, r, edge=.02)
-        louvres(r, x, -1.75, 1.22, .62, 6, CHALK, gap=.155)
-    # ceramic tile panels beside the entrance (Peranakan façade tiles)
+    W, D = 4.0, 6.5
+
+    # A gallery orbit needs a complete end-bay object.  The public street
+    # facade follows the photographed late-style Peranakan language; the side,
+    # airwell and rear service elevations are deliberately quieter inference.
+    cube("Deep narrow masonry shell", (0, .68, 2.85), (W, 4.75, 5.7),
+         PERANAKAN_PINK, r, edge=.08)
+    cube("Projecting upper facade", (0, -2.26, 4.28), (W, .34, 2.56),
+         PERANAKAN_MINT, r, edge=.055)
+    cube("Upper floor stringcourse", (0, -2.47, 3.03), (W + .18, .22, .20),
+         CREAM, r, edge=.035)
+
+    # Continuous five-footway.  Columns sit on the party-line edges rather
+    # than blocking the entrance, which the previous centre column did.
+    cube("Five-footway floor", (0, -2.77, .10), (W + .14, 1.35, .20),
+         TERRAZZO, r, edge=.04)
+    cube("Five-footway ceiling", (0, -2.72, 2.92), (W + .08, 1.30, .15),
+         CREAM, r, edge=.035)
+    for x in (-1.82, 1.82):
+        cube("Five-footway column", (x, -3.20, 1.53), (.23, .23, 2.75),
+             CREAM, r, edge=.035)
+        cube("Column base", (x, -3.20, .30), (.38, .38, .44),
+             CONCRETE, r, edge=.045)
+        cube("Column capital", (x, -3.20, 2.82), (.38, .38, .24),
+             CHALK, r, edge=.045)
+    cube("Granite five-footway edge", (0, -3.45, .15), (W + .28, .20, .28),
+         CONCRETE, r, edge=.035)
+
+    # Recessed residential ground front: a double leaf door and a true
+    # half-height pintu pagar between two inward-recessed casement windows.
+    cube("Ground residential facade", (0, -2.12, 1.48), (W - .28, .22, 2.65),
+         PERANAKAN_PINK, r, edge=.045)
+    cube("Door recess", (0, -2.25, 1.45), (1.13, .10, 2.24), INK, r, edge=.025)
     for sx in (-1, 1):
-        for row in range(4):
-            for col in range(2):
-                tile = (TILE_BLUE, CHALK, PERANAKAN_PINK, YELLOW)[(row + col) % 4]
-                cube("Façade tile", (sx*1.62 - .14 + col*.28, -1.48, .55 + row*.30),
-                     (.26, .06, .28), tile, r, edge=.015)
-    # upper floor overhangs the walkway
-    cube("Upper façade", (0, -2.62, 4.25), (W, .24, 2.55), PERANAKAN_PINK, r, edge=.06)
-    cube("Floor band", (0, -2.68, 3.02), (W + .12, .3, .22), CREAM, r, edge=.04)
-    # ceramic tile band between floors
-    for i in range(11):
-        tile = (TILE_BLUE, CHALK, PERANAKAN_MINT)[i % 3]
-        cube("Tile band", (-1.55 + i*.31, -2.72, 3.32), (.28, .06, .26), tile, r, edge=.012)
-    # three upper windows with louvered timber shutters + plaster swags
-    for x in (-1.15, 0, 1.15):
-        cube("Upper window recess", (x, -2.68, 4.35), (.80, .10, 1.30), INK, r, edge=.03)
-        cube("Upper shutter L", (x - .22, -2.75, 4.35), (.34, .05, 1.18), PERANAKAN_MINT, r,
-             rot=(0, 0, math.radians(-4)), edge=.02)
-        cube("Upper shutter R", (x + .22, -2.75, 4.35), (.34, .05, 1.18), PERANAKAN_MINT, r,
-             rot=(0, 0, math.radians(4)), edge=.02)
-        louvres(r, x, -2.80, 3.92, .60, 7, CHALK, gap=.145)
-        # ornamental plasterwork swag + keystone above each window
-        torus("Plaster swag", (x, -2.72, 5.12), .30, .06, CREAM, r, rot=(R90, 0, 0), major_segments=12)
-        cube("Plaster keystone", (x, -2.74, 5.18), (.16, .08, .22), CHALK, r, edge=.03)
-    # warm evening window — one shutter opened
-    cube("Open warm window", (1.15, -2.70, 4.35), (.34, .04, 1.05), WARM, r, edge=.015)
-    # parapet with ornamental crown (flat parapet ≠ shophouse gable)
-    cube("Parapet", (0, -2.55, 5.85), (W + .18, .34, .66), CREAM, r, edge=.07)
-    cube("Parapet coping", (0, -2.55, 6.22), (W + .34, .42, .12), CHALK, r, edge=.04)
-    sphere("Parapet plaque", (0, -2.74, 5.88), .30, PERANAKAN_LILAC, r, scale=(1.25, .28, .78), segments=12)
-    for x in (-1.55, 1.55):
-        cube("Parapet finial", (x, -2.55, 6.42), (.22, .22, .34), TILE_BLUE, r, edge=.05)
-    # pitched roof peeking behind the parapet
-    cube("Roof sheet L", (-.95, .35, 6.05), (2.15, 5.2, .14), CORAL, r,
-         rot=(0, math.radians(-22), 0), edge=.05)
-    cube("Roof sheet R", (.95, .35, 6.05), (2.15, 5.2, .14), CORAL, r,
-         rot=(0, math.radians(22), 0), edge=.05)
-    cube("Roof ridge", (0, .35, 6.48), (.24, 5.3, .18), CORAL, r, edge=.04)
-    # rear airwell windows so the deep plan reads from behind
-    for x in (-1.1, 0, 1.1):
-        cube("Rear window", (x, 3.32, 4.1), (.62, .06, .9), GLASS, r, edge=.02)
+        cube("Double leaf timber door", (sx*.275, -2.33, 1.43), (.51, .07, 2.12),
+             WOOD2, r, edge=.025)
+        cube("Door raised panel", (sx*.275, -2.38, 1.18), (.34, .035, .64),
+             WOOD, r, edge=.018)
+    for pane in range(5):
+        cube("Door fanlight pane", (-.40 + pane*.20, -2.37, 2.62), (.17, .035, .26),
+             (WARM, TILE_BLUE, PERANAKAN_LILAC, YELLOW, WARM)[pane], r, edge=.012)
+    cube("Pintu pagar top rail", (0, -2.49, 1.17), (1.05, .055, .07),
+         WOOD, r, edge=.012)
+    cube("Pintu pagar lower rail", (0, -2.49, .47), (1.05, .055, .07),
+         WOOD, r, edge=.012)
+    for i in range(7):
+        cube("Pintu pagar vertical", (-.45 + i*.15, -2.49, .82), (.055, .05, .72),
+             WOOD2, r, edge=.01)
+    for x in (-1.20, 1.20):
+        cube("Ground casement recess", (x, -2.25, 1.53), (.92, .10, 1.32),
+             INK, r, edge=.025)
+        for sx in (-1, 1):
+            cube("Ground casement leaf", (x + sx*.21, -2.34, 1.53), (.36, .055, 1.19),
+                 PERANAKAN_MINT, r, edge=.018)
+            for j in range(5):
+                cube("Ground casement louvre", (x + sx*.21, -2.38, 1.20 + j*.16),
+                     (.29, .025, .035), CHALK, r, rot=(math.radians(-10), 0, 0), edge=.006)
+
+    # Upper French-window assemblies.  Each leaf owns its louvres, so the
+    # opening reads as a hinged timber window instead of a flat ladder.
+    def french_window(index, x):
+        cube("French window recess", (x, -2.47, 4.38), (.96, .075, 1.78),
+             INK, r, edge=.025)
+        pane_mats = (PERANAKAN_LILAC, TILE_BLUE, WARM, PERANAKAN_MINT, YELLOW)
+        for p, pane_x in enumerate((-0.34, -0.17, 0, .17, .34)):
+            cube("Coloured fanlight pane", (x + pane_x, -2.56, 5.13),
+                 (.145, .035, .28), pane_mats[(p + index) % len(pane_mats)], r, edge=.01)
+        for direction in (-1, 1):
+            pivot = empty("Left shutter pivot" if direction < 0 else "Right shutter pivot")
+            pivot.parent = r
+            pivot.location = (x + direction*.43, -2.57, 4.43)
+            pivot.rotation_euler[2] = math.radians(direction*24)
+            centre = -direction*.19
+            for rail_x in (centre - .17, centre + .17):
+                cube("Shutter stile", (rail_x, 0, 0), (.055, .055, 1.24),
+                     PERANAKAN_MINT, pivot, edge=.01)
+            for rail_z in (-.59, .59):
+                cube("Shutter rail", (centre, 0, rail_z), (.39, .055, .055),
+                     PERANAKAN_MINT, pivot, edge=.01)
+            for j in range(7):
+                cube("Jalousie slat", (centre, -.025, -.46 + j*.15), (.32, .035, .04),
+                     CHALK, pivot, rot=(math.radians(-12), 0, 0), edge=.006)
+        cube("Balustrade top rail", (x, -2.66, 3.96), (.88, .05, .055),
+             WOOD, r, edge=.01)
+        cube("Balustrade lower rail", (x, -2.66, 3.56), (.88, .05, .055),
+             WOOD, r, edge=.01)
+        for j in range(5):
+            cube("Balustrade vertical", (x - .34 + j*.17, -2.66, 3.76),
+                 (.045, .045, .42), WOOD2, r, edge=.008)
+        # Floral ceramic spandrel — small colored relief pieces, not a broad
+        # checkerboard band across the full house.
+        cube("Floral tile field", (x, -2.50, 3.30), (.98, .055, .30),
+             CHALK, r, edge=.012)
+        for j in range(5):
+            tile = (PERANAKAN_PINK, TILE_BLUE, PERANAKAN_MINT, YELLOW, PERANAKAN_PINK)[j]
+            sphere("Floral tile motif", (x - .34 + j*.17, -2.55, 3.30), .065,
+                   tile, r, scale=(1.2, .25, .75), segments=8)
+        # Small oval vent above each rectangular fanlight.
+        vent = torus("Oval ventilation frame", (x, -2.55, 5.48), .13, .032,
+                     CREAM, r, rot=(R90, 0, 0), major_segments=16)
+        vent.scale.x = 1.35
+        vent.scale.y = .70
+
+    for idx, x in enumerate((-1.25, 0, 1.25)):
+        french_window(idx, x)
+
+    # Pilasters, restrained capitals and layered cornice shadows frame the
+    # window system without turning the roofline into an oversized signboard.
+    for x in (-1.91, -.64, .64, 1.91):
+        cube("Fluted facade pilaster", (x, -2.53, 4.43), (.16, .10, 2.10),
+             CREAM, r, edge=.025)
+        for dx in (-.045, .045):
+            cube("Pilaster flute", (x + dx, -2.59, 4.42), (.025, .025, 1.68),
+                 PERANAKAN_MINT, r, edge=.004)
+        cube("Floral capital block", (x, -2.58, 5.54), (.31, .14, .22),
+             CHALK, r, edge=.045)
+        sphere("Capital flower", (x, -2.67, 5.55), .10, PERANAKAN_LILAC,
+               r, scale=(1.15, .28, .72), segments=8)
+    for z, depth, width in ((5.68, .16, W + .14), (5.82, .21, W + .28), (5.96, .26, W + .42)):
+        cube("Layered plaster cornice", (0, -2.46 - depth*.40, z),
+             (width, depth, .11), CREAM if z < 5.9 else CHALK, r, edge=.025)
+    for x in (-1.70, -1.22, -.74, -.26, .26, .74, 1.22, 1.70):
+        cube("Eaves bracket", (x, -2.59, 6.07), (.12, .18, .18),
+             CREAM, r, rot=(math.radians(10), 0, 0), edge=.02)
+
+    # End-wall fenestration and drainpipes keep three-quarter card views from
+    # degenerating into a blank slab while remaining quieter than the facade.
+    for side in (-1, 1):
+        wall_x = side*(W/2 + .035)
+        cube("Side stringcourse", (wall_x, .48, 3.02), (.07, 4.92, .15),
+             CREAM, r, edge=.018)
+        for y in (-1.0, .55, 2.10):
+            cube("Side window recess", (wall_x, y, 4.18), (.065, .90, .92),
+                 INK, r, edge=.018)
+            for sy in (-1, 1):
+                cube("Side casement shutter", (side*(W/2 + .085), y + sy*.23, 4.18),
+                     (.045, .38, .82), PERANAKAN_MINT, r, edge=.016)
+        cable("Rainwater downpipe", [(side*(W/2 + .12), -1.92, 5.74),
+             (side*(W/2 + .12), -1.92, .32)], .038, TEAL, r)
+
+    # Split roofs expose a real airwell.  The previous single slab made every
+    # hidden view read like a featureless rectangular box.
+    def roof_section(name, centre_y, depth):
+        for side in (-1, 1):
+            cube(name, (side*.99, centre_y, 6.15), (2.30, depth, .15),
+                 CORAL, r, rot=(0, math.radians(side*23), 0), edge=.045)
+            for row_y in [centre_y - depth*.36, centre_y, centre_y + depth*.36]:
+                cube("Clay tile course", (side*.99, row_y, 6.20), (2.25, .055, .045),
+                     CREAM, r, rot=(0, math.radians(side*23), 0), edge=.008)
+        cube("Roof ridge", (0, centre_y, 6.58), (.22, depth + .08, .18),
+             CORAL, r, edge=.035)
+
+    roof_section("Front pitched roof", -.14, 3.82)
+    roof_section("Rear service roof", 2.86, 1.55)
+    cube("Airwell left parapet", (-1.80, 1.74, 5.86), (.20, .80, .44),
+         CREAM, r, edge=.035)
+    cube("Airwell right parapet", (1.80, 1.74, 5.86), (.20, .80, .44),
+         CREAM, r, edge=.035)
+
+    # Rear service elevation: casements, door, canopy and ventilation panels.
+    rear_y = 3.08
+    cube("Rear service door", (0, rear_y, 1.35), (.88, .08, 2.15),
+         WOOD2, r, edge=.025)
+    cube("Rear rain canopy", (0, rear_y + .28, 2.48), (1.45, .72, .12),
+         CORAL, r, rot=(math.radians(7), 0, 0), edge=.025)
+    for x in (-1.23, 1.23):
+        for z in (1.48, 4.18):
+            cube("Rear casement recess", (x, rear_y, z), (.78, .07, .90),
+                 INK, r, edge=.018)
+            for sx in (-1, 1):
+                cube("Rear casement leaf", (x + sx*.19, rear_y + .055, z),
+                     (.32, .045, .80), PERANAKAN_MINT, r, edge=.015)
+    for x in (-1.25, -.75, .75, 1.25):
+        cube("Rear ventilation block", (x, rear_y + .06, 2.82), (.30, .045, .16),
+             TILE_BLUE, r, edge=.012)
     return r
 
 

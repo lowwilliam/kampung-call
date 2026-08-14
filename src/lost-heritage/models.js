@@ -69,6 +69,61 @@ function extrudedShape(group, points, depth, material, position = [0, 0, 0], rot
   return addMesh(group, geometry, material, position, rotation, [1, 1, 1], name);
 }
 
+function footprintPrism(group, points, height, material, name = 'footprint-prism') {
+  const vertices = [];
+  points.forEach(([x, z]) => vertices.push(x, 0, z));
+  points.forEach(([x, z]) => vertices.push(x, height, z));
+  const count = points.length;
+  const indices = [];
+  // Clockwise bottom / counter-clockwise top, followed by the perimeter.
+  for (let i = 1; i < count - 1; i += 1) indices.push(0, i + 1, i);
+  for (let i = 1; i < count - 1; i += 1) indices.push(count, count + i, count + i + 1);
+  for (let i = 0; i < count; i += 1) {
+    const next = (i + 1) % count;
+    indices.push(i, next, count + next, i, count + next, count + i);
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return addMesh(group, geometry, material, [0, 0, 0], [0, 0, 0], [1, 1, 1], name);
+}
+
+function pixelText(group, text, origin, cell, material, name = 'lettering') {
+  const glyphs = {
+    A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001'],
+    B: ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
+    E: ['11111', '10000', '10000', '11110', '10000', '10000', '11111'],
+    I: ['11111', '00100', '00100', '00100', '00100', '00100', '11111'],
+    M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
+    N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
+    O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
+    R: ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
+    S: ['01111', '10000', '10000', '01110', '00001', '00001', '11110'],
+  };
+  let cursor = origin[0];
+  [...text].forEach((character, characterIndex) => {
+    const glyph = glyphs[character];
+    if (!glyph) { cursor += cell * 3; return; }
+    glyph.forEach((row, rowIndex) => [...row].forEach((value, columnIndex) => {
+      if (value !== '1') return;
+      box(group, [cell * .82, cell * .82, .07], material,
+        [cursor + columnIndex * cell, origin[1] - rowIndex * cell, origin[2]], undefined,
+        `${name}-${characterIndex}-${rowIndex}-${columnIndex}`);
+    }));
+    cursor += cell * 6;
+  });
+}
+
+function longGabledRoof(group, width, depth, eaveY, material, center = [0, 0], pitch = .46, name = 'long-roof') {
+  const rise = Math.tan(pitch) * depth / 2;
+  const panelDepth = Math.hypot(depth / 2, rise);
+  const [x, z] = center;
+  box(group, [width, .18, panelDepth], material, [x, eaveY + rise / 2, z + depth / 4], [pitch, 0, 0], `${name}-front`);
+  box(group, [width, .18, panelDepth], material, [x, eaveY + rise / 2, z - depth / 4], [-pitch, 0, 0], `${name}-rear`);
+  box(group, [width + .16, .10, .12], material, [x, eaveY + rise, z], undefined, `${name}-ridge`);
+}
+
 function ellipseRing(group, outer, inner, depth, material, position = [0, 0, 0], rotation = [PI / 2, 0, 0], name = 'elliptical-ring') {
   const shape = new THREE.Shape();
   shape.absellipse(0, 0, outer[0], outer[1], 0, PI * 2, false, 0);
@@ -336,29 +391,76 @@ function tanglinShoppingCentre(meta){
 
 function amberMansions(meta){
   const root=rootFor(meta.id); const m=materials(meta.palette);
-  const orchard=component(root,'orchard-road-wing'); box(orchard,[14,6,4],m.primary,[-3,3,0]);
-  const penang=component(root,'penang-lane-wing'); box(penang,[4,6,13],m.primary,[5.9,3,-4.5]);
+  // Two street wings meet a shallow convex corner.  The previous solid
+  // quarter-cylinder projected far beyond both walls and collapsed into a
+  // slab from the rear; this footprint preserves the L-shaped courtyard.
+  const orchard=component(root,'orchard-road-wing'); box(orchard,[13.5,6.4,4.6],m.primary,[-3.5,3.2,0]);
+  const penang=component(root,'penang-lane-wing'); box(penang,[4.6,6.4,8.9],m.primary,[5.55,3.2,-6.75]);
   const corner=component(root,'bowed-corner-block');
-  addMesh(corner,new THREE.CylinderGeometry(4,4,6,32,1,false,0,PI/2),m.primary,[3,3,0],[0,0,0],[1,1,1],'bowed-corner');
+  footprintPrism(corner,[[3.15,-2.3],[7.85,-2.3],[7.85,.05],[7.54,.86],[6.88,1.58],[5.92,2.08],[4.72,2.34],[3.15,2.3]],6.4,m.primary,'convex-corner-mass');
+
   const arcade=component(root,'five-footway-arcade');
-  for(let i=0;i<10;i++) arch(arcade,-9+i*1.55,.1,2.12,1.15,2.25,.42,m.secondary,`orchard-arch-${i}`);
-  for(let i=0;i<7;i++) arch(arcade,7.9,.1,1-i*1.55,1.1,2.25,.42,m.secondary,`penang-arch-${i}`);
+  for(let i=0;i<8;i++) arch(arcade,-9+i*1.5,.1,2.36,1.12,2.3,.40,m.primary,`orchard-arch-${i}`);
+  for(let i=0;i<6;i++) {
+    const bay=new THREE.Group(); bay.position.set(7.91,0,-2.9-i*1.42); bay.rotation.y=PI/2; arcade.add(bay);
+    arch(bay,0,.1,0,1.04,2.3,.40,m.primary,`penang-arch-${i}`);
+  }
+  const cornerArcade=component(root,'corner-arcade');
+  cornerArcade.position.set(5.65,0,1.83); cornerArcade.rotation.y=PI/4;
+  [-1.22,0,1.22].forEach((x,i)=>arch(cornerArcade,x,.1,.11,1.05,2.3,.40,m.primary,`corner-arch-${i}`));
+
+  const cornerUpper=component(root,'corner-upper-arches');
+  cornerUpper.position.set(5.65,0,1.83); cornerUpper.rotation.y=PI/4;
+  [-.93,.93].forEach((x,i)=>arch(cornerUpper,x,2.75,.13,1.48,1.58,.23,m.primary,`upper-arch-${i}`));
+  repeatedBoxes(cornerUpper,3,[.76,.82,.17],m.dark,[-1.18,4.70,.14],[1.18,0,0],'top-window');
+
   const gable=component(root,'corner-dutch-gable');
-  extrudedShape(gable,[[-2,0],[-1.8,1.1],[-1.1,1.6],[-.65,2.5],[0,3.3],[.65,2.5],[1.1,1.6],[1.8,1.1],[2,0]],.42,m.primary,[3,7.6,3.45],undefined,'main-dutch-gable');
+  gable.position.set(5.65,0,1.83); gable.rotation.y=PI/4;
+  extrudedShape(gable,[[-2.45,0],[-2.35,.78],[-1.85,1.10],[-1.60,1.95],[-.72,2.02],[-.58,2.76],[0,3.20],[.58,2.76],[.72,2.02],[1.60,1.95],[1.85,1.10],[2.35,.78],[2.45,0]],.30,m.primary,[0,7.15,.42],undefined,'main-dutch-gable');
+  cylinder(gable,.30,.11,m.dark,[0,8.05,.62],28,[PI/2,0,0],'round-oculus');
+
+  const namePanel=component(root,'corner-name-panel');
+  namePanel.position.set(5.65,0,1.83); namePanel.rotation.y=PI/4;
+  box(namePanel,[4.0,.10,.10],m.primary,[0,7.34,.61],undefined,'lettering-ledge');
+  pixelText(namePanel,'AMBER',[-2.0,7.61,.68],.045,m.dark,'amber');
+  pixelText(namePanel,'MANSIONS',[.18,7.61,.68],.045,m.dark,'mansions');
+
   const repeated=component(root,'repeated-dutch-gables');
-  [-7,-3,1].forEach((x,i)=>extrudedShape(repeated,[[-1.1,0],[-.8,1.2],[0,2],[.8,1.2],[1.1,0]],.35,m.primary,[x,7,2.2],undefined,`gable-orchard-${i}`));
-  [-4,-8].forEach((z,i)=>extrudedShape(repeated,[[-1.1,0],[-.8,1.2],[0,2],[.8,1.2],[1.1,0]],.35,m.primary,[8.2,7,z],[0,PI/2,0],`gable-penang-${i}`));
-  const roofs=component(root,'terracotta-roofs'); roofPair(roofs,14,4,6.7,m.accent,0,.34,'orchard-roof');
-  const penangRoof=component(root,'penang-roof'); roofPair(penangRoof,4,13,6.7,m.accent,-4.5,.34,'lane-roof');
+  [-8.0,-4.9,-1.8,1.0].forEach((x,i)=>extrudedShape(repeated,[[-1.12,0],[-1.04,.78],[-.56,1.05],[0,1.62],[.56,1.05],[1.04,.78],[1.12,0]],.28,m.primary,[x,6.35,2.43],undefined,`gable-orchard-${i}`));
+  [-3.5,-6.2,-8.9].forEach((z,i)=>extrudedShape(repeated,[[-1.12,0],[-1.04,.78],[-.56,1.05],[0,1.62],[.56,1.05],[1.04,.78],[1.12,0]],.28,m.primary,[8.00,6.35,z],[0,PI/2,0],`gable-penang-${i}`));
+  const roofs=component(root,'terracotta-roofs');
+  longGabledRoof(roofs,13.8,4.95,6.38,m.secondary,[-3.5,0],.47,'orchard-roof');
+  const penangRoof=component(root,'penang-roof'); penangRoof.position.set(5.55,0,-6.75);
+  roofPair(penangRoof,4.95,9.2,6.82,m.secondary,0,.47,'lane-roof');
+  const roofJunction=component(root,'corner-roof-junction');
+  taperedCylinder(roofJunction,.08,3.0,.95,m.secondary,[5.45,6.88,-.05],4,[0,PI/4,0],'hipped-corner-roof');
+
   const windows=component(root,'upper-window-rhythm');
-  for(let y=0;y<2;y++) repeatedBoxes(windows,9,[.62,.82,.18],m.dark,[-8,3.2+y*1.55,2.08],[1.5,0,0],`upper-window-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(windows,8,[.64,.82,.18],m.dark,[-8.95,3.25+y*1.52,2.37],[1.5,0,0],`orchard-window-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(windows,6,[.18,.82,.64],m.dark,[7.96,3.25+y*1.52,-3.0],[0,0,-1.42],`penang-window-${y}`);
+  const windowTrim=component(root,'window-sills-and-trim');
+  for(let y=0;y<2;y++) repeatedBoxes(windowTrim,8,[.82,.10,.23],m.primary,[-8.95,2.78+y*1.52,2.38],[1.5,0,0],`orchard-sill-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(windowTrim,6,[.23,.10,.82],m.primary,[7.97,2.78+y*1.52,-3.0],[0,0,-1.42],`penang-sill-${y}`);
+
   const rearWindows=component(root,'rear-window-rhythm');
-  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,9,[.62,.82,.18],m.dark,
-    [-8,3.2+y*1.55,-2.08],[1.5,0,0],`rear-orchard-window-${y}`);
-  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,7,[.18,.82,.62],m.dark,
-    [7.96,3.2+y*1.55,-9.2],[0,0,1.5],`rear-lane-window-${y}`);
-  repeatedBoxes(rearWindows,8,[1.05,1.5,.16],m.dark,[-7.2,.9,-2.10],[1.7,0,0],'rear-service-bay');
-  const shops=component(root,'shopfront-insets'); repeatedBoxes(shops,10,[1.05,1.5,.16],m.dark,[-9,.9,2.15],[1.55,0,0],'shopfront');
+  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,8,[.62,.76,.18],m.dark,
+    [-8.95,3.25+y*1.52,-2.37],[1.5,0,0],`courtyard-orchard-window-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,6,[.18,.76,.62],m.dark,
+    [3.12,3.25+y*1.52,-3.0],[0,0,-1.42],`courtyard-penang-window-${y}`);
+  repeatedBoxes(rearWindows,7,[1.02,1.42,.16],m.dark,[-8.75,.82,-2.39],[1.65,0,0],'rear-service-door');
+  repeatedBoxes(rearWindows,5,[.16,1.42,1.02],m.dark,[3.10,.82,-3.2],[0,0,-1.55],'lane-service-door');
+  box(rearWindows,[12.6,.17,.72],m.primary,[-3.55,2.28,-2.55],undefined,'courtyard-orchard-canopy');
+  box(rearWindows,[.72,.17,8.2],m.primary,[2.98,2.28,-6.72],undefined,'courtyard-lane-canopy');
+
+  const shops=component(root,'shopfront-insets');
+  repeatedBoxes(shops,8,[1.05,1.52,.16],m.dark,[-9,.86,2.39],[1.5,0,0],'orchard-shopfront');
+  repeatedBoxes(shops,6,[.16,1.52,1.02],m.dark,[7.97,.86,-3.0],[0,0,-1.42],'penang-shopfront');
+  const cornerShops=new THREE.Group(); cornerShops.position.set(5.65,0,1.83); cornerShops.rotation.y=PI/4; shops.add(cornerShops);
+  repeatedBoxes(cornerShops,3,[1.02,1.52,.16],m.dark,[-1.22,.86,.22],[1.22,0,0],'corner-shopfront');
+
+  const endWalls=component(root,'quiet-end-walls');
+  for(let y=0;y<2;y++) repeatedBoxes(endWalls,2,[.17,.76,.62],m.dark,[-10.30,3.25+y*1.52,-.75],[0,0,1.5],`orchard-end-window-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(endWalls,2,[.62,.76,.17],m.dark,[4.80,3.25+y*1.52,-11.24],[1.5,0,0],`penang-end-window-${y}`);
   return finalize(root,meta);
 }
 
