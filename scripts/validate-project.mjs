@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { createHash } from 'node:crypto';
 import { extractBalancedLiteral, readHtml, root } from './lib/project.mjs';
 
 const html = readHtml();
@@ -83,18 +84,77 @@ if (fs.existsSync(vendorManifestPath)) {
   try {
     const vendorManifest = JSON.parse(fs.readFileSync(vendorManifestPath, 'utf8'));
     const vendorAssets = Object.entries(vendorManifest.assets || {});
+    assert(vendorManifest.recordType === 'scenery-component-registry'
+        && vendorManifest.collectionAsset === false,
+      'Vendor slots must be identified as Scenery Components, not Collection Assets.');
+    assert(vendorManifest.sourceVariants?.['kampung-call-procedural-fallback']
+        && vendorManifest.sourceVariants?.['threejsassets-licensed-glb']?.standaloneRedistributionAllowed === false,
+      'Vendor registry must distinguish fallback and non-redistributable threejsassets Source Variants.');
     assert(vendorAssets.length === 20, `Expected 20 reviewed High-priority vendor assets, found ${vendorAssets.length}.`);
     for (const [name, config] of vendorAssets) {
       assert(['free', 'premium'].includes(config.license), `Vendor asset ${name} must declare its license tier.`);
+      assert(config.displayName && config.fallbackImplementation,
+        `Vendor asset ${name} must declare its display name and fallback implementation.`);
       if (config.handler !== 'transitBus') {
         assert(html.includes(`placeVendorFallback('${name}'`), `Vendor asset ${name} has no procedural placement.`);
       }
     }
-    assert(/window\.__vendorAssetAudit=\{configured:vendorPlacements\.length/.test(html)
-        && /dataset\.vendorAssetsUnplaced=String\(unplacedVendorAssets\.length\)/.test(html),
-      'Vendor placements must expose a browser-observable completeness audit.');
+    assert(/window\.__vendorAssetAudit=\{[\s\S]{0,500}sourceVariants:Object\.fromEntries/.test(html)
+        && /dataset\.vendorAssetsUnplaced=String\(unplacedVendorAssets\.length\)/.test(html)
+        && /sourceVariants\[name\]='threejsassets-licensed-glb'/.test(html),
+      'Vendor placements must expose completeness and actual Source Variant audits.');
   } catch (error) {
     failures.push(`Could not parse vendor asset manifest: ${error.message}`);
+  }
+}
+const memoryRegistryPath = path.join(root, 'world', 'memory-district.json');
+const catalogueManifestPath = path.join(root, 'showcase', 'app', 'data', 'catalogue-manifest.json');
+const memoryRuntimePath = path.join(root, 'src', 'memory-district.js');
+assert(fs.existsSync(memoryRegistryPath), 'Memory District runtime registry is required.');
+assert(fs.existsSync(memoryRuntimePath), 'Memory District lazy runtime module is required.');
+if (fs.existsSync(memoryRegistryPath) && fs.existsSync(catalogueManifestPath) && fs.existsSync(memoryRuntimePath)) {
+  try {
+    const memoryRuntimeSource = fs.readFileSync(memoryRuntimePath, 'utf8');
+    const memoryRegistry = JSON.parse(fs.readFileSync(memoryRegistryPath, 'utf8'));
+    const catalogueBytes = fs.readFileSync(catalogueManifestPath);
+    const catalogue = JSON.parse(catalogueBytes);
+    const manifested = catalogue.assets.filter((asset) => asset.category === 'Lost Heritage');
+    const manifestedById = new Map(manifested.map((asset) => [asset.id, asset]));
+    assert(memoryRegistry.recordType === 'memory-district-runtime-registry', 'Memory District registry type is invalid.');
+    assert(memoryRegistry.entryCount === 13 && memoryRegistry.entries?.length === 13,
+      `Memory District must register exactly 13 entries, found ${memoryRegistry.entries?.length ?? 0}.`);
+    assert(memoryRegistry.chunks?.length === 3, 'Memory District must divide the timeline into three streaming chunks.');
+    assert(memoryRegistry.sourceManifestHash === createHash('sha256').update(catalogueBytes).digest('hex'),
+      'Memory District registry is stale relative to the Catalogue Manifest.');
+    assert(new Set(memoryRegistry.entries.map((entry) => entry.id)).size === 13, 'Memory District entry IDs must be unique.');
+    assert(memoryRegistry.entries.every((entry, index, entries) => index === 0 || entry.removedSortYear >= entries[index - 1].removedSortYear),
+      'Memory District entries must follow demolition-era order.');
+    for (const entry of memoryRegistry.entries) {
+      const asset = manifestedById.get(entry.id);
+      assert(asset, `Memory District contains an unmanifested entry: ${entry.id}.`);
+      if (!asset) continue;
+      assert(entry.modelPath === `assets/${asset.model.file}`, `${entry.id}: runtime model path drifted from the Manifest.`);
+      assert(entry.modelSha256 === asset.model.sha256, `${entry.id}: runtime checksum drifted from the Manifest.`);
+      const modelPath = path.join(root, entry.modelPath);
+      assert(fs.existsSync(modelPath), `${entry.id}: Memory District model is missing.`);
+      if (fs.existsSync(modelPath)) {
+        const actual = createHash('sha256').update(fs.readFileSync(modelPath)).digest('hex');
+        assert(actual === entry.modelSha256, `${entry.id}: Memory District model checksum mismatch.`);
+      }
+    }
+    assert(manifested.every((asset) => memoryRegistry.entries.some((entry) => entry.id === asset.id)),
+      'Every manifested Lost Heritage asset must be reachable in the Memory District.');
+    assert(/import\(['"]\.\/memory-district\.js['"]\)/.test(html)
+        && /import registry from ['"]\.\.\/world\/memory-district\.json['"]/.test(memoryRuntimeSource)
+        && /const loadChunk=id=>/.test(memoryRuntimeSource)
+        && /const unloadChunk=id=>/.test(memoryRuntimeSource)
+        && /function enterMemoryDistrict/.test(html)
+        && /function exitMemoryDistrict/.test(html),
+      'Memory District must expose Manifest-derived streaming plus enter/return transitions.');
+    assert(/id=["']memoryBegin["']/.test(html) && /id=["']memoryBtn["']/.test(html),
+      'Memory District must provide direct and touch-accessible entry controls.');
+  } catch (error) {
+    failures.push(`Could not validate Memory District registry: ${error.message}`);
   }
 }
 assert(/function auditBuildingFootprintVisibility\(\)[\s\S]{0,1800}window\.__buildingFootprintAudit=result/.test(html)
@@ -253,5 +313,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`PASS  HTML structure, ${localReferences.size} asset references, and ${Object.keys(scenarios || {}).length} scenarios validated.`);
+  console.log(`PASS  HTML structure, ${localReferences.size} startup asset references, 13 Memory District entries, and ${Object.keys(scenarios || {}).length} scenarios validated.`);
 }

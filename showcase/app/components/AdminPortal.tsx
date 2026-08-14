@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CATEGORIES } from "../data/game-assets";
-import { ModelViewer } from "./ModelViewer";
 
 type AdminSubmission = {
   id: string;
@@ -34,43 +32,14 @@ type AdminSubmission = {
   modelUrl: string;
 };
 
-function AdminCard({ item, onUpdated }: { item: AdminSubmission; onUpdated: () => Promise<void> }) {
-  const [draft, setDraft] = useState({
-    displayName: item.display_name,
-    description: item.description,
-    singaporeConnection: item.singapore_connection,
-    sourceName: item.source_name,
-    sourceUrl: item.source_url ?? "",
-    category: item.category,
-    adminNotes: item.admin_notes,
-    featured: Boolean(item.featured),
-  });
-  const [working, setWorking] = useState("");
-  const [error, setError] = useState("");
-
-  const update = async (action: string) => {
-    setWorking(action);
-    setError("");
-    try {
-      const response = await fetch("/api/admin/submissions", {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ id: item.id, action, ...draft }),
-      });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || "Update failed");
-      await onUpdated();
-    } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Update failed");
-    } finally {
-      setWorking("");
-    }
-  };
-
+function AdminCard({ item }: { item: AdminSubmission }) {
   return (
     <article className="admin-review-card">
       <div className="admin-model-stage">
-        <ModelViewer url={item.modelUrl} label={item.display_name} expanded eager />
+        <div className="inventory-object-mark" aria-hidden="true">
+          <strong>{item.file_name.split(".").at(0)?.slice(0, 2).toUpperCase() || "3D"}</strong>
+          <span>Retained object</span>
+        </div>
         <span className={`review-pill ${item.validation_status === "safe" ? "is-safe" : "is-warning"}`}>{item.validation_status === "safe" ? "Auto safe" : "Needs review"}</span>
       </div>
       <div className="admin-review-copy">
@@ -82,28 +51,19 @@ function AdminCard({ item, onUpdated }: { item: AdminSubmission; onUpdated: () =
           <span>{(item.file_size / 1024 / 1024).toFixed(2)} MB</span><span>{item.triangle_count.toLocaleString()} tris</span><span>{item.material_count} materials</span><span>{item.animation_count} clips</span><span>{item.download_allowed ? "Downloads granted" : "View only"}</span>
         </div>
         <ul className="admin-checks">{item.validation_checks.map((check) => <li key={check}>{check}</li>)}</ul>
-        <details className="admin-edit" open={item.status !== "published"}>
-          <summary>Public copy + provenance</summary>
-          <div className="admin-form-grid">
-            <label>Display name<input value={draft.displayName} onChange={(event) => setDraft({ ...draft, displayName: event.target.value })} /></label>
-            <label>Category<select value={draft.category} onChange={(event) => setDraft({ ...draft, category: event.target.value })}>{CATEGORIES.map((category) => <option key={category}>{category}</option>)}</select></label>
-            <label className="full">Introduction<textarea rows={3} value={draft.description} onChange={(event) => setDraft({ ...draft, description: event.target.value })} /></label>
-            <label className="full">Singapore connection<textarea rows={3} value={draft.singaporeConnection} onChange={(event) => setDraft({ ...draft, singaporeConnection: event.target.value })} /></label>
-            <label>Source<input value={draft.sourceName} onChange={(event) => setDraft({ ...draft, sourceName: event.target.value })} /></label>
-            <label>Source URL<input value={draft.sourceUrl} onChange={(event) => setDraft({ ...draft, sourceUrl: event.target.value })} /></label>
-            <label className="full">Private review note<textarea rows={3} value={draft.adminNotes} onChange={(event) => setDraft({ ...draft, adminNotes: event.target.value })} placeholder="Visible on the contributor’s private receipt" /></label>
-            <label className="check-label full"><input type="checkbox" checked={draft.featured} onChange={(event) => setDraft({ ...draft, featured: event.target.checked })} />Feature ahead of newly published community models</label>
-          </div>
-        </details>
-        <div className="admin-card-actions">
-          {item.status !== "published" && <button type="button" className="approve" onClick={() => void update("publish")} disabled={Boolean(working)}>{working === "publish" ? "Publishing…" : "Publish"}</button>}
-          {item.status === "published" && <button type="button" onClick={() => void update("metadata-updated")} disabled={Boolean(working)}>Save changes</button>}
-          {item.status === "published" && <button type="button" onClick={() => void update("unpublish")} disabled={Boolean(working)}>Unpublish</button>}
-          {!["published", "rejected"].includes(item.status) && <button type="button" onClick={() => void update("request-changes")} disabled={Boolean(working)}>Request changes</button>}
-          {item.status !== "rejected" && <button type="button" className="danger" onClick={() => void update("reject")} disabled={Boolean(working)}>Reject</button>}
-          {item.status === "rejected" && <button type="button" className="danger" onClick={() => void update("delete-model")} disabled={Boolean(working)}>Remove model now</button>}
+        <dl className="inventory-facts">
+          <div><dt>Category</dt><dd>{item.category}</dd></div>
+          <div><dt>Contributor</dt><dd>{item.contributor_name}</dd></div>
+          <div><dt>LinkedIn</dt><dd>{item.linkedin_url ? <a href={item.linkedin_url} target="_blank" rel="noreferrer">Open profile ↗</a> : "Not recorded"}</dd></div>
+          <div><dt>Source</dt><dd>{item.source_url ? <a href={item.source_url} target="_blank" rel="noreferrer">{item.source_name} ↗</a> : item.source_name}</dd></div>
+          <div className="full"><dt>Description</dt><dd>{item.description}</dd></div>
+          <div className="full"><dt>Singapore connection</dt><dd>{item.singapore_connection}</dd></div>
+          <div className="full"><dt>Private note</dt><dd>{item.admin_notes || "None recorded"}</dd></div>
+        </dl>
+        <div className="inventory-actions">
+          <a href={item.modelUrl} target="_blank" rel="noreferrer">Inspect retained GLB ↗</a>
+          <span>No publish, edit, moderation or deletion actions are available.</span>
         </div>
-        {error && <p className="form-error" role="alert">{error}</p>}
       </div>
     </article>
   );
@@ -159,32 +119,32 @@ export function AdminPortal() {
     return item.status === filter;
   }), [submissions, filter]);
 
-  if (authenticated === null) return <main className="admin-login-page"><div className="receipt-loading">Opening the review room…</div></main>;
+  if (authenticated === null) return <main className="admin-login-page"><div className="receipt-loading">Opening the private inventory…</div></main>;
   if (!authenticated) return (
     <main className="admin-login-page">
       <a className="back-link" href="/">← Public collection</a>
       <section className="admin-login-card">
         <span className="admin-seal">KC</span>
-        <p className="eyebrow">Collection administration</p>
-        <h1>Enter the review room.</h1>
-        <p>Submissions, quarantined models and publication controls are private.</p>
+        <p className="eyebrow">Historical data inventory</p>
+        <h1>Enter the private inventory.</h1>
+        <p>Inspect retained Community records and quarantined models without changing or deleting them.</p>
         <form onSubmit={login}><label>Administrator password<input type="password" name="password" autoComplete="current-password" required /></label><button type="submit">Unlock admin →</button></form>
         {loginError && <p className="form-error" role="alert">{loginError}</p>}
       </section>
     </main>
   );
 
-  const reviewCount = submissions.filter((item) => ["submitted", "needs-review", "changes-requested"].includes(item.status)).length;
   return (
     <div className="admin-page">
-      <header className="admin-header"><a href="/">KC / The Collection</a><div><span>Password-protected review room</span><button type="button" onClick={() => void logout()}>Lock</button></div></header>
+      <header className="admin-header"><a href="/">KC / The Collection</a><div><span>Password-protected inventory</span><button type="button" onClick={() => void logout()}>Lock</button></div></header>
       <main className="admin-main">
-        <section className="admin-intro"><div><p className="eyebrow">Administrator</p><h1>Review with care.<br />Publish with confidence.</h1></div><div className="queue-count"><strong>{reviewCount}</strong><span>waiting for review</span></div></section>
+        <section className="admin-intro"><div><p className="eyebrow">Inventory-only recovery</p><h1>Inspect history.<br />Mutate nothing.</h1></div><div className="queue-count"><strong>{submissions.length}</strong><span>records retained</span></div></section>
+        <p className="inventory-lock-note">This view performs no automatic purge and exposes no content-changing actions. Hosted D1/R2 records remain untouched until the inventory is completed.</p>
         <nav className="admin-filters" aria-label="Submission states">
           {[{ id: "review", label: "To review" }, { id: "published", label: "Published" }, { id: "rejected", label: "Rejected" }, { id: "unpublished", label: "Unpublished" }, { id: "all", label: "All" }].map((item) => <button key={item.id} type="button" className={filter === item.id ? "is-active" : ""} onClick={() => setFilter(item.id)}>{item.label}</button>)}
         </nav>
         <section className="admin-queue">
-          {visible.length ? visible.map((item) => <AdminCard key={item.id} item={item} onUpdated={load} />) : <div className="admin-empty"><span>✓</span><h2>Nothing in this queue.</h2><p>The collection is steady.</p></div>}
+          {visible.length ? visible.map((item) => <AdminCard key={item.id} item={item} />) : <div className="admin-empty"><span>✓</span><h2>Nothing in this state.</h2><p>No retained records match this filter.</p></div>}
         </section>
       </main>
     </div>

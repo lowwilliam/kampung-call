@@ -4,7 +4,7 @@ import { Client } from "@modelcontextprotocol/client";
 import { InMemoryTransport } from "@modelcontextprotocol/server";
 import { buildMcpServer } from "../mcp/server.mjs";
 
-test("MCP server exposes asset discovery and transfer tools over the official protocol", async (context) => {
+test("MCP server exposes only catalogue discovery and grant-controlled transfer tools", async (context) => {
   const fakeClient = {
     async getAsset(assetId) {
       return { id: assetId, name: "Peranakan House", downloadAllowed: true };
@@ -26,7 +26,7 @@ test("MCP server exposes asset discovery and transfer tools over the official pr
   const listed = await client.listTools();
   assert.deepEqual(
     listed.tools.map((tool) => tool.name).sort(),
-    ["download_asset", "get_asset", "get_submission", "replace_submission", "search_assets", "upload_asset", "withdraw_submission"],
+    ["download_asset", "get_asset", "search_assets"],
   );
   const result = await client.callTool({ name: "get_asset", arguments: { assetId: "game:peranakan-house" } });
   assert.equal(result.structuredContent.id, "game:peranakan-house");

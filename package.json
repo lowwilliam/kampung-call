@@ -5,12 +5,17 @@
   "description": "An island field-service training experience built with Three.js.",
   "type": "module",
   "scripts": {
+    "predev": "npm run memory:sync",
     "dev": "vite",
+    "prebuild": "npm run memory:sync",
     "build": "node scripts/clean-dist.mjs && vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview",
     "validate": "node scripts/validate-project.mjs",
     "export:heritage": "node scripts/export-lost-heritage-glbs.mjs",
+    "memory:sync": "node scripts/sync-memory-district.mjs",
+    "memory:check": "node scripts/sync-memory-district.mjs --check",
     "audit:world": "node scripts/audit-world.mjs",
+    "test:unit": "node --test tests/*.test.mjs",
     "test": "npm run validate && npm run audit:world && npm run test:performance && npm run format:check && npm run build && npm run test:visibility",
     "test:performance": "node scripts/check-performance-budget.mjs",
     "format:check": "node scripts/check-format.mjs",
@@ -23,7 +28,10 @@
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "@gltf-transform/cli": "^4.4.2",
     "@gltf-transform/core": "^4.4.2",
+    "@gltf-transform/extensions": "^4.4.2",
+    "draco3dgltf": "^1.5.7",
     "vite": "^7.3.6"
   }
 }

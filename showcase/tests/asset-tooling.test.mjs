@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile } from "node:fs/promises";
 import http from "node:http";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { AssetClient, AssetClientError, normalizeReceipt } from "../tooling/asset-client.mjs";
+import { AssetClient, AssetClientError } from "../tooling/asset-client.mjs";
 import { main, parseArgs } from "../bin/kampung-assets.mjs";
 
 const sampleAsset = {
@@ -34,15 +34,6 @@ async function mockApi() {
     } else if (request.method === "GET" && url.pathname === "/files/test-model.glb") {
       response.setHeader("content-type", "model/gltf-binary");
       response.end(Buffer.from("glTF-test"));
-    } else if (request.method === "POST" && url.pathname === "/api/v1/assets") {
-      response.statusCode = 201;
-      response.end(JSON.stringify({ submissionId: "sub-1", assetId: "community:sub-1", receiptUrl: "/receipt/secret", recoveryCode: "secret", status: "submitted", checks: [] }));
-    } else if (request.method === "GET" && decodedPath === "/api/v1/submissions/secret") {
-      response.end(JSON.stringify({ submission: { id: "sub-1", status: "submitted" } }));
-    } else if (request.method === "PUT" && decodedPath === "/api/v1/submissions/secret") {
-      response.end(JSON.stringify({ submission: { id: "sub-1", status: "submitted" }, checks: [] }));
-    } else if (request.method === "DELETE" && decodedPath === "/api/v1/submissions/secret") {
-      response.end(JSON.stringify({ withdrawn: true, status: "rejected" }));
     } else {
       response.statusCode = 404;
       response.end(JSON.stringify({ error: "not found" }));
@@ -70,36 +61,11 @@ test("AssetClient lists, resolves and atomically downloads permitted assets", as
   assert.equal(await readFile(target, "utf8"), "glTF-test");
 });
 
-test("AssetClient uploads, checks, replaces and withdraws with a recovery receipt", async (context) => {
-  const api = await mockApi();
-  context.after(api.close);
-  const temporary = await mkdtemp(path.join(os.tmpdir(), "kampung-assets-upload-"));
-  const model = path.join(temporary, "model.glb");
-  await writeFile(model, "glTF-test");
-  const client = new AssetClient({ baseUrl: api.baseUrl });
-  const uploaded = await client.uploadAsset(model, {
-    displayName: "Test Model",
-    contributorName: "Test Creator",
-    description: "A model for tests",
-    singaporeConnection: "Created in Singapore",
-    sourceName: "Original work",
-    allowDownload: true,
-    rightsAttested: true,
-  });
-  assert.equal(uploaded.receiptUrl, `${api.baseUrl}/receipt/secret`);
-  assert.match(api.requests.find((item) => item.method === "POST").headers["content-type"], /^multipart\/form-data; boundary=/);
-  assert.match(api.requests.find((item) => item.method === "POST").body.toString(), /allowDownload[\s\S]*true/);
-  assert.equal((await client.getSubmission("https://example.com/receipt/secret")).submission.status, "submitted");
-  assert.equal((await client.replaceSubmission("secret", model)).submission.status, "submitted");
-  assert.equal((await client.withdrawSubmission("secret")).withdrawn, true);
-});
-
-test("AssetClient rejects uploads without explicit rights", async () => {
+test("AssetClient exposes no Community write or receipt-recovery methods", () => {
   const client = new AssetClient({ baseUrl: "http://localhost:1", fetchImpl: () => assert.fail("fetch should not run") });
-  await assert.rejects(
-    client.uploadAsset("missing.glb", { displayName: "x" }),
-    (error) => error instanceof AssetClientError && error.code === "invalid_metadata",
-  );
+  for (const method of ["uploadAsset", "getSubmission", "replaceSubmission", "withdrawSubmission"]) {
+    assert.equal(client[method], undefined, `${method} must not be part of the public client`);
+  }
 });
 
 test("CLI parsing and dispatch preserve namespaced asset IDs", async () => {
@@ -122,5 +88,11 @@ test("CLI parsing and dispatch preserve namespaced asset IDs", async () => {
     process.stdout.write = originalWrite;
   }
   assert.equal(call, "game:test-model");
-  assert.equal(normalizeReceipt("https://assets.example/receipt/a%2Fb"), "a/b");
+});
+
+test("CLI no longer exposes Community write commands", async () => {
+  await assert.rejects(
+    main(["upload", "model.glb"], { client: {} }),
+    (error) => error instanceof AssetClientError && error.code === "usage_error" && /Unknown command/.test(error.message),
+  );
 });

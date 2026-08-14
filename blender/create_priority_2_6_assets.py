@@ -11,9 +11,11 @@ from create_remaining_assets import (
 )
 
 
-def torus(name, loc, major, minor, mat, parent, rot=(0, 0, 0), major_segments=32):
+def torus(name, loc, major, minor, mat, parent, rot=(0, 0, 0), major_segments=20,
+          minor_segments=4):
     bpy.ops.mesh.primitive_torus_add(major_radius=major, minor_radius=minor,
-        major_segments=major_segments, minor_segments=8, location=loc, rotation=rot)
+        major_segments=major_segments, minor_segments=minor_segments,
+        location=loc, rotation=rot)
     o=bpy.context.object;o.name=name;o.data.materials.append(mat);o.parent=parent
     return o
 
@@ -84,27 +86,27 @@ def build_flyer():
     # Double rim, radial cables and a real axle make the wheel read from every orbit.
     for y in (-.12,.12):
         torus("Wheel rim",(0,y,hub_z),radius,.12,CHALK,r,
-              rot=(math.radians(90),0,0),major_segments=48)
+              rot=(math.radians(90),0,0),major_segments=36)
         for i in range(12):
             a=i*math.tau/12
             cable("Radial spoke",[(0,y,hub_z),
-                (math.cos(a)*radius,y,hub_z+math.sin(a)*radius)],.026,METAL,r)
-    cyl("Wheel axle",(0,0,hub_z),.30,.72,CORAL,r,20,rot=(math.radians(90),0,0))
-    torus("Hub collar",(0,-.38,hub_z),.38,.055,METAL,r,
+                (math.cos(a)*radius,y,hub_z+math.sin(a)*radius)],.026,TEAL,r)
+    cyl("Wheel axle",(0,0,hub_z),.30,.72,TEAL,r,20,rot=(math.radians(90),0,0))
+    torus("Hub collar",(0,-.38,hub_z),.38,.055,TEAL,r,
           rot=(math.radians(90),0,0),major_segments=20)
     # Four endpoint-connected A-frame legs; each root overlaps the base and hub.
     for y in (-.46,.46):
         for side in (-1,1):
-            cable("A-frame support",[(side*1.55,y,.32),(side*.22,y,hub_z)],.13,METAL,r)
+            cable("A-frame support",[(side*1.55,y,.32),(side*.22,y,hub_z)],.13,TEAL,r)
     cable("Support cross brace",[(-1.18,-.46,1.15),(1.18,-.46,1.15)],.075,TEAL,r)
     # The real Flyer has 28 capsules; 16 preserve the identity at this browser budget.
     for i in range(16):
         a=i*math.tau/16
         x,z=math.cos(a)*(radius+.02),hub_z+math.sin(a)*(radius+.02)
-        cable("Capsule hanger",[(x,-.13,z),(x,-.30,z-.20)],.028,METAL,r)
+        cable("Capsule hanger",[(x,-.13,z),(x,-.30,z-.20)],.028,TEAL,r)
         cube("Observation capsule",(x,-.34,z-.36),(.50,.42,.38),TEAL2,r,edge=.12)
         cube("Capsule glazing",(x,-.57,z-.36),(.34,.055,.22),GLASS,r,edge=.03)
-        cube("Capsule floor",(x,-.34,z-.56),(.34,.32,.055),CORAL,r,edge=.02)
+        cube("Capsule floor",(x,-.34,z-.56),(.34,.32,.055),TEAL,r,edge=.02)
     # Keep the terminal low and offset so it no longer masks the wheel silhouette.
     cube("Flyer terminal",(-2.35,.58,.42),(2.65,1.65,.70),TEAL,r,edge=.14)
     cube("Terminal glass",(-2.35,-.27,.48),(2.12,.08,.38),GLASS,r,edge=.035)
@@ -245,21 +247,21 @@ def build_busstop():
     r=empty("SINGAPORE BUS STOP ASSEMBLY")
     cube("Bus stop pad",(0,0,.15),(5.8,2.3,.26),CONCRETE,r,edge=.12)
     for x in (-2.25,0,2.25):
-        cyl("Shelter post",(x,.42,1.66),.075,3.0,METAL,r,12)
-    cube("Shelter canopy",(0,.34,3.16),(5.45,2.05,.20),TEAL2,r,
+        cyl("Shelter post",(x,.42,1.66),.075,3.0,TEAL,r,8)
+    cube("Shelter canopy",(0,.34,3.16),(5.45,2.05,.20),TEAL,r,
          rot=(math.radians(-3),0,0),edge=.12)
     cube("Canopy fascia",(0,-.70,3.02),(5.35,.12,.34),TEAL,r,edge=.045)
     cube("Rear glass screen",(.45,.88,1.73),(3.45,.08,2.35),GLASS,r,edge=.035)
     cube("Side glass screen",(2.23,.42,1.73),(.08,.92,2.35),GLASS,r,edge=.035)
     cube("Bench seat",(-.25,.05,.72),(3.25,.64,.16),WOOD2,r,edge=.07)
-    cube("Bench back",(-.25,.34,1.08),(3.25,.12,.54),WOOD,r,
+    cube("Bench back",(-.25,.34,1.08),(3.25,.12,.54),WOOD2,r,
          rot=(math.radians(-7),0,0),edge=.055)
     for x in (-1.45,.95):
-        cable("Bench leg",[(x,.05,.26),(x,.05,.68)],.055,METAL,r)
+        cube("Bench leg",(x,.05,.47),(.11,.11,.42),TEAL,r,edge=0)
     # Solid route tiles replace the free-floating white text that produced artifacts.
-    cube("Route pylon",(-2.48,-.48,1.55),(.50,.30,2.68),CORAL,r,edge=.09)
-    cube("Route pylon cap",(-2.48,-.48,2.97),(.62,.36,.18),TEAL,r,edge=.065)
-    for index,colour in enumerate((TEAL,YELLOW,BLUE)):
+    cube("Route pylon",(-2.48,-.48,1.55),(.50,.30,2.68),TEAL,r,edge=.09)
+    cube("Route pylon cap",(-2.48,-.48,2.97),(.62,.36,.18),CONCRETE,r,edge=.065)
+    for index,colour in enumerate((GLASS,WOOD2,CONCRETE)):
         cube("Route colour tile",(-2.48,-.66,2.25-index*.36),(.31,.045,.22),colour,r,edge=.025)
     return r
 
@@ -361,18 +363,18 @@ def build_palm():
 
 def build_cat():
     r=empty("COMMUNITY CAT ASSEMBLY")
-    sphere("Cat torso",(0,.08,.62),.52,CORAL,r,scale=(.72,1.18,.78))
-    sphere("Cat chest",(0,-.34,.66),.36,CHALK,r,scale=(.72,.68,1.05))
-    sphere("Cat head",(0,-.54,1.12),.39,CORAL,r,scale=(1,.86,.94))
+    ico("Cat torso",(0,.08,.62),.52,CORAL,r,scale=(.72,1.18,.78))
+    ico("Cat chest",(0,-.34,.66),.36,CHALK,r,scale=(.72,.68,1.05))
+    ico("Cat head",(0,-.54,1.12),.39,CORAL,r,scale=(1,.86,.94))
     for x in (-.23,.23):
         cone("Cat ear",(x,-.48,1.49),.19,.025,.44,CORAL,r,6)
-        sphere("Cat eye",(x*.66,-.86,1.18),.060,GREEN3,r,scale=(1,.55,1))
+        ico("Cat eye",(x*.66,-.86,1.18),.060,GREEN3,r,scale=(1,.55,1))
         cyl("Front leg",(x,-.30,.34),.10,.52,CHALK,r,10)
-        sphere("Front paw",(x,-.42,.10),.13,CHALK,r,scale=(1.2,1.3,.55))
+        ico("Front paw",(x,-.42,.10),.13,CHALK,r,scale=(1.2,1.3,.55))
         cyl("Hind leg",(x,.40,.31),.12,.42,CORAL,r,10)
-        sphere("Hind paw",(x,.24,.10),.14,CORAL,r,scale=(1.35,1.4,.55))
-    sphere("Cat muzzle",(0,-.88,1.01),.18,CHALK,r,scale=(1,.55,.66))
-    sphere("Cat nose",(0,-.99,1.08),.055,INK,r,scale=(1,.65,.75))
+        ico("Hind paw",(x,.24,.10),.14,CORAL,r,scale=(1.35,1.4,.55))
+    ico("Cat muzzle",(0,-.88,1.01),.18,CHALK,r,scale=(1,.55,.66))
+    ico("Cat nose",(0,-.99,1.08),.055,INK,r,scale=(1,.65,.75))
     for x in (-1,1):
         for z in (.96,1.04):
             cable("Whisker",[(x*.08,-.98,z),(x*.44,-1.03,z+(z-1.0)*.35)],.010,INK,r)
@@ -386,62 +388,62 @@ def build_bicycle():
     wheel_z=.84
     for cx in (-1.03,1.03):
         torus("Rubber tyre",(cx,0,wheel_z),.70,.060,INK,r,
-              rot=(math.radians(90),0,0),major_segments=32)
+              rot=(math.radians(90),0,0),major_segments=16)
         torus("Wheel rim",(cx,0,wheel_z),.60,.025,CHALK,r,
-              rot=(math.radians(90),0,0),major_segments=28)
-        cyl("Wheel hub",(cx,0,wheel_z),.075,.22,YELLOW,r,12,
+              rot=(math.radians(90),0,0),major_segments=16)
+        cyl("Wheel hub",(cx,0,wheel_z),.075,.22,CHALK,r,12,
             rot=(math.radians(90),0,0))
-        for i in range(8):
-            a=i*math.tau/8
+        for i in range(6):
+            a=i*math.tau/6
             cable("Wheel spoke",[(cx,0,wheel_z),
-                (cx+math.cos(a)*.59,0,wheel_z+math.sin(a)*.59)],.009,METAL,r)
+                (cx+math.cos(a)*.59,0,wheel_z+math.sin(a)*.59)],.009,INK,r)
     rear=(-1.03,0,wheel_z); crank=(-.18,0,.82); seat=(-.42,0,1.58); head=(.58,0,1.48)
     for name,start,end in (
         ("Chain stay",rear,crank),("Seat stay",rear,seat),("Seat tube",crank,seat),
         ("Down tube",crank,head),("Top tube",seat,head)):
         cable(name,[start,end],.050,TEAL2,r)
     for y in (-.07,.07):
-        cable("Front fork",[(head[0],y,head[2]),(1.03,y,wheel_z)],.042,METAL,r)
-    cyl("Crankset",crank,.13,.18,METAL,r,14,rot=(math.radians(90),0,0))
-    cable("Seat post",[seat,(-.45,0,1.78)],.040,METAL,r)
-    cube("Bicycle saddle",(-.50,0,1.83),(.48,.24,.11),CORAL,r,edge=.05)
-    cable("Handle stem",[head,(.68,0,1.82)],.045,METAL,r)
-    cable("Handlebar",[(.68,-.34,1.82),(.68,0,1.82),(.83,.30,1.82)],.035,METAL,r)
+        cable("Front fork",[(head[0],y,head[2]),(1.03,y,wheel_z)],.042,INK,r)
+    cyl("Crankset",crank,.13,.18,INK,r,14,rot=(math.radians(90),0,0))
+    cable("Seat post",[seat,(-.45,0,1.78)],.040,INK,r)
+    cube("Bicycle saddle",(-.50,0,1.83),(.48,.24,.11),TEAL2,r,edge=.05)
+    cable("Handle stem",[head,(.68,0,1.82)],.045,INK,r)
+    cable("Handlebar",[(.68,-.34,1.82),(.68,0,1.82),(.83,.30,1.82)],.035,INK,r)
     # Open slatted basket, attached at both the handle stem and front fork.
     cube("Basket floor",(.91,-.20,1.33),(.62,.56,.07),WOOD2,r,edge=.025)
     for x in (.63,.79,.95,1.11,1.19):
         cable("Basket rail",[(x,-.46,1.34),(x,-.46,1.68)],.018,WOOD2,r)
     for z in (1.36,1.66):
         cable("Basket edge",[(.61,-.46,z),(1.21,-.46,z)],.022,WOOD2,r)
-    cable("Basket upper stay",[(.68,-.10,1.79),(.91,-.20,1.66)],.026,METAL,r)
-    cable("Basket lower stay",[(.80,-.08,1.19),(.91,-.20,1.34)],.026,METAL,r)
+    cable("Basket upper stay",[(.68,-.10,1.79),(.91,-.20,1.66)],.026,INK,r)
+    cable("Basket lower stay",[(.80,-.08,1.19),(.91,-.20,1.34)],.026,INK,r)
     return r
 
 
 def build_birdcage():
     r=empty("TRADITIONAL BIRD CAGE ASSEMBLY")
-    cyl("Carved cage base",(0,0,.24),.72,.22,WOOD2,r,20)
-    torus("Lower bamboo ring",(0,0,.38),.69,.050,WOOD,r,major_segments=28)
-    torus("Middle bamboo ring",(0,0,1.16),.64,.038,WOOD2,r,major_segments=28)
-    torus("Upper bamboo ring",(0,0,1.55),.50,.045,WOOD,r,major_segments=24)
-    for i in range(14):
-        a=i*math.tau/14
+    cyl("Carved cage base",(0,0,.24),.72,.22,WOOD2,r,16)
+    torus("Lower bamboo ring",(0,0,.38),.69,.050,WOOD2,r,major_segments=14)
+    torus("Middle bamboo ring",(0,0,1.16),.64,.038,WOOD2,r,major_segments=14)
+    torus("Upper bamboo ring",(0,0,1.55),.50,.045,WOOD2,r,major_segments=14)
+    for i in range(10):
+        a=i*math.tau/10
         cable("Domed cage bar",[(math.cos(a)*.68,math.sin(a)*.68,.38),
             (math.cos(a)*.63,math.sin(a)*.63,1.22),
             (math.cos(a)*.48,math.sin(a)*.48,1.58),(0,0,2.02)],.017,INK,r)
-    cable("Cage hanger stem",[(0,0,2.00),(0,0,2.31)],.035,METAL,r)
-    torus("Cage hanger loop",(0,0,2.47),.21,.035,METAL,r,
+    cable("Cage hanger stem",[(0,0,2.00),(0,0,2.31)],.035,INK,r)
+    torus("Cage hanger loop",(0,0,2.47),.21,.035,INK,r,
           rot=(math.radians(90),0,0),major_segments=18)
-    cyl("Bird perch",(0,0,1.02),.030,1.02,WOOD,r,10,rot=(0,math.radians(90),0))
-    sphere("Songbird body",(-.10,-.13,1.10),.18,YELLOW,r,scale=(1.25,.72,.86))
-    sphere("Songbird head",(-.22,-.20,1.28),.12,TEAL2,r)
-    cone("Songbird beak",(-.22,-.36,1.27),.060,.005,.18,CORAL,r,6,
+    cyl("Bird perch",(0,0,1.02),.030,1.02,WOOD2,r,10,rot=(0,math.radians(90),0))
+    ico("Songbird body",(-.10,-.13,1.10),.18,CHALK,r,scale=(1.25,.72,.86))
+    ico("Songbird head",(-.22,-.20,1.28),.12,TEAL,r)
+    cone("Songbird beak",(-.22,-.36,1.27),.060,.005,.18,WOOD2,r,6,
          rot=(math.radians(90),0,0))
     cone("Songbird tail",(.10,-.05,.98),.12,.025,.42,TEAL,r,6,
          rot=(0,math.radians(-55),0))
     for x in (-.43,.43):
-        cyl("Feed cup",(x,-.32,.86),.10,.16,CHALK,r,12)
-        cable("Feed cup bracket",[(x,-.32,.78),(x,-.58,.82)],.020,METAL,r)
+        cyl("Feed cup",(x,-.32,.86),.10,.16,CHALK,r,8)
+        cable("Feed cup bracket",[(x,-.32,.78),(x,-.58,.82)],.020,TEAL,r)
     return r
 
 
@@ -468,19 +470,19 @@ def build_routerkit():
     cube("WiFi router",(.12,.06,.54),(1.75,.82,.48),CHALK,r,edge=.12)
     cube("Router front fascia",(.12,-.37,.51),(1.48,.055,.25),TEAL,r,edge=.035)
     for i in range(6):
-        cube("Router vent",(-.48+i*.24,-.02,.80),(.12,.30,.025),METAL,r,edge=.008)
-    for i,c in enumerate((GREEN2,GREEN2,YELLOW,BLUE)):
-        sphere("Router status LED",(-.23+i*.22,-.42,.56),.034,c,r,scale=(1,.60,1))
+        cube("Router vent",(-.48+i*.24,-.02,.80),(.12,.30,.025),INK,r,edge=.008)
+    for i in range(4):
+        ico("Router status LED",(-.23+i*.22,-.42,.56),.034,TEAL,r,scale=(1,.60,1))
     for i,x in enumerate((-.55,-.10,.35,.80)):
-        sphere("Antenna hinge",(x,.34,.76),.075,METAL,r)
+        ico("Antenna hinge",(x,.34,.76),.075,INK,r)
         cable("Router antenna",[(x,.34,.76),(x+(.08 if i>1 else -.08),.36,1.47)],.040,INK,r)
-    cube("Engineer toolkit",(-1.12,.48,.38),(.62,.54,.54),CORAL,r,edge=.08)
+    cube("Engineer toolkit",(-1.12,.48,.38),(.62,.54,.54),TEAL,r,edge=.08)
     torus("Toolkit handle",(-1.12,.45,.73),.19,.045,INK,r,
           rot=(math.radians(90),0,0),major_segments=14)
-    torus("Coiled WAN lead",(1.03,-.28,.33),.34,.030,TEAL2,r,
+    torus("Coiled WAN lead",(1.03,-.28,.33),.34,.030,TEAL,r,
           rot=(math.radians(90),0,0),major_segments=22)
-    cable("WAN lead tail",[(.72,-.28,.33),(.53,-.05,.35),(.56,.33,.44)],.030,TEAL2,r)
-    cube("RJ45 connector",(.56,.36,.45),(.16,.18,.11),YELLOW,r,edge=.025)
+    cable("WAN lead tail",[(.72,-.28,.33),(.53,-.05,.35),(.56,.33,.44)],.030,TEAL,r)
+    cube("RJ45 connector",(.56,.36,.45),(.16,.18,.11),TEAL,r,edge=.025)
     return r
 
 
@@ -514,11 +516,11 @@ def build_wifikit():
 
 JOBS = [
     # P2
-    ("harbour_statue-v2",build_harbour_statue,(0,-.1,1.7),(8,-12,6.5),4.0),
-    ("skypark_hotel-v2",build_skypark_hotel,(0,0,3.7),(14,-19,11),6.5),
+    ("harbour-statue-v2",build_harbour_statue,(0,-.1,1.7),(8,-12,6.5),4.0),
+    ("skypark-hotel-v2",build_skypark_hotel,(0,0,3.7),(14,-19,11),6.5),
     ("flyer-v2",build_flyer,(0,0,4.1),(13,-18,10),6.0),
     ("supertree-v2",build_supertree,(0,0,3.0),(9,-13,7.5),4.0),
-    ("concert_hall-v2",build_concert_hall,(0,0,1.6),(11,-16,7),5.5),
+    ("concert-hall-v2",build_concert_hall,(0,0,1.6),(11,-16,7),5.5),
     # P3
     ("mrt-v2",build_mrt,(0,0,1.7),(10,-14,7),4.5),
     ("shophouse-v2",build_shophouse,(0,0,2.2),(9,-13,7),4.0),
@@ -546,10 +548,9 @@ JOBS = [
 
 if __name__ == "__main__":
     requested = set(sys.argv[sys.argv.index("--") + 1:]) if "--" in sys.argv else None
-    preserve = {"flyer-v2", "busstop-v2", "cat-v2", "bicycle-v2", "birdcage-v2", "router-kit-v2"}
     for slug,builder,target,camera,ground in JOBS:
         if requested and slug not in requested:
             continue
         reset()
-        export_asset(builder(),slug,target,camera,ground,preserve_parts=(slug in preserve))
+        export_asset(builder(),slug,target,camera,ground)
     print("Priority 2–5 Blender assets created")

@@ -1,0 +1,3 @@
+# Load interactive 3D only in Detail Views
+
+Asset Cards will use one checksum-bound AVIF or WebP Card Preview generated from the published GLB, while a Detail View loads one interactive 3D scene. The Collection is mobile-public-first and optimises browsing and comparison across 68 objects; concentrating WebGL in the selected object preserves inspection quality without making list scrolling pay the network, memory, and GPU cost of many simultaneous viewers. Interactive 3D is progressive enhancement: when WebGL is unavailable or unsuitable, the same Detail View still exposes its static preview, complete story, sources, credits, licence, and eligible download.

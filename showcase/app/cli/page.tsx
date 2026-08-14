@@ -26,7 +26,7 @@ export default function CliPage() {
           <div>
             <p className="eyebrow">Command line + terminal</p>
             <h1 id="cli-title">Take the collection<br /><em>into your tools.</em></h1>
-            <p>Search the archive, inspect metadata, download permitted GLBs and submit your own model without leaving the terminal.</p>
+            <p>Search the authoritative catalogue, inspect provenance and download only assets with a cleared Download Grant.</p>
           </div>
           <Terminal label="01 · First search">{`$ kampung-assets list --query heritage
 
@@ -38,7 +38,7 @@ game:lost-pearl-bank-apartments Pearl Bank Apartments`}</Terminal>
         <section className="cli-guide" aria-labelledby="cli-guide-title">
           <div className="cli-guide-intro">
             <p className="eyebrow">Four short steps</p>
-            <h2 id="cli-guide-title">From setup to first model.</h2>
+            <h2 id="cli-guide-title">From setup to verified record.</h2>
             <p>The CLI talks to the same permission-aware Asset API used by the collection. Downloads appear only when an item allows them.</p>
           </div>
 
@@ -68,11 +68,9 @@ kampung-assets download game:lost-national-theatre \
 
             <article className="guide-step">
               <span>04</span>
-              <div><h3>Submit from the terminal</h3><p>Start from the example metadata, attest that you hold the rights, then keep the recovery receipt returned by the upload.</p></div>
-              <Terminal label="Terminal">{`cp tooling/submission.example.json submission.json
-kampung-assets upload ./my-model.glb \
-  --metadata ./submission.json --yes-rights
-kampung-assets status YOUR_RECOVERY_RECEIPT`}</Terminal>
+              <div><h3>Use machine-readable metadata</h3><p>JSON output preserves checksums, provenance, publisher identity and the same fail-closed download decision as the website.</p></div>
+              <Terminal label="Terminal">{`kampung-assets get game:peranakan-house --json
+kampung-assets list --category "Service Gear" --json`}</Terminal>
             </article>
           </div>
         </section>
@@ -81,7 +79,7 @@ kampung-assets status YOUR_RECOVERY_RECEIPT`}</Terminal>
           <div>
             <p className="eyebrow">For agent-enabled terminals</p>
             <h2 id="mcp-title">Use the same collection through MCP.</h2>
-            <p>Run the included local stdio server, then add it to any MCP-compatible client. It exposes search, detail, permitted downloads, uploads and receipt recovery.</p>
+            <p>Run the included local stdio server, then add it to any MCP-compatible client. It exposes only search, detail and grant-controlled downloads.</p>
           </div>
           <Terminal label="MCP server">{`cd showcase
 KAMPUNG_ASSET_API_URL="${collectionUrl}" npm run mcp`}</Terminal>
@@ -93,10 +91,6 @@ KAMPUNG_ASSET_API_URL="${collectionUrl}" npm run mcp`}</Terminal>
             <code>list</code><span>Search and filter assets</span>
             <code>get</code><span>Read one asset record</span>
             <code>download</code><span>Save one permitted GLB</span>
-            <code>upload</code><span>Submit a GLB for review</span>
-            <code>status</code><span>Check a recovery receipt</span>
-            <code>replace</code><span>Replace a pending submission</span>
-            <code>withdraw</code><span>Withdraw with explicit confirmation</span>
           </div>
           <a href="/">Browse the live collection ↗</a>
         </section>
