@@ -35,6 +35,7 @@ export default defineConfig({
       input: {
         main: path.resolve('index.html'),
         lostHeritage: path.resolve('lost-heritage.html'),
+        cliMcpGuide: path.resolve('cli-mcp/index.html'),
       },
       output: {
         manualChunks(id) {

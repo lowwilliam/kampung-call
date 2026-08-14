@@ -58,6 +58,15 @@
     border:0;transition:transform .18s ease,box-shadow .18s ease;
     position:relative;
   }
+  .learn-guide-link{
+    display:inline-flex;align-items:center;justify-content:center;min-height:45px;
+    padding:0 20px;border:1.5px solid rgba(46,42,37,.3);border-radius:999px;
+    background:rgba(251,246,232,.72);color:var(--ink);text-decoration:none;
+    font:700 11px/1 "Courier New",monospace;letter-spacing:.12em;
+    transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+  }
+  .learn-guide-link:hover{transform:translateY(-2px);background:var(--paper);box-shadow:0 10px 24px rgba(46,42,37,.14);}
+  .learn-guide-link:focus-visible{outline:3px solid var(--teal);outline-offset:3px;}
   #begin::after{content:"  →";}
   #memoryBegin{color:var(--ink);border:1.5px solid rgba(46,42,37,.3);background:rgba(251,246,232,.72);box-shadow:none;}
   #begin:hover,#memoryBegin:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(115,48,40,.3);}
