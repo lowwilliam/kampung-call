@@ -145,7 +145,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .results-line { display: flex; justify-content: space-between; padding: 1rem 3.2vw; border-top: 1px solid var(--line); color: var(--muted); font: 700 0.64rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 
 .asset-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; padding: 1px 3.2vw 4rem; background: var(--line); }
-.asset-card { display: block; min-width: 0; scroll-margin-top: 90px; background: var(--paper); }
+.asset-card { display: grid; grid-template-rows: auto 1fr; min-width: 0; scroll-margin-top: 90px; background: var(--paper); }
 .asset-stage { position: relative; display: block; aspect-ratio: 1.08 / 1; overflow: hidden; background: var(--stage, #d5d1b6); }
 .asset-card[data-category="Lost Heritage"] { --stage: #c6b48a; }
 .asset-card[data-category="People"] { --stage: #d3a76f; }
