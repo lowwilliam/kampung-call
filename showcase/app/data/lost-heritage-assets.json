@@ -220,14 +220,14 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 8200,
-      "materials": 4,
-      "meshCount": 132,
+      "triangles": 12656,
+      "materials": 3,
+      "meshCount": 425,
       "compressed": true,
       "dimensions": {
-        "width": 18.5700000166893,
-        "height": 9.290606474876403,
-        "depth": 15
+        "width": 20.172640706192773,
+        "height": 8.788315367698669,
+        "depth": 15.542640591751855
       }
     }
   },

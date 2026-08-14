@@ -26,7 +26,7 @@
           "intro": "A jewel-box façade of shutters, tiles and layered ornament.",
           "gameContext": "Brings fine-grained heritage detail into the streetscape without losing the game’s bold silhouette.",
           "singaporeContext": "Its palette and decorative density are inspired by Peranakan domestic architecture and Singapore’s historic terrace houses.",
-          "productionStory": "2 meshes, 2 materials, and 12,672 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with attached French-window shutters, fanlights, balustrades, a true five-footway and a resolved airwell/rear elevation. 2 meshes, 2 materials, and 30,596 triangles. Draco-compressed for the browser.",
           "inspiration": "Peranakan terrace-house traditions"
         }
       },
@@ -34,16 +34,16 @@
         "file": "peranakan-house-v2.glb",
         "sourcePath": "assets/peranakan-house-v2.glb",
         "publicPath": "/models/peranakan-house-v2.glb",
-        "sha256": "416d9623162b86c071f6ff67dc5dd9fd7031368ea1271917e03fc3377bbfdf1e",
-        "byteLength": 41300,
+        "sha256": "a9588acc1afdff53bc74537853b1fd009d98c2ca1039dd33cfe35dbc143fa89a",
+        "byteLength": 91688,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/peranakan-house-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "416d9623162b86c071f6ff67dc5dd9fd7031368ea1271917e03fc3377bbfdf1e",
-        "sha256": "47abd62b36da21015ba11145def9013515ede3a7a2e08e5f3a8f708b7bb4c680",
+        "sourceModelSha256": "a9588acc1afdff53bc74537853b1fd009d98c2ca1039dd33cfe35dbc143fa89a",
+        "sha256": "be1d44b5e934f44af2965f327d108cca17b952df7c7324457faeba501bb50e0f",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -57,17 +57,28 @@
         "label": "Made for Kampung Call",
         "detail": "Shipped with the game’s canonical GLB collection. Planned vendor-library replacements are excluded until their licensed files are present."
       },
-      "sources": [],
-      "evidenceStatus": "not-applicable",
+      "sources": [
+        {
+          "kind": "design-reference",
+          "label": "URA — Understanding the Shophouse",
+          "url": "https://www.ura.gov.sg/conservation/conservation-resources/understanding-the-shophouse/"
+        },
+        {
+          "kind": "history",
+          "label": "Roots.sg — Singapore Shophouses",
+          "url": "https://www.roots.gov.sg/en/stories-landing/stories/singapore-shophouses/story"
+        }
+      ],
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 12672,
+        "triangles": 30596,
         "materials": 2,
         "meshCount": 2,
         "compressed": true,
         "dimensions": {
-          "width": 3.711481850624084,
-          "height": 6.207779975295066,
-          "depth": 6.1937603187561034
+          "width": 4.41985,
+          "height": 6.67017,
+          "depth": 7.27158
         }
       },
       "publication": {
@@ -124,7 +135,7 @@
           "intro": "A compact waterfront guardian with an unmistakable profile.",
           "gameContext": "Provides a playful orientation point along the harbour edge.",
           "singaporeContext": "Inspired by the Merlion, a lion-headed, fish-bodied icon conceived for Singapore and realised as a public sculpture in 1972.",
-          "productionStory": "1 mesh, 1 material, and 4,314 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led Blender rebuild with a tapered scaled fish body, articulated lion head, layered mane, open fountain mouth and mosaic-wave pedestal. 4 meshes, 4 materials, and 32,704 triangles. Draco-compressed for the browser.",
           "inspiration": "The Merlion"
         }
       },
@@ -132,17 +143,17 @@
         "file": "harbour-statue-v2.glb",
         "sourcePath": "assets/harbour-statue-v2.glb",
         "publicPath": "/models/harbour-statue-v2.glb",
-        "sha256": "24da12c55560a1f29f10b0eda7e7ff8d0a81bfd5e0850f472cdf11ba0bffd130",
-        "byteLength": 18264,
+        "sha256": "f8ea13e14b52121c9a5206473ebc01918b7ba1c1b17c8412bf16054b0e42bf8a",
+        "byteLength": 130736,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
+        "status": "legacy",
+        "sourcePath": "assets/previews/harbour-statue-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "24da12c55560a1f29f10b0eda7e7ff8d0a81bfd5e0850f472cdf11ba0bffd130",
-        "sha256": null,
-        "contentType": null
+        "sourceModelSha256": "f8ea13e14b52121c9a5206473ebc01918b7ba1c1b17c8412bf16054b0e42bf8a",
+        "sha256": "df44c527e71f48b432529903d61d3a632d97dcc1a3b95d75fa9fd1ad29e7350f",
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -160,18 +171,23 @@
           "kind": "history",
           "label": "National Heritage Board — The Merlion",
           "url": "https://www.roots.gov.sg/places/places-landing/Places/landmarks/public-art-walking-trail/the-merlion"
+        },
+        {
+          "kind": "design-reference",
+          "label": "Visit Singapore — Merlion Park",
+          "url": "https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/marina-bay/merlion-park/"
         }
       ],
-      "evidenceStatus": "not-applicable",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 4314,
-        "materials": 1,
-        "meshCount": 1,
+        "triangles": 32704,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 6.67591986656189,
-          "height": 8.508278944969177,
-          "depth": 6.800099209785461
+          "width": 3.5327,
+          "height": 4.813,
+          "depth": 4.17364
         }
       },
       "publication": {
@@ -1838,7 +1854,7 @@
           "intro": "An early mixed-use mansion block associated with the arrival of apartment living and modern retail on Orchard Road.",
           "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
           "singaporeContext": "Opened 1922 at Orchard Road and Penang Lane; removed 1984. An early mixed-use mansion block associated with the arrival of apartment living and modern retail on Orchard Road.",
-          "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate. 92 meshes, 4 materials, and 7,720 triangles. Draco-compressed for the browser.",
+          "productionStory": "Procedurally rebuilt from 11 documented form and detail cues as a two-wing L-plan with a shallow bowed corner, Cape Dutch gables, continuous arcades, pitched terracotta roofs and restrained inferred courtyard elevations. Hidden dimensions remain explicitly approximate. 425 meshes, 3 materials, and 12,656 triangles. Draco-compressed for the browser.",
           "inspiration": "Opened 1922 · Removed 1984 · Orchard Road and Penang Lane"
         }
       },
@@ -1846,15 +1862,15 @@
         "file": "lost-heritage/amber-mansions.glb",
         "sourcePath": "assets/lost-heritage/amber-mansions.glb",
         "publicPath": "/models/lost-heritage/amber-mansions.glb",
-        "sha256": "e27fe11b35b71aeddef3cad125d1b510d5b410a3cec64a24d8ba2522b4ba39c8",
-        "byteLength": 150944,
+        "sha256": "b8ace5a7d00c90ac8a1f9657cea2f3791a4fbf89f38d4039edf40c715f5e511a",
+        "byteLength": 433916,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "e27fe11b35b71aeddef3cad125d1b510d5b410a3cec64a24d8ba2522b4ba39c8",
+        "sourceModelSha256": "b8ace5a7d00c90ac8a1f9657cea2f3791a4fbf89f38d4039edf40c715f5e511a",
         "sha256": null,
         "contentType": null
       },
@@ -1872,20 +1888,30 @@
       "sources": [
         {
           "kind": "history",
-          "label": "Read the historical source",
+          "label": "BiblioAsia — Mansion Blocks of Singapore",
           "url": "https://biblioasia.nlb.gov.sg/all-sections/vol-17-issue-2-jul-sep-2021-swan-and-maclaren-apartment-living/"
+        },
+        {
+          "kind": "history",
+          "label": "BiblioAsia — Over Orchard",
+          "url": "https://biblioasia.nlb.gov.sg/all-sections/vol-10-issue-3-oct-dec-2014-singapore-orchard-road-history/"
+        },
+        {
+          "kind": "design-reference",
+          "label": "National Archives of Singapore — Amber Mansions, 1983",
+          "url": "https://www.nas.gov.sg/archivesonline/photographs/record-details/84b3144e-1162-11e3-83d5-0050568939ad"
         }
       ],
-      "evidenceStatus": "unreviewed",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 7720,
-        "materials": 4,
-        "meshCount": 92,
+        "triangles": 12656,
+        "materials": 3,
+        "meshCount": 425,
         "compressed": true,
         "dimensions": {
-          "width": 18.5700000166893,
-          "height": 9.290606474876403,
-          "depth": 15
+          "width": 20.172640706192773,
+          "height": 8.788315367698669,
+          "depth": 15.542640591751855
         }
       },
       "publication": {

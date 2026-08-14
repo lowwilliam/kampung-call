@@ -33,6 +33,14 @@ const catalogPath = path.join(root, 'showcase', 'app', 'data', 'lost-heritage-as
 const hashesPath = path.join(root, 'showcase', 'app', 'data', 'heritage-model-hashes.json');
 const workRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'lost-heritage-glb-'));
 const exporter = new GLTFExporter();
+const onlyArg = process.argv.find((argument) => argument.startsWith('--only='));
+const onlyId = onlyArg?.slice('--only='.length);
+const existingCatalog = onlyId && fs.existsSync(catalogPath)
+  ? JSON.parse(fs.readFileSync(catalogPath, 'utf8'))
+  : [];
+const existingHashes = onlyId && fs.existsSync(hashesPath)
+  ? JSON.parse(fs.readFileSync(hashesPath, 'utf8'))
+  : {};
 
 fs.mkdirSync(outputRoot, { recursive: true });
 
@@ -80,13 +88,22 @@ const catalog = [];
 const hashes = {};
 
 for (const building of collection.buildings) {
+  const relativeFile = `lost-heritage/${building.id}.glb`;
+  if (onlyId && building.id !== onlyId) {
+    const previous = existingCatalog.find((entry) => entry.file === relativeFile);
+    if (!previous || !existingHashes[relativeFile]) {
+      throw new Error(`Cannot preserve missing catalogue data for ${building.id}`);
+    }
+    catalog.push(previous);
+    hashes[relativeFile] = existingHashes[relativeFile];
+    continue;
+  }
   const profile = profiles[building.id];
   if (!profile) throw new Error(`Missing reconstruction profile for ${building.id}`);
   const object = createLandmark({ ...building, ...profile });
   cleanForExport(object, building);
   const metrics = inspect(object);
   const rawPath = path.join(workRoot, `${building.id}.raw.glb`);
-  const relativeFile = `lost-heritage/${building.id}.glb`;
   const outputPath = path.join(root, 'assets', relativeFile);
   const bytes = await exporter.parseAsync(object, { binary: true, onlyVisible: false });
   fs.writeFileSync(rawPath, Buffer.from(bytes));
@@ -117,4 +134,4 @@ for (const building of collection.buildings) {
 
 fs.writeFileSync(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 fs.writeFileSync(hashesPath, `${JSON.stringify(hashes, null, 2)}\n`);
-console.log(`Exported ${catalog.length} Lost Singapore GLBs.`);
+console.log(onlyId ? `Exported ${onlyId}; preserved ${catalog.length - 1} catalogue entries.` : `Exported ${catalog.length} Lost Singapore GLBs.`);

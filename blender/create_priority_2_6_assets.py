@@ -5,7 +5,7 @@ import bpy
 
 sys.path.insert(0, os.path.dirname(__file__))
 from create_remaining_assets import (
-    reset, empty, cube, cyl, ico, label, cable, export_asset,
+    reset, empty, cube, cyl, ico, label, cable, bevel, export_asset,
     INK, CREAM, CHALK, TEAL, TEAL2, CORAL, YELLOW, GLASS, CONCRETE,
     METAL, WOOD, WOOD2, GREEN, GREEN2, GREEN3, RED, BLUE,
 )
@@ -39,23 +39,185 @@ def cone(name, loc, r1, r2, depth, mat, parent, vertices=12, rot=(0,0,0)):
 # PRIORITY 2 — LANDMARKS
 # ---------------------------------------------------------------------------
 def build_harbour_statue():
-    r=empty("HARBOUR STATUE WATERFRONT KIT")
-    cyl("Wave pedestal",(0,0,.32),1.45,.55,TEAL,r,20)
-    for a in range(8):
-        torus("Water ripple",(math.cos(a*.78)*1.15,math.sin(a*.78)*.75,.55),.24,.045,CHALK,r,
-              rot=(math.radians(90),0,0),major_segments=14)
-    sphere("Fish body",(0,.15,1.65),.92,CHALK,r,scale=(.82,.72,1.25))
-    for z in (1.08,1.38,1.68):
-        torus("Fish scales",(0,-.55,z),.45,.035,TEAL2,r,rot=(math.radians(90),0,0),major_segments=12)
-    sphere("Lion head",(0,-.05,2.72),.78,CHALK,r,scale=(1,.92,.95))
-    for a in range(10):
-        ico("Mane lock",(math.cos(a*.628)*.72,-.03,2.72+math.sin(a*.628)*.72),.32,CORAL,r,scale=(.75,.55,1.05))
-    sphere("Muzzle",(0,-.68,2.57),.38,CREAM,r,scale=(1,.62,.65))
-    for x in (-.25,.25):
-        sphere("Eye",(x,-.67,2.91),.09,INK,r)
-    cone("Nose",(0,-.97,2.66),.13,.04,.20,INK,r,8,rot=(math.radians(90),0,0))
-    cable("Water stream",[(0,-.98,2.48),(0,-1.5,2.18),(0,-2.05,1.55),(0,-2.55,.78)],.10,BLUE,r)
-    label("HARBOUR STATUE",(0,-1.48,.34),.22,CHALK,r)
+    r=empty("MERLION WATERFRONT SCULPTURE")
+
+    def elliptical_cylinder(name, loc, radius, depth, mat, scale_xy):
+        o = cyl(name, loc, radius, depth, mat, r, 32)
+        o.scale.x = scale_xy[0]
+        o.scale.y = scale_xy[1]
+        return o
+
+    def fin_plate(name, points_yz, half_width, mat, x_center=0):
+        """Closed low-poly plate traced in the side-view Y/Z plane."""
+        verts=[]
+        for x in (-half_width, half_width):
+            verts.extend((x_center+x, y, z) for y, z in points_yz)
+        n=len(points_yz)
+        faces=[]
+        faces.append(tuple(range(n)))
+        faces.append(tuple(range(n, n*2)))
+        for i in range(n):
+            j=(i+1)%n
+            faces.append((i,j,n+j,n+i))
+        mesh=bpy.data.meshes.new(name)
+        mesh.from_pydata(verts,[],faces)
+        mesh.validate()
+        o=bpy.data.objects.new(name,mesh)
+        bpy.context.collection.objects.link(o)
+        o.data.materials.append(mat)
+        o.parent=r
+        bevel(o,.035,2)
+        return o
+
+    def relief_plate(name, loc, outward_angle, width, height, depth, mat,
+                     shoulder=.36):
+        """Shield/lock plate in local X/Z with its shallow face along local Y."""
+        profile=[(-width*.50,height*.34),(-width*.38,height*.50),
+                 (0,height*.58),(width*.38,height*.50),(width*.50,height*.34),
+                 (width*shoulder,-height*.18),(0,-height*.52),
+                 (-width*shoulder,-height*.18)]
+        verts=[]
+        for y in (-depth/2,depth/2):
+            verts.extend((x,y,z) for x,z in profile)
+        n=len(profile)
+        faces=[tuple(range(n-1,-1,-1)),tuple(range(n,n*2))]
+        for i in range(n):
+            j=(i+1)%n
+            faces.append((i,n+i,n+j,j))
+        mesh=bpy.data.meshes.new(name)
+        mesh.from_pydata(verts,[],faces)
+        mesh.validate()
+        o=bpy.data.objects.new(name,mesh)
+        bpy.context.collection.objects.link(o)
+        o.location=loc
+        # Local +Y is the outward face normal.
+        o.rotation_euler[2]=outward_angle-math.pi/2
+        o.data.materials.append(mat)
+        o.parent=r
+        bevel(o,min(.025,width*.08),2)
+        return o
+
+    def scale_plate(name, loc, outward_angle, width, height, depth, mat):
+        """Small overlapping scale with a broad top and rounded scallop edge."""
+        profile=[(-width*.50,height*.44),(width*.50,height*.44),
+                 (width*.50,.02),(width*.40,-height*.17),
+                 (width*.23,-height*.38),(0,-height*.50),
+                 (-width*.23,-height*.38),(-width*.40,-height*.17),
+                 (-width*.50,.02)]
+        verts=[]
+        for y in (-depth/2,depth/2):
+            verts.extend((x,y,z) for x,z in profile)
+        n=len(profile)
+        faces=[tuple(range(n-1,-1,-1)),tuple(range(n,n*2))]
+        for i in range(n):
+            j=(i+1)%n
+            faces.append((i,n+i,n+j,j))
+        mesh=bpy.data.meshes.new(name)
+        mesh.from_pydata(verts,[],faces)
+        mesh.validate()
+        o=bpy.data.objects.new(name,mesh)
+        bpy.context.collection.objects.link(o)
+        o.location=loc
+        o.rotation_euler[2]=outward_angle-math.pi/2
+        o.data.materials.append(mat)
+        o.parent=r
+        bevel(o,.018,2)
+        return o
+
+    # The real pedestal is a layered ceramic wave plinth, not a plain cyan
+    # drum.  Offset elliptical tori and front crest curves keep that identity
+    # from every catalogue orbit.
+    elliptical_cylinder("Dark elliptical plinth",(0,.02,.24),1.38,.46,INK,(1.28,.82))
+    elliptical_cylinder("Blue mosaic pedestal",(0,.02,.46),1.30,.36,BLUE,(1.24,.80))
+    for i,(z,major,minor,mat) in enumerate(((.50,1.12,.11,BLUE),(.62,1.05,.095,CREAM),(.73,.94,.085,BLUE))):
+        band=torus("Layered mosaic wave band",(0,.02,z),major,minor,mat,r,major_segments=32,minor_segments=6)
+        band.scale.x=1.22
+        band.scale.y=.80
+    for xoff,zoff in ((-.48,.57),(0,.67),(.48,.57)):
+        cable("White foam crest",[(xoff-.48,-.76,zoff-.04),(xoff,-.92,zoff+.12),(xoff+.48,-.76,zoff-.04)],.045,CREAM,r)
+
+    # Tapered fish column: broad shoulder to narrow tail contact.  A shallow
+    # shoulder ellipsoid prevents the cone from reading as a vase.
+    cone("Tapered fish body",(0,.06,2.02),.57,.86,2.55,CREAM,r,32)
+    sphere("Fish shoulder",(0,.02,3.18),.77,CREAM,r,scale=(1,.82,.62),segments=24)
+
+    # Staggered, overlapping scale plaques wrap the full body.  They are
+    # flattened ellipsoids sunk into the surface, never detached torus loops.
+    for row in range(10):
+        z=.94+row*.245
+        # Follow the tapered cone surface.  The earlier fixed radius buried
+        # the lower rows inside the fish body and left a visually blank base.
+        body_t=max(0.0,min(1.0,(z-.745)/2.55))
+        radius=.57+body_t*(.86-.57)+.045
+        count=12
+        for index in range(count):
+            angle=index*math.tau/count+(row%2)*math.pi/count
+            scale_plate("Overlapping fish scale",
+                (math.cos(angle)*radius, math.sin(angle)*radius+.05, z),
+                angle,.255,.19,.065,CHALK)
+
+    # A real silhouette fin and tail/foam sweep establish the hybrid body.
+    relief_plate("Left pectoral fin",(-.68,-.18,3.02),math.pi,.22,.62,.11,CHALK,shoulder=.24)
+    relief_plate("Right pectoral fin",(.68,-.18,3.02),0,.22,.62,.11,CHALK,shoulder=.24)
+    fin_plate("Rear tail fin",[(.40,1.48),(.92,1.87),(.78,1.25),(.43,.88)],.15,CHALK)
+    cable("Tail foam ridge",[(0,-.74,.90),(.52,-.88,.78),(1.02,-.70,.70)],.065,CREAM,r)
+
+    # Connected neck and cranial masses.  The proportions intentionally keep
+    # the head angular and forward-projecting rather than mascot-round.
+    sphere("Mane shoulder collar",(0,.12,3.42),.77,CREAM,r,scale=(1,.82,.58),segments=20)
+    sphere("Lion cranium",(0,-.02,4.08),.72,CHALK,r,scale=(.92,.82,1.02),segments=24)
+    sphere("Lion cheek mass",(0,-.27,3.94),.58,CHALK,r,scale=(.92,.60,.62),segments=20)
+    sphere("Lion forehead bridge",(0,-.42,4.31),.39,CHALK,r,scale=(.66,.52,.84),segments=18)
+
+    # Brow, small inset eyes, projected muzzle and separate jaws create the
+    # open fountain mouth visible in the CC0 side reference.
+    for side in (-1,1):
+        brow=sphere("Heavy brow ridge",(side*.24,-.58,4.29),.15,CHALK,r,
+                    scale=(1.20,.50,.34),segments=12)
+        brow.rotation_euler[2]=math.radians(side*10)
+        sphere("Inset lion eye",(side*.22,-.72,4.20),.055,INK,r,scale=(1,.46,.78),segments=12)
+        sphere("Nostril",(side*.14,-.995,4.08),.042,INK,r,scale=(.82,.45,.60),segments=10)
+    for side in (-1,1):
+        sphere("Lion whisker pad",(side*.19,-.74,4.01),.30,CHALK,r,
+               scale=(.74,.62,.62),segments=18)
+    sphere("Sculpted nose pad",(0,-.98,4.10),.22,CREAM,r,scale=(1,.48,.42),segments=16)
+    sphere("Deep open mouth cavity",(0,-.88,3.79),.32,INK,r,scale=(.92,.76,.36),segments=18)
+    sphere("Lower jaw and chin",(0,-.78,3.62),.36,CHALK,r,scale=(.92,.76,.34),segments=18)
+    cube("Upper jaw lip",(0,-.88,3.88),(.62,.22,.12),CHALK,r,rot=(math.radians(-5),0,0),edge=.055)
+    cube("Lower jaw lip",(0,-.87,3.70),(.58,.20,.10),CREAM,r,rot=(math.radians(5),0,0),edge=.045)
+
+    # Layered mane plates: broad, swept and white, with roots embedded in the
+    # cranium/shoulder.  This replaces the coral radial spikes that made the
+    # old model look like a bear mascot.
+    for row,(z,radius,count,height) in enumerate(((4.37,.63,9,.72),(3.96,.66,10,.66),(3.58,.60,8,.58))):
+        for index in range(count):
+            angle=index*math.pi/(count-1)
+            # The mane occupies the lateral/rear semicircle; roots overlap the
+            # cranium and collar by at least 8 cm in the model's relative scale.
+            relief_plate("Swept layered mane lock",
+                (math.cos(angle)*radius,math.sin(angle)*radius*.68+.03,z),
+                angle,.34 if row==0 else .30,height,.13,CREAM,shoulder=.34)
+    for side in (-1,1):
+        relief_plate("Jaw mane lock",(side*.53,-.28,3.72),0 if side>0 else math.pi,
+                     .28,.62,.13,CREAM,shoulder=.30)
+        # The Merlion's mane drops as long planar locks beside the jaw.  These
+        # strong side planes are essential in profile and suppress the round,
+        # mascot-like head silhouette of the earlier build.
+        for index in range(4):
+            relief_plate("Long side mane lock",
+                         (side*(.54+index*.055),.02+index*.12,4.18-index*.20),
+                         0 if side>0 else math.pi,.32,.92-index*.06,.14,CREAM,
+                         shoulder=.28)
+    for side in (-1,1):
+        sphere("Lion ear",(side*.46,-.02,4.57),.22,CHALK,r,scale=(.70,.48,1.15),segments=10)
+
+    # White water with a narrow blue core reads as translucent spray under the
+    # project's toon lighting and exits the actual mouth cavity.
+    stream=[(0,-1.02,3.79),(0,-1.48,3.64),(0,-2.05,3.10),(0,-2.62,2.12),(0,-2.96,1.02)]
+    cable("Fountain water body",stream,.065,CREAM,r)
+    cable("Fountain water blue core",[(.018,y,z+.018) for _,y,z in stream],.024,BLUE,r)
+    for x,y,z,s in ((-.16,-2.92,.86,.10),(.14,-2.94,.80,.085),(.33,-2.82,.76,.07)):
+        sphere("Landing spray",(x,y,z),s,BLUE,r,scale=(1.25,.50,.65),segments=8)
     return r
 
 

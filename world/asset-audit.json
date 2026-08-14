@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T06:52:20.505Z",
+  "generatedAt": "2026-08-14T11:07:21.457Z",
   "manifest": [
     {
       "name": "engineer",
@@ -486,16 +486,16 @@
       "url": "assets/harbour-statue-v2.glb",
       "scale": 2.302,
       "dimensions": {
-        "width": 6.676062016010285,
-        "height": 8.508278944969177,
-        "depth": 6.800183182239532
+        "width": 8.132281287955907,
+        "height": 11.079525367736817,
+        "depth": 9.607722244853306
       },
       "minY": 0,
-      "maxY": 8.508278944969177,
-      "requiredRadius": 4.764774269407436,
-      "triangles": 4314,
-      "materials": 1,
-      "meshCount": 1,
+      "maxY": 11.079525367736817,
+      "requiredRadius": 6.293693781887685,
+      "triangles": 32704,
+      "materials": 4,
+      "meshCount": 4,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -646,14 +646,14 @@
       "url": "assets/peranakan-house-v2.glb",
       "scale": 0.942,
       "dimensions": {
-        "width": 3.711481850624084,
-        "height": 6.207779975295066,
-        "depth": 6.1937603187561034
+        "width": 4.1634995906353,
+        "height": 6.283296835899352,
+        "depth": 6.84983036327362
       },
       "minY": 0,
-      "maxY": 6.207779975295066,
-      "requiredRadius": 3.6103242379912945,
-      "triangles": 12672,
+      "maxY": 6.283296835899352,
+      "requiredRadius": 4.007957860520913,
+      "triangles": 30596,
       "materials": 2,
       "meshCount": 2,
       "compressed": true,
@@ -1246,16 +1246,16 @@
       "url": "assets/lost-heritage/amber-mansions.glb",
       "scale": 1,
       "dimensions": {
-        "width": 18.5700000166893,
-        "height": 9.290513491630554,
-        "depth": 15
+        "width": 18.65506576001644,
+        "height": 8.788425040245055,
+        "depth": 15.341667140516057
       },
-      "minY": 0,
-      "maxY": 9.290513491630554,
-      "requiredRadius": 11.935712176278386,
-      "triangles": 8200,
-      "materials": 4,
-      "meshCount": 132,
+      "minY": -4.7683715642676816e-8,
+      "maxY": 8.78842499256134,
+      "requiredRadius": 12.076611995515629,
+      "triangles": 12656,
+      "materials": 3,
+      "meshCount": 425,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1367,7 +1367,7 @@
   "failures": [],
   "summary": {
     "assets": 68,
-    "triangles": 480578,
+    "triangles": 531348,
     "unreferenced": 0,
     "assetsOverBudget": 0,
     "materialsOverBudget": 0,
