@@ -7,8 +7,14 @@ const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const gameRoot = path.resolve(siteRoot, "..");
 const manifestPath = path.join(siteRoot, "app", "data", "catalogue-manifest.json");
 const write = process.argv.includes("--write");
+const acceptPreviews = process.argv.includes("--accept-previews");
+const syncWorldMetrics = process.argv.includes("--sync-world-metrics");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 const changes = [];
+const worldAudit = syncWorldMetrics
+  ? JSON.parse(await readFile(path.join(gameRoot, "world", "asset-audit.json"), "utf8"))
+  : null;
+const auditBySourcePath = new Map((worldAudit?.manifest ?? []).map((entry) => [entry.url, entry]));
 
 async function integrity(filePath) {
   const bytes = await readFile(filePath);
@@ -19,6 +25,7 @@ async function integrity(filePath) {
 }
 
 for (const asset of manifest.assets) {
+  const previewSourcePath = asset.cardPreview.sourcePath;
   const model = await integrity(path.join(gameRoot, asset.model.sourcePath));
   const modelChanged = model.sha256 !== asset.model.sha256 || model.byteLength !== asset.model.byteLength;
   if (modelChanged) {
@@ -38,14 +45,46 @@ for (const asset of manifest.assets) {
 
   }
 
+  if (syncWorldMetrics && modelChanged) {
+    const audit = auditBySourcePath.get(asset.model.sourcePath);
+    if (!audit) throw new Error(`${asset.id}: missing world-audit entry for ${asset.model.sourcePath}`);
+    const scale = audit.scale || 1;
+    const metrics = {
+      triangles: audit.triangles,
+      materials: audit.materials,
+      meshCount: audit.meshCount,
+      compressed: audit.compressed,
+      dimensions: {
+        width: audit.dimensions.width / scale,
+        height: audit.dimensions.height / scale,
+        depth: audit.dimensions.depth / scale,
+      },
+    };
+    if (JSON.stringify(metrics) !== JSON.stringify(asset.metrics)) {
+      changes.push(`${asset.id}: model metrics synchronized from world audit`);
+      asset.metrics = metrics;
+    }
+  }
+
   if (asset.cardPreview.sourceModelSha256 !== asset.model.sha256) {
-    changes.push(`${asset.id}: Card Preview invalidated by model integrity change`);
-    asset.cardPreview.status = "missing";
-    asset.cardPreview.sourcePath = null;
-    asset.cardPreview.publicPath = null;
-    asset.cardPreview.sourceModelSha256 = asset.model.sha256;
-    asset.cardPreview.sha256 = null;
-    asset.cardPreview.contentType = null;
+    if (acceptPreviews && previewSourcePath) {
+      const preview = await integrity(path.join(gameRoot, previewSourcePath));
+      changes.push(`${asset.id}: regenerated Card Preview accepted for current model`);
+      asset.cardPreview.status = "legacy";
+      asset.cardPreview.sourcePath = previewSourcePath;
+      asset.cardPreview.publicPath = null;
+      asset.cardPreview.sourceModelSha256 = asset.model.sha256;
+      asset.cardPreview.sha256 = preview.sha256;
+      asset.cardPreview.contentType = "image/png";
+    } else {
+      changes.push(`${asset.id}: Card Preview invalidated by model integrity change`);
+      asset.cardPreview.status = "missing";
+      asset.cardPreview.sourcePath = null;
+      asset.cardPreview.publicPath = null;
+      asset.cardPreview.sourceModelSha256 = asset.model.sha256;
+      asset.cardPreview.sha256 = null;
+      asset.cardPreview.contentType = null;
+    }
   }
 
   if (asset.cardPreview.sourcePath) {

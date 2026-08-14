@@ -307,14 +307,14 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 1664,
+      "triangles": 4528,
       "materials": 4,
-      "meshCount": 97,
+      "meshCount": 336,
       "compressed": true,
       "dimensions": {
         "width": 12.750000023841858,
         "height": 7.180071020126343,
-        "depth": 22.25
+        "depth": 23.275
       }
     }
   },
@@ -336,14 +336,14 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 1400,
+      "triangles": 2848,
       "materials": 4,
-      "meshCount": 76,
+      "meshCount": 141,
       "compressed": true,
       "dimensions": {
         "width": 19.099999952316285,
-        "height": 11.57999997973442,
-        "depth": 25.099999952316285
+        "height": 11.010000027418137,
+        "depth": 25.209999996423722
       }
     }
   },
