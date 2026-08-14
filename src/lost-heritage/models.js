@@ -159,6 +159,12 @@ function comcentre(meta) {
   for (let floor = 0; floor < 31; floor += 1) {
     box(glazing, [6.3, 0.34, 0.16], floor % 2 ? m.glass : m.dark, [0, 1.2 + floor * 0.64, 1.5], undefined, `ribbon-${floor + 1}`);
   }
+  const rearGlazing = component(root, 'rear-window-ribbons');
+  for (let floor = 0; floor < 16; floor += 1) {
+    const y = 1.5 + floor * 1.22;
+    box(rearGlazing, [5.1, .42, .16], floor % 2 ? m.glass : m.dark,
+      [0, y, -1.94], undefined, `rear-ribbon-${floor + 1}`);
+  }
   const cores = component(root, 'service-cores');
   box(cores, [1.1, 21, 3.5], m.secondary, [-3.05, 10.6, -0.15], undefined, 'east-core');
   box(cores, [1.1, 21, 3.5], m.secondary, [3.05, 10.6, -0.15], undefined, 'west-core');
@@ -167,6 +173,8 @@ function comcentre(meta) {
   const podium = component(root, 'equipment-podium');
   box(podium, [10.5, 3.6, 5.4], m.secondary, [0, 1.8, -4.2], undefined, 'podium-mass');
   repeatedBoxes(podium, 12, [0.62, 0.12, 0.16], m.dark, [-4.45, 2.25, -1.45], [0.8, 0, 0], 'podium-louvre');
+  repeatedBoxes(podium, 5, [1.25, 1.65, .18], m.dark, [-3.6, .9, -6.94], [1.8, 0, 0], 'rear-loading-bay');
+  box(podium, [9.6, .24, 1.0], m.primary, [0, 2.7, -7.02], undefined, 'rear-service-canopy');
   const crown = component(root, 'roof-crown');
   box(crown, [7.3, 2.1, 3.1], m.primary, [0, 22.8, 0.1], undefined, 'telecom-crown');
   const dishes = component(root, 'microwave-dishes');
@@ -194,6 +202,10 @@ function nationalTheatre(meta) {
   extrudedShape(roof, [[-6,0],[6,0],[4.8,2],[-4.3,2.8]], 8, m.primary, [0,8,-2], [0,0,0], 'folded-roof');
   const auditorium = component(root, 'auditorium-volume');
   box(auditorium, [10.5,5.7,6.8], m.dark, [0,4,-2.3], undefined, 'auditorium');
+  const backstage = component(root, 'rear-stage-services');
+  repeatedBoxes(backstage, 4, [1.55, 2.6, .18], m.accent, [-3.6, 1.3, -5.74], [2.4, 0, 0], 'loading-door');
+  repeatedBoxes(backstage, 7, [.72, .48, .16], m.dark, [-4.15, 4.25, -5.76], [1.38, 0, 0], 'fly-tower-vent');
+  box(backstage, [10.8, .24, 1.1], m.primary, [0, 5.95, -5.82], undefined, 'rear-rain-screen');
   const galleries = component(root, 'side-colonnade');
   [-1,1].forEach(side => repeatedBoxes(galleries, 8, [.18,3.1,.18], m.primary, [side*6.5,1.55,-3.5], [0,0,.75], `gallery-${side}`));
   box(galleries,[14,.18,5.9],m.primary,[0,3.2,-2.1],undefined,'gallery-slab');
@@ -216,6 +228,11 @@ function nationalLibrary(meta) {
   const court = component(root,'courtyard-void'); box(court,[7.8,.18,6],m.extra,[-2.6,.08,3.4],undefined,'courtyard-floor');
   const windows = component(root,'window-bands');
   for(let floor=0;floor<3;floor++) repeatedBoxes(windows,12,[.65,.64,.18],m.glass,[-6.2,1.35+floor*1.65,.85],[1.05,0,0],`main-window-${floor}`);
+  const rearWindows = component(root,'rear-reading-room-windows');
+  for(let floor=0;floor<3;floor++) repeatedBoxes(rearWindows,10,[.68,.62,.18],m.glass,
+    [-6.0,1.35+floor*1.65,-3.82],[1.15,0,0],`rear-window-${floor}`);
+  repeatedBoxes(rearWindows,4,[.72,.66,.18],m.glass,[3.75,2.0,-3.92],[0,1.25,0],'rear-cross-wing-window');
+  box(rearWindows,[1.1,2.2,.20],m.dark,[5.4,1.1,-3.94],undefined,'rear-fire-exit');
   const porch=component(root,'entrance-porch'); box(porch,[8,.35,3.6],m.secondary,[-2.3,3.5,3.4],undefined,'canopy');
   const piers=component(root,'brick-porch-piers'); repeatedBoxes(piers,5,[.55,3.5,.55],m.primary,[-5.1,1.75,4.5],[1.4,0,0],'porch-pier');
   const lattice=component(root,'end-lattice-screen');
@@ -235,6 +252,11 @@ function vanKleef(meta){
   const screen=component(root,'perforated-screen');
   for(let row=0;row<5;row++) repeatedBoxes(screen,16,[.32,.25,.12],m.dark,[-8,1.1+row*.52,.68],[.78,0,0],`perforation-${row}`);
   const openings=component(root,'clerestory-openings'); repeatedBoxes(openings,18,[.4,.45,.15],m.glass,[-8.3,3.15,.68],[.82,0,0],'clerestory');
+  const rearService=component(root,'rear-aquarium-services');
+  repeatedBoxes(rearService,12,[.58,.48,.16],m.glass,[-7.3,3.1,-3.64],[1.12,0,0],'rear-clerestory');
+  repeatedBoxes(rearService,5,[1.15,1.75,.18],m.dark,[-6.7,.9,-3.66],[2.65,0,0],'filter-room-door');
+  repeatedBoxes(rearService,4,[.95,.42,.18],m.accent,[3.9,4.75,-3.34],[1.2,0,0],'rear-plant-vent');
+  box(rearService,[17,.22,1.0],m.secondary,[-.6,2.15,-3.78],undefined,'rear-service-canopy');
   const stair=component(root,'broad-entry-stair'); for(let i=0;i<6;i++) box(stair,[5.4,.18,1],m.accent,[5.7,.12+i*.24,3.5+i*.45],undefined,`step-${i}`);
   const windows=component(root,'right-window-bands'); for(let y=0;y<2;y++) repeatedBoxes(windows,4,[.72,.7,.16],m.glass,[4.05,3.8+y*1.1,1.55],[1.05,0,0],`window-${y}`);
   const roofs=component(root,'flat-roof-slabs'); box(roofs,[15.5,.25,4.7],m.white,[-1,4.12,-1.5]); box(roofs,[5.8,.25,5.2],m.white,[5.7,6.92,-.9]);
@@ -299,6 +321,11 @@ function tanglinShoppingCentre(meta){
   box(arcade,[16.7,.25,1.7],m.dark,[0,2.5,2.65],undefined,'arcade-soffit');
   const windows=component(root,'square-window-bays');
   for(let row=0;row<4;row++) repeatedBoxes(windows,9,[.82,.68,.16],m.glass,[-3.7,5.3+row*1.25,1.9],[1.25,0,0],`window-row-${row}`);
+  const rearElevation=component(root,'rear-service-elevation');
+  for(let row=0;row<4;row++) repeatedBoxes(rearElevation,9,[.82,.68,.16],m.glass,
+    [-3.7,5.3+row*1.25,-2.68],[1.25,0,0],`rear-window-row-${row}`);
+  repeatedBoxes(rearElevation,6,[1.45,1.8,.18],m.dark,[-6.3,1.0,-2.74],[2.45,0,0],'loading-bay');
+  box(rearElevation,[16.2,.22,1.0],m.secondary,[0,2.7,-2.84],undefined,'rear-loading-canopy');
   const ledges=component(root,'horizontal-ledges'); for(let i=0;i<5;i++) box(ledges,[13,.16,.65],m.white,[1.3,4.6+i*1.3,2.15],undefined,`ledge-${i}`);
   const clerestory=component(root,'clerestory-band'); box(clerestory,[16.4,.65,.16],m.dark,[0,3.6,2.78]);
   const stairs=component(root,'entrance-stairs'); for(let i=0;i<5;i++) box(stairs,[5,.17,.55],m.secondary,[2,.12+i*.18,3.5+i*.35],undefined,`entry-step-${i}`);
@@ -325,6 +352,12 @@ function amberMansions(meta){
   const penangRoof=component(root,'penang-roof'); roofPair(penangRoof,4,13,6.7,m.accent,-4.5,.34,'lane-roof');
   const windows=component(root,'upper-window-rhythm');
   for(let y=0;y<2;y++) repeatedBoxes(windows,9,[.62,.82,.18],m.dark,[-8,3.2+y*1.55,2.08],[1.5,0,0],`upper-window-${y}`);
+  const rearWindows=component(root,'rear-window-rhythm');
+  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,9,[.62,.82,.18],m.dark,
+    [-8,3.2+y*1.55,-2.08],[1.5,0,0],`rear-orchard-window-${y}`);
+  for(let y=0;y<2;y++) repeatedBoxes(rearWindows,7,[.18,.82,.62],m.dark,
+    [7.96,3.2+y*1.55,-9.2],[0,0,1.5],`rear-lane-window-${y}`);
+  repeatedBoxes(rearWindows,8,[1.05,1.5,.16],m.dark,[-7.2,.9,-2.10],[1.7,0,0],'rear-service-bay');
   const shops=component(root,'shopfront-insets'); repeatedBoxes(shops,10,[1.05,1.5,.16],m.dark,[-9,.9,2.15],[1.55,0,0],'shopfront');
   return finalize(root,meta);
 }
@@ -342,6 +375,13 @@ function euCourt(meta){
   for(let i=0;i<6;i++) arch(arcades,7.95,.1,-1.3-i*1.55,1.12,2.4,.45,m.secondary,`hill-arch-${i}`);
   const windows=component(root,'window-grids');
   for(let row=0;row<3;row++) repeatedBoxes(windows,8,[.58,.72,.17],m.dark,[-7.6,3.25+row*1.3,2.33],[1.55,0,0],`window-${row}`);
+  const rearWindows=component(root,'rear-window-grids');
+  for(let row=0;row<3;row++) repeatedBoxes(rearWindows,8,[.58,.72,.17],m.dark,
+    [-7.6,3.25+row*1.3,-2.33],[1.55,0,0],`rear-window-${row}`);
+  for(let row=0;row<4;row++) repeatedBoxes(rearWindows,3,[.68,.78,.18],m.glass,
+    [3.55,3.1+row*1.35,-2.64],[1.55,0,0],`rear-corner-window-${row}`);
+  repeatedBoxes(rearWindows,5,[.18,1.8,1.05],m.secondary,
+    [7.96,.9,-8.0],[0,0,1.65],'rear-hill-street-service-bay');
   const cornerWindows=component(root,'corner-window-bays');
   for(let row=0;row<4;row++) repeatedBoxes(cornerWindows,3,[.68,.78,.18],m.glass,[3.55,3.1+row*1.35,3.02],[1.55,0,0],`corner-window-${row}`);
   const ledges=component(root,'projecting-ledges'); for(let i=0;i<3;i++) box(ledges,[15.5,.18,.5],m.secondary,[-1.5,2.7+i*1.7,2.38],undefined,`ledge-${i}`);
@@ -355,6 +395,11 @@ function alkaffArcade(meta){
   const passage=component(root,'central-passage'); box(passage,[3.4,4.5,8],m.dark,[0,2.25,.3]);
   const front=component(root,'waterfront-arches');
   for(let i=0;i<9;i++) arch(front,-7.6+i*1.9,.1,3.86,1.4,3.1,.48,m.secondary,`front-arch-${i}`);
+  const rear=component(root,'rear-arcade-elevation');
+  for(let i=0;i<9;i++) arch(rear,-7.6+i*1.9,.1,-3.86,1.4,3.1,.48,m.secondary,`rear-arch-${i}`);
+  for(let floor=0;floor<2;floor++) repeatedBoxes(rear,9,[1.2,.68,.18],m.glass,
+    [-7.6,4.05+floor*1.4,-3.86],[1.9,0,0],`rear-gallery-window-${floor}`);
+  box(rear,[3.1,4.5,.22],m.dark,[0,2.25,-3.92],undefined,'rear-passage-portal');
   const sideArcades=component(root,'side-gallery-arches');
   for(let i=0;i<4;i++){arch(sideArcades,-9.16,.1,2.2-i*1.7,1.25,2.8,.4,m.secondary,`left-${i}`);arch(sideArcades,9.16,.1,2.2-i*1.7,1.25,2.8,.4,m.secondary,`right-${i}`)}
   const domes=component(root,'onion-domes');

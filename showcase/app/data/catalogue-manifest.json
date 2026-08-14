@@ -236,15 +236,15 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "fbf5a2e426a6b3f7294927a2e3e98637f1405036ba906ab0fbb45d3daa2ce7a8",
-        "byteLength": 14648,
+        "sha256": "511990bd3d4527f31055fb54e9b6620119fad5c0e34f42bd5d245398b16b5ebd",
+        "byteLength": 22188,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "fbf5a2e426a6b3f7294927a2e3e98637f1405036ba906ab0fbb45d3daa2ce7a8",
+        "sourceModelSha256": "511990bd3d4527f31055fb54e9b6620119fad5c0e34f42bd5d245398b16b5ebd",
         "sha256": null,
         "contentType": null
       },
@@ -732,17 +732,17 @@
         "file": "hdb-voiddeck-v2.glb",
         "sourcePath": "assets/hdb-voiddeck-v2.glb",
         "publicPath": "/models/hdb-voiddeck-v2.glb",
-        "sha256": "68f1c9884c100ddcd58d8f9ff6713e8df3a0c0583ef67d468eecae3c10196efb",
-        "byteLength": 45592,
+        "sha256": "61fdfda35c24126b8fd5c72de60059721a0efe79854df2f01c7198735898ddd5",
+        "byteLength": 71172,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/hdb-voiddeck-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "68f1c9884c100ddcd58d8f9ff6713e8df3a0c0583ef67d468eecae3c10196efb",
-        "sha256": "23b44d6c839d6301c0ff9827b7980c4e02a4bcabf88c5c909cab9745c8fc3f0a",
-        "contentType": "image/png"
+        "sourceModelSha256": "61fdfda35c24126b8fd5c72de60059721a0efe79854df2f01c7198735898ddd5",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -836,15 +836,15 @@
         "file": "shophouse-v2.glb",
         "sourcePath": "assets/shophouse-v2.glb",
         "publicPath": "/models/shophouse-v2.glb",
-        "sha256": "8a9c0eaf82911979c0b3f655ed210a0d3cd9e11357891135ffc8e69fb8dd81c1",
-        "byteLength": 18884,
+        "sha256": "34ad57f73a0e33f3c7fda992c884beb7900241856c8035b07fd0c80525056294",
+        "byteLength": 20264,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "8a9c0eaf82911979c0b3f655ed210a0d3cd9e11357891135ffc8e69fb8dd81c1",
+        "sourceModelSha256": "34ad57f73a0e33f3c7fda992c884beb7900241856c8035b07fd0c80525056294",
         "sha256": null,
         "contentType": null
       },
@@ -1344,15 +1344,15 @@
         "file": "airport-terminal-v2.glb",
         "sourcePath": "assets/airport-terminal-v2.glb",
         "publicPath": "/models/airport-terminal-v2.glb",
-        "sha256": "af7107762965d249d78929b93a667a78c2ce439571d97de55d46eaf46b8aa6b3",
-        "byteLength": 29948,
+        "sha256": "f588b99692f63f39720b911997e3b349c187d1d7fdeb18d3d957796d6ec94ed7",
+        "byteLength": 33456,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "af7107762965d249d78929b93a667a78c2ce439571d97de55d46eaf46b8aa6b3",
+        "sourceModelSha256": "f588b99692f63f39720b911997e3b349c187d1d7fdeb18d3d957796d6ec94ed7",
         "sha256": null,
         "contentType": null
       },
@@ -1546,17 +1546,17 @@
         "file": "mamashop-v2.glb",
         "sourcePath": "assets/mamashop-v2.glb",
         "publicPath": "/models/mamashop-v2.glb",
-        "sha256": "29e1c307d17f05d7a5f157a12ff27f9a87b47891a35ad9ac4559dcf3d2adf460",
-        "byteLength": 11660,
+        "sha256": "4b70b2b0e87b55436a0218ddcd3a0366953c3ad05ee52b36ea9533e55ae5dc33",
+        "byteLength": 32476,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/mamashop-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "29e1c307d17f05d7a5f157a12ff27f9a87b47891a35ad9ac4559dcf3d2adf460",
-        "sha256": "0b03858bff973c327617311329914d5c6a5ce7c60262f75d18224c0148cf075c",
-        "contentType": "image/png"
+        "sourceModelSha256": "4b70b2b0e87b55436a0218ddcd3a0366953c3ad05ee52b36ea9533e55ae5dc33",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1742,15 +1742,15 @@
         "file": "lost-heritage/alkaff-arcade.glb",
         "sourcePath": "assets/lost-heritage/alkaff-arcade.glb",
         "publicPath": "/models/lost-heritage/alkaff-arcade.glb",
-        "sha256": "ddcbace04d15b9d6504258f194eb70798bcd283cb85d742a7fad9668bc0f65c0",
-        "byteLength": 144588,
+        "sha256": "9ffc5d242b68a12176b3a84c02a71c724ab61fca09cf601886c6dc4a8e700697",
+        "byteLength": 201396,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "ddcbace04d15b9d6504258f194eb70798bcd283cb85d742a7fad9668bc0f65c0",
+        "sourceModelSha256": "9ffc5d242b68a12176b3a84c02a71c724ab61fca09cf601886c6dc4a8e700697",
         "sha256": null,
         "contentType": null
       },
@@ -1846,15 +1846,15 @@
         "file": "lost-heritage/amber-mansions.glb",
         "sourcePath": "assets/lost-heritage/amber-mansions.glb",
         "publicPath": "/models/lost-heritage/amber-mansions.glb",
-        "sha256": "a1072448ba48596f9116d3a5827cec4026103567bb661af7c0584d4dd8e99061",
-        "byteLength": 113856,
+        "sha256": "e27fe11b35b71aeddef3cad125d1b510d5b410a3cec64a24d8ba2522b4ba39c8",
+        "byteLength": 150944,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "a1072448ba48596f9116d3a5827cec4026103567bb661af7c0584d4dd8e99061",
+        "sourceModelSha256": "e27fe11b35b71aeddef3cad125d1b510d5b410a3cec64a24d8ba2522b4ba39c8",
         "sha256": null,
         "contentType": null
       },
@@ -2054,15 +2054,15 @@
         "file": "lost-heritage/eu-court.glb",
         "sourcePath": "assets/lost-heritage/eu-court.glb",
         "publicPath": "/models/lost-heritage/eu-court.glb",
-        "sha256": "d0949670999e28b10982208d1d55121b3fa22462697b89a47b137d66e764c388",
-        "byteLength": 105448,
+        "sha256": "064e6daa67afc44a52b6ccb0bfce82a70ea510778d8ae848f39d79fedd49f5e6",
+        "byteLength": 143720,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "d0949670999e28b10982208d1d55121b3fa22462697b89a47b137d66e764c388",
+        "sourceModelSha256": "064e6daa67afc44a52b6ccb0bfce82a70ea510778d8ae848f39d79fedd49f5e6",
         "sha256": null,
         "contentType": null
       },
@@ -2262,15 +2262,15 @@
         "file": "lost-heritage/national-library-stamford.glb",
         "sourcePath": "assets/lost-heritage/national-library-stamford.glb",
         "publicPath": "/models/lost-heritage/national-library-stamford.glb",
-        "sha256": "4651666a05927bda656e92bc85f8ddea1479acfd9e6cd338289089feb1ceb760",
-        "byteLength": 80496,
+        "sha256": "2494cc5e7f61fa19d65ef0b13236dba39c6b2c47c652d8416698337c643d7937",
+        "byteLength": 113496,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "4651666a05927bda656e92bc85f8ddea1479acfd9e6cd338289089feb1ceb760",
+        "sourceModelSha256": "2494cc5e7f61fa19d65ef0b13236dba39c6b2c47c652d8416698337c643d7937",
         "sha256": null,
         "contentType": null
       },
@@ -2366,15 +2366,15 @@
         "file": "lost-heritage/national-theatre.glb",
         "sourcePath": "assets/lost-heritage/national-theatre.glb",
         "publicPath": "/models/lost-heritage/national-theatre.glb",
-        "sha256": "a395d998868173bfaff34b45a74f66a01d72a593104768c95f98f53da10fa8a1",
-        "byteLength": 39292,
+        "sha256": "84ae6cb2dba164bc5cbf9234fcf995f154f36a8b10dddd19d5fc527afbf7bddb",
+        "byteLength": 50592,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "a395d998868173bfaff34b45a74f66a01d72a593104768c95f98f53da10fa8a1",
+        "sourceModelSha256": "84ae6cb2dba164bc5cbf9234fcf995f154f36a8b10dddd19d5fc527afbf7bddb",
         "sha256": null,
         "contentType": null
       },
@@ -2574,15 +2574,15 @@
         "file": "lost-heritage/comcentre.glb",
         "sourcePath": "assets/lost-heritage/comcentre.glb",
         "publicPath": "/models/lost-heritage/comcentre.glb",
-        "sha256": "9c12b6146de9a6df1a8bf6677bf5523548b44c1edb67c9e18dfe7793a7329f75",
-        "byteLength": 68804,
+        "sha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
+        "byteLength": 88960,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "9c12b6146de9a6df1a8bf6677bf5523548b44c1edb67c9e18dfe7793a7329f75",
+        "sourceModelSha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
         "sha256": null,
         "contentType": null
       },
@@ -2782,15 +2782,15 @@
         "file": "lost-heritage/tanglin-shopping-centre.glb",
         "sourcePath": "assets/lost-heritage/tanglin-shopping-centre.glb",
         "publicPath": "/models/lost-heritage/tanglin-shopping-centre.glb",
-        "sha256": "d511291cf341b28ad3c3863723303c6259e81f3635e285e66598522e016c41c3",
-        "byteLength": 66092,
+        "sha256": "d947ac22f5b4428f5d82355ae18a46b119244f2c085a903c5a91c520a1ef4603",
+        "byteLength": 106300,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "d511291cf341b28ad3c3863723303c6259e81f3635e285e66598522e016c41c3",
+        "sourceModelSha256": "d947ac22f5b4428f5d82355ae18a46b119244f2c085a903c5a91c520a1ef4603",
         "sha256": null,
         "contentType": null
       },
@@ -2990,15 +2990,15 @@
         "file": "lost-heritage/van-kleef-aquarium.glb",
         "sourcePath": "assets/lost-heritage/van-kleef-aquarium.glb",
         "publicPath": "/models/lost-heritage/van-kleef-aquarium.glb",
-        "sha256": "6bb0ce57e3879508311e777806e2d0544030d71de6395793e6a0c57078afa705",
-        "byteLength": 116044,
+        "sha256": "b7931a8c9d591f761ab3f9c0d311342c4ff2878e25fd3df01ab49b644f2daed0",
+        "byteLength": 136676,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "6bb0ce57e3879508311e777806e2d0544030d71de6395793e6a0c57078afa705",
+        "sourceModelSha256": "b7931a8c9d591f761ab3f9c0d311342c4ff2878e25fd3df01ab49b644f2daed0",
         "sha256": null,
         "contentType": null
       },
@@ -3094,17 +3094,17 @@
         "file": "condo-bg-v2.glb",
         "sourcePath": "assets/condo-bg-v2.glb",
         "publicPath": "/models/condo-bg-v2.glb",
-        "sha256": "c22808765687c6f2feca146e2f658b67fa6b40c1fa37b8fde67589db2fc056aa",
-        "byteLength": 11196,
+        "sha256": "beefbc897edf8eee35c5a981e05fdd6674426807e4c4e2609076000783f63a84",
+        "byteLength": 18080,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/condo-bg-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "c22808765687c6f2feca146e2f658b67fa6b40c1fa37b8fde67589db2fc056aa",
-        "sha256": "479eefea2c6280d779d54101b7f55b27ae7aa5f17c23c5ad749ac96a838a3846",
-        "contentType": "image/png"
+        "sourceModelSha256": "beefbc897edf8eee35c5a981e05fdd6674426807e4c4e2609076000783f63a84",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3192,15 +3192,15 @@
         "file": "hdb-call-v2.glb",
         "sourcePath": "assets/hdb-call-v2.glb",
         "publicPath": "/models/hdb-call-v2.glb",
-        "sha256": "3cda318fada759d78efe455a4b0fa4ff5f62d1c3b6546075a113ba0050d744f0",
-        "byteLength": 11944,
+        "sha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
+        "byteLength": 31872,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "3cda318fada759d78efe455a4b0fa4ff5f62d1c3b6546075a113ba0050d744f0",
+        "sourceModelSha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
         "sha256": null,
         "contentType": null
       },
@@ -3296,17 +3296,17 @@
         "file": "hdb-bg-v2.glb",
         "sourcePath": "assets/hdb-bg-v2.glb",
         "publicPath": "/models/hdb-bg-v2.glb",
-        "sha256": "3cda318fada759d78efe455a4b0fa4ff5f62d1c3b6546075a113ba0050d744f0",
-        "byteLength": 11944,
+        "sha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
+        "byteLength": 31872,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/hdb-bg-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "3cda318fada759d78efe455a4b0fa4ff5f62d1c3b6546075a113ba0050d744f0",
-        "sha256": "fff1a2fefc8b29fcd27c8deb2766f17229415ad9e198b1c7c85ed2353032595c",
-        "contentType": "image/png"
+        "sourceModelSha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3596,17 +3596,17 @@
         "file": "landed-bg-v2.glb",
         "sourcePath": "assets/landed-bg-v2.glb",
         "publicPath": "/models/landed-bg-v2.glb",
-        "sha256": "caa04ebcc8c4ec0622cd027dd4f332ec0dc71c9766f581e89a7bedffada67679",
-        "byteLength": 6212,
+        "sha256": "5033b47efa2f99fc1e64f992b1b700a00c666076f5e1f1ef05fa7a8104ab54a3",
+        "byteLength": 7748,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/landed-bg-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "caa04ebcc8c4ec0622cd027dd4f332ec0dc71c9766f581e89a7bedffada67679",
-        "sha256": "c054cbd5e23599122b627052c6004fa49de8a5007e57c42fa79f7947adc97b73",
-        "contentType": "image/png"
+        "sourceModelSha256": "5033b47efa2f99fc1e64f992b1b700a00c666076f5e1f1ef05fa7a8104ab54a3",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3694,17 +3694,17 @@
         "file": "condo-marina-v2.glb",
         "sourcePath": "assets/condo-marina-v2.glb",
         "publicPath": "/models/condo-marina-v2.glb",
-        "sha256": "ba5d4649e48163ad18405768624f0c4463b723a5c75fbfb4b08bef9eaee6767a",
-        "byteLength": 25260,
+        "sha256": "8e0324c6101b611a7f04de25d3fe43602c443e1a57b831ab2bddca0933c41964",
+        "byteLength": 69708,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/condo-marina-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "ba5d4649e48163ad18405768624f0c4463b723a5c75fbfb4b08bef9eaee6767a",
-        "sha256": "6281dc32fc25a66afb54ba3187043d1ba8d62ec4c4cb0f58a9fa0e6ef23ea6bf",
-        "contentType": "image/png"
+        "sourceModelSha256": "8e0324c6101b611a7f04de25d3fe43602c443e1a57b831ab2bddca0933c41964",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3792,17 +3792,17 @@
         "file": "pointblock-call-v2.glb",
         "sourcePath": "assets/pointblock-call-v2.glb",
         "publicPath": "/models/pointblock-call-v2.glb",
-        "sha256": "f2ad860bb53b6f5899b22ea48afcfcdb1735e42b8287db87cfecbea42460381e",
-        "byteLength": 21556,
+        "sha256": "bc5ff0d7638da9b0085b7ea235a4dd24f542ab1fc6c23e3cbdede75d36f8b9ea",
+        "byteLength": 73828,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/pointblock-call-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "f2ad860bb53b6f5899b22ea48afcfcdb1735e42b8287db87cfecbea42460381e",
-        "sha256": "1fffa7700cf2fab3e5c436780c3aeb0927b75272110b83ffe21cda7aaf74cb90",
-        "contentType": "image/png"
+        "sourceModelSha256": "bc5ff0d7638da9b0085b7ea235a4dd24f542ab1fc6c23e3cbdede75d36f8b9ea",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3994,17 +3994,17 @@
         "file": "condo-holland-v2.glb",
         "sourcePath": "assets/condo-holland-v2.glb",
         "publicPath": "/models/condo-holland-v2.glb",
-        "sha256": "b41d447a92b01392e81c41392674c6303e4ba5854684e89ba8e1719ce91f7921",
-        "byteLength": 27200,
+        "sha256": "397b88ac76b98af56e5df4fd28a568759192510ec2626d1627292647ac69f5a4",
+        "byteLength": 72352,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/condo-holland-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "b41d447a92b01392e81c41392674c6303e4ba5854684e89ba8e1719ce91f7921",
-        "sha256": "dfb9f17b29db55ab24142f59258cdfba9efce8b426d6127b498e816bf5b2a7c0",
-        "contentType": "image/png"
+        "sourceModelSha256": "397b88ac76b98af56e5df4fd28a568759192510ec2626d1627292647ac69f5a4",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4386,15 +4386,15 @@
         "file": "national-school-v2.glb",
         "sourcePath": "assets/national-school-v2.glb",
         "publicPath": "/models/national-school-v2.glb",
-        "sha256": "619b4ddee16b61c2bbc1ec60cdf75acea7c8a2058bfc378c8946de680560ed60",
-        "byteLength": 21072,
+        "sha256": "997b933325041938051a9569b6d22214cec60402caba3415c563fdfdc23090e3",
+        "byteLength": 21692,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "619b4ddee16b61c2bbc1ec60cdf75acea7c8a2058bfc378c8946de680560ed60",
+        "sourceModelSha256": "997b933325041938051a9569b6d22214cec60402caba3415c563fdfdc23090e3",
         "sha256": null,
         "contentType": null
       },

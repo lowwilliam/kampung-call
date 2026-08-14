@@ -54,6 +54,17 @@ def build_airport_terminal():
     for x in (-2.65, 0, 2.65):
         cube("Jet bridge", (x, -2.25, 1.05), (.72, 2.05, .58), TEAL2, root, edge=.10)
         cube("Gate glass", (x, -3.26, 1.05), (.48, .08, .34), GLASS, root, edge=.025)
+    # Landside/service elevation inferred from the terminal massing.  The
+    # source view did not establish an exact rear, but a blank wall failed the
+    # orbit gate and made the hall read like a theatre flat.
+    for x in (-3.15, -2.10, -1.05, 0, 1.05, 2.10, 3.15):
+        cube("Rear terminal bay", (x, 2.33, 1.58), (.82, .10, 1.32), GLASS, root, edge=.035)
+        cube("Rear terminal mullion", (x, 2.40, 1.58), (.08, .08, 1.52), METAL, root, edge=.010)
+    for x in (-2.6, 0, 2.6):
+        cube("Rear service door", (x, 2.42, .76), (.85, .12, 1.22), TEAL, root, edge=.045)
+        cube("Rear door canopy", (x, 2.72, 1.55), (1.35, .70, .14), CHALK, root,
+             rot=(math.radians(7), 0, 0), edge=.045)
+    cube("Rear baggage canopy", (0, 3.02, .62), (7.8, 1.25, .18), CONCRETE, root, edge=.07)
     label("AIRPORT", (0, -1.44, 2.55), .42, TEAL, root)
     label("ISLAND AIRPORT", (0, -1.45, 2.10), .18, CORAL, root)
     return root
@@ -187,6 +198,16 @@ def build_primary_school():
         cyl("Flag pole", (x, -2.0, 1.15), .045, 2.2, METAL, root, 12)
     cube("Island flag", (-2.38, -2.0, 1.88), (.72, .05, .42), RED, root, edge=.015)
     cube("Play court", (0, 1.82, .28), (4.7, 1.55, .08), BLUE, root, edge=.025)
+    # Quieter classroom/service elevation on the inferred back, with a fire
+    # stair landing and ventilation cues instead of an unbroken slab.
+    for z in (.85, 1.62, 2.39):
+        cube("Rear corridor band", (0, 1.98, z-.18), (5.72, .12, .12), TEAL2, root, edge=.025)
+        for x in (-2.4, -1.2, 0, 1.2, 2.4):
+            cube("Rear classroom window", (x, 1.99, z+.20), (.72, .08, .36), GLASS, root, edge=.025)
+    cube("Rear stair core", (3.45, 1.35, 1.66), (1.15, 1.45, 2.95), CHALK, root, edge=.10)
+    for z in (.82, 1.55, 2.28):
+        cube("Stair core vent", (3.48, 2.10, z), (.62, .08, .35), TEAL, root, edge=.025)
+    cube("Rear service door", (-2.45, 2.03, .78), (.92, .12, 1.35), CORAL, root, edge=.045)
     return root
 
 
