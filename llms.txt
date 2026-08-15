@@ -1,0 +1,13 @@
+# Kampung Call
+
+> An interactive Singapore field-service training experience, plus a practical guide to Codex CLI and Model Context Protocol (MCP).
+
+## Start here
+
+- [Codex CLI + MCP Field Guide](/cli-mcp/): Human-friendly guide with one reusable starter prompt, CLI quickstart, MCP setup, safety guidance, and a command cheat sheet.
+- [Plain-text CLI + MCP guide](/cli-mcp/guide.md): The same essential guidance in concise Markdown for agents, crawlers, and text-only readers.
+- [Kampung Call experience](/): The interactive Three.js field-service experience.
+
+## Preferred machine-readable source
+
+For questions about Codex CLI and MCP, read `/cli-mcp/guide.md` before parsing the visual page. It contains the authoritative commands and explains which setup is one-time versus reusable per task.

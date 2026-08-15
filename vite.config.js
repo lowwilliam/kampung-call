@@ -19,6 +19,11 @@ function copyRuntimeAssets(){
         fs.copyFileSync(input,output);
       }
       fs.cpSync(path.resolve('node_modules/three/examples/jsm/libs/draco'),path.join(out,'draco'),{recursive:true});
+      for(const relative of ['robots.txt','llms.txt','cli-mcp/guide.md']){
+        const input=path.resolve(relative),output=path.join(out,relative);
+        fs.mkdirSync(path.dirname(output),{recursive:true});
+        fs.copyFileSync(input,output);
+      }
     },
   };
 }
