@@ -18,7 +18,7 @@ test("Asset API v1 lists namespaced catalogue assets and fails closed on downloa
   assert.equal(response.headers.get("x-api-version"), "1");
   const payload = await response.json();
   assert.equal(payload.assets.length, 2);
-  assert.equal(payload.pagination.total, 68);
+  assert.equal(payload.pagination.total, 73);
   assert.match(payload.assets[0].id, /^game:/);
   assert.equal(payload.assets[0].downloadAllowed, false);
   assert.equal(payload.assets[0].downloadUrl, null);

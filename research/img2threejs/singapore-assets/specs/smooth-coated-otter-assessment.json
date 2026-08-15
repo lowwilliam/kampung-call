@@ -1,0 +1,504 @@
+{
+  "targetName": "Smooth-coated Otter",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/smooth-coated-otter-secondary.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized smooth-coated otter",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "organic",
+        "character-like"
+      ],
+      "structureKind": [
+        "branching hierarchy",
+        "articulated assembly"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated",
+        "bendable"
+      ],
+      "materialFamilies": [
+        "short fur",
+        "skin-like",
+        "keratin"
+      ],
+      "notes": "Reference-led stylized real-time asset; hidden surfaces are explicitly approximate."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 10,
+        "microFeatureGroups": 10,
+        "materialLayers": 3,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "stylized smooth-coated otter has an interrupted articulated silhouette, repeated surface systems, multiple material zones and non-trivial hidden-side inference."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component-zone reconciliation",
+      "targetMinDetails": 10,
+      "note": "Every detail maps to a component local feature or material local override.",
+      "details": [
+        {
+          "id": "detail-1-pale-throat-mask",
+          "kind": "stain",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "stain",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "pale-throat-mask"
+          }
+        },
+        {
+          "id": "detail-2-webbed-toe-fans",
+          "kind": "ridge",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "webbed-toe-fans"
+          }
+        },
+        {
+          "id": "detail-3-nose-clearcoat",
+          "kind": "gloss",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "nose-clearcoat"
+          }
+        },
+        {
+          "id": "detail-4-whisker-sockets",
+          "kind": "hole",
+          "region": {
+            "x": 0,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "hole",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "whisker-sockets"
+          }
+        },
+        {
+          "id": "detail-5-ear-rims",
+          "kind": "ridge",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "ear-rims"
+          }
+        },
+        {
+          "id": "detail-6-fur-flow-grooves",
+          "kind": "groove",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "groove",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fur-flow-grooves"
+          }
+        },
+        {
+          "id": "detail-7-tail-flattening-keel",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tail-flattening-keel"
+          }
+        },
+        {
+          "id": "detail-8-eye-catchlights",
+          "kind": "gloss",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "eye-catchlights"
+          }
+        },
+        {
+          "id": "detail-9-paw-claw-row",
+          "kind": "ridge",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "paw-claw-row"
+          }
+        },
+        {
+          "id": "detail-10-wet-back-sheen",
+          "kind": "gloss",
+          "region": {
+            "x": 0,
+            "y": 0.75,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "wet-back-sheen"
+          }
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/smooth-coated-otter-secondary.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Long low torso with a rounded head, short limbs and a broad curved tail; body length is approximately 2.5 torso heights.",
+      "All 10 identity details remain legible in neutral and grazing light.",
+      "Front, rear, both side, top, bottom and four three-quarter renders remain volumetric and free of floating attachments."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "body-tail-silhouette",
+        "name": "body tail silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "body-tail-silhouette matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "body-tail-silhouette reads as a generic placeholder",
+          "body-tail-silhouette collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "rounded-head-muzzle",
+        "name": "rounded head muzzle",
+        "required": true,
+        "qualityCriteria": [
+          "rounded-head-muzzle matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "rounded-head-muzzle reads as a generic placeholder",
+          "rounded-head-muzzle collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "limb-webbing-attachments",
+        "name": "limb webbing attachments",
+        "required": true,
+        "qualityCriteria": [
+          "limb-webbing-attachments matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "limb-webbing-attachments reads as a generic placeholder",
+          "limb-webbing-attachments collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "coat-zoning-response",
+        "name": "coat zoning response",
+        "required": true,
+        "qualityCriteria": [
+          "coat-zoning-response matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "coat-zoning-response reads as a generic placeholder",
+          "coat-zoning-response collapses or detaches in an orbit view"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "body-tail-silhouette silhouette, depth and material delta",
+      "rounded-head-muzzle silhouette, depth and material delta",
+      "limb-webbing-attachments silhouette, depth and material delta",
+      "coat-zoning-response silhouette, depth and material delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Smooth-coated Otter quadruped limb attachment webbed feet flattened tail short fur",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.attachment-contract",
+        "file_path": "grimoire/readiness/joint_attachment.md",
+        "heading": "Attachment Contract",
+        "key_path": null,
+        "score": 4.323254189177,
+        "snippets": [
+          "An attached child records its parent, parent socket, local start and end, contact type, and embed depth or overlap where applicable."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/readiness/joint_attachment.md",
+            "heading": "Attachment Contract",
+            "key_path": null
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/readiness/joint_attachment.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-uvcoordinate-system-conversion-attachment-hierarchy",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[14]",
+        "score": 3.516650782978,
+        "snippets": [
+          "Handling handedness/up-axis differences (Unity Y-up left-handed vs. USD/glTF right-handed) and representing sub-part attachment via parent-child scene-graph transforms. Xử lý khác biệt tay thuận/trục lên (Unity Y-up trái vs. USD/glTF phải) và ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[14]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.socket-pivot",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Animation, Physics, And Destruction",
+        "key_path": null,
+        "score": 3.298208675673,
+        "snippets": [
+          "A pivot is a local rotation origin; a socket is an attachment point for a child part. In a runtime hierarchy, a socket Object3D is a child of the relevant pivot."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Animation, Physics, And Destruction",
+            "key_path": null
+          },
+          {
+            "path": "grimoire/readiness/action_rigging.md",
+            "heading": "Hierarchy Pattern",
+            "key_path": null
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/readiness/action_rigging.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          }
+        ]
+      }
+    ]
+  }
+}

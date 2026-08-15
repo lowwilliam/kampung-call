@@ -1,0 +1,86 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "oriental-pied-hornbill-primary",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/oriental-pied-hornbill-secondary.jpg",
+  "outDir": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr",
+  "palette": [
+    "#A39379",
+    "#6D6A4F",
+    "#3C4334",
+    "#879C42",
+    "#E4E8D4"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr/oriental-pied-hornbill-primary_albedo.png",
+      "url": "oriental-pied-hornbill-primary_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr/oriental-pied-hornbill-primary_roughness.png",
+      "url": "oriental-pied-hornbill-primary_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr/oriental-pied-hornbill-primary_height.png",
+      "url": "oriental-pied-hornbill-primary_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr/oriental-pied-hornbill-primary_normal.png",
+      "url": "oriental-pied-hornbill-primary_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/oriental-pied-hornbill-pbr/oriental-pied-hornbill-primary_ao.png",
+      "url": "oriental-pied-hornbill-primary_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 1024,
+    "sourceHeight": 768,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 768
+    },
+    "mask": {
+      "backgroundColor": "#90775E",
+      "backgroundNoise": 73.546,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.8399
+    },
+    "mapStats": {
+      "valueRange": 0.6292,
+      "heightP90Gradient": 0.08636,
+      "roughnessBase": 0.749,
+      "roughnessVariation": 0.158,
+      "normalStrength": 0.257,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#A39379",
+      "#6D6A4F",
+      "#3C4334",
+      "#879C42",
+      "#E4E8D4"
+    ]
+  },
+  "warnings": [
+    "source image was converted to PNG with macOS sips before pixel extraction",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

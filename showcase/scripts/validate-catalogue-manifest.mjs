@@ -42,10 +42,10 @@ function evidenceHash(value) {
 }
 
 if (manifest.schemaVersion !== 1) fail("schemaVersion must be 1");
-if (manifest.release?.catalogueSize !== 68) fail("release.catalogueSize must be 68");
+if (manifest.release?.catalogueSize !== 73) fail("release.catalogueSize must be 73");
 if (manifest.release?.catalogueSize !== manifest.assets?.length) fail("release.catalogueSize must match assets.length");
-if (!Array.isArray(manifest.assets) || manifest.assets.length !== 68) {
-  fail(`assets must contain exactly 68 records; found ${manifest.assets?.length ?? "none"}`);
+if (!Array.isArray(manifest.assets) || manifest.assets.length !== 73) {
+  fail(`assets must contain exactly 73 records; found ${manifest.assets?.length ?? "none"}`);
 }
 
 const seenIds = new Set();

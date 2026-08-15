@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "singapore-cable-car-skyorb-primary",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+  "outDir": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr",
+  "palette": [
+    "#A8DCFE",
+    "#C5E2FE",
+    "#86D9FD",
+    "#231E24",
+    "#3ADAFD"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+      "url": "singapore-cable-car-skyorb-primary_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+      "url": "singapore-cable-car-skyorb-primary_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+      "url": "singapore-cable-car-skyorb-primary_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+      "url": "singapore-cable-car-skyorb-primary_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+      "url": "singapore-cable-car-skyorb-primary_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 1009,
+    "sourceHeight": 567,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 1009,
+      "height": 567
+    },
+    "mask": {
+      "backgroundColor": "#AAD9FE",
+      "backgroundNoise": 161.115,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.6185
+    },
+    "mapStats": {
+      "valueRange": 0.8104,
+      "heightP90Gradient": 0.03469,
+      "roughnessBase": 0.683,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.197,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#A8DCFE",
+      "#C5E2FE",
+      "#86D9FD",
+      "#231E24",
+      "#3ADAFD"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

@@ -26,11 +26,11 @@ test("server-renders the public collection", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Kampung 3D/i);
-  assert.match(html.replaceAll("<!-- -->", ""), /68\s+objects/i);
+  assert.match(html.replaceAll("<!-- -->", ""), /73\s+objects/i);
   assert.doesNotMatch(html, /Community collection/i);
   assert.doesNotMatch(html, /Submit your model/i);
   assert.match(html, /asset-like-button/i);
-  assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 68);
+  assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 73);
   assert.doesNotMatch(html, /One model at a time/i);
   assert.doesNotMatch(html, /Buildings gone/i);
   assert.match(html, /Lost Heritage/i);

@@ -11,8 +11,8 @@ const modelsRoot = path.join(siteRoot, "public", "models");
 test("keeps every manifested model available without publishing a mass-download archive", async () => {
   const manifest = JSON.parse(await readFile(path.join(siteRoot, "app", "data", "catalogue-manifest.json"), "utf8"));
   const modelFiles = manifest.assets.map((asset) => asset.model.file);
-  assert.equal(modelFiles.length, 68);
-  assert.equal(new Set(modelFiles).size, 68);
+  assert.equal(modelFiles.length, 73);
+  assert.equal(new Set(modelFiles).size, 73);
   await Promise.all(modelFiles.map((name) => access(path.join(modelsRoot, name))));
   await assert.rejects(access(downloadsRoot));
 });

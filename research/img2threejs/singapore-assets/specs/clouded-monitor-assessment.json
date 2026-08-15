@@ -1,0 +1,490 @@
+{
+  "targetName": "Clouded Monitor",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/clouded-monitor-secondary.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized clouded monitor lizard",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "organic"
+      ],
+      "structureKind": [
+        "branching hierarchy",
+        "articulated assembly",
+        "repeated modules"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated",
+        "bendable"
+      ],
+      "materialFamilies": [
+        "scaled skin",
+        "keratin"
+      ],
+      "notes": "Reference-led stylized real-time asset; hidden surfaces are explicitly approximate."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 10,
+        "microFeatureGroups": 10,
+        "materialLayers": 3,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "stylized clouded monitor lizard has an interrupted articulated silhouette, repeated surface systems, multiple material zones and non-trivial hidden-side inference."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component-zone reconciliation",
+      "targetMinDetails": 10,
+      "note": "Every detail maps to a component local feature or material local override.",
+      "details": [
+        {
+          "id": "detail-1-yellow-spot-field",
+          "kind": "stain",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "stain",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "yellow-spot-field"
+          }
+        },
+        {
+          "id": "detail-2-transverse-tail-bands",
+          "kind": "linework",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "linework",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "transverse-tail-bands"
+          }
+        },
+        {
+          "id": "detail-3-mid-snout-nostril",
+          "kind": "hole",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "hole",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mid-snout-nostril"
+          }
+        },
+        {
+          "id": "detail-4-ear-opening",
+          "kind": "hole",
+          "region": {
+            "x": 0,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "hole",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "ear-opening"
+          }
+        },
+        {
+          "id": "detail-5-eye-catchlight",
+          "kind": "gloss",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "eye-catchlight"
+          }
+        },
+        {
+          "id": "detail-6-jaw-seam",
+          "kind": "seam",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "jaw-seam"
+          }
+        },
+        {
+          "id": "detail-7-dorsal-scale-ridges",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "dorsal-scale-ridges"
+          }
+        },
+        {
+          "id": "detail-8-neck-fold-grooves",
+          "kind": "groove",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "groove",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "neck-fold-grooves"
+          }
+        },
+        {
+          "id": "detail-9-digit-yellow-lines",
+          "kind": "linework",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "linework",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "digit-yellow-lines"
+          }
+        },
+        {
+          "id": "detail-10-claw-ridge-row",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.75,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "claw-ridge-row"
+          }
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/clouded-monitor-secondary.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Low elongated reptile with a narrow raised head, four splayed clawed limbs and a long round tapering tail.",
+      "All 10 identity details remain legible in neutral and grazing light.",
+      "Front, rear, both side, top, bottom and four three-quarter renders remain volumetric and free of floating attachments."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "long-body-tail-silhouette",
+        "name": "long body tail silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "long-body-tail-silhouette matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "long-body-tail-silhouette reads as a generic placeholder",
+          "long-body-tail-silhouette collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "short-head-neck-profile",
+        "name": "short head neck profile",
+        "required": true,
+        "qualityCriteria": [
+          "short-head-neck-profile matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "short-head-neck-profile reads as a generic placeholder",
+          "short-head-neck-profile collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "splayed-limb-attachments",
+        "name": "splayed limb attachments",
+        "required": true,
+        "qualityCriteria": [
+          "splayed-limb-attachments matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "splayed-limb-attachments reads as a generic placeholder",
+          "splayed-limb-attachments collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "yellow-spot-scale-system",
+        "name": "yellow spot scale system",
+        "required": true,
+        "qualityCriteria": [
+          "yellow-spot-scale-system matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "yellow-spot-scale-system reads as a generic placeholder",
+          "yellow-spot-scale-system collapses or detaches in an orbit view"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "long-body-tail-silhouette silhouette, depth and material delta",
+      "short-head-neck-profile silhouette, depth and material delta",
+      "splayed-limb-attachments silhouette, depth and material delta",
+      "yellow-spot-scale-system silhouette, depth and material delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Clouded Monitor reptile quadruped splayed limbs long tapered tail scales spots claws",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-conegeometry-tapered-tips",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[11]",
+        "score": 6.299817361323,
+        "snippets": [
+          "Maps to tapered projectile-like or pointed components. Ánh xạ tới các bộ phận thon nhọn giống đầu đạn hoặc có mũi nhọn. Recognition cues: Tapered pointed shape narrowing to a point — projectile tips, some conical muzzle device shapes Dấu hiệu ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[11]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-cylindergeometry-barrels-round-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[4]",
+        "score": 3.206244668833,
+        "snippets": [
+          "Maps to any barrel-like round-cross-section part. Ánh xạ tới mọi bộ phận có tiết diện tròn dạng nòng. Recognition cues: Long uniform-cross-section round part (barrel, suppressor, muzzle brake body, cleaning rod, magazine tube) Dấu hiệu nhận ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-drill-down-macro-to-micro-decomposition",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[4]",
+        "score": 3.109041007421,
+        "snippets": [
+          "... A good description names the whole object first ('a bowie-style knife'), then its components ('blade, bolster, handle scales'), then each component's basic solid shape Dấu hiệu nhận diện: Một mô tả tốt gọi tên toàn bộ đối tượng trước ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

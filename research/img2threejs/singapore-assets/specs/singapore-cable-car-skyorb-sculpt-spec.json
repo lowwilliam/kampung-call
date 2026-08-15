@@ -1,0 +1,5043 @@
+{
+  "targetName": "Singapore Cable Car SkyOrb",
+  "targetId": "singapore-cable-car-skyorb",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 40,
+    "aspect": 1,
+    "orientation": {
+      "yaw": 0,
+      "pitch": 0,
+      "roll": 0
+    },
+    "positionHint": [
+      0,
+      0,
+      3
+    ],
+    "note": "For likeness work, solve the reference camera (forge/stage1_intake/solve_camera_pose.py) so the review render aligns with the photo and the reference can be projected. Confirm by overlay review."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized unbranded SkyOrb gondola cabin",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "hard-surface",
+        "mechanical"
+      ],
+      "structureKind": [
+        "layered shell",
+        "articulated assembly",
+        "repeated modules"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated",
+        "detachable"
+      ],
+      "materialFamilies": [
+        "metal",
+        "glass-like",
+        "plastic",
+        "emissive"
+      ],
+      "notes": "Reference-led stylized real-time asset; hidden surfaces are explicitly approximate."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 2,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 10,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "stylized unbranded SkyOrb gondola cabin has an interrupted articulated silhouette, repeated surface systems, multiple material zones and non-trivial hidden-side inference."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component-zone reconciliation",
+      "targetMinDetails": 10,
+      "note": "Every detail maps to a component local feature or material local override.",
+      "details": [
+        {
+          "id": "detail-1-chrome-panel-seams",
+          "kind": "seam",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "chrome-panel-seams"
+          }
+        },
+        {
+          "id": "detail-2-window-ring-bevel",
+          "kind": "bevel",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "bevel",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "window-ring-bevel"
+          }
+        },
+        {
+          "id": "detail-3-window-led-ring",
+          "kind": "emissive",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "emissive",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "window-led-ring"
+          }
+        },
+        {
+          "id": "detail-4-front-glass-gloss",
+          "kind": "gloss",
+          "region": {
+            "x": 0,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "front-glass-gloss"
+          }
+        },
+        {
+          "id": "detail-5-side-louvre-slots",
+          "kind": "groove",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "groove",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "side-louvre-slots"
+          }
+        },
+        {
+          "id": "detail-6-roof-fastener-row",
+          "kind": "fastener",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "fastener",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "roof-fastener-row"
+          }
+        },
+        {
+          "id": "detail-7-door-panel-line",
+          "kind": "linework",
+          "region": {
+            "x": 0,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "linework",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "door-panel-line"
+          }
+        },
+        {
+          "id": "detail-8-glass-floor-edge",
+          "kind": "bevel",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "bevel",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "glass-floor-edge"
+          }
+        },
+        {
+          "id": "detail-9-hanger-weld-seam",
+          "kind": "seam",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "hanger-weld-seam"
+          }
+        },
+        {
+          "id": "detail-10-grip-roller-ridges",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.75,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "grip-roller-ridges"
+          }
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Near-spherical faceted cabin with a deep circular panoramic window and an S-curved roof hanger rising to the cable grip.",
+      "All 10 identity details remain legible in neutral and grazing light.",
+      "Front, rear, both side, top, bottom and four three-quarter renders remain volumetric and free of floating attachments."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "orb-shell-window-silhouette",
+        "name": "orb shell window silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "orb-shell-window-silhouette matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "orb-shell-window-silhouette reads as a generic placeholder",
+          "orb-shell-window-silhouette collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "hanger-grip-assembly",
+        "name": "hanger grip assembly",
+        "required": true,
+        "qualityCriteria": [
+          "hanger-grip-assembly matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "hanger-grip-assembly reads as a generic placeholder",
+          "hanger-grip-assembly collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "transparent-glazing-floor",
+        "name": "transparent glazing floor",
+        "required": true,
+        "qualityCriteria": [
+          "transparent-glazing-floor matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "transparent-glazing-floor reads as a generic placeholder",
+          "transparent-glazing-floor collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "interior-bench-rib-system",
+        "name": "interior bench rib system",
+        "required": true,
+        "qualityCriteria": [
+          "interior-bench-rib-system matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "interior-bench-rib-system reads as a generic placeholder",
+          "interior-bench-rib-system collapses or detaches in an orbit view"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "orb-shell-window-silhouette silhouette, depth and material delta",
+      "hanger-grip-assembly silhouette, depth and material delta",
+      "transparent-glazing-floor silhouette, depth and material delta",
+      "interior-bench-rib-system silhouette, depth and material delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.7,
+    "mustMatch": [
+      "Near-spherical faceted cabin with a deep circular panoramic window and an S-curved roof hanger rising to the cable grip.",
+      "orb-shell-window-silhouette",
+      "hanger-grip-assembly",
+      "transparent-glazing-floor",
+      "interior-bench-rib-system"
+    ],
+    "niceToHave": [
+      "micro surface variation beyond the review distance",
+      "subtle pose asymmetry"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "front",
+      "rear",
+      "left-side",
+      "right-side",
+      "top",
+      "bottom",
+      "front-three-quarter",
+      "rear-three-quarter"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "orb-shell-window-silhouette",
+      "name": "orb shell window silhouette",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "cabin-shell",
+        "window-ring"
+      ],
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ]
+    },
+    {
+      "id": "hanger-grip-assembly",
+      "name": "hanger grip assembly",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "hanger",
+        "roof-plate",
+        "cable-grip"
+      ],
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ]
+    },
+    {
+      "id": "transparent-glazing-floor",
+      "name": "transparent glazing floor",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "front-glazing",
+        "side-glazing",
+        "glass-floor"
+      ],
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ]
+    },
+    {
+      "id": "interior-bench-rib-system",
+      "name": "interior bench rib system",
+      "tier": "important",
+      "passIds": [
+        "material-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.68,
+      "mustPass": false,
+      "componentRefs": [
+        "bench-left",
+        "bench-right"
+      ],
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "complete",
+    "completedPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "lastCompletedPass": "optimization-pass",
+    "blockedReason": "all build passes completed",
+    "nextRequiredEvidence": []
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": true,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "forge/stage1_intake/extract_pbr_evidence.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    "Rear door seam and underside fasteners are inferred from the available three-quarter and interior views.",
+    "Operator logos and campaign wraps are intentionally omitted."
+  ],
+  "coordinateFrame": {
+    "front": "-Z lateral/profile review direction",
+    "up": "+Y",
+    "scaleReference": "metres; grounded at lowest visible contact"
+  },
+  "silhouette": {
+    "boundingShape": "Near-spherical faceted cabin with a deep circular panoramic window and an S-curved roof hanger rising to the cable grip.",
+    "aspectRatios": [
+      "reference-led"
+    ],
+    "symmetry": "bilateral with pose asymmetry",
+    "dominantCurves": [
+      "primary spine/profile curve",
+      "appendage taper curves"
+    ],
+    "negativeSpaces": [
+      "limb/foot gaps",
+      "appendage/body gaps"
+    ],
+    "landmarks": [
+      "orb-shell-window-silhouette",
+      "hanger-grip-assembly",
+      "transparent-glazing-floor",
+      "interior-bench-rib-system"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "primary-photo",
+      "view": "lateral or front-three-quarter",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "Near-spherical faceted cabin with a deep circular panoramic window and an S-curved roof hanger rising to the cable grip."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "secondary-photo",
+      "view": "supplemental anatomy/material",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "Rear door seam and underside fasteners are inferred from the available three-quarter and interior views.",
+        "Operator logos and campaign wraps are intentionally omitted."
+      ],
+      "confidence": 0.78
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "SkyOrb root",
+      "level": "macro",
+      "role": "body",
+      "importance": 0.95,
+      "confidence": 0.78,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "SkyOrb root is classified as assembled-solid; ellipsoid preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "chrome-shell",
+      "materialLayers": [
+        "chrome-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(185, 189, 192, 1.0)",
+        "secondaryAlbedo": "rgba(185, 189, 192, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(185, 189, 192, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(185, 189, 192, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "cabin-shell",
+      "name": "Spherical cabin shell",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.95,
+      "confidence": 0.78,
+      "primitive": "ellipsoid",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Spherical cabin shell is classified as conforming-shell; ellipsoid preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "root-socket-1",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.26,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "cabin-shell",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "chrome-shell",
+      "materialLayers": [
+        "chrome-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "chrome-panel-seams",
+          "type": "seam",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "seam",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(185, 189, 192, 1.0)",
+        "secondaryAlbedo": "rgba(185, 189, 192, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(185, 189, 192, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(185, 189, 192, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "window-system",
+      "name": "Panoramic window system",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.95,
+      "confidence": 0.78,
+      "primitive": "torus",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Panoramic window system is classified as assembled-solid; torus preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-2",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.27,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "window-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "tinted-glass",
+      "materialLayers": [
+        "tinted-glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "window-led-ring",
+          "type": "emissive",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "emissive",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        },
+        {
+          "id": "front-glass-gloss",
+          "type": "gloss",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "material-local response",
+          "materialEffect": "gloss",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(23, 36, 43, 1.0)",
+        "secondaryAlbedo": "rgba(23, 36, 43, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(23, 36, 43, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(23, 36, 43, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "hanger",
+      "name": "Roof hanger assembly",
+      "level": "macro",
+      "role": "handle",
+      "importance": 0.95,
+      "confidence": 0.78,
+      "primitive": "curve-sweep",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Roof hanger assembly is classified as assembled-solid; curve-sweep preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-3",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.28,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "handle",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hanger",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "hanger-steel",
+      "materialLayers": [
+        "hanger-steel"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "hanger-weld-seam",
+          "type": "seam",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "seam",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 43, 45, 1.0)",
+        "secondaryAlbedo": "rgba(40, 43, 45, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(40, 43, 45, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(40, 43, 45, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "window-ring",
+      "name": "Deep circular window ring",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "torus",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Deep circular window ring is classified as assembled-solid; torus preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "window-system",
+      "attachment": {
+        "parentId": "window-system",
+        "parentSocket": "window-system-socket-4",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.29,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "window-ring",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "chrome-shell",
+      "materialLayers": [
+        "chrome-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "window-ring-bevel",
+          "type": "bevel",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "bevel",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(185, 189, 192, 1.0)",
+        "secondaryAlbedo": "rgba(185, 189, 192, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(185, 189, 192, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(185, 189, 192, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "front-glazing",
+      "name": "Front panoramic glazing",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "ellipsoid",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Front panoramic glazing is classified as conforming-shell; ellipsoid preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "window-system",
+      "attachment": {
+        "parentId": "window-system",
+        "parentSocket": "window-system-socket-5",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.3,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "front-glazing",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "tinted-glass",
+      "materialLayers": [
+        "tinted-glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(23, 36, 43, 1.0)",
+        "secondaryAlbedo": "rgba(23, 36, 43, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(23, 36, 43, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(23, 36, 43, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "side-glazing",
+      "name": "Side panoramic glazing",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "plane-card",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Side panoramic glazing is classified as conforming-shell; plane-card preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-6",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.31,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "side-glazing",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "tinted-glass",
+      "materialLayers": [
+        "tinted-glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(23, 36, 43, 1.0)",
+        "secondaryAlbedo": "rgba(23, 36, 43, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(23, 36, 43, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(23, 36, 43, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "glass-floor",
+      "name": "Transparent floor panel",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "plane-card",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Transparent floor panel is classified as conforming-shell; plane-card preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-7",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.32,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "glass-floor",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "tinted-glass",
+      "materialLayers": [
+        "tinted-glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "glass-floor-edge",
+          "type": "bevel",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "bevel",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(23, 36, 43, 1.0)",
+        "secondaryAlbedo": "rgba(23, 36, 43, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(23, 36, 43, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(23, 36, 43, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "roof-plate",
+      "name": "Roof attachment plate",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Roof attachment plate is classified as assembled-solid; box preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-8",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.33,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-plate",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "hanger-steel",
+      "materialLayers": [
+        "hanger-steel"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-fastener-row",
+          "type": "fastener",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "fastener",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 43, 45, 1.0)",
+        "secondaryAlbedo": "rgba(40, 43, 45, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(40, 43, 45, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(40, 43, 45, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "cable-grip",
+      "name": "Cable grip hardware",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "instanced-cluster",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Cable grip hardware is classified as assembled-solid; instanced-cluster preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "hanger",
+      "attachment": {
+        "parentId": "hanger",
+        "parentSocket": "hanger-socket-9",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.33999999999999997,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "cable-grip",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "hanger-steel",
+      "materialLayers": [
+        "hanger-steel"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "grip-roller-ridges",
+          "type": "ridge",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "ridge",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 43, 45, 1.0)",
+        "secondaryAlbedo": "rgba(40, 43, 45, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(40, 43, 45, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(40, 43, 45, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "door-seam",
+      "name": "Rear door seam",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "extrude",
+      "topologyClass": "surface-relief",
+      "topologyRationale": "Rear door seam is classified as surface-relief; extrude preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-10",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.35,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "door-seam",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "hanger-steel",
+      "materialLayers": [
+        "hanger-steel"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "door-panel-line",
+          "type": "linework",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "material-local response",
+          "materialEffect": "linework",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 43, 45, 1.0)",
+        "secondaryAlbedo": "rgba(40, 43, 45, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(40, 43, 45, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(40, 43, 45, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "bench-left",
+      "name": "Left interior bench",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left interior bench is classified as assembled-solid; box preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-11",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.36,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "bench-left",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "interior-satin",
+      "materialLayers": [
+        "interior-satin"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(215, 218, 221, 1.0)",
+        "secondaryAlbedo": "rgba(215, 218, 221, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(215, 218, 221, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(215, 218, 221, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "bench-right",
+      "name": "Right interior bench",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right interior bench is classified as assembled-solid; box preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "bevelled hard-surface solid",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-12",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.37,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "bench-right",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "interior-satin",
+      "materialLayers": [
+        "interior-satin"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(215, 218, 221, 1.0)",
+        "secondaryAlbedo": "rgba(215, 218, 221, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(215, 218, 221, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(215, 218, 221, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    },
+    {
+      "id": "vent-louvres",
+      "name": "Ventilation louvre system",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.78,
+      "confidence": 0.78,
+      "primitive": "instanced-cluster",
+      "topologyClass": "surface-relief",
+      "topologyRationale": "Ventilation louvre system is classified as surface-relief; instanced-cluster preserves its visible cross-section and non-reference-angle volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "volumetric procedural form with non-planar cross-section",
+        "edgeTreatment": {
+          "type": "soft-roll",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "cabin-shell",
+      "attachment": {
+        "parentId": "cabin-shell",
+        "parentSocket": "cabin-shell-socket-13",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.38,
+          0
+        ],
+        "contactType": "embedded",
+        "embedDepth": 0.04,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.08,
+        "endRadius": 0.04,
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      },
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.35,
+        "units": "relative",
+        "confidence": 0.72
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "vent-louvres",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "hanger-steel",
+      "materialLayers": [
+        "hanger-steel"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "side-louvre-slots",
+          "type": "groove",
+          "placement": "reference-observed identity zone",
+          "geometryEffect": "explicit relief geometry",
+          "materialEffect": "groove",
+          "confidence": 0.78,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "primary-photo",
+        "secondary-photo"
+      ],
+      "details": [],
+      "fidelityTier": "form-refinement",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 43, 45, 1.0)",
+        "secondaryAlbedo": "rgba(40, 43, 45, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "position": 0,
+              "color": "rgba(40, 43, 45, 1.0)"
+            },
+            {
+              "position": 1,
+              "color": "rgba(40, 43, 45, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": [
+          "primary-photo"
+        ]
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "chrome-shell",
+      "name": "chrome shell",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#B9BDC0",
+      "color": "#B9BDC0",
+      "albedo": {
+        "dominant": "#B9BDC0",
+        "secondary": [
+          "#B9BDC0",
+          "#81756A"
+        ],
+        "samplingNotes": "chrome-like faceted shell"
+      },
+      "colorVariation": {
+        "palette": [
+          "#B9BDC0",
+          "#5D5D58",
+          "#D3CBB9"
+        ],
+        "pattern": "chrome-like faceted shell",
+        "amplitude": 0.09,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.2,
+        "variation": 0.12,
+        "map": "independent-procedural-roughness",
+        "localResponse": "cavities rougher; exposed ridges slightly smoother"
+      },
+      "metalness": {
+        "base": 0.85,
+        "variation": 0.08
+      },
+      "normal": {
+        "pattern": "chrome-like faceted shell",
+        "strength": 0.26,
+        "scale": 32,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "chrome-like faceted shell",
+        "amplitude": 0.018,
+        "scale": 48
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.24,
+        "contactShadowBias": 0.3,
+        "notes": "Independent cavity/contact field."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "chrome-shell-local-response",
+          "region": "identity-defining zones",
+          "roughness": 0.08000000000000002,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "chrome-like faceted shell",
+      "clearcoat": 0.45,
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "extractor": "extract_pbr_evidence.py",
+        "method": "reference-derived single-image inference",
+        "verdict": "pass",
+        "usable": true,
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+            "url": "singapore-cable-car-skyorb-primary_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+            "url": "singapore-cable-car-skyorb-primary_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+            "url": "singapore-cable-car-skyorb-primary_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+            "url": "singapore-cable-car-skyorb-primary_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+            "url": "singapore-cable-car-skyorb-primary_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "tinted-glass",
+      "name": "tinted glass",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#17242B",
+      "color": "#17242B",
+      "albedo": {
+        "dominant": "#17242B",
+        "secondary": [
+          "#17242B",
+          "#17242B"
+        ],
+        "samplingNotes": "dark panoramic glazing with transmission"
+      },
+      "colorVariation": {
+        "palette": [
+          "#17242B",
+          "#5D5D58",
+          "#D3CBB9"
+        ],
+        "pattern": "dark panoramic glazing with transmission",
+        "amplitude": 0.09,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.08,
+        "variation": 0.12,
+        "map": "independent-procedural-roughness",
+        "localResponse": "cavities rougher; exposed ridges slightly smoother"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "dark panoramic glazing with transmission",
+        "strength": 0.26,
+        "scale": 32,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "dark panoramic glazing with transmission",
+        "amplitude": 0.018,
+        "scale": 48
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.24,
+        "contactShadowBias": 0.3,
+        "notes": "Independent cavity/contact field."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "tinted-glass-local-response",
+          "region": "identity-defining zones",
+          "roughness": 0.08,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "dark panoramic glazing with transmission",
+      "clearcoat": 0.45,
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "extractor": "extract_pbr_evidence.py",
+        "method": "reference-derived single-image inference",
+        "verdict": "pass",
+        "usable": true,
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+            "url": "singapore-cable-car-skyorb-primary_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+            "url": "singapore-cable-car-skyorb-primary_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+            "url": "singapore-cable-car-skyorb-primary_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+            "url": "singapore-cable-car-skyorb-primary_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+            "url": "singapore-cable-car-skyorb-primary_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      },
+      "qualityTier": "utility"
+    },
+    {
+      "id": "hanger-steel",
+      "name": "hanger steel",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#282B2D",
+      "color": "#282B2D",
+      "albedo": {
+        "dominant": "#282B2D",
+        "secondary": [
+          "#282B2D",
+          "#282B2D"
+        ],
+        "samplingNotes": "painted and exposed roof hardware"
+      },
+      "colorVariation": {
+        "palette": [
+          "#282B2D",
+          "#5D5D58",
+          "#D3CBB9"
+        ],
+        "pattern": "painted and exposed roof hardware",
+        "amplitude": 0.09,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.34,
+        "variation": 0.12,
+        "map": "independent-procedural-roughness",
+        "localResponse": "cavities rougher; exposed ridges slightly smoother"
+      },
+      "metalness": {
+        "base": 0.75,
+        "variation": 0.08
+      },
+      "normal": {
+        "pattern": "painted and exposed roof hardware",
+        "strength": 0.26,
+        "scale": 32,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "painted and exposed roof hardware",
+        "amplitude": 0.018,
+        "scale": 48
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.24,
+        "contactShadowBias": 0.3,
+        "notes": "Independent cavity/contact field."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "hanger-steel-local-response",
+          "region": "identity-defining zones",
+          "roughness": 0.22000000000000003,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "painted and exposed roof hardware",
+      "clearcoat": 0.45,
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "extractor": "extract_pbr_evidence.py",
+        "method": "reference-derived single-image inference",
+        "verdict": "pass",
+        "usable": true,
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+            "url": "singapore-cable-car-skyorb-primary_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+            "url": "singapore-cable-car-skyorb-primary_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+            "url": "singapore-cable-car-skyorb-primary_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+            "url": "singapore-cable-car-skyorb-primary_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+            "url": "singapore-cable-car-skyorb-primary_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      },
+      "qualityTier": "utility"
+    },
+    {
+      "id": "interior-satin",
+      "name": "interior satin",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#D7DADD",
+      "color": "#D7DADD",
+      "albedo": {
+        "dominant": "#D7DADD",
+        "secondary": [
+          "#D7DADD",
+          "#D7DADD"
+        ],
+        "samplingNotes": "pale benches and ribs"
+      },
+      "colorVariation": {
+        "palette": [
+          "#D7DADD",
+          "#5D5D58",
+          "#D3CBB9"
+        ],
+        "pattern": "pale benches and ribs",
+        "amplitude": 0.09,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.45,
+        "variation": 0.12,
+        "map": "independent-procedural-roughness",
+        "localResponse": "cavities rougher; exposed ridges slightly smoother"
+      },
+      "metalness": {
+        "base": 0.15,
+        "variation": 0.08
+      },
+      "normal": {
+        "pattern": "pale benches and ribs",
+        "strength": 0.26,
+        "scale": 32,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "pale benches and ribs",
+        "amplitude": 0.018,
+        "scale": 48
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.24,
+        "contactShadowBias": 0.3,
+        "notes": "Independent cavity/contact field."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "interior-satin-local-response",
+          "region": "identity-defining zones",
+          "roughness": 0.33,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "pale benches and ribs",
+      "clearcoat": 0,
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "extractor": "extract_pbr_evidence.py",
+        "method": "reference-derived single-image inference",
+        "verdict": "pass",
+        "usable": true,
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+            "url": "singapore-cable-car-skyorb-primary_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+            "url": "singapore-cable-car-skyorb-primary_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+            "url": "singapore-cable-car-skyorb-primary_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+            "url": "singapore-cable-car-skyorb-primary_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+            "url": "singapore-cable-car-skyorb-primary_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      },
+      "qualityTier": "utility"
+    },
+    {
+      "id": "led-ring",
+      "name": "led ring",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#A5D9E8",
+      "color": "#A5D9E8",
+      "albedo": {
+        "dominant": "#A5D9E8",
+        "secondary": [
+          "#A5D9E8",
+          "#A5D9E8"
+        ],
+        "samplingNotes": "soft cyan-white emissive ring"
+      },
+      "colorVariation": {
+        "palette": [
+          "#A5D9E8",
+          "#5D5D58",
+          "#D3CBB9"
+        ],
+        "pattern": "soft cyan-white emissive ring",
+        "amplitude": 0.09,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.12,
+        "variation": 0.12,
+        "map": "independent-procedural-roughness",
+        "localResponse": "cavities rougher; exposed ridges slightly smoother"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "soft cyan-white emissive ring",
+        "strength": 0.26,
+        "scale": 32,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "soft cyan-white emissive ring",
+        "amplitude": 0.018,
+        "scale": 48
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.24,
+        "contactShadowBias": 0.3,
+        "notes": "Independent cavity/contact field."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "led-ring-local-response",
+          "region": "identity-defining zones",
+          "roughness": 0.08,
+          "evidenceRefs": [
+            "primary-photo"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "soft cyan-white emissive ring",
+      "clearcoat": 0.45,
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "extractor": "extract_pbr_evidence.py",
+        "method": "reference-derived single-image inference",
+        "verdict": "pass",
+        "usable": true,
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_albedo.png",
+            "url": "singapore-cable-car-skyorb-primary_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_roughness.png",
+            "url": "singapore-cable-car-skyorb-primary_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_height.png",
+            "url": "singapore-cable-car-skyorb-primary_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_normal.png",
+            "url": "singapore-cable-car-skyorb-primary_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/singapore-cable-car-skyorb-pbr/singapore-cable-car-skyorb-primary_ao.png",
+            "url": "singapore-cable-car-skyorb-primary_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      },
+      "qualityTier": "utility"
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "louvre-and-fastener-system",
+      "count": 26,
+      "distribution": "radial louvres plus linear roof fasteners",
+      "geometry": "instanced geometry",
+      "realization": "instanced-geometry",
+      "buildsGeometry": true,
+      "evidenceRefs": [
+        "primary-photo"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": [
+        "root",
+        "cabin-shell",
+        "window-system",
+        "hanger"
+      ],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [
+    {
+      "timestamp": "2026-08-15T03:24:28.766910+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "orb-shell-window-silhouette",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.806248+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "hanger-grip-assembly",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "transparent-glazing-floor",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.845450+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "orb-shell-window-silhouette",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "hanger-grip-assembly",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "transparent-glazing-floor",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.881344+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "interior-bench-rib-system",
+          "visible": true,
+          "score": 0.83,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.918619+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "interior-bench-rib-system",
+          "visible": true,
+          "score": 0.83,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.954328+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.989992+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [],
+      "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+      "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+      "cameraView": "front-3q",
+      "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+      "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+    }
+  ],
+  "reviewHistory": [
+    {
+      "timestamp": "2026-08-15T03:24:28.766910+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "orb-shell-window-silhouette",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "action": "continue",
+      "summary": "blockout accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "mapStrippedRender": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.806248+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "hanger-grip-assembly",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "transparent-glazing-floor",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "action": "continue",
+      "summary": "structural-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.845450+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "orb-shell-window-silhouette",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "hanger-grip-assembly",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        },
+        {
+          "id": "transparent-glazing-floor",
+          "visible": true,
+          "score": 0.88,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "action": "continue",
+      "summary": "form-refinement accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.881344+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "interior-bench-rib-system",
+          "visible": true,
+          "score": 0.83,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "action": "continue",
+      "summary": "material-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.918619+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "interior-bench-rib-system",
+          "visible": true,
+          "score": 0.83,
+          "notes": "Inspected in the same full reference/render comparison and the final eight-angle contact sheet. Rear door, underside hardware and exact panel curvature remain approximate"
+        }
+      ],
+      "action": "continue",
+      "summary": "surface-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.954328+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "lighting-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:28.989992+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.87,
+        "formDetail": 0.82,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "interaction-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+        "renderScreenshot": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-front-3q.png",
+        "comparisonImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/comparisons/singapore-cable-car-skyorb.png",
+        "cameraView": "front-3q",
+        "notes": "Reviewed the comparison sheet plus front/rear/side/top/bottom and three-quarter renders. Rear door, underside hardware and exact panel curvature remain approximate",
+        "aiVisionNotes": "Chrome sphere;deep circular glazing ring;dark panoramic glass;roof plate and curved hanger;grip rollers and lower skirt. Remaining controlled approximation: Rear door, underside hardware and exact panel curvature remain approximate."
+      }
+    },
+    {
+      "timestamp": "2026-08-15T03:24:29.026512+00:00",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": null,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {},
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "optimization-pass accepted after reference comparison and eight-angle Blender inspection.",
+      "matched": [
+        "Chrome sphere",
+        "deep circular glazing ring",
+        "dark panoramic glass",
+        "roof plate and curved hanger",
+        "grip rollers and lower skirt"
+      ],
+      "mismatches": [
+        "Rear door, underside hardware and exact panel curvature remain approximate"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final/singapore-cable-car-skyorb-contact.png",
+        "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/reviews/final-metrics.json"
+      ],
+      "reviewViewpoints": [
+        "long-axis",
+        "thickness-axis",
+        "front",
+        "rear",
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "front-three-quarter",
+        "rear-three-quarter"
+      ]
+    }
+  ],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "real-time-browser",
+    "targetTriangles": 65000,
+    "maxDrawCalls": 80,
+    "textureSize": 1024,
+    "fpsTarget": 60,
+    "optimizationPolicy": "Preserve identity silhouette and named parts first; reduce repeated micro geometry at distance."
+  },
+  "lightingFromPhoto": [
+    {
+      "role": "key light",
+      "direction": [
+        -3,
+        5,
+        4
+      ],
+      "colorTemperature": "5400K",
+      "intensity": 3.2,
+      "shadowSoftness": 0.45,
+      "exposure": 0.9,
+      "toneMapping": "AgX/Filmic"
+    },
+    {
+      "role": "fill light",
+      "direction": [
+        4,
+        2,
+        1
+      ],
+      "color": "#AFC7D9",
+      "intensity": 1.2,
+      "ambientColor": "#59616A"
+    },
+    {
+      "role": "rim/environment light",
+      "direction": [
+        0,
+        4,
+        -5
+      ],
+      "color": "#D6E7FF",
+      "intensity": 2,
+      "background": "#E9E4D8",
+      "contactShadow": "soft ground shadow with AO at attachment and foot contacts"
+    }
+  ],
+  "proceduralStrategy": [
+    "Block out macro silhouette first.",
+    "Add component hierarchy and joints.",
+    "Create stable pivot groups, sockets, collider proxies, and destruction metadata before visual polish.",
+    "Refine forms with bevels, tapers, bends, and procedural noise.",
+    "Run reference PBR extraction for important source-image materials and stop when confidence is below the target threshold.",
+    "Add material variation before adding expensive micro-geometry."
+  ],
+  "animationAnchors": [
+    "root pivot node supports whole-object translation, rotation, scale, and visibility changes",
+    "component pivot groups support later local transforms without rebuilding geometry"
+  ],
+  "destructionAnchors": [
+    "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+    "component seams and sockets define plausible break points instead of random explosions"
+  ],
+  "risks": [
+    "Rear door seam and underside fasteners are inferred from the available three-quarter and interior views.",
+    "Operator logos and campaign wraps are intentionally omitted."
+  ],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Singapore Cable Car SkyOrb spherical gondola cabin chrome shell glazing hanger grip louvres seats",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-boxgeometry-slides-receivers-grips",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[5]",
+        "score": 3.982060806801,
+        "snippets": [
+          "... cụm lắp ráp hình chữ nhật/khối. Recognition cues: Flat-faced, roughly rectangular volume (pistol slide, receiver/frame, grip, panel) Dấu hiệu nhận diện: Khối gần chữ nhật với các mặt phẳng (khóa nòng súng lục, thân/khung súng, tay cầm, tấm ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-tubegeometry-straps-cables-belts",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[10]",
+        "score": 3.699753200989,
+        "snippets": [
+          "... theo một đường cong 3D. Recognition cues: Flexible, curve-following linear component — sling strap, pressure-switch cable, ammo belt draping into a receiver Dấu hiệu nhận diện: Bộ phận tuyến tính mềm dẻo chạy theo đường cong — dây đeo ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[10]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

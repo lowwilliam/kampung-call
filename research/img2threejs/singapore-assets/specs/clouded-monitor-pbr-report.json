@@ -1,0 +1,88 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "clouded-monitor-primary",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/clouded-monitor-secondary.jpg",
+  "outDir": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr",
+  "palette": [
+    "#343F2D",
+    "#1B231A",
+    "#525C44",
+    "#E7DEC3",
+    "#A1946F"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr/clouded-monitor-primary_albedo.png",
+      "url": "clouded-monitor-primary_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr/clouded-monitor-primary_roughness.png",
+      "url": "clouded-monitor-primary_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr/clouded-monitor-primary_height.png",
+      "url": "clouded-monitor-primary_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr/clouded-monitor-primary_normal.png",
+      "url": "clouded-monitor-primary_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/clouded-monitor-pbr/clouded-monitor-primary_ao.png",
+      "url": "clouded-monitor-primary_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 2048,
+    "sourceHeight": 1363,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 2048,
+      "height": 1363
+    },
+    "mask": {
+      "backgroundColor": "#2F412C",
+      "backgroundNoise": 89.095,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.91
+    },
+    "mapStats": {
+      "valueRange": 0.8291,
+      "heightP90Gradient": 0.09705,
+      "roughnessBase": 0.739,
+      "roughnessVariation": 0.172,
+      "normalStrength": 0.27,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#343F2D",
+      "#1B231A",
+      "#525C44",
+      "#E7DEC3",
+      "#A1946F"
+    ]
+  },
+  "warnings": [
+    "source image was converted to PNG with macOS sips before pixel extraction",
+    "image is not clearly isolated from background; using most pixels as material evidence",
+    "object/background separation is weak",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

@@ -1,0 +1,469 @@
+{
+  "targetName": "Singapore Cable Car SkyOrb",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized unbranded SkyOrb gondola cabin",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "hard-surface",
+        "mechanical"
+      ],
+      "structureKind": [
+        "layered shell",
+        "articulated assembly",
+        "repeated modules"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated",
+        "detachable"
+      ],
+      "materialFamilies": [
+        "metal",
+        "glass-like",
+        "plastic",
+        "emissive"
+      ],
+      "notes": "Reference-led stylized real-time asset; hidden surfaces are explicitly approximate."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 2,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 10,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "stylized unbranded SkyOrb gondola cabin has an interrupted articulated silhouette, repeated surface systems, multiple material zones and non-trivial hidden-side inference."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component-zone reconciliation",
+      "targetMinDetails": 10,
+      "note": "Every detail maps to a component local feature or material local override.",
+      "details": [
+        {
+          "id": "detail-1-chrome-panel-seams",
+          "kind": "seam",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "chrome-panel-seams"
+          }
+        },
+        {
+          "id": "detail-2-window-ring-bevel",
+          "kind": "bevel",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "bevel",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "window-ring-bevel"
+          }
+        },
+        {
+          "id": "detail-3-window-led-ring",
+          "kind": "emissive",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "emissive",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "window-led-ring"
+          }
+        },
+        {
+          "id": "detail-4-front-glass-gloss",
+          "kind": "gloss",
+          "region": {
+            "x": 0,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "front-glass-gloss"
+          }
+        },
+        {
+          "id": "detail-5-side-louvre-slots",
+          "kind": "groove",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "groove",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "side-louvre-slots"
+          }
+        },
+        {
+          "id": "detail-6-roof-fastener-row",
+          "kind": "fastener",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "fastener",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "roof-fastener-row"
+          }
+        },
+        {
+          "id": "detail-7-door-panel-line",
+          "kind": "linework",
+          "region": {
+            "x": 0,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "linework",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "door-panel-line"
+          }
+        },
+        {
+          "id": "detail-8-glass-floor-edge",
+          "kind": "bevel",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "bevel",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "glass-floor-edge"
+          }
+        },
+        {
+          "id": "detail-9-hanger-weld-seam",
+          "kind": "seam",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "hanger-weld-seam"
+          }
+        },
+        {
+          "id": "detail-10-grip-roller-ridges",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.75,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "grip-roller-ridges"
+          }
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/singapore-cable-car-skyorb-press.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Near-spherical faceted cabin with a deep circular panoramic window and an S-curved roof hanger rising to the cable grip.",
+      "All 10 identity details remain legible in neutral and grazing light.",
+      "Front, rear, both side, top, bottom and four three-quarter renders remain volumetric and free of floating attachments."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "orb-shell-window-silhouette",
+        "name": "orb shell window silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "orb-shell-window-silhouette matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "orb-shell-window-silhouette reads as a generic placeholder",
+          "orb-shell-window-silhouette collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "hanger-grip-assembly",
+        "name": "hanger grip assembly",
+        "required": true,
+        "qualityCriteria": [
+          "hanger-grip-assembly matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "hanger-grip-assembly reads as a generic placeholder",
+          "hanger-grip-assembly collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "transparent-glazing-floor",
+        "name": "transparent glazing floor",
+        "required": true,
+        "qualityCriteria": [
+          "transparent-glazing-floor matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "transparent-glazing-floor reads as a generic placeholder",
+          "transparent-glazing-floor collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "interior-bench-rib-system",
+        "name": "interior bench rib system",
+        "required": true,
+        "qualityCriteria": [
+          "interior-bench-rib-system matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "interior-bench-rib-system reads as a generic placeholder",
+          "interior-bench-rib-system collapses or detaches in an orbit view"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "orb-shell-window-silhouette silhouette, depth and material delta",
+      "hanger-grip-assembly silhouette, depth and material delta",
+      "transparent-glazing-floor silhouette, depth and material delta",
+      "interior-bench-rib-system silhouette, depth and material delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Singapore Cable Car SkyOrb spherical gondola cabin chrome shell glazing hanger grip louvres seats",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-boxgeometry-slides-receivers-grips",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[5]",
+        "score": 3.982060806801,
+        "snippets": [
+          "... cụm lắp ráp hình chữ nhật/khối. Recognition cues: Flat-faced, roughly rectangular volume (pistol slide, receiver/frame, grip, panel) Dấu hiệu nhận diện: Khối gần chữ nhật với các mặt phẳng (khóa nòng súng lục, thân/khung súng, tay cầm, tấm ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-tubegeometry-straps-cables-belts",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[10]",
+        "score": 3.699753200989,
+        "snippets": [
+          "... theo một đường cong 3D. Recognition cues: Flexible, curve-following linear component — sling strap, pressure-switch cable, ammo belt draping into a receiver Dấu hiệu nhận diện: Bộ phận tuyến tính mềm dẻo chạy theo đường cong — dây đeo ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[10]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

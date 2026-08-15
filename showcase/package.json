@@ -18,6 +18,7 @@
     "pretest": "npm run catalogue:validate",
     "test": "npm run build && node --test tests/*.test.mjs",
     "catalogue:refresh-integrity": "node scripts/refresh-catalogue-integrity.mjs",
+    "catalogue:register-singapore-assets": "node scripts/register-singapore-assets.mjs",
     "catalogue:validate": "node scripts/validate-catalogue-manifest.mjs",
     "catalogue:validate:release": "node scripts/validate-catalogue-manifest.mjs --release",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
