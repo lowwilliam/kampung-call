@@ -1,8 +1,9 @@
 // Temporary review tool: screenshot the game via raw Chrome DevTools Protocol.
-// No npm deps — uses node 24's global WebSocket + fetch against Chrome's
+// Uses fetch plus a Node-version-compatible WebSocket client against Chrome's
 // remote debugging port. (puppeteer-core in the singapost install is corrupted.)
 const fs = require("fs");
 const { spawn } = require("child_process");
+const WebSocketClient = globalThis.WebSocket || require("ws");
 
 const CHROME = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const GAME_URL = process.env.GAME_URL || "http://localhost:5199/";
@@ -34,7 +35,7 @@ async function getTargetWs() {
   ], { stdio: "ignore" });
   process.on("exit", () => { try { chrome.kill("SIGKILL"); } catch {} });
 
-  const ws = new WebSocket(await getTargetWs());
+  const ws = new WebSocketClient(await getTargetWs());
   await new Promise((res, rej) => { ws.onopen = res; ws.onerror = rej; });
   log("cdp connected");
 
