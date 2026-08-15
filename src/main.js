@@ -244,7 +244,7 @@ function gMesh(geo, color, extra){ return new THREE.Mesh(geo, mat(color, extra))
 // ============================================================
 const KOPITIAM={lat:6,lon:0}, HDB={lat:42,lon:62}, MRT={lat:30,lon:-92},
       HARBOUR_STATUE={lat:6,lon:108}, SKYPARK={lat:8,lon:148}, GARDENS={lat:80,lon:0}, FLYER={lat:-20,lon:62},
-      BAY={lat:-8,lon:120}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
+      BAY={lat:-7.25,lon:120.75}, SHOPS={lat:-28,lon:18}, HAWKER={lat:-14,lon:-52},
       TEMPLE={lat:-8,lon:12};
 const CONCERT_HALL={lat:-22,lon:98}, KAMPUNG={lat:64,lon:-150},
       TOWER={lat:8,lon:-143}, PBLOCK={lat:67,lon:115};
@@ -258,18 +258,18 @@ const RESORT={lat:-56,lon:-50}, FILM_PARK={lat:-63,lon:-14},
 const CBD={lat:-20,lon:165}, RIVER={lat:-36,lon:120}, HOLAND={lat:-20,lon:150},
       OTTER={lat:-33,lon:128};
 // capability districts — recognizable institutional and economic anchors
-const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:2.7,lon:73.2},
-      DESIGN_UNI={lat:28,lon:-137}, HOSPITAL={lat:15,lon:28}, WEST_PORT={lat:42,lon:-120},
-      CIVIC={lat:-7,lon:88}, INTERCHANGE={lat:30,lon:-72},
+const NATIONAL_UNI={lat:18,lon:-42}, TECH_UNI={lat:48,lon:-46}, MGMT_UNI={lat:1.45,lon:48.95},
+      DESIGN_UNI={lat:35.25,lon:-142.5}, HOSPITAL={lat:15,lon:28}, WEST_PORT={lat:42,lon:-120},
+      CIVIC={lat:-1.25,lon:84}, INTERCHANGE={lat:30,lon:-72},
       AIRPORT_TOWER={lat:13,lon:-169}, AIRPORT_ATRIUM={lat:18,lon:-163};
 // Mission residences are deliberately separated into three readable housing
 // districts. Background duplicates were removed so these homes remain useful
 // navigation landmarks instead of merging into a ring of similar towers.
-const CONDO5={lat:53,lon:150}, CONDO6={lat:-46,lon:92},
+const CONDO5={lat:42.25,lon:171.75}, CONDO6={lat:-62.25,lon:109},
       LANDED4={lat:2,lon:-110};
 // Heritage Expansion Pack anchors: Peranakan row end, Kampong Gelam mosque,
 // kampong green, Blk 65 void deck and the neighbourhood wet market.
-const KGELAM={lat:-46,lon:25}, KGREEN={lat:-40,lon:-162},
+const KGELAM={lat:-38.5,lon:-66.5}, KGREEN={lat:-40,lon:-162},
       VOIDDECK={lat:28,lon:65}, WETMKT={lat:-50,lon:60},
       PERANAKAN={lat:SHOPS.lat,lon:SHOPS.lon+10},
       KGREEN_PROPS={lat:KGREEN.lat+5,lon:KGREEN.lon+7};

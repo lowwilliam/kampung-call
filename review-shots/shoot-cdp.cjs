@@ -4,7 +4,7 @@
 const fs = require("fs");
 const { spawn } = require("child_process");
 
-const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const CHROME = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const GAME_URL = process.env.GAME_URL || "http://localhost:5199/";
 const VERIFY_ONLY = process.env.VERIFY_ONLY === "1";
 const PORT = 9223;
