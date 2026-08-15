@@ -1,0 +1,4947 @@
+{
+  "targetName": "Peranakan House",
+  "targetId": "peranakan-house",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "/tmp/massanger-reference-led-rebuild/peranakan-koon-seng.jpg",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 40,
+    "aspect": 1,
+    "orientation": {
+      "yaw": 0,
+      "pitch": 0,
+      "roll": 0
+    },
+    "positionHint": [
+      0,
+      0,
+      3
+    ],
+    "note": "For likeness work, solve the reference camera (forge/stage1_intake/solve_camera_pose.py) so the review render aligns with the photo and the reference can be projected. Confirm by overlay review."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 0,
+    "silhouette_readability": 0,
+    "depth_inference": 0,
+    "primitive_decomposition": 0,
+    "material_procedurality": 0,
+    "occlusion_risk": 0,
+    "interaction_fit": 0
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "two-storey late-style Singapore Peranakan shophouse",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "architectural",
+        "geometric",
+        "ornamental",
+        "bilaterally symmetrical street facade"
+      ],
+      "structureKind": [
+        "long narrow masonry terrace bay",
+        "five-footway colonnade",
+        "pitched clay-tile roof with airwell and rear court",
+        "repeated timber window assemblies"
+      ],
+      "motionPotential": [
+        "static browser prop",
+        "explodable named facade and roof assemblies"
+      ],
+      "materialFamilies": [
+        "painted lime plaster",
+        "painted timber",
+        "glazed ceramic tile",
+        "terracotta roof tile",
+        "dark glazing and ironwork"
+      ],
+      "notes": "Reference-detail fidelity is highest on the upper street facade. The end-wall, airwell and rear-court elevations are typological inference and must remain quieter than the documented facade."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 14,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 5
+      },
+      "reasoning": [
+        "The identity depends on more than the narrow rectangular mass: the projecting upper storey, continuous five-footway and pitched roof must all survive the silhouette pass.",
+        "Three full-height paired French-window bays, colored fanlights, balustrades, pilasters, floral tile spandrels and cornice brackets create dense repeated meso and micro geometry.",
+        "The public street facade is documented; the end wall, airwell and rear court require conservative typological inference and separate review views."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A complex tier is required because recognizability depends on layered facade depth, five repeated ornamental systems, multiple material families, and credible inferred hidden elevations."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "perforated-eaves",
+          "kind": "hole",
+          "description": "A dense repeating perforated timber fascia forms the deep top eave shadow line.",
+          "region": {
+            "x": 0.05,
+            "y": 0,
+            "width": 0.9,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "micro repeated across facade width",
+          "affects": "eaves negative space and top silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-facade/eaves-perforation-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+          "confidence": 0.92,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "layered-cornice-ridges",
+          "kind": "ridge",
+          "description": "Multiple narrow plaster cornice bands step outward beneath the eaves and above the windows.",
+          "region": {
+            "x": 0.08,
+            "y": 0.12,
+            "width": 0.84,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "meso horizontal relief",
+          "affects": "grazing-light shadow hierarchy",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-facade/layered-cornice-ridges"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+          "confidence": 0.96,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "capital-relief",
+          "kind": "ridge",
+          "description": "Projecting floral capitals cap the pilasters at both ends of the three-window composition.",
+          "region": {
+            "x": 0,
+            "y": 0.17,
+            "width": 1,
+            "height": 0.22,
+            "units": "normalized"
+          },
+          "scale": "meso paired ornament",
+          "affects": "pilaster crown silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "facade-pilasters/floral-capital-pair"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c2.png",
+          "confidence": 0.9,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "oval-vent-row",
+          "kind": "hole",
+          "description": "One small oval plaster-framed ventilation opening is centered above each window bay.",
+          "region": {
+            "x": 0.18,
+            "y": 0.25,
+            "width": 0.62,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "micro three-instance row",
+          "affects": "upper-bay identity and negative space",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system/oval-vent-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.94,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "colored-fanlights",
+          "kind": "decal",
+          "description": "Rectangular multi-pane fanlights above the three French windows alternate purple, blue, green and amber glazing.",
+          "region": {
+            "x": 0.16,
+            "y": 0.33,
+            "width": 0.66,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "meso repeated glazing grid",
+          "affects": "window-head color and bay proportions",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "fanlight-glass/colored-pane-sequence"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.97,
+          "realization": "material.localOverrides"
+        },
+        {
+          "id": "paired-jalousie-shutters",
+          "kind": "linework",
+          "description": "Each full-height French opening carries two side-hung timber jalousie leaves with narrow horizontal louvers contained within the leaf frames.",
+          "region": {
+            "x": 0.13,
+            "y": 0.4,
+            "width": 0.72,
+            "height": 0.33,
+            "units": "normalized"
+          },
+          "scale": "meso six shutter leaves with micro slats",
+          "affects": "window silhouette and shutter articulation",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system/paired-jalousie-shutters"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.98,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "vertical-balustrades",
+          "kind": "ridge",
+          "description": "Slender vertical balusters sit across the lower portion of each full-height opening without covering the fanlights.",
+          "region": {
+            "x": 0.17,
+            "y": 0.57,
+            "width": 0.65,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "micro repeated vertical rods",
+          "affects": "French-window safety rail rhythm",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system/balustrade-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.94,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "floral-tile-spandrels",
+          "kind": "decal",
+          "description": "Glazed floral tile panels with pink blossoms and green foliage fill the spandrels below the outer window bays.",
+          "region": {
+            "x": 0.1,
+            "y": 0.66,
+            "width": 0.78,
+            "height": 0.15,
+            "units": "normalized"
+          },
+          "scale": "meso repeated ceramic panels",
+          "affects": "lower-facade color and Peranakan identity",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "ceramic-tile/floral-panel-pattern"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+          "confidence": 0.96,
+          "realization": "material.localOverrides"
+        },
+        {
+          "id": "lower-timber-panels",
+          "kind": "seam",
+          "description": "Recessed rectangular timber panels and stiles sit beneath the central French opening.",
+          "region": {
+            "x": 0.35,
+            "y": 0.64,
+            "width": 0.28,
+            "height": 0.17,
+            "units": "normalized"
+          },
+          "scale": "meso joinery panels",
+          "affects": "lower window assembly depth",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system/lower-timber-panel-seams"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+          "confidence": 0.9,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "pilaster-fluting",
+          "kind": "groove",
+          "description": "Vertical grooves and stepped edge mouldings articulate the pilasters between and beside the window bays.",
+          "region": {
+            "x": 0.08,
+            "y": 0.25,
+            "width": 0.84,
+            "height": 0.55,
+            "units": "normalized"
+          },
+          "scale": "meso vertical relief",
+          "affects": "bay separation and contact shadows",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "facade-pilasters/vertical-fluting"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c2.png",
+          "confidence": 0.91,
+          "realization": "component.localFeatures"
+        },
+        {
+          "id": "paint-weathering",
+          "kind": "stain",
+          "description": "Subtle vertical ochre streaking and value variation appear on the pale green painted plaster near the end pilaster.",
+          "region": {
+            "x": 0.76,
+            "y": 0.5,
+            "width": 0.2,
+            "height": 0.42,
+            "units": "normalized"
+          },
+          "scale": "macro-to-meso material variation",
+          "affects": "paint roughness and local albedo",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "painted-plaster/end-wall-weathering"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c2.png",
+          "confidence": 0.75,
+          "realization": "material.localOverrides"
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/tmp/massanger-reference-led-rebuild/peranakan-koon-seng.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At catalogue-card distance the model reads as a narrow Singapore Peranakan shophouse with a projecting upper storey, sheltered five-footway, three correct full-height window assemblies, colored fanlights, balustrades, floral tile spandrels, layered plaster cornices, and a clay-tile roof.",
+      "Front, three-quarter, side, and rear-court views show real depth and attached parts; no view may collapse into a blank slab or expose floating windows, roof sheets, or ornament."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "shophouse-massing",
+        "name": "Narrow shophouse mass, upper projection, five-footway and roof",
+        "required": true,
+        "qualityCriteria": [
+          "The plan remains visibly narrow and deep, the upper facade projects over a continuous five-footway, and the roof is split by an airwell before a smaller rear service block."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "the model reads as a freestanding box with a porch",
+          "the roof spans the full depth as one uninterrupted slab",
+          "the five-footway is a platform without sheltered passage depth"
+        ]
+      },
+      {
+        "id": "upper-window-system",
+        "name": "Three full-height French-window assemblies",
+        "required": true,
+        "qualityCriteria": [
+          "Each bay has a recessed full-height opening, paired side-hung shutters, a colored multi-pane fanlight, vertical balustrade and lower timber panel; shutter leaves are not replaced by flat horizontal bar stacks."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "windows read as vents, ladders or surface decals",
+          "fanlights are circular or absent",
+          "balustrades are missing or cover the shutter faces"
+        ]
+      },
+      {
+        "id": "ornamental-facade",
+        "name": "Pilasters, floral tile spandrels, cornices and eaves",
+        "required": true,
+        "qualityCriteria": [
+          "Pilasters frame the three bays, floral tile panels sit below the openings, and layered cornice/eaves geometry creates shadow lines without floating off the facade."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "ornament is represented by unrelated floating blocks",
+          "tile panels are oversized checkerboards",
+          "the cornice reads as one oversized signboard"
+        ]
+      },
+      {
+        "id": "ground-front-and-five-footway",
+        "name": "Residential ground front, pintu pagar and five-footway",
+        "required": true,
+        "qualityCriteria": [
+          "A recessed double-leaf door, half-height pintu pagar, flanking casement windows, columns, floor edge and covered ceiling form a coherent sheltered passage."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "columns block the doorway or sit outside the walkway edge",
+          "the pintu pagar fills the full door height",
+          "the ground windows repeat the upper French-window proportions"
+        ]
+      },
+      {
+        "id": "hidden-elevation-credibility",
+        "name": "End-wall, airwell and rear-court credibility",
+        "required": true,
+        "qualityCriteria": [
+          "The end bay has restrained compatible casement windows and drainpipe relief, the airwell visibly breaks the roof, and the rear court has a service door and compatible windows without claiming exact historical plans."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "a three-quarter orbit shows a featureless six-metre wall",
+          "rear windows float beyond the wall plane",
+          "roof panels intersect or leave a visible open seam"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "narrow depth-to-frontage ratio and upper-storey projection delta",
+      "three-window bay width, height, fanlight and shutter-angle delta",
+      "five-footway clear passage and column-spacing delta",
+      "pilaster, floral-tile, cornice and eaves repetition delta",
+      "airwell break, end-wall fenestration and rear-court depth delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.7,
+    "mustMatch": [
+      "macro silhouette and proportions",
+      "primary material albedo/roughness response",
+      "reference-derived PBR material response at or above 0.7 confidence when source pixels are usable",
+      "most recognizable local features"
+    ],
+    "niceToHave": [
+      "micro scratches, stains, chips, and dirt masks",
+      "secondary lighting match"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "front",
+      "three-quarter",
+      "side",
+      "thickness-axis",
+      "long-axis"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "peranakan-massing",
+      "name": "Narrow shophouse, upper projection, five-footway and split roof",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "street-shell",
+        "five-footway",
+        "roof-and-airwell"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "peranakan-windows",
+      "name": "Full-height French windows, fanlights and balustrades",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "upper-window-system",
+        "fanlight-glass"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "peranakan-ornament",
+      "name": "Pilasters, floral spandrels and layered cornices",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "upper-facade"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "peranakan-hidden-elevations",
+      "name": "End wall, airwell and rear court",
+      "tier": "important",
+      "passIds": [
+        "form-refinement",
+        "interaction-pass"
+      ],
+      "minimumScore": 0.7,
+      "mustPass": false,
+      "componentRefs": [
+        "end-wall",
+        "roof-and-airwell",
+        "rear-court"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot from your agent's browser/screenshot tool",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores and mismatch critique",
+      "critical semantic feature scores from the same image pair meeting their individual thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": true,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "forge/stage1_intake/extract_pbr_evidence.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    "End-bay side elevation, airwell and rear court are conservative typological inference and are reviewed separately from the documented facade.",
+    "End-bay side elevation, airwell and rear court are conservative typological inference and are reviewed separately from the documented facade.",
+    "End-bay side elevation, airwell and rear court are conservative typological inference and are reviewed separately from the documented facade."
+  ],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "image up direction",
+    "scaleReference": "unit scale; adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "",
+    "aspectRatios": [],
+    "symmetry": "",
+    "dominantCurves": [],
+    "negativeSpaces": [],
+    "landmarks": []
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "Upper facade with three full-height paired shutter windows, colored fanlights, balustrades, floral tile spandrels, pilasters and layered eaves."
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Peranakan House assembly root",
+      "level": "macro",
+      "role": "root-container",
+      "importance": 1,
+      "confidence": 0.5,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Named assembly container for separable facade, roof and court systems.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "street-shell",
+      "name": "Deep narrow street shell",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "root-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-assembly",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "street-shell",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "roof-and-airwell",
+      "name": "Split roof and open airwell",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "Two pitched roof volumes separated by a real open airwell.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "root-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-assembly",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-and-airwell",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "terracotta-roof",
+      "materialLayers": [
+        "terracotta-roof"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(185, 103, 80, 1.0)",
+        "secondaryAlbedo": "rgba(141, 78, 62, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "five-footway",
+      "name": "Sheltered five-footway assembly",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "root-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-assembly",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "five-footway",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "rear-court",
+      "name": "Rear court and service block",
+      "level": "macro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.68,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "root-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-assembly",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "rear-court",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "upper-facade",
+      "name": "Projecting upper street facade",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "street-shell",
+      "attachment": {
+        "parentSocket": "street-shell-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "upper-facade",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "eaves-perforation-row",
+          "type": "hole",
+          "geometryEffect": "repeated cutout fascia rhythm",
+          "confidence": 0.92
+        },
+        {
+          "id": "layered-cornice-ridges",
+          "type": "ridge",
+          "geometryEffect": "three stepped horizontal mouldings",
+          "confidence": 0.96
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "upper-window-system",
+      "name": "Three French-window bay assemblies",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "upper-facade",
+      "attachment": {
+        "parentSocket": "upper-facade-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "upper-window-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-timber",
+      "materialLayers": [
+        "painted-timber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "oval-vent-row",
+          "type": "hole",
+          "geometryEffect": "three inset oval openings",
+          "confidence": 0.94
+        },
+        {
+          "id": "paired-jalousie-shutters",
+          "type": "linework",
+          "geometryEffect": "six framed shutter leaves with contained louvres",
+          "confidence": 0.98
+        },
+        {
+          "id": "balustrade-row",
+          "type": "ridge",
+          "geometryEffect": "vertical post-and-rail balustrades",
+          "confidence": 0.94
+        },
+        {
+          "id": "lower-timber-panel-seams",
+          "type": "seam",
+          "geometryEffect": "recessed joinery panels",
+          "confidence": 0.9
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(127, 169, 154, 1.0)",
+        "secondaryAlbedo": "rgba(241, 234, 210, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "facade-pilasters",
+      "name": "Fluted pilasters and capitals",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "upper-facade",
+      "attachment": {
+        "parentSocket": "upper-facade-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "facade-pilasters",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "floral-capital-pair",
+          "type": "ridge",
+          "geometryEffect": "stacked floral capital blocks",
+          "confidence": 0.9
+        },
+        {
+          "id": "vertical-fluting",
+          "type": "groove",
+          "geometryEffect": "paired vertical recess lines",
+          "confidence": 0.91
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "ceramic-spandrels",
+      "name": "Floral ceramic spandrel panels",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "plane-card",
+      "topologyClass": "material-only",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "upper-facade",
+      "attachment": {
+        "parentSocket": "upper-facade-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "ceramic-spandrels",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic-tile",
+      "materialLayers": [
+        "ceramic-tile"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(233, 216, 185, 1.0)",
+        "secondaryAlbedo": "rgba(223, 111, 131, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "ground-front",
+      "name": "Residential ground facade",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "street-shell",
+      "attachment": {
+        "parentSocket": "street-shell-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "ground-front",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-timber",
+      "materialLayers": [
+        "painted-timber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(127, 169, 154, 1.0)",
+        "secondaryAlbedo": "rgba(241, 234, 210, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "end-wall",
+      "name": "End-bay side elevation",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.72,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "street-shell",
+      "attachment": {
+        "parentSocket": "street-shell-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "end-wall",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "rear-service-block",
+      "name": "Rear kitchen and service elevation",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.64,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "rear-court",
+      "attachment": {
+        "parentSocket": "rear-court-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "rear-service-block",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-plaster",
+      "materialLayers": [
+        "painted-plaster"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(169, 198, 181, 1.0)",
+        "secondaryAlbedo": "rgba(232, 223, 200, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "roof-tiles",
+      "name": "Terracotta roof tile rows",
+      "level": "meso",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-and-airwell",
+      "attachment": {
+        "parentSocket": "roof-and-airwell-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-tiles",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "terracotta-roof",
+      "materialLayers": [
+        "terracotta-roof"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(185, 103, 80, 1.0)",
+        "secondaryAlbedo": "rgba(141, 78, 62, 1.0)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "fanlight-glass",
+      "name": "Colored fanlight pane grids",
+      "level": "micro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "plane-card",
+      "topologyClass": "material-only",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "upper-window-system",
+      "attachment": {
+        "parentSocket": "upper-window-system-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "fanlight-glass",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "fanlight-glass",
+      "materialLayers": [
+        "fanlight-glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(138, 167, 176, 1.0)",
+        "secondaryAlbedo": "rgba(143, 111, 159, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "pintu-pagar",
+      "name": "Half-height pintu pagar",
+      "level": "micro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "ground-front",
+      "attachment": {
+        "parentSocket": "ground-front-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "pintu-pagar",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-timber",
+      "materialLayers": [
+        "painted-timber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(127, 169, 154, 1.0)",
+        "secondaryAlbedo": "rgba(241, 234, 210, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "eaves-fascia",
+      "name": "Perforated eaves fascia",
+      "level": "micro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "upper-facade",
+      "attachment": {
+        "parentSocket": "upper-facade-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eaves-fascia",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-timber",
+      "materialLayers": [
+        "painted-timber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(127, 169, 154, 1.0)",
+        "secondaryAlbedo": "rgba(241, 234, 210, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "downpipes",
+      "name": "Side and rear rainwater pipes",
+      "level": "micro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.82,
+      "primitive": "curve-sweep",
+      "topologyClass": "fiber-strand",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "end-wall",
+      "attachment": {
+        "parentSocket": "end-wall-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "downpipes",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "metal",
+      "materialLayers": [
+        "metal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(72, 99, 93, 1.0)",
+        "secondaryAlbedo": "rgba(46, 69, 65, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    },
+    {
+      "id": "airwell-screen",
+      "name": "Airwell parapet and window screen",
+      "level": "micro",
+      "role": "static-part",
+      "importance": 0.82,
+      "confidence": 0.62,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "A discrete architectural or sculptural part with independently reviewable volume.",
+      "geometryDescriptor": {
+        "topologyIntent": "A discrete architectural or sculptural part with independently reviewable volume.",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.025,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-and-airwell",
+      "attachment": {
+        "parentSocket": "roof-and-airwell-surface",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.08,
+          0
+        ],
+        "contactType": "overlap",
+        "overlap": 0.04,
+        "embedDepth": 0.025,
+        "gapTolerance": 0.01
+      },
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "airwell-screen",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "painted-timber",
+      "materialLayers": [
+        "painted-timber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "form",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(127, 169, 154, 1.0)",
+        "secondaryAlbedo": "rgba(241, 234, 210, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.86,
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "notes": "Palette and material class follow the reference-led quality contract; no photographic texture is projected."
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "painted-plaster",
+      "name": "Pale mint and cream lime plaster",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#a9c6b5",
+      "color": "#a9c6b5",
+      "albedo": {
+        "dominant": "#a9c6b5",
+        "secondary": [
+          "#e8dfc8",
+          "#809b8f"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#a9c6b5",
+          "#e8dfc8",
+          "#809b8f"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.76,
+        "variation": 0.08,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.16,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "independent micro-height field",
+        "amplitude": 0.025,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "end-wall-weathering",
+          "region": "end-wall drain path and cornice undersides",
+          "roughness": 0.84,
+          "dirtAmount": 0.08,
+          "streak": "gravity-down",
+          "fadedMask": 0.06,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Muted painted plaster; extracted palette is used as evidence but not projected because the facade colors are flat architectural paint.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "painted-timber",
+      "name": "Painted jalousie shutters and joinery",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#7fa99a",
+      "color": "#7fa99a",
+      "albedo": {
+        "dominant": "#7fa99a",
+        "secondary": [
+          "#f1ead2",
+          "#5f7f73"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#7fa99a",
+          "#f1ead2",
+          "#5f7f73"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.62,
+        "variation": 0.08,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.12,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "fine linear timber grain",
+        "amplitude": 0.022,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "painted-timber-cavity-response",
+          "region": "recesses and sheltered contacts",
+          "roughness": 0.7,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Satin painted timber with contained louvre relief and subtly smoother handled edges.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "ceramic-tile",
+      "name": "Glazed floral ceramic tile",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#e9d8b9",
+      "color": "#e9d8b9",
+      "albedo": {
+        "dominant": "#e9d8b9",
+        "secondary": [
+          "#df6f83",
+          "#6eaa8a",
+          "#6b96ad"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#e9d8b9",
+          "#df6f83",
+          "#6eaa8a",
+          "#6b96ad"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.26,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.08,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "independent micro-height field",
+        "amplitude": 0.035,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "floral-panel-pattern",
+          "region": "upper-facade spandrels",
+          "roughness": 0.22,
+          "clearcoat": 0.55,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Glazed floral accents are simplified as authored colored relief, not copied photography.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "terracotta-roof",
+      "name": "Terracotta clay roof tiles",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#b96750",
+      "color": "#b96750",
+      "albedo": {
+        "dominant": "#b96750",
+        "secondary": [
+          "#8d4e3e",
+          "#d48666"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#b96750",
+          "#8d4e3e",
+          "#d48666"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.78,
+        "variation": 0.08,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.22,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "repeated clay tile lip",
+        "amplitude": 0.06,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "terracotta-roof-cavity-response",
+          "region": "recesses and sheltered contacts",
+          "roughness": 0.86,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "High-roughness clay rows with darker overlaps and restrained color variation.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "fanlight-glass",
+      "name": "Colored fanlight glazing",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#8aa7b0",
+      "color": "#8aa7b0",
+      "albedo": {
+        "dominant": "#8aa7b0",
+        "secondary": [
+          "#8f6f9f",
+          "#7fa86e",
+          "#cf9d56"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#8aa7b0",
+          "#8f6f9f",
+          "#7fa86e",
+          "#cf9d56"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.18,
+        "variation": 0.03,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.02,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "independent micro-height field",
+        "amplitude": 0.035,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "colored-pane-sequence",
+          "region": "three rectangular fanlight grids",
+          "roughness": 0.16,
+          "clearcoat": 0.72,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Opaque stylised glazing in multiple colored panes for stable low-poly rendering.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    },
+    {
+      "id": "metal",
+      "name": "Painted drainpipe and balustrade metal",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#48635d",
+      "color": "#48635d",
+      "albedo": {
+        "dominant": "#48635d",
+        "secondary": [
+          "#2e4541"
+        ],
+        "samplingNotes": "Use image-observed local color zones, not a single averaged color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#48635d",
+          "#2e4541"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.15,
+        "heightCorrelation": 0.3
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.48,
+        "variation": 0.04,
+        "map": "independent-procedural-field",
+        "localResponse": "higher roughness in cavities, lower roughness on worn edges"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.05,
+        "scale": 24,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "independent micro-height field",
+        "amplitude": 0.035,
+        "scale": 30
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.35,
+        "notes": "Darken creases, seams, intersections, and recessed local features."
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.6,
+        "color": "#3f3933"
+      },
+      "localOverrides": [
+        {
+          "id": "metal-cavity-response",
+          "region": "recesses and sheltered contacts",
+          "roughness": 0.5599999999999999,
+          "aoBoost": 0.12
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Low-metalness painted iron with slightly worn edges.",
+      "referencePbr": {
+        "usable": true,
+        "confidence": 0.86,
+        "verdict": "pass",
+        "limitation": "Single-image PBR extraction is evidence, not exact inverse rendering. Shared source-image evidence is used only to set response ranges; flat-color materials are authored independently.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_albedo.png",
+            "url": "painted-plaster_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_roughness.png",
+            "url": "painted-plaster_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_height.png",
+            "url": "painted-plaster_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_normal.png",
+            "url": "painted-plaster_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/william/Documents/Massanger/research/reference-led-rebuild/pbr/peranakan-plaster/painted-plaster_ao.png",
+            "url": "painted-plaster_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        }
+      }
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "repeat-window-bays",
+      "name": "Three French-window bays",
+      "componentRef": "upper-window-system",
+      "pattern": "linear",
+      "axis": "X",
+      "count": 3,
+      "spacing": 0.12,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Loop-generated named meshes with shared materials; never map-only."
+      },
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "repeat-shutter-louvres",
+      "name": "Contained jalousie slats within six leaves",
+      "componentRef": "upper-window-system",
+      "pattern": "linear",
+      "axis": "X",
+      "count": 42,
+      "spacing": 0.12,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Loop-generated named meshes with shared materials; never map-only."
+      },
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "repeat-fanlight-panes",
+      "name": "Colored fanlight pane grids",
+      "componentRef": "fanlight-glass",
+      "pattern": "linear",
+      "axis": "X",
+      "count": 15,
+      "spacing": 0.12,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Loop-generated named meshes with shared materials; never map-only."
+      },
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "repeat-balustrades",
+      "name": "Vertical balustrade posts",
+      "componentRef": "upper-window-system",
+      "pattern": "linear",
+      "axis": "X",
+      "count": 18,
+      "spacing": 0.12,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Loop-generated named meshes with shared materials; never map-only."
+      },
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "repeat-roof-tiles",
+      "name": "Overlapping clay tile rows",
+      "componentRef": "roof-tiles",
+      "pattern": "linear",
+      "axis": "X",
+      "count": 18,
+      "spacing": 0.12,
+      "variation": {
+        "position": 0,
+        "rotation": 0,
+        "scale": 0
+      },
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "instanced-cluster",
+        "realization": "Loop-generated named meshes with shared materials; never map-only."
+      },
+      "evidenceRefs": [
+        "full-object"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": [
+        "root",
+        "street-shell",
+        "roof-and-airwell",
+        "five-footway",
+        "rear-court",
+        "upper-facade",
+        "upper-window-system",
+        "facade-pilasters",
+        "ceramic-spandrels",
+        "ground-front",
+        "end-wall",
+        "rear-service-block",
+        "roof-tiles",
+        "fanlight-glass",
+        "pintu-pagar",
+        "eaves-fascia",
+        "downpipes",
+        "airwell-screen"
+      ],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "reference-fidelity",
+    "targetTriangles": 250000,
+    "maxDrawCalls": 160,
+    "textureSize": 2048,
+    "fpsTarget": 30,
+    "optimizationPolicy": "Reach accepted visual fidelity first, then optimize without removing reference-critical geometry or surface layers."
+  },
+  "lightingFromPhoto": [
+    "Neutral 5200 K key from camera-left at 1.0 intensity with soft 1.4 m equivalent source and contact shadows.",
+    "Warm low-intensity fill at 0.28 preserves deep window and five-footway recesses without flattening them.",
+    "Cool rim at 0.3 separates roof eaves and end-wall relief; ACES Filmic exposure 1.0 on a pale neutral background."
+  ],
+  "proceduralStrategy": [
+    "Block out macro silhouette first.",
+    "Add component hierarchy and joints.",
+    "Create stable pivot groups, sockets, collider proxies, and destruction metadata before visual polish.",
+    "Refine forms with bevels, tapers, bends, and procedural noise.",
+    "Run reference PBR extraction for important source-image materials and stop when confidence is below the target threshold.",
+    "Add material variation before adding expensive micro-geometry."
+  ],
+  "animationAnchors": [
+    "root pivot node supports whole-object translation, rotation, scale, and visibility changes",
+    "component pivot groups support later local transforms without rebuilding geometry"
+  ],
+  "destructionAnchors": [
+    "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+    "component seams and sockets define plausible break points instead of random explosions"
+  ],
+  "risks": [],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Peranakan House Singapore shophouse French windows fanlight balustrade five-foot way airwell rear court",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-orm-channel-packing",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[10]",
+        "score": 3.001742645285,
+        "snippets": [
+          "... like flat gray/colored noise, not a recognizable color or normal map; Source 2 (CS2) packs Roughness/Metalness this way; the raw file needs channel-splitting before separate Three.js texture slots can use it Dấu hiệu nhận diện: Một file ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[10]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

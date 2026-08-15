@@ -1,0 +1,132 @@
+{
+  "sourceImage": "/tmp/massanger-reference-led-rebuild/peranakan-koon-seng.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "perforated-eaves",
+        "kind": "hole",
+        "description": "A dense repeating perforated timber fascia forms the deep top eave shadow line.",
+        "region": { "x": 0.05, "y": 0.0, "width": 0.9, "height": 0.18, "units": "normalized" },
+        "scale": "micro repeated across facade width",
+        "affects": "eaves negative space and top silhouette",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-facade.eaves-perforation-row" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+        "confidence": 0.92
+      },
+      {
+        "id": "layered-cornice-ridges",
+        "kind": "ridge",
+        "description": "Multiple narrow plaster cornice bands step outward beneath the eaves and above the windows.",
+        "region": { "x": 0.08, "y": 0.12, "width": 0.84, "height": 0.18, "units": "normalized" },
+        "scale": "meso horizontal relief",
+        "affects": "grazing-light shadow hierarchy",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-facade.layered-cornice-ridges" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "capital-relief",
+        "kind": "ridge",
+        "description": "Projecting floral capitals cap the pilasters at both ends of the three-window composition.",
+        "region": { "x": 0.0, "y": 0.17, "width": 1.0, "height": 0.22, "units": "normalized" },
+        "scale": "meso paired ornament",
+        "affects": "pilaster crown silhouette",
+        "mapsTo": { "type": "component.localFeatures", "ref": "facade-pilasters.floral-capital-pair" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c2.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "oval-vent-row",
+        "kind": "hole",
+        "description": "One small oval plaster-framed ventilation opening is centered above each window bay.",
+        "region": { "x": 0.18, "y": 0.25, "width": 0.62, "height": 0.16, "units": "normalized" },
+        "scale": "micro three-instance row",
+        "affects": "upper-bay identity and negative space",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-window-system.oval-vent-row" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "colored-fanlights",
+        "kind": "decal",
+        "description": "Rectangular multi-pane fanlights above the three French windows alternate purple, blue, green and amber glazing.",
+        "region": { "x": 0.16, "y": 0.33, "width": 0.66, "height": 0.16, "units": "normalized" },
+        "scale": "meso repeated glazing grid",
+        "affects": "window-head color and bay proportions",
+        "mapsTo": { "type": "material.localOverrides", "ref": "fanlight-glass.colored-pane-sequence" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "paired-jalousie-shutters",
+        "kind": "linework",
+        "description": "Each full-height French opening carries two side-hung timber jalousie leaves with narrow horizontal louvers contained within the leaf frames.",
+        "region": { "x": 0.13, "y": 0.4, "width": 0.72, "height": 0.33, "units": "normalized" },
+        "scale": "meso six shutter leaves with micro slats",
+        "affects": "window silhouette and shutter articulation",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-window-system.paired-jalousie-shutters" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+        "confidence": 0.98
+      },
+      {
+        "id": "vertical-balustrades",
+        "kind": "ridge",
+        "description": "Slender vertical balusters sit across the lower portion of each full-height opening without covering the fanlights.",
+        "region": { "x": 0.17, "y": 0.57, "width": 0.65, "height": 0.18, "units": "normalized" },
+        "scale": "micro repeated vertical rods",
+        "affects": "French-window safety rail rhythm",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-window-system.balustrade-row" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "floral-tile-spandrels",
+        "kind": "decal",
+        "description": "Glazed floral tile panels with pink blossoms and green foliage fill the spandrels below the outer window bays.",
+        "region": { "x": 0.1, "y": 0.66, "width": 0.78, "height": 0.15, "units": "normalized" },
+        "scale": "meso repeated ceramic panels",
+        "affects": "lower-facade color and Peranakan identity",
+        "mapsTo": { "type": "material.localOverrides", "ref": "ceramic-tile/floral-panel-pattern" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+        "confidence": 0.96
+      },
+      {
+        "id": "lower-timber-panels",
+        "kind": "seam",
+        "description": "Recessed rectangular timber panels and stiles sit beneath the central French opening.",
+        "region": { "x": 0.35, "y": 0.64, "width": 0.28, "height": 0.17, "units": "normalized" },
+        "scale": "meso joinery panels",
+        "affects": "lower window assembly depth",
+        "mapsTo": { "type": "component.localFeatures", "ref": "upper-window-system.lower-timber-panel-seams" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "pilaster-fluting",
+        "kind": "groove",
+        "description": "Vertical grooves and stepped edge mouldings articulate the pilasters between and beside the window bays.",
+        "region": { "x": 0.08, "y": 0.25, "width": 0.84, "height": 0.55, "units": "normalized" },
+        "scale": "meso vertical relief",
+        "affects": "bay separation and contact shadows",
+        "mapsTo": { "type": "component.localFeatures", "ref": "facade-pilasters.vertical-fluting" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c2.png",
+        "confidence": 0.91
+      },
+      {
+        "id": "paint-weathering",
+        "kind": "stain",
+        "description": "Subtle vertical ochre streaking and value variation appear on the pale green painted plaster near the end pilaster.",
+        "region": { "x": 0.76, "y": 0.5, "width": 0.2, "height": 0.42, "units": "normalized" },
+        "scale": "macro-to-meso material variation",
+        "affects": "paint roughness and local albedo",
+        "mapsTo": { "type": "material.localOverrides", "ref": "painted-plaster.end-wall-weathering" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c2.png",
+        "confidence": 0.75
+      }
+    ]
+  },
+  "authoringInstruction": "Each inventoried detail maps to a named component local feature or material local override in the sculpt spec."
+}

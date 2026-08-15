@@ -1,0 +1,482 @@
+{
+  "targetName": "Peranakan House",
+  "sourceImage": "/tmp/massanger-reference-led-rebuild/peranakan-koon-seng.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "two-storey late-style Singapore Peranakan shophouse",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "architectural",
+        "geometric",
+        "ornamental",
+        "bilaterally symmetrical street facade"
+      ],
+      "structureKind": [
+        "long narrow masonry terrace bay",
+        "five-footway colonnade",
+        "pitched clay-tile roof with airwell and rear court",
+        "repeated timber window assemblies"
+      ],
+      "motionPotential": [
+        "static browser prop",
+        "explodable named facade and roof assemblies"
+      ],
+      "materialFamilies": [
+        "painted lime plaster",
+        "painted timber",
+        "glazed ceramic tile",
+        "terracotta roof tile",
+        "dark glazing and ironwork"
+      ],
+      "notes": "Reference-detail fidelity is highest on the upper street facade. The end-wall, airwell and rear-court elevations are typological inference and must remain quieter than the documented facade."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 14,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 5
+      },
+      "reasoning": [
+        "The identity depends on more than the narrow rectangular mass: the projecting upper storey, continuous five-footway and pitched roof must all survive the silhouette pass.",
+        "Three full-height paired French-window bays, colored fanlights, balustrades, pilasters, floral tile spandrels and cornice brackets create dense repeated meso and micro geometry.",
+        "The public street facade is documented; the end wall, airwell and rear court require conservative typological inference and separate review views."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A complex tier is required because recognizability depends on layered facade depth, five repeated ornamental systems, multiple material families, and credible inferred hidden elevations."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Whether the gallery object represents a mid-row party-wall bay or a corner/end bay; this rebuild treats it as an end bay so an orbit does not present an empty slab.",
+      "The reference does not reveal the exact airwell length, rear service-block depth, or rear-court configuration.",
+      "Exact floral tile motifs and plaster relief profiles are simplified to geometry and palette rhythms rather than copied photographic textures."
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "perforated-eaves",
+          "kind": "hole",
+          "description": "A dense repeating perforated timber fascia forms the deep top eave shadow line.",
+          "region": {
+            "x": 0.05,
+            "y": 0.0,
+            "width": 0.9,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "micro repeated across facade width",
+          "affects": "eaves negative space and top silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-facade.eaves-perforation-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+          "confidence": 0.92
+        },
+        {
+          "id": "layered-cornice-ridges",
+          "kind": "ridge",
+          "description": "Multiple narrow plaster cornice bands step outward beneath the eaves and above the windows.",
+          "region": {
+            "x": 0.08,
+            "y": 0.12,
+            "width": 0.84,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "meso horizontal relief",
+          "affects": "grazing-light shadow hierarchy",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-facade.layered-cornice-ridges"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c1.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "capital-relief",
+          "kind": "ridge",
+          "description": "Projecting floral capitals cap the pilasters at both ends of the three-window composition.",
+          "region": {
+            "x": 0.0,
+            "y": 0.17,
+            "width": 1.0,
+            "height": 0.22,
+            "units": "normalized"
+          },
+          "scale": "meso paired ornament",
+          "affects": "pilaster crown silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "facade-pilasters.floral-capital-pair"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r0c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "oval-vent-row",
+          "kind": "hole",
+          "description": "One small oval plaster-framed ventilation opening is centered above each window bay.",
+          "region": {
+            "x": 0.18,
+            "y": 0.25,
+            "width": 0.62,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "micro three-instance row",
+          "affects": "upper-bay identity and negative space",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system.oval-vent-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "colored-fanlights",
+          "kind": "decal",
+          "description": "Rectangular multi-pane fanlights above the three French windows alternate purple, blue, green and amber glazing.",
+          "region": {
+            "x": 0.16,
+            "y": 0.33,
+            "width": 0.66,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "meso repeated glazing grid",
+          "affects": "window-head color and bay proportions",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "fanlight-glass.colored-pane-sequence"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "paired-jalousie-shutters",
+          "kind": "linework",
+          "description": "Each full-height French opening carries two side-hung timber jalousie leaves with narrow horizontal louvers contained within the leaf frames.",
+          "region": {
+            "x": 0.13,
+            "y": 0.4,
+            "width": 0.72,
+            "height": 0.33,
+            "units": "normalized"
+          },
+          "scale": "meso six shutter leaves with micro slats",
+          "affects": "window silhouette and shutter articulation",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system.paired-jalousie-shutters"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.98
+        },
+        {
+          "id": "vertical-balustrades",
+          "kind": "ridge",
+          "description": "Slender vertical balusters sit across the lower portion of each full-height opening without covering the fanlights.",
+          "region": {
+            "x": 0.17,
+            "y": 0.57,
+            "width": 0.65,
+            "height": 0.18,
+            "units": "normalized"
+          },
+          "scale": "micro repeated vertical rods",
+          "affects": "French-window safety rail rhythm",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system.balustrade-row"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "floral-tile-spandrels",
+          "kind": "decal",
+          "description": "Glazed floral tile panels with pink blossoms and green foliage fill the spandrels below the outer window bays.",
+          "region": {
+            "x": 0.1,
+            "y": 0.66,
+            "width": 0.78,
+            "height": 0.15,
+            "units": "normalized"
+          },
+          "scale": "meso repeated ceramic panels",
+          "affects": "lower-facade color and Peranakan identity",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "ceramic-spandrels.floral-panel-pattern"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+          "confidence": 0.96
+        },
+        {
+          "id": "lower-timber-panels",
+          "kind": "seam",
+          "description": "Recessed rectangular timber panels and stiles sit beneath the central French opening.",
+          "region": {
+            "x": 0.35,
+            "y": 0.64,
+            "width": 0.28,
+            "height": 0.17,
+            "units": "normalized"
+          },
+          "scale": "meso joinery panels",
+          "affects": "lower window assembly depth",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-window-system.lower-timber-panel-seams"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "pilaster-fluting",
+          "kind": "groove",
+          "description": "Vertical grooves and stepped edge mouldings articulate the pilasters between and beside the window bays.",
+          "region": {
+            "x": 0.08,
+            "y": 0.25,
+            "width": 0.84,
+            "height": 0.55,
+            "units": "normalized"
+          },
+          "scale": "meso vertical relief",
+          "affects": "bay separation and contact shadows",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "facade-pilasters.vertical-fluting"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r1c2.png",
+          "confidence": 0.91
+        },
+        {
+          "id": "paint-weathering",
+          "kind": "stain",
+          "description": "Subtle vertical ochre streaking and value variation appear on the pale green painted plaster near the end pilaster.",
+          "region": {
+            "x": 0.76,
+            "y": 0.5,
+            "width": 0.2,
+            "height": 0.42,
+            "units": "normalized"
+          },
+          "scale": "macro-to-meso material variation",
+          "affects": "paint roughness and local albedo",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "painted-plaster.end-wall-weathering"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/peranakan-house/zone-r2c2.png",
+          "confidence": 0.75
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/tmp/massanger-reference-led-rebuild/peranakan-koon-seng.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At catalogue-card distance the model reads as a narrow Singapore Peranakan shophouse with a projecting upper storey, sheltered five-footway, three correct full-height window assemblies, colored fanlights, balustrades, floral tile spandrels, layered plaster cornices, and a clay-tile roof.",
+      "Front, three-quarter, side, and rear-court views show real depth and attached parts; no view may collapse into a blank slab or expose floating windows, roof sheets, or ornament."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "shophouse-massing",
+        "name": "Narrow shophouse mass, upper projection, five-footway and roof",
+        "required": true,
+        "qualityCriteria": [
+          "The plan remains visibly narrow and deep, the upper facade projects over a continuous five-footway, and the roof is split by an airwell before a smaller rear service block."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "the model reads as a freestanding box with a porch",
+          "the roof spans the full depth as one uninterrupted slab",
+          "the five-footway is a platform without sheltered passage depth"
+        ]
+      },
+      {
+        "id": "upper-window-system",
+        "name": "Three full-height French-window assemblies",
+        "required": true,
+        "qualityCriteria": [
+          "Each bay has a recessed full-height opening, paired side-hung shutters, a colored multi-pane fanlight, vertical balustrade and lower timber panel; shutter leaves are not replaced by flat horizontal bar stacks."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "windows read as vents, ladders or surface decals",
+          "fanlights are circular or absent",
+          "balustrades are missing or cover the shutter faces"
+        ]
+      },
+      {
+        "id": "ornamental-facade",
+        "name": "Pilasters, floral tile spandrels, cornices and eaves",
+        "required": true,
+        "qualityCriteria": [
+          "Pilasters frame the three bays, floral tile panels sit below the openings, and layered cornice/eaves geometry creates shadow lines without floating off the facade."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "ornament is represented by unrelated floating blocks",
+          "tile panels are oversized checkerboards",
+          "the cornice reads as one oversized signboard"
+        ]
+      },
+      {
+        "id": "ground-front-and-five-footway",
+        "name": "Residential ground front, pintu pagar and five-footway",
+        "required": true,
+        "qualityCriteria": [
+          "A recessed double-leaf door, half-height pintu pagar, flanking casement windows, columns, floor edge and covered ceiling form a coherent sheltered passage."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "columns block the doorway or sit outside the walkway edge",
+          "the pintu pagar fills the full door height",
+          "the ground windows repeat the upper French-window proportions"
+        ]
+      },
+      {
+        "id": "hidden-elevation-credibility",
+        "name": "End-wall, airwell and rear-court credibility",
+        "required": true,
+        "qualityCriteria": [
+          "The end bay has restrained compatible casement windows and drainpipe relief, the airwell visibly breaks the roof, and the rear court has a service door and compatible windows without claiming exact historical plans."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "a three-quarter orbit shows a featureless six-metre wall",
+          "rear windows float beyond the wall plane",
+          "roof panels intersect or leave a visible open seam"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "narrow depth-to-frontage ratio and upper-storey projection delta",
+      "three-window bay width, height, fanlight and shutter-angle delta",
+      "five-footway clear passage and column-spacing delta",
+      "pilaster, floral-tile, cornice and eaves repetition delta",
+      "airwell break, end-wall fenestration and rear-court depth delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Peranakan House Singapore shophouse French windows fanlight balustrade five-foot way airwell rear court",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-orm-channel-packing",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[10]",
+        "score": 3.001742645285,
+        "snippets": [
+          "... like flat gray/colored noise, not a recognizable color or normal map; Source 2 (CS2) packs Roughness/Metalness this way; the raw file needs channel-splitting before separate Three.js texture slots can use it Dấu hiệu nhận diện: Một file ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[10]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "sourceImage": "/tmp/massanger-reference-led-rebuild/merlion-side-cc0-1800.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "crown-mane-crest",
+        "kind": "ridge",
+        "description": "Broad swept mane plates form a flattened crown crest behind the brow rather than radial spikes.",
+        "region": { "x": 0.6, "y": 0.08, "width": 0.18, "height": 0.22, "units": "normalized" },
+        "scale": "meso layered sculptural plates",
+        "affects": "top and rear head silhouette",
+        "mapsTo": { "type": "component.localFeatures", "ref": "mane-system.crown-plate-overlap" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c2.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "heavy-brow",
+        "kind": "ridge",
+        "description": "A projecting brow plane shades the small inset eye and angles down toward the muzzle.",
+        "region": { "x": 0.57, "y": 0.19, "width": 0.09, "height": 0.09, "units": "normalized" },
+        "scale": "meso facial plane",
+        "affects": "lion expression and profile",
+        "mapsTo": { "type": "component.localFeatures", "ref": "brow-and-eyes/brow-ridge" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c1.png",
+        "confidence": 0.88
+      },
+      {
+        "id": "muzzle-and-nose",
+        "kind": "contour",
+        "description": "The muzzle projects forward with a broad rounded nose and downturned upper-lip contour.",
+        "region": { "x": 0.56, "y": 0.22, "width": 0.1, "height": 0.13, "units": "normalized" },
+        "scale": "meso continuous sculpt",
+        "affects": "front head silhouette",
+        "mapsTo": { "type": "component.localFeatures", "ref": "muzzle-nose/muzzle-nose-contour" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c1.png",
+        "confidence": 0.93
+      },
+      {
+        "id": "open-mouth-cavity",
+        "kind": "hole",
+        "description": "A deep open mouth separates upper and lower jaws and contains the water outlet in shadow.",
+        "region": { "x": 0.57, "y": 0.3, "width": 0.12, "height": 0.12, "units": "normalized" },
+        "scale": "critical meso negative space",
+        "affects": "jaw silhouette and water attachment",
+        "mapsTo": { "type": "component.localFeatures", "ref": "jaw-assembly.deep-mouth-cavity" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+        "confidence": 0.98
+      },
+      {
+        "id": "lower-jaw-chin",
+        "kind": "contour",
+        "description": "A separate lower jaw and rounded chin project below the water stream and overlap the throat.",
+        "region": { "x": 0.6, "y": 0.33, "width": 0.11, "height": 0.13, "units": "normalized" },
+        "scale": "meso attached volume",
+        "affects": "mouth opening and throat transition",
+        "mapsTo": { "type": "component.localFeatures", "ref": "jaw-assembly.lower-jaw-chin" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+        "confidence": 0.94
+      },
+      {
+        "id": "cheek-mane-locks",
+        "kind": "ridge",
+        "description": "Long flattened mane locks sweep from cheek and jaw toward the shoulder in overlapping vertical layers.",
+        "region": { "x": 0.66, "y": 0.2, "width": 0.13, "height": 0.34, "units": "normalized" },
+        "scale": "meso repeated layered plates",
+        "affects": "rear head silhouette and neck overlap",
+        "mapsTo": { "type": "component.localFeatures", "ref": "mane-system.cheek-lock-layers" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c2.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "pectoral-fin",
+        "kind": "ridge",
+        "description": "One tapered pectoral fin projects upward from the front shoulder of the fish body.",
+        "region": { "x": 0.57, "y": 0.43, "width": 0.1, "height": 0.16, "units": "normalized" },
+        "scale": "meso silhouette feature",
+        "affects": "lion-to-fish transition",
+        "mapsTo": { "type": "component.localFeatures", "ref": "fish-body.pectoral-fin" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "staggered-scale-rows",
+        "kind": "ridge",
+        "description": "Dense overlapping scalloped scales descend in staggered rows around the tapered fish body.",
+        "region": { "x": 0.62, "y": 0.43, "width": 0.16, "height": 0.31, "units": "normalized" },
+        "scale": "micro-to-meso repeated relief",
+        "affects": "fish identity and grazing-light response",
+        "mapsTo": { "type": "component.localFeatures", "ref": "fish-body.staggered-scale-relief" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c2.png",
+        "confidence": 0.98
+      },
+      {
+        "id": "body-taper",
+        "kind": "contour",
+        "description": "The fish torso narrows steadily toward the pedestal with a slight forward belly curve.",
+        "region": { "x": 0.61, "y": 0.4, "width": 0.18, "height": 0.36, "units": "normalized" },
+        "scale": "macro continuous sculpt",
+        "affects": "primary body silhouette",
+        "mapsTo": { "type": "component.localFeatures", "ref": "fish-body.tapered-profile" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+        "confidence": 0.97
+      },
+      {
+        "id": "tail-wave-transition",
+        "kind": "ridge",
+        "description": "Carved tail and foam ridges blend the lower fish body into the wave pedestal rather than ending as a vertical cylinder.",
+        "region": { "x": 0.58, "y": 0.65, "width": 0.25, "height": 0.17, "units": "normalized" },
+        "scale": "meso sculptural transition",
+        "affects": "lower silhouette and pedestal contact",
+        "mapsTo": { "type": "component.localFeatures", "ref": "tail-wave-assembly.foam-and-tail-ridges" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+        "confidence": 0.83
+      },
+      {
+        "id": "layered-wave-crests",
+        "kind": "ridge",
+        "description": "Several horizontal blue-white wave crests wrap the pedestal in offset layers above the dark plinth.",
+        "region": { "x": 0.46, "y": 0.72, "width": 0.46, "height": 0.16, "units": "normalized" },
+        "scale": "meso concentric relief",
+        "affects": "pedestal silhouette and color rhythm",
+        "mapsTo": { "type": "component.localFeatures", "ref": "wave-pedestal.layered-crest-bands" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "ceramic-gloss-variation",
+        "kind": "gloss",
+        "description": "The white aggregate surface is satin-matte while the blue pedestal mosaic carries tighter low-roughness highlights.",
+        "region": { "x": 0.48, "y": 0.08, "width": 0.43, "height": 0.78, "units": "normalized" },
+        "scale": "macro material split with micro variation",
+        "affects": "roughness and highlight response",
+        "mapsTo": { "type": "material.localOverrides", "ref": "statue-aggregate/pedestal-gloss-split" },
+        "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c1.png",
+        "confidence": 0.78
+      }
+    ]
+  },
+  "authoringInstruction": "Each inventoried detail maps to a named component local feature or material local override in the sculpt spec."
+}

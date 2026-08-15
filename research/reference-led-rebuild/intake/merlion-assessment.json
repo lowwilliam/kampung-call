@@ -1,0 +1,503 @@
+{
+  "targetName": "Merlion Statue",
+  "sourceImage": "/tmp/massanger-reference-led-rebuild/merlion-side-cc0-1800.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylised monumental Merlion fountain statue",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "sculptural",
+        "organic",
+        "bilaterally symmetrical head",
+        "tapered fish-body column",
+        "layered relief"
+      ],
+      "structureKind": [
+        "compound continuous sculpt",
+        "layered lion mane plates",
+        "repeated overlapping fish scales",
+        "wave pedestal and fountain jet"
+      ],
+      "motionPotential": [
+        "static browser landmark",
+        "animated water emitter",
+        "explodable named anatomy assemblies"
+      ],
+      "materialFamilies": [
+        "white cement and porcelain aggregate",
+        "dark mouth and eye cavities",
+        "blue ceramic mosaic pedestal",
+        "translucent blue-white water"
+      ],
+      "notes": "The CC0 side reference strongly establishes profile anatomy, mane layering, scale direction and pedestal. The opposite side is inferred by bilateral symmetry; the exact rear tail transition is only partially visible."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 13,
+        "microFeatureGroups": 10,
+        "materialLayers": 4,
+        "repetitionSystems": 4
+      },
+      "reasoning": [
+        "The current mascot-like spheres fail because the reference silhouette is a tall tapered fish column supporting an angular lion head, not a round animal body.",
+        "The head requires separate brow, muzzle, nose, upper jaw, lower jaw and cavity volumes; the mane is a nested plate system rather than radial spikes.",
+        "Overlapping scales, a pectoral fin, tail/wave transition and layered ceramic pedestal are repeated identity systems visible at catalogue distance."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A complex tier is required because the identity rests on continuous organic volumes, deep mouth negative space, layered mane plates and dense repeated scale relief that must hold across multiple angles."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "The night side-view obscures fine eye carving and exact mouth-cavity depth.",
+      "The far side and rear tail transition are inferred by symmetry and supporting searched images.",
+      "The model is an intentionally stylised low-poly browser reconstruction, not a scan of Lim Nang Seng's original sculpture."
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "crown-mane-crest",
+          "kind": "ridge",
+          "description": "Broad swept mane plates form a flattened crown crest behind the brow rather than radial spikes.",
+          "region": {
+            "x": 0.6,
+            "y": 0.08,
+            "width": 0.18,
+            "height": 0.22,
+            "units": "normalized"
+          },
+          "scale": "meso layered sculptural plates",
+          "affects": "top and rear head silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mane-system.crown-plate-overlap"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c2.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "heavy-brow",
+          "kind": "ridge",
+          "description": "A projecting brow plane shades the small inset eye and angles down toward the muzzle.",
+          "region": {
+            "x": 0.57,
+            "y": 0.19,
+            "width": 0.09,
+            "height": 0.09,
+            "units": "normalized"
+          },
+          "scale": "meso facial plane",
+          "affects": "lion expression and profile",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "lion-head.brow-ridge"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c1.png",
+          "confidence": 0.88
+        },
+        {
+          "id": "muzzle-and-nose",
+          "kind": "contour",
+          "description": "The muzzle projects forward with a broad rounded nose and downturned upper-lip contour.",
+          "region": {
+            "x": 0.56,
+            "y": 0.22,
+            "width": 0.1,
+            "height": 0.13,
+            "units": "normalized"
+          },
+          "scale": "meso continuous sculpt",
+          "affects": "front head silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "lion-head.muzzle-nose-contour"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r0c1.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "open-mouth-cavity",
+          "kind": "hole",
+          "description": "A deep open mouth separates upper and lower jaws and contains the water outlet in shadow.",
+          "region": {
+            "x": 0.57,
+            "y": 0.3,
+            "width": 0.12,
+            "height": 0.12,
+            "units": "normalized"
+          },
+          "scale": "critical meso negative space",
+          "affects": "jaw silhouette and water attachment",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "jaw-assembly.deep-mouth-cavity"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+          "confidence": 0.98
+        },
+        {
+          "id": "lower-jaw-chin",
+          "kind": "contour",
+          "description": "A separate lower jaw and rounded chin project below the water stream and overlap the throat.",
+          "region": {
+            "x": 0.6,
+            "y": 0.33,
+            "width": 0.11,
+            "height": 0.13,
+            "units": "normalized"
+          },
+          "scale": "meso attached volume",
+          "affects": "mouth opening and throat transition",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "jaw-assembly.lower-jaw-chin"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+          "confidence": 0.94
+        },
+        {
+          "id": "cheek-mane-locks",
+          "kind": "ridge",
+          "description": "Long flattened mane locks sweep from cheek and jaw toward the shoulder in overlapping vertical layers.",
+          "region": {
+            "x": 0.66,
+            "y": 0.2,
+            "width": 0.13,
+            "height": 0.34,
+            "units": "normalized"
+          },
+          "scale": "meso repeated layered plates",
+          "affects": "rear head silhouette and neck overlap",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mane-system.cheek-lock-layers"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c2.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "pectoral-fin",
+          "kind": "ridge",
+          "description": "One tapered pectoral fin projects upward from the front shoulder of the fish body.",
+          "region": {
+            "x": 0.57,
+            "y": 0.43,
+            "width": 0.1,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "meso silhouette feature",
+          "affects": "lion-to-fish transition",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fish-body.pectoral-fin"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "staggered-scale-rows",
+          "kind": "ridge",
+          "description": "Dense overlapping scalloped scales descend in staggered rows around the tapered fish body.",
+          "region": {
+            "x": 0.62,
+            "y": 0.43,
+            "width": 0.16,
+            "height": 0.31,
+            "units": "normalized"
+          },
+          "scale": "micro-to-meso repeated relief",
+          "affects": "fish identity and grazing-light response",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fish-body.staggered-scale-relief"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r1c2.png",
+          "confidence": 0.98
+        },
+        {
+          "id": "body-taper",
+          "kind": "contour",
+          "description": "The fish torso narrows steadily toward the pedestal with a slight forward belly curve.",
+          "region": {
+            "x": 0.61,
+            "y": 0.4,
+            "width": 0.18,
+            "height": 0.36,
+            "units": "normalized"
+          },
+          "scale": "macro continuous sculpt",
+          "affects": "primary body silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fish-body.tapered-profile"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+          "confidence": 0.97
+        },
+        {
+          "id": "tail-wave-transition",
+          "kind": "ridge",
+          "description": "Carved tail and foam ridges blend the lower fish body into the wave pedestal rather than ending as a vertical cylinder.",
+          "region": {
+            "x": 0.58,
+            "y": 0.65,
+            "width": 0.25,
+            "height": 0.17,
+            "units": "normalized"
+          },
+          "scale": "meso sculptural transition",
+          "affects": "lower silhouette and pedestal contact",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tail-wave-assembly.foam-and-tail-ridges"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+          "confidence": 0.83
+        },
+        {
+          "id": "layered-wave-crests",
+          "kind": "ridge",
+          "description": "Several horizontal blue-white wave crests wrap the pedestal in offset layers above the dark plinth.",
+          "region": {
+            "x": 0.46,
+            "y": 0.72,
+            "width": 0.46,
+            "height": 0.16,
+            "units": "normalized"
+          },
+          "scale": "meso concentric relief",
+          "affects": "pedestal silhouette and color rhythm",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "wave-pedestal.layered-crest-bands"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c2.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "ceramic-gloss-variation",
+          "kind": "gloss",
+          "description": "The white aggregate surface is satin-matte while the blue pedestal mosaic carries tighter low-roughness highlights.",
+          "region": {
+            "x": 0.48,
+            "y": 0.08,
+            "width": 0.43,
+            "height": 0.78,
+            "units": "normalized"
+          },
+          "scale": "macro material split with micro variation",
+          "affects": "roughness and highlight response",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "ceramic-materials.pedestal-gloss-split"
+          },
+          "evidenceRef": "/Users/william/Documents/Massanger/research/reference-led-rebuild/intake/zones/merlion/zone-r2c1.png",
+          "confidence": 0.78
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/tmp/massanger-reference-led-rebuild/merlion-side-cc0-1800.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At catalogue-card distance the model reads immediately as Singapore's Merlion: a lion head with open water-spouting jaw and layered mane attached to a tapered overlapping-scale fish body on a blue wave pedestal.",
+      "Front, side, rear three-quarter and top-oblique views retain real volume, connected anatomy and a legible mouth cavity; the head must not read as a bear, cat mascot, or sphere with spikes."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "merlion-silhouette",
+        "name": "Lion-head to fish-body silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "The head is angular and forward-projecting, the neck/mane overhangs a narrower tapered fish column, and the body terminates in a wave/tail transition instead of a second animal torso."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "the model reads as a bear or cat mascot",
+          "head and body are equal spherical masses",
+          "the fish body has no taper or tail transition"
+        ]
+      },
+      {
+        "id": "lion-face-and-open-jaw",
+        "name": "Brow, muzzle, nose, open jaw and mouth cavity",
+        "required": true,
+        "qualityCriteria": [
+          "Brow and cheek planes frame small inset eyes; a broad muzzle leads to a projecting upper jaw, separate lower jaw and deep dark mouth cavity aligned with the water emitter."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "the mouth is a painted dot or closed muzzle",
+          "nose and eyes are oversized black mascot features",
+          "the water jet exits below or through the chin"
+        ]
+      },
+      {
+        "id": "layered-mane-system",
+        "name": "Layered crown, cheek and rear mane plates",
+        "required": true,
+        "qualityCriteria": [
+          "Broad swept mane locks overlap from crown to shoulder with directional flow and attached roots; they are flattened sculptural plates, not evenly spaced cones or spikes."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "mane reads as a ring of spikes",
+          "plates float away from the head or intersect the muzzle",
+          "rear mane collapses into a smooth helmet"
+        ]
+      },
+      {
+        "id": "fish-scale-and-fin-system",
+        "name": "Overlapping fish scales, pectoral fin and tail transition",
+        "required": true,
+        "qualityCriteria": [
+          "Scales overlap in staggered downward-facing rows around the body, a pectoral fin projects from the shoulder, and the lower body blends into a carved tail/wave base with no floating ring ornaments."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "scales are detached torus loops",
+          "the body is smooth or furry",
+          "the tail and wave base are absent"
+        ]
+      },
+      {
+        "id": "wave-pedestal-and-water",
+        "name": "Layered ceramic wave pedestal and water stream",
+        "required": true,
+        "qualityCriteria": [
+          "The pedestal has multiple horizontal blue mosaic wave crests and a dark plinth; a coherent tapered water curve leaves the mouth cavity and lands beyond the base without reading as a rigid blue pole."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "pedestal is a plain cyan cylinder",
+          "water is an opaque constant-radius rod",
+          "wave crests float or fail to wrap the base"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "head projection, jaw opening and head-to-body ratio delta",
+      "brow, muzzle, nose, eye and mouth-cavity placement delta",
+      "mane plate count, direction, overlap and root attachment delta",
+      "scale row overlap, fin placement and lower-body taper delta",
+      "wave pedestal layering and water-jet origin/arc delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Merlion Statue lion head open jaw layered mane fish scales tail wave pedestal sculptural anatomy",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.description-drill-down-macro-to-micro-decomposition",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[4]",
+        "score": 3.109041007421,
+        "snippets": [
+          "... A good description names the whole object first ('a bowie-style knife'), then its components ('blade, bolster, handle scales'), then each component's basic solid shape Dấu hiệu nhận diện: Một mô tả tốt gọi tên toàn bộ đối tượng trước ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}
