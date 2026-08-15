@@ -1,0 +1,86 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "smooth-coated-otter-primary",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/smooth-coated-otter-secondary.jpg",
+  "outDir": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr",
+  "palette": [
+    "#385F39",
+    "#588151",
+    "#7C9A6A",
+    "#203924",
+    "#9DB38A"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr/smooth-coated-otter-primary_albedo.png",
+      "url": "smooth-coated-otter-primary_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr/smooth-coated-otter-primary_roughness.png",
+      "url": "smooth-coated-otter-primary_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr/smooth-coated-otter-primary_height.png",
+      "url": "smooth-coated-otter-primary_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr/smooth-coated-otter-primary_normal.png",
+      "url": "smooth-coated-otter-primary_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/specs/smooth-coated-otter-pbr/smooth-coated-otter-primary_ao.png",
+      "url": "smooth-coated-otter-primary_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 1280,
+    "sourceHeight": 720,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "mask": {
+      "backgroundColor": "#968F7B",
+      "backgroundNoise": 129.634,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.6213
+    },
+    "mapStats": {
+      "valueRange": 0.5199,
+      "heightP90Gradient": 0.09129,
+      "roughnessBase": 0.748,
+      "roughnessVariation": 0.196,
+      "normalStrength": 0.263,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#385F39",
+      "#588151",
+      "#7C9A6A",
+      "#203924",
+      "#9DB38A"
+    ]
+  },
+  "warnings": [
+    "source image was converted to PNG with macOS sips before pixel extraction",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

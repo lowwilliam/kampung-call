@@ -15,7 +15,7 @@ const downloadOutput = path.join(publicRoot, "downloads");
 
 await access(manifestPath);
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-if (manifest.assets?.length !== 68) throw new Error(`Expected 68 manifested assets, found ${manifest.assets?.length ?? 0}`);
+if (manifest.assets?.length !== 73) throw new Error(`Expected 73 manifested assets, found ${manifest.assets?.length ?? 0}`);
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });

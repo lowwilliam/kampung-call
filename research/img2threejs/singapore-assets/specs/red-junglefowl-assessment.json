@@ -1,0 +1,443 @@
+{
+  "targetName": "Red Junglefowl",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/red-junglefowl.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized adult male red junglefowl",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "organic",
+        "character-like"
+      ],
+      "structureKind": [
+        "layered shell",
+        "articulated assembly",
+        "repeated modules"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated"
+      ],
+      "materialFamilies": [
+        "feather",
+        "skin-like",
+        "keratin"
+      ],
+      "notes": "Reference-led stylized real-time asset; hidden surfaces are explicitly approximate."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 11,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "stylized adult male red junglefowl has an interrupted articulated silhouette, repeated surface systems, multiple material zones and non-trivial hidden-side inference."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component-zone reconciliation",
+      "targetMinDetails": 10,
+      "note": "Every detail maps to a component local feature or material local override.",
+      "details": [
+        {
+          "id": "detail-1-comb-serrations",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "comb-serrations"
+          }
+        },
+        {
+          "id": "detail-2-white-ear-disc",
+          "kind": "stain",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "stain",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "white-ear-disc"
+          }
+        },
+        {
+          "id": "detail-3-white-rump-zone",
+          "kind": "stain",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "stain",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "white-rump-zone"
+          }
+        },
+        {
+          "id": "detail-4-hackle-feather-ridges",
+          "kind": "ridge",
+          "region": {
+            "x": 0,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "meso",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "hackle-feather-ridges"
+          }
+        },
+        {
+          "id": "detail-5-wing-covert-seams",
+          "kind": "seam",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "seam",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "wing-covert-seams"
+          }
+        },
+        {
+          "id": "detail-6-tail-iridescent-gloss",
+          "kind": "gloss",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.25,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tail-iridescent-gloss"
+          }
+        },
+        {
+          "id": "detail-7-eye-catchlight",
+          "kind": "gloss",
+          "region": {
+            "x": 0,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "gloss",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "eye-catchlight"
+          }
+        },
+        {
+          "id": "detail-8-leg-scale-grooves",
+          "kind": "groove",
+          "region": {
+            "x": 0.3333333333333333,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "groove",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "leg-scale-grooves"
+          }
+        },
+        {
+          "id": "detail-9-toe-claw-tips",
+          "kind": "ridge",
+          "region": {
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "ridge",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "toe-claw-tips"
+          }
+        },
+        {
+          "id": "detail-10-beak-seam",
+          "kind": "linework",
+          "region": {
+            "x": 0,
+            "y": 0.75,
+            "width": 0.3333333333333333,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "affects": "linework",
+          "scale": "micro",
+          "evidenceRef": "primary-photo",
+          "confidence": 0.76,
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "beak-seam"
+          }
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0,
+      "proportions": {
+        "headUnit": 0,
+        "torso": 0,
+        "legs": 0,
+        "shoulderWidth": 0,
+        "hipWidth": 0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0,
+        "eyeSpacing": 0,
+        "noseBase": 0,
+        "mouthLine": 0,
+        "hairline": 0
+      },
+      "features": [],
+      "confidence": 0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/singapore-assets/references/red-junglefowl.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Upright rooster with an inclined torso, high neck, long slate legs and an arched fan of sickle feathers.",
+      "All 10 identity details remain legible in neutral and grazing light.",
+      "Front, rear, both side, top, bottom and four three-quarter renders remain volumetric and free of floating attachments."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "upright-rooster-silhouette",
+        "name": "upright rooster silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "upright-rooster-silhouette matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "upright-rooster-silhouette reads as a generic placeholder",
+          "upright-rooster-silhouette collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "comb-wattle-ear-identity",
+        "name": "comb wattle ear identity",
+        "required": true,
+        "qualityCriteria": [
+          "comb-wattle-ear-identity matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "comb-wattle-ear-identity reads as a generic placeholder",
+          "comb-wattle-ear-identity collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "arched-tail-feather-system",
+        "name": "arched tail feather system",
+        "required": true,
+        "qualityCriteria": [
+          "arched-tail-feather-system matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "arched-tail-feather-system reads as a generic placeholder",
+          "arched-tail-feather-system collapses or detaches in an orbit view"
+        ]
+      },
+      {
+        "id": "slate-leg-foot-system",
+        "name": "slate leg foot system",
+        "required": true,
+        "qualityCriteria": [
+          "slate-leg-foot-system matches the reference-led silhouette, attachment and material zoning."
+        ],
+        "evidenceRefs": [
+          "primary-photo",
+          "secondary-photo"
+        ],
+        "failureModes": [
+          "slate-leg-foot-system reads as a generic placeholder",
+          "slate-leg-foot-system collapses or detaches in an orbit view"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "upright-rooster-silhouette silhouette, depth and material delta",
+      "comb-wattle-ear-identity silhouette, depth and material delta",
+      "arched-tail-feather-system silhouette, depth and material delta",
+      "slate-leg-foot-system silhouette, depth and material delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Red Junglefowl bird feather cards articulated wings comb wattles arched tail",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-ambient-occlusion-ao",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[3]",
+        "score": 3.314396431839,
+        "snippets": [
+          "... tại các rãnh, ốc vít, mối nối — không di chuyển theo hướng đèn chính; Vùng lõm được bảo vệ tích tụ bụi bẩn khi mòn thay vì mất lớp sơn Three.js target: MeshPhysicalMaterial.aoMap (red channel of packed ORM texture, NoColorSpace) + aoMapIntensity"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[3]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

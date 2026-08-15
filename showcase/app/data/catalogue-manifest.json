@@ -5,7 +5,7 @@
     "version": "0.1.0-draft.1",
     "status": "draft",
     "defaultLocale": "en",
-    "catalogueSize": 68,
+    "catalogueSize": 73,
     "productionDomain": null,
     "correctionsEmail": null,
     "publishedAt": null,
@@ -5229,10 +5229,121 @@
       "withdrawn": null
     },
     {
+      "id": "singapore-cable-car-skyorb",
+      "slug": "singapore-cable-car-skyorb",
+      "category": "Transit & Movement",
+      "curatedOrder": 52,
+      "locale": {
+        "en": {
+          "name": "Singapore Cable Car SkyOrb",
+          "intro": "A chrome spherical cable-car cabin with circular glazing, glass floor and illuminated window ring.",
+          "gameContext": "Supplies a distinctive aerial-transit landmark for Mount Faber and Sentosa-facing scenes.",
+          "singaporeContext": "The SkyOrb joined the Singapore Cable Car fleet in 2024 as a chrome-finished spherical cabin with a glass floor and lighted window rings.",
+          "productionStory": "Reference-led procedural Three.js construction with Blender CLI mesh repair and refinement. 56 named meshes, 5 materials and 29,788 triangles. This is an unbranded stylised reconstruction; rear-door geometry, underside hardware and inaccessible dimensions remain approximate.",
+          "inspiration": "Mount Faber Leisure Group's SkyOrb cabin"
+        }
+      },
+      "model": {
+        "file": "singapore-cable-car-skyorb-v1.glb",
+        "sourcePath": "assets/singapore-cable-car-skyorb-v1.glb",
+        "publicPath": "/models/singapore-cable-car-skyorb-v1.glb",
+        "sha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
+        "byteLength": 162840,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/singapore-cable-car-skyorb-v1.png",
+        "publicPath": "/previews/singapore-cable-car-skyorb.png",
+        "sourceModelSha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
+        "sha256": "4fcf8d237f01a0f72e0d2c4bdb9056cdadb51398657184c6fb49a75161de0cc0",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Reference-led procedural Three.js with Blender CLI refinement",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Built from an admitted primary reference, documented species or product cues, strict img2threejs sculpt specification and eight-angle Blender review. This is an unbranded stylised reconstruction; rear-door geometry, underside hardware and inaccessible dimensions remain approximate."
+      },
+      "sources": [
+        {
+          "kind": "model-reference",
+          "label": "Mount Faber Leisure Group — SkyOrb Cable Car Cabin",
+          "url": "https://mountfaberleisure.com/attraction/skyorb-cable-car-cabin/"
+        }
+      ],
+      "evidenceStatus": "mixed",
+      "metrics": {
+        "triangles": 29788,
+        "materials": 5,
+        "meshCount": 56,
+        "compressed": true,
+        "dimensions": {
+          "width": 2.3227,
+          "height": 3.42,
+          "depth": 2.2035
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+      },
+      "rights": {
+        "subjectType": "branded-industrial-design",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "reference-only-unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [
+          {
+            "subject": "SkyOrb",
+            "status": "legal-review"
+          }
+        ],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": false,
+          "status": "not-required",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "legal-review",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [
+            "SkyOrb name and cabin industrial design"
+          ],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
       "id": "birdcage",
       "slug": "birdcage",
       "category": "Street Life & Nature",
-      "curatedOrder": 52,
+      "curatedOrder": 53,
       "locale": {
         "en": {
           "name": "Birdcage",
@@ -5330,7 +5441,7 @@
       "id": "cat",
       "slug": "cat",
       "category": "Street Life & Nature",
-      "curatedOrder": 53,
+      "curatedOrder": 54,
       "locale": {
         "en": {
           "name": "Community Cat",
@@ -5428,7 +5539,7 @@
       "id": "postbox",
       "slug": "postbox",
       "category": "Street Life & Nature",
-      "curatedOrder": 54,
+      "curatedOrder": 55,
       "locale": {
         "en": {
           "name": "Neighbourhood Postbox",
@@ -5526,7 +5637,7 @@
       "id": "bench",
       "slug": "bench",
       "category": "Street Life & Nature",
-      "curatedOrder": 55,
+      "curatedOrder": 56,
       "locale": {
         "en": {
           "name": "Planter Bench",
@@ -5624,7 +5735,7 @@
       "id": "raintree",
       "slug": "raintree",
       "category": "Street Life & Nature",
-      "curatedOrder": 56,
+      "curatedOrder": 57,
       "locale": {
         "en": {
           "name": "Rain Tree",
@@ -5722,7 +5833,7 @@
       "id": "palm",
       "slug": "palm",
       "category": "Street Life & Nature",
-      "curatedOrder": 57,
+      "curatedOrder": 58,
       "locale": {
         "en": {
           "name": "Royal Palm",
@@ -5817,10 +5928,426 @@
       "withdrawn": null
     },
     {
+      "id": "smooth-coated-otter",
+      "slug": "smooth-coated-otter",
+      "category": "Street Life & Nature",
+      "curatedOrder": 59,
+      "locale": {
+        "en": {
+          "name": "Smooth-coated Otter",
+          "intro": "A sleek river otter with webbed paws, buff throat and a long flattened tail.",
+          "gameContext": "Adds a recognisable waterside wildlife encounter to canals, reservoirs and park connectors.",
+          "singaporeContext": "Smooth-coated otters are native Singapore residents now often seen along urban waterways and coastal habitats.",
+          "productionStory": "Reference-led procedural Three.js construction with Blender CLI mesh repair and refinement. 51 named meshes, 4 materials and 17,560 triangles. The far-side anatomy, underside and exact tail cross-section were inferred from limited photographic views.",
+          "inspiration": "Singapore's smooth-coated otters"
+        }
+      },
+      "model": {
+        "file": "smooth-coated-otter-v1.glb",
+        "sourcePath": "assets/smooth-coated-otter-v1.glb",
+        "publicPath": "/models/smooth-coated-otter-v1.glb",
+        "sha256": "901ac9c7189b16096dc9a9ecb97d0d92a286208fca329f2e4a13a07ba6fc48a9",
+        "byteLength": 108916,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/smooth-coated-otter-v1.png",
+        "publicPath": "/previews/smooth-coated-otter.png",
+        "sourceModelSha256": "901ac9c7189b16096dc9a9ecb97d0d92a286208fca329f2e4a13a07ba6fc48a9",
+        "sha256": "5ee95394bfc057678e188e6053605a40f0b1c73156e9253f84feec42a7753c10",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Reference-led procedural Three.js with Blender CLI refinement",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Built from an admitted primary reference, documented species or product cues, strict img2threejs sculpt specification and eight-angle Blender review. The far-side anatomy, underside and exact tail cross-section were inferred from limited photographic views."
+      },
+      "sources": [
+        {
+          "kind": "model-reference",
+          "label": "NParks — Smooth-coated Otter",
+          "url": "https://biodiversitysg.nparks.gov.sg/our-biodiversity/mammals/other-mammals/smooth-coated-otter/"
+        }
+      ],
+      "evidenceStatus": "mixed",
+      "metrics": {
+        "triangles": 17560,
+        "materials": 4,
+        "meshCount": 51,
+        "compressed": true,
+        "dimensions": {
+          "width": 2.6407,
+          "height": 1.3637,
+          "depth": 0.8981
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+      },
+      "rights": {
+        "subjectType": "natural-world",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "reference-only-unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": false,
+          "status": "not-required",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "pending",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
+      "id": "red-junglefowl",
+      "slug": "red-junglefowl",
+      "category": "Street Life & Nature",
+      "curatedOrder": 60,
+      "locale": {
+        "en": {
+          "name": "Red Junglefowl",
+          "intro": "A vivid wild rooster with orange hackles, white ear patch and green-black sickle tail.",
+          "gameContext": "Brings movement and familiar dawn-call character to forest edges and neighbourhood greens.",
+          "singaporeContext": "The native red junglefowl can be distinguished from many domestic hybrids by traits including slate-grey legs and a white ear patch.",
+          "productionStory": "Reference-led procedural Three.js construction with Blender CLI mesh repair and refinement. 64 named meshes, 8 materials and 19,600 triangles. This is a stylised male; exact feather count, far-side layering and individual plumage variation are inferred.",
+          "inspiration": "Singapore's native red junglefowl"
+        }
+      },
+      "model": {
+        "file": "red-junglefowl-v1.glb",
+        "sourcePath": "assets/red-junglefowl-v1.glb",
+        "publicPath": "/models/red-junglefowl-v1.glb",
+        "sha256": "549995014495472d01c325c369e1bd23fba85ce417a54d176d4c38fba5616150",
+        "byteLength": 136472,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/red-junglefowl-v1.png",
+        "publicPath": "/previews/red-junglefowl.png",
+        "sourceModelSha256": "549995014495472d01c325c369e1bd23fba85ce417a54d176d4c38fba5616150",
+        "sha256": "71ce10e4bcdae1c127a55c0fd0255ed1e829749f35f96ab6a3be8451150f9b12",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Reference-led procedural Three.js with Blender CLI refinement",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Built from an admitted primary reference, documented species or product cues, strict img2threejs sculpt specification and eight-angle Blender review. This is a stylised male; exact feather count, far-side layering and individual plumage variation are inferred."
+      },
+      "sources": [
+        {
+          "kind": "model-reference",
+          "label": "NParks — What is that red bird?",
+          "url": "https://www.nparks.gov.sg/publications-resources/articles/what-is-that-red-bird"
+        }
+      ],
+      "evidenceStatus": "mixed",
+      "metrics": {
+        "triangles": 19600,
+        "materials": 8,
+        "meshCount": 64,
+        "compressed": true,
+        "dimensions": {
+          "width": 2.0525,
+          "height": 1.9295,
+          "depth": 1.1578
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+      },
+      "rights": {
+        "subjectType": "natural-world",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "reference-only-unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": false,
+          "status": "not-required",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "pending",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
+      "id": "oriental-pied-hornbill",
+      "slug": "oriental-pied-hornbill",
+      "category": "Street Life & Nature",
+      "curatedOrder": 61,
+      "locale": {
+        "en": {
+          "name": "Oriental Pied Hornbill",
+          "intro": "A black-and-white hornbill defined by its pale bill and prominent black-tipped casque.",
+          "gameContext": "Creates a bold canopy silhouette and an unmistakable Singapore wildlife landmark at readable game scale.",
+          "singaporeContext": "The Oriental Pied Hornbill is Singapore's most commonly encountered hornbill and a notable urban biodiversity recovery story.",
+          "productionStory": "Reference-led procedural Three.js construction with Blender CLI mesh repair and refinement. 38 named meshes, 5 materials and 9,264 triangles. The dorsal plumage, rear casque curvature and exact tail-feather overlap are inferred from the available views.",
+          "inspiration": "Singapore's Oriental Pied Hornbill"
+        }
+      },
+      "model": {
+        "file": "oriental-pied-hornbill-v1.glb",
+        "sourcePath": "assets/oriental-pied-hornbill-v1.glb",
+        "publicPath": "/models/oriental-pied-hornbill-v1.glb",
+        "sha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
+        "byteLength": 71200,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/oriental-pied-hornbill-v1.png",
+        "publicPath": "/previews/oriental-pied-hornbill.png",
+        "sourceModelSha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
+        "sha256": "4d674cd11ef0ac22c898e0e3e13d432e2dbf9fc0e323fec425c2e8d4a7b6cd4d",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Reference-led procedural Three.js with Blender CLI refinement",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Built from an admitted primary reference, documented species or product cues, strict img2threejs sculpt specification and eight-angle Blender review. The dorsal plumage, rear casque curvature and exact tail-feather overlap are inferred from the available views."
+      },
+      "sources": [
+        {
+          "kind": "model-reference",
+          "label": "NParks — Oriental Pied Hornbill",
+          "url": "https://biodiversitysg.nparks.gov.sg/our-biodiversity/birds/other-birds/oriental-pied-hornbill/"
+        }
+      ],
+      "evidenceStatus": "mixed",
+      "metrics": {
+        "triangles": 9264,
+        "materials": 5,
+        "meshCount": 38,
+        "compressed": true,
+        "dimensions": {
+          "width": 1.8428,
+          "height": 2.4308,
+          "depth": 1.053
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+      },
+      "rights": {
+        "subjectType": "natural-world",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "reference-only-unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": false,
+          "status": "not-required",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "pending",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
+      "id": "clouded-monitor",
+      "slug": "clouded-monitor",
+      "category": "Street Life & Nature",
+      "curatedOrder": 62,
+      "locale": {
+        "en": {
+          "name": "Clouded Monitor",
+          "intro": "A sturdy grey-brown monitor lizard with yellow cloud-like spots, splayed feet and tapering tail.",
+          "gameContext": "Adds ground-level wildlife to forest paths, drains and park-edge scenes without an excessive triangle budget.",
+          "singaporeContext": "Clouded monitors occur in Singapore's wooded habitats and are distinguished by yellow spotting and a rounder tail than the Malayan water monitor.",
+          "productionStory": "Reference-led procedural Three.js construction with Blender CLI mesh repair and refinement. 131 named meshes, 3 materials and 28,764 triangles. The full tail tip, underside scale pattern and far-side limb pose are inferred; raised spots are a stylised game-readable treatment.",
+          "inspiration": "Singapore's clouded monitor"
+        }
+      },
+      "model": {
+        "file": "clouded-monitor-v1.glb",
+        "sourcePath": "assets/clouded-monitor-v1.glb",
+        "publicPath": "/models/clouded-monitor-v1.glb",
+        "sha256": "973e64be1f6a565cd5fa912733c13b7c705156e78414b45b198554c3cf307a50",
+        "byteLength": 259848,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/clouded-monitor-v1.png",
+        "publicPath": "/previews/clouded-monitor.png",
+        "sourceModelSha256": "973e64be1f6a565cd5fa912733c13b7c705156e78414b45b198554c3cf307a50",
+        "sha256": "b3079721cfaf1831cedfbbbca475894ca6df45d0cb2085eedc4d1a142b9468ea",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Reference-led procedural Three.js with Blender CLI refinement",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Built from an admitted primary reference, documented species or product cues, strict img2threejs sculpt specification and eight-angle Blender review. The full tail tip, underside scale pattern and far-side limb pose are inferred; raised spots are a stylised game-readable treatment."
+      },
+      "sources": [
+        {
+          "kind": "model-reference",
+          "label": "NParks — Clouded Monitor",
+          "url": "https://biodiversitysg.nparks.gov.sg/our-biodiversity/reptiles/lizards/clouded-monitor/"
+        }
+      ],
+      "evidenceStatus": "mixed",
+      "metrics": {
+        "triangles": 28764,
+        "materials": 3,
+        "meshCount": 131,
+        "compressed": true,
+        "dimensions": {
+          "width": 3.46,
+          "height": 0.8651,
+          "depth": 1.6924
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+      },
+      "rights": {
+        "subjectType": "natural-world",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "reference-only-unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": false,
+          "status": "not-required",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "pending",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
       "id": "fibre-kit",
       "slug": "fibre-kit",
       "category": "Service Gear",
-      "curatedOrder": 58,
+      "curatedOrder": 63,
       "locale": {
         "en": {
           "name": "Fibre Kit",
@@ -5918,7 +6445,7 @@
       "id": "router-kit",
       "slug": "router-kit",
       "category": "Service Gear",
-      "curatedOrder": 59,
+      "curatedOrder": 64,
       "locale": {
         "en": {
           "name": "Router Kit",
@@ -6016,7 +6543,7 @@
       "id": "wifi-kit",
       "slug": "wifi-kit",
       "category": "Service Gear",
-      "curatedOrder": 60,
+      "curatedOrder": 65,
       "locale": {
         "en": {
           "name": "Wi-Fi Mesh Kit",
@@ -6114,7 +6641,7 @@
       "id": "resident-auntie-rosnah",
       "slug": "resident-auntie-rosnah",
       "category": "People",
-      "curatedOrder": 61,
+      "curatedOrder": 66,
       "locale": {
         "en": {
           "name": "Auntie Rosnah",
@@ -6212,7 +6739,7 @@
       "id": "resident-devi",
       "slug": "resident-devi",
       "category": "People",
-      "curatedOrder": 62,
+      "curatedOrder": 67,
       "locale": {
         "en": {
           "name": "Devi",
@@ -6310,7 +6837,7 @@
       "id": "engineer",
       "slug": "engineer",
       "category": "People",
-      "curatedOrder": 63,
+      "curatedOrder": 68,
       "locale": {
         "en": {
           "name": "Field Engineer",
@@ -6408,7 +6935,7 @@
       "id": "resident-kai",
       "slug": "resident-kai",
       "category": "People",
-      "curatedOrder": 64,
+      "curatedOrder": 69,
       "locale": {
         "en": {
           "name": "Kai",
@@ -6506,7 +7033,7 @@
       "id": "engineer-legacy",
       "slug": "engineer-legacy",
       "category": "People",
-      "curatedOrder": 65,
+      "curatedOrder": 70,
       "locale": {
         "en": {
           "name": "Legacy Engineer",
@@ -6604,7 +7131,7 @@
       "id": "resident-mr-tan",
       "slug": "resident-mr-tan",
       "category": "People",
-      "curatedOrder": 66,
+      "curatedOrder": 71,
       "locale": {
         "en": {
           "name": "Mr Tan",
@@ -6702,7 +7229,7 @@
       "id": "resident-sofia",
       "slug": "resident-sofia",
       "category": "People",
-      "curatedOrder": 67,
+      "curatedOrder": 72,
       "locale": {
         "en": {
           "name": "Sofia",
@@ -6800,7 +7327,7 @@
       "id": "resident-uncle-lim",
       "slug": "resident-uncle-lim",
       "category": "People",
-      "curatedOrder": 68,
+      "curatedOrder": 73,
       "locale": {
         "en": {
           "name": "Uncle Lim",

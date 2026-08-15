@@ -10,8 +10,8 @@
     "release": { "$ref": "#/$defs/release" },
     "assets": {
       "type": "array",
-      "minItems": 68,
-      "maxItems": 68,
+      "minItems": 73,
+      "maxItems": 73,
       "items": { "$ref": "#/$defs/asset" }
     }
   },
@@ -44,7 +44,7 @@
         "version": { "type": "string", "minLength": 1 },
         "status": { "enum": ["draft", "published", "withdrawn"] },
         "defaultLocale": { "const": "en" },
-        "catalogueSize": { "const": 68 },
+        "catalogueSize": { "const": 73 },
         "productionDomain": { "$ref": "#/$defs/nullableString" },
         "correctionsEmail": { "$ref": "#/$defs/nullableString" },
         "publishedAt": { "$ref": "#/$defs/nullableString" },
@@ -85,7 +85,7 @@
         "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
         "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
         "category": { "type": "string", "minLength": 1 },
-        "curatedOrder": { "type": "integer", "minimum": 1, "maximum": 68 },
+        "curatedOrder": { "type": "integer", "minimum": 1, "maximum": 73 },
         "locale": {
           "type": "object",
           "required": ["en"],

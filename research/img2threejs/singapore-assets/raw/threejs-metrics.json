@@ -1,0 +1,52 @@
+{
+  "smooth-coated-otter": {
+    "meshes": 51,
+    "triangles": 17560,
+    "materials": 4,
+    "dimensions": [
+      2.6407,
+      1.3637,
+      0.8981
+    ]
+  },
+  "red-junglefowl": {
+    "meshes": 64,
+    "triangles": 19600,
+    "materials": 8,
+    "dimensions": [
+      2.0525,
+      1.9295,
+      1.1578
+    ]
+  },
+  "oriental-pied-hornbill": {
+    "meshes": 38,
+    "triangles": 9264,
+    "materials": 5,
+    "dimensions": [
+      1.8428,
+      2.4308,
+      1.053
+    ]
+  },
+  "clouded-monitor": {
+    "meshes": 131,
+    "triangles": 61652,
+    "materials": 3,
+    "dimensions": [
+      3.46,
+      0.8651,
+      1.6924
+    ]
+  },
+  "singapore-cable-car-skyorb": {
+    "meshes": 56,
+    "triangles": 19916,
+    "materials": 5,
+    "dimensions": [
+      2.3227,
+      3.42,
+      2.2039
+    ]
+  }
+}
