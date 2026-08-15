@@ -256,59 +256,135 @@ def build_harbour_statue():
 
 
 def build_skypark_hotel():
-    r=empty("SKYPARK HOTEL SKYLINE KIT")
-    # Official MBS references show three paired slabs whose lower legs slope
-    # before joining near level 23. A ring loft captures that curved section
-    # and stops the hotel reading as three unrelated cuboids.
-    for tower_index,x in enumerate((-2.25,0,2.25)):
+    r=empty("MARINA BAY SANDS HOTEL AND SKYPARK")
+
+    def lofted_slab(name, x, side, spread, width, lean):
+        """One room slab of a paired tower, curved in plan below level 23."""
+        rings=13
         vertices=[]
-        rings=9
+        samples=[]
         for level in range(rings):
             t=level/(rings-1)
-            z=.25+t*6.65
-            front=-1.14+.62*(t**1.35)
-            back=1.46-.10*t
-            half=.84-.04*t
-            x_shift=(tower_index-1)*.08*math.sin(t*math.pi)
-            vertices.extend(((x+x_shift-half,front,z),(x+x_shift+half,front,z),
-                             (x+x_shift+half,back,z),(x+x_shift-half,back,z)))
+            z=.32+t*6.55
+            # The paired slabs flare apart at ground level, then converge into
+            # the nearly vertical hotel tower above roughly one third height.
+            lower=(1-min(t/.38,1))**1.55
+            outer=side*(.54+spread*lower)
+            inner=outer-side*(.29+.04*lower)
+            centre=x+lean*(t-.45)+.035*math.sin(t*math.pi)
+            half=width*(1-.035*t)/2
+            samples.append((centre,outer,inner,z,half))
+            if side < 0:
+                vertices.extend(((centre-half,outer,z),(centre+half,outer,z),
+                                 (centre+half,inner,z),(centre-half,inner,z)))
+            else:
+                vertices.extend(((centre+half,outer,z),(centre-half,outer,z),
+                                 (centre-half,inner,z),(centre+half,inner,z)))
         faces=[]
         for level in range(rings-1):
             a=level*4;b=(level+1)*4
             faces.extend(((a,a+1,b+1,b),(a+1,a+2,b+2,b+1),
                           (a+2,a+3,b+3,b+2),(a+3,a,b,b+3)))
         faces.extend(((0,3,2,1),tuple(range((rings-1)*4,rings*4))))
-        mesh_object("Curved paired hotel tower",vertices,faces,CHALK,r,.055)
-        for floor in range(9):
-            t=(floor+.55)/9
-            z=.25+t*6.55
-            front=-1.14+.62*(t**1.35)-.035
-            back=1.46-.10*t+.035
-            half=.77-.04*t
-            cube("Harbour curtain-wall band",(x,front,z),(half*2,.055,.075),GLASS,r,edge=.010)
-            cube("Garden curtain-wall band",(x,back,z),(half*2,.055,.075),GLASS,r,edge=.010)
-        for mullion in (-.46,0,.46):
-            cube("Tower vertical mullion",(x+mullion,-.85,3.55),(.035,.045,5.95),TEAL,r,edge=.006)
+        mesh_object(name,vertices,faces,CHALK,r,.035)
+        return samples
 
-    profile=[(-4.25,-.12),(-3.95,.38),(3.35,.42),(4.38,.18),(4.65,.02),(4.05,-.30),(-4.05,-.30)]
+    towers=((-2.22,.84,1.58,-.07),(0,.69,1.62,.02),(2.22,.56,1.56,.08))
+    for tower_index,(x,spread,width,lean) in enumerate(towers):
+        front=lofted_slab("Tower %d bay slab"%(tower_index+1),x,-1,spread,width,lean)
+        rear=lofted_slab("Tower %d garden slab"%(tower_index+1),x,1,spread*.90,width,lean)
+
+        # Dense horizontal floor rhythm is the dominant cue in both the bay
+        # curtain wall and the white garden-side balcony elevation.
+        for floor in range(22):
+            t=(floor+.55)/22
+            z=.36+t*6.42
+            lower=(1-min(t/.38,1))**1.55
+            centre=x+lean*(t-.45)+.035*math.sin(t*math.pi)
+            half=width*(1-.035*t)/2-.055
+            y_front=-(.54+spread*lower)-.025
+            y_rear=.54+spread*.90*lower+.025
+            cube("Bay glazing floor band",(centre,y_front,z),(half*2,.038,.062),GLASS,r,edge=0)
+            cube("Garden balcony band",(centre,y_rear,z),(half*2+.08,.075,.072),CHALK,r,edge=0)
+            if floor%2==0:
+                cube("Garden shadow line",(centre,y_rear+.045,z-.045),(half*2-.12,.025,.030),GLASS,r,edge=0)
+
+        # Broad pale edge piers and fine mullions keep the facades architectural
+        # when the model is seen at card scale.
+        for edge_sign in (-1,1):
+            edge_points=[]
+            for centre,outer,inner,z,half in front:
+                edge_points.append((centre+edge_sign*(half-.045),outer-.045,z))
+            cable("Tower bay edge pier",edge_points,.055,CHALK,r)
+        for fraction in (-.58,-.28,0,.28,.58):
+            points=[]
+            for centre,outer,inner,z,half in front:
+                points.append((centre+fraction*half,outer-.035,z))
+            cable("Curtain wall mullion",points,.018,TEAL,r)
+        # Dark inner faces reveal the tall triangular atrium void from oblique
+        # and rear angles instead of closing the paired slabs into a box.
+        for side,samples in ((-1,front),(1,rear)):
+            points=[(centre,inner-side*.018,z) for centre,outer,inner,z,half in samples]
+            for fraction in (-.42,.42):
+                cable("Atrium glazing spine",[(px+fraction*width*.48,py,pz) for px,py,pz in points],.026,GLASS,r)
+
+    # Transparent pavilions visibly separate the tower roofs from the park.
+    for x,_,width,_ in towers:
+        cube("SkyPark glazed pavilion",(x,.02,7.08),(width*1.02,1.18,.38),GLASS,r,edge=.055)
+        for side in (-1,1):
+            cube("Pavilion pale frame",(x+side*width*.46,-.02,7.08),(.065,1.25,.48),CHALK,r,edge=.012)
+
+    # A slim, asymmetrical hull with a long west cantilever replaces the old
+    # thick rectangular roof. Its curved belly is readable in silhouette.
+    profile=[(-5.30,.05),(-5.13,.25),(-4.78,.38),(-3.60,.43),(-1.30,.39),
+             (1.15,.42),(3.55,.36),(4.48,.20),(4.92,.02),(4.55,-.16),
+             (2.70,-.24),(.20,-.31),(-2.25,-.28),(-4.75,-.18)]
     vertices=[]
-    for y in (-1.22,1.34):
-        vertices.extend((x,y,7.08+z) for x,z in profile)
+    for y in (-1.26,1.22):
+        vertices.extend((x,y,7.37+z) for x,z in profile)
     n=len(profile);faces=[tuple(range(n-1,-1,-1)),tuple(range(n,n*2))]
     for i in range(n):
         j=(i+1)%n;faces.append((i,j,n+j,n+i))
-    mesh_object("Tapered SkyPark hull",vertices,faces,TEAL,r,.10)
-    cube("SkyPark deck",(.20,.08,7.54),(8.45,2.35,.18),CHALK,r,edge=.10)
-    cube("Infinity pool",(.85,-.63,7.67),(3.95,.70,.10),BLUE,r,edge=.045)
-    cube("Pool glass edge",(.85,-1.01,7.82),(3.95,.045,.34),GLASS,r,edge=.018)
-    for x in (-3.15,-1.95,2.45,3.15):
-        cyl("SkyPark palm trunk",(x,.50,7.86),.035,.52,WOOD,r,8)
-        ico("SkyPark planted crown",(x,.50,8.17),.26,GREEN2 if x<0 else GREEN3,r,scale=(1.35,.85,.60))
-    # ArtScience Museum silhouette beside the towers.
-    cyl("Museum base",(-4.2,.15,.42),.62,.54,CONCRETE,r,18)
-    for a in range(8):
-        cone("Lotus petal",(-4.2+math.cos(a*.785)*.52,.15+math.sin(a*.785)*.52,1.15),.38,.10,1.45,CHALK,r,10,
-             rot=(math.sin(a*.785)*.35,math.cos(a*.785)*.35,0))
+    mesh_object("Asymmetric SkyPark hull",vertices,faces,TEAL,r,.065)
+    cube("SkyPark top deck",(-.12,-.02,7.84),(9.55,2.35,.14),CHALK,r,edge=.07)
+    cube("Infinity pool",(.65,-.66,7.94),(4.65,.58,.075),BLUE,r,edge=.035)
+    cube("Infinity pool glass edge",(.65,-.98,8.08),(4.65,.035,.31),GLASS,r,edge=.010)
+    for x in (-3.95,-3.35,-2.72,2.56,3.08,3.62,4.02):
+        cyl("SkyPark palm trunk",(x,.55,8.08),.028,.46,WOOD,r,7)
+        ico("SkyPark planted crown",(x,.55,8.37),.22,
+            GREEN2 if x<0 else GREEN3,r,scale=(1.30,.82,.52))
+    for x in (-2.15,2.08):
+        cube("SkyPark garden pavilion",(x,.48,8.05),(1.05,.72,.34),GLASS,r,edge=.055)
+        cube("Garden pavilion canopy",(x,.48,8.29),(1.22,.86,.10),CHALK,r,edge=.045)
+
+    # Layered waterfront podium and canopies stop the towers floating above a
+    # token base while keeping the three atrium openings legible.
+    cube("Waterfront podium",(0,.10,.27),(7.55,2.60,.40),CONCRETE,r,edge=.13)
+    cube("Bay promenade canopy",(0,-1.18,.67),(7.10,.62,.14),CHALK,r,edge=.08)
+    for x in (-3.15,-2.05,-.95,.15,1.25,2.35,3.25):
+        cone_between("Canopy V support",(x,-1.34,.31),(x+.18,-1.16,.68),.035,.022,TEAL,r,6)
+    for x in (-2.22,0,2.22):
+        cube("Atrium entrance glass",(x,-1.43,.72),(1.30,.055,.66),GLASS,r,edge=.025)
+
+    # ArtScience Museum: a low round base and ten broad radial fingers, with
+    # upward tips and an open lotus centre rather than a ring of cones.
+    museum_x,museum_y=-4.35,-.55
+    cyl("ArtScience Museum base",(museum_x,museum_y,.30),.72,.42,CONCRETE,r,20)
+    for index in range(10):
+        angle=index*math.tau/10
+        tangent=(-math.sin(angle),math.cos(angle))
+        radial=(math.cos(angle),math.sin(angle))
+        root_radius=.24
+        tip_radius=.86
+        half_width=.16
+        verts=[]
+        for z,rad,width_scale in ((.43,root_radius,.58),(.62,.48,1.0),(1.33,tip_radius,.78)):
+            for side in (-1,1):
+                px=museum_x+radial[0]*rad+tangent[0]*half_width*width_scale*side
+                py=museum_y+radial[1]*rad+tangent[1]*half_width*width_scale*side
+                verts.append((px,py,z))
+        faces=((0,1,3,2),(2,3,5,4),(0,2,4),(1,5,3),(0,4,5,1))
+        mesh_object("Lotus museum petal",verts,faces,CHALK,r,.035)
     return r
 
 
@@ -843,7 +919,7 @@ def build_wifikit():
 JOBS = [
     # P2
     ("harbour-statue-v2",build_harbour_statue,(0,-.1,1.7),(8,-12,6.5),4.0),
-    ("skypark-hotel-v2",build_skypark_hotel,(0,0,3.7),(14,-19,11),6.5),
+    ("skypark-hotel-v2",build_skypark_hotel,(0,-.05,3.9),(15,-21,11.5),7.2),
     ("flyer-v2",build_flyer,(0,0,4.1),(13,-18,10),6.0),
     ("supertree-v2",build_supertree,(0,0,3.0),(9,-13,7.5),4.0),
     ("concert-hall-v2",build_concert_hall,(0,0,1.6),(11,-16,7),5.5),
