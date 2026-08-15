@@ -13,7 +13,7 @@ All 73 versioned GLBs pass the final runtime and component-readiness gates.
 | Unreferenced versioned GLBs | 5 | 0 |
 | Over-budget world assets | 0 before structural re-export; 5 during source rebuild | 0 |
 
-The strict world audit reports 73 assets, 843,432 triangles, zero unreferenced GLBs,
+The strict world audit reports 73 assets, 849,360 triangles, zero unreferenced GLBs,
 and no geometry, material-family, grounding, or Draco-compression failures.
 
 ## What “ready” means here
@@ -58,6 +58,8 @@ with `scripts/blender/audit-3d-components.py`.
 - `review-shots/3d-component-review/residents-sheet.png` — six resident characters.
 - `review-shots/3d-component-review/hdb-call-v2-orbit.png` — post-decimation hero-kit orbit.
 - `review-shots/3d-component-review/raintree-v2-orbit.png` — corrected canopy/branch orbit.
+- `review-shots/3d-component-review/skypark-hotel-v2-orbit.png` — latest main-branch
+  reference-led MBS/Skypark rebuild, re-exported as a nine-part selectable component.
 - `review-shots/3d-component-review/audit.json` — per-asset geometry and readiness evidence.
 
 The final contact sheets show a coherent stylized diorama language: clean silhouettes,

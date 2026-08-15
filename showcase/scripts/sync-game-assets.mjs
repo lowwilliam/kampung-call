@@ -12,6 +12,7 @@ const previewOutput = path.join(publicRoot, "previews");
 const dracoSource = path.join(siteRoot, "node_modules", "three", "examples", "jsm", "libs", "draco");
 const dracoOutput = path.join(publicRoot, "draco");
 const downloadOutput = path.join(publicRoot, "downloads");
+const licenseOutput = path.join(publicRoot, "licenses");
 
 await access(manifestPath);
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
@@ -45,5 +46,10 @@ await Promise.all(manifest.assets.map(async (asset) => {
 
 await rm(dracoOutput, { recursive: true, force: true });
 await cp(dracoSource, dracoOutput, { recursive: true });
+await rm(licenseOutput, { recursive: true, force: true });
+await mkdir(licenseOutput, { recursive: true });
+await copyFile(path.join(gameRoot, "THIRD_PARTY_NOTICES.md"), path.join(licenseOutput, "THIRD_PARTY_NOTICES.md"));
+await copyFile(path.join(siteRoot, "node_modules", "three", "LICENSE"), path.join(licenseOutput, "three-MIT.txt"));
+await copyFile(path.join(gameRoot, "node_modules", "@pkgjs", "parseargs", "LICENSE"), path.join(licenseOutput, "draco-Apache-2.0.txt"));
 
 console.log(`Synced ${manifest.assets.length} manifested GLBs and ${previewCount} checksum-bound Card Previews.`);

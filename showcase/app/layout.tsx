@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description: "Singapore, modelled one carefully sourced object at a time.",
     images: ["/og-kampung-3d.png"],
   },
+  robots: CATALOGUE_MANIFEST.release.status === "published" ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

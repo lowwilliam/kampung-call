@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T10:18:14.212111+00:00",
+  "generatedAt": "2026-08-15T10:43:39.002779+00:00",
   "criteria": {
     "runtimeReady": "Imports, has non-degenerate volume/materials, and sits at ground contact.",
     "componentReady": "Runtime-ready, plus complex assets expose at least two named selectable mesh parts.",
@@ -1541,12 +1541,12 @@
         "selectableNamedParts": 9,
         "armatures": 0,
         "animations": 0,
-        "triangles": 9620,
+        "triangles": 15548,
         "materials": 1,
         "dimensions": [
-          13.0,
-          10.07514,
-          8.50597
+          14.4,
+          11.16015,
+          8.74438
         ],
         "groundOffset": 0.0
       },

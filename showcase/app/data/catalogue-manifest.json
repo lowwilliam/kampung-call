@@ -252,16 +252,16 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "d4390b04b5944c11ad0b181083ecb5237252a7026a91c8e950a8c80776f5e838",
-        "byteLength": 35320,
+        "sha256": "397ccf65144b9f98ebc591dd69f2f9dcec0d2ea15630d128e850ef890b7a3a34",
+        "byteLength": 54772,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/skypark-hotel-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "d4390b04b5944c11ad0b181083ecb5237252a7026a91c8e950a8c80776f5e838",
-        "sha256": "b862a449e803ea34aa2fd08d80a69f619d87cb45369b8ebbadba78d94fc7cee9",
+        "sourceModelSha256": "397ccf65144b9f98ebc591dd69f2f9dcec0d2ea15630d128e850ef890b7a3a34",
+        "sha256": "71ac2f1bb754624fa14d3121ebda010e09a174af6772b3adfd2e7d0e55ce4c27",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -284,14 +284,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 9620,
+        "triangles": 15548,
         "materials": 1,
         "meshCount": 9,
         "compressed": true,
         "dimensions": {
-          "width": 13,
-          "height": 8.505972310900688,
-          "depth": 10.075139045715332
+          "width": 14.399999618530272,
+          "height": 8.744375936686993,
+          "depth": 11.16015338897705
         }
       },
       "publication": {

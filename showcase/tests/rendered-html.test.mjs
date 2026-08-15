@@ -29,7 +29,7 @@ test("server-renders the public collection", async () => {
   assert.match(html.replaceAll("<!-- -->", ""), /73\s+objects/i);
   assert.doesNotMatch(html, /Community collection/i);
   assert.doesNotMatch(html, /Submit your model/i);
-  assert.match(html, /asset-like-button/i);
+  assert.doesNotMatch(html, /asset-like-button/i);
   assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 73);
   assert.doesNotMatch(html, /One model at a time/i);
   assert.doesNotMatch(html, /Buildings gone/i);
@@ -70,9 +70,9 @@ test("server-renders one standalone detail viewer with canonical asset metadata"
   assert.match(html, /model-viewer-poster/i);
   assert.doesNotMatch(html, /class="asset-grid"/i);
   assert.match(html, /href="\/\?category=Homes\+%26\+Neighbourhoods&amp;sort=alphabetical#asset-peranakan-house"/i);
-  assert.match(html, /class="asset-download-link"/i);
-  assert.match(html, /Download GLB/i);
-  assert.match(html, /detail-like-button/i);
+  assert.doesNotMatch(html, /class="asset-download-link"/i);
+  assert.match(html, /Download unavailable/i);
+  assert.doesNotMatch(html, /detail-like-button/i);
   assert.doesNotMatch(html, /Download all/i);
   await access(path.join(siteRoot, "public", "models", "peranakan-house-v2.glb"));
 });

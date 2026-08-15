@@ -85,7 +85,8 @@ The application uses native ES modules in development and produces a self-contai
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Vite development server |
-| `npm run build` | Create an optimized production build in `dist/` |
+| `npm run build:preview` | Create a local draft build in `dist/` for review and testing |
+| `npm run build` | Create a production build only after the catalogue legal-release gate passes |
 | `npm run preview` | Preview the production build locally |
 | `npm run validate` | Check HTML invariants, assets, roads, work orders and scenario structure |
 | `npm run test:performance` | Enforce HTML, total runtime-asset and single-asset budgets |
@@ -114,7 +115,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the change workflow and the documen
 
 The application builds to a static Vite site. Vercel serves `dist/index.html` and applies the cache and security headers defined in `vercel.json`.
 
-This repository is currently a prototype, not a production-ready learning platform. Accessibility, security, analytics, LMS integration, content governance, browser support, and operational readiness still require dedicated work before a commercial launch.
+This repository is currently a prototype, not a production-ready learning platform. Accessibility, security, analytics, LMS integration, content governance, browser support, operational readiness, and asset/landmark rights clearance still require dedicated work before a public or commercial launch. See [`docs/LEGAL-RISK-REVIEW-2026-08-15.md`](docs/LEGAL-RISK-REVIEW-2026-08-15.md).
 
 ## Further documentation
 

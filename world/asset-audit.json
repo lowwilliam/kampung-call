@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T10:17:20.352Z",
+  "generatedAt": "2026-08-15T10:43:16.904Z",
   "manifest": [
     {
       "name": "engineer",
@@ -531,14 +531,14 @@
       "url": "assets/skypark-hotel-v2.glb",
       "scale": 4.83,
       "dimensions": {
-        "width": 62.79,
-        "height": 41.08384626165032,
-        "depth": 48.662921590805055
+        "width": 69.55199815750122,
+        "height": 42.23533577419818,
+        "depth": 53.90354086875916
       },
       "minY": 0,
-      "maxY": 41.08384626165032,
-      "requiredRadius": 39.719844025854506,
-      "triangles": 9620,
+      "maxY": 42.23533577419818,
+      "requiredRadius": 43.99736402868655,
+      "triangles": 15548,
       "materials": 1,
       "meshCount": 9,
       "compressed": true,
@@ -1540,7 +1540,7 @@
   "failures": [],
   "summary": {
     "assets": 73,
-    "triangles": 843432,
+    "triangles": 849360,
     "unreferenced": 0,
     "assetsOverBudget": 0,
     "materialsOverBudget": 0,
