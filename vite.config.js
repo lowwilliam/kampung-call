@@ -19,6 +19,11 @@ function copyRuntimeAssets(){
         fs.copyFileSync(input,output);
       }
       fs.cpSync(path.resolve('node_modules/three/examples/jsm/libs/draco'),path.join(out,'draco'),{recursive:true});
+      const licenses=path.join(out,'licenses');
+      fs.mkdirSync(licenses,{recursive:true});
+      fs.copyFileSync(path.resolve('THIRD_PARTY_NOTICES.md'),path.join(licenses,'THIRD_PARTY_NOTICES.md'));
+      fs.copyFileSync(path.resolve('node_modules/three/LICENSE'),path.join(licenses,'three-MIT.txt'));
+      fs.copyFileSync(path.resolve('node_modules/@pkgjs/parseargs/LICENSE'),path.join(licenses,'draco-Apache-2.0.txt'));
     },
   };
 }

@@ -141,9 +141,9 @@ for (const [index, asset] of (manifest.assets ?? []).entries()) {
         fail(`${ref}: cleared Download Grant is incomplete`);
       }
     }
-    if (asset.id === "harbour-statue" && asset.rights?.download?.status === "cleared") {
+    if (asset.id === "harbour-statue" && (asset.rights?.display?.status === "cleared" || asset.rights?.download?.status === "cleared")) {
       const stbPermission = (asset.rights.statutoryPermissions ?? []).some((item) => item.authority === "Singapore Tourism Board" && item.status === "cleared");
-      if (!stbPermission) fail(`${ref}: STB permission is required before download clearance`);
+      if (!stbPermission) fail(`${ref}: documented STB permission is required before display or download clearance`);
     }
   }
 }

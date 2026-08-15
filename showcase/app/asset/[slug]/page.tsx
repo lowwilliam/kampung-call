@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATALOGUE_MANIFEST, CATEGORIES, GAME_ASSETS, type CollectionAsset } from "../../data/game-assets";
-import { AssetLikeButton } from "../../components/AssetLikeButton";
 import { CollectionBackLink } from "../../components/CollectionBackLink";
 import { ModelViewer } from "../../components/ModelViewer";
 
@@ -46,7 +45,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description: asset.intro,
     alternates: { canonical: `/asset/${asset.slug}` },
-    robots: asset.publication?.status === "withdrawn" ? { index: false, follow: false } : undefined,
+    robots: CATALOGUE_MANIFEST.release.status !== "published" || asset.publication?.status !== "published"
+      ? { index: false, follow: false }
+      : undefined,
     openGraph: {
       title,
       description: asset.intro,
@@ -106,7 +107,6 @@ export default async function AssetPage({
         <article className="detail-copy">
           <p className="eyebrow">{asset.category} · Asset {String(asset.curatedOrder ?? 0).padStart(2, "0")}</p>
           <h1>{asset.name}</h1>
-          <AssetLikeButton assetId={asset.id} assetName={asset.name} />
           {asset.inspiration && (
             <p className="inspiration">
               {asset.category === "Lost Heritage" ? <strong>{asset.inspiration}</strong> : <>Inspired by <strong>{asset.inspiration}</strong></>}
@@ -141,11 +141,17 @@ export default async function AssetPage({
           <p className="provenance-note">{asset.provenanceDetail}</p>
 
           <div className="download-panel">
-            <a className="asset-download-link" href={asset.modelUrl} download={downloadFileName}>
-              <span>Download GLB</span>
-              <small>{downloadFileName} · ↓</small>
-            </a>
-            <p>This downloads the same view copy used by the 3D viewer. It does not grant redistribution, resale or reuse rights.</p>
+            {asset.downloadAllowed && asset.downloadUrl ? (
+              <>
+                <a className="asset-download-link" href={asset.downloadUrl} download={downloadFileName}>
+                  <span>Download licensed GLB</span>
+                  <small>{downloadFileName} · ↓</small>
+                </a>
+                <p>The asset-specific Download Grant states the permitted reuse and any excluded third-party rights.</p>
+              </>
+            ) : (
+              <p><strong>Download unavailable.</strong> Viewing this model does not grant redistribution, resale or reuse rights.</p>
+            )}
           </div>
         </article>
       </main>
