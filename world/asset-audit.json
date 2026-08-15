@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T10:43:16.904Z",
+  "generatedAt": "2026-08-15T11:29:10.226Z",
   "manifest": [
     {
       "name": "engineer",
@@ -531,16 +531,16 @@
       "url": "assets/skypark-hotel-v2.glb",
       "scale": 4.83,
       "dimensions": {
-        "width": 69.55199815750122,
-        "height": 42.23533577419818,
-        "depth": 53.90354086875916
+        "width": 49.096005535125734,
+        "height": 40.64213344931603,
+        "depth": 13.95893312215805
       },
       "minY": 0,
-      "maxY": 42.23533577419818,
-      "requiredRadius": 43.99736402868655,
-      "triangles": 15548,
+      "maxY": 40.64213344931603,
+      "requiredRadius": 25.520920699565178,
+      "triangles": 15488,
       "materials": 1,
-      "meshCount": 9,
+      "meshCount": 1,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1161,16 +1161,16 @@
       "url": "assets/lost-heritage/comcentre.glb",
       "scale": 1,
       "dimensions": {
-        "width": 13,
-        "height": 25.767348896781016,
-        "depth": 10.219938964843749
+        "width": 17,
+        "height": 31.894999987185,
+        "depth": 12.499664306640625
       },
       "minY": 0,
-      "maxY": 25.767348896781016,
-      "requiredRadius": 8.268118777042506,
-      "triangles": 2244,
-      "materials": 3,
-      "meshCount": 90,
+      "maxY": 31.894999987185,
+      "requiredRadius": 10.550374493101012,
+      "triangles": 11418,
+      "materials": 4,
+      "meshCount": 419,
       "compressed": true,
       "kind": "hero",
       "budget": 35000,
@@ -1442,7 +1442,7 @@
       "maxY": 3.4200072437524796,
       "requiredRadius": 1.6007858437513545,
       "triangles": 29788,
-      "materials": 4,
+      "materials": 5,
       "meshCount": 56,
       "compressed": true,
       "kind": "hero",
@@ -1484,7 +1484,7 @@
       "maxY": 1.9135909027517208,
       "requiredRadius": 1.1468043984789629,
       "triangles": 19600,
-      "materials": 4,
+      "materials": 8,
       "meshCount": 64,
       "compressed": true,
       "kind": "hero",
@@ -1540,7 +1540,7 @@
   "failures": [],
   "summary": {
     "assets": 73,
-    "triangles": 849360,
+    "triangles": 858474,
     "unreferenced": 0,
     "assetsOverBudget": 0,
     "materialsOverBudget": 0,

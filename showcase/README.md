@@ -1,6 +1,6 @@
 # Kampung 3D Collection
 
-A standalone, draft editorial 3D catalogue for 73 Singapore-connected objects, places and people: 60 game assets plus 13 research-led Lost Heritage reconstructions. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
+A standalone, draft editorial 3D catalogue for 73 Singapore-connected objects, places and people: 60 game/wildlife/transit assets plus 13 research-led Lost Heritage reconstructions. Every product card uses a lazy-loaded WebGL viewer with auto-rotation, direct manipulation, zoom, animation playback where available, and a dedicated detail route.
 
 Community submissions, moderation mutations, reports, receipts, and likes are retired. Historical community inventory is read-only; the public catalogue does not fingerprint visitors for interactions.
 

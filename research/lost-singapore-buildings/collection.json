@@ -16,15 +16,16 @@
       "heritageCase": "Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
       "evidenceConfidence": 0.94,
       "geometryIdentity": [
-        "33-storey rectilinear tower with two opaque east-west service cores",
-        "repetitive horizontal office-window bands",
-        "five-storey equipment podium joined by a plaza",
-        "cluster of large rooftop microwave dishes"
+        "33-storey rectilinear tower with two opaque east-west service cores and a recessed office grid",
+        "stepped telecommunications crown with upper slit, logo panel and sloped terrace band",
+        "five-storey two-wing equipment podium with a curved glazed entrance and plaza",
+        "full-width rooftop space frame carrying a representative opening-era row of microwave dishes"
       ],
       "sources": [
         "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre",
         "https://www.singtel.com/about-us/media-centre/news-releases/singtel-to-redevelop-comcentre-headquarters--into-next-generatio",
-        "https://www.singtel.com/about-us/media-centre/news-releases/singtel-and-lendlease-break-ground-on-new-comcentre"
+        "https://www.singtel.com/about-us/media-centre/news-releases/singtel-and-lendlease-break-ground-on-new-comcentre",
+        "https://www.straitstimes.com/singapore/singtel-how-singapore-built-connected-city-smart-nation"
       ],
       "references": [
         {
@@ -62,6 +63,24 @@
           "credit": "Wikimedia Commons, as credited by Artchitectours",
           "rights": "Research reference; verify original Commons licence before reuse",
           "filename": "comcentre/opposite-elevation.jpg"
+        },
+        {
+          "id": "opening-era-roof",
+          "view": "opening-era tower and rooftop microwave installation",
+          "imageUrl": "https://media.ceros.com/spg/images/2025/07/10/2a3912c5e2e810acc1c5de406af5ddbd/asset-7.png",
+          "sourcePage": "https://www.straitstimes.com/singapore/singtel-how-singapore-built-connected-city-smart-nation",
+          "credit": "The Straits Times / Singtel historical feature",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "comcentre/opening-era-roof.png"
+        },
+        {
+          "id": "aerial-2022",
+          "view": "late-life aerial view of tower, crown and podium complex",
+          "imageUrl": "https://www.singtel.com/content/dam/singtel/about-us-singtel/media-centre/2022/Singtel_ComcentreAerial.jpg",
+          "sourcePage": "https://www.singtel.com/about-us/media-centre/news-releases/singtel-to-redevelop-comcentre-headquarters--into-next-generatio",
+          "credit": "Singtel",
+          "rights": "Research reference; consult source for reuse",
+          "filename": "comcentre/aerial-2022.jpg"
         }
       ]
     },

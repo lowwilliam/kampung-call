@@ -252,17 +252,17 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "397ccf65144b9f98ebc591dd69f2f9dcec0d2ea15630d128e850ef890b7a3a34",
-        "byteLength": 54772,
+        "sha256": "e775c2a16d183962f525b33cd00147093f2748fbd8ccb97821ac9a16e3a550be",
+        "byteLength": 47564,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/skypark-hotel-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "397ccf65144b9f98ebc591dd69f2f9dcec0d2ea15630d128e850ef890b7a3a34",
-        "sha256": "71ac2f1bb754624fa14d3121ebda010e09a174af6772b3adfd2e7d0e55ce4c27",
-        "contentType": "image/png"
+        "sourceModelSha256": "e775c2a16d183962f525b33cd00147093f2748fbd8ccb97821ac9a16e3a550be",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -284,14 +284,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 15548,
+        "triangles": 9536,
         "materials": 1,
-        "meshCount": 9,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 14.399999618530272,
-          "height": 8.744375936686993,
-          "depth": 11.16015338897705
+          "width": 9.663042068481445,
+          "height": 8.17610228061676,
+          "depth": 2.7361807823181152
         }
       },
       "publication": {
@@ -459,12 +459,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/sultan-mosque-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "5a637c0d7df7cea75a21e90fe4f56d5eac3a8303d4d3ab41b2c11b3175f3065d",
-        "sha256": "3ebe70e01d61e1b77c1519b6634f1b0112e9ca654327077483c853e59a9d9550",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -486,14 +486,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 13996,
+        "triangles": 13912,
         "materials": 1,
-        "meshCount": 8,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 14,
-          "height": 9.08977660536766,
-          "depth": 10.850149154663086
+          "width": 26.087398330211638,
+          "height": 22.79283540225029,
+          "depth": 21.49189030456543
         }
       },
       "publication": {
@@ -563,12 +563,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/concert-hall-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "7a3c72752b3e526138115d901f014db0f3b1ba848e62b3c9e0e27a5d85ad3634",
-        "sha256": "a89c9b941a7ae9f25a562e50c4e6b604f46281bd31d014261a79c8ec353642d8",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -590,14 +590,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 14972,
+        "triangles": 14888,
         "materials": 1,
-        "meshCount": 6,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 11,
-          "height": 3.1094785630702972,
-          "depth": 8.525117874145508
+          "width": 6.800000190734863,
+          "height": 2.779271125793457,
+          "depth": 4.263956546783447
         }
       },
       "publication": {
@@ -792,14 +792,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 34562,
+        "triangles": 15464,
         "materials": 1,
-        "meshCount": 17,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 13.199999809265137,
-          "height": 8.480000227689743,
-          "depth": 11.414999723434448
+          "width": 19.620817914962768,
+          "height": 19.755756704807283,
+          "depth": 23.028
         }
       },
       "publication": {
@@ -890,14 +890,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 15212,
+        "triangles": 3570,
         "materials": 1,
-        "meshCount": 12,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 8,
-          "height": 5.219992443919182,
-          "depth": 6.200085639953613
+          "width": 3.354861030578613,
+          "height": 4.62104362180914,
+          "depth": 3.7745718834759896
         }
       },
       "publication": {
@@ -994,14 +994,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 31976,
+        "triangles": 11508,
         "materials": 2,
-        "meshCount": 21,
+        "meshCount": 2,
         "compressed": true,
         "dimensions": {
-          "width": 12.800000190734863,
-          "height": 4.980031818151474,
-          "depth": 9.920136451721191
+          "width": 13.718546780586243,
+          "height": 11.791361897908365,
+          "depth": 13.885808625410082
         }
       },
       "publication": {
@@ -1071,12 +1071,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/kopitiam-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
-        "sha256": "00bad3a28f015635f71a5e2341a1b08ace056480c647e67e943a46a1e2fc9368",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1098,14 +1098,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 31312,
+        "triangles": 7848,
         "materials": 1,
-        "meshCount": 10,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 12,
-          "height": 5.404960721731186,
-          "depth": 9.300127983093262
+          "width": 7.764749999999999,
+          "height": 5.403049278974533,
+          "depth": 6.306874823570251
         }
       },
       "publication": {
@@ -1196,14 +1196,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11704,
+        "triangles": 11620,
         "materials": 2,
-        "meshCount": 14,
+        "meshCount": 2,
         "compressed": true,
         "dimensions": {
-          "width": 11.199999809265137,
-          "height": 8.516004459971107,
-          "depth": 8.680119514465332
+          "width": 7.719305678562298,
+          "height": 6.738412341347355,
+          "depth": 4.515418626070023
         }
       },
       "publication": {
@@ -1273,12 +1273,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/mrt-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "a83280851e0a753882180a97f3d480663d4bc5d949f37e4903f410b01dc11162",
-        "sha256": "c923db943718d38fba0ce0272df9ed832ffc50454d3051f7cfe799ee2e5118f7",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1300,14 +1300,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 18004,
+        "triangles": 17950,
         "materials": 1,
-        "meshCount": 8,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 9,
-          "height": 3.710570591524837,
-          "depth": 6.975096225738525
+          "width": 5.519999980926514,
+          "height": 3.3808021247386932,
+          "depth": 4.824230194091797
         }
       },
       "publication": {
@@ -1398,14 +1398,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 26744,
+        "triangles": 7134,
         "materials": 1,
-        "meshCount": 9,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 12.399999618530273,
-          "height": 3.577681900634815,
-          "depth": 9.610132217407227
+          "width": 43.577348137843785,
+          "height": 22.365500930072365,
+          "depth": 27.911309178352354
         }
       },
       "publication": {
@@ -1475,12 +1475,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/hawker-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
-        "sha256": "99e0a8e800888660e8544379facf806cf8588e01e48155884e53683618011adb",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1502,14 +1502,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 32572,
+        "triangles": 7834,
         "materials": 1,
-        "meshCount": 11,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 12,
-          "height": 4.659775346517563,
-          "depth": 9.300127983093262
+          "width": 11.118799724578857,
+          "height": 6.208556478500366,
+          "depth": 7.941902914047241
         }
       },
       "publication": {
@@ -1600,14 +1600,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11644,
+        "triangles": 2984,
         "materials": 1,
-        "meshCount": 11,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 8,
-          "height": 3.2103496491909027,
-          "depth": 6.200085639953613
+          "width": 7.172999809980393,
+          "height": 4.591105162143707,
+          "depth": 6.088052647590637
         }
       },
       "publication": {
@@ -1677,12 +1677,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/bumboat-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "d95162caa09cd90abfde167af67ee91099c08ea6a1b355a403f5708f74dca3a5",
-        "sha256": "f1e2a2bce1676a24e0cc75649b616359823eab9bd04113ae3f4700807586011b",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1704,14 +1704,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 13020,
+        "triangles": 12946,
         "materials": 1,
-        "meshCount": 10,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 6.999999999999999,
-          "height": 2.3199267461895943,
-          "depth": 5.425074577331543
+          "width": 5.099976539611816,
+          "height": 1.9901208877563474,
+          "depth": 1.8301142454147339
         }
       },
       "publication": {
@@ -2615,7 +2615,7 @@
           "intro": "Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
           "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
           "singaporeContext": "Opened 1979 at 31 Exeter Road; removed 2024–2025. Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
-          "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate. 68 meshes, 7 materials, and 1,980 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led procedural Three.js rebuild from six historical and official sources. The 419-mesh model restores the recessed office grid, stepped telecommunications crown, curved entrance, full rooftop space frame and representative parabolic-dish row. Hidden elevations, exact equipment geometry and lifecycle-specific dish placement remain approximate.",
           "inspiration": "Opened 1979 · Removed 2024–2025 · 31 Exeter Road"
         }
       },
@@ -2623,15 +2623,15 @@
         "file": "lost-heritage/comcentre.glb",
         "sourcePath": "assets/lost-heritage/comcentre.glb",
         "publicPath": "/models/lost-heritage/comcentre.glb",
-        "sha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
-        "byteLength": 88960,
+        "sha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
+        "byteLength": 427704,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
+        "sourceModelSha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
         "sha256": null,
         "contentType": null
       },
@@ -2641,7 +2641,7 @@
         "url": null
       },
       "adapters": [],
-      "productionMethod": "unverified",
+      "productionMethod": "Reference-led procedural Three.js reconstruction",
       "provenance": {
         "label": "Lost Singapore reconstruction",
         "detail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate."
@@ -2651,23 +2651,33 @@
           "kind": "history",
           "label": "Read the historical source",
           "url": "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre"
+        },
+        {
+          "kind": "model-reference",
+          "label": "Singtel — Comcentre redevelopment",
+          "url": "https://www.singtel.com/about-us/media-centre/news-releases/singtel-to-redevelop-comcentre-headquarters--into-next-generatio"
+        },
+        {
+          "kind": "model-reference",
+          "label": "The Straits Times / Singtel — historical Comcentre feature",
+          "url": "https://www.straitstimes.com/singapore/singtel-how-singapore-built-connected-city-smart-nation"
         }
       ],
-      "evidenceStatus": "unreviewed",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 1980,
-        "materials": 7,
-        "meshCount": 68,
+        "triangles": 11544,
+        "materials": 4,
+        "meshCount": 419,
         "compressed": true,
         "dimensions": {
-          "width": 13,
-          "height": 25.770000030100345,
-          "depth": 9.600000047683716
+          "width": 17,
+          "height": 31.894999987185,
+          "depth": 12.5
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": null
+        "lastReviewedAt": "2026-08-15T03:00:00.000Z"
       },
       "rights": {
         "subjectType": "unreviewed",
@@ -3174,14 +3184,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7104,
+        "triangles": 3672,
         "materials": 1,
-        "meshCount": 7,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 9,
-          "height": 7.260000318288803,
-          "depth": 6.975096225738525
+          "width": 20.770457084178926,
+          "height": 29.986111320495606,
+          "depth": 16.095822688937186
         }
       },
       "publication": {
@@ -3278,14 +3288,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 27204,
+        "triangles": 3788,
         "materials": 1,
-        "meshCount": 16,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 10.97719955444336,
-          "height": 10.912305802106857,
-          "depth": 8.776131629943848
+          "width": 7.563015258789062,
+          "height": 10.09243982362747,
+          "depth": 4.359036952972412
         }
       },
       "publication": {
@@ -3382,14 +3392,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11756,
+        "triangles": 3788,
         "materials": 1,
-        "meshCount": 9,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 9,
-          "height": 7.9699998795986176,
-          "depth": 6.975096225738525
+          "width": 15.429467163085937,
+          "height": 20.58979964017868,
+          "depth": 8.892963352203369
         }
       },
       "publication": {
@@ -3480,14 +3490,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 10240,
+        "triangles": 9076,
         "materials": 1,
-        "meshCount": 75,
+        "meshCount": 3,
         "compressed": true,
         "dimensions": {
-          "width": 9.199999809265137,
-          "height": 5.711949214339256,
-          "depth": 7.130098342895508
+          "width": 1.2697305322914423,
+          "height": 0.9021254109441564,
+          "depth": 0.86276251411438
         }
       },
       "publication": {
@@ -3578,14 +3588,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 16208,
+        "triangles": 7086,
         "materials": 1,
-        "meshCount": 16,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 11,
-          "height": 5.6524620950222015,
-          "depth": 8.525117874145508
+          "width": 10.38300937616744,
+          "height": 9.516806545437309,
+          "depth": 6.485852923393249
         }
       },
       "publication": {
@@ -3774,14 +3784,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 27172,
+        "triangles": 8536,
         "materials": 1,
-        "meshCount": 11,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 12,
-          "height": 9.61000069975853,
-          "depth": 9.300127983093262
+          "width": 17.78195477628708,
+          "height": 30.002242219924927,
+          "depth": 16.082505508542063
         }
       },
       "publication": {
@@ -3878,14 +3888,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 30368,
+        "triangles": 6822,
         "materials": 1,
-        "meshCount": 11,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 11.999999999999998,
-          "height": 11.135000318288801,
-          "depth": 9.300127983093262
+          "width": 17.538842890739442,
+          "height": 33.99253096008301,
+          "depth": 15.808405778884888
         }
       },
       "publication": {
@@ -3976,14 +3986,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 15808,
+        "triangles": 8356,
         "materials": 1,
-        "meshCount": 61,
+        "meshCount": 3,
         "compressed": true,
         "dimensions": {
-          "width": 6.950007408857346,
-          "height": 5.267834169594993,
-          "depth": 4.724412262439728
+          "width": 10.001050411701202,
+          "height": 8.357054069057106,
+          "depth": 6.798614768505097
         }
       },
       "publication": {
@@ -4074,14 +4084,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 27616,
+        "triangles": 8658,
         "materials": 1,
-        "meshCount": 13,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 12,
-          "height": 9.059999912977219,
-          "depth": 9.300127983093262
+          "width": 18.898955194473267,
+          "height": 29.99627986073494,
+          "depth": 17.09364910888672
         }
       },
       "publication": {
@@ -4151,12 +4161,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/controltower-v2.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
         "sourceModelSha256": "2dd02ce650724f848e4e7c8ae719227014df8f78724cf1cda9ca2c346a850df8",
-        "sha256": "9a527ed6a940cb28e21d3e26ea47cb025c7ae4866033e123bcd79c4d072d0b82",
-        "contentType": "image/png"
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4178,14 +4188,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 9028,
+        "triangles": 8944,
         "materials": 1,
-        "meshCount": 9,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 8,
-          "height": 9.89000028371811,
-          "depth": 6.200085639953614
+          "width": 2.9199929237365723,
+          "height": 9.5600004196167,
+          "depth": 2.9199929237365723
         }
       },
       "publication": {
@@ -4472,14 +4482,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 19552,
+        "triangles": 4124,
         "materials": 1,
-        "meshCount": 12,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 10,
-          "height": 3.910069555044174,
-          "depth": 7.7501068115234375
+          "width": 16.027199575424195,
+          "height": 7.969090133316116,
+          "depth": 11.508514647224953
         }
       },
       "publication": {
@@ -5175,14 +5185,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 8704,
+        "triangles": 2878,
         "materials": 1,
-        "meshCount": 20,
+        "meshCount": 2,
         "compressed": true,
         "dimensions": {
-          "width": 3.9486109374193057,
-          "height": 1.8799402112882215,
-          "depth": 2.299376606988761
+          "width": 4.921147679425308,
+          "height": 3.218254792276142,
+          "depth": 2.9494746312897946
         }
       },
       "publication": {
@@ -5247,15 +5257,15 @@
         "file": "singapore-cable-car-skyorb-v1.glb",
         "sourcePath": "assets/singapore-cable-car-skyorb-v1.glb",
         "publicPath": "/models/singapore-cable-car-skyorb-v1.glb",
-        "sha256": "5d6d40500231c2084477804311516841c4398471d59ec4f11ac526f07160ff68",
-        "byteLength": 71152,
+        "sha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
+        "byteLength": 162840,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
+        "status": "ready",
         "sourcePath": "assets/previews/singapore-cable-car-skyorb-v1.png",
-        "publicPath": null,
-        "sourceModelSha256": "5d6d40500231c2084477804311516841c4398471d59ec4f11ac526f07160ff68",
+        "publicPath": "/previews/singapore-cable-car-skyorb.png",
+        "sourceModelSha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
         "sha256": "4fcf8d237f01a0f72e0d2c4bdb9056cdadb51398657184c6fb49a75161de0cc0",
         "contentType": "image/png"
       },
@@ -5280,18 +5290,18 @@
       "evidenceStatus": "mixed",
       "metrics": {
         "triangles": 29788,
-        "materials": 4,
+        "materials": 5,
         "meshCount": 56,
         "compressed": true,
         "dimensions": {
-          "width": 2.3226664375395503,
-          "height": 3.4200072437524796,
-          "depth": 2.2034704196213477
+          "width": 2.3227,
+          "height": 3.42,
+          "depth": 2.2035
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": null
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
       },
       "rights": {
         "subjectType": "branded-industrial-design",
@@ -5319,7 +5329,7 @@
           "evidenceRefs": []
         },
         "display": {
-          "status": "pending",
+          "status": "legal-review",
           "basis": null,
           "reviewedBy": null,
           "reviewedAt": null,
@@ -5776,14 +5786,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 816,
-        "materials": 4,
-        "meshCount": 11,
+        "triangles": 336,
+        "materials": 2,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 5.095154762268066,
-          "height": 3.9949449747800827,
-          "depth": 2.6000373661518097
+          "width": 13.99117951989174,
+          "height": 11.992737013101578,
+          "depth": 8.19611858844757
         }
       },
       "publication": {
@@ -5946,17 +5956,17 @@
         "file": "smooth-coated-otter-v1.glb",
         "sourcePath": "assets/smooth-coated-otter-v1.glb",
         "publicPath": "/models/smooth-coated-otter-v1.glb",
-        "sha256": "a2cb11cad6a7e054673c414c81340a4fc1eb438a93d0080f4c5f64251ee79b84",
-        "byteLength": 48552,
+        "sha256": "72ce7bf0a98ae5c954a0ee7109ce3a9f27c88d5c888c98ae3809bcaa3c6d81cc",
+        "byteLength": 108912,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/smooth-coated-otter-v1.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "a2cb11cad6a7e054673c414c81340a4fc1eb438a93d0080f4c5f64251ee79b84",
-        "sha256": "5ee95394bfc057678e188e6053605a40f0b1c73156e9253f84feec42a7753c10",
-        "contentType": "image/png"
+        "sourceModelSha256": "72ce7bf0a98ae5c954a0ee7109ce3a9f27c88d5c888c98ae3809bcaa3c6d81cc",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5983,9 +5993,9 @@
         "meshCount": 51,
         "compressed": true,
         "dimensions": {
-          "width": 2.6406699419021606,
-          "height": 1.3084846229488065,
-          "depth": 0.8700000047683716
+          "width": 2.6407,
+          "height": 1.3637,
+          "depth": 0.8981
         }
       },
       "publication": {
@@ -6050,17 +6060,17 @@
         "file": "red-junglefowl-v1.glb",
         "sourcePath": "assets/red-junglefowl-v1.glb",
         "publicPath": "/models/red-junglefowl-v1.glb",
-        "sha256": "47cb4faf9dd8ed3ba547fac45cbc3663f06eff5655e9c344beae581e5acd06af",
-        "byteLength": 71624,
+        "sha256": "61b58e262b820b94d71966e0a0b8516d683c476409ef8fd1cf61f33262bb4d76",
+        "byteLength": 136472,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/red-junglefowl-v1.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "47cb4faf9dd8ed3ba547fac45cbc3663f06eff5655e9c344beae581e5acd06af",
-        "sha256": "71ce10e4bcdae1c127a55c0fd0255ed1e829749f35f96ab6a3be8451150f9b12",
-        "contentType": "image/png"
+        "sourceModelSha256": "61b58e262b820b94d71966e0a0b8516d683c476409ef8fd1cf61f33262bb4d76",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6083,13 +6093,13 @@
       "evidenceStatus": "mixed",
       "metrics": {
         "triangles": 19600,
-        "materials": 4,
+        "materials": 8,
         "meshCount": 64,
         "compressed": true,
         "dimensions": {
-          "width": 2.0282113623690465,
-          "height": 1.9135909027517208,
-          "depth": 1.0709808509211922
+          "width": 2.0525,
+          "height": 1.9295,
+          "depth": 1.1578
         }
       },
       "publication": {
@@ -6154,15 +6164,15 @@
         "file": "oriental-pied-hornbill-v1.glb",
         "sourcePath": "assets/oriental-pied-hornbill-v1.glb",
         "publicPath": "/models/oriental-pied-hornbill-v1.glb",
-        "sha256": "86efebdba888bf0c5769278be38b4d54d3f9b4ed71c5c582fc43211f50a8d192",
-        "byteLength": 40040,
+        "sha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
+        "byteLength": 71200,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
+        "status": "ready",
         "sourcePath": "assets/previews/oriental-pied-hornbill-v1.png",
-        "publicPath": null,
-        "sourceModelSha256": "86efebdba888bf0c5769278be38b4d54d3f9b4ed71c5c582fc43211f50a8d192",
+        "publicPath": "/previews/oriental-pied-hornbill.png",
+        "sourceModelSha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
         "sha256": "4d674cd11ef0ac22c898e0e3e13d432e2dbf9fc0e323fec425c2e8d4a7b6cd4d",
         "contentType": "image/png"
       },
@@ -6191,14 +6201,14 @@
         "meshCount": 38,
         "compressed": true,
         "dimensions": {
-          "width": 1.7617828884001998,
-          "height": 2.4308312982320786,
-          "depth": 1.0143446569873473
+          "width": 1.8428,
+          "height": 2.4308,
+          "depth": 1.053
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": null
+        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
       },
       "rights": {
         "subjectType": "natural-world",
@@ -6258,17 +6268,17 @@
         "file": "clouded-monitor-v1.glb",
         "sourcePath": "assets/clouded-monitor-v1.glb",
         "publicPath": "/models/clouded-monitor-v1.glb",
-        "sha256": "eed709d45fc64732eb8ea90771140441153249e80913bbeb4bcc4533b856f3d3",
-        "byteLength": 78116,
+        "sha256": "f55225d644f9f1399d71db05d281764cca6e8b4f17cbe3d1b7562b79c59c4958",
+        "byteLength": 259848,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/clouded-monitor-v1.png",
+        "status": "missing",
+        "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "eed709d45fc64732eb8ea90771140441153249e80913bbeb4bcc4533b856f3d3",
-        "sha256": "b3079721cfaf1831cedfbbbca475894ca6df45d0cb2085eedc4d1a142b9468ea",
-        "contentType": "image/png"
+        "sourceModelSha256": "f55225d644f9f1399d71db05d281764cca6e8b4f17cbe3d1b7562b79c59c4958",
+        "sha256": null,
+        "contentType": null
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6295,9 +6305,9 @@
         "meshCount": 131,
         "compressed": true,
         "dimensions": {
-          "width": 3.443075022454047,
-          "height": 0.8229541360284893,
-          "depth": 1.677840991459508
+          "width": 3.46,
+          "height": 0.8651,
+          "depth": 1.6924
         }
       },
       "publication": {
@@ -7074,14 +7084,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 1800,
+        "triangles": 1736,
         "materials": 1,
-        "meshCount": 12,
+        "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 1.596016213088265,
-          "height": 2.670019499957562,
-          "depth": 1.029970419856292
+          "width": 1.7364252116967605,
+          "height": 2.424580739583129,
+          "depth": 1.0109816304928987
         }
       },
       "publication": {
