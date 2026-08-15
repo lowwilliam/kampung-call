@@ -47,11 +47,17 @@ test("runtime catalogue is derived from the Manifest instead of parallel seed ar
   assert.match(source, /import catalogueManifestJson from "\.\/catalogue-manifest\.json"/);
   assert.doesNotMatch(source, /lostHeritageSeeds|const gameAssetSeeds|const GAME_ASSETS\s*=\s*\[/);
   assert.match(collectionSource, /ModelViewer|CollectionGlobe/);
-  assert.match(collectionSource, /\/api\/likes/);
+  assert.doesNotMatch(collectionSource, /\/api\/likes|clientFingerprint/);
   assert.doesNotMatch(collectionSource, /\/api\/assets/);
   assert.doesNotMatch(collectionSource, /GAME_ASSETS|CATALOGUE_MANIFEST|catalogue-manifest\.json/);
   assert.match(syncSource, /catalogue-manifest\.json/);
   assert.doesNotMatch(syncSource, /asset-audit\.json/);
+});
+
+test("retired likes do not fingerprint catalogue visitors", async () => {
+  const route = await readFile(new URL("app/api/likes/route.ts", siteRoot), "utf8");
+  assert.match(route, /communityRetiredResponse/);
+  assert.doesNotMatch(route, /clientFingerprint|cf-connecting-ip|voter_fingerprint|INSERT\s+OR\s+IGNORE/i);
 });
 
 test("historical Community inventory cannot mutate or purge stored records", async () => {

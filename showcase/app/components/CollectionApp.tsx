@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { AssetCategory } from "../data/game-assets";
 import { rememberCollectionPosition } from "./CollectionBackLink";
 import { CollectionGlobe } from "./CollectionGlobe";
@@ -35,18 +35,10 @@ function AssetCard({
   asset,
   href,
   eager,
-  likeCount,
-  liked,
-  likePending,
-  onLike,
 }: {
   asset: CatalogueCardAsset;
   href: string;
   eager: boolean;
-  likeCount: number;
-  liked: boolean;
-  likePending: boolean;
-  onLike: () => void;
 }) {
   return (
     <article className="asset-card" data-category={asset.category} id={`asset-${asset.slug}`}>
@@ -69,17 +61,6 @@ function AssetCard({
           </span>
           <span className="card-arrow" aria-hidden="true">↗</span>
         </a>
-        <button
-          className={`asset-like-button ${liked ? "is-liked" : ""}`}
-          type="button"
-          aria-pressed={liked}
-          aria-label={`${liked ? "Unlike" : "Like"} ${asset.name}. ${likeCount} likes`}
-          disabled={likePending}
-          onClick={onLike}
-        >
-          <span aria-hidden="true">♥</span>
-          <strong>{likeCount.toLocaleString()}</strong>
-        </button>
       </div>
     </article>
   );
@@ -101,9 +82,6 @@ export function CollectionApp({
   const [category, setCategory] = useState(initialCategory);
   const [query, setQuery] = useState(initialQuery);
   const [sort, setSort] = useState<CatalogueSort>(initialSort);
-  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
-  const [likedAssets, setLikedAssets] = useState<Set<string>>(new Set());
-  const [pendingLikes, setPendingLikes] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -121,63 +99,6 @@ export function CollectionApp({
     const nextUrl = params.size ? `/?${params}` : "/";
     window.history.replaceState(window.history.state, "", nextUrl);
   }, [category, query, sort]);
-
-  useEffect(() => {
-    void fetch("/api/likes", { cache: "no-store" })
-      .then((response) => (response.ok ? response.json() : { counts: {}, liked: [] }))
-      .then((payload) => {
-        setLikeCounts(payload.counts ?? {});
-        setLikedAssets(new Set(payload.liked ?? []));
-      })
-      .catch(() => {
-        setLikeCounts({});
-        setLikedAssets(new Set());
-      });
-  }, []);
-
-  const toggleLike = useCallback(async (assetId: string) => {
-    if (pendingLikes.has(assetId)) return;
-    const wasLiked = likedAssets.has(assetId);
-    const previousCount = likeCounts[assetId] ?? 0;
-    setPendingLikes((current) => new Set(current).add(assetId));
-    setLikedAssets((current) => {
-      const next = new Set(current);
-      if (wasLiked) next.delete(assetId);
-      else next.add(assetId);
-      return next;
-    });
-    setLikeCounts((current) => ({ ...current, [assetId]: Math.max(0, previousCount + (wasLiked ? -1 : 1)) }));
-    try {
-      const response = await fetch("/api/likes", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ assetId }),
-      });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || "Unable to save like");
-      setLikeCounts((current) => ({ ...current, [assetId]: payload.count ?? 0 }));
-      setLikedAssets((current) => {
-        const next = new Set(current);
-        if (payload.liked) next.add(assetId);
-        else next.delete(assetId);
-        return next;
-      });
-    } catch {
-      setLikeCounts((current) => ({ ...current, [assetId]: previousCount }));
-      setLikedAssets((current) => {
-        const next = new Set(current);
-        if (wasLiked) next.add(assetId);
-        else next.delete(assetId);
-        return next;
-      });
-    } finally {
-      setPendingLikes((current) => {
-        const next = new Set(current);
-        next.delete(assetId);
-        return next;
-      });
-    }
-  }, [likeCounts, likedAssets, pendingLikes]);
 
   const currentQuery = catalogueQuery(category, query, sort);
 
@@ -204,6 +125,11 @@ export function CollectionApp({
             </div>
           </div>
         </section>
+
+        <p className="provenance-note" role="note">
+          Draft preview: creator, source-media, landmark and display rights remain under review. This independent project is not
+          sponsored, endorsed or affiliated with the organisations or landmark owners referenced in the catalogue.
+        </p>
 
         <section className="catalogue-controls" aria-label="Collection controls">
           <div className="catalogue-toolbar">
@@ -241,10 +167,6 @@ export function CollectionApp({
                   asset={asset}
                   eager={index < 3}
                   href={`/asset/${asset.slug}${detailParams.size ? `?${detailParams}` : ""}`}
-                  likeCount={likeCounts[asset.id] ?? 0}
-                  liked={likedAssets.has(asset.id)}
-                  likePending={pendingLikes.has(asset.id)}
-                  onLike={() => void toggleLike(asset.id)}
                 />
               );
             })}

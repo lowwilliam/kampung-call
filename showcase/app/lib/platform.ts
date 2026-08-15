@@ -114,12 +114,6 @@ export function slugify(value: string) {
     .slice(0, 54) || "singapore-object";
 }
 
-export async function clientFingerprint(request: Request) {
-  const address = request.headers.get("cf-connecting-ip") ?? request.headers.get("x-forwarded-for")?.split(",")[0] ?? "local";
-  const agent = request.headers.get("user-agent") ?? "unknown";
-  return sha256(`${address.trim()}|${agent.slice(0, 180)}`);
-}
-
 export async function addAudit(submissionId: string, action: string, detail = "") {
   const { DB } = bindings();
   await DB.prepare("INSERT INTO audit_events (id, submission_id, action, detail, created_at) VALUES (?, ?, ?, ?, ?)")
