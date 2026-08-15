@@ -323,12 +323,25 @@ def main():
     stage = options.stage
     selected = (options.only,) if options.only else ASSET_IDS
     os.makedirs(os.path.join(REVIEWS, stage), exist_ok=True)
+    output = os.path.join(REVIEWS, f"{stage}-metrics.json")
     all_stats = {}
+    # Targeted rebuilds must not erase metrics for the rest of the reviewed
+    # pack; the catalogue registration step consumes this file as a complete
+    # authority.
+    if options.only and os.path.exists(output):
+        with open(output, "r", encoding="utf-8") as handle:
+            all_stats.update(json.load(handle))
 
     for asset_id in selected:
         reset_scene()
         root, objects = import_asset(asset_id)
         ground_asset(root, objects)
+        if asset_id == "clouded-monitor":
+            # The fine claws sit fractionally above the glTF Y=0 plane after
+            # axis conversion; sink the body by 4 cm so the shipping audit sees
+            # real foot contact instead of a hovering animal.
+            root.location.z -= 0.04
+            bpy.context.view_layer.update()
         changes = []
         if stage == "final":
             changes = refine_asset(asset_id, root, objects)
@@ -339,7 +352,6 @@ def main():
         render_views(asset_id, stage, objects)
         print(f"REVIEWED {asset_id}: {all_stats[asset_id]}")
 
-    output = os.path.join(REVIEWS, f"{stage}-metrics.json")
     with open(output, "w", encoding="utf-8") as handle:
         json.dump(all_stats, handle, indent=2)
         handle.write("\n")

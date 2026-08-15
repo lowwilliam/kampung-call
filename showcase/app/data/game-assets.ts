@@ -122,7 +122,7 @@ export type CatalogueManifest = {
     version: string;
     status: "draft" | "published" | "withdrawn";
     defaultLocale: "en";
-    catalogueSize: 73;
+    catalogueSize: 74;
     productionDomain: string | null;
     correctionsEmail: string | null;
     publishedAt: string | null;

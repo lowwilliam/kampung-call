@@ -6,13 +6,13 @@ import test from "node:test";
 const siteRoot = new URL("../", import.meta.url);
 const manifest = JSON.parse(await readFile(new URL("app/data/catalogue-manifest.json", siteRoot), "utf8"));
 
-test("Catalogue Manifest is the ordered authority for exactly 73 assets", () => {
+test("Catalogue Manifest is the ordered authority for exactly 74 assets", () => {
   assert.equal(manifest.schemaVersion, 1);
-  assert.equal(manifest.release.catalogueSize, 73);
-  assert.equal(manifest.assets.length, 73);
-  assert.equal(new Set(manifest.assets.map((asset) => asset.id)).size, 73);
-  assert.equal(new Set(manifest.assets.map((asset) => asset.slug)).size, 73);
-  assert.deepEqual(manifest.assets.map((asset) => asset.curatedOrder), Array.from({ length: 73 }, (_, index) => index + 1));
+  assert.equal(manifest.release.catalogueSize, 74);
+  assert.equal(manifest.assets.length, 74);
+  assert.equal(new Set(manifest.assets.map((asset) => asset.id)).size, 74);
+  assert.equal(new Set(manifest.assets.map((asset) => asset.slug)).size, 74);
+  assert.deepEqual(manifest.assets.map((asset) => asset.curatedOrder), Array.from({ length: 74 }, (_, index) => index + 1));
 });
 
 test("draft downloads fail closed until each Download Grant is cleared", () => {
@@ -37,7 +37,7 @@ test("catalogue validator accepts the checked-in draft without integrity drift",
     encoding: "utf8",
   });
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  assert.match(result.stdout, /73 draft records validated/);
+  assert.match(result.stdout, /74 draft records validated/);
 });
 
 test("runtime catalogue is derived from the Manifest instead of parallel seed arrays", async () => {

@@ -16,7 +16,7 @@ const licenseOutput = path.join(publicRoot, "licenses");
 
 await access(manifestPath);
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-if (manifest.assets?.length !== 73) throw new Error(`Expected 73 manifested assets, found ${manifest.assets?.length ?? 0}`);
+if (manifest.assets?.length !== 74) throw new Error(`Expected 74 manifested assets, found ${manifest.assets?.length ?? 0}`);
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });

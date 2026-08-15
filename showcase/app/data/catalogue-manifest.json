@@ -5,7 +5,7 @@
     "version": "0.1.0-draft.1",
     "status": "draft",
     "defaultLocale": "en",
-    "catalogueSize": 73,
+    "catalogueSize": 74,
     "productionDomain": null,
     "correctionsEmail": null,
     "publishedAt": null,
@@ -143,16 +143,16 @@
         "file": "harbour-statue-v2.glb",
         "sourcePath": "assets/harbour-statue-v2.glb",
         "publicPath": "/models/harbour-statue-v2.glb",
-        "sha256": "f8ea13e14b52121c9a5206473ebc01918b7ba1c1b17c8412bf16054b0e42bf8a",
-        "byteLength": 130736,
+        "sha256": "e9f920de0cc2398d894df2da4f62eb932f937a87aebb0b0041d0a185215ff888",
+        "byteLength": 131584,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/harbour-statue-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "f8ea13e14b52121c9a5206473ebc01918b7ba1c1b17c8412bf16054b0e42bf8a",
-        "sha256": "df44c527e71f48b432529903d61d3a632d97dcc1a3b95d75fa9fd1ad29e7350f",
+        "sourceModelSha256": "e9f920de0cc2398d894df2da4f62eb932f937a87aebb0b0041d0a185215ff888",
+        "sha256": "dc191b2fd81147d6f914751183a468358a82e04a31a4c25f5dcdf3833d3b8a35",
         "contentType": "image/png"
       },
       "creatorCredit": {
@@ -180,14 +180,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 32704,
+        "triangles": 33100,
         "materials": 4,
         "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 3.5327,
-          "height": 4.813,
-          "depth": 4.17364
+          "width": 3.532702557756693,
+          "height": 4.812999725341797,
+          "depth": 4.173641287946701
         }
       },
       "publication": {
@@ -252,15 +252,15 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "e775c2a16d183962f525b33cd00147093f2748fbd8ccb97821ac9a16e3a550be",
-        "byteLength": 47564,
+        "sha256": "a9a7df65122e1b21214fb8aa6ac91bb047f92eadbe6edffda4fc6353bebce41b",
+        "byteLength": 55604,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "e775c2a16d183962f525b33cd00147093f2748fbd8ccb97821ac9a16e3a550be",
+        "sourceModelSha256": "a9a7df65122e1b21214fb8aa6ac91bb047f92eadbe6edffda4fc6353bebce41b",
         "sha256": null,
         "contentType": null
       },
@@ -284,14 +284,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 9536,
+        "triangles": 18404,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 9.663042068481445,
-          "height": 8.17610228061676,
-          "depth": 2.7361807823181152
+          "width": 10.164804458618164,
+          "height": 8.414520382881165,
+          "depth": 2.8900482654571533
         }
       },
       "publication": {
@@ -864,15 +864,15 @@
         "file": "shophouse-v2.glb",
         "sourcePath": "assets/shophouse-v2.glb",
         "publicPath": "/models/shophouse-v2.glb",
-        "sha256": "efecb519d5e090b8a8ed7daa2df312a78ce4f5e7763cac6794e45d8695fa0a89",
-        "byteLength": 49152,
+        "sha256": "a7929ee7331135281ba33641508c4764b251cc590210f8a74bd091727ed7a2f3",
+        "byteLength": 20740,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "efecb519d5e090b8a8ed7daa2df312a78ce4f5e7763cac6794e45d8695fa0a89",
+        "sourceModelSha256": "a7929ee7331135281ba33641508c4764b251cc590210f8a74bd091727ed7a2f3",
         "sha256": null,
         "contentType": null
       },
@@ -890,14 +890,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3570,
+        "triangles": 5558,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 3.354861030578613,
-          "height": 4.62104362180914,
-          "depth": 3.7745718834759896
+          "width": 4.547344088554382,
+          "height": 4.889999373526822,
+          "depth": 4.629426433020095
         }
       },
       "publication": {
@@ -1170,15 +1170,15 @@
         "file": "kampong-house-v2.glb",
         "sourcePath": "assets/kampong-house-v2.glb",
         "publicPath": "/models/kampong-house-v2.glb",
-        "sha256": "9acf3f3e995d9be103917210ce3d15b1c20676ce31834711300d1f460c677328",
-        "byteLength": 53580,
+        "sha256": "860315d2a5479f5e9e6c7dd0041e81e2fe097116212e77372eec162efdba8715",
+        "byteLength": 43000,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "9acf3f3e995d9be103917210ce3d15b1c20676ce31834711300d1f460c677328",
+        "sourceModelSha256": "860315d2a5479f5e9e6c7dd0041e81e2fe097116212e77372eec162efdba8715",
         "sha256": null,
         "contentType": null
       },
@@ -1196,14 +1196,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11620,
+        "triangles": 11848,
         "materials": 2,
         "meshCount": 2,
         "compressed": true,
         "dimensions": {
-          "width": 7.719305678562298,
-          "height": 6.738412341347355,
-          "depth": 4.515418626070023
+          "width": 7.399866575522116,
+          "height": 6.160269916341102,
+          "depth": 7.540175676345826
         }
       },
       "publication": {
@@ -2623,15 +2623,15 @@
         "file": "lost-heritage/comcentre.glb",
         "sourcePath": "assets/lost-heritage/comcentre.glb",
         "publicPath": "/models/lost-heritage/comcentre.glb",
-        "sha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
-        "byteLength": 427704,
+        "sha256": "712346dca0520bba34f8e3d9bd4616c6239afd10a8291d0d63dc27c9bc894ce0",
+        "byteLength": 331916,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
+        "sourceModelSha256": "712346dca0520bba34f8e3d9bd4616c6239afd10a8291d0d63dc27c9bc894ce0",
         "sha256": null,
         "contentType": null
       },
@@ -2665,19 +2665,19 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 11544,
-        "materials": 4,
-        "meshCount": 419,
+        "triangles": 9602,
+        "materials": 3,
+        "meshCount": 321,
         "compressed": true,
         "dimensions": {
           "width": 17,
-          "height": 31.894999987185,
-          "depth": 12.5
+          "height": 39.036499987184996,
+          "depth": 12.499664306640625
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T03:00:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "unreviewed",
@@ -2737,15 +2737,15 @@
         "file": "lost-heritage/tang-dynasty-city.glb",
         "sourcePath": "assets/lost-heritage/tang-dynasty-city.glb",
         "publicPath": "/models/lost-heritage/tang-dynasty-city.glb",
-        "sha256": "2828660d026615d93ef7e56ce8a92f675394de3b9621ab39a523396306644bb1",
-        "byteLength": 134520,
+        "sha256": "a8913eb8be702cf305d99e969f60ee63e14c20a1217a0066aa82bfaaae99809d",
+        "byteLength": 187772,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "2828660d026615d93ef7e56ce8a92f675394de3b9621ab39a523396306644bb1",
+        "sourceModelSha256": "a8913eb8be702cf305d99e969f60ee63e14c20a1217a0066aa82bfaaae99809d",
         "sha256": null,
         "contentType": null
       },
@@ -2774,9 +2774,9 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 2848,
+        "triangles": 3524,
         "materials": 4,
-        "meshCount": 141,
+        "meshCount": 198,
         "compressed": true,
         "dimensions": {
           "width": 19.099761891365052,
@@ -2950,15 +2950,15 @@
         "file": "lost-heritage/tank-road-railway-station.glb",
         "sourcePath": "assets/lost-heritage/tank-road-railway-station.glb",
         "publicPath": "/models/lost-heritage/tank-road-railway-station.glb",
-        "sha256": "180d1986ce079bb00ee793d10eb2d97996701c9a5ff52caf8f634f8b812e14a8",
-        "byteLength": 82840,
+        "sha256": "d3e9f48e81fb7330905d9bf4fe3818afdec6646362cdcd9544be78c7c21aba0d",
+        "byteLength": 263288,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "180d1986ce079bb00ee793d10eb2d97996701c9a5ff52caf8f634f8b812e14a8",
+        "sourceModelSha256": "d3e9f48e81fb7330905d9bf4fe3818afdec6646362cdcd9544be78c7c21aba0d",
         "sha256": null,
         "contentType": null
       },
@@ -2982,9 +2982,9 @@
       ],
       "evidenceStatus": "unreviewed",
       "metrics": {
-        "triangles": 1544,
-        "materials": 8,
-        "meshCount": 87,
+        "triangles": 4012,
+        "materials": 4,
+        "meshCount": 276,
         "compressed": true,
         "dimensions": {
           "width": 25,
@@ -4242,10 +4242,108 @@
       "withdrawn": null
     },
     {
+      "id": "satellite-station",
+      "slug": "satellite-station",
+      "category": "Culture & Landmarks",
+      "curatedOrder": 42,
+      "locale": {
+        "en": {
+          "name": "Satellite Earth Station",
+          "intro": "A complete communications compound with two tracking dishes, equipment hut, masts and a permanent site slab.",
+          "gameContext": "Promotes the satellite district from an embedded world vignette to a reusable, inspectable building asset.",
+          "singaporeContext": "A stylised celebration of the satellite earth stations and international telecommunications infrastructure that connected Singapore globally.",
+          "productionStory": "23 named meshes, 1 palette material and 13,560 triangles. Rebuilt in Blender from the existing in-world dish and equipment-hut ensemble, grounded, Draco-compressed and verified from four angles.",
+          "inspiration": "Singapore telecommunications earth-station infrastructure"
+        }
+      },
+      "model": {
+        "file": "satellite-station-v2.glb",
+        "sourcePath": "assets/satellite-station-v2.glb",
+        "publicPath": "/models/satellite-station-v2.glb",
+        "sha256": "1dbb6e3a91d377c5b9e36d872708288a2a4b4859ca9da3c85004361c82d120d4",
+        "byteLength": 55244,
+        "contentType": "model/gltf-binary"
+      },
+      "cardPreview": {
+        "status": "ready",
+        "sourcePath": "assets/previews/satellite-station-v2.png",
+        "publicPath": "/previews/satellite-station.png",
+        "sourceModelSha256": "1dbb6e3a91d377c5b9e36d872708288a2a4b4859ca9da3c85004361c82d120d4",
+        "sha256": "239e7cdc7053224361a79f226a9f8d76ea27c2558b9294cbfb824f3f7559747b",
+        "contentType": "image/png"
+      },
+      "creatorCredit": {
+        "status": "unverified",
+        "name": null,
+        "url": null
+      },
+      "adapters": [],
+      "productionMethod": "Procedural Blender reconstruction from the shipped Three.js world ensemble",
+      "provenance": {
+        "label": "Made for Kampung Call",
+        "detail": "Promoted from the existing satellite-district world geometry into a grounded, named-part standalone asset."
+      },
+      "sources": [],
+      "evidenceStatus": "artistic-interpretation",
+      "metrics": {
+        "triangles": 13560,
+        "materials": 1,
+        "meshCount": 23,
+        "compressed": true,
+        "dimensions": {
+          "width": 7.6,
+          "height": 3.405,
+          "depth": 5.80009
+        }
+      },
+      "publication": {
+        "status": "draft",
+        "lastReviewedAt": null
+      },
+      "rights": {
+        "subjectType": "unreviewed",
+        "ownership": {
+          "status": "unreviewed",
+          "copyrightOwner": null,
+          "basis": null,
+          "evidenceRefs": []
+        },
+        "sourceMedia": {
+          "status": "unreviewed",
+          "evidenceRefs": []
+        },
+        "trademarkChecks": [],
+        "statutoryPermissions": [],
+        "personRelease": {
+          "required": null,
+          "status": "unreviewed",
+          "scope": null,
+          "evidenceRefs": []
+        },
+        "display": {
+          "status": "pending",
+          "basis": null,
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        },
+        "download": {
+          "status": "blocked",
+          "license": null,
+          "scope": null,
+          "excludedThirdPartyRights": [],
+          "reviewedBy": null,
+          "reviewedAt": null,
+          "evidenceHash": null
+        }
+      },
+      "withdrawn": null
+    },
+    {
       "id": "design-university",
       "slug": "design-university",
       "category": "Culture & Landmarks",
-      "curatedOrder": 42,
+      "curatedOrder": 43,
       "locale": {
         "en": {
           "name": "Design University",
@@ -4343,7 +4441,7 @@
       "id": "management-university",
       "slug": "management-university",
       "category": "Culture & Landmarks",
-      "curatedOrder": 43,
+      "curatedOrder": 44,
       "locale": {
         "en": {
           "name": "Management University",
@@ -4441,7 +4539,7 @@
       "id": "national-school",
       "slug": "national-school",
       "category": "Culture & Landmarks",
-      "curatedOrder": 44,
+      "curatedOrder": 45,
       "locale": {
         "en": {
           "name": "National School",
@@ -4539,7 +4637,7 @@
       "id": "national-university",
       "slug": "national-university",
       "category": "Culture & Landmarks",
-      "curatedOrder": 45,
+      "curatedOrder": 46,
       "locale": {
         "en": {
           "name": "National University",
@@ -4637,7 +4735,7 @@
       "id": "temple",
       "slug": "temple",
       "category": "Culture & Landmarks",
-      "curatedOrder": 46,
+      "curatedOrder": 47,
       "locale": {
         "en": {
           "name": "Neighbourhood Temple",
@@ -4735,7 +4833,7 @@
       "id": "technological-university",
       "slug": "technological-university",
       "category": "Culture & Landmarks",
-      "curatedOrder": 47,
+      "curatedOrder": 48,
       "locale": {
         "en": {
           "name": "Technological University",
@@ -4833,7 +4931,7 @@
       "id": "bus-stop",
       "slug": "bus-stop",
       "category": "Transit & Movement",
-      "curatedOrder": 48,
+      "curatedOrder": 49,
       "locale": {
         "en": {
           "name": "Bus Stop",
@@ -4937,7 +5035,7 @@
       "id": "bicycle",
       "slug": "bicycle",
       "category": "Transit & Movement",
-      "curatedOrder": 49,
+      "curatedOrder": 50,
       "locale": {
         "en": {
           "name": "Neighbourhood Bicycle",
@@ -5035,7 +5133,7 @@
       "id": "overhead-bridge",
       "slug": "overhead-bridge",
       "category": "Transit & Movement",
-      "curatedOrder": 50,
+      "curatedOrder": 51,
       "locale": {
         "en": {
           "name": "Overhead Bridge",
@@ -5144,7 +5242,7 @@
       "id": "service-van",
       "slug": "service-van",
       "category": "Transit & Movement",
-      "curatedOrder": 51,
+      "curatedOrder": 52,
       "locale": {
         "en": {
           "name": "Service Van",
@@ -5242,7 +5340,7 @@
       "id": "singapore-cable-car-skyorb",
       "slug": "singapore-cable-car-skyorb",
       "category": "Transit & Movement",
-      "curatedOrder": 52,
+      "curatedOrder": 53,
       "locale": {
         "en": {
           "name": "Singapore Cable Car SkyOrb",
@@ -5353,7 +5451,7 @@
       "id": "birdcage",
       "slug": "birdcage",
       "category": "Street Life & Nature",
-      "curatedOrder": 53,
+      "curatedOrder": 54,
       "locale": {
         "en": {
           "name": "Birdcage",
@@ -5451,7 +5549,7 @@
       "id": "cat",
       "slug": "cat",
       "category": "Street Life & Nature",
-      "curatedOrder": 54,
+      "curatedOrder": 55,
       "locale": {
         "en": {
           "name": "Community Cat",
@@ -5549,7 +5647,7 @@
       "id": "postbox",
       "slug": "postbox",
       "category": "Street Life & Nature",
-      "curatedOrder": 55,
+      "curatedOrder": 56,
       "locale": {
         "en": {
           "name": "Neighbourhood Postbox",
@@ -5647,7 +5745,7 @@
       "id": "bench",
       "slug": "bench",
       "category": "Street Life & Nature",
-      "curatedOrder": 56,
+      "curatedOrder": 57,
       "locale": {
         "en": {
           "name": "Planter Bench",
@@ -5745,7 +5843,7 @@
       "id": "raintree",
       "slug": "raintree",
       "category": "Street Life & Nature",
-      "curatedOrder": 57,
+      "curatedOrder": 58,
       "locale": {
         "en": {
           "name": "Rain Tree",
@@ -5843,7 +5941,7 @@
       "id": "palm",
       "slug": "palm",
       "category": "Street Life & Nature",
-      "curatedOrder": 58,
+      "curatedOrder": 59,
       "locale": {
         "en": {
           "name": "Royal Palm",
@@ -5941,7 +6039,7 @@
       "id": "smooth-coated-otter",
       "slug": "smooth-coated-otter",
       "category": "Street Life & Nature",
-      "curatedOrder": 59,
+      "curatedOrder": 60,
       "locale": {
         "en": {
           "name": "Smooth-coated Otter",
@@ -6045,7 +6143,7 @@
       "id": "red-junglefowl",
       "slug": "red-junglefowl",
       "category": "Street Life & Nature",
-      "curatedOrder": 60,
+      "curatedOrder": 61,
       "locale": {
         "en": {
           "name": "Red Junglefowl",
@@ -6149,7 +6247,7 @@
       "id": "oriental-pied-hornbill",
       "slug": "oriental-pied-hornbill",
       "category": "Street Life & Nature",
-      "curatedOrder": 61,
+      "curatedOrder": 62,
       "locale": {
         "en": {
           "name": "Oriental Pied Hornbill",
@@ -6253,7 +6351,7 @@
       "id": "clouded-monitor",
       "slug": "clouded-monitor",
       "category": "Street Life & Nature",
-      "curatedOrder": 62,
+      "curatedOrder": 63,
       "locale": {
         "en": {
           "name": "Clouded Monitor",
@@ -6268,15 +6366,15 @@
         "file": "clouded-monitor-v1.glb",
         "sourcePath": "assets/clouded-monitor-v1.glb",
         "publicPath": "/models/clouded-monitor-v1.glb",
-        "sha256": "f55225d644f9f1399d71db05d281764cca6e8b4f17cbe3d1b7562b79c59c4958",
-        "byteLength": 259848,
+        "sha256": "66d761d32a031d41a12655d7872658e5aca9b808d7c4bc13342d6121be953755",
+        "byteLength": 300856,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "f55225d644f9f1399d71db05d281764cca6e8b4f17cbe3d1b7562b79c59c4958",
+        "sourceModelSha256": "66d761d32a031d41a12655d7872658e5aca9b808d7c4bc13342d6121be953755",
         "sha256": null,
         "contentType": null
       },
@@ -6300,14 +6398,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 28764,
+        "triangles": 32982,
         "materials": 3,
-        "meshCount": 131,
+        "meshCount": 154,
         "compressed": true,
         "dimensions": {
-          "width": 3.46,
-          "height": 0.8651,
-          "depth": 1.6924
+          "width": 3.485815017972202,
+          "height": 0.8229541397537796,
+          "depth": 1.6778410680892388
         }
       },
       "publication": {
@@ -6357,7 +6455,7 @@
       "id": "fibre-kit",
       "slug": "fibre-kit",
       "category": "Service Gear",
-      "curatedOrder": 63,
+      "curatedOrder": 64,
       "locale": {
         "en": {
           "name": "Fibre Kit",
@@ -6455,7 +6553,7 @@
       "id": "router-kit",
       "slug": "router-kit",
       "category": "Service Gear",
-      "curatedOrder": 64,
+      "curatedOrder": 65,
       "locale": {
         "en": {
           "name": "Router Kit",
@@ -6553,7 +6651,7 @@
       "id": "wifi-kit",
       "slug": "wifi-kit",
       "category": "Service Gear",
-      "curatedOrder": 65,
+      "curatedOrder": 66,
       "locale": {
         "en": {
           "name": "Wi-Fi Mesh Kit",
@@ -6651,7 +6749,7 @@
       "id": "resident-auntie-rosnah",
       "slug": "resident-auntie-rosnah",
       "category": "People",
-      "curatedOrder": 66,
+      "curatedOrder": 67,
       "locale": {
         "en": {
           "name": "Auntie Rosnah",
@@ -6749,7 +6847,7 @@
       "id": "resident-devi",
       "slug": "resident-devi",
       "category": "People",
-      "curatedOrder": 67,
+      "curatedOrder": 68,
       "locale": {
         "en": {
           "name": "Devi",
@@ -6847,7 +6945,7 @@
       "id": "engineer",
       "slug": "engineer",
       "category": "People",
-      "curatedOrder": 68,
+      "curatedOrder": 69,
       "locale": {
         "en": {
           "name": "Field Engineer",
@@ -6945,7 +7043,7 @@
       "id": "resident-kai",
       "slug": "resident-kai",
       "category": "People",
-      "curatedOrder": 69,
+      "curatedOrder": 70,
       "locale": {
         "en": {
           "name": "Kai",
@@ -7043,7 +7141,7 @@
       "id": "engineer-legacy",
       "slug": "engineer-legacy",
       "category": "People",
-      "curatedOrder": 70,
+      "curatedOrder": 71,
       "locale": {
         "en": {
           "name": "Legacy Engineer",
@@ -7141,7 +7239,7 @@
       "id": "resident-mr-tan",
       "slug": "resident-mr-tan",
       "category": "People",
-      "curatedOrder": 71,
+      "curatedOrder": 72,
       "locale": {
         "en": {
           "name": "Mr Tan",
@@ -7239,7 +7337,7 @@
       "id": "resident-sofia",
       "slug": "resident-sofia",
       "category": "People",
-      "curatedOrder": 72,
+      "curatedOrder": 73,
       "locale": {
         "en": {
           "name": "Sofia",
@@ -7337,7 +7435,7 @@
       "id": "resident-uncle-lim",
       "slug": "resident-uncle-lim",
       "category": "People",
-      "curatedOrder": 73,
+      "curatedOrder": 74,
       "locale": {
         "en": {
           "name": "Uncle Lim",

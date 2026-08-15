@@ -17,13 +17,13 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 13 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 11544,
-      "materials": 4,
-      "meshCount": 419,
+      "triangles": 9728,
+      "materials": 3,
+      "meshCount": 321,
       "compressed": true,
       "dimensions": {
         "width": 17,
-        "height": 31.894999987185,
+        "height": 39.036499987184996,
         "depth": 12.5
       }
     }
@@ -336,9 +336,9 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 2848,
+      "triangles": 3524,
       "materials": 4,
-      "meshCount": 141,
+      "meshCount": 198,
       "compressed": true,
       "dimensions": {
         "width": 19.099999952316285,
@@ -365,9 +365,9 @@
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
     "productionStory": "Procedurally assembled from 16 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 1544,
+      "triangles": 4012,
       "materials": 4,
-      "meshCount": 87,
+      "meshCount": 276,
       "compressed": true,
       "dimensions": {
         "width": 25,

@@ -26,16 +26,16 @@ test("server-renders the public collection", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Kampung 3D/i);
-  assert.match(html.replaceAll("<!-- -->", ""), /73\s+objects/i);
+  assert.match(html.replaceAll("<!-- -->", ""), /74\s+objects/i);
   assert.doesNotMatch(html, /Community collection/i);
   assert.doesNotMatch(html, /Submit your model/i);
   assert.doesNotMatch(html, /asset-like-button/i);
-  assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 73);
+  assert.equal((html.match(/class="model-viewer(?:\s|")/g) ?? []).length, 74);
   assert.doesNotMatch(html, /One model at a time/i);
   assert.doesNotMatch(html, /Buildings gone/i);
   assert.match(html, /Lost Heritage/i);
   assert.doesNotMatch(html, /Catalogue edition 01/i);
-  assert.match(html, /collection-globe-fallback/i);
+  assert.match(html, /hero-assets-track/i);
   assert.match(html, /Live 360° previews/i);
   assert.doesNotMatch(html, /three\.module-/i);
   assert.doesNotMatch(html, /Download all/i);
@@ -50,12 +50,12 @@ test("server-renders the public collection", async () => {
   assert.doesNotMatch(html, /Your site is taking shape/i);
 });
 
-test("uses the shared Kampung Call globe and lazy 3D viewers", async () => {
+test("uses the animated asset marquee and lazy 3D viewers", async () => {
   const css = await readFile(path.join(siteRoot, "app", "globals.css"), "utf8");
   const source = await readFile(path.join(siteRoot, "app", "components", "CollectionApp.tsx"), "utf8");
   assert.match(css, /\.collection-intro\s*\{[^}]*grid-template-columns:/s);
-  assert.match(css, /\.intro-side\s*\{[^}]*justify-items:\s*end/s);
-  assert.match(source, /CollectionGlobe/);
+  assert.match(css, /\.hero-assets-track\s*\{/s);
+  assert.match(source, /HeroAssetMarquee/);
   assert.match(source, /ModelViewer/);
   assert.match(source, /posterUrl=\{asset\.cardPreviewUrl\}/);
 });

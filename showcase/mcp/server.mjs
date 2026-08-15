@@ -22,7 +22,7 @@ export function buildMcpServer({ client = new AssetClient(), pathPolicyPromise =
     "search_assets",
     {
       title: "Search 3D assets",
-      description: "List or search the 73 manifested Kampung Call assets, including download permissions.",
+      description: "List or search the 74 manifested Kampung Call assets, including download permissions.",
       inputSchema: z.object({
         query: z.string().max(120).optional().describe("Free-text search across names, categories and descriptions"),
         collection: z.enum(["all", "game"]).default("all"),

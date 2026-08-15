@@ -30,11 +30,11 @@
     ]
   },
   "clouded-monitor": {
-    "meshes": 131,
-    "triangles": 61652,
+    "meshes": 154,
+    "triangles": 71724,
     "materials": 3,
     "dimensions": [
-      3.46,
+      3.4892,
       0.8651,
       1.6924
     ]

@@ -123,6 +123,8 @@ function pixelText(group, text, origin, cell, material, name = 'lettering', mirr
     G: ['01110', '10001', '10000', '10111', '10001', '10001', '01110'],
     H: ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
     I: ['11111', '00100', '00100', '00100', '00100', '00100', '11111'],
+    D: ['11110', '10001', '10001', '10001', '10001', '10001', '11110'],
+    K: ['10001', '10010', '10100', '11000', '10100', '10010', '10001'],
     L: ['10000', '10000', '10000', '10000', '10000', '10000', '11111'],
     M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
     N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
@@ -305,11 +307,11 @@ function comcentre(meta) {
   box(crown, [7.35, 1.15, .3], m.primary, [0, 21.05, 2.63], undefined, 'terrace-parapet');
   repeatedBoxes(crown, 17, [.18, .68, .14], m.dark, [-3.2, 20.98, 2.81], [.4, 0, 0], 'terrace-slot');
 
-  const wordmark = component(root, 'singtel-wordmark');
-  pixelText(wordmark, 'SINGTEL', [-2.05, 25.35, 2.61], .1, m.dark, 'singtel');
-  [[-.72,25.91,.07],[-.38,26.04,.09],[0,26.1,.11],[.4,26.02,.13],[.78,25.84,.16]].forEach(([x,y,r], index) => {
-    addMesh(wordmark, new THREE.SphereGeometry(r, 10, 8), m.highlight, [x, y, 2.63], undefined, [1, 1, .32], `signal-dot-${index + 1}`);
-  });
+  // Keep the reconstruction brand-neutral.  The previous low-resolution
+  // wordmark read as accidental pixel noise and was not needed for identity.
+  const crownLouvers = component(root, 'brand-neutral-crown-louvres');
+  repeatedBoxes(crownLouvers, 11, [.46, .16, .16], m.dark,
+    [-2.55, 25.42, 2.62], [.51, 0, 0], 'crown-louvre');
 
   const podium = component(root, 'five-storey-equipment-podium');
   box(podium, [5.4, 4.9, 8.3], m.secondary, [-5.65, 2.45, 1.2], undefined, 'west-podium-wing');
@@ -367,6 +369,15 @@ function comcentre(meta) {
     beamBetween(dishes, [x, frameTop, .25], [x, y - .12, .25], .045, m.secondary, `dish-mast-${index + 1}`);
     parabolicDish(dishes, radius, .18, dishMaterial, [x, y, .2], `dish-${index + 1}`);
   });
+
+  // The original reconstruction was too squat relative to its podium.  Lift
+  // the office tower and telecom frame by 23% while retaining the low-rise
+  // entrance, then move the dishes to the new roof datum without distorting
+  // their circular reflectors.
+  const heightScale = 1.23;
+  [frame, cores, glazing, mullions, rearGlazing, crown, crownLouvers, roofFrame]
+    .forEach((group) => { group.scale.y = heightScale; });
+  dishes.position.y = 31.05 * (heightScale - 1);
 
   const plaza = component(root, 'entrance-plaza');
   box(plaza, [17, .2, 12.5], m.extra, [0, .05, 1.25], undefined, 'plaza');
@@ -698,7 +709,7 @@ function tangDynasty(meta){
   const root=rootFor(meta.id); const m=materials(meta.palette);
   const walls=component(root,'city-wall'); box(walls,[19,4,1.3],m.primary,[0,2,-2]); box(walls,[1.3,4,13],m.primary,[-8.9,2,3.5]); box(walls,[1.3,4,13],m.primary,[8.9,2,3.5]);
   const gate=component(root,'great-gate');
-  box(gate,[8.8,7,3.4],m.dark,[0,3.5,-1.8]);
+  box(gate,[8.8,7,3.4],m.accent,[0,3.5,-1.8]);
   box(gate,[3.25,3.75,.20],m.secondary,[0,1.90,-3.56],undefined,'deep-gate-opening');
   addMesh(gate,new THREE.SphereGeometry(1,20,12),m.secondary,[0,3.72,-3.57],undefined,[1.63,1.40,.12],'round-gate-head');
   repeatedBoxes(gate,4,[.24,5.2,.22],m.accent,[-3.45,3.65,-3.60],[2.30,0,0],'gate-front-post');
@@ -713,13 +724,31 @@ function tangDynasty(meta){
   taperedCylinder(gateRoof,.04,.25,1.20,m.metal,[0,10.38,-1.8],10,undefined,'gate-finial');
   const cornerPavilions=component(root,'gate-corner-pavilions');
   [-6.1,6.1].forEach((x,index)=>{
-    box(cornerPavilions,[2.7,4.9,2.7],m.dark,[x,4.25,-1.8],undefined,`corner-tower-${index}`);
+    box(cornerPavilions,[2.7,4.9,2.7],m.accent,[x,4.25,-1.8],undefined,`corner-tower-${index}`);
     hippedRoof(cornerPavilions,4.0,4.0,6.72,1.15,m.secondary,-1.8,`corner-roof-${index}`);
     repeatedBoxes(cornerPavilions,3,[.42,1.20,.18],m.accent,[x-.65,4.35,-3.20],[.65,0,0],`corner-window-${index}`);
   });
-  const hall=component(root,'palace-hall'); box(hall,[11,4.6,5.5],m.dark,[0,2.3,7]); hippedRoof(hall,13.0,7.2,4.72,1.35,m.secondary,7,'daming-hall-roof');
-  const columns=component(root,'hall-columns'); repeatedBoxes(columns,8,[.38,3.8,.38],m.accent,[-4.7,1.9,10],[1.35,0,0],'column');
+  const hall=component(root,'palace-hall');
+  box(hall,[11,4.6,5.5],m.accent,[0,2.3,7]);
+  hippedRoof(hall,13.0,7.2,4.72,1.35,m.secondary,7,'daming-hall-roof');
+  const columns=component(root,'hall-columns');
+  repeatedBoxes(columns,8,[.38,3.8,.38],m.accent,[-4.7,1.9,10],[1.35,0,0],'column');
   box(columns,[11.8,.28,1.8],m.primary,[0,.22,10.15],undefined,'hall-terrace');
+  // Fill the temple elevations behind the colonnade.  The earlier dark box
+  // disappeared beneath the roofs and made every pavilion look hollow.
+  const templeFaces=component(root,'temple-facades-and-brackets');
+  repeatedBoxes(templeFaces,7,[1.02,2.55,.20],m.primary,
+    [-4.2,1.55,9.86],[1.40,0,0],'painted-door-panel');
+  repeatedBoxes(templeFaces,8,[.22,.36,.38],m.accent,
+    [-4.70,3.76,9.82],[1.35,0,0],'dougong-bracket');
+  for(const side of [-1,1]){
+    box(templeFaces,[2.55,2.75,6.2],m.accent,[side*6.55,1.38,5.35],undefined,`side-hall-${side}`);
+    hippedRoof(templeFaces,4.25,7.6,2.88,.82,m.secondary,5.35,`side-hall-roof-${side}`);
+    repeatedBoxes(templeFaces,4,[.34,2.35,.34],m.accent,
+      [side*7.45,1.18,2.72],[0,0,1.72],`side-colonnade-${side}`);
+  }
+  for(let step=0;step<4;step++) box(templeFaces,[5.4-step*.6,.18,.72],m.primary,
+    [0,.10+step*.18,10.8+step*.48],undefined,`hall-step-${step}`);
   const courtyard=component(root,'ceremonial-courtyard'); box(courtyard,[15,.18,7],m.extra,[0,.06,3]);
   const bridge=component(root,'arched-bridge');
   for(let i=0;i<9;i++){const t=(i-4)/4; box(bridge,[1.1,.28,3.1],m.secondary,[t*4.5,.6+(1-t*t)*1.5,13],undefined,`bridge-segment-${i}`)}
@@ -733,7 +762,9 @@ function tangDynasty(meta){
   const pagoda=component(root,'multi-storey-pagoda');
   for(let floor=0;floor<5;floor++){
     const y=.95+floor*1.75; const body=3.45-floor*.34; const roof=5.0-floor*.48;
-    box(pagoda,[body,1.28,body],m.dark,[6,y,18],undefined,`pagoda-storey-${floor}`);
+    box(pagoda,[body,1.28,body],m.accent,[6,y,18],undefined,`pagoda-storey-${floor}`);
+    repeatedBoxes(pagoda,4,[.18,1.08,.18],m.primary,
+      [6-body*.42,y,18-body*.42],[body*.28,0,0],`pagoda-front-post-${floor}`);
     hippedRoof(pagoda,roof,roof,y+.72,.72,m.secondary,18,`pagoda-roof-${floor}`);
     repeatedBoxes(pagoda,3,[.28,.66,.12],m.accent,[6-body*.30,y,18-body*.52],[body*.30,0,0],`pagoda-window-${floor}`);
   }
@@ -758,6 +789,37 @@ function tankRoadStation(meta){
   const footbridge=component(root,'iron-footbridge'); box(footbridge,[6,.25,1.2],m.metal,[0,5.5,8.4]); repeatedBoxes(footbridge,2,[.35,5.4,.35],m.metal,[-3,2.7,8.4],[6,0,0],'bridge-pier');
   const windows=component(root,'station-window-rhythm'); repeatedBoxes(windows,9,[.82,1.15,.16],m.dark,[-7.1,2.5,2.33],[1.75,0,0],'station-window');
   const doors=component(root,'platform-doors'); repeatedBoxes(doors,7,[1,2,.16],m.accent,[-6,1.05,2.34],[2,0,0],'door');
+  const facade=component(root,'completed-street-facade');
+  box(facade,[22.4,.28,.52],m.secondary,[0,.32,-2.42],undefined,'street-plinth');
+  repeatedBoxes(facade,12,[.22,3.65,.28],m.secondary,
+    [-10.3,1.84,-2.43],[1.87,0,0],'facade-pilaster');
+  repeatedBoxes(facade,9,[1.05,.22,.34],m.secondary,
+    [-7.1,3.22,-2.48],[1.75,0,0],'window-lintel');
+  box(facade,[7.2,.72,.24],m.accent,[0,4.35,-2.50],undefined,'station-name-board');
+  pixelText(facade,'TANK ROAD',[-2.55,4.50,-2.65],.12,m.white,'tank-road-name',true);
+
+  const clockHands=component(root,'clock-hands-and-trim');
+  for(const z of [-1.92,1.92]){
+    cylinder(clockHands,.08,.16,m.dark,[0,6.70,z],12,[PI/2,0,0],`clock-hub-${z}`);
+    box(clockHands,[.10,.62,.08],m.dark,[0,6.95,z+(z<0?-.08:.08)],[0,0,.32],`minute-hand-${z}`);
+    box(clockHands,[.09,.42,.08],m.dark,[.15,6.69,z+(z<0?-.08:.08)],[0,0,PI/2],`hour-hand-${z}`);
+  }
+  const platformDetails=component(root,'platform-furniture-and-signals');
+  for(const x of [-7,-2.4,2.4,7]){
+    box(platformDetails,[2.1,.18,.55],m.primary,[x,.72,4.35],undefined,`bench-seat-${x}`);
+    box(platformDetails,[2.1,.75,.16],m.secondary,[x,1.05,4.62],undefined,`bench-back-${x}`);
+  }
+  for(const x of [-10.2,10.2]){
+    cylinder(platformDetails,.09,4.2,m.metal,[x,2.1,8.2],10,undefined,`signal-post-${x}`);
+    box(platformDetails,[.42,1.05,.28],m.dark,[x,3.62,8.2],undefined,`signal-head-${x}`);
+    cylinder(platformDetails,.12,.16,m.accent,[x,3.86,8.04],12,[PI/2,0,0],`signal-lamp-${x}`);
+  }
+  for(let step=0;step<8;step++){
+    box(platformDetails,[1.65,.18,.42],m.secondary,
+      [-3.7,.12+step*.48,7.05+step*.36],undefined,`footbridge-step-left-${step}`);
+    box(platformDetails,[1.65,.18,.42],m.secondary,
+      [3.7,3.48-step*.48,9.75-step*.36],undefined,`footbridge-step-right-${step}`);
+  }
   return finalize(root,meta);
 }
 

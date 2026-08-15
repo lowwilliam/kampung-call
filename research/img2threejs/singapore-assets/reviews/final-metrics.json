@@ -33,15 +33,15 @@
     "refinements": 0
   },
   "clouded-monitor": {
-    "triangles": 28764,
-    "meshes": 131,
+    "triangles": 32982,
+    "meshes": 154,
     "materials": 3,
     "dimensions": {
-      "width": 3.46,
+      "width": 3.4892,
       "height": 0.8651,
       "depth": 1.6924
     },
-    "refinements": 60
+    "refinements": 83
   },
   "singapore-cable-car-skyorb": {
     "triangles": 29788,

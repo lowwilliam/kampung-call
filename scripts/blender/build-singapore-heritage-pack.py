@@ -404,6 +404,15 @@ def build_peranakan():
 # ---------------------------------------------------------------------------
 def build_kampong():
     r = empty("KAMPONG HOUSE")
+    # Export a permanent patch of earth with the house.  The previous GLB
+    # contained only stilts, so the library viewer made the whole building
+    # read as if it were hovering in an empty sky.
+    cube("Kampong earth pad", (0, 0, .10), (7.4, 6.5, .20), CLAY, r, edge=.16)
+    cube("Packed earth footpath", (0, -2.45, .22), (1.65, 2.15, .10),
+         AWNING_CREAM, r, edge=.08)
+    for x, y, scale in ((-2.9, -2.1, 1.0), (-3.0, .6, .8), (2.85, .9, .9)):
+        ico("Ground vegetation", (x, y, .30), .36, GREEN2, r,
+            scale=(scale, scale*.72, .42))
     # stilts + cross bracing (two rows of three hardwood posts)
     for x in (-2.1, 0, 2.1):
         for y in (-1.5, 1.3):

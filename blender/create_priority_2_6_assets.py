@@ -193,7 +193,15 @@ def build_harbour_statue():
     # A real silhouette fin and tail/foam sweep establish the hybrid body.
     relief_plate("Left pectoral fin",(-.68,-.18,3.02),math.pi,.22,.62,.11,CHALK,shoulder=.24)
     relief_plate("Right pectoral fin",(.68,-.18,3.02),0,.22,.62,.11,CHALK,shoulder=.24)
-    fin_plate("Rear tail fin",[(.40,1.48),(.92,1.87),(.78,1.25),(.43,.88)],.15,CHALK)
+    # The old tail sat entirely behind the cylindrical body, so the catalogue
+    # camera could not read it.  Sweep the tail around the left side of the
+    # pedestal and terminate it in a broad, forked fish fin.
+    cable("Merlion tail root",[(0,.62,1.28),(-.42,.82,1.03),(-.82,.68,.78),
+        (-1.06,.28,.61),(-1.02,-.22,.54)],.16,CHALK,r)
+    cable("Merlion tail lower lobe",[(-1.02,-.22,.54),(-.90,-.58,.43),(-.58,-.82,.42)],.12,CHALK,r)
+    cable("Merlion tail upper lobe",[(-1.02,-.22,.57),(-1.25,-.48,.73),(-1.36,-.72,.91)],.10,CHALK,r)
+    relief_plate("Merlion tail fin upper",(-1.34,-.73,.94),math.pi*.78,.48,.78,.14,CHALK,shoulder=.48)
+    relief_plate("Merlion tail fin lower",(-.62,-.80,.44),math.pi*.52,.42,.64,.13,CHALK,shoulder=.46)
     cable("Tail foam ridge",[(0,-.74,.90),(.52,-.88,.78),(1.02,-.70,.70)],.065,CREAM,r)
 
     # Connected neck and cranial masses.  The proportions intentionally keep
@@ -293,6 +301,19 @@ def build_skypark_hotel():
     for tower_index,(x,spread,width,lean) in enumerate(towers):
         front=lofted_slab("Tower %d bay slab"%(tower_index+1),x,-1,spread,width,lean)
         rear=lofted_slab("Tower %d garden slab"%(tower_index+1),x,1,spread*.90,width,lean)
+
+        # A recessed glass lift/service spine gives every paired tower a
+        # readable centre.  Previously the long atrium void ran from podium to
+        # roof and made the middle tower look accidentally missing at card size.
+        core_width=width*(.52 if tower_index==1 else .44)
+        cube("Tower %d recessed lift core"%(tower_index+1),(x,.02,3.58),
+             (core_width,.64,6.40),GLASS,r,edge=.045)
+        cube("Tower %d core crown"%(tower_index+1),(x,.02,6.84),
+             (core_width+.16,.78,.18),CHALK,r,edge=.045)
+        for floor in range(2,22,3):
+            z=.36+(floor+.55)/22*6.42
+            cube("Tower %d core floor bridge"%(tower_index+1),(x,0,z),
+                 (core_width+.12,1.12,.055),TEAL,r,edge=.012)
 
         # Dense horizontal floor rhythm is the dominant cue in both the bay
         # curtain wall and the white garden-side balcony elevation.
@@ -501,6 +522,14 @@ def build_shophouse():
             cube("Timber shutter",(x,-1.37,z),(.58,.08,.62),TEAL2 if (floor+int(x>0))%2 else CORAL,r,edge=.035)
             torus("Window arch",(x,-1.39,z+.34),.39,.055,CHALK,r,rot=(math.radians(90),0,0),major_segments=16)
     cube("Shopfront",(0,-1.34,1.03),(2.45,.12,1.12),GLASS,r,edge=.045)
+    # Return the active shopfront around the corner so this reads as a corner
+    # unit rather than a blank timber door on a plain end wall.
+    cube("Corner side shopfront",(1.66,-.25,1.05),(.10,1.55,1.10),GLASS,r,edge=.04)
+    cube("Corner side awning",(1.92,-.25,1.72),(.62,1.78,.15),TEAL2,r,
+         rot=(0,math.radians(8),0),edge=.05)
+    for x in (-1.16,-.38,.38,1.16):
+        cube("Glazed shopfront mullion",(x,-1.42,1.02),(.055,.05,1.04),TEAL,r,edge=.008)
+    cube("Ceramic tiled shop skirt",(0,-1.43,.48),(2.72,.08,.34),BLUE,r,edge=.025)
     cube("Striped awning",(0,-1.78,1.72),(2.75,.88,.16),CORAL,r,rot=(math.radians(-8),0,0),edge=.055)
     cube("Peranakan parapet",(0,.20,4.42),(3.45,3.15,.45),TEAL,r,edge=.10)
     for x in (-1.0,0,1.0):
@@ -511,11 +540,47 @@ def build_shophouse():
         for z in (2.2,3.35):
             cube("Rear window recess",(x,1.78,z),(.72,.10,.66),INK,r,edge=.035)
             cube("Rear timber shutter",(x,1.84,z),(.56,.06,.54),TEAL2,r,edge=.025)
-    cube("Rear service door",(0,1.79,1.12),(.82,.12,1.82),WOOD,r,edge=.045)
+    cube("Rear service door",(0,1.79,1.12),(.82,.12,1.82),TEAL,r,edge=.045)
     cube("Rear rain canopy",(0,2.08,2.08),(1.65,.66,.12),CORAL,r,
          rot=(math.radians(8),0,0),edge=.035)
     cyl("Rear drain stack",(2.72,1.84,2.15),.055,3.65,METAL,r,10)
     label("KEDAI 88",(0,-1.46,1.28),.22,CHALK,r)
+    return r
+
+
+def build_satellite_station():
+    """Standalone version of the world satellite/earth-station ensemble."""
+    r=empty("ISLANDLINK SATELLITE EARTH STATION")
+    cube("Earth station ground slab",(0,.15,.14),(7.6,5.8,.28),CONCRETE,r,edge=.16)
+    cube("Equipment hut",(1.65,.55,1.18),(2.65,2.25,2.15),CHALK,r,edge=.10)
+    cube("Hut door",(1.65,-.61,.86),(.72,.10,1.45),TEAL,r,edge=.035)
+    cube("Hut ventilation grille",(2.36,-.61,1.42),(.58,.07,.42),INK,r,edge=.02)
+    cube("Hut roof",(1.65,.55,2.34),(2.92,2.52,.18),TEAL2,r,edge=.07)
+
+    def dish(name, centre, radius, yaw):
+        x,y=centre
+        mount=cyl(name+" pedestal",(x,y,.72),.26,1.35,METAL,r,12)
+        mount.rotation_euler[2]=yaw
+        # A shallow white reflector assembled from nested, tilted shells reads
+        # clearly in both the game and the 360-degree catalogue viewer.
+        reflector=sphere(name+" reflector",(x,y,1.78),radius,CHALK,r,
+                         scale=(1,.24,1),segments=24)
+        reflector.rotation_euler=(math.radians(18),0,yaw)
+        sphere(name+" dark rear",(x,y+.10,1.76),radius*.76,TEAL,r,
+               scale=(1,.18,1),segments=20).rotation_euler=(math.radians(18),0,yaw)
+        cable(name+" feed arm",[(x,y,1.72),(x,y-radius*.58,2.12)],.035,METAL,r)
+        sphere(name+" feed horn",(x,y-radius*.62,2.16),.095,INK,r,
+               scale=(.72,.72,1.15),segments=10)
+        torus(name+" rim",(x,y,1.78),radius,.045,METAL,r,
+              rot=(math.radians(90),0,yaw),major_segments=24)
+
+    dish("Large tracking dish",(-1.75,.35),1.12,math.radians(-18))
+    dish("Auxiliary tracking dish",(-.10,1.48),.68,math.radians(24))
+    for x in (-2.85,2.85):
+        cyl("Perimeter mast",(x,2.18,1.65),.045,3.2,METAL,r,8)
+        sphere("Mast warning beacon",(x,2.18,3.32),.085,CORAL,r,segments=10)
+    cube("Earth station sign",(0,-2.62,.86),(4.1,.14,.72),TEAL,r,edge=.055)
+    label("EARTH STATION",(0,-2.72,.88),.24,CHALK,r)
     return r
 
 
@@ -926,6 +991,7 @@ JOBS = [
     # P3
     ("mrt-v2",build_mrt,(0,0,1.7),(10,-14,7),4.5),
     ("shophouse-v2",build_shophouse,(0,0,2.2),(9,-13,7),4.0),
+    ("satellite-station-v2",build_satellite_station,(0,0,1.65),(10,-14,7.5),4.6),
     ("hawker-v2",build_hawker,(0,0,2.1),(12,-16,8),6.0),
     ("temple-v2",build_temple,(0,0,2.3),(11,-15,8),5.0),
     ("mamashop-v2",build_mamashop,(0,0,1.5),(9,-13,6),4.0),
@@ -954,5 +1020,6 @@ if __name__ == "__main__":
         if requested and slug not in requested:
             continue
         reset()
-        export_asset(builder(),slug,target,camera,ground)
+        export_asset(builder(),slug,target,camera,ground,
+                     preserve_parts=(slug=="satellite-station-v2"))
     print("Priority 2–5 Blender assets created")

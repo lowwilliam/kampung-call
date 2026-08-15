@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-15T13:48:35.135048+00:00",
+  "criteria": {
+    "runtimeReady": "Imports, has non-degenerate volume/materials, and sits at ground contact.",
+    "componentReady": "Runtime-ready, plus complex assets expose at least two named selectable mesh parts.",
+    "visualReview": "Human/vision review of front, side, three-quarter, and top renders is still required."
+  },
+  "summary": {
+    "assets": 1,
+    "runtimeReady": 1,
+    "componentReady": 1,
+    "requiresRuntimeFix": 0,
+    "requiresComponentFix": 0
+  },
+  "assets": [
+    {
+      "path": "assets/lost-heritage/tang-dynasty-city.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 213,
+        "meshes": 198,
+        "selectableNamedParts": 198,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 3524,
+        "materials": 4,
+        "dimensions": [
+          19.09976,
+          25.20995,
+          11.01
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:5"
+      ],
+      "renders": {
+        "front": "review-shots/tang-dynasty-final/lost-heritage/tang-dynasty-city/front.png",
+        "side": "review-shots/tang-dynasty-final/lost-heritage/tang-dynasty-city/side.png",
+        "three-quarter": "review-shots/tang-dynasty-final/lost-heritage/tang-dynasty-city/three-quarter.png",
+        "top": "review-shots/tang-dynasty-final/lost-heritage/tang-dynasty-city/top.png"
+      }
+    }
+  ]
+}

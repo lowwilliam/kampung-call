@@ -7,7 +7,7 @@ const origin = CATALOGUE_MANIFEST.release.productionDomain ?? "http://localhost:
 export const metadata: Metadata = {
   metadataBase: new URL(origin),
   title: "Kampung 3D Collection",
-  description: "Explore 73 curated Singapore-connected 3D assets through a read-only public catalogue.",
+  description: "Explore 74 curated Singapore-connected 3D assets through a read-only public catalogue.",
   openGraph: {
     title: "Kampung 3D Collection",
     description: "Singapore, modelled one carefully sourced object at a time.",

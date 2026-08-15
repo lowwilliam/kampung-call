@@ -51,6 +51,39 @@ function tube(group, points, radius, mat, name, segments = 32, radial = 10) {
   return addMesh(group, new THREE.TubeGeometry(curve, segments, radius, radial, false), mat, name);
 }
 
+function taperedTube(group, points, startRadius, endRadius, mat, name, segments = 48, radial = 12) {
+  const curve = new THREE.CatmullRomCurve3(points.map((point) => new THREE.Vector3(...point)));
+  const frames = curve.computeFrenetFrames(segments, false);
+  const positions = [];
+  const indices = [];
+  for (let ring = 0; ring <= segments; ring += 1) {
+    const t = ring / segments;
+    const center = curve.getPointAt(t);
+    const radius = THREE.MathUtils.lerp(startRadius, endRadius, Math.pow(t, 0.82));
+    for (let side = 0; side < radial; side += 1) {
+      const angle = side / radial * PI * 2;
+      const offset = frames.normals[ring].clone().multiplyScalar(Math.cos(angle) * radius)
+        .addScaledVector(frames.binormals[ring], Math.sin(angle) * radius);
+      positions.push(center.x + offset.x, center.y + offset.y, center.z + offset.z);
+    }
+  }
+  for (let ring = 0; ring < segments; ring += 1) {
+    for (let side = 0; side < radial; side += 1) {
+      const nextSide = (side + 1) % radial;
+      const a = ring * radial + side;
+      const b = (ring + 1) * radial + side;
+      const c = (ring + 1) * radial + nextSide;
+      const d = ring * radial + nextSide;
+      indices.push(a, b, d, b, c, d);
+    }
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return addMesh(group, geometry, mat, name);
+}
+
 function torus(group, radius, tubeRadius, mat, name, position = [0, 0, 0], rotation = [0, 0, 0], arc = PI * 2) {
   return addMesh(group, new THREE.TorusGeometry(radius, tubeRadius, 10, 48, arc), mat, name, position, rotation);
 }
@@ -294,11 +327,9 @@ function createMonitor() {
     ellipsoid(nostrils, [0.035, 0.045, 0.012], dark, `ear-${side}`, [-0.82, 0.66, side * 0.19]);
   }
   const tail = component(root, 'tail');
-  const tailSegments = [[0.54, 0.34, 0], [0.93, 0.3, 0.03], [1.3, 0.25, 0.05], [1.68, 0.18, 0.03], [2.03, 0.1, 0]];
-  for (let index = 0; index < tailSegments.length - 1; index += 1) cylinderBetween(tail, tailSegments[index], tailSegments[index + 1], 0.21 - index * 0.042, brown, `tail-segment-${index + 1}`, 20, 0.17 - index * 0.038);
-  [[0.93, 0.3, 0.03, 0.17], [1.3, 0.25, 0.05, 0.13], [1.68, 0.18, 0.03, 0.09]].forEach(([x, y, z, radius], index) => {
-    ellipsoid(tail, [radius * 1.18, radius * 0.92, radius], brown, `tail-joint-blend-${index + 1}`, [x, y, z], [0, 0, -0.12], 18);
-  });
+  taperedTube(tail, [[0.48, 0.34, 0], [0.76, 0.32, 0.025], [1.08, 0.29, 0.055],
+    [1.40, 0.23, 0.065], [1.72, 0.15, 0.045], [2.08, 0.075, 0]],
+    0.225, 0.025, brown, 'continuous-tapered-tail', 56, 14);
   const limbs = component(root, 'splayed-limb-system');
   const anchors = [[-0.42, -1], [-0.42, 1], [0.4, -1], [0.4, 1]];
   anchors.forEach(([x, side], index) => {
@@ -307,11 +338,13 @@ function createMonitor() {
     const wrist = [x + (index < 2 ? -0.28 : 0.32), 0.09, side * 0.62];
     cylinderBetween(limbs, shoulder, elbow, 0.105, brown, `upper-limb-${index + 1}`, 16, 0.082);
     cylinderBetween(limbs, elbow, wrist, 0.078, brown, `lower-limb-${index + 1}`, 14, 0.048);
+    ellipsoid(limbs, [0.105, 0.075, 0.105], brown, `elbow-knee-${index + 1}`, elbow, undefined, 18);
     ellipsoid(limbs, [0.14, 0.045, 0.11], brown, `palm-${index + 1}`, wrist, [0, 0, side * 0.15]);
     for (let digit = -2; digit <= 2; digit += 1) {
-      const end = [wrist[0] - 0.1 - Math.abs(digit) * 0.015, 0.035, wrist[2] + side * (0.13 + digit * 0.035)];
-      cylinderBetween(limbs, wrist, end, 0.014, yellow, `digit-${index + 1}-${digit + 3}`, 8, 0.006);
-      cylinderBetween(limbs, end, [end[0] - 0.055, 0.028, end[2] + side * 0.018], 0.007, dark, `claw-${index + 1}-${digit + 3}`, 7, 0.001);
+      const stride = index < 2 ? -1 : 1;
+      const end = [wrist[0] + stride * (0.11 + Math.abs(digit) * 0.014), 0.035, wrist[2] + side * (0.13 + digit * 0.035)];
+      cylinderBetween(limbs, wrist, end, 0.014, brown, `digit-${index + 1}-${digit + 3}`, 8, 0.006);
+      cylinderBetween(limbs, end, [end[0] + stride * 0.055, 0.028, end[2] + side * 0.018], 0.007, dark, `claw-${index + 1}-${digit + 3}`, 7, 0.001);
     }
   });
   const spots = component(root, 'scale-spot-system');
@@ -324,7 +357,23 @@ function createMonitor() {
     const spot = ellipsoid(spots, [0.027 + (index % 3) * 0.006, 0.011, 0.027], yellow, `spot-${index + 1}`, [x, y, z]);
     spot.userData.explodeWithParent = true;
   });
-  for (let band = 0; band < 8; band += 1) torus(spots, 0.2 - band * 0.018, 0.009, yellow, `tail-band-${band + 1}`, [0.72 + band * 0.14, 0.29 - band * 0.025, 0], [PI / 2, 0, 0]);
+  // Smaller head/neck dapples and a low dorsal scale ridge break up the old
+  // toy-like collection of large body dots.
+  [[-1.20,.74,-.13],[-1.05,.79,.10],[-.91,.72,-.12],[-.78,.62,.13],[-.66,.55,-.10]]
+    .forEach((position,index)=>ellipsoid(spots,[.026,.012,.032],yellow,`head-dapple-${index+1}`,position,undefined,14));
+  for(let index=0;index<17;index+=1){
+    const x=-.68+index*.078;
+    ellipsoid(spots,[.036,.022,.024],index%3===0?yellow:brown,`dorsal-keel-${index+1}`,
+      [x,.59-Math.abs(x)*.07,0],undefined,12);
+  }
+  for (let band = 0; band < 9; band += 1) {
+    const radius=.19-band*.015;
+    torus(spots,radius,.0065,yellow,`tail-band-${band+1}`,
+      [.72+band*.135,.31-band*.025,.02],[PI/2,0,0]);
+  }
+  const mouth=component(root,'mouth-and-throat-detail');
+  tube(mouth,[[-1.31,.635,-.15],[-1.12,.61,-.18],[-.87,.62,-.17]],.009,dark,'left-jaw-seam',18,6);
+  tube(mouth,[[-1.31,.635,.15],[-1.12,.61,.18],[-.87,.62,.17]],.009,dark,'right-jaw-seam',18,6);
   return addRuntime(root, root.name, 'Stylized reconstruction; full tail tip, underside and far-side limb pose are inferred.');
 }
 

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-15T13:42:49.561913+00:00",
+  "criteria": {
+    "runtimeReady": "Imports, has non-degenerate volume/materials, and sits at ground contact.",
+    "componentReady": "Runtime-ready, plus complex assets expose at least two named selectable mesh parts.",
+    "visualReview": "Human/vision review of front, side, three-quarter, and top renders is still required."
+  },
+  "summary": {
+    "assets": 1,
+    "runtimeReady": 1,
+    "componentReady": 1,
+    "requiresRuntimeFix": 0,
+    "requiresComponentFix": 0
+  },
+  "assets": [
+    {
+      "path": "assets/satellite-station-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 24,
+        "meshes": 23,
+        "selectableNamedParts": 23,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 13560,
+        "materials": 1,
+        "dimensions": [
+          7.6,
+          5.80009,
+          3.405
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    }
+  ]
+}
