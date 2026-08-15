@@ -44,6 +44,20 @@ function readManifest() {
       manifest.push({ name: asset.id, url: `assets/${asset.file}`, scale: 1 });
     }
   }
+  // The public catalogue also contains standalone, production-ready components
+  // that are intentionally not instantiated in the game world. They still ship,
+  // so audit them instead of misclassifying them as dead GLBs.
+  const cataloguePath = path.join(root, 'showcase', 'app', 'data', 'catalogue-manifest.json');
+  if (fs.existsSync(cataloguePath)) {
+    const catalogue = JSON.parse(fs.readFileSync(cataloguePath, 'utf8'));
+    const knownUrls = new Set(manifest.map((entry) => entry.url));
+    for (const asset of catalogue.assets || []) {
+      const url = asset.model?.sourcePath;
+      if (!url?.endsWith('.glb') || knownUrls.has(url)) continue;
+      manifest.push({ name: `catalogue:${asset.slug}`, url, scale: 1, catalogueOnly: true });
+      knownUrls.add(url);
+    }
+  }
   return manifest;
 }
 
@@ -85,7 +99,8 @@ async function inspect(entry) {
   const dimensions = max.map((value, axis) => (value - min[axis]) * scale);
   const scaledMinY = min[1] * scale;
   const scaledMaxY = max[1] * scale;
-  const kind = entry.name === 'engineer' || entry.name === 'van' ? 'vehicle' :
+  const kind = entry.catalogueOnly ? 'hero' :
+    entry.name === 'engineer' || entry.name === 'van' ? 'vehicle' :
     /palm|tree|supertree|raintree/.test(entry.name) ? 'tree' :
       /props/i.test(entry.name) ? 'kit' :
       /bench|postbox|kit|busstop|bridge|bicycle|birdcage|cat|prop|service/.test(entry.name) ? 'prop' : 'hero';
@@ -104,6 +119,7 @@ async function inspect(entry) {
     compressed: Boolean(json.extensionsUsed?.includes('KHR_draco_mesh_compression') || json.extensionsRequired?.includes('KHR_draco_mesh_compression')),
     kind,
     budget,
+    materialBudget: entry.catalogueOnly ? 8 : 4,
     overBudget: triangles > budget,
   };
 }
@@ -136,7 +152,7 @@ const report = {
     triangles: entries.reduce((sum, entry) => sum + entry.triangles, 0),
     unreferenced: unreferenced.length,
     assetsOverBudget: entries.filter((entry) => entry.overBudget).length,
-    materialsOverBudget: entries.filter((entry) => entry.materials > 4).length,
+    materialsOverBudget: entries.filter((entry) => entry.materials > entry.materialBudget).length,
     ungrounded: entries.filter((entry) => Math.abs(entry.minY) > 0.01).length,
     uncompressed: entries.filter((entry) => !entry.compressed).length,
   },
@@ -146,7 +162,7 @@ fs.writeFileSync(outputPath, `${JSON.stringify(report, null, 2)}\n`);
 
 for (const entry of entries) {
   if (entry.overBudget) failures.push(`${entry.name}: ${entry.triangles} triangles exceeds ${entry.budget}`);
-  if (entry.materials > 4) failures.push(`${entry.name}: ${entry.materials} material families exceeds 4`);
+  if (entry.materials > entry.materialBudget) failures.push(`${entry.name}: ${entry.materials} material families exceeds ${entry.materialBudget}`);
   if (Math.abs(entry.minY) > 0.01) failures.push(`${entry.name}: minY ${entry.minY.toFixed(3)} is not ground contact`);
   if (!entry.compressed) failures.push(`${entry.name}: GLB is not Draco-compressed`);
 }

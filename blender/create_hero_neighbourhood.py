@@ -248,11 +248,20 @@ def build_engineer(root):
 def build_tree(root, x, y, s=1.0):
     t = empty("Layered rain tree")
     t.parent = root
-    curve_tube("Curved trunk", [(x, y, .35), (x + .18*s, y, 1.7*s), (x - .12*s, y, 3.0*s)], .22*s, WOOD, parent=t)
-    clusters = [(-.9, 0, 3.05, 1.15), (.25, -.1, 3.42, 1.4), (1.15, .12, 3.02, 1.0), (-.1, .45, 3.0, 1.12)]
+    curve_tube("Curved trunk", [(x, y, .15), (x + .16*s, y, 1.45*s), (x - .10*s, y, 2.55*s)], .22*s, WOOD, parent=t)
+    # Broad rain-tree limbs must remain visible beneath the crown from orbit views.
+    curve_tube("Left scaffold limb", [(x, y, 2.05*s), (x-.55*s, y-.04*s, 2.62*s), (x-1.35*s, y+.02*s, 2.86*s)], .115*s, WOOD, parent=t)
+    curve_tube("Right scaffold limb", [(x+.02*s, y, 2.18*s), (x+.62*s, y+.08*s, 2.72*s), (x+1.48*s, y-.05*s, 2.90*s)], .105*s, WOOD, parent=t)
+    curve_tube("Rear scaffold limb", [(x, y+.02*s, 2.20*s), (x-.10*s, y+.62*s, 2.70*s), (x+.12*s, y+1.05*s, 2.92*s)], .09*s, WOOD, parent=t)
+    clusters = [
+        (-1.50, -.06, 3.02, .86), (-.82, -.12, 3.25, 1.02),
+        (0.02, -.16, 3.48, 1.10), (.88, -.06, 3.29, .98),
+        (1.55, .03, 3.02, .82), (-.62, .62, 3.12, .82),
+        (.35, .72, 3.18, .90),
+    ]
     for i, (dx, dy, z, r) in enumerate(clusters):
         ico("Canopy cluster", (x+dx*s, y+dy*s, z*s), r*s, (GREEN1, GREEN2, GREEN3)[i % 3], 2,
-            scale=(1.35, .9, .72), parent=t)
+            scale=(1.28, .86, .58), parent=t)
     return t
 
 
@@ -270,7 +279,7 @@ def export_component(root, filepath, offset):
     lowest = min(
         (obj.matrix_world @ Vector(corner)).z
         for obj in descendants(root)
-        if obj.type == "MESH"
+        if obj.type in {"MESH", "CURVE", "FONT"}
         for corner in obj.bound_box
     )
     root.location.z -= lowest
@@ -380,4 +389,5 @@ def main():
     print("Created", ENGINEER_V2)
 
 
-main()
+if __name__ == "__main__":
+    main()

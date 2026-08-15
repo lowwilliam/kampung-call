@@ -252,15 +252,15 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "c8a0e5b189d4fd94d3cec9752582867dc97bbac5b73c60a16ea1218d0bab2502",
-        "byteLength": 28160,
+        "sha256": "d4390b04b5944c11ad0b181083ecb5237252a7026a91c8e950a8c80776f5e838",
+        "byteLength": 35320,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/skypark-hotel-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "c8a0e5b189d4fd94d3cec9752582867dc97bbac5b73c60a16ea1218d0bab2502",
+        "sourceModelSha256": "d4390b04b5944c11ad0b181083ecb5237252a7026a91c8e950a8c80776f5e838",
         "sha256": "b862a449e803ea34aa2fd08d80a69f619d87cb45369b8ebbadba78d94fc7cee9",
         "contentType": "image/png"
       },
@@ -284,14 +284,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 9536,
+        "triangles": 9620,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 9,
         "compressed": true,
         "dimensions": {
-          "width": 9.663042068481445,
-          "height": 8.17610228061676,
-          "depth": 2.7361807823181152
+          "width": 13,
+          "height": 8.505972310900688,
+          "depth": 10.075139045715332
         }
       },
       "publication": {
@@ -454,15 +454,15 @@
         "file": "sultan-mosque-v2.glb",
         "sourcePath": "assets/sultan-mosque-v2.glb",
         "publicPath": "/models/sultan-mosque-v2.glb",
-        "sha256": "a270ea3c44ac7bd88ae9bda773942d5c528d413097a9b3b20a7a1d75cf49d999",
-        "byteLength": 47020,
+        "sha256": "5a637c0d7df7cea75a21e90fe4f56d5eac3a8303d4d3ab41b2c11b3175f3065d",
+        "byteLength": 54044,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/sultan-mosque-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "a270ea3c44ac7bd88ae9bda773942d5c528d413097a9b3b20a7a1d75cf49d999",
+        "sourceModelSha256": "5a637c0d7df7cea75a21e90fe4f56d5eac3a8303d4d3ab41b2c11b3175f3065d",
         "sha256": "3ebe70e01d61e1b77c1519b6634f1b0112e9ca654327077483c853e59a9d9550",
         "contentType": "image/png"
       },
@@ -486,14 +486,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 13912,
+        "triangles": 13996,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 8,
         "compressed": true,
         "dimensions": {
-          "width": 26.087398330211638,
-          "height": 22.79283540225029,
-          "depth": 21.49189030456543
+          "width": 14,
+          "height": 9.08977660536766,
+          "depth": 10.850149154663086
         }
       },
       "publication": {
@@ -558,15 +558,15 @@
         "file": "concert-hall-v2.glb",
         "sourcePath": "assets/concert-hall-v2.glb",
         "publicPath": "/models/concert-hall-v2.glb",
-        "sha256": "2f287f2cec1f37ab959238f0ffe0c3d4aa31ca3ec389ef839bfcadfaf84f7cd7",
-        "byteLength": 44696,
+        "sha256": "7a3c72752b3e526138115d901f014db0f3b1ba848e62b3c9e0e27a5d85ad3634",
+        "byteLength": 47484,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/concert-hall-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "2f287f2cec1f37ab959238f0ffe0c3d4aa31ca3ec389ef839bfcadfaf84f7cd7",
+        "sourceModelSha256": "7a3c72752b3e526138115d901f014db0f3b1ba848e62b3c9e0e27a5d85ad3634",
         "sha256": "a89c9b941a7ae9f25a562e50c4e6b604f46281bd31d014261a79c8ec353642d8",
         "contentType": "image/png"
       },
@@ -590,14 +590,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 14888,
+        "triangles": 14972,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 6,
         "compressed": true,
         "dimensions": {
-          "width": 6.800000190734863,
-          "height": 2.779271125793457,
-          "depth": 4.263956546783447
+          "width": 11,
+          "height": 3.1094785630702972,
+          "depth": 8.525117874145508
         }
       },
       "publication": {
@@ -760,15 +760,15 @@
         "file": "hdb-voiddeck-v2.glb",
         "sourcePath": "assets/hdb-voiddeck-v2.glb",
         "publicPath": "/models/hdb-voiddeck-v2.glb",
-        "sha256": "61fdfda35c24126b8fd5c72de60059721a0efe79854df2f01c7198735898ddd5",
-        "byteLength": 71172,
+        "sha256": "9a0ce03cfb6e39935b5fee7a0da081faf68597548174b457e377132185b55180",
+        "byteLength": 103660,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "61fdfda35c24126b8fd5c72de60059721a0efe79854df2f01c7198735898ddd5",
+        "sourceModelSha256": "9a0ce03cfb6e39935b5fee7a0da081faf68597548174b457e377132185b55180",
         "sha256": null,
         "contentType": null
       },
@@ -792,14 +792,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 15464,
+        "triangles": 34562,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 17,
         "compressed": true,
         "dimensions": {
-          "width": 19.620817914962768,
-          "height": 19.755756704807283,
-          "depth": 23.028
+          "width": 13.199999809265137,
+          "height": 8.480000227689743,
+          "depth": 11.414999723434448
         }
       },
       "publication": {
@@ -864,15 +864,15 @@
         "file": "shophouse-v2.glb",
         "sourcePath": "assets/shophouse-v2.glb",
         "publicPath": "/models/shophouse-v2.glb",
-        "sha256": "34ad57f73a0e33f3c7fda992c884beb7900241856c8035b07fd0c80525056294",
-        "byteLength": 20264,
+        "sha256": "efecb519d5e090b8a8ed7daa2df312a78ce4f5e7763cac6794e45d8695fa0a89",
+        "byteLength": 49152,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "34ad57f73a0e33f3c7fda992c884beb7900241856c8035b07fd0c80525056294",
+        "sourceModelSha256": "efecb519d5e090b8a8ed7daa2df312a78ce4f5e7763cac6794e45d8695fa0a89",
         "sha256": null,
         "contentType": null
       },
@@ -890,14 +890,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3570,
+        "triangles": 15212,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 12,
         "compressed": true,
         "dimensions": {
-          "width": 3.354861030578613,
-          "height": 4.62104362180914,
-          "depth": 3.7745718834759896
+          "width": 8,
+          "height": 5.219992443919182,
+          "depth": 6.200085639953613
         }
       },
       "publication": {
@@ -962,15 +962,15 @@
         "file": "wetmarket-v2.glb",
         "sourcePath": "assets/wetmarket-v2.glb",
         "publicPath": "/models/wetmarket-v2.glb",
-        "sha256": "3aca7298d20efc402ed8fd9bcb27dabb73475aba3eea51c5b6e01163adde9776",
-        "byteLength": 48652,
+        "sha256": "a970a9fed23e88626e7baaa5c947b575117f108e75f2b93c20b9201b4391f56f",
+        "byteLength": 107580,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "3aca7298d20efc402ed8fd9bcb27dabb73475aba3eea51c5b6e01163adde9776",
+        "sourceModelSha256": "a970a9fed23e88626e7baaa5c947b575117f108e75f2b93c20b9201b4391f56f",
         "sha256": null,
         "contentType": null
       },
@@ -994,14 +994,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11508,
+        "triangles": 31976,
         "materials": 2,
-        "meshCount": 2,
+        "meshCount": 21,
         "compressed": true,
         "dimensions": {
-          "width": 13.718546780586243,
-          "height": 11.791361897908365,
-          "depth": 13.885808625410082
+          "width": 12.800000190734863,
+          "height": 4.980031818151474,
+          "depth": 9.920136451721191
         }
       },
       "publication": {
@@ -1066,15 +1066,15 @@
         "file": "kopitiam-v2.glb",
         "sourcePath": "assets/kopitiam-v2.glb",
         "publicPath": "/models/kopitiam-v2.glb",
-        "sha256": "26586aa45c27a0869fb681ad65d2c62e96eae0ba9b28d868566f9788e1361c53",
-        "byteLength": 30088,
+        "sha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
+        "byteLength": 92232,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/kopitiam-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "26586aa45c27a0869fb681ad65d2c62e96eae0ba9b28d868566f9788e1361c53",
+        "sourceModelSha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
         "sha256": "00bad3a28f015635f71a5e2341a1b08ace056480c647e67e943a46a1e2fc9368",
         "contentType": "image/png"
       },
@@ -1098,14 +1098,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7848,
+        "triangles": 31312,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 10,
         "compressed": true,
         "dimensions": {
-          "width": 7.764749999999999,
-          "height": 5.403049278974533,
-          "depth": 6.306874823570251
+          "width": 12,
+          "height": 5.404960721731186,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -1170,15 +1170,15 @@
         "file": "kampong-house-v2.glb",
         "sourcePath": "assets/kampong-house-v2.glb",
         "publicPath": "/models/kampong-house-v2.glb",
-        "sha256": "91e9b5481a524874a1acae53282d1f5cf7d7922deda898cee08b2f8717391427",
-        "byteLength": 42048,
+        "sha256": "9acf3f3e995d9be103917210ce3d15b1c20676ce31834711300d1f460c677328",
+        "byteLength": 53580,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "91e9b5481a524874a1acae53282d1f5cf7d7922deda898cee08b2f8717391427",
+        "sourceModelSha256": "9acf3f3e995d9be103917210ce3d15b1c20676ce31834711300d1f460c677328",
         "sha256": null,
         "contentType": null
       },
@@ -1196,14 +1196,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11620,
+        "triangles": 11704,
         "materials": 2,
-        "meshCount": 2,
+        "meshCount": 14,
         "compressed": true,
         "dimensions": {
-          "width": 7.719305678562298,
-          "height": 6.738412341347355,
-          "depth": 4.515418626070023
+          "width": 11.199999809265137,
+          "height": 8.516004459971107,
+          "depth": 8.680119514465332
         }
       },
       "publication": {
@@ -1268,15 +1268,15 @@
         "file": "mrt-v2.glb",
         "sourcePath": "assets/mrt-v2.glb",
         "publicPath": "/models/mrt-v2.glb",
-        "sha256": "a19e836942d88d5e9ad6d8e36cfd22e0871ed1fe2e10da052430af8cc6c7da80",
-        "byteLength": 44788,
+        "sha256": "a83280851e0a753882180a97f3d480663d4bc5d949f37e4903f410b01dc11162",
+        "byteLength": 50968,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/mrt-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "a19e836942d88d5e9ad6d8e36cfd22e0871ed1fe2e10da052430af8cc6c7da80",
+        "sourceModelSha256": "a83280851e0a753882180a97f3d480663d4bc5d949f37e4903f410b01dc11162",
         "sha256": "c923db943718d38fba0ce0272df9ed832ffc50454d3051f7cfe799ee2e5118f7",
         "contentType": "image/png"
       },
@@ -1300,14 +1300,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 17950,
+        "triangles": 18004,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 8,
         "compressed": true,
         "dimensions": {
-          "width": 5.519999980926514,
-          "height": 3.3808021247386932,
-          "depth": 4.824230194091797
+          "width": 9,
+          "height": 3.710570591524837,
+          "depth": 6.975096225738525
         }
       },
       "publication": {
@@ -1372,15 +1372,15 @@
         "file": "airport-terminal-v2.glb",
         "sourcePath": "assets/airport-terminal-v2.glb",
         "publicPath": "/models/airport-terminal-v2.glb",
-        "sha256": "f588b99692f63f39720b911997e3b349c187d1d7fdeb18d3d957796d6ec94ed7",
-        "byteLength": 33456,
+        "sha256": "250242e9b6c8f173fef928585085be17761797e165507c14dc6b9a5561856b1b",
+        "byteLength": 72044,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "f588b99692f63f39720b911997e3b349c187d1d7fdeb18d3d957796d6ec94ed7",
+        "sourceModelSha256": "250242e9b6c8f173fef928585085be17761797e165507c14dc6b9a5561856b1b",
         "sha256": null,
         "contentType": null
       },
@@ -1398,14 +1398,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7134,
+        "triangles": 26744,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 9,
         "compressed": true,
         "dimensions": {
-          "width": 43.577348137843785,
-          "height": 22.365500930072365,
-          "depth": 27.911309178352354
+          "width": 12.399999618530273,
+          "height": 3.577681900634815,
+          "depth": 9.610132217407227
         }
       },
       "publication": {
@@ -1470,15 +1470,15 @@
         "file": "hawker-v2.glb",
         "sourcePath": "assets/hawker-v2.glb",
         "publicPath": "/models/hawker-v2.glb",
-        "sha256": "6ac12a8f422c310964042bad3c3bed040da8481e946ebb0ec8177b318e7c8872",
-        "byteLength": 28560,
+        "sha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
+        "byteLength": 90172,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/hawker-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "6ac12a8f422c310964042bad3c3bed040da8481e946ebb0ec8177b318e7c8872",
+        "sourceModelSha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
         "sha256": "99e0a8e800888660e8544379facf806cf8588e01e48155884e53683618011adb",
         "contentType": "image/png"
       },
@@ -1502,14 +1502,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7834,
+        "triangles": 32572,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 11.118799724578857,
-          "height": 6.208556478500366,
-          "depth": 7.941902914047241
+          "width": 12,
+          "height": 4.659775346517563,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -1574,15 +1574,15 @@
         "file": "mamashop-v2.glb",
         "sourcePath": "assets/mamashop-v2.glb",
         "publicPath": "/models/mamashop-v2.glb",
-        "sha256": "4b70b2b0e87b55436a0218ddcd3a0366953c3ad05ee52b36ea9533e55ae5dc33",
-        "byteLength": 32476,
+        "sha256": "8e3b4936858fdde17b35b435abd939357b98c1bf9dcb666ff20ccf4d091ceb81",
+        "byteLength": 41996,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "4b70b2b0e87b55436a0218ddcd3a0366953c3ad05ee52b36ea9533e55ae5dc33",
+        "sourceModelSha256": "8e3b4936858fdde17b35b435abd939357b98c1bf9dcb666ff20ccf4d091ceb81",
         "sha256": null,
         "contentType": null
       },
@@ -1600,14 +1600,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 2984,
+        "triangles": 11644,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 7.172999809980393,
-          "height": 4.591105162143707,
-          "depth": 6.088052647590637
+          "width": 8,
+          "height": 3.2103496491909027,
+          "depth": 6.200085639953613
         }
       },
       "publication": {
@@ -1672,15 +1672,15 @@
         "file": "bumboat-v2.glb",
         "sourcePath": "assets/bumboat-v2.glb",
         "publicPath": "/models/bumboat-v2.glb",
-        "sha256": "ab99963f9cc5a8822b785d50d91f63e4875ad37613e6f455c569fb67c428fd55",
-        "byteLength": 32764,
+        "sha256": "d95162caa09cd90abfde167af67ee91099c08ea6a1b355a403f5708f74dca3a5",
+        "byteLength": 40240,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/bumboat-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "ab99963f9cc5a8822b785d50d91f63e4875ad37613e6f455c569fb67c428fd55",
+        "sourceModelSha256": "d95162caa09cd90abfde167af67ee91099c08ea6a1b355a403f5708f74dca3a5",
         "sha256": "f1e2a2bce1676a24e0cc75649b616359823eab9bd04113ae3f4700807586011b",
         "contentType": "image/png"
       },
@@ -1704,14 +1704,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 12946,
+        "triangles": 13020,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 10,
         "compressed": true,
         "dimensions": {
-          "width": 5.099976539611816,
-          "height": 1.9901208877563474,
-          "depth": 1.8301142454147339
+          "width": 6.999999999999999,
+          "height": 2.3199267461895943,
+          "depth": 5.425074577331543
         }
       },
       "publication": {
@@ -3148,15 +3148,15 @@
         "file": "condo-bg-v2.glb",
         "sourcePath": "assets/condo-bg-v2.glb",
         "publicPath": "/models/condo-bg-v2.glb",
-        "sha256": "beefbc897edf8eee35c5a981e05fdd6674426807e4c4e2609076000783f63a84",
-        "byteLength": 18080,
+        "sha256": "1ee0e58ac2f610664d23645fe9eb2bd2037268499b253f4265863d661cf8f7ad",
+        "byteLength": 24468,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "beefbc897edf8eee35c5a981e05fdd6674426807e4c4e2609076000783f63a84",
+        "sourceModelSha256": "1ee0e58ac2f610664d23645fe9eb2bd2037268499b253f4265863d661cf8f7ad",
         "sha256": null,
         "contentType": null
       },
@@ -3174,14 +3174,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3672,
+        "triangles": 7104,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 7,
         "compressed": true,
         "dimensions": {
-          "width": 20.770457084178926,
-          "height": 29.986111320495606,
-          "depth": 16.095822688937186
+          "width": 9,
+          "height": 7.260000318288803,
+          "depth": 6.975096225738525
         }
       },
       "publication": {
@@ -3246,15 +3246,15 @@
         "file": "hdb-call-v2.glb",
         "sourcePath": "assets/hdb-call-v2.glb",
         "publicPath": "/models/hdb-call-v2.glb",
-        "sha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
-        "byteLength": 31872,
+        "sha256": "36be85cce8bd72dfeef5bbc5616656368f2669bab966861fca68aaaa79a8f7f1",
+        "byteLength": 115772,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
+        "sourceModelSha256": "36be85cce8bd72dfeef5bbc5616656368f2669bab966861fca68aaaa79a8f7f1",
         "sha256": null,
         "contentType": null
       },
@@ -3278,14 +3278,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3788,
+        "triangles": 27204,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 16,
         "compressed": true,
         "dimensions": {
-          "width": 7.563015258789062,
-          "height": 10.09243982362747,
-          "depth": 4.359036952972412
+          "width": 10.97719955444336,
+          "height": 10.912305802106857,
+          "depth": 8.776131629943848
         }
       },
       "publication": {
@@ -3350,15 +3350,15 @@
         "file": "hdb-bg-v2.glb",
         "sourcePath": "assets/hdb-bg-v2.glb",
         "publicPath": "/models/hdb-bg-v2.glb",
-        "sha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
-        "byteLength": 31872,
+        "sha256": "650ab3d9c8b9947cc92a94acc612f8aeac5dc340d1a2cd4f0035527e13f2b40b",
+        "byteLength": 37656,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "47dff59ff80e8d7e0889f7725f4515d3f8c72de48b4dcacdb5d02272cc554247",
+        "sourceModelSha256": "650ab3d9c8b9947cc92a94acc612f8aeac5dc340d1a2cd4f0035527e13f2b40b",
         "sha256": null,
         "contentType": null
       },
@@ -3382,14 +3382,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3788,
+        "triangles": 11756,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 9,
         "compressed": true,
         "dimensions": {
-          "width": 15.429467163085937,
-          "height": 20.58979964017868,
-          "depth": 8.892963352203369
+          "width": 9,
+          "height": 7.9699998795986176,
+          "depth": 6.975096225738525
         }
       },
       "publication": {
@@ -3454,15 +3454,15 @@
         "file": "kampong-props-v2.glb",
         "sourcePath": "assets/kampong-props-v2.glb",
         "publicPath": "/models/kampong-props-v2.glb",
-        "sha256": "334daed7378f9d079499457b6ceedd044902bab6eb98ff228f3a41d7e7db2794",
-        "byteLength": 74036,
+        "sha256": "34533ce15036f30c046dba9f7d6e6a7d808948acbbe72539c710b1ab6696f95e",
+        "byteLength": 81136,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "334daed7378f9d079499457b6ceedd044902bab6eb98ff228f3a41d7e7db2794",
+        "sourceModelSha256": "34533ce15036f30c046dba9f7d6e6a7d808948acbbe72539c710b1ab6696f95e",
         "sha256": null,
         "contentType": null
       },
@@ -3480,14 +3480,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 9076,
+        "triangles": 10240,
         "materials": 1,
-        "meshCount": 3,
+        "meshCount": 75,
         "compressed": true,
         "dimensions": {
-          "width": 1.2697305322914423,
-          "height": 0.9021254109441564,
-          "depth": 0.86276251411438
+          "width": 9.199999809265137,
+          "height": 5.711949214339256,
+          "depth": 7.130098342895508
         }
       },
       "publication": {
@@ -3552,15 +3552,15 @@
         "file": "kampung-call-v2.glb",
         "sourcePath": "assets/kampung-call-v2.glb",
         "publicPath": "/models/kampung-call-v2.glb",
-        "sha256": "65632f1e3050536e8598fb52a04961606ad4a11111f04487651db8c5e92c98d6",
-        "byteLength": 29556,
+        "sha256": "0a84b63f771d6f71f00f01ed292c002566f27630994bf720413a173c54b531da",
+        "byteLength": 59084,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "65632f1e3050536e8598fb52a04961606ad4a11111f04487651db8c5e92c98d6",
+        "sourceModelSha256": "0a84b63f771d6f71f00f01ed292c002566f27630994bf720413a173c54b531da",
         "sha256": null,
         "contentType": null
       },
@@ -3578,14 +3578,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7086,
+        "triangles": 16208,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 16,
         "compressed": true,
         "dimensions": {
-          "width": 10.38300937616744,
-          "height": 9.516806545437309,
-          "depth": 6.485852923393249
+          "width": 11,
+          "height": 5.6524620950222015,
+          "depth": 8.525117874145508
         }
       },
       "publication": {
@@ -3748,15 +3748,15 @@
         "file": "condo-marina-v2.glb",
         "sourcePath": "assets/condo-marina-v2.glb",
         "publicPath": "/models/condo-marina-v2.glb",
-        "sha256": "8e0324c6101b611a7f04de25d3fe43602c443e1a57b831ab2bddca0933c41964",
-        "byteLength": 69708,
+        "sha256": "8139931be909948be4904ec9a09dc8c782ff358c4384582e3bdd6aee765c6031",
+        "byteLength": 79972,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "8e0324c6101b611a7f04de25d3fe43602c443e1a57b831ab2bddca0933c41964",
+        "sourceModelSha256": "8139931be909948be4904ec9a09dc8c782ff358c4384582e3bdd6aee765c6031",
         "sha256": null,
         "contentType": null
       },
@@ -3774,14 +3774,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 8536,
+        "triangles": 27172,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 17.78195477628708,
-          "height": 30.002242219924927,
-          "depth": 16.082505508542063
+          "width": 12,
+          "height": 9.61000069975853,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -3846,15 +3846,15 @@
         "file": "pointblock-call-v2.glb",
         "sourcePath": "assets/pointblock-call-v2.glb",
         "publicPath": "/models/pointblock-call-v2.glb",
-        "sha256": "bc5ff0d7638da9b0085b7ea235a4dd24f542ab1fc6c23e3cbdede75d36f8b9ea",
-        "byteLength": 73828,
+        "sha256": "b203e5a28004b9ab2ac3e44b212d6a94f641d21d55255c9b57436600e0bbf173",
+        "byteLength": 77664,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "bc5ff0d7638da9b0085b7ea235a4dd24f542ab1fc6c23e3cbdede75d36f8b9ea",
+        "sourceModelSha256": "b203e5a28004b9ab2ac3e44b212d6a94f641d21d55255c9b57436600e0bbf173",
         "sha256": null,
         "contentType": null
       },
@@ -3878,14 +3878,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 6822,
+        "triangles": 30368,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 17.538842890739442,
-          "height": 33.99253096008301,
-          "depth": 15.808405778884888
+          "width": 11.999999999999998,
+          "height": 11.135000318288801,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -3950,15 +3950,15 @@
         "file": "landed-v2.glb",
         "sourcePath": "assets/landed-v2.glb",
         "publicPath": "/models/landed-v2.glb",
-        "sha256": "fa981c7fa0616958c769894bca6c687c5f528b4c34334ae647c004d81cb1ca61",
-        "byteLength": 31300,
+        "sha256": "52ad24a381c092f9a587cb2930a17eb920ffaa8ee78026b91a0138e22d97fb48",
+        "byteLength": 73492,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "fa981c7fa0616958c769894bca6c687c5f528b4c34334ae647c004d81cb1ca61",
+        "sourceModelSha256": "52ad24a381c092f9a587cb2930a17eb920ffaa8ee78026b91a0138e22d97fb48",
         "sha256": null,
         "contentType": null
       },
@@ -3976,14 +3976,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 8356,
+        "triangles": 15808,
         "materials": 1,
-        "meshCount": 3,
+        "meshCount": 61,
         "compressed": true,
         "dimensions": {
-          "width": 10.001050411701202,
-          "height": 8.357054069057106,
-          "depth": 6.798614768505097
+          "width": 6.950007408857346,
+          "height": 5.267834169594993,
+          "depth": 4.724412262439728
         }
       },
       "publication": {
@@ -4048,15 +4048,15 @@
         "file": "condo-holland-v2.glb",
         "sourcePath": "assets/condo-holland-v2.glb",
         "publicPath": "/models/condo-holland-v2.glb",
-        "sha256": "397b88ac76b98af56e5df4fd28a568759192510ec2626d1627292647ac69f5a4",
-        "byteLength": 72352,
+        "sha256": "69959dad6f818e051f89d205294a874277eca779c481f071f7132c6573a04682",
+        "byteLength": 80340,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "397b88ac76b98af56e5df4fd28a568759192510ec2626d1627292647ac69f5a4",
+        "sourceModelSha256": "69959dad6f818e051f89d205294a874277eca779c481f071f7132c6573a04682",
         "sha256": null,
         "contentType": null
       },
@@ -4074,14 +4074,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 8658,
+        "triangles": 27616,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 13,
         "compressed": true,
         "dimensions": {
-          "width": 18.898955194473267,
-          "height": 29.99627986073494,
-          "depth": 17.09364910888672
+          "width": 12,
+          "height": 9.059999912977219,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -4146,15 +4146,15 @@
         "file": "controltower-v2.glb",
         "sourcePath": "assets/controltower-v2.glb",
         "publicPath": "/models/controltower-v2.glb",
-        "sha256": "dd3f362afcd8fabe1507f9c32f3672bd3d7dc5d6ce6090ba278a1193e1e69d20",
-        "byteLength": 26060,
+        "sha256": "2dd02ce650724f848e4e7c8ae719227014df8f78724cf1cda9ca2c346a850df8",
+        "byteLength": 34396,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "legacy",
         "sourcePath": "assets/previews/controltower-v2.png",
         "publicPath": null,
-        "sourceModelSha256": "dd3f362afcd8fabe1507f9c32f3672bd3d7dc5d6ce6090ba278a1193e1e69d20",
+        "sourceModelSha256": "2dd02ce650724f848e4e7c8ae719227014df8f78724cf1cda9ca2c346a850df8",
         "sha256": "9a527ed6a940cb28e21d3e26ea47cb025c7ae4866033e123bcd79c4d072d0b82",
         "contentType": "image/png"
       },
@@ -4178,14 +4178,14 @@
       ],
       "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 8944,
+        "triangles": 9028,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 9,
         "compressed": true,
         "dimensions": {
-          "width": 2.9199929237365723,
-          "height": 9.5600004196167,
-          "depth": 2.9199929237365723
+          "width": 8,
+          "height": 9.89000028371811,
+          "depth": 6.200085639953614
         }
       },
       "publication": {
@@ -4446,15 +4446,15 @@
         "file": "national-school-v2.glb",
         "sourcePath": "assets/national-school-v2.glb",
         "publicPath": "/models/national-school-v2.glb",
-        "sha256": "997b933325041938051a9569b6d22214cec60402caba3415c563fdfdc23090e3",
-        "byteLength": 21692,
+        "sha256": "c4099e9b97e696c7706b0a295995789ff8c8d7e74f4936d86777470a861eb882",
+        "byteLength": 54940,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "997b933325041938051a9569b6d22214cec60402caba3415c563fdfdc23090e3",
+        "sourceModelSha256": "c4099e9b97e696c7706b0a295995789ff8c8d7e74f4936d86777470a861eb882",
         "sha256": null,
         "contentType": null
       },
@@ -4472,14 +4472,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 4124,
+        "triangles": 19552,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 12,
         "compressed": true,
         "dimensions": {
-          "width": 16.027199575424195,
-          "height": 7.969090133316116,
-          "depth": 11.508514647224953
+          "width": 10,
+          "height": 3.910069555044174,
+          "depth": 7.7501068115234375
         }
       },
       "publication": {
@@ -5149,15 +5149,15 @@
         "file": "service-van-v2.glb",
         "sourcePath": "assets/service-van-v2.glb",
         "publicPath": "/models/service-van-v2.glb",
-        "sha256": "7f782a7b0c98debd2993ab7a1b417dd2ef271b31fabee1794668ed3bdece8dd2",
-        "byteLength": 13328,
+        "sha256": "53d7eba642f2c2e475c4c8e1ab2cf537e54d18bfa4445a2db8f559db95254b54",
+        "byteLength": 31776,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "7f782a7b0c98debd2993ab7a1b417dd2ef271b31fabee1794668ed3bdece8dd2",
+        "sourceModelSha256": "53d7eba642f2c2e475c4c8e1ab2cf537e54d18bfa4445a2db8f559db95254b54",
         "sha256": null,
         "contentType": null
       },
@@ -5175,14 +5175,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 2878,
+        "triangles": 8704,
         "materials": 1,
-        "meshCount": 2,
+        "meshCount": 20,
         "compressed": true,
         "dimensions": {
-          "width": 4.921147679425308,
-          "height": 3.218254792276142,
-          "depth": 2.9494746312897946
+          "width": 3.9486109374193057,
+          "height": 1.8799402112882215,
+          "depth": 2.299376606988761
         }
       },
       "publication": {
@@ -5247,15 +5247,15 @@
         "file": "singapore-cable-car-skyorb-v1.glb",
         "sourcePath": "assets/singapore-cable-car-skyorb-v1.glb",
         "publicPath": "/models/singapore-cable-car-skyorb-v1.glb",
-        "sha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
-        "byteLength": 162840,
+        "sha256": "5d6d40500231c2084477804311516841c4398471d59ec4f11ac526f07160ff68",
+        "byteLength": 71152,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/singapore-cable-car-skyorb-v1.png",
-        "publicPath": "/previews/singapore-cable-car-skyorb.png",
-        "sourceModelSha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
+        "publicPath": null,
+        "sourceModelSha256": "5d6d40500231c2084477804311516841c4398471d59ec4f11ac526f07160ff68",
         "sha256": "4fcf8d237f01a0f72e0d2c4bdb9056cdadb51398657184c6fb49a75161de0cc0",
         "contentType": "image/png"
       },
@@ -5280,18 +5280,18 @@
       "evidenceStatus": "mixed",
       "metrics": {
         "triangles": 29788,
-        "materials": 5,
+        "materials": 4,
         "meshCount": 56,
         "compressed": true,
         "dimensions": {
-          "width": 2.3227,
-          "height": 3.42,
-          "depth": 2.2035
+          "width": 2.3226664375395503,
+          "height": 3.4200072437524796,
+          "depth": 2.2034704196213477
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "branded-industrial-design",
@@ -5319,7 +5319,7 @@
           "evidenceRefs": []
         },
         "display": {
-          "status": "legal-review",
+          "status": "pending",
           "basis": null,
           "reviewedBy": null,
           "reviewedAt": null,
@@ -5750,15 +5750,15 @@
         "file": "raintree-v2.glb",
         "sourcePath": "assets/raintree-v2.glb",
         "publicPath": "/models/raintree-v2.glb",
-        "sha256": "440d80a1e8a42f737da5da5aef767c7836c183417e92d83e0f262bde6f1f3c44",
-        "byteLength": 6164,
+        "sha256": "605583ada5c7dd563645acee669417c8442d59458049e2dccd1f42855471479f",
+        "byteLength": 13932,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "440d80a1e8a42f737da5da5aef767c7836c183417e92d83e0f262bde6f1f3c44",
+        "sourceModelSha256": "605583ada5c7dd563645acee669417c8442d59458049e2dccd1f42855471479f",
         "sha256": null,
         "contentType": null
       },
@@ -5776,14 +5776,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 336,
-        "materials": 2,
-        "meshCount": 4,
+        "triangles": 816,
+        "materials": 4,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 13.99117951989174,
-          "height": 11.992737013101578,
-          "depth": 8.19611858844757
+          "width": 5.095154762268066,
+          "height": 3.9949449747800827,
+          "depth": 2.6000373661518097
         }
       },
       "publication": {
@@ -5946,15 +5946,15 @@
         "file": "smooth-coated-otter-v1.glb",
         "sourcePath": "assets/smooth-coated-otter-v1.glb",
         "publicPath": "/models/smooth-coated-otter-v1.glb",
-        "sha256": "901ac9c7189b16096dc9a9ecb97d0d92a286208fca329f2e4a13a07ba6fc48a9",
-        "byteLength": 108916,
+        "sha256": "a2cb11cad6a7e054673c414c81340a4fc1eb438a93d0080f4c5f64251ee79b84",
+        "byteLength": 48552,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/smooth-coated-otter-v1.png",
-        "publicPath": "/previews/smooth-coated-otter.png",
-        "sourceModelSha256": "901ac9c7189b16096dc9a9ecb97d0d92a286208fca329f2e4a13a07ba6fc48a9",
+        "publicPath": null,
+        "sourceModelSha256": "a2cb11cad6a7e054673c414c81340a4fc1eb438a93d0080f4c5f64251ee79b84",
         "sha256": "5ee95394bfc057678e188e6053605a40f0b1c73156e9253f84feec42a7753c10",
         "contentType": "image/png"
       },
@@ -5983,14 +5983,14 @@
         "meshCount": 51,
         "compressed": true,
         "dimensions": {
-          "width": 2.6407,
-          "height": 1.3637,
-          "depth": 0.8981
+          "width": 2.6406699419021606,
+          "height": 1.3084846229488065,
+          "depth": 0.8700000047683716
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "natural-world",
@@ -6050,15 +6050,15 @@
         "file": "red-junglefowl-v1.glb",
         "sourcePath": "assets/red-junglefowl-v1.glb",
         "publicPath": "/models/red-junglefowl-v1.glb",
-        "sha256": "549995014495472d01c325c369e1bd23fba85ce417a54d176d4c38fba5616150",
-        "byteLength": 136472,
+        "sha256": "47cb4faf9dd8ed3ba547fac45cbc3663f06eff5655e9c344beae581e5acd06af",
+        "byteLength": 71624,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/red-junglefowl-v1.png",
-        "publicPath": "/previews/red-junglefowl.png",
-        "sourceModelSha256": "549995014495472d01c325c369e1bd23fba85ce417a54d176d4c38fba5616150",
+        "publicPath": null,
+        "sourceModelSha256": "47cb4faf9dd8ed3ba547fac45cbc3663f06eff5655e9c344beae581e5acd06af",
         "sha256": "71ce10e4bcdae1c127a55c0fd0255ed1e829749f35f96ab6a3be8451150f9b12",
         "contentType": "image/png"
       },
@@ -6083,18 +6083,18 @@
       "evidenceStatus": "mixed",
       "metrics": {
         "triangles": 19600,
-        "materials": 8,
+        "materials": 4,
         "meshCount": 64,
         "compressed": true,
         "dimensions": {
-          "width": 2.0525,
-          "height": 1.9295,
-          "depth": 1.1578
+          "width": 2.0282113623690465,
+          "height": 1.9135909027517208,
+          "depth": 1.0709808509211922
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "natural-world",
@@ -6154,15 +6154,15 @@
         "file": "oriental-pied-hornbill-v1.glb",
         "sourcePath": "assets/oriental-pied-hornbill-v1.glb",
         "publicPath": "/models/oriental-pied-hornbill-v1.glb",
-        "sha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
-        "byteLength": 71200,
+        "sha256": "86efebdba888bf0c5769278be38b4d54d3f9b4ed71c5c582fc43211f50a8d192",
+        "byteLength": 40040,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/oriental-pied-hornbill-v1.png",
-        "publicPath": "/previews/oriental-pied-hornbill.png",
-        "sourceModelSha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
+        "publicPath": null,
+        "sourceModelSha256": "86efebdba888bf0c5769278be38b4d54d3f9b4ed71c5c582fc43211f50a8d192",
         "sha256": "4d674cd11ef0ac22c898e0e3e13d432e2dbf9fc0e323fec425c2e8d4a7b6cd4d",
         "contentType": "image/png"
       },
@@ -6191,14 +6191,14 @@
         "meshCount": 38,
         "compressed": true,
         "dimensions": {
-          "width": 1.8428,
-          "height": 2.4308,
-          "depth": 1.053
+          "width": 1.7617828884001998,
+          "height": 2.4308312982320786,
+          "depth": 1.0143446569873473
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "natural-world",
@@ -6258,15 +6258,15 @@
         "file": "clouded-monitor-v1.glb",
         "sourcePath": "assets/clouded-monitor-v1.glb",
         "publicPath": "/models/clouded-monitor-v1.glb",
-        "sha256": "973e64be1f6a565cd5fa912733c13b7c705156e78414b45b198554c3cf307a50",
-        "byteLength": 259848,
+        "sha256": "eed709d45fc64732eb8ea90771140441153249e80913bbeb4bcc4533b856f3d3",
+        "byteLength": 78116,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/clouded-monitor-v1.png",
-        "publicPath": "/previews/clouded-monitor.png",
-        "sourceModelSha256": "973e64be1f6a565cd5fa912733c13b7c705156e78414b45b198554c3cf307a50",
+        "publicPath": null,
+        "sourceModelSha256": "eed709d45fc64732eb8ea90771140441153249e80913bbeb4bcc4533b856f3d3",
         "sha256": "b3079721cfaf1831cedfbbbca475894ca6df45d0cb2085eedc4d1a142b9468ea",
         "contentType": "image/png"
       },
@@ -6295,14 +6295,14 @@
         "meshCount": 131,
         "compressed": true,
         "dimensions": {
-          "width": 3.46,
-          "height": 0.8651,
-          "depth": 1.6924
+          "width": 3.443075022454047,
+          "height": 0.8229541360284893,
+          "depth": 1.677840991459508
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "natural-world",
@@ -7048,15 +7048,15 @@
         "file": "engineer-v2.glb",
         "sourcePath": "assets/engineer-v2.glb",
         "publicPath": "/models/engineer-v2.glb",
-        "sha256": "940c2262998102069cfca98e64154f22517ac11af91065887aec2c4e1c768eb9",
-        "byteLength": 9060,
+        "sha256": "06e67d6d6c8d1e42a83ee003d74f81278c8114be3f6e9ed7d7ced869302fe343",
+        "byteLength": 19628,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "940c2262998102069cfca98e64154f22517ac11af91065887aec2c4e1c768eb9",
+        "sourceModelSha256": "06e67d6d6c8d1e42a83ee003d74f81278c8114be3f6e9ed7d7ced869302fe343",
         "sha256": null,
         "contentType": null
       },
@@ -7074,14 +7074,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 1736,
+        "triangles": 1800,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 12,
         "compressed": true,
         "dimensions": {
-          "width": 1.7364252116967605,
-          "height": 2.424580739583129,
-          "depth": 1.0109816304928987
+          "width": 1.596016213088265,
+          "height": 2.670019499957562,
+          "depth": 1.029970419856292
         }
       },
       "publication": {

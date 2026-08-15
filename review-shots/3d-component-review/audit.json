@@ -1,0 +1,1721 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-15T10:18:14.212111+00:00",
+  "criteria": {
+    "runtimeReady": "Imports, has non-degenerate volume/materials, and sits at ground contact.",
+    "componentReady": "Runtime-ready, plus complex assets expose at least two named selectable mesh parts.",
+    "visualReview": "Human/vision review of front, side, three-quarter, and top renders is still required."
+  },
+  "summary": {
+    "assets": 73,
+    "runtimeReady": 73,
+    "componentReady": 73,
+    "requiresRuntimeFix": 0,
+    "requiresComponentFix": 0
+  },
+  "assets": [
+    {
+      "path": "assets/airport-terminal-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 12,
+        "meshes": 9,
+        "selectableNamedParts": 9,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 26744,
+        "materials": 1,
+        "dimensions": [
+          12.4,
+          9.61013,
+          4.11491
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/bench-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1054,
+        "materials": 1,
+        "dimensions": [
+          4.13976,
+          0.82957,
+          1.58156
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/bicycle-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1812,
+        "materials": 4,
+        "dimensions": [
+          3.58,
+          0.79764,
+          1.80497
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/birdcage-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1992,
+        "materials": 4,
+        "dimensions": [
+          1.48,
+          1.44287,
+          2.58128
+        ],
+        "groundOffset": -4e-06
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/bumboat-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 13,
+        "meshes": 10,
+        "selectableNamedParts": 10,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 13020,
+        "materials": 1,
+        "dimensions": [
+          7.0,
+          5.42507,
+          2.31993
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/busstop-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1980,
+        "materials": 4,
+        "dimensions": [
+          5.8,
+          2.5137,
+          3.2882
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/cat-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1492,
+        "materials": 4,
+        "dimensions": [
+          1.37479,
+          1.79418,
+          1.687
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/clouded-monitor-v1.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 140,
+        "meshes": 131,
+        "selectableNamedParts": 131,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 28764,
+        "materials": 3,
+        "dimensions": [
+          3.45996,
+          1.69238,
+          0.86507
+        ],
+        "groundOffset": -0.034519
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:70"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/concert-hall-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 9,
+        "meshes": 6,
+        "selectableNamedParts": 6,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 14972,
+        "materials": 1,
+        "dimensions": [
+          11.0,
+          8.52512,
+          3.10948
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/condo-bg-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 10,
+        "meshes": 7,
+        "selectableNamedParts": 7,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 7104,
+        "materials": 1,
+        "dimensions": [
+          9.0,
+          6.9751,
+          7.26
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/condo-holland-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 16,
+        "meshes": 13,
+        "selectableNamedParts": 13,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 27616,
+        "materials": 1,
+        "dimensions": [
+          12.0,
+          9.30013,
+          9.06
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/condo-marina-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 14,
+        "meshes": 11,
+        "selectableNamedParts": 11,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 27172,
+        "materials": 1,
+        "dimensions": [
+          12.0,
+          9.30013,
+          9.61
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/controltower-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 12,
+        "meshes": 9,
+        "selectableNamedParts": 9,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 9028,
+        "materials": 1,
+        "dimensions": [
+          8.0,
+          6.20009,
+          9.89
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/courier.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 31,
+        "meshes": 23,
+        "selectableNamedParts": 23,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 3588,
+        "materials": 3,
+        "dimensions": [
+          1.13999,
+          0.77639,
+          2.16999
+        ],
+        "groundOffset": -0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/design-university-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 10488,
+        "materials": 4,
+        "dimensions": [
+          8.8,
+          5.80006,
+          3.25025
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/engineer-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 13,
+        "meshes": 12,
+        "selectableNamedParts": 12,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1800,
+        "materials": 1,
+        "dimensions": [
+          1.63584,
+          1.10985,
+          2.67002
+        ],
+        "groundOffset": -0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/fibre-kit-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1316,
+        "materials": 1,
+        "dimensions": [
+          2.3,
+          1.69998,
+          0.96995
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/flyer-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 7092,
+        "materials": 4,
+        "dimensions": [
+          6.995,
+          2.00268,
+          7.55
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/harbour-statue-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 4,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 32704,
+        "materials": 4,
+        "dimensions": [
+          3.5327,
+          4.17364,
+          4.813
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:2"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/hawker-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 14,
+        "meshes": 11,
+        "selectableNamedParts": 11,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 32572,
+        "materials": 1,
+        "dimensions": [
+          12.0,
+          9.30013,
+          4.65978
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/hdb-bg-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 12,
+        "meshes": 9,
+        "selectableNamedParts": 9,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 11756,
+        "materials": 1,
+        "dimensions": [
+          9.0,
+          6.9751,
+          7.97
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/hdb-call-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 18,
+        "meshes": 16,
+        "selectableNamedParts": 16,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 27204,
+        "materials": 1,
+        "dimensions": [
+          10.9772,
+          8.77613,
+          10.91231
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/hdb-voiddeck-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 20,
+        "meshes": 17,
+        "selectableNamedParts": 17,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 34562,
+        "materials": 1,
+        "dimensions": [
+          13.2,
+          11.415,
+          8.48
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/kampong-house-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 17,
+        "meshes": 14,
+        "selectableNamedParts": 14,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 11704,
+        "materials": 2,
+        "dimensions": [
+          11.2,
+          8.68012,
+          9.39046
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/kampong-props-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 87,
+        "meshes": 75,
+        "selectableNamedParts": 75,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 10240,
+        "materials": 1,
+        "dimensions": [
+          9.2,
+          7.1301,
+          5.71195
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/kampung-call-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 19,
+        "meshes": 16,
+        "selectableNamedParts": 16,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 16208,
+        "materials": 1,
+        "dimensions": [
+          11.0,
+          8.52512,
+          6.12541
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/kopitiam-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 13,
+        "meshes": 10,
+        "selectableNamedParts": 10,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 31312,
+        "materials": 1,
+        "dimensions": [
+          12.0,
+          9.30013,
+          5.40496
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/landed-bg-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1812,
+        "materials": 1,
+        "dimensions": [
+          4.5,
+          4.32998,
+          3.69246
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/landed-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 62,
+        "meshes": 61,
+        "selectableNamedParts": 61,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 15808,
+        "materials": 1,
+        "dimensions": [
+          6.95001,
+          4.72441,
+          5.28488
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/alkaff-arcade.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 178,
+        "meshes": 166,
+        "selectableNamedParts": 166,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 13377,
+        "materials": 4,
+        "dimensions": [
+          19.81,
+          8.4,
+          10.66
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:26"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/amber-mansions.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 450,
+        "meshes": 425,
+        "selectableNamedParts": 425,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 12656,
+        "materials": 3,
+        "dimensions": [
+          20.17264,
+          15.54264,
+          8.78843
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:19"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/beauty-world-market.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 348,
+        "meshes": 336,
+        "selectableNamedParts": 336,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 4528,
+        "materials": 4,
+        "dimensions": [
+          12.75,
+          23.275,
+          7.18018
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/comcentre.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 100,
+        "meshes": 90,
+        "selectableNamedParts": 90,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 2244,
+        "materials": 3,
+        "dimensions": [
+          13.0,
+          10.21994,
+          25.99354
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:3"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/eu-court.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 142,
+        "meshes": 131,
+        "selectableNamedParts": 131,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 6828,
+        "materials": 4,
+        "dimensions": [
+          20.67254,
+          16.57254,
+          12.15
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:14"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/former-national-stadium.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 88,
+        "meshes": 78,
+        "selectableNamedParts": 78,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 8132,
+        "materials": 4,
+        "dimensions": [
+          24.2,
+          16.54003,
+          11.43999
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/national-library-stamford.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 132,
+        "meshes": 120,
+        "selectableNamedParts": 120,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1708,
+        "materials": 3,
+        "dimensions": [
+          15.95007,
+          10.44985,
+          8.33525
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/national-theatre.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 59,
+        "meshes": 49,
+        "selectableNamedParts": 49,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1396,
+        "materials": 4,
+        "dimensions": [
+          15.0,
+          16.57,
+          12.1414
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/pearl-bank-apartments.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 981,
+        "meshes": 971,
+        "selectableNamedParts": 971,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 11936,
+        "materials": 3,
+        "dimensions": [
+          20.0,
+          20.0,
+          23.65
+        ],
+        "groundOffset": -0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/tang-dynasty-city.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 155,
+        "meshes": 141,
+        "selectableNamedParts": 141,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 2848,
+        "materials": 4,
+        "dimensions": [
+          19.09976,
+          25.20995,
+          11.01
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:5"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/tanglin-shopping-centre.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 125,
+        "meshes": 113,
+        "selectableNamedParts": 113,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1728,
+        "materials": 4,
+        "dimensions": [
+          19.2,
+          8.51496,
+          10.39993
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:1"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/tank-road-railway-station.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 100,
+        "meshes": 87,
+        "selectableNamedParts": 87,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1544,
+        "materials": 4,
+        "dimensions": [
+          25.0,
+          24.0,
+          10.95
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/lost-heritage/van-kleef-aquarium.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 160,
+        "meshes": 148,
+        "selectableNamedParts": 148,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1776,
+        "materials": 4,
+        "dimensions": [
+          20.0,
+          10.55004,
+          7.26994
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/mamashop-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 14,
+        "meshes": 11,
+        "selectableNamedParts": 11,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 11644,
+        "materials": 1,
+        "dimensions": [
+          8.0,
+          6.20009,
+          3.21035
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/management-university-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 9724,
+        "materials": 4,
+        "dimensions": [
+          8.5,
+          5.39999,
+          3.66975
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/mrt-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 11,
+        "meshes": 8,
+        "selectableNamedParts": 8,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 18004,
+        "materials": 1,
+        "dimensions": [
+          9.0,
+          6.9751,
+          3.71998
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/national-school-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 15,
+        "meshes": 12,
+        "selectableNamedParts": 12,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 19552,
+        "materials": 1,
+        "dimensions": [
+          10.0,
+          7.75011,
+          3.91007
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/national-university-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 14192,
+        "materials": 4,
+        "dimensions": [
+          8.6,
+          5.49974,
+          4.15004
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/oriental-pied-hornbill-v1.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 47,
+        "meshes": 38,
+        "selectableNamedParts": 38,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 9264,
+        "materials": 5,
+        "dimensions": [
+          1.8428,
+          1.053,
+          2.43083
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:9"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/overheadbridge-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 744,
+        "materials": 1,
+        "dimensions": [
+          18.76,
+          3.56466,
+          5.18267
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/palm-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 3,
+        "meshes": 3,
+        "selectableNamedParts": 3,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1667,
+        "materials": 3,
+        "dimensions": [
+          3.53231,
+          2.97238,
+          4.33336
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/peranakan-house-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 2,
+        "meshes": 2,
+        "selectableNamedParts": 2,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 30596,
+        "materials": 2,
+        "dimensions": [
+          4.41985,
+          7.27158,
+          6.67017
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/pointblock-call-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 14,
+        "meshes": 11,
+        "selectableNamedParts": 11,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 30368,
+        "materials": 1,
+        "dimensions": [
+          12.0,
+          9.30013,
+          11.135
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/postbox-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 836,
+        "materials": 4,
+        "dimensions": [
+          1.46185,
+          1.43659,
+          2.21
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/raintree-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 12,
+        "meshes": 11,
+        "selectableNamedParts": 11,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 816,
+        "materials": 4,
+        "dimensions": [
+          5.09515,
+          2.60004,
+          3.99495
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/red-junglefowl-v1.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 74,
+        "meshes": 64,
+        "selectableNamedParts": 64,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 19600,
+        "materials": 4,
+        "dimensions": [
+          2.05253,
+          1.1578,
+          1.92946
+        ],
+        "groundOffset": -0.015865
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:24"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/auntie-rosnah.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 39,
+        "meshes": 31,
+        "selectableNamedParts": 31,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 5980,
+        "materials": 1,
+        "dimensions": [
+          1.125,
+          0.665,
+          2.17
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/devi.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 36,
+        "meshes": 28,
+        "selectableNamedParts": 28,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 5008,
+        "materials": 1,
+        "dimensions": [
+          1.03,
+          0.705,
+          2.21
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/kai.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 37,
+        "meshes": 29,
+        "selectableNamedParts": 29,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 4900,
+        "materials": 1,
+        "dimensions": [
+          1.03,
+          0.595,
+          2.12001
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/mr-tan.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 37,
+        "meshes": 29,
+        "selectableNamedParts": 29,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 4908,
+        "materials": 1,
+        "dimensions": [
+          1.03,
+          0.615,
+          2.1
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/sofia.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 38,
+        "meshes": 30,
+        "selectableNamedParts": 30,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 5224,
+        "materials": 1,
+        "dimensions": [
+          1.03,
+          0.655,
+          2.10999
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/residents/uncle-lim.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 36,
+        "meshes": 28,
+        "selectableNamedParts": 28,
+        "armatures": 0,
+        "animations": 2,
+        "triangles": 4800,
+        "materials": 1,
+        "dimensions": [
+          1.03,
+          0.595,
+          2.075
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/router-kit-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 5,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1732,
+        "materials": 4,
+        "dimensions": [
+          3.15,
+          2.05001,
+          1.51086
+        ],
+        "groundOffset": 5e-05
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/service-van-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 21,
+        "meshes": 20,
+        "selectableNamedParts": 20,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 8704,
+        "materials": 1,
+        "dimensions": [
+          3.97907,
+          2.30683,
+          1.87994
+        ],
+        "groundOffset": -0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/shophouse-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 15,
+        "meshes": 12,
+        "selectableNamedParts": 12,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 15212,
+        "materials": 1,
+        "dimensions": [
+          8.0,
+          6.20009,
+          5.21999
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/singapore-cable-car-skyorb-v1.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 63,
+        "meshes": 56,
+        "selectableNamedParts": 56,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 29788,
+        "materials": 4,
+        "dimensions": [
+          2.32267,
+          2.20347,
+          3.42001
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:16"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/skypark-hotel-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 12,
+        "meshes": 9,
+        "selectableNamedParts": 9,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 9620,
+        "materials": 1,
+        "dimensions": [
+          13.0,
+          10.07514,
+          8.50597
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/smooth-coated-otter-v1.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 61,
+        "meshes": 51,
+        "selectableNamedParts": 51,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 17560,
+        "materials": 4,
+        "dimensions": [
+          2.64067,
+          0.89806,
+          1.36369
+        ],
+        "groundOffset": -0.028253
+      },
+      "issues": [],
+      "warnings": [
+        "unapplied-object-scale:21"
+      ],
+      "renders": {}
+    },
+    {
+      "path": "assets/sultan-mosque-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 11,
+        "meshes": 8,
+        "selectableNamedParts": 8,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 13996,
+        "materials": 1,
+        "dimensions": [
+          14.0,
+          10.85015,
+          9.08978
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/supertree-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1068,
+        "materials": 1,
+        "dimensions": [
+          3.88048,
+          3.56009,
+          5.9376
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/technological-university-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 17,
+        "meshes": 4,
+        "selectableNamedParts": 4,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 28904,
+        "materials": 4,
+        "dimensions": [
+          8.4,
+          5.79996,
+          3.23513
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/temple-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1796,
+        "materials": 1,
+        "dimensions": [
+          5.92,
+          4.55988,
+          4.47496
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/wetmarket-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 24,
+        "meshes": 21,
+        "selectableNamedParts": 21,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 31976,
+        "materials": 2,
+        "dimensions": [
+          12.8,
+          9.92014,
+          4.98003
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    },
+    {
+      "path": "assets/wifi-kit-v2.glb",
+      "runtimeReady": true,
+      "componentReady": true,
+      "stats": {
+        "objects": 1,
+        "meshes": 1,
+        "selectableNamedParts": 1,
+        "armatures": 0,
+        "animations": 0,
+        "triangles": 1632,
+        "materials": 1,
+        "dimensions": [
+          2.5,
+          1.80004,
+          1.01996
+        ],
+        "groundOffset": 0.0
+      },
+      "issues": [],
+      "warnings": [],
+      "renders": {}
+    }
+  ]
+}
