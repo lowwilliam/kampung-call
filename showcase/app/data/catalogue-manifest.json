@@ -2615,7 +2615,7 @@
           "intro": "Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
           "gameContext": "Part of Lost Singapore, a research-led series of thirteen procedural reconstructions prepared for close inspection.",
           "singaporeContext": "Opened 1979 at 31 Exeter Road; removed 2024–2025. Singapore's first skyscraper designed to carry rooftop microwave dishes; a visible marker of the national telecommunications build-out.",
-          "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate. 68 meshes, 7 materials, and 1,980 triangles. Draco-compressed for the browser.",
+          "productionStory": "Reference-led procedural Three.js rebuild from six historical and official sources. The 419-mesh model restores the recessed office grid, stepped telecommunications crown, curved entrance, full rooftop space frame and representative parabolic-dish row. Hidden elevations, exact equipment geometry and lifecycle-specific dish placement remain approximate.",
           "inspiration": "Opened 1979 · Removed 2024–2025 · 31 Exeter Road"
         }
       },
@@ -2623,15 +2623,15 @@
         "file": "lost-heritage/comcentre.glb",
         "sourcePath": "assets/lost-heritage/comcentre.glb",
         "publicPath": "/models/lost-heritage/comcentre.glb",
-        "sha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
-        "byteLength": 88960,
+        "sha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
+        "byteLength": 427704,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
         "status": "missing",
         "sourcePath": null,
         "publicPath": null,
-        "sourceModelSha256": "663ec4ee7822fa67cac8a417356bb0607b890e2904f50606f135a459d46e3dde",
+        "sourceModelSha256": "fc9c5cd99d43145da49522c49495290ca32dee295a252a70175e6fac6ab452b2",
         "sha256": null,
         "contentType": null
       },
@@ -2641,7 +2641,7 @@
         "url": null
       },
       "adapters": [],
-      "productionMethod": "unverified",
+      "productionMethod": "Reference-led procedural Three.js reconstruction",
       "provenance": {
         "label": "Lost Singapore reconstruction",
         "detail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate."
@@ -2651,23 +2651,33 @@
           "kind": "history",
           "label": "Read the historical source",
           "url": "https://www.roots.gov.sg/places/places-landing/Places/surveyed-sites/Comcentre"
+        },
+        {
+          "kind": "model-reference",
+          "label": "Singtel — Comcentre redevelopment",
+          "url": "https://www.singtel.com/about-us/media-centre/news-releases/singtel-to-redevelop-comcentre-headquarters--into-next-generatio"
+        },
+        {
+          "kind": "model-reference",
+          "label": "The Straits Times / Singtel — historical Comcentre feature",
+          "url": "https://www.straitstimes.com/singapore/singtel-how-singapore-built-connected-city-smart-nation"
         }
       ],
-      "evidenceStatus": "unreviewed",
+      "evidenceStatus": "mixed",
       "metrics": {
-        "triangles": 1980,
-        "materials": 7,
-        "meshCount": 68,
+        "triangles": 11544,
+        "materials": 4,
+        "meshCount": 419,
         "compressed": true,
         "dimensions": {
-          "width": 13,
-          "height": 25.770000030100345,
-          "depth": 9.600000047683716
+          "width": 17,
+          "height": 31.894999987185,
+          "depth": 12.5
         }
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": null
+        "lastReviewedAt": "2026-08-15T03:00:00.000Z"
       },
       "rights": {
         "subjectType": "unreviewed",

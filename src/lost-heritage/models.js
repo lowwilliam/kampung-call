@@ -10,11 +10,13 @@ function materials(palette) {
   const secondary = make(palette[1]);
   const dark = make(palette[2], 0.48);
   const accent = make(palette[3], 0.66);
+  const highlight = accent;
   return {
     primary,
     secondary,
     dark,
     accent,
+    highlight,
     extra: primary,
     glass: dark,
     metal: dark,
@@ -53,6 +55,30 @@ function box(group, size, material, position, rotation, name) {
 
 function cylinder(group, radius, height, material, position, segments = 24, rotation = [0, 0, 0], name = 'cylinder') {
   return addMesh(group, new THREE.CylinderGeometry(radius, radius, height, segments), material, position, rotation, [1, 1, 1], name);
+}
+
+function beamBetween(group, start, end, radius, material, name = 'beam', segments = 6) {
+  const a = new THREE.Vector3(...start); const b = new THREE.Vector3(...end);
+  const direction = b.clone().sub(a); const length = direction.length();
+  const beam = addMesh(group, new THREE.CylinderGeometry(radius, radius, length, segments), material,
+    a.clone().add(b).multiplyScalar(.5).toArray(), undefined, [1, 1, 1], name);
+  beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.normalize());
+  return beam;
+}
+
+function parabolicDish(group, radius, depth, material, position, name = 'dish') {
+  const profile = [];
+  for (let step = 0; step <= 8; step += 1) {
+    const ratio = step / 8;
+    profile.push(new THREE.Vector2(radius * ratio, depth * ratio * ratio));
+  }
+  const [x, y, z] = position;
+  const bowl = addMesh(group, new THREE.LatheGeometry(profile, 24), material, position, [PI / 2, 0, 0], [1, 1, 1], `${name}-bowl`);
+  bowl.material.side = THREE.DoubleSide;
+  addMesh(group, new THREE.TorusGeometry(radius, .035, 6, 24), material, [x, y, z + depth], undefined, [1, 1, 1], `${name}-rim`);
+  beamBetween(group, [x, y, z + depth * .15], [x, y, z + depth + .28], .025, material, `${name}-feed-arm`, 6);
+  addMesh(group, new THREE.SphereGeometry(.08, 8, 6), material, [x, y, z + depth + .28], undefined, [1, 1, 1], `${name}-feed-horn`);
+  return bowl;
 }
 
 function taperedCylinder(group, top, bottom, height, material, position, segments = 16, rotation = [0, 0, 0], name = 'tapered') {
@@ -97,6 +123,7 @@ function pixelText(group, text, origin, cell, material, name = 'lettering', mirr
     G: ['01110', '10001', '10000', '10111', '10001', '10001', '01110'],
     H: ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
     I: ['11111', '00100', '00100', '00100', '00100', '00100', '11111'],
+    L: ['10000', '10000', '10000', '10000', '10000', '10000', '11111'],
     M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
     N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
     O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
@@ -242,39 +269,108 @@ function rootFor(id) {
 function comcentre(meta) {
   const root = rootFor(meta.id); const m = materials(meta.palette);
   const frame = component(root, 'tower-frame');
-  box(frame, [7.4, 22, 0.42], m.primary, [0, 11, 0], undefined, 'rear-slab');
-  box(frame, [0.55, 23.2, 2.8], m.primary, [-3.45, 11.6, 0.2], undefined, 'left-frame');
-  box(frame, [0.55, 23.2, 2.8], m.primary, [3.45, 11.6, 0.2], undefined, 'right-frame');
-  const glazing = component(root, 'window-ribbons');
-  for (let floor = 0; floor < 31; floor += 1) {
-    box(glazing, [6.3, 0.34, 0.16], floor % 2 ? m.glass : m.dark, [0, 1.2 + floor * 0.64, 1.5], undefined, `ribbon-${floor + 1}`);
-  }
-  const rearGlazing = component(root, 'rear-window-ribbons');
-  for (let floor = 0; floor < 16; floor += 1) {
-    const y = 1.5 + floor * 1.22;
-    box(rearGlazing, [5.1, .42, .16], floor % 2 ? m.glass : m.dark,
-      [0, y, -1.94], undefined, `rear-ribbon-${floor + 1}`);
-  }
+  box(frame, [9.8, 27.4, 4.8], m.primary, [0, 13.7, 0], undefined, 'tower-slab');
+
   const cores = component(root, 'service-cores');
-  box(cores, [1.1, 21, 3.5], m.secondary, [-3.05, 10.6, -0.15], undefined, 'east-core');
-  box(cores, [1.1, 21, 3.5], m.secondary, [3.05, 10.6, -0.15], undefined, 'west-core');
+  box(cores, [1.15, 27.6, 5.2], m.secondary, [-4.35, 13.8, 0], undefined, 'east-core');
+  box(cores, [1.15, 27.6, 5.2], m.secondary, [4.35, 13.8, 0], undefined, 'west-core');
+  for (const side of [-1, 1]) {
+    repeatedBoxes(cores, 6, [.055, 24.8, .1], m.primary, [side * 4.8, 13.1, -1.8], [0, 0, .72], `core-panel-joint-${side}`);
+    box(cores, [.13, 19.4, .42], m.dark, [side * 4.96, 13.1, 1.42], undefined, `core-service-reveal-${side}`);
+    repeatedBoxes(cores, 7, [.04, .045, 4.55], m.primary, [side * 4.945, 4.2, 0], [0, 3.25, 0], `core-horizontal-joint-${side}`);
+  }
+
+  const glazing = component(root, 'window-ribbons');
+  for (let floor = 0; floor < 25; floor += 1) {
+    const y = 3.55 + floor * .61;
+    box(glazing, [7.25, .36, .14], m.glass, [0, y, 2.48], undefined, `office-glazing-${floor + 1}`);
+    box(glazing, [7.25, .1, .18], m.secondary, [0, y - .245, 2.5], undefined, `office-spandrel-${floor + 1}`);
+  }
   const mullions = component(root, 'vertical-mullions');
-  repeatedBoxes(mullions, 11, [0.08, 19.8, 0.18], m.metal, [-2.75, 10.9, 1.62], [0.55, 0, 0], 'mullion');
-  const podium = component(root, 'equipment-podium');
-  box(podium, [10.5, 3.6, 5.4], m.secondary, [0, 1.8, -4.2], undefined, 'podium-mass');
-  repeatedBoxes(podium, 12, [0.62, 0.12, 0.16], m.dark, [-4.45, 2.25, -1.45], [0.8, 0, 0], 'podium-louvre');
-  repeatedBoxes(podium, 5, [1.25, 1.65, .18], m.dark, [-3.6, .9, -6.94], [1.8, 0, 0], 'rear-loading-bay');
-  box(podium, [9.6, .24, 1.0], m.primary, [0, 2.7, -7.02], undefined, 'rear-service-canopy');
-  const crown = component(root, 'roof-crown');
-  box(crown, [7.3, 2.1, 3.1], m.primary, [0, 22.8, 0.1], undefined, 'telecom-crown');
-  const dishes = component(root, 'microwave-dishes');
-  [[-1.8,24.6,0],[0,25,0.2],[1.8,24.55,-0.1]].forEach(([x,y,z], i) => {
-    const dish = addMesh(dishes, new THREE.SphereGeometry(0.8 - i * 0.08, 20, 10, 0, PI * 2, 0, PI / 2), m.white, [x,y,z], [PI / 2, i * .4, 0], [1, .34, 1], `dish-${i+1}`);
-    dish.castShadow = true;
-    cylinder(dishes, .08, 1.1, m.metal, [x, y - .7, z], 8, undefined, `dish-mast-${i+1}`);
+  repeatedBoxes(mullions, 9, [.075, 15.25, .2], m.secondary, [-3.6, 10.65, 2.55], [.9, 0, 0], 'office-mullion');
+
+  const rearGlazing = component(root, 'rear-window-ribbons');
+  for (let floor = 0; floor < 21; floor += 1) {
+    const y = 3.75 + floor * .7;
+    box(rearGlazing, [6.8, .34, .14], m.glass, [0, y, -2.48], undefined, `rear-ribbon-${floor + 1}`);
+  }
+  repeatedBoxes(rearGlazing, 7, [.07, 14.2, .18], m.secondary, [-3.0, 10.5, -2.55], [1, 0, 0], 'rear-mullion');
+
+  const crown = component(root, 'stepped-telecom-crown');
+  box(crown, [9.65, 8.3, 5.0], m.primary, [0, 23.2, 0], undefined, 'solid-crown');
+  box(crown, [5.9, .32, .15], m.dark, [0, 26.35, 2.54], undefined, 'upper-vent-slit');
+  box(crown, [6.7, .68, .16], m.glass, [0, 23.55, 2.55], undefined, 'executive-window-band');
+  box(crown, [6.55, .42, .17], m.dark, [0, 22.55, 2.56], undefined, 'recessed-shadow-band');
+  box(crown, [7.5, .2, 1.7], m.secondary, [0, 21.67, 2.86], [-.35, 0, 0], 'sloped-terrace-canopy');
+  box(crown, [7.35, 1.15, .3], m.primary, [0, 21.05, 2.63], undefined, 'terrace-parapet');
+  repeatedBoxes(crown, 17, [.18, .68, .14], m.dark, [-3.2, 20.98, 2.81], [.4, 0, 0], 'terrace-slot');
+
+  const wordmark = component(root, 'singtel-wordmark');
+  pixelText(wordmark, 'SINGTEL', [-2.05, 25.35, 2.61], .1, m.dark, 'singtel');
+  [[-.72,25.91,.07],[-.38,26.04,.09],[0,26.1,.11],[.4,26.02,.13],[.78,25.84,.16]].forEach(([x,y,r], index) => {
+    addMesh(wordmark, new THREE.SphereGeometry(r, 10, 8), m.highlight, [x, y, 2.63], undefined, [1, 1, .32], `signal-dot-${index + 1}`);
   });
+
+  const podium = component(root, 'five-storey-equipment-podium');
+  box(podium, [5.4, 4.9, 8.3], m.secondary, [-5.65, 2.45, 1.2], undefined, 'west-podium-wing');
+  box(podium, [5.4, 4.9, 8.3], m.secondary, [5.65, 2.45, 1.2], undefined, 'east-podium-wing');
+  box(podium, [5.9, 4.45, 5.1], m.primary, [0, 2.23, 1.0], undefined, 'central-podium-link');
+  for (const side of [-1, 1]) {
+    for (let floor = 0; floor < 3; floor += 1) {
+      box(podium, [4.7, .33, .16], m.dark, [side * 5.65, 1.2 + floor * 1.18, 5.42], undefined, `podium-ribbon-${side}-${floor + 1}`);
+      box(podium, [.16, .33, 5.9], m.dark, [side * 8.37, 1.2 + floor * 1.18, 1.65], undefined, `podium-side-ribbon-${side}-${floor + 1}`);
+    }
+  }
+  repeatedBoxes(podium, 8, [.72, 1.7, .16], m.dark, [-3.45, .95, -3.03], [.98, 0, 0], 'rear-loading-bay');
+  box(podium, [9.2, .24, 1.15], m.primary, [0, 3.1, -3.15], undefined, 'rear-service-canopy');
+
+  const entrance = component(root, 'glazed-entrance-rotunda');
+  addMesh(entrance, new THREE.CylinderGeometry(2.7, 2.7, 4.5, 32), m.glass, [0, 2.25, 4.35], undefined, [1, 1, .62], 'curved-glass-lobby');
+  for (let index = -4; index <= 4; index += 1) {
+    const angle = index * .18;
+    const x = Math.sin(angle) * 2.72;
+    const z = 4.35 + Math.cos(angle) * 1.7;
+    cylinder(entrance, .04, 4.55, m.secondary, [x, 2.27, z], 6, undefined, `lobby-mullion-${index + 5}`);
+  }
+  box(entrance, [6.6, .22, 1.8], m.primary, [0, 4.55, 5.45], undefined, 'entry-canopy');
+  box(entrance, [2.8, 2.35, .16], m.dark, [0, 1.18, 6.03], undefined, 'entry-door');
+
+  const roofFrame = component(root, 'rooftop-space-frame');
+  const frameBase = 27.45; const frameTop = 31.05; const frameWidth = 9.8; const frameDepth = 3.8; const bays = 12;
+  for (const z of [-frameDepth / 2, frameDepth / 2]) {
+    for (let bay = 0; bay <= bays; bay += 1) {
+      const x = -frameWidth / 2 + frameWidth * bay / bays;
+      beamBetween(roofFrame, [x, frameBase, z], [x, frameTop, z], .035, m.secondary, `upright-${z}-${bay}`);
+    }
+    for (const y of [frameBase, (frameBase + frameTop) / 2, frameTop]) {
+      beamBetween(roofFrame, [-frameWidth / 2, y, z], [frameWidth / 2, y, z], .045, m.secondary, `rail-${z}-${y}`);
+    }
+    for (let bay = 0; bay < bays; bay += 1) {
+      const x0 = -frameWidth / 2 + frameWidth * bay / bays;
+      const x1 = -frameWidth / 2 + frameWidth * (bay + 1) / bays;
+      beamBetween(roofFrame, [x0, frameBase, z], [x1, frameTop, z], .025, m.secondary, `diagonal-a-${z}-${bay}`);
+      beamBetween(roofFrame, [x1, frameBase, z], [x0, frameTop, z], .025, m.secondary, `diagonal-b-${z}-${bay}`);
+    }
+  }
+  for (let bay = 0; bay <= bays; bay += 2) {
+    const x = -frameWidth / 2 + frameWidth * bay / bays;
+    for (const y of [frameBase, (frameBase + frameTop) / 2, frameTop]) {
+      beamBetween(roofFrame, [x, y, -frameDepth / 2], [x, y, frameDepth / 2], .03, m.secondary, `depth-tie-${bay}-${y}`);
+    }
+  }
+
+  const dishes = component(root, 'microwave-dishes');
+  const dishMaterial = m.secondary; dishMaterial.side = THREE.DoubleSide;
+  [-3.75, -2.25, -.75, .75, 2.25, 3.75].forEach((x, index) => {
+    const y = 31.25 + (index % 2) * .08;
+    const radius = index === 2 || index === 3 ? .48 : .42;
+    beamBetween(dishes, [x, frameTop, .25], [x, y - .12, .25], .045, m.secondary, `dish-mast-${index + 1}`);
+    parabolicDish(dishes, radius, .18, dishMaterial, [x, y, .2], `dish-${index + 1}`);
+  });
+
   const plaza = component(root, 'entrance-plaza');
-  box(plaza, [13, .2, 9], m.extra, [0, .05, -1.8], undefined, 'plaza');
+  box(plaza, [17, .2, 12.5], m.extra, [0, .05, 1.25], undefined, 'plaza');
+  box(plaza, [7.2, .16, 2.2], m.secondary, [0, .16, 6.1], undefined, 'arrival-terrace');
   return finalize(root, meta);
 }
 

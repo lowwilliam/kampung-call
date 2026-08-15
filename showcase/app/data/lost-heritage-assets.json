@@ -15,16 +15,16 @@
     "featured": true,
     "provenance": "Lost Singapore reconstruction",
     "provenanceDetail": "Visible elevations are reference-led. Hidden elevations, interiors, inaccessible dimensions, and altered late-life conditions are inferred and must remain labelled approximate.",
-    "productionStory": "Procedurally assembled from 11 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
+    "productionStory": "Procedurally assembled from 13 documented form and detail cues. Hidden elevations, inaccessible dimensions and altered late-life conditions remain explicitly approximate.",
     "metrics": {
-      "triangles": 2244,
-      "materials": 3,
-      "meshCount": 90,
+      "triangles": 11544,
+      "materials": 4,
+      "meshCount": 419,
       "compressed": true,
       "dimensions": {
-        "width": 13,
-        "height": 25.993545161127535,
-        "depth": 10.219999999999999
+        "width": 17,
+        "height": 31.894999987185,
+        "depth": 12.5
       }
     }
   },
