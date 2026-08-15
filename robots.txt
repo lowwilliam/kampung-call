@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# A concise, agent-readable map of this site is available at /llms.txt.
