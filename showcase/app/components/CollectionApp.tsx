@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { AssetCategory } from "../data/game-assets";
 import { rememberCollectionPosition } from "./CollectionBackLink";
-import { CollectionGlobe } from "./CollectionGlobe";
 import { ModelViewer } from "./ModelViewer";
 
 type CatalogueSort = "curated" | "alphabetical";
@@ -66,6 +65,44 @@ function AssetCard({
   );
 }
 
+function HeroAssetMarquee({ assets }: { assets: readonly CatalogueCardAsset[] }) {
+  const previewAssets = assets.filter((asset) => asset.cardPreviewUrl).slice(0, 10);
+
+  const renderSequence = (duplicate = false) => (
+    <div className="hero-asset-sequence" aria-hidden={duplicate || undefined}>
+      {previewAssets.map((asset) => (
+        <a
+          className="hero-asset-tile"
+          data-category={asset.category}
+          href={`/asset/${asset.slug}`}
+          key={`${duplicate ? "duplicate-" : ""}${asset.id}`}
+          tabIndex={duplicate ? -1 : undefined}
+          aria-label={duplicate ? undefined : `View ${asset.name}`}
+        >
+          <img src={asset.cardPreviewUrl} alt="" loading="eager" />
+          <span>{String(asset.curatedOrder).padStart(2, "0")}</span>
+          <strong>{asset.name}</strong>
+        </a>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="hero-assets" aria-label="A moving selection from the collection">
+      <div className="hero-assets-heading">
+        <span>Selected objects</span>
+        <a href="#catalogue">Explore all {assets.length} ↓</a>
+      </div>
+      <div className="hero-assets-window">
+        <div className="hero-assets-track">
+          {renderSequence()}
+          {renderSequence(true)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function CollectionApp({
   assets,
   categories,
@@ -107,6 +144,7 @@ export function CollectionApp({
       <header className="site-header">
         <a href="/" className="wordmark"><span>3D</span><strong>Kampung 3D Collection</strong></a>
         <nav aria-label="Primary navigation">
+          <a className="cli-link" href="/cli">CLI + MCP guide</a>
           <a className="play-link" href="https://kampung-call.vercel.app" target="_blank" rel="noreferrer">Play Kampung Call ↗</a>
         </nav>
       </header>
@@ -118,7 +156,7 @@ export function CollectionApp({
             <h1 id="collection-title">Kampung 3D<br /><em>Collection</em></h1>
           </div>
           <div className="intro-side">
-            <CollectionGlobe />
+            <HeroAssetMarquee assets={assets} />
             <div className="intro-note">
               <strong>{assets.length}</strong>
               <p>Curated objects, places and people from Singapore, each with a stable record and inspectable story.</p>
@@ -131,7 +169,7 @@ export function CollectionApp({
           sponsored, endorsed or affiliated with the organisations or landmark owners referenced in the catalogue.
         </p>
 
-        <section className="catalogue-controls" aria-label="Collection controls">
+        <section className="catalogue-controls" id="catalogue" aria-label="Collection controls">
           <div className="catalogue-toolbar">
             <label className="search-box">
               <span>Search</span>
