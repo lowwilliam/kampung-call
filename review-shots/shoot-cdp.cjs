@@ -27,9 +27,12 @@ async function getTargetWs() {
 }
 
 (async () => {
+  const graphicsArgs = process.platform === "darwin"
+    ? ["--use-angle=metal"]
+    : ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--disable-dev-shm-usage", "--no-sandbox"];
   const chrome = spawn(CHROME, [
     "--headless=new", `--remote-debugging-port=${PORT}`,
-    "--window-size=1440,900", "--use-angle=metal", "--mute-audio",
+    "--window-size=1440,900", "--mute-audio", ...graphicsArgs,
     "--user-data-dir=/tmp/kc-chrome-profile-" + Date.now(),
     "about:blank",
   ], { stdio: "ignore" });
@@ -63,10 +66,19 @@ async function getTargetWs() {
   await send("Runtime.enable");
   await send("Page.navigate", { url: GAME_URL });
   log("navigated");
-  await sleep(14000); // GLB load + title world settle
   if (VERIFY_ONLY) {
-    const state = await evaluate("JSON.stringify({assets:window.__assetLoadAudit||null,footprints:window.__buildingFootprintAudit||null,visibility:window.__visibilityAudit||null,config:window.__visibilityConfigAudit||null,buildings:window.__buildingSpacingAudit||null,route:window.__routeClearanceAudit||null,npcHomes:window.__npcPlacementAudit||null,npcLive:window.__npcSeparationAudit||null,vendor:window.__vendorAssetAudit||null})");
-    const value = state.result && state.result.result && state.result.result.value;
+    const auditExpression = "JSON.stringify({assets:window.__assetLoadAudit||null,footprints:window.__buildingFootprintAudit||null,visibility:window.__visibilityAudit||null,config:window.__visibilityConfigAudit||null,buildings:window.__buildingSpacingAudit||null,route:window.__routeClearanceAudit||null,npcHomes:window.__npcPlacementAudit||null,npcLive:window.__npcSeparationAudit||null,vendor:window.__vendorAssetAudit||null})";
+    let value;
+    for (let attempt = 0; attempt < 80; attempt += 1) {
+      const state = await evaluate(auditExpression);
+      value = state.result && state.result.result && state.result.result.value;
+      const current = JSON.parse(value || "{}");
+      const assetsSettled = current.assets
+        && current.assets.loaded + current.assets.failed + current.assets.fallbackActive >= current.assets.requested;
+      if (assetsSettled && current.footprints && current.visibility && current.config && current.buildings
+        && current.route && current.npcHomes && current.npcLive && current.vendor) break;
+      await sleep(500);
+    }
     log("VERIFY " + value);
     const parsed = JSON.parse(value || "{}");
     const clean = parsed.assets && parsed.assets.failed === 0 && parsed.footprints && parsed.footprints.failures?.length === 0
@@ -81,6 +93,7 @@ async function getTargetWs() {
     log("VERIFY PASS");
     process.exit(0);
   }
+  await sleep(14000); // GLB load + title world settle
   await shot("cur_title.png");
 
   await evaluate("document.getElementById('begin') && document.getElementById('begin').click()");
