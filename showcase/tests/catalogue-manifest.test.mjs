@@ -40,6 +40,22 @@ test("catalogue validator accepts the checked-in draft without integrity drift",
   assert.match(result.stdout, /74 draft records validated/);
 });
 
+test("release readiness reports grouped blockers without weakening the production gate", () => {
+  const result = spawnSync(process.execPath, ["scripts/catalogue-release-readiness.mjs", "--json"], {
+    cwd: new URL(siteRoot).pathname,
+    encoding: "utf8",
+  });
+  assert.equal(result.status, 1);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.ready, false);
+  assert.equal(report.releaseId, manifest.release.id);
+  assert.match(report.manifestSha256, /^[a-f0-9]{64}$/);
+  assert.ok(report.blockers.some((blocker) => blocker.code === "display-clearance"));
+  assert.equal(report.blockers.find((blocker) => blocker.code === "source-media")?.count, 74);
+  assert.equal(report.blockers.find((blocker) => blocker.code === "person-release")?.count, 69);
+  assert.ok(report.blockers.every((blocker) => blocker.owner && blocker.description));
+});
+
 test("runtime catalogue is derived from the Manifest instead of parallel seed arrays", async () => {
   const source = await readFile(new URL("app/data/game-assets.ts", siteRoot), "utf8");
   const collectionSource = await readFile(new URL("app/components/CollectionApp.tsx", siteRoot), "utf8");

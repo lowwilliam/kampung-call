@@ -21,9 +21,27 @@ npm run dev
 
 ```bash
 npm test
+npm run catalogue:readiness
 ```
 
 Run the focused CLI and MCP protocol tests with `npm run test:tooling`.
+
+`catalogue:readiness` groups the production blockers by accountable review
+instead of treating repeated per-asset messages as separate projects. For the
+complete asset lists, run `npm run catalogue:readiness -- --json`.
+
+Card previews are generated deterministically from the current manifested GLBs:
+
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+  --python ../scripts/blender/render-catalogue-card-previews.py
+npm run catalogue:accept-previews
+npm run catalogue:accept-previews -- --write
+```
+
+The first acceptance command verifies that all 74 images exist. Use `--write`
+only after reviewing the complete set; it binds each accepted image to the
+current model checksum and keeps the publication record in draft.
 
 ## Required hosted secrets
 

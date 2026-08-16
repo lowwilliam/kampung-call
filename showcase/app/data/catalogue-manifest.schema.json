@@ -159,7 +159,7 @@
             "additionalProperties": false,
             "required": ["kind", "label", "url"],
             "properties": {
-              "kind": { "enum": ["history", "model-reference", "rights"] },
+              "kind": { "enum": ["history", "design-reference", "image-reference", "model-reference", "rights"] },
               "label": { "type": "string", "minLength": 1 },
               "url": { "type": "string", "format": "uri" }
             }

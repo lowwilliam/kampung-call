@@ -15,7 +15,7 @@ export type ClearanceStatus = "pending" | "cleared" | "blocked" | "legal-review"
 export type DownloadStatus = Exclude<ClearanceStatus, "pending">;
 
 type CatalogueSource = {
-  kind: "history" | "model-reference" | "rights";
+  kind: "history" | "design-reference" | "image-reference" | "model-reference" | "rights";
   label: string;
   url: string;
 };

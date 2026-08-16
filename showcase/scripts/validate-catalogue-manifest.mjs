@@ -41,6 +41,14 @@ function evidenceHash(value) {
   return typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 }
 
+function unresolvedStatus(value) {
+  return typeof value !== "string" || /(?:^|[-_])(unreviewed|pending|unknown)(?:$|[-_])/i.test(value);
+}
+
+function evidenceRefsComplete(value) {
+  return Array.isArray(value) && value.length > 0 && value.every((entry) => entry?.id && evidenceHash(entry?.hash));
+}
+
 if (manifest.schemaVersion !== 1) fail("schemaVersion must be 1");
 if (manifest.release?.catalogueSize !== 74) fail("release.catalogueSize must be 74");
 if (manifest.release?.catalogueSize !== manifest.assets?.length) fail("release.catalogueSize must match assets.length");
@@ -128,9 +136,19 @@ for (const [index, asset] of (manifest.assets ?? []).entries()) {
     if (asset.publication?.status !== "published" || !validDate(asset.publication?.lastReviewedAt)) {
       fail(`${ref}: release requires published status and last review date`);
     }
-    if (asset.rights?.ownership?.status === "unreviewed") fail(`${ref}: ownership is unreviewed`);
-    if (asset.rights?.sourceMedia?.status === "unreviewed") fail(`${ref}: source-media rights are unreviewed`);
-    if (asset.rights?.subjectType === "unreviewed") fail(`${ref}: subject type is unreviewed`);
+    if (unresolvedStatus(asset.rights?.ownership?.status) || !evidenceRefsComplete(asset.rights?.ownership?.evidenceRefs)) {
+      fail(`${ref}: ownership review or evidence is incomplete`);
+    }
+    if (unresolvedStatus(asset.rights?.sourceMedia?.status) || !evidenceRefsComplete(asset.rights?.sourceMedia?.evidenceRefs)) {
+      fail(`${ref}: source-media review or evidence is incomplete`);
+    }
+    if (unresolvedStatus(asset.rights?.subjectType)) fail(`${ref}: subject classification is incomplete`);
+    if (asset.rights?.personRelease?.required === null || unresolvedStatus(asset.rights?.personRelease?.status)) {
+      fail(`${ref}: person-release review is incomplete`);
+    }
+    if (asset.rights?.personRelease?.required === true && !evidenceRefsComplete(asset.rights?.personRelease?.evidenceRefs)) {
+      fail(`${ref}: required person-release evidence is incomplete`);
+    }
     if (asset.rights?.display?.status !== "cleared") fail(`${ref}: Display Clearance is not cleared`);
     if (!asset.rights?.display?.reviewedBy || !validDate(asset.rights?.display?.reviewedAt) || !evidenceHash(asset.rights?.display?.evidenceHash)) {
       fail(`${ref}: Display Clearance evidence is incomplete`);
