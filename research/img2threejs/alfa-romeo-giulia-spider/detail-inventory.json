@@ -1,0 +1,443 @@
+{
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/references/front-three-quarter.jpg",
+  "zonesDir": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/detail-inventory",
+  "detailInventory": {
+    "scanMethod": "multi-view visual zones + grid-4x4 primary view",
+    "targetMinDetails": 24,
+    "details": [
+      {
+        "id": "alfa-shield-grille",
+        "kind": "cutout",
+        "description": "Triangular chrome shield grille with inset vertical and horizontal bars",
+        "region": {
+          "x": 0,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-grille"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "twin-front-intakes",
+        "kind": "recess",
+        "description": "Two black horizontal intake voids bounded by chrome rails",
+        "region": {
+          "x": 0.25,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-grille"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "round-headlamps",
+        "kind": "lens",
+        "description": "Large circular glass headlamps in chrome bezels at fender noses",
+        "region": {
+          "x": 0.5,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "material",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-lighting"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "front-overriders",
+        "kind": "raised-relief",
+        "description": "Paired vertical chrome bumper overriders with rounded caps",
+        "region": {
+          "x": 0.75,
+          "y": 0,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-bumper"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "hood-spear",
+        "kind": "raised-relief",
+        "description": "Tapered chrome spear centered along the hood crown",
+        "region": {
+          "x": 0,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "hood"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "hood-perimeter-seam",
+        "kind": "seam",
+        "description": "Narrow recessed gap tracing the separate hood panel",
+        "region": {
+          "x": 0.25,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "shadow",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "hood"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "alfa-crest",
+        "kind": "decal",
+        "description": "Round Alfa crest at the shield grille crown",
+        "region": {
+          "x": 0.5,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "albedo",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-grille"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "split-windshield-frame",
+        "kind": "trim",
+        "description": "Low two-pane windshield with polished perimeter and center divider",
+        "region": {
+          "x": 0.75,
+          "y": 0.25,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "windshield"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "paired-wipers",
+        "kind": "fastener",
+        "description": "Two thin chrome wiper arms resting at the windshield base",
+        "region": {
+          "x": 0,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "windshield"
+        },
+        "evidenceRef": "references/front-close.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "body-clearcoat",
+        "kind": "gloss",
+        "description": "Near-black paint with sharp clearcoat reflections over a dark base",
+        "region": {
+          "x": 0.25,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "roughness",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "body-clearcoat"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "chrome-brightwork",
+        "kind": "gloss",
+        "description": "Polished bumpers, grille, trim and handles with sharp highlights",
+        "region": {
+          "x": 0.5,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "roughness",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "chrome-brightwork"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "wheel-vent-holes",
+        "kind": "cutout",
+        "description": "Repeated circular ventilation holes around each steel wheel face",
+        "region": {
+          "x": 0.75,
+          "y": 0.5,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "shadow",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-wheel-left"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "polished-hubcaps",
+        "kind": "raised-relief",
+        "description": "Domed bright center caps on silver steel wheels",
+        "region": {
+          "x": 0,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-wheel-left"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "tire-tread",
+        "kind": "repetition",
+        "description": "Circumferential tread blocks on four black rubber tires",
+        "region": {
+          "x": 0.25,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "normal",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "front-wheel-left"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "door-panel-seams",
+        "kind": "seam",
+        "description": "Separate side-hinged doors with narrow perimeter gaps",
+        "region": {
+          "x": 0.5,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "shadow",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "left-door"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "door-handles",
+        "kind": "fastener",
+        "description": "Horizontal polished pull handles with round lock cylinders",
+        "region": {
+          "x": 0.75,
+          "y": 0.75,
+          "width": 0.25,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "left-door"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "beltline-trim",
+        "kind": "trim",
+        "description": "Thin chrome strip running along the upper body sides",
+        "region": null,
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "body-shell"
+        },
+        "evidenceRef": "references/front-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "oxblood-seats",
+        "kind": "gloss",
+        "description": "Red leather/vinyl bucket seats with moderate sheen and rounded bolsters",
+        "region": null,
+        "scale": "meso",
+        "affects": "roughness",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "oxblood-seats"
+        },
+        "evidenceRef": "references/cabin-right.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "seat-pleats",
+        "kind": "linework",
+        "description": "Repeated horizontal pleats across both bucket-seat cushions",
+        "region": null,
+        "scale": "micro",
+        "affects": "normal",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "cockpit"
+        },
+        "evidenceRef": "references/cabin-right.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "three-gauge-cluster",
+        "kind": "repetition",
+        "description": "Three circular black gauges with chrome bezels behind the steering wheel",
+        "region": null,
+        "scale": "micro",
+        "affects": "specular",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "dashboard"
+        },
+        "evidenceRef": "references/cabin-right.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "three-spoke-wheel",
+        "kind": "cutout",
+        "description": "Black steering rim with three brushed-metal slotted spokes",
+        "region": null,
+        "scale": "meso",
+        "affects": "silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "steering-system"
+        },
+        "evidenceRef": "references/cabin-right.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "rear-tail-lamps",
+        "kind": "lens",
+        "description": "Vertical amber and red rear lamp stacks in chrome housings",
+        "region": null,
+        "scale": "meso",
+        "affects": "albedo",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "rear-lighting"
+        },
+        "evidenceRef": "references/cabin-right.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "rear-bumper-overriders",
+        "kind": "raised-relief",
+        "description": "Rear chrome blade bumper with paired vertical overriders",
+        "region": null,
+        "scale": "meso",
+        "affects": "silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "rear-bumper"
+        },
+        "evidenceRef": "references/rear-three-quarter.jpg",
+        "confidence": 0.9
+      },
+      {
+        "id": "exhaust-tip",
+        "kind": "tube",
+        "description": "Single dark circular exhaust outlet under the left rear",
+        "region": null,
+        "scale": "micro",
+        "affects": "shadow",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "exhaust"
+        },
+        "evidenceRef": "references/rear-three-quarter.jpg",
+        "confidence": 0.78
+      }
+    ]
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}

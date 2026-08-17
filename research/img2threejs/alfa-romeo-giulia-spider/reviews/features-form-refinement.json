@@ -1,0 +1,6 @@
+[
+  {"id":"roadster-proportion-system","score":0.80,"visible":true,"notes":"Fender shells now expose wheel faces and windshield rake matches the source direction."},
+  {"id":"alfa-front-identity","score":0.81,"visible":true,"notes":"Lamp faces moved forward and grille negative spaces remain legible."},
+  {"id":"wheel-system-detail","score":0.73,"visible":true,"notes":"Wheel stacks retain real depth at orbit views; tire tread is intentionally simplified."},
+  {"id":"rear-identity-system","score":0.71,"visible":true,"notes":"Rounded tail and bumper read, while rear lamp housings and haunch taper remain approximate."}
+]

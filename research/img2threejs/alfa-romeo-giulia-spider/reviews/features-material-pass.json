@@ -1,0 +1,6 @@
+[
+  {"id":"alfa-front-identity","score":0.82,"visible":true,"notes":"Chrome grille/lamp separation and black intake voids survive studio lighting."},
+  {"id":"open-cockpit-system","score":0.80,"visible":true,"notes":"Oxblood upholstery, matte dashboard and glass remain distinct from black paint."},
+  {"id":"chrome-brightwork-system","score":0.80,"visible":true,"notes":"Chrome has a sharper, brighter response than the clear-coated black body."},
+  {"id":"rear-identity-system","score":0.73,"visible":true,"notes":"Red/amber lamps and chrome rear bumper separate; exact lens ribbing is omitted."}
+]
