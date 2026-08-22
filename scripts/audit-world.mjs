@@ -134,7 +134,9 @@ async function inspect(entry) {
     compressed: Boolean(json.extensionsUsed?.includes('KHR_draco_mesh_compression') || json.extensionsRequired?.includes('KHR_draco_mesh_compression')),
     kind,
     budget,
-    materialBudget: entry.catalogueOnly ? 8 : 4,
+    // Standalone page components (catalogue-only and experience-only) are
+    // not world-instantiated props, so they carry the relaxed family budget.
+    materialBudget: entry.catalogueOnly || entry.experienceOnly ? 8 : 4,
     overBudget: triangles > budget,
   };
 }

@@ -1,0 +1,2402 @@
+[
+ {
+  "view": "airport-terminal-v2__front.png",
+  "holePx": 1087,
+  "blackShare": 0.0,
+  "greyShare": 0.2677,
+  "colorfulness": 0.1924,
+  "modelPx": 35165
+ },
+ {
+  "view": "airport-terminal-v2__side.png",
+  "holePx": 484,
+  "blackShare": 0.0,
+  "greyShare": 0.3566,
+  "colorfulness": 0.0862,
+  "modelPx": 28915
+ },
+ {
+  "view": "airport-terminal-v2__three-quarter.png",
+  "holePx": 1827,
+  "blackShare": 0.0,
+  "greyShare": 0.2214,
+  "colorfulness": 0.1788,
+  "modelPx": 31727
+ },
+ {
+  "view": "airport-terminal-v2__top.png",
+  "holePx": 316,
+  "blackShare": 0.0,
+  "greyShare": 0.7238,
+  "colorfulness": 0.0882,
+  "modelPx": 17389
+ },
+ {
+  "view": "alfa-romeo-giulia-spider-v2__front.png",
+  "holePx": 852,
+  "blackShare": 0.0,
+  "greyShare": 0.356,
+  "colorfulness": 0.0476,
+  "modelPx": 47364
+ },
+ {
+  "view": "alfa-romeo-giulia-spider-v2__side.png",
+  "holePx": 1735,
+  "blackShare": 0.0,
+  "greyShare": 0.5764,
+  "colorfulness": 0.0435,
+  "modelPx": 34779
+ },
+ {
+  "view": "alfa-romeo-giulia-spider-v2__three-quarter.png",
+  "holePx": 3896,
+  "blackShare": 0.0,
+  "greyShare": 0.3836,
+  "colorfulness": 0.0524,
+  "modelPx": 51907
+ },
+ {
+  "view": "alfa-romeo-giulia-spider-v2__top.png",
+  "holePx": 1389,
+  "blackShare": 0.0,
+  "greyShare": 0.1788,
+  "colorfulness": 0.079,
+  "modelPx": 71512
+ },
+ {
+  "view": "alkaff-arcade__front.png",
+  "holePx": 3891,
+  "blackShare": 0.0,
+  "greyShare": 0.6143,
+  "colorfulness": 0.0824,
+  "modelPx": 102596
+ },
+ {
+  "view": "alkaff-arcade__side.png",
+  "holePx": 6801,
+  "blackShare": 0.0,
+  "greyShare": 0.6633,
+  "colorfulness": 0.0342,
+  "modelPx": 27916
+ },
+ {
+  "view": "alkaff-arcade__three-quarter.png",
+  "holePx": 19196,
+  "blackShare": 0.0,
+  "greyShare": 0.5663,
+  "colorfulness": 0.0801,
+  "modelPx": 84043
+ },
+ {
+  "view": "alkaff-arcade__top.png",
+  "holePx": 95,
+  "blackShare": 0.0,
+  "greyShare": 0.7713,
+  "colorfulness": 0.0524,
+  "modelPx": 76703
+ },
+ {
+  "view": "amber-mansions__front.png",
+  "holePx": 2907,
+  "blackShare": 0.0,
+  "greyShare": 0.5764,
+  "colorfulness": 0.1215,
+  "modelPx": 64082
+ },
+ {
+  "view": "amber-mansions__side.png",
+  "holePx": 4425,
+  "blackShare": 0.0,
+  "greyShare": 0.5937,
+  "colorfulness": 0.1224,
+  "modelPx": 56110
+ },
+ {
+  "view": "amber-mansions__three-quarter.png",
+  "holePx": 3361,
+  "blackShare": 0.0,
+  "greyShare": 0.5383,
+  "colorfulness": 0.1343,
+  "modelPx": 65075
+ },
+ {
+  "view": "amber-mansions__top.png",
+  "holePx": 262,
+  "blackShare": 0.0,
+  "greyShare": 0.3001,
+  "colorfulness": 0.2524,
+  "modelPx": 93138
+ },
+ {
+  "view": "auntie-rosnah__front.png",
+  "holePx": 1741,
+  "blackShare": 0.0,
+  "greyShare": 0.1466,
+  "colorfulness": 0.1748,
+  "modelPx": 57383
+ },
+ {
+  "view": "auntie-rosnah__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.1441,
+  "colorfulness": 0.1548,
+  "modelPx": 36334
+ },
+ {
+  "view": "auntie-rosnah__three-quarter.png",
+  "holePx": 897,
+  "blackShare": 0.0,
+  "greyShare": 0.1416,
+  "colorfulness": 0.165,
+  "modelPx": 53583
+ },
+ {
+  "view": "auntie-rosnah__top.png",
+  "holePx": 594,
+  "blackShare": 0.0,
+  "greyShare": 0.0147,
+  "colorfulness": 0.138,
+  "modelPx": 28303
+ },
+ {
+  "view": "beauty-world-market__front.png",
+  "holePx": 634,
+  "blackShare": 0.0,
+  "greyShare": 0.4076,
+  "colorfulness": 0.1134,
+  "modelPx": 71143
+ },
+ {
+  "view": "beauty-world-market__side.png",
+  "holePx": 6073,
+  "blackShare": 0.0,
+  "greyShare": 0.2775,
+  "colorfulness": 0.151,
+  "modelPx": 53998
+ },
+ {
+  "view": "beauty-world-market__three-quarter.png",
+  "holePx": 15,
+  "blackShare": 0.0,
+  "greyShare": 0.286,
+  "colorfulness": 0.138,
+  "modelPx": 80116
+ },
+ {
+  "view": "beauty-world-market__top.png",
+  "holePx": 5,
+  "blackShare": 0.0,
+  "greyShare": 0.3093,
+  "colorfulness": 0.1455,
+  "modelPx": 110841
+ },
+ {
+  "view": "bench-v2__front.png",
+  "holePx": 6033,
+  "blackShare": 0.0,
+  "greyShare": 0.1678,
+  "colorfulness": 0.2612,
+  "modelPx": 56302
+ },
+ {
+  "view": "bench-v2__side.png",
+  "holePx": 392,
+  "blackShare": 0.0,
+  "greyShare": 0.6526,
+  "colorfulness": 0.0976,
+  "modelPx": 25654
+ },
+ {
+  "view": "bench-v2__three-quarter.png",
+  "holePx": 12798,
+  "blackShare": 0.0,
+  "greyShare": 0.1506,
+  "colorfulness": 0.2538,
+  "modelPx": 52550
+ },
+ {
+  "view": "bench-v2__top.png",
+  "holePx": 123,
+  "blackShare": 0.0,
+  "greyShare": 0.0143,
+  "colorfulness": 0.2824,
+  "modelPx": 47130
+ },
+ {
+  "view": "bicycle-v2__front.png",
+  "holePx": 36501,
+  "blackShare": 0.0,
+  "greyShare": 0.1026,
+  "colorfulness": 0.1436,
+  "modelPx": 29102
+ },
+ {
+  "view": "bicycle-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0948,
+  "colorfulness": 0.112,
+  "modelPx": 9646
+ },
+ {
+  "view": "bicycle-v2__three-quarter.png",
+  "holePx": 28359,
+  "blackShare": 0.0,
+  "greyShare": 0.1084,
+  "colorfulness": 0.1413,
+  "modelPx": 25685
+ },
+ {
+  "view": "bicycle-v2__top.png",
+  "holePx": 3228,
+  "blackShare": 0.0,
+  "greyShare": 0.0641,
+  "colorfulness": 0.1727,
+  "modelPx": 20186
+ },
+ {
+  "view": "birdcage-v2__front.png",
+  "holePx": 19063,
+  "blackShare": 0.0,
+  "greyShare": 0.0719,
+  "colorfulness": 0.2104,
+  "modelPx": 42421
+ },
+ {
+  "view": "birdcage-v2__side.png",
+  "holePx": 17291,
+  "blackShare": 0.0,
+  "greyShare": 0.0682,
+  "colorfulness": 0.219,
+  "modelPx": 39939
+ },
+ {
+  "view": "birdcage-v2__three-quarter.png",
+  "holePx": 16275,
+  "blackShare": 0.0,
+  "greyShare": 0.0584,
+  "colorfulness": 0.2063,
+  "modelPx": 41862
+ },
+ {
+  "view": "birdcage-v2__top.png",
+  "holePx": 1669,
+  "blackShare": 0.0,
+  "greyShare": 0.0099,
+  "colorfulness": 0.2237,
+  "modelPx": 28819
+ },
+ {
+  "view": "bumboat-v2__front.png",
+  "holePx": 140,
+  "blackShare": 0.0,
+  "greyShare": 0.2377,
+  "colorfulness": 0.2717,
+  "modelPx": 29273
+ },
+ {
+  "view": "bumboat-v2__side.png",
+  "holePx": 187,
+  "blackShare": 0.0,
+  "greyShare": 0.4405,
+  "colorfulness": 0.2047,
+  "modelPx": 15630
+ },
+ {
+  "view": "bumboat-v2__three-quarter.png",
+  "holePx": 147,
+  "blackShare": 0.0,
+  "greyShare": 0.1608,
+  "colorfulness": 0.2822,
+  "modelPx": 25838
+ },
+ {
+  "view": "bumboat-v2__top.png",
+  "holePx": 564,
+  "blackShare": 0.0,
+  "greyShare": 0.1086,
+  "colorfulness": 0.2927,
+  "modelPx": 33096
+ },
+ {
+  "view": "busstop-v2__front.png",
+  "holePx": 13019,
+  "blackShare": 0.0,
+  "greyShare": 0.0979,
+  "colorfulness": 0.3271,
+  "modelPx": 83127
+ },
+ {
+  "view": "busstop-v2__side.png",
+  "holePx": 1451,
+  "blackShare": 0.0,
+  "greyShare": 0.0861,
+  "colorfulness": 0.3797,
+  "modelPx": 39337
+ },
+ {
+  "view": "busstop-v2__three-quarter.png",
+  "holePx": 10412,
+  "blackShare": 0.0,
+  "greyShare": 0.0734,
+  "colorfulness": 0.3152,
+  "modelPx": 72926
+ },
+ {
+  "view": "busstop-v2__top.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0023,
+  "colorfulness": 0.3425,
+  "modelPx": 91326
+ },
+ {
+  "view": "cat-v2__front.png",
+  "holePx": 6275,
+  "blackShare": 0.0,
+  "greyShare": 0.0527,
+  "colorfulness": 0.3292,
+  "modelPx": 26439
+ },
+ {
+  "view": "cat-v2__side.png",
+  "holePx": 173,
+  "blackShare": 0.0,
+  "greyShare": 0.0377,
+  "colorfulness": 0.3724,
+  "modelPx": 37997
+ },
+ {
+  "view": "cat-v2__three-quarter.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.0231,
+  "colorfulness": 0.3506,
+  "modelPx": 35344
+ },
+ {
+  "view": "cat-v2__top.png",
+  "holePx": 88,
+  "blackShare": 0.0,
+  "greyShare": 0.0294,
+  "colorfulness": 0.3407,
+  "modelPx": 34072
+ },
+ {
+  "view": "clouded-monitor-v1__front.png",
+  "holePx": 2,
+  "blackShare": 0.0,
+  "greyShare": 0.0701,
+  "colorfulness": 0.175,
+  "modelPx": 23197
+ },
+ {
+  "view": "clouded-monitor-v1__side.png",
+  "holePx": 123,
+  "blackShare": 0.0,
+  "greyShare": 0.0847,
+  "colorfulness": 0.1583,
+  "modelPx": 11458
+ },
+ {
+  "view": "clouded-monitor-v1__three-quarter.png",
+  "holePx": 43,
+  "blackShare": 0.0,
+  "greyShare": 0.0818,
+  "colorfulness": 0.1722,
+  "modelPx": 20207
+ },
+ {
+  "view": "clouded-monitor-v1__top.png",
+  "holePx": 231,
+  "blackShare": 0.0,
+  "greyShare": 0.0706,
+  "colorfulness": 0.1741,
+  "modelPx": 29378
+ },
+ {
+  "view": "comcentre__front.png",
+  "holePx": 2785,
+  "blackShare": 0.0,
+  "greyShare": 0.7078,
+  "colorfulness": 0.0796,
+  "modelPx": 69655
+ },
+ {
+  "view": "comcentre__side.png",
+  "holePx": 1540,
+  "blackShare": 0.0,
+  "greyShare": 0.9405,
+  "colorfulness": 0.0571,
+  "modelPx": 50887
+ },
+ {
+  "view": "comcentre__three-quarter.png",
+  "holePx": 5919,
+  "blackShare": 0.0,
+  "greyShare": 0.7932,
+  "colorfulness": 0.0684,
+  "modelPx": 80152
+ },
+ {
+  "view": "comcentre__top.png",
+  "holePx": 10659,
+  "blackShare": 0.0,
+  "greyShare": 0.9438,
+  "colorfulness": 0.0344,
+  "modelPx": 52369
+ },
+ {
+  "view": "concert-hall-v2__front.png",
+  "holePx": 1335,
+  "blackShare": 0.0,
+  "greyShare": 0.3525,
+  "colorfulness": 0.2254,
+  "modelPx": 24418
+ },
+ {
+  "view": "concert-hall-v2__side.png",
+  "holePx": 919,
+  "blackShare": 0.0,
+  "greyShare": 0.5341,
+  "colorfulness": 0.1743,
+  "modelPx": 16258
+ },
+ {
+  "view": "concert-hall-v2__three-quarter.png",
+  "holePx": 1552,
+  "blackShare": 0.0,
+  "greyShare": 0.2948,
+  "colorfulness": 0.2291,
+  "modelPx": 20554
+ },
+ {
+  "view": "concert-hall-v2__top.png",
+  "holePx": 5462,
+  "blackShare": 0.0,
+  "greyShare": 0.3718,
+  "colorfulness": 0.2045,
+  "modelPx": 27434
+ },
+ {
+  "view": "condo-bg-v2__front.png",
+  "holePx": 1523,
+  "blackShare": 0.0,
+  "greyShare": 0.1129,
+  "colorfulness": 0.24,
+  "modelPx": 45961
+ },
+ {
+  "view": "condo-bg-v2__side.png",
+  "holePx": 330,
+  "blackShare": 0.0,
+  "greyShare": 0.34,
+  "colorfulness": 0.1585,
+  "modelPx": 23471
+ },
+ {
+  "view": "condo-bg-v2__three-quarter.png",
+  "holePx": 657,
+  "blackShare": 0.0,
+  "greyShare": 0.0655,
+  "colorfulness": 0.23,
+  "modelPx": 38964
+ },
+ {
+  "view": "condo-bg-v2__top.png",
+  "holePx": 185,
+  "blackShare": 0.0,
+  "greyShare": 0.2408,
+  "colorfulness": 0.1216,
+  "modelPx": 32152
+ },
+ {
+  "view": "condo-holland-v2__front.png",
+  "holePx": 3741,
+  "blackShare": 0.0,
+  "greyShare": 0.261,
+  "colorfulness": 0.1526,
+  "modelPx": 37954
+ },
+ {
+  "view": "condo-holland-v2__side.png",
+  "holePx": 728,
+  "blackShare": 0.0,
+  "greyShare": 0.3884,
+  "colorfulness": 0.0614,
+  "modelPx": 38605
+ },
+ {
+  "view": "condo-holland-v2__three-quarter.png",
+  "holePx": 3837,
+  "blackShare": 0.0,
+  "greyShare": 0.1793,
+  "colorfulness": 0.126,
+  "modelPx": 37719
+ },
+ {
+  "view": "condo-holland-v2__top.png",
+  "holePx": 226,
+  "blackShare": 0.0,
+  "greyShare": 0.6522,
+  "colorfulness": 0.0616,
+  "modelPx": 21688
+ },
+ {
+  "view": "condo-marina-v2__front.png",
+  "holePx": 1645,
+  "blackShare": 0.0,
+  "greyShare": 0.2444,
+  "colorfulness": 0.1653,
+  "modelPx": 40382
+ },
+ {
+  "view": "condo-marina-v2__side.png",
+  "holePx": 641,
+  "blackShare": 0.0,
+  "greyShare": 0.3609,
+  "colorfulness": 0.0655,
+  "modelPx": 40820
+ },
+ {
+  "view": "condo-marina-v2__three-quarter.png",
+  "holePx": 4719,
+  "blackShare": 0.0,
+  "greyShare": 0.1711,
+  "colorfulness": 0.1399,
+  "modelPx": 40751
+ },
+ {
+  "view": "condo-marina-v2__top.png",
+  "holePx": 280,
+  "blackShare": 0.0,
+  "greyShare": 0.722,
+  "colorfulness": 0.0604,
+  "modelPx": 22215
+ },
+ {
+  "view": "controltower-v2__front.png",
+  "holePx": 1,
+  "blackShare": 0.0,
+  "greyShare": 0.3659,
+  "colorfulness": 0.2235,
+  "modelPx": 8978
+ },
+ {
+  "view": "controltower-v2__side.png",
+  "holePx": 8,
+  "blackShare": 0.0,
+  "greyShare": 0.3375,
+  "colorfulness": 0.2313,
+  "modelPx": 8344
+ },
+ {
+  "view": "controltower-v2__three-quarter.png",
+  "holePx": 5,
+  "blackShare": 0.0,
+  "greyShare": 0.2967,
+  "colorfulness": 0.2293,
+  "modelPx": 8218
+ },
+ {
+  "view": "controltower-v2__top.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.7789,
+  "colorfulness": 0.1109,
+  "modelPx": 12246
+ },
+ {
+  "view": "courier__front.png",
+  "holePx": 4403,
+  "blackShare": 0.0,
+  "greyShare": 0.02,
+  "colorfulness": 0.2863,
+  "modelPx": 57241
+ },
+ {
+  "view": "courier__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.02,
+  "colorfulness": 0.2753,
+  "modelPx": 42196
+ },
+ {
+  "view": "courier__three-quarter.png",
+  "holePx": 3167,
+  "blackShare": 0.0,
+  "greyShare": 0.0149,
+  "colorfulness": 0.2852,
+  "modelPx": 54164
+ },
+ {
+  "view": "courier__top.png",
+  "holePx": 458,
+  "blackShare": 0.0,
+  "greyShare": 0.0141,
+  "colorfulness": 0.3177,
+  "modelPx": 36332
+ },
+ {
+  "view": "design-university-v2__front.png",
+  "holePx": 4003,
+  "blackShare": 0.0,
+  "greyShare": 0.0153,
+  "colorfulness": 0.3188,
+  "modelPx": 70296
+ },
+ {
+  "view": "design-university-v2__side.png",
+  "holePx": 8172,
+  "blackShare": 0.0,
+  "greyShare": 0.0591,
+  "colorfulness": 0.3144,
+  "modelPx": 55097
+ },
+ {
+  "view": "design-university-v2__three-quarter.png",
+  "holePx": 301,
+  "blackShare": 0.0,
+  "greyShare": 0.0131,
+  "colorfulness": 0.2764,
+  "modelPx": 78423
+ },
+ {
+  "view": "design-university-v2__top.png",
+  "holePx": 99,
+  "blackShare": 0.0,
+  "greyShare": 0.0198,
+  "colorfulness": 0.2543,
+  "modelPx": 68317
+ },
+ {
+  "view": "devi__front.png",
+  "holePx": 5,
+  "blackShare": 0.0,
+  "greyShare": 0.0345,
+  "colorfulness": 0.2278,
+  "modelPx": 37604
+ },
+ {
+  "view": "devi__side.png",
+  "holePx": 981,
+  "blackShare": 0.0,
+  "greyShare": 0.0281,
+  "colorfulness": 0.1791,
+  "modelPx": 37311
+ },
+ {
+  "view": "devi__three-quarter.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0235,
+  "colorfulness": 0.1956,
+  "modelPx": 37491
+ },
+ {
+  "view": "devi__top.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.0244,
+  "colorfulness": 0.1548,
+  "modelPx": 22667
+ },
+ {
+  "view": "engineer-v2__front.png",
+  "holePx": 2013,
+  "blackShare": 0.0,
+  "greyShare": 0.0192,
+  "colorfulness": 0.297,
+  "modelPx": 64691
+ },
+ {
+  "view": "engineer-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0106,
+  "colorfulness": 0.2829,
+  "modelPx": 49458
+ },
+ {
+  "view": "engineer-v2__three-quarter.png",
+  "holePx": 242,
+  "blackShare": 0.0,
+  "greyShare": 0.0079,
+  "colorfulness": 0.2861,
+  "modelPx": 60805
+ },
+ {
+  "view": "engineer-v2__top.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0054,
+  "colorfulness": 0.2907,
+  "modelPx": 39728
+ },
+ {
+  "view": "eu-court__front.png",
+  "holePx": 11222,
+  "blackShare": 0.0,
+  "greyShare": 0.7895,
+  "colorfulness": 0.0275,
+  "modelPx": 66605
+ },
+ {
+  "view": "eu-court__side.png",
+  "holePx": 1189,
+  "blackShare": 0.0,
+  "greyShare": 0.2321,
+  "colorfulness": 0.042,
+  "modelPx": 43443
+ },
+ {
+  "view": "eu-court__three-quarter.png",
+  "holePx": 5344,
+  "blackShare": 0.0,
+  "greyShare": 0.6166,
+  "colorfulness": 0.0322,
+  "modelPx": 66449
+ },
+ {
+  "view": "eu-court__top.png",
+  "holePx": 830,
+  "blackShare": 0.0,
+  "greyShare": 0.9559,
+  "colorfulness": 0.0278,
+  "modelPx": 47370
+ },
+ {
+  "view": "fibre-kit-v2__front.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.3869,
+  "colorfulness": 0.1773,
+  "modelPx": 22614
+ },
+ {
+  "view": "fibre-kit-v2__side.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.2867,
+  "colorfulness": 0.2281,
+  "modelPx": 20889
+ },
+ {
+  "view": "fibre-kit-v2__three-quarter.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.2144,
+  "colorfulness": 0.2229,
+  "modelPx": 22685
+ },
+ {
+  "view": "fibre-kit-v2__top.png",
+  "holePx": 86,
+  "blackShare": 0.0,
+  "greyShare": 0.1801,
+  "colorfulness": 0.2188,
+  "modelPx": 12768
+ },
+ {
+  "view": "flyer-v2__front.png",
+  "holePx": 10190,
+  "blackShare": 0.0,
+  "greyShare": 0.0389,
+  "colorfulness": 0.3134,
+  "modelPx": 32342
+ },
+ {
+  "view": "flyer-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0278,
+  "colorfulness": 0.3398,
+  "modelPx": 14077
+ },
+ {
+  "view": "flyer-v2__three-quarter.png",
+  "holePx": 7028,
+  "blackShare": 0.0,
+  "greyShare": 0.0478,
+  "colorfulness": 0.2973,
+  "modelPx": 33263
+ },
+ {
+  "view": "flyer-v2__top.png",
+  "holePx": 3043,
+  "blackShare": 0.0,
+  "greyShare": 0.0048,
+  "colorfulness": 0.3092,
+  "modelPx": 16376
+ },
+ {
+  "view": "former-national-stadium__front.png",
+  "holePx": 8114,
+  "blackShare": 0.0,
+  "greyShare": 0.4866,
+  "colorfulness": 0.1685,
+  "modelPx": 81857
+ },
+ {
+  "view": "former-national-stadium__side.png",
+  "holePx": 226,
+  "blackShare": 0.0,
+  "greyShare": 0.4171,
+  "colorfulness": 0.1774,
+  "modelPx": 52799
+ },
+ {
+  "view": "former-national-stadium__three-quarter.png",
+  "holePx": 106,
+  "blackShare": 0.0,
+  "greyShare": 0.4553,
+  "colorfulness": 0.1753,
+  "modelPx": 90944
+ },
+ {
+  "view": "former-national-stadium__top.png",
+  "holePx": 597,
+  "blackShare": 0.0,
+  "greyShare": 0.3135,
+  "colorfulness": 0.154,
+  "modelPx": 112531
+ },
+ {
+  "view": "harbour-statue-v2__front.png",
+  "holePx": 4741,
+  "blackShare": 0.0,
+  "greyShare": 0.0306,
+  "colorfulness": 0.121,
+  "modelPx": 25926
+ },
+ {
+  "view": "harbour-statue-v2__side.png",
+  "holePx": 6276,
+  "blackShare": 0.0,
+  "greyShare": 0.0153,
+  "colorfulness": 0.1173,
+  "modelPx": 32793
+ },
+ {
+  "view": "harbour-statue-v2__three-quarter.png",
+  "holePx": 2443,
+  "blackShare": 0.0,
+  "greyShare": 0.0156,
+  "colorfulness": 0.1255,
+  "modelPx": 28617
+ },
+ {
+  "view": "harbour-statue-v2__top.png",
+  "holePx": 845,
+  "blackShare": 0.0,
+  "greyShare": 0.0328,
+  "colorfulness": 0.1439,
+  "modelPx": 19762
+ },
+ {
+  "view": "hawker-v2__front.png",
+  "holePx": 1704,
+  "blackShare": 0.0,
+  "greyShare": 0.3247,
+  "colorfulness": 0.1549,
+  "modelPx": 30606
+ },
+ {
+  "view": "hawker-v2__side.png",
+  "holePx": 312,
+  "blackShare": 0.0,
+  "greyShare": 0.5347,
+  "colorfulness": 0.1254,
+  "modelPx": 22456
+ },
+ {
+  "view": "hawker-v2__three-quarter.png",
+  "holePx": 1693,
+  "blackShare": 0.0,
+  "greyShare": 0.3252,
+  "colorfulness": 0.1374,
+  "modelPx": 25830
+ },
+ {
+  "view": "hawker-v2__top.png",
+  "holePx": 53,
+  "blackShare": 0.0,
+  "greyShare": 1.0,
+  "colorfulness": 0.0139,
+  "modelPx": 3721
+ },
+ {
+  "view": "hdb-bg-v2__front.png",
+  "holePx": 779,
+  "blackShare": 0.0,
+  "greyShare": 0.1172,
+  "colorfulness": 0.1211,
+  "modelPx": 69150
+ },
+ {
+  "view": "hdb-bg-v2__side.png",
+  "holePx": 257,
+  "blackShare": 0.0,
+  "greyShare": 0.1631,
+  "colorfulness": 0.0694,
+  "modelPx": 53226
+ },
+ {
+  "view": "hdb-bg-v2__three-quarter.png",
+  "holePx": 1259,
+  "blackShare": 0.0,
+  "greyShare": 0.0515,
+  "colorfulness": 0.0942,
+  "modelPx": 63163
+ },
+ {
+  "view": "hdb-bg-v2__top.png",
+  "holePx": 8,
+  "blackShare": 0.0,
+  "greyShare": 0.5423,
+  "colorfulness": 0.1045,
+  "modelPx": 16492
+ },
+ {
+  "view": "hdb-call-v2__front.png",
+  "holePx": 22943,
+  "blackShare": 0.0,
+  "greyShare": 0.4636,
+  "colorfulness": 0.1613,
+  "modelPx": 63556
+ },
+ {
+  "view": "hdb-call-v2__side.png",
+  "holePx": 290,
+  "blackShare": 0.0,
+  "greyShare": 0.4417,
+  "colorfulness": 0.1963,
+  "modelPx": 47099
+ },
+ {
+  "view": "hdb-call-v2__three-quarter.png",
+  "holePx": 724,
+  "blackShare": 0.0,
+  "greyShare": 0.4647,
+  "colorfulness": 0.161,
+  "modelPx": 62239
+ },
+ {
+  "view": "hdb-call-v2__top.png",
+  "holePx": 569,
+  "blackShare": 0.0,
+  "greyShare": 0.7142,
+  "colorfulness": 0.1053,
+  "modelPx": 50352
+ },
+ {
+  "view": "hdb-voiddeck-v2__front.png",
+  "holePx": 8766,
+  "blackShare": 0.0,
+  "greyShare": 0.3798,
+  "colorfulness": 0.1208,
+  "modelPx": 60343
+ },
+ {
+  "view": "hdb-voiddeck-v2__side.png",
+  "holePx": 5538,
+  "blackShare": 0.0,
+  "greyShare": 0.3082,
+  "colorfulness": 0.0932,
+  "modelPx": 50333
+ },
+ {
+  "view": "hdb-voiddeck-v2__three-quarter.png",
+  "holePx": 8216,
+  "blackShare": 0.0,
+  "greyShare": 0.3284,
+  "colorfulness": 0.1254,
+  "modelPx": 61222
+ },
+ {
+  "view": "hdb-voiddeck-v2__top.png",
+  "holePx": 433,
+  "blackShare": 0.0,
+  "greyShare": 0.8102,
+  "colorfulness": 0.0663,
+  "modelPx": 79539
+ },
+ {
+  "view": "kai__front.png",
+  "holePx": 3357,
+  "blackShare": 0.0,
+  "greyShare": 0.0244,
+  "colorfulness": 0.213,
+  "modelPx": 54824
+ },
+ {
+  "view": "kai__side.png",
+  "holePx": 56,
+  "blackShare": 0.0,
+  "greyShare": 0.0179,
+  "colorfulness": 0.2157,
+  "modelPx": 38919
+ },
+ {
+  "view": "kai__three-quarter.png",
+  "holePx": 2086,
+  "blackShare": 0.0,
+  "greyShare": 0.0188,
+  "colorfulness": 0.2082,
+  "modelPx": 51289
+ },
+ {
+  "view": "kai__top.png",
+  "holePx": 782,
+  "blackShare": 0.0,
+  "greyShare": 0.022,
+  "colorfulness": 0.1802,
+  "modelPx": 29290
+ },
+ {
+  "view": "kampong-house-v2__front.png",
+  "holePx": 1274,
+  "blackShare": 0.0,
+  "greyShare": 0.1272,
+  "colorfulness": 0.2394,
+  "modelPx": 46956
+ },
+ {
+  "view": "kampong-house-v2__side.png",
+  "holePx": 2858,
+  "blackShare": 0.0,
+  "greyShare": 0.14,
+  "colorfulness": 0.2355,
+  "modelPx": 49839
+ },
+ {
+  "view": "kampong-house-v2__three-quarter.png",
+  "holePx": 2723,
+  "blackShare": 0.0,
+  "greyShare": 0.1172,
+  "colorfulness": 0.2256,
+  "modelPx": 59309
+ },
+ {
+  "view": "kampong-house-v2__top.png",
+  "holePx": 145,
+  "blackShare": 0.0,
+  "greyShare": 0.1379,
+  "colorfulness": 0.2308,
+  "modelPx": 63987
+ },
+ {
+  "view": "kampong-props-v2__front.png",
+  "holePx": 2646,
+  "blackShare": 0.0,
+  "greyShare": 0.3511,
+  "colorfulness": 0.1782,
+  "modelPx": 17981
+ },
+ {
+  "view": "kampong-props-v2__side.png",
+  "holePx": 663,
+  "blackShare": 0.0,
+  "greyShare": 0.487,
+  "colorfulness": 0.1531,
+  "modelPx": 14192
+ },
+ {
+  "view": "kampong-props-v2__three-quarter.png",
+  "holePx": 2153,
+  "blackShare": 0.0,
+  "greyShare": 0.312,
+  "colorfulness": 0.1869,
+  "modelPx": 16512
+ },
+ {
+  "view": "kampong-props-v2__top.png",
+  "holePx": 2650,
+  "blackShare": 0.0,
+  "greyShare": 0.3415,
+  "colorfulness": 0.1822,
+  "modelPx": 28417
+ },
+ {
+  "view": "kampung-call-v2__front.png",
+  "holePx": 4741,
+  "blackShare": 0.0,
+  "greyShare": 0.3015,
+  "colorfulness": 0.1549,
+  "modelPx": 35431
+ },
+ {
+  "view": "kampung-call-v2__side.png",
+  "holePx": 1485,
+  "blackShare": 0.0,
+  "greyShare": 0.2692,
+  "colorfulness": 0.1751,
+  "modelPx": 34356
+ },
+ {
+  "view": "kampung-call-v2__three-quarter.png",
+  "holePx": 2386,
+  "blackShare": 0.0,
+  "greyShare": 0.2086,
+  "colorfulness": 0.1778,
+  "modelPx": 38374
+ },
+ {
+  "view": "kampung-call-v2__top.png",
+  "holePx": 2035,
+  "blackShare": 0.0,
+  "greyShare": 0.0654,
+  "colorfulness": 0.3149,
+  "modelPx": 43017
+ },
+ {
+  "view": "kopitiam-v2__front.png",
+  "holePx": 9820,
+  "blackShare": 0.0,
+  "greyShare": 0.3167,
+  "colorfulness": 0.2088,
+  "modelPx": 36177
+ },
+ {
+  "view": "kopitiam-v2__side.png",
+  "holePx": 8134,
+  "blackShare": 0.0,
+  "greyShare": 0.4579,
+  "colorfulness": 0.1674,
+  "modelPx": 27464
+ },
+ {
+  "view": "kopitiam-v2__three-quarter.png",
+  "holePx": 5339,
+  "blackShare": 0.0,
+  "greyShare": 0.2665,
+  "colorfulness": 0.2054,
+  "modelPx": 32350
+ },
+ {
+  "view": "kopitiam-v2__top.png",
+  "holePx": 93,
+  "blackShare": 0.0,
+  "greyShare": 0.3613,
+  "colorfulness": 0.214,
+  "modelPx": 10795
+ },
+ {
+  "view": "landed-bg-v2__front.png",
+  "holePx": 5834,
+  "blackShare": 0.0,
+  "greyShare": 0.0655,
+  "colorfulness": 0.1602,
+  "modelPx": 102206
+ },
+ {
+  "view": "landed-bg-v2__side.png",
+  "holePx": 287,
+  "blackShare": 0.0,
+  "greyShare": 0.0654,
+  "colorfulness": 0.1098,
+  "modelPx": 98263
+ },
+ {
+  "view": "landed-bg-v2__three-quarter.png",
+  "holePx": 3487,
+  "blackShare": 0.0,
+  "greyShare": 0.0326,
+  "colorfulness": 0.1605,
+  "modelPx": 109730
+ },
+ {
+  "view": "landed-bg-v2__top.png",
+  "holePx": 556,
+  "blackShare": 0.0,
+  "greyShare": 0.0454,
+  "colorfulness": 0.2845,
+  "modelPx": 104465
+ },
+ {
+  "view": "landed-v2__front.png",
+  "holePx": 7292,
+  "blackShare": 0.0,
+  "greyShare": 0.1205,
+  "colorfulness": 0.2681,
+  "modelPx": 63121
+ },
+ {
+  "view": "landed-v2__side.png",
+  "holePx": 18,
+  "blackShare": 0.0,
+  "greyShare": 0.1965,
+  "colorfulness": 0.2369,
+  "modelPx": 39918
+ },
+ {
+  "view": "landed-v2__three-quarter.png",
+  "holePx": 3603,
+  "blackShare": 0.0,
+  "greyShare": 0.093,
+  "colorfulness": 0.2601,
+  "modelPx": 70277
+ },
+ {
+  "view": "landed-v2__top.png",
+  "holePx": 6,
+  "blackShare": 0.0,
+  "greyShare": 0.0042,
+  "colorfulness": 0.3224,
+  "modelPx": 103663
+ },
+ {
+  "view": "mamashop-v2__front.png",
+  "holePx": 1999,
+  "blackShare": 0.0,
+  "greyShare": 0.1829,
+  "colorfulness": 0.2337,
+  "modelPx": 42027
+ },
+ {
+  "view": "mamashop-v2__side.png",
+  "holePx": 86,
+  "blackShare": 0.0,
+  "greyShare": 0.1592,
+  "colorfulness": 0.0992,
+  "modelPx": 37787
+ },
+ {
+  "view": "mamashop-v2__three-quarter.png",
+  "holePx": 1256,
+  "blackShare": 0.0,
+  "greyShare": 0.0997,
+  "colorfulness": 0.1761,
+  "modelPx": 45456
+ },
+ {
+  "view": "mamashop-v2__top.png",
+  "holePx": 146,
+  "blackShare": 0.0,
+  "greyShare": 0.0495,
+  "colorfulness": 0.1572,
+  "modelPx": 59464
+ },
+ {
+  "view": "management-university-v2__front.png",
+  "holePx": 385,
+  "blackShare": 0.0,
+  "greyShare": 0.1034,
+  "colorfulness": 0.3281,
+  "modelPx": 55784
+ },
+ {
+  "view": "management-university-v2__side.png",
+  "holePx": 915,
+  "blackShare": 0.0,
+  "greyShare": 0.2562,
+  "colorfulness": 0.281,
+  "modelPx": 37652
+ },
+ {
+  "view": "management-university-v2__three-quarter.png",
+  "holePx": 353,
+  "blackShare": 0.0,
+  "greyShare": 0.1225,
+  "colorfulness": 0.2974,
+  "modelPx": 55581
+ },
+ {
+  "view": "management-university-v2__top.png",
+  "holePx": 511,
+  "blackShare": 0.0,
+  "greyShare": 0.06,
+  "colorfulness": 0.3382,
+  "modelPx": 73859
+ },
+ {
+  "view": "mr-tan__front.png",
+  "holePx": 3217,
+  "blackShare": 0.0,
+  "greyShare": 0.1845,
+  "colorfulness": 0.1762,
+  "modelPx": 55118
+ },
+ {
+  "view": "mr-tan__side.png",
+  "holePx": 10,
+  "blackShare": 0.0,
+  "greyShare": 0.1559,
+  "colorfulness": 0.1652,
+  "modelPx": 36773
+ },
+ {
+  "view": "mr-tan__three-quarter.png",
+  "holePx": 1903,
+  "blackShare": 0.0,
+  "greyShare": 0.1626,
+  "colorfulness": 0.1729,
+  "modelPx": 52002
+ },
+ {
+  "view": "mr-tan__top.png",
+  "holePx": 711,
+  "blackShare": 0.0,
+  "greyShare": 0.0162,
+  "colorfulness": 0.1564,
+  "modelPx": 29234
+ },
+ {
+  "view": "mrt-v2__front.png",
+  "holePx": 2217,
+  "blackShare": 0.0,
+  "greyShare": 0.3305,
+  "colorfulness": 0.1676,
+  "modelPx": 33372
+ },
+ {
+  "view": "mrt-v2__side.png",
+  "holePx": 328,
+  "blackShare": 0.0,
+  "greyShare": 0.5645,
+  "colorfulness": 0.1709,
+  "modelPx": 17292
+ },
+ {
+  "view": "mrt-v2__three-quarter.png",
+  "holePx": 767,
+  "blackShare": 0.0,
+  "greyShare": 0.2206,
+  "colorfulness": 0.1991,
+  "modelPx": 31852
+ },
+ {
+  "view": "mrt-v2__top.png",
+  "holePx": 187,
+  "blackShare": 0.0,
+  "greyShare": 0.1592,
+  "colorfulness": 0.2871,
+  "modelPx": 54922
+ },
+ {
+  "view": "national-library-stamford__front.png",
+  "holePx": 4460,
+  "blackShare": 0.0,
+  "greyShare": 0.3954,
+  "colorfulness": 0.2635,
+  "modelPx": 140007
+ },
+ {
+  "view": "national-library-stamford__side.png",
+  "holePx": 13,
+  "blackShare": 0.0,
+  "greyShare": 0.0803,
+  "colorfulness": 0.4336,
+  "modelPx": 116684
+ },
+ {
+  "view": "national-library-stamford__three-quarter.png",
+  "holePx": 3694,
+  "blackShare": 0.0,
+  "greyShare": 0.3753,
+  "colorfulness": 0.2715,
+  "modelPx": 135071
+ },
+ {
+  "view": "national-library-stamford__top.png",
+  "holePx": 9759,
+  "blackShare": 0.0,
+  "greyShare": 0.5794,
+  "colorfulness": 0.1855,
+  "modelPx": 113076
+ },
+ {
+  "view": "national-school-v2__front.png",
+  "holePx": 894,
+  "blackShare": 0.0,
+  "greyShare": 0.2063,
+  "colorfulness": 0.2091,
+  "modelPx": 48631
+ },
+ {
+  "view": "national-school-v2__side.png",
+  "holePx": 195,
+  "blackShare": 0.0,
+  "greyShare": 0.3583,
+  "colorfulness": 0.1191,
+  "modelPx": 28145
+ },
+ {
+  "view": "national-school-v2__three-quarter.png",
+  "holePx": 1132,
+  "blackShare": 0.0,
+  "greyShare": 0.1417,
+  "colorfulness": 0.235,
+  "modelPx": 49064
+ },
+ {
+  "view": "national-school-v2__top.png",
+  "holePx": 362,
+  "blackShare": 0.0,
+  "greyShare": 0.075,
+  "colorfulness": 0.4273,
+  "modelPx": 60773
+ },
+ {
+  "view": "national-theatre__front.png",
+  "holePx": 4067,
+  "blackShare": 0.0,
+  "greyShare": 0.545,
+  "colorfulness": 0.1446,
+  "modelPx": 75380
+ },
+ {
+  "view": "national-theatre__side.png",
+  "holePx": 2012,
+  "blackShare": 0.0,
+  "greyShare": 0.4579,
+  "colorfulness": 0.1597,
+  "modelPx": 36699
+ },
+ {
+  "view": "national-theatre__three-quarter.png",
+  "holePx": 3376,
+  "blackShare": 0.0,
+  "greyShare": 0.4609,
+  "colorfulness": 0.1803,
+  "modelPx": 66813
+ },
+ {
+  "view": "national-theatre__top.png",
+  "holePx": 3591,
+  "blackShare": 0.0,
+  "greyShare": 0.5383,
+  "colorfulness": 0.1703,
+  "modelPx": 68200
+ },
+ {
+  "view": "national-university-v2__front.png",
+  "holePx": 4795,
+  "blackShare": 0.0,
+  "greyShare": 0.0162,
+  "colorfulness": 0.2798,
+  "modelPx": 74780
+ },
+ {
+  "view": "national-university-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0199,
+  "colorfulness": 0.2922,
+  "modelPx": 53150
+ },
+ {
+  "view": "national-university-v2__three-quarter.png",
+  "holePx": 4981,
+  "blackShare": 0.0,
+  "greyShare": 0.0114,
+  "colorfulness": 0.26,
+  "modelPx": 75070
+ },
+ {
+  "view": "national-university-v2__top.png",
+  "holePx": 2000,
+  "blackShare": 0.0,
+  "greyShare": 0.0,
+  "colorfulness": 0.1804,
+  "modelPx": 17292
+ },
+ {
+  "view": "oriental-pied-hornbill-v1__front.png",
+  "holePx": 594,
+  "blackShare": 0.0,
+  "greyShare": 0.0486,
+  "colorfulness": 0.1751,
+  "modelPx": 27810
+ },
+ {
+  "view": "oriental-pied-hornbill-v1__side.png",
+  "holePx": 15,
+  "blackShare": 0.0,
+  "greyShare": 0.054,
+  "colorfulness": 0.1755,
+  "modelPx": 26866
+ },
+ {
+  "view": "oriental-pied-hornbill-v1__three-quarter.png",
+  "holePx": 1463,
+  "blackShare": 0.0,
+  "greyShare": 0.0453,
+  "colorfulness": 0.1809,
+  "modelPx": 31518
+ },
+ {
+  "view": "oriental-pied-hornbill-v1__top.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.0157,
+  "colorfulness": 0.1674,
+  "modelPx": 25152
+ },
+ {
+  "view": "overheadbridge-v2__front.png",
+  "holePx": 3803,
+  "blackShare": 0.0,
+  "greyShare": 0.1827,
+  "colorfulness": 0.2738,
+  "modelPx": 24181
+ },
+ {
+  "view": "overheadbridge-v2__side.png",
+  "holePx": 1270,
+  "blackShare": 0.0,
+  "greyShare": 0.2571,
+  "colorfulness": 0.2626,
+  "modelPx": 9198
+ },
+ {
+  "view": "overheadbridge-v2__three-quarter.png",
+  "holePx": 542,
+  "blackShare": 0.0,
+  "greyShare": 0.1725,
+  "colorfulness": 0.2748,
+  "modelPx": 27109
+ },
+ {
+  "view": "overheadbridge-v2__top.png",
+  "holePx": 5159,
+  "blackShare": 0.0,
+  "greyShare": 0.1716,
+  "colorfulness": 0.2923,
+  "modelPx": 33838
+ },
+ {
+  "view": "palm-v2__front.png",
+  "holePx": 91,
+  "blackShare": 0.0,
+  "greyShare": 0.0102,
+  "colorfulness": 0.2539,
+  "modelPx": 19014
+ },
+ {
+  "view": "palm-v2__side.png",
+  "holePx": 1,
+  "blackShare": 0.0,
+  "greyShare": 0.0098,
+  "colorfulness": 0.2659,
+  "modelPx": 17744
+ },
+ {
+  "view": "palm-v2__three-quarter.png",
+  "holePx": 148,
+  "blackShare": 0.0,
+  "greyShare": 0.0107,
+  "colorfulness": 0.2369,
+  "modelPx": 19964
+ },
+ {
+  "view": "palm-v2__top.png",
+  "holePx": 2080,
+  "blackShare": 0.0,
+  "greyShare": 0.0028,
+  "colorfulness": 0.2353,
+  "modelPx": 45389
+ },
+ {
+  "view": "pearl-bank-apartments__front.png",
+  "holePx": 6409,
+  "blackShare": 0.0,
+  "greyShare": 0.1355,
+  "colorfulness": 0.1606,
+  "modelPx": 83534
+ },
+ {
+  "view": "pearl-bank-apartments__side.png",
+  "holePx": 9106,
+  "blackShare": 0.0,
+  "greyShare": 0.1414,
+  "colorfulness": 0.1501,
+  "modelPx": 78550
+ },
+ {
+  "view": "pearl-bank-apartments__three-quarter.png",
+  "holePx": 8113,
+  "blackShare": 0.0,
+  "greyShare": 0.1753,
+  "colorfulness": 0.1429,
+  "modelPx": 92907
+ },
+ {
+  "view": "pearl-bank-apartments__top.png",
+  "holePx": 2892,
+  "blackShare": 0.0,
+  "greyShare": 0.3709,
+  "colorfulness": 0.086,
+  "modelPx": 66832
+ },
+ {
+  "view": "peranakan-house-v2__front.png",
+  "holePx": 5258,
+  "blackShare": 0.0,
+  "greyShare": 0.1157,
+  "colorfulness": 0.124,
+  "modelPx": 70871
+ },
+ {
+  "view": "peranakan-house-v2__side.png",
+  "holePx": 20618,
+  "blackShare": 0.0,
+  "greyShare": 0.015,
+  "colorfulness": 0.1068,
+  "modelPx": 99322
+ },
+ {
+  "view": "peranakan-house-v2__three-quarter.png",
+  "holePx": 20337,
+  "blackShare": 0.0,
+  "greyShare": 0.0305,
+  "colorfulness": 0.1424,
+  "modelPx": 79108
+ },
+ {
+  "view": "peranakan-house-v2__top.png",
+  "holePx": 572,
+  "blackShare": 0.0,
+  "greyShare": 0.0165,
+  "colorfulness": 0.3451,
+  "modelPx": 97074
+ },
+ {
+  "view": "pointblock-call-v2__front.png",
+  "holePx": 682,
+  "blackShare": 0.0,
+  "greyShare": 0.2117,
+  "colorfulness": 0.1459,
+  "modelPx": 40672
+ },
+ {
+  "view": "pointblock-call-v2__side.png",
+  "holePx": 171,
+  "blackShare": 0.0,
+  "greyShare": 0.3323,
+  "colorfulness": 0.0679,
+  "modelPx": 39349
+ },
+ {
+  "view": "pointblock-call-v2__three-quarter.png",
+  "holePx": 1770,
+  "blackShare": 0.0,
+  "greyShare": 0.1578,
+  "colorfulness": 0.1196,
+  "modelPx": 41834
+ },
+ {
+  "view": "pointblock-call-v2__top.png",
+  "holePx": 515,
+  "blackShare": 0.0,
+  "greyShare": 0.6789,
+  "colorfulness": 0.085,
+  "modelPx": 19678
+ },
+ {
+  "view": "postbox-v2__front.png",
+  "holePx": 7464,
+  "blackShare": 0.0,
+  "greyShare": 0.0312,
+  "colorfulness": 0.4701,
+  "modelPx": 47985
+ },
+ {
+  "view": "postbox-v2__side.png",
+  "holePx": 3,
+  "blackShare": 0.0,
+  "greyShare": 0.0179,
+  "colorfulness": 0.506,
+  "modelPx": 43221
+ },
+ {
+  "view": "postbox-v2__three-quarter.png",
+  "holePx": 5206,
+  "blackShare": 0.0,
+  "greyShare": 0.0193,
+  "colorfulness": 0.4831,
+  "modelPx": 48122
+ },
+ {
+  "view": "postbox-v2__top.png",
+  "holePx": 1056,
+  "blackShare": 0.0,
+  "greyShare": 0.0297,
+  "colorfulness": 0.2634,
+  "modelPx": 3641
+ },
+ {
+  "view": "raintree-v2__front.png",
+  "holePx": 531,
+  "blackShare": 0.0,
+  "greyShare": 0.0105,
+  "colorfulness": 0.2392,
+  "modelPx": 45818
+ },
+ {
+  "view": "raintree-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0068,
+  "colorfulness": 0.2243,
+  "modelPx": 25643
+ },
+ {
+  "view": "raintree-v2__three-quarter.png",
+  "holePx": 333,
+  "blackShare": 0.0,
+  "greyShare": 0.0095,
+  "colorfulness": 0.2213,
+  "modelPx": 40773
+ },
+ {
+  "view": "raintree-v2__top.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0006,
+  "colorfulness": 0.2183,
+  "modelPx": 66509
+ },
+ {
+  "view": "red-junglefowl-v1__front.png",
+  "holePx": 413,
+  "blackShare": 0.0,
+  "greyShare": 0.0714,
+  "colorfulness": 0.3794,
+  "modelPx": 35487
+ },
+ {
+  "view": "red-junglefowl-v1__side.png",
+  "holePx": 137,
+  "blackShare": 0.0,
+  "greyShare": 0.0795,
+  "colorfulness": 0.2046,
+  "modelPx": 21618
+ },
+ {
+  "view": "red-junglefowl-v1__three-quarter.png",
+  "holePx": 297,
+  "blackShare": 0.0,
+  "greyShare": 0.052,
+  "colorfulness": 0.3658,
+  "modelPx": 30019
+ },
+ {
+  "view": "red-junglefowl-v1__top.png",
+  "holePx": 179,
+  "blackShare": 0.0,
+  "greyShare": 0.0179,
+  "colorfulness": 0.3209,
+  "modelPx": 33372
+ },
+ {
+  "view": "router-kit-v2__front.png",
+  "holePx": 625,
+  "blackShare": 0.0,
+  "greyShare": 0.4152,
+  "colorfulness": 0.1997,
+  "modelPx": 28277
+ },
+ {
+  "view": "router-kit-v2__side.png",
+  "holePx": 40,
+  "blackShare": 0.0,
+  "greyShare": 0.6413,
+  "colorfulness": 0.0949,
+  "modelPx": 12611
+ },
+ {
+  "view": "router-kit-v2__three-quarter.png",
+  "holePx": 441,
+  "blackShare": 0.0,
+  "greyShare": 0.3675,
+  "colorfulness": 0.1742,
+  "modelPx": 18613
+ },
+ {
+  "view": "router-kit-v2__top.png",
+  "holePx": 101,
+  "blackShare": 0.0,
+  "greyShare": 0.2766,
+  "colorfulness": 0.1792,
+  "modelPx": 17164
+ },
+ {
+  "view": "satellite-station-v2__front.png",
+  "holePx": 2446,
+  "blackShare": 0.0,
+  "greyShare": 0.3241,
+  "colorfulness": 0.2485,
+  "modelPx": 29022
+ },
+ {
+  "view": "satellite-station-v2__side.png",
+  "holePx": 501,
+  "blackShare": 0.0,
+  "greyShare": 0.5535,
+  "colorfulness": 0.1413,
+  "modelPx": 15482
+ },
+ {
+  "view": "satellite-station-v2__three-quarter.png",
+  "holePx": 1029,
+  "blackShare": 0.0,
+  "greyShare": 0.2562,
+  "colorfulness": 0.2337,
+  "modelPx": 26826
+ },
+ {
+  "view": "satellite-station-v2__top.png",
+  "holePx": 893,
+  "blackShare": 0.0,
+  "greyShare": 0.3077,
+  "colorfulness": 0.1817,
+  "modelPx": 36785
+ },
+ {
+  "view": "service-van-v2__front.png",
+  "holePx": 20315,
+  "blackShare": 0.0,
+  "greyShare": 0.0593,
+  "colorfulness": 0.2682,
+  "modelPx": 70792
+ },
+ {
+  "view": "service-van-v2__side.png",
+  "holePx": 4,
+  "blackShare": 0.0,
+  "greyShare": 0.0641,
+  "colorfulness": 0.3191,
+  "modelPx": 64242
+ },
+ {
+  "view": "service-van-v2__three-quarter.png",
+  "holePx": 10113,
+  "blackShare": 0.0,
+  "greyShare": 0.0271,
+  "colorfulness": 0.287,
+  "modelPx": 80139
+ },
+ {
+  "view": "service-van-v2__top.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0014,
+  "colorfulness": 0.3062,
+  "modelPx": 87670
+ },
+ {
+  "view": "shophouse-v2__front.png",
+  "holePx": 6658,
+  "blackShare": 0.0,
+  "greyShare": 0.1005,
+  "colorfulness": 0.2211,
+  "modelPx": 83284
+ },
+ {
+  "view": "shophouse-v2__side.png",
+  "holePx": 238,
+  "blackShare": 0.0,
+  "greyShare": 0.0384,
+  "colorfulness": 0.1636,
+  "modelPx": 83221
+ },
+ {
+  "view": "shophouse-v2__three-quarter.png",
+  "holePx": 3880,
+  "blackShare": 0.0,
+  "greyShare": 0.0484,
+  "colorfulness": 0.1914,
+  "modelPx": 88046
+ },
+ {
+  "view": "shophouse-v2__top.png",
+  "holePx": 972,
+  "blackShare": 0.0,
+  "greyShare": 0.0125,
+  "colorfulness": 0.3648,
+  "modelPx": 83273
+ },
+ {
+  "view": "singapore-cable-car-skyorb-v1__front.png",
+  "holePx": 10537,
+  "blackShare": 0.0,
+  "greyShare": 0.7844,
+  "colorfulness": 0.0356,
+  "modelPx": 62700
+ },
+ {
+  "view": "singapore-cable-car-skyorb-v1__side.png",
+  "holePx": 2677,
+  "blackShare": 0.0,
+  "greyShare": 0.7091,
+  "colorfulness": 0.0465,
+  "modelPx": 59665
+ },
+ {
+  "view": "singapore-cable-car-skyorb-v1__three-quarter.png",
+  "holePx": 11379,
+  "blackShare": 0.0,
+  "greyShare": 0.7351,
+  "colorfulness": 0.0384,
+  "modelPx": 61482
+ },
+ {
+  "view": "singapore-cable-car-skyorb-v1__top.png",
+  "holePx": 8167,
+  "blackShare": 0.0,
+  "greyShare": 0.778,
+  "colorfulness": 0.036,
+  "modelPx": 45022
+ },
+ {
+  "view": "skypark-hotel-v2__front.png",
+  "holePx": 20065,
+  "blackShare": 0.0,
+  "greyShare": 0.1335,
+  "colorfulness": 0.2683,
+  "modelPx": 40558
+ },
+ {
+  "view": "skypark-hotel-v2__side.png",
+  "holePx": 41,
+  "blackShare": 0.0,
+  "greyShare": 0.2717,
+  "colorfulness": 0.3189,
+  "modelPx": 21205
+ },
+ {
+  "view": "skypark-hotel-v2__three-quarter.png",
+  "holePx": 8556,
+  "blackShare": 0.0,
+  "greyShare": 0.0911,
+  "colorfulness": 0.2759,
+  "modelPx": 34340
+ },
+ {
+  "view": "skypark-hotel-v2__top.png",
+  "holePx": 1472,
+  "blackShare": 0.0,
+  "greyShare": 0.1716,
+  "colorfulness": 0.2528,
+  "modelPx": 22460
+ },
+ {
+  "view": "smooth-coated-otter-v1__front.png",
+  "holePx": 12,
+  "blackShare": 0.0,
+  "greyShare": 0.0267,
+  "colorfulness": 0.1694,
+  "modelPx": 34771
+ },
+ {
+  "view": "smooth-coated-otter-v1__side.png",
+  "holePx": 8,
+  "blackShare": 0.0,
+  "greyShare": 0.0311,
+  "colorfulness": 0.1714,
+  "modelPx": 16773
+ },
+ {
+  "view": "smooth-coated-otter-v1__three-quarter.png",
+  "holePx": 41,
+  "blackShare": 0.0,
+  "greyShare": 0.029,
+  "colorfulness": 0.1708,
+  "modelPx": 32745
+ },
+ {
+  "view": "smooth-coated-otter-v1__top.png",
+  "holePx": 30,
+  "blackShare": 0.0,
+  "greyShare": 0.0169,
+  "colorfulness": 0.1554,
+  "modelPx": 29270
+ },
+ {
+  "view": "sofia__front.png",
+  "holePx": 1371,
+  "blackShare": 0.0,
+  "greyShare": 0.0263,
+  "colorfulness": 0.2414,
+  "modelPx": 53332
+ },
+ {
+  "view": "sofia__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0264,
+  "colorfulness": 0.2034,
+  "modelPx": 29006
+ },
+ {
+  "view": "sofia__three-quarter.png",
+  "holePx": 925,
+  "blackShare": 0.0,
+  "greyShare": 0.0194,
+  "colorfulness": 0.2309,
+  "modelPx": 47684
+ },
+ {
+  "view": "sofia__top.png",
+  "holePx": 1971,
+  "blackShare": 0.0,
+  "greyShare": 0.0196,
+  "colorfulness": 0.1799,
+  "modelPx": 27138
+ },
+ {
+  "view": "sultan-mosque-v2__front.png",
+  "holePx": 9955,
+  "blackShare": 0.0,
+  "greyShare": 0.2482,
+  "colorfulness": 0.1177,
+  "modelPx": 67255
+ },
+ {
+  "view": "sultan-mosque-v2__side.png",
+  "holePx": 855,
+  "blackShare": 0.0,
+  "greyShare": 0.2514,
+  "colorfulness": 0.1069,
+  "modelPx": 66738
+ },
+ {
+  "view": "sultan-mosque-v2__three-quarter.png",
+  "holePx": 8648,
+  "blackShare": 0.0,
+  "greyShare": 0.2463,
+  "colorfulness": 0.1137,
+  "modelPx": 61859
+ },
+ {
+  "view": "sultan-mosque-v2__top.png",
+  "holePx": 635,
+  "blackShare": 0.0,
+  "greyShare": 0.3262,
+  "colorfulness": 0.1325,
+  "modelPx": 64172
+ },
+ {
+  "view": "supertree-v2__front.png",
+  "holePx": 1,
+  "blackShare": 0.0,
+  "greyShare": 0.0032,
+  "colorfulness": 0.3211,
+  "modelPx": 42137
+ },
+ {
+  "view": "supertree-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0033,
+  "colorfulness": 0.3441,
+  "modelPx": 42341
+ },
+ {
+  "view": "supertree-v2__three-quarter.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.0046,
+  "colorfulness": 0.3119,
+  "modelPx": 41351
+ },
+ {
+  "view": "supertree-v2__top.png",
+  "holePx": 35,
+  "blackShare": 0.0,
+  "greyShare": 0.0018,
+  "colorfulness": 0.2763,
+  "modelPx": 61953
+ },
+ {
+  "view": "tang-dynasty-city__front.png",
+  "holePx": 968,
+  "blackShare": 0.0,
+  "greyShare": 0.4244,
+  "colorfulness": 0.1003,
+  "modelPx": 90996
+ },
+ {
+  "view": "tang-dynasty-city__side.png",
+  "holePx": 250,
+  "blackShare": 0.0,
+  "greyShare": 0.5302,
+  "colorfulness": 0.1065,
+  "modelPx": 69861
+ },
+ {
+  "view": "tang-dynasty-city__three-quarter.png",
+  "holePx": 1190,
+  "blackShare": 0.0,
+  "greyShare": 0.3354,
+  "colorfulness": 0.1228,
+  "modelPx": 97547
+ },
+ {
+  "view": "tang-dynasty-city__top.png",
+  "holePx": 575,
+  "blackShare": 0.0,
+  "greyShare": 0.3618,
+  "colorfulness": 0.0813,
+  "modelPx": 124028
+ },
+ {
+  "view": "tanglin-shopping-centre__front.png",
+  "holePx": 6694,
+  "blackShare": 0.0,
+  "greyShare": 0.5845,
+  "colorfulness": 0.0518,
+  "modelPx": 112642
+ },
+ {
+  "view": "tanglin-shopping-centre__side.png",
+  "holePx": 292,
+  "blackShare": 0.0,
+  "greyShare": 0.2304,
+  "colorfulness": 0.0609,
+  "modelPx": 45335
+ },
+ {
+  "view": "tanglin-shopping-centre__three-quarter.png",
+  "holePx": 2871,
+  "blackShare": 0.0,
+  "greyShare": 0.4591,
+  "colorfulness": 0.0603,
+  "modelPx": 105185
+ },
+ {
+  "view": "tanglin-shopping-centre__top.png",
+  "holePx": 212,
+  "blackShare": 0.0,
+  "greyShare": 0.6269,
+  "colorfulness": 0.0454,
+  "modelPx": 112036
+ },
+ {
+  "view": "tank-road-railway-station__front.png",
+  "holePx": 4040,
+  "blackShare": 0.0,
+  "greyShare": 0.3783,
+  "colorfulness": 0.1677,
+  "modelPx": 33631
+ },
+ {
+  "view": "tank-road-railway-station__side.png",
+  "holePx": 2622,
+  "blackShare": 0.0,
+  "greyShare": 0.2304,
+  "colorfulness": 0.2093,
+  "modelPx": 37942
+ },
+ {
+  "view": "tank-road-railway-station__three-quarter.png",
+  "holePx": 4676,
+  "blackShare": 0.0,
+  "greyShare": 0.3206,
+  "colorfulness": 0.1718,
+  "modelPx": 42874
+ },
+ {
+  "view": "tank-road-railway-station__top.png",
+  "holePx": 7818,
+  "blackShare": 0.0,
+  "greyShare": 0.3123,
+  "colorfulness": 0.1896,
+  "modelPx": 68328
+ },
+ {
+  "view": "technological-university-v2__front.png",
+  "holePx": 498,
+  "blackShare": 0.0,
+  "greyShare": 0.0258,
+  "colorfulness": 0.1888,
+  "modelPx": 74555
+ },
+ {
+  "view": "technological-university-v2__side.png",
+  "holePx": 409,
+  "blackShare": 0.0,
+  "greyShare": 0.025,
+  "colorfulness": 0.1962,
+  "modelPx": 62786
+ },
+ {
+  "view": "technological-university-v2__three-quarter.png",
+  "holePx": 1058,
+  "blackShare": 0.0,
+  "greyShare": 0.0218,
+  "colorfulness": 0.1906,
+  "modelPx": 88119
+ },
+ {
+  "view": "technological-university-v2__top.png",
+  "holePx": 797,
+  "blackShare": 0.0,
+  "greyShare": 0.0216,
+  "colorfulness": 0.1941,
+  "modelPx": 101454
+ },
+ {
+  "view": "temple-v2__front.png",
+  "holePx": 41,
+  "blackShare": 0.0,
+  "greyShare": 0.1261,
+  "colorfulness": 0.2964,
+  "modelPx": 78861
+ },
+ {
+  "view": "temple-v2__side.png",
+  "holePx": 83,
+  "blackShare": 0.0,
+  "greyShare": 0.1235,
+  "colorfulness": 0.3712,
+  "modelPx": 79121
+ },
+ {
+  "view": "temple-v2__three-quarter.png",
+  "holePx": 55,
+  "blackShare": 0.0,
+  "greyShare": 0.0647,
+  "colorfulness": 0.3247,
+  "modelPx": 90186
+ },
+ {
+  "view": "temple-v2__top.png",
+  "holePx": 1,
+  "blackShare": 0.0,
+  "greyShare": 0.0016,
+  "colorfulness": 0.3536,
+  "modelPx": 100143
+ },
+ {
+  "view": "uncle-lim__front.png",
+  "holePx": 370,
+  "blackShare": 0.0,
+  "greyShare": 0.0519,
+  "colorfulness": 0.1797,
+  "modelPx": 34615
+ },
+ {
+  "view": "uncle-lim__side.png",
+  "holePx": 1,
+  "blackShare": 0.0,
+  "greyShare": 0.0661,
+  "colorfulness": 0.1636,
+  "modelPx": 25145
+ },
+ {
+  "view": "uncle-lim__three-quarter.png",
+  "holePx": 96,
+  "blackShare": 0.0,
+  "greyShare": 0.0408,
+  "colorfulness": 0.1742,
+  "modelPx": 31269
+ },
+ {
+  "view": "uncle-lim__top.png",
+  "holePx": 5,
+  "blackShare": 0.0,
+  "greyShare": 0.1137,
+  "colorfulness": 0.1329,
+  "modelPx": 14937
+ },
+ {
+  "view": "van-kleef-aquarium__front.png",
+  "holePx": 408,
+  "blackShare": 0.0,
+  "greyShare": 0.2671,
+  "colorfulness": 0.0972,
+  "modelPx": 43214
+ },
+ {
+  "view": "van-kleef-aquarium__side.png",
+  "holePx": 137,
+  "blackShare": 0.0,
+  "greyShare": 0.2149,
+  "colorfulness": 0.1397,
+  "modelPx": 13561
+ },
+ {
+  "view": "van-kleef-aquarium__three-quarter.png",
+  "holePx": 385,
+  "blackShare": 0.0,
+  "greyShare": 0.3072,
+  "colorfulness": 0.0937,
+  "modelPx": 39805
+ },
+ {
+  "view": "van-kleef-aquarium__top.png",
+  "holePx": 150,
+  "blackShare": 0.0,
+  "greyShare": 0.321,
+  "colorfulness": 0.1202,
+  "modelPx": 25200
+ },
+ {
+  "view": "wetmarket-v2__front.png",
+  "holePx": 1298,
+  "blackShare": 0.0,
+  "greyShare": 0.4038,
+  "colorfulness": 0.1509,
+  "modelPx": 28984
+ },
+ {
+  "view": "wetmarket-v2__side.png",
+  "holePx": 521,
+  "blackShare": 0.0,
+  "greyShare": 0.3222,
+  "colorfulness": 0.2057,
+  "modelPx": 38257
+ },
+ {
+  "view": "wetmarket-v2__three-quarter.png",
+  "holePx": 5484,
+  "blackShare": 0.0,
+  "greyShare": 0.2084,
+  "colorfulness": 0.2152,
+  "modelPx": 42682
+ },
+ {
+  "view": "wetmarket-v2__top.png",
+  "holePx": 1806,
+  "blackShare": 0.0,
+  "greyShare": 0.0875,
+  "colorfulness": 0.324,
+  "modelPx": 90112
+ },
+ {
+  "view": "wifi-kit-v2__front.png",
+  "holePx": 3,
+  "blackShare": 0.0,
+  "greyShare": 0.2817,
+  "colorfulness": 0.1926,
+  "modelPx": 25124
+ },
+ {
+  "view": "wifi-kit-v2__side.png",
+  "holePx": 0,
+  "blackShare": 0.0,
+  "greyShare": 0.4576,
+  "colorfulness": 0.1756,
+  "modelPx": 14295
+ },
+ {
+  "view": "wifi-kit-v2__three-quarter.png",
+  "holePx": 3,
+  "blackShare": 0.0,
+  "greyShare": 0.1909,
+  "colorfulness": 0.2193,
+  "modelPx": 18938
+ },
+ {
+  "view": "wifi-kit-v2__top.png",
+  "holePx": 68,
+  "blackShare": 0.0,
+  "greyShare": 0.4102,
+  "colorfulness": 0.1532,
+  "modelPx": 13982
+ }
+]

@@ -252,17 +252,17 @@
         "file": "skypark-hotel-v2.glb",
         "sourcePath": "assets/skypark-hotel-v2.glb",
         "publicPath": "/models/skypark-hotel-v2.glb",
-        "sha256": "a9a7df65122e1b21214fb8aa6ac91bb047f92eadbe6edffda4fc6353bebce41b",
-        "byteLength": 55604,
+        "sha256": "c94f4c11fbf98b1587e047d87a118b068079397eaeafa83e9dfacacfd972eee2",
+        "byteLength": 63020,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/skypark-hotel.webp",
-        "publicPath": "/previews/skypark-hotel.png",
-        "sourceModelSha256": "a9a7df65122e1b21214fb8aa6ac91bb047f92eadbe6edffda4fc6353bebce41b",
+        "publicPath": null,
+        "sourceModelSha256": "c94f4c11fbf98b1587e047d87a118b068079397eaeafa83e9dfacacfd972eee2",
         "sha256": "fa2f20d481b395a5db2ea7107102512550ffc0705b68ac53832389905eaf40d7",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -662,17 +662,17 @@
         "file": "flyer-v2.glb",
         "sourcePath": "assets/flyer-v2.glb",
         "publicPath": "/models/flyer-v2.glb",
-        "sha256": "a49ca26312304bc7d760a7c3fe254efbac7da5d367f376ef828a7f07766acb7a",
-        "byteLength": 61944,
+        "sha256": "e31095234ac412f48161a965ae27d2d69150b6ce2c1ecfec988f7dd592cbbc84",
+        "byteLength": 41040,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/singapore-flyer.webp",
-        "publicPath": "/previews/singapore-flyer.png",
-        "sourceModelSha256": "a49ca26312304bc7d760a7c3fe254efbac7da5d367f376ef828a7f07766acb7a",
+        "publicPath": null,
+        "sourceModelSha256": "e31095234ac412f48161a965ae27d2d69150b6ce2c1ecfec988f7dd592cbbc84",
         "sha256": "217c44252ab91319026e4fb486c4dccd1de84f81ebeb1170d815edb5547c07c3",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -688,14 +688,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 13972,
-        "materials": 6,
-        "meshCount": 99,
+        "triangles": 6708,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 25.74159957885742,
-          "height": 27.784000354507928,
-          "depth": 7.369199867844582
+          "width": 6.994999885559082,
+          "height": 7.549999618505953,
+          "depth": 2.0026822984218597
         }
       },
       "publication": {
@@ -962,17 +962,17 @@
         "file": "wetmarket-v2.glb",
         "sourcePath": "assets/wetmarket-v2.glb",
         "publicPath": "/models/wetmarket-v2.glb",
-        "sha256": "a970a9fed23e88626e7baaa5c947b575117f108e75f2b93c20b9201b4391f56f",
-        "byteLength": 107580,
+        "sha256": "e4eee123bb8180642d5c47cd76accc51c2d2d2e318e74faa3581a13faf923bb5",
+        "byteLength": 116320,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/wet-market.webp",
-        "publicPath": "/previews/wet-market.png",
-        "sourceModelSha256": "a970a9fed23e88626e7baaa5c947b575117f108e75f2b93c20b9201b4391f56f",
+        "publicPath": null,
+        "sourceModelSha256": "e4eee123bb8180642d5c47cd76accc51c2d2d2e318e74faa3581a13faf923bb5",
         "sha256": "3dfda8e790820ebfbfe01dd73273fce1eef72933a52210f926847900e486adf7",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -994,14 +994,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11508,
+        "triangles": 31976,
         "materials": 2,
-        "meshCount": 2,
+        "meshCount": 21,
         "compressed": true,
         "dimensions": {
-          "width": 13.718546780586243,
-          "height": 11.791361897908365,
-          "depth": 13.885808625410082
+          "width": 12.800000190734863,
+          "height": 4.980031818151474,
+          "depth": 9.920136451721191
         }
       },
       "publication": {
@@ -1066,17 +1066,17 @@
         "file": "kopitiam-v2.glb",
         "sourcePath": "assets/kopitiam-v2.glb",
         "publicPath": "/models/kopitiam-v2.glb",
-        "sha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
-        "byteLength": 92232,
+        "sha256": "1a7c39a11c5f6dfa6a5d51b4aa06e4c3ca5613339eeeaafc1207dc75a0807dcc",
+        "byteLength": 100372,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/kopitiam.webp",
-        "publicPath": "/previews/kopitiam.png",
-        "sourceModelSha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
+        "publicPath": null,
+        "sourceModelSha256": "1a7c39a11c5f6dfa6a5d51b4aa06e4c3ca5613339eeeaafc1207dc75a0807dcc",
         "sha256": "4ecc89f613c24be4acaf9465a5cafbd229166bfe6169ef8a54e01ab8f5c209ed",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1098,14 +1098,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7848,
+        "triangles": 31312,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 10,
         "compressed": true,
         "dimensions": {
-          "width": 7.764749999999999,
-          "height": 5.403049278974533,
-          "depth": 6.306874823570251
+          "width": 12,
+          "height": 5.404960721731186,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -1470,17 +1470,17 @@
         "file": "hawker-v2.glb",
         "sourcePath": "assets/hawker-v2.glb",
         "publicPath": "/models/hawker-v2.glb",
-        "sha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
-        "byteLength": 90172,
+        "sha256": "5e2de6eaba287453f494a5b47b7dcb66a8e00e81534e06ef05947dc33de4be51",
+        "byteLength": 98084,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/hawker.webp",
-        "publicPath": "/previews/hawker.png",
-        "sourceModelSha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
+        "publicPath": null,
+        "sourceModelSha256": "5e2de6eaba287453f494a5b47b7dcb66a8e00e81534e06ef05947dc33de4be51",
         "sha256": "756c6b889d301f3d60fec4d6afac0fae8cd836dd4cf0f0132c4b5ee0203cf90c",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1502,14 +1502,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7834,
+        "triangles": 32572,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 11.118799724578857,
-          "height": 6.208556478500366,
-          "depth": 7.941902914047241
+          "width": 12,
+          "height": 4.659775346517563,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -1776,17 +1776,17 @@
         "file": "lost-heritage/alkaff-arcade.glb",
         "sourcePath": "assets/lost-heritage/alkaff-arcade.glb",
         "publicPath": "/models/lost-heritage/alkaff-arcade.glb",
-        "sha256": "9ffc5d242b68a12176b3a84c02a71c724ab61fca09cf601886c6dc4a8e700697",
-        "byteLength": 201396,
+        "sha256": "eb43ba4ff740f03efb55d68465e1ca6bd3fe4fe4c8a4893f8d0015db8708c44f",
+        "byteLength": 206532,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/lost-alkaff-arcade.webp",
-        "publicPath": "/previews/lost-alkaff-arcade.png",
-        "sourceModelSha256": "9ffc5d242b68a12176b3a84c02a71c724ab61fca09cf601886c6dc4a8e700697",
+        "publicPath": null,
+        "sourceModelSha256": "eb43ba4ff740f03efb55d68465e1ca6bd3fe4fe4c8a4893f8d0015db8708c44f",
         "sha256": "03c5dc8f6183514aeabd3141641a999ed168996015b12b82ce35d82e827a90cc",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1808,14 +1808,14 @@
       ],
       "evidenceStatus": "unreviewed",
       "metrics": {
-        "triangles": 9477,
-        "materials": 7,
-        "meshCount": 120,
+        "triangles": 13377,
+        "materials": 4,
+        "meshCount": 166,
         "compressed": true,
         "dimensions": {
           "width": 19.810000009536743,
           "height": 10.660000015497207,
-          "depth": 8.05
+          "depth": 8.399999994635582
         }
       },
       "publication": {
@@ -2623,17 +2623,17 @@
         "file": "lost-heritage/comcentre.glb",
         "sourcePath": "assets/lost-heritage/comcentre.glb",
         "publicPath": "/models/lost-heritage/comcentre.glb",
-        "sha256": "712346dca0520bba34f8e3d9bd4616c6239afd10a8291d0d63dc27c9bc894ce0",
-        "byteLength": 331916,
+        "sha256": "4f508d83a3a87616b347369f2efa2ec67bce6ca196ec2832ceaf682ba0f01527",
+        "byteLength": 335024,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/lost-comcentre.webp",
-        "publicPath": "/previews/lost-comcentre.png",
-        "sourceModelSha256": "712346dca0520bba34f8e3d9bd4616c6239afd10a8291d0d63dc27c9bc894ce0",
+        "publicPath": null,
+        "sourceModelSha256": "4f508d83a3a87616b347369f2efa2ec67bce6ca196ec2832ceaf682ba0f01527",
         "sha256": "a6331dbde3590e2e9640a90dc215b2094a9b32512a9e1c718f3cf3831f418290",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3256,17 +3256,17 @@
         "file": "hdb-call-v2.glb",
         "sourcePath": "assets/hdb-call-v2.glb",
         "publicPath": "/models/hdb-call-v2.glb",
-        "sha256": "36be85cce8bd72dfeef5bbc5616656368f2669bab966861fca68aaaa79a8f7f1",
-        "byteLength": 115772,
+        "sha256": "0b7bdff785f27d6be9df6e4e21a5d1f976ed8a9cfe2ce127a1db7e4f578e170d",
+        "byteLength": 112796,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/hdb-call.webp",
-        "publicPath": "/previews/hdb-call.png",
-        "sourceModelSha256": "36be85cce8bd72dfeef5bbc5616656368f2669bab966861fca68aaaa79a8f7f1",
+        "publicPath": null,
+        "sourceModelSha256": "0b7bdff785f27d6be9df6e4e21a5d1f976ed8a9cfe2ce127a1db7e4f578e170d",
         "sha256": "2c59516f615bad6893d6fdc4aafef51b1c8289512a488b95035069dd735b7e38",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3288,14 +3288,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 3788,
+        "triangles": 27204,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 16,
         "compressed": true,
         "dimensions": {
-          "width": 7.563015258789062,
-          "height": 10.09243982362747,
-          "depth": 4.359036952972412
+          "width": 10.97719955444336,
+          "height": 10.912305802106857,
+          "depth": 8.776131629943848
         }
       },
       "publication": {
@@ -3758,17 +3758,17 @@
         "file": "condo-marina-v2.glb",
         "sourcePath": "assets/condo-marina-v2.glb",
         "publicPath": "/models/condo-marina-v2.glb",
-        "sha256": "8139931be909948be4904ec9a09dc8c782ff358c4384582e3bdd6aee765c6031",
-        "byteLength": 79972,
+        "sha256": "99344fe2291ac76820f446bd68f750d6076d9a2e3cc33c04df2d3364f3d01200",
+        "byteLength": 93248,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/condo-marina.webp",
-        "publicPath": "/previews/condo-marina.png",
-        "sourceModelSha256": "8139931be909948be4904ec9a09dc8c782ff358c4384582e3bdd6aee765c6031",
+        "publicPath": null,
+        "sourceModelSha256": "99344fe2291ac76820f446bd68f750d6076d9a2e3cc33c04df2d3364f3d01200",
         "sha256": "2ae86a43084ee3a900e3c1e69d63d07ee3ace612f869d18a9a5a29f9f75c2784",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3784,14 +3784,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 8536,
+        "triangles": 27172,
         "materials": 1,
-        "meshCount": 1,
+        "meshCount": 11,
         "compressed": true,
         "dimensions": {
-          "width": 17.78195477628708,
-          "height": 30.002242219924927,
-          "depth": 16.082505508542063
+          "width": 12,
+          "height": 9.61000069975853,
+          "depth": 9.300127983093262
         }
       },
       "publication": {
@@ -4260,17 +4260,17 @@
         "file": "satellite-station-v2.glb",
         "sourcePath": "assets/satellite-station-v2.glb",
         "publicPath": "/models/satellite-station-v2.glb",
-        "sha256": "1dbb6e3a91d377c5b9e36d872708288a2a4b4859ca9da3c85004361c82d120d4",
-        "byteLength": 55244,
+        "sha256": "9bfc0710f6baeb363fa67ffaf69994b586f657c37530c8b5948950ddde3f9a37",
+        "byteLength": 59956,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/satellite-station.webp",
-        "publicPath": "/previews/satellite-station.png",
-        "sourceModelSha256": "1dbb6e3a91d377c5b9e36d872708288a2a4b4859ca9da3c85004361c82d120d4",
+        "publicPath": null,
+        "sourceModelSha256": "9bfc0710f6baeb363fa67ffaf69994b586f657c37530c8b5948950ddde3f9a37",
         "sha256": "aac771a246f1b8fced255a19d6eb5fc7da893e471cecc6afd0121c132c0567de",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4291,9 +4291,9 @@
         "meshCount": 23,
         "compressed": true,
         "dimensions": {
-          "width": 7.6,
-          "height": 3.405,
-          "depth": 5.80009
+          "width": 7.599999904632568,
+          "height": 3.4049999490380287,
+          "depth": 5.800085544586182
         }
       },
       "publication": {
@@ -4358,17 +4358,17 @@
         "file": "design-university-v2.glb",
         "sourcePath": "assets/design-university-v2.glb",
         "publicPath": "/models/design-university-v2.glb",
-        "sha256": "fcd53529029716bf415eb55b9236a66c167272e7c350fb7b9f54b4d2f0eedaaf",
-        "byteLength": 61980,
+        "sha256": "de2cee820e0e2a06f62d442560bf7896e472da29b9e8797d5ac5db9c4391ff3a",
+        "byteLength": 46720,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/design-university.webp",
-        "publicPath": "/previews/design-university.png",
-        "sourceModelSha256": "fcd53529029716bf415eb55b9236a66c167272e7c350fb7b9f54b4d2f0eedaaf",
+        "publicPath": null,
+        "sourceModelSha256": "de2cee820e0e2a06f62d442560bf7896e472da29b9e8797d5ac5db9c4391ff3a",
         "sha256": "3a0fca1af7be116d7b659ad384b2692674fcb1330ded6da229339d7879932eec",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4385,13 +4385,13 @@
       "evidenceStatus": "not-applicable",
       "metrics": {
         "triangles": 10488,
-        "materials": 7,
-        "meshCount": 40,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 30.624000663757325,
-          "height": 11.310000362992287,
-          "depth": 20.184000663757324
+          "width": 8.800000190734863,
+          "height": 3.2502471804618835,
+          "depth": 5.800061225891113
         }
       },
       "publication": {
@@ -4456,17 +4456,17 @@
         "file": "management-university-v2.glb",
         "sourcePath": "assets/management-university-v2.glb",
         "publicPath": "/models/management-university-v2.glb",
-        "sha256": "58ffd75a6da9d69dec1bdf9249af3815c2b106cee3b6ac80e0628603a4a1b088",
-        "byteLength": 69644,
+        "sha256": "fe571c43974f8ed917a0cd94e569b34bb4c3101fd4232aaebd2c04c42d2bddd2",
+        "byteLength": 45928,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/management-university.webp",
-        "publicPath": "/previews/management-university.png",
-        "sourceModelSha256": "58ffd75a6da9d69dec1bdf9249af3815c2b106cee3b6ac80e0628603a4a1b088",
+        "publicPath": null,
+        "sourceModelSha256": "fe571c43974f8ed917a0cd94e569b34bb4c3101fd4232aaebd2c04c42d2bddd2",
         "sha256": "7c85611f6bb7254e5bf3300f2e930fc2f3d2869a8cae708ff1f32cc0774ea3bd",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4482,14 +4482,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 11516,
-        "materials": 8,
-        "meshCount": 36,
+        "triangles": 9724,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 29.495,
-          "height": 12.734899825230242,
-          "depth": 18.73800033092499
+          "width": 8.5,
+          "height": 3.6697498485445976,
+          "depth": 5.3999876976013175
         }
       },
       "publication": {
@@ -4652,17 +4652,17 @@
         "file": "national-university-v2.glb",
         "sourcePath": "assets/national-university-v2.glb",
         "publicPath": "/models/national-university-v2.glb",
-        "sha256": "3664b6c0e741e72ef7ac9004aeddaec6c212d7cc7fcb49609f82edf814aa971b",
-        "byteLength": 77780,
+        "sha256": "f65cfe6e880810d717aefba28fb4781f929f49f5cde0ffcfc5b1403f75e81105",
+        "byteLength": 59480,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/national-university.webp",
-        "publicPath": "/previews/national-university.png",
-        "sourceModelSha256": "3664b6c0e741e72ef7ac9004aeddaec6c212d7cc7fcb49609f82edf814aa971b",
+        "publicPath": null,
+        "sourceModelSha256": "f65cfe6e880810d717aefba28fb4781f929f49f5cde0ffcfc5b1403f75e81105",
         "sha256": "5475c924a830ef84f04efd6c848616f306dd6cbd021bbd9de2de18c2fa1333f9",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4679,13 +4679,13 @@
       "evidenceStatus": "not-applicable",
       "metrics": {
         "triangles": 14192,
-        "materials": 9,
-        "meshCount": 44,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 27.176001205444337,
-          "height": 13.113999948203563,
-          "depth": 17.380000000000003
+          "width": 8.600000381469727,
+          "height": 4.150044672191143,
+          "depth": 5.499737739562987
         }
       },
       "publication": {
@@ -4848,17 +4848,17 @@
         "file": "technological-university-v2.glb",
         "sourcePath": "assets/technological-university-v2.glb",
         "publicPath": "/models/technological-university-v2.glb",
-        "sha256": "457f5988de7cd770faacf3e88a6ea7756560d646cd5f7fa2aa17c7ffa6a35e3e",
-        "byteLength": 292092,
+        "sha256": "cbcbae8e898d6293f285d83f20dc384ce1d294c9acaa791853ac37eb7575b7de",
+        "byteLength": 196932,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/technological-university.webp",
-        "publicPath": "/previews/technological-university.png",
-        "sourceModelSha256": "457f5988de7cd770faacf3e88a6ea7756560d646cd5f7fa2aa17c7ffa6a35e3e",
+        "publicPath": null,
+        "sourceModelSha256": "cbcbae8e898d6293f285d83f20dc384ce1d294c9acaa791853ac37eb7575b7de",
         "sha256": "fe1a18a1fa12f866f0f1499159b619961019a5dedd817fb544c48d5114302f76",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4875,13 +4875,13 @@
       "evidenceStatus": "not-applicable",
       "metrics": {
         "triangles": 28904,
-        "materials": 6,
-        "meshCount": 124,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 29.23199867248535,
-          "height": 11.257800023853779,
-          "depth": 20.184000663757324
+          "width": 8.399999618530273,
+          "height": 3.235126070678234,
+          "depth": 5.799963474273682
         }
       },
       "publication": {
@@ -4946,17 +4946,17 @@
         "file": "busstop-v2.glb",
         "sourcePath": "assets/busstop-v2.glb",
         "publicPath": "/models/busstop-v2.glb",
-        "sha256": "dd8e8666ceff1a73f524b4a977140925692b68f7c151168ce0bfe0d7fbf9abe5",
-        "byteLength": 28556,
+        "sha256": "61555fcb2beec86951703d844b56bb3095ff6fdce872a681ed24ee2474e4919e",
+        "byteLength": 20188,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/bus-stop.webp",
-        "publicPath": "/previews/bus-stop.png",
-        "sourceModelSha256": "dd8e8666ceff1a73f524b4a977140925692b68f7c151168ce0bfe0d7fbf9abe5",
+        "publicPath": null,
+        "sourceModelSha256": "61555fcb2beec86951703d844b56bb3095ff6fdce872a681ed24ee2474e4919e",
         "sha256": "8e0b2d70f595941db0e2007c48fd0137fd845f356c13fd046e93bfcbda7d71eb",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4978,14 +4978,14 @@
       ],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 2004,
-        "materials": 10,
-        "meshCount": 17,
+        "triangles": 1980,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 5.1388001689910885,
-          "height": 2.918047542196147,
-          "depth": 2.231682338749064
+          "width": 5.800000190734862,
+          "height": 3.2882038950920105,
+          "depth": 2.5136988647282124
         }
       },
       "publication": {
@@ -5662,17 +5662,17 @@
         "file": "postbox-v2.glb",
         "sourcePath": "assets/postbox-v2.glb",
         "publicPath": "/models/postbox-v2.glb",
-        "sha256": "05535469d99529d908980cf3c950695d00ff3230557ab83d0be6f4502a3e2d10",
-        "byteLength": 15392,
+        "sha256": "15b0b10f602af5c61bac323608674bcafbdad41e87e9360aba2b26bc682f5135",
+        "byteLength": 11156,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/postbox.webp",
-        "publicPath": "/previews/postbox.png",
-        "sourceModelSha256": "05535469d99529d908980cf3c950695d00ff3230557ab83d0be6f4502a3e2d10",
+        "publicPath": null,
+        "sourceModelSha256": "15b0b10f602af5c61bac323608674bcafbdad41e87e9360aba2b26bc682f5135",
         "sha256": "6fbe4f623712f8cbe9ecbc3048843b25c78134d6d088df0317032bf9635da142",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5688,14 +5688,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 7380,
+        "triangles": 836,
         "materials": 4,
-        "meshCount": 6,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 0.5853600232601166,
-          "height": 1.197819972217083,
-          "depth": 0.46828800993160535
+          "width": 1.0799877643585205,
+          "height": 2.209999918937683,
+          "depth": 0.9105488680024433
         }
       },
       "publication": {
@@ -5760,17 +5760,17 @@
         "file": "bench-v2.glb",
         "sourcePath": "assets/bench-v2.glb",
         "publicPath": "/models/bench-v2.glb",
-        "sha256": "e3dedc76d409aaa0e179bc35de74926e37b8ccb0b1b154ed41be770a560f11db",
-        "byteLength": 5648,
+        "sha256": "4491b62ada661231fe1a054b09094e92b21f5d17c4e3bdb107eb9709635dd7dc",
+        "byteLength": 6552,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/bench.webp",
-        "publicPath": "/previews/bench.png",
-        "sourceModelSha256": "e3dedc76d409aaa0e179bc35de74926e37b8ccb0b1b154ed41be770a560f11db",
+        "publicPath": null,
+        "sourceModelSha256": "4491b62ada661231fe1a054b09094e92b21f5d17c4e3bdb107eb9709635dd7dc",
         "sha256": "80fdc56531cbbc9e7da2f22f05c78b24acf9bb9415dd7d3f3d349366335904dd",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5786,14 +5786,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 744,
+        "triangles": 1054,
         "materials": 1,
         "meshCount": 1,
         "compressed": true,
         "dimensions": {
-          "width": 2.2147731399536132,
-          "height": 0.8460020278658855,
-          "depth": 0.44381993365465816
+          "width": 4.139762878417969,
+          "height": 1.5815647840499878,
+          "depth": 0.8295697569847107
         }
       },
       "publication": {
@@ -6568,17 +6568,17 @@
         "file": "router-kit-v2.glb",
         "sourcePath": "assets/router-kit-v2.glb",
         "publicPath": "/models/router-kit-v2.glb",
-        "sha256": "6c1ca4fca404eced1684f7f528703547b079a65788372b4c638b32ba12c7f21e",
-        "byteLength": 24172,
+        "sha256": "b13fb7f9dd949ebfb9aaa96b06f08f5208092589ef8215e65694b61b2beea07d",
+        "byteLength": 17236,
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "ready",
+        "status": "legacy",
         "sourcePath": "assets/previews/catalogue/router-kit.webp",
-        "publicPath": "/previews/router-kit.png",
-        "sourceModelSha256": "6c1ca4fca404eced1684f7f528703547b079a65788372b4c638b32ba12c7f21e",
+        "publicPath": null,
+        "sourceModelSha256": "b13fb7f9dd949ebfb9aaa96b06f08f5208092589ef8215e65694b61b2beea07d",
         "sha256": "485616ec758e04b8adaf9d989f23aadd3f0a591fd0ecad94fd3f0fa71f935491",
-        "contentType": "image/webp"
+        "contentType": "image/png"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6594,14 +6594,14 @@
       "sources": [],
       "evidenceStatus": "not-applicable",
       "metrics": {
-        "triangles": 4932,
-        "materials": 10,
-        "meshCount": 26,
+        "triangles": 1732,
+        "materials": 4,
+        "meshCount": 4,
         "compressed": true,
         "dimensions": {
-          "width": 3.591000108718872,
-          "height": 1.7216627757681953,
-          "depth": 2.3369999456405637
+          "width": 3.1500000953674316,
+          "height": 1.5108582571476612,
+          "depth": 2.050009250640869
         }
       },
       "publication": {

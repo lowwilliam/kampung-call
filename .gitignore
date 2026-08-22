@@ -9,3 +9,6 @@ dist/
 *.blend1
 * [0-9].*
 review-shots/*.log
+
+# Per-view review renders are regenerable; keep only contact sheets + JSON reports.
+review-shots/commercial-review/*__*.png

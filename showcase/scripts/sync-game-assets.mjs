@@ -25,8 +25,11 @@ await rm(previewOutput, { recursive: true, force: true });
 await mkdir(previewOutput, { recursive: true });
 await rm(downloadOutput, { recursive: true, force: true });
 await mkdir(downloadOutput, { recursive: true });
-execFileSync("npm", ["pack", path.join(siteRoot, "cli-package"), "--pack-destination", downloadOutput], {
-  cwd: siteRoot,
+// npm pack must run from inside the package folder: when invoked with a path
+// argument from the repo root, npm misreads the enclosing git checkout as a
+// git dependency and fails on ls-remote.
+execFileSync("npm", ["pack", "--pack-destination", downloadOutput], {
+  cwd: path.join(siteRoot, "cli-package"),
   stdio: "ignore",
 });
 
