@@ -1,0 +1,50 @@
+{
+ "generatedAt": "2026-08-22T11:00:40.959327Z",
+ "assets": [
+  {
+   "path": "assets/hawker-v2.glb",
+   "meshes": 11,
+   "issues": [],
+   "warnings": [],
+   "triangles": 32569,
+   "materials": [
+    "PaletteMaterial001"
+   ]
+  },
+  {
+   "path": "assets/hdb-call-v2.glb",
+   "meshes": 16,
+   "issues": [
+    "degenerate_faces:3"
+   ],
+   "warnings": [],
+   "triangles": 27200,
+   "materials": [
+    "PaletteMaterial001"
+   ]
+  },
+  {
+   "path": "assets/kopitiam-v2.glb",
+   "meshes": 10,
+   "issues": [],
+   "warnings": [],
+   "triangles": 31309,
+   "materials": [
+    "PaletteMaterial001"
+   ]
+  },
+  {
+   "path": "assets/wetmarket-v2.glb",
+   "meshes": 21,
+   "issues": [
+    "degenerate_faces:1"
+   ],
+   "warnings": [],
+   "triangles": 31971,
+   "materials": [
+    "PaletteMaterial001",
+    "PaletteMaterial002"
+   ]
+  }
+ ]
+}

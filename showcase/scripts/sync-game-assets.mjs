@@ -1,4 +1,5 @@
 import { access, copyFile, cp, mkdir, readFile, rm } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -23,6 +24,14 @@ await mkdir(outputRoot, { recursive: true });
 await rm(previewOutput, { recursive: true, force: true });
 await mkdir(previewOutput, { recursive: true });
 await rm(downloadOutput, { recursive: true, force: true });
+await mkdir(downloadOutput, { recursive: true });
+// npm pack must run from inside the package folder: when invoked with a path
+// argument from the repo root, npm misreads the enclosing git checkout as a
+// git dependency and fails on ls-remote.
+execFileSync("npm", ["pack", "--pack-destination", downloadOutput], {
+  cwd: path.join(siteRoot, "cli-package"),
+  stdio: "ignore",
+});
 
 let previewCount = 0;
 await Promise.all(manifest.assets.map(async (asset) => {

@@ -55,6 +55,29 @@ The strict audit reports 245,979 triangles, zero over-budget assets, zero
 ungrounded assets, zero material-budget failures and Draco compression on all
 55 entries.
 
+### Commercial-readiness QA pass (2026-08-22)
+
+Repeatable review tooling beside the audit:
+
+```sh
+blender -b -P blender/render_review_views.py -- --out review-shots/commercial-review --all
+python3 scripts/make-review-sheets.py
+blender -b -P blender/audit_asset_health.py -- --all
+python3 scripts/analyze-review-pixels.py
+```
+
+After editing any shipping GLB, keep checksums and copies honest:
+
+```sh
+node showcase/scripts/refresh-catalogue-integrity.mjs --write --accept-previews --sync-world-metrics
+node showcase/scripts/sync-game-assets.mjs
+npm run memory:sync
+npm run audit:world -- --strict
+```
+
+Findings and repairs are recorded in
+`docs/3D-ASSET-COMMERCIAL-REVIEW-2026-08-22.md`.
+
 ## Transit pass
 
 `blender/create_transit_assets.py` produces the optional `singapore-bus-v1` and

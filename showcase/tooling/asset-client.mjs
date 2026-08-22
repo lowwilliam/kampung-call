@@ -19,7 +19,7 @@ export function safeFileName(value) {
 }
 
 export class AssetClient {
-  constructor({ baseUrl = process.env.KAMPUNG_ASSET_API_URL || "http://localhost:3000", token = process.env.KAMPUNG_ASSET_API_TOKEN || "", fetchImpl = globalThis.fetch } = {}) {
+  constructor({ baseUrl = process.env.KAMPUNG_ASSET_API_URL || "https://kampung-call-collection.will-ai.chatgpt.site", token = process.env.KAMPUNG_ASSET_API_TOKEN || "", fetchImpl = globalThis.fetch } = {}) {
     if (typeof fetchImpl !== "function") throw new AssetClientError("This runtime does not provide fetch", { code: "missing_fetch" });
     this.baseUrl = new URL(baseUrl).href.replace(/\/$/, "");
     this.token = token;

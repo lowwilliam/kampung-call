@@ -26,8 +26,9 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "cli": "node bin/kampung-assets.mjs",
+    "cli:pack": "node scripts/sync-game-assets.mjs",
     "mcp": "node mcp/server.mjs",
-    "test:tooling": "node --test tests/asset-tooling.test.mjs tests/mcp-server.test.mjs"
+    "test:tooling": "node --test tests/asset-tooling.test.mjs tests/mcp-server.test.mjs tests/remote-mcp-server.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "^2.0.0",

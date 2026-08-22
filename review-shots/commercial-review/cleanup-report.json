@@ -1,0 +1,302 @@
+[
+ {
+  "path": "assets/hawker-v2.glb",
+  "objects": {
+   "Ground": {
+    "degenerate": 0,
+    "welded": 8,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Chalk": {
+    "degenerate": 2,
+    "welded": 2775,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Concrete": {
+    "degenerate": 0,
+    "welded": 32,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Dark metal": {
+    "degenerate": 0,
+    "welded": 192,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Deep teal": {
+    "degenerate": 0,
+    "welded": 223,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Ink": {
+    "degenerate": 1,
+    "welded": 422,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Signal yellow": {
+    "degenerate": 0,
+    "welded": 24,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Terracotta": {
+    "degenerate": 0,
+    "welded": 24,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Utility blue": {
+    "degenerate": 0,
+    "welded": 24,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Warm plaster": {
+    "degenerate": 0,
+    "welded": 391,
+    "normals_fixed": false
+   },
+   "HAWKER CENTRE KIT \u00b7 Weathered teal": {
+    "degenerate": 0,
+    "welded": 24,
+    "normals_fixed": false
+   }
+  }
+ },
+ {
+  "path": "assets/hdb-call-v2.glb",
+  "objects": {
+   "HDB Block teal": {
+    "degenerate": 0,
+    "welded": 34,
+    "normals_fixed": false
+   },
+   "HDB Chalk white": {
+    "degenerate": 0,
+    "welded": 129,
+    "normals_fixed": false
+   },
+   "HDB Corridor coral": {
+    "degenerate": 0,
+    "welded": 48,
+    "normals_fixed": false
+   },
+   "HDB HDB cream": {
+    "degenerate": 0,
+    "welded": 6,
+    "normals_fixed": false
+   },
+   "HDB Ink charcoal": {
+    "degenerate": 0,
+    "welded": 153,
+    "normals_fixed": false
+   },
+   "HDB Laundry blue": {
+    "degenerate": 0,
+    "welded": 12,
+    "normals_fixed": false
+   },
+   "HDB Laundry pink": {
+    "degenerate": 0,
+    "welded": 15,
+    "normals_fixed": false
+   },
+   "HDB Plant light": {
+    "degenerate": 0,
+    "welded": 3,
+    "normals_fixed": false
+   },
+   "HDB Service metal": {
+    "degenerate": 0,
+    "welded": 119,
+    "normals_fixed": false
+   },
+   "HDB Smoky glass": {
+    "degenerate": 0,
+    "welded": 48,
+    "normals_fixed": false
+   },
+   "HDB Void deck asphalt": {
+    "degenerate": 0,
+    "welded": 3,
+    "normals_fixed": false
+   },
+   "HDB Warm concrete": {
+    "degenerate": 0,
+    "welded": 114,
+    "normals_fixed": false
+   },
+   "HDB Wayfinding yellow": {
+    "degenerate": 3,
+    "welded": 3508,
+    "normals_fixed": false
+   },
+   "Preview road": {
+    "degenerate": 0,
+    "welded": 3,
+    "normals_fixed": false
+   }
+  }
+ },
+ {
+  "path": "assets/kopitiam-v2.glb",
+  "objects": {
+   "FIELD CALL KOPITIAM HUB \u00b7 Chalk": {
+    "degenerate": 1,
+    "welded": 1624,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Concrete": {
+    "degenerate": 0,
+    "welded": 105,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Dark metal": {
+    "degenerate": 0,
+    "welded": 122,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Deep teal": {
+    "degenerate": 0,
+    "welded": 214,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Ink": {
+    "degenerate": 0,
+    "welded": 409,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Signal yellow": {
+    "degenerate": 1,
+    "welded": 1013,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Terracotta": {
+    "degenerate": 0,
+    "welded": 64,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Warm plaster": {
+    "degenerate": 0,
+    "welded": 72,
+    "normals_fixed": false
+   },
+   "FIELD CALL KOPITIAM HUB \u00b7 Weathered teal": {
+    "degenerate": 0,
+    "welded": 103,
+    "normals_fixed": false
+   },
+   "Ground": {
+    "degenerate": 0,
+    "welded": 8,
+    "normals_fixed": false
+   }
+  }
+ },
+ {
+  "path": "assets/wetmarket-v2.glb",
+  "objects": {
+   "Ground": {
+    "degenerate": 0,
+    "welded": 8,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Awning cream": {
+    "degenerate": 0,
+    "welded": 192,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Butcher red": {
+    "degenerate": 0,
+    "welded": 18,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Ceramic tile blue": {
+    "degenerate": 0,
+    "welded": 96,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Chalk": {
+    "degenerate": 3,
+    "welded": 1657,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Concrete": {
+    "degenerate": 0,
+    "welded": 144,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Dark metal": {
+    "degenerate": 0,
+    "welded": 155,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Deep teal": {
+    "degenerate": 0,
+    "welded": 731,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Fish silver": {
+    "degenerate": 0,
+    "welded": 3,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Graphic glass": {
+    "degenerate": 0,
+    "welded": 24,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Ink": {
+    "degenerate": 0,
+    "welded": 223,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Island red": {
+    "degenerate": 0,
+    "welded": 99,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Plant lime": {
+    "degenerate": 0,
+    "welded": 22,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Plant mid": {
+    "degenerate": 0,
+    "welded": 87,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Pumpkin orange": {
+    "degenerate": 0,
+    "welded": 27,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Signal yellow": {
+    "degenerate": 0,
+    "welded": 97,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Sun timber": {
+    "degenerate": 0,
+    "welded": 272,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Terrazzo": {
+    "degenerate": 0,
+    "welded": 40,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Utility blue": {
+    "degenerate": 0,
+    "welded": 131,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Warm plaster": {
+    "degenerate": 0,
+    "welded": 148,
+    "normals_fixed": false
+   },
+   "WET MARKET HALL \u00b7 Window warm": {
+    "degenerate": 0,
+    "welded": 59,
+    "normals_fixed": false
+   }
+  }
+ }
+]
