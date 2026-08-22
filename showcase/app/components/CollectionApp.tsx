@@ -67,6 +67,7 @@ function AssetCard({
 
 function HeroAssetMarquee({ assets }: { assets: readonly CatalogueCardAsset[] }) {
   const previewAssets = assets.filter((asset) => asset.cardPreviewUrl).slice(0, 10);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   const renderSequence = (duplicate = false) => (
     <div className="hero-asset-sequence" aria-hidden={duplicate || undefined}>
@@ -99,10 +100,20 @@ function HeroAssetMarquee({ assets }: { assets: readonly CatalogueCardAsset[] })
   );
 
   return (
-    <div className="hero-assets" aria-label="A moving selection from the collection" aria-roledescription="carousel">
+    <div className={`hero-assets${carouselPaused ? " is-paused" : ""}`} aria-label="A moving selection from the collection" aria-roledescription="carousel">
       <div className="hero-assets-heading">
         <span>Selected objects</span>
-        <a href="#catalogue">Explore all {assets.length} ↓</a>
+        <span className="hero-assets-actions">
+          <button
+            type="button"
+            className="hero-assets-motion"
+            aria-pressed={carouselPaused}
+            onClick={() => setCarouselPaused((paused) => !paused)}
+          >
+            {carouselPaused ? "Play" : "Pause"}
+          </button>
+          <a href="#catalogue">Explore all {assets.length} ↓</a>
+        </span>
       </div>
       <div className="hero-assets-window">
         <div className="hero-assets-track">

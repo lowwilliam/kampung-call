@@ -96,12 +96,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-assets { min-width: 0; overflow: hidden; border: 1px solid var(--ink); background: var(--paper-soft); }
 .hero-assets-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.72rem 0.8rem; border-bottom: 1px solid var(--ink); font: 700 0.58rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .hero-assets-heading a { color: var(--terracotta); }
+.hero-assets-actions { display: flex; align-items: center; gap: 0.7rem; }
+.hero-assets-motion { padding: 0.22rem 0.4rem; border: 1px solid currentColor; color: var(--muted); background: transparent; font: inherit; letter-spacing: inherit; text-transform: inherit; }
+.hero-assets-motion:hover, .hero-assets-motion:focus-visible { color: var(--paper-soft); background: var(--ink); }
 .hero-assets-window { overflow: hidden; padding: 0.9rem 0; }
 .hero-assets-track { display: flex; width: max-content; animation: hero-assets-scroll 38s linear infinite; will-change: transform; }
-.hero-assets:hover .hero-assets-track, .hero-assets:focus-within .hero-assets-track { animation-play-state: paused; }
+.hero-assets.is-paused .hero-assets-track { animation-play-state: paused; }
 .hero-asset-sequence { display: flex; gap: 0.8rem; padding: 0.2rem 0.8rem 0.25rem 0; }
 .hero-asset-tile {
   --stamp-accent: #7b9992;
+  --stamp-paper: #d4bea0;
+  --stamp-paper-light: #f0dfc1;
   position: relative;
   display: grid;
   flex: 0 0 146px;
@@ -112,7 +117,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--ink);
   background:
     radial-gradient(circle, rgba(91,62,31,0.11) 0 0.55px, transparent 0.75px) 0 0 / 7px 9px,
-    linear-gradient(135deg, #fff9e8, #efe1b8);
+    linear-gradient(135deg, var(--stamp-paper-light), var(--stamp-paper));
   box-shadow: 0 5px 0 rgba(39,48,47,0.12), 0 9px 18px rgba(39,48,47,0.12);
   isolation: isolate;
   -webkit-mask:
@@ -133,13 +138,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-asset-tile:nth-child(3n + 2) { transform: rotate(0.8deg); }
 .hero-asset-tile:nth-child(3n) { transform: rotate(-0.25deg); }
 .hero-asset-tile:hover, .hero-asset-tile:focus-visible { z-index: 2; box-shadow: 0 7px 0 rgba(39,48,47,0.13), 0 13px 24px rgba(39,48,47,0.17); transform: translateY(-4px) rotate(0); }
-.hero-asset-tile[data-category="Lost Heritage"] { --stamp-accent: #8f7850; }
-.hero-asset-tile[data-category="Homes & Neighbourhoods"] { --stamp-accent: #5f8b82; }
-.hero-asset-tile[data-category="Culture & Landmarks"] { --stamp-accent: #b18420; }
-.hero-asset-tile[data-category="Transit & Movement"] { --stamp-accent: #a9553c; }
-.hero-asset-tile[data-category="Street Life & Nature"] { --stamp-accent: #63815b; }
-.hero-asset-tile[data-category="Service Gear"] { --stamp-accent: #52858b; }
-.hero-asset-tile[data-category="People"] { --stamp-accent: #9b6a37; }
+.hero-asset-tile[data-category="Lost Heritage"] { --stamp-accent: #765627; --stamp-paper: #c99f58; --stamp-paper-light: #efd18c; }
+.hero-asset-tile[data-category="Homes & Neighbourhoods"] { --stamp-accent: #356f67; --stamp-paper: #80b6aa; --stamp-paper-light: #bfe0d4; }
+.hero-asset-tile[data-category="Culture & Landmarks"] { --stamp-accent: #8d6210; --stamp-paper: #d9a62e; --stamp-paper-light: #f3d26b; }
+.hero-asset-tile[data-category="Transit & Movement"] { --stamp-accent: #893b2b; --stamp-paper: #c7644c; --stamp-paper-light: #e99b83; }
+.hero-asset-tile[data-category="Street Life & Nature"] { --stamp-accent: #42613b; --stamp-paper: #739c64; --stamp-paper-light: #b1ce99; }
+.hero-asset-tile[data-category="Service Gear"] { --stamp-accent: #316d76; --stamp-paper: #62a6ae; --stamp-paper-light: #a7d4d6; }
+.hero-asset-tile[data-category="People"] { --stamp-accent: #815326; --stamp-paper: #c98143; --stamp-paper-light: #e4b476; }
 .hero-asset-tile::before {
   content: "";
   position: absolute;
@@ -611,4 +616,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .hero-assets-track { animation-duration: 70s !important; animation-iteration-count: infinite !important; }
+  .hero-assets.is-paused .hero-assets-track { animation-play-state: paused; }
 }
