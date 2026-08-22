@@ -79,22 +79,27 @@ function HeroAssetMarquee({ assets }: { assets: readonly CatalogueCardAsset[] })
           tabIndex={duplicate ? -1 : undefined}
           aria-label={duplicate ? undefined : `View ${asset.name}`}
         >
-          <img
-            src={asset.cardPreviewUrl}
-            alt=""
-            loading="eager"
-            decoding="async"
-            onError={(event) => { event.currentTarget.hidden = true; }}
-          />
-          <span>{String(asset.curatedOrder).padStart(2, "0")}</span>
-          <strong>{asset.name}</strong>
+          <span className="hero-stamp-kicker" aria-hidden="true">Singapore · 3D</span>
+          <span className="hero-stamp-art">
+            <img
+              src={asset.cardPreviewUrl}
+              alt=""
+              loading="eager"
+              decoding="async"
+              onError={(event) => { event.currentTarget.hidden = true; }}
+            />
+            <span className="hero-stamp-copy">
+              <span>{String(asset.curatedOrder).padStart(2, "0")}</span>
+              <strong>{asset.name}</strong>
+            </span>
+          </span>
         </a>
       ))}
     </div>
   );
 
   return (
-    <div className="hero-assets" aria-label="A moving selection from the collection">
+    <div className="hero-assets" aria-label="A moving selection from the collection" aria-roledescription="carousel">
       <div className="hero-assets-heading">
         <span>Selected objects</span>
         <a href="#catalogue">Explore all {assets.length} ↓</a>

@@ -57,7 +57,11 @@ test("uses the animated asset marquee and lazy 3D viewers", async () => {
   const source = await readFile(path.join(siteRoot, "app", "components", "CollectionApp.tsx"), "utf8");
   assert.match(css, /\.collection-intro\s*\{[^}]*grid-template-columns:/s);
   assert.match(css, /\.hero-assets-track\s*\{/s);
+  assert.match(css, /@keyframes hero-assets-scroll\s*\{[^}]*translateX\(0\)[\s\S]*translateX\(-50%\)/);
+  assert.match(css, /animation-play-state:\s*paused/);
   assert.match(source, /HeroAssetMarquee/);
+  assert.match(source, /aria-roledescription="carousel"/);
+  assert.match(source, /hero-stamp-art/);
   assert.match(source, /ModelViewer/);
   assert.match(source, /posterUrl=\{asset\.cardPreviewUrl\}/);
 });
