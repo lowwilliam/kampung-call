@@ -35,7 +35,7 @@ await Promise.all(manifest.assets.map(async (asset) => {
 
   if (asset.cardPreview.sourcePath) {
     const previewSource = path.resolve(gameRoot, asset.cardPreview.sourcePath);
-    const previewDestination = path.join(previewOutput, `${asset.slug}.png`);
+    const previewDestination = path.join(previewOutput, `${asset.slug}${path.extname(previewSource)}`);
     if (!previewSource.startsWith(`${path.resolve(gameRoot, "assets", "previews")}${path.sep}`)) {
       throw new Error(`${asset.id}: unsafe Card Preview source`);
     }

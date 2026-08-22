@@ -39,12 +39,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/peranakan-house-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/peranakan-house.webp",
+        "publicPath": "/previews/peranakan-house.png",
         "sourceModelSha256": "a9588acc1afdff53bc74537853b1fd009d98c2ca1039dd33cfe35dbc143fa89a",
-        "sha256": "be1d44b5e934f44af2965f327d108cca17b952df7c7324457faeba501bb50e0f",
-        "contentType": "image/png"
+        "sha256": "e77385a27e8f281b882de314590ed11f8d5cb45c018292b8c16aea2603b3326b",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -148,12 +148,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/harbour-statue-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/harbour-statue.webp",
+        "publicPath": "/previews/harbour-statue.png",
         "sourceModelSha256": "e9f920de0cc2398d894df2da4f62eb932f937a87aebb0b0041d0a185215ff888",
-        "sha256": "dc191b2fd81147d6f914751183a468358a82e04a31a4c25f5dcdf3833d3b8a35",
-        "contentType": "image/png"
+        "sha256": "969caa425d868d01e450869ff748b75f7f31d439e72de845bb17b6bb404f04ec",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -257,12 +257,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/skypark-hotel.webp",
+        "publicPath": "/previews/skypark-hotel.png",
         "sourceModelSha256": "a9a7df65122e1b21214fb8aa6ac91bb047f92eadbe6edffda4fc6353bebce41b",
-        "sha256": null,
-        "contentType": null
+        "sha256": "fa2f20d481b395a5db2ea7107102512550ffc0705b68ac53832389905eaf40d7",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -361,12 +361,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/supertree-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/supertree.webp",
+        "publicPath": "/previews/supertree.png",
         "sourceModelSha256": "6fa66ffcd16de0f4072365a504eeb61498afe7a0ece1f125a18311f1c192d73e",
-        "sha256": "1752c016ad1210d6e8761a1c71f85497ebb738a52a4d5420e9cfda23b734f6bf",
-        "contentType": "image/png"
+        "sha256": "a02b0ff0d334adca66e6074fd8f0d43c64d3ac0121aa40f5f04468467d25bfa2",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -459,12 +459,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/sultan-mosque.webp",
+        "publicPath": "/previews/sultan-mosque.png",
         "sourceModelSha256": "5a637c0d7df7cea75a21e90fe4f56d5eac3a8303d4d3ab41b2c11b3175f3065d",
-        "sha256": null,
-        "contentType": null
+        "sha256": "220791dfc33cb1891cc7667336205e9fb02c5bff40ea1eb7a2fc768fb0c8b93e",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -563,12 +563,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/concert-hall.webp",
+        "publicPath": "/previews/concert-hall.png",
         "sourceModelSha256": "7a3c72752b3e526138115d901f014db0f3b1ba848e62b3c9e0e27a5d85ad3634",
-        "sha256": null,
-        "contentType": null
+        "sha256": "f3ff8fdaeafccc38c10982be6fccc87689e714f9edd131c9f7330cff1d5cd9f9",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -667,12 +667,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/singapore-flyer.webp",
+        "publicPath": "/previews/singapore-flyer.png",
         "sourceModelSha256": "a49ca26312304bc7d760a7c3fe254efbac7da5d367f376ef828a7f07766acb7a",
-        "sha256": null,
-        "contentType": null
+        "sha256": "217c44252ab91319026e4fb486c4dccd1de84f81ebeb1170d815edb5547c07c3",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -765,12 +765,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/hdb-void-deck.webp",
+        "publicPath": "/previews/hdb-void-deck.png",
         "sourceModelSha256": "9a0ce03cfb6e39935b5fee7a0da081faf68597548174b457e377132185b55180",
-        "sha256": null,
-        "contentType": null
+        "sha256": "39155151f261d516e9f333d7b5e87b085c7c1a7b03879f7d0955718b1248bfeb",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -869,12 +869,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/shophouse.webp",
+        "publicPath": "/previews/shophouse.png",
         "sourceModelSha256": "a7929ee7331135281ba33641508c4764b251cc590210f8a74bd091727ed7a2f3",
-        "sha256": null,
-        "contentType": null
+        "sha256": "c9a476a49b088c0aed35d28d0a7eaee84ffbbdd178865289ad00a9f300781f3f",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -967,12 +967,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/wet-market.webp",
+        "publicPath": "/previews/wet-market.png",
         "sourceModelSha256": "a970a9fed23e88626e7baaa5c947b575117f108e75f2b93c20b9201b4391f56f",
-        "sha256": null,
-        "contentType": null
+        "sha256": "3dfda8e790820ebfbfe01dd73273fce1eef72933a52210f926847900e486adf7",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1071,12 +1071,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/kopitiam.webp",
+        "publicPath": "/previews/kopitiam.png",
         "sourceModelSha256": "df4ac8d798b26c88bbc17cfcd8341036f244c6708e21b7a3264bd64fd0c1cb8e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "4ecc89f613c24be4acaf9465a5cafbd229166bfe6169ef8a54e01ab8f5c209ed",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1175,12 +1175,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/kampong-house.webp",
+        "publicPath": "/previews/kampong-house.png",
         "sourceModelSha256": "860315d2a5479f5e9e6c7dd0041e81e2fe097116212e77372eec162efdba8715",
-        "sha256": null,
-        "contentType": null
+        "sha256": "059f2f01cf462ce6186a5466de8bde5877f96f190b8917a30a5772333c49e5c4",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1273,12 +1273,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/mrt.webp",
+        "publicPath": "/previews/mrt.png",
         "sourceModelSha256": "a83280851e0a753882180a97f3d480663d4bc5d949f37e4903f410b01dc11162",
-        "sha256": null,
-        "contentType": null
+        "sha256": "67802856aed7c81211c2465588b030bb99851668ec5ada29a374077bef27a9af",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1377,12 +1377,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/airport-terminal.webp",
+        "publicPath": "/previews/airport-terminal.png",
         "sourceModelSha256": "250242e9b6c8f173fef928585085be17761797e165507c14dc6b9a5561856b1b",
-        "sha256": null,
-        "contentType": null
+        "sha256": "856f2372060a7f4090532029d3bc55df8333a1c6ddaa5d3c8343cae7a300e486",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1475,12 +1475,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/hawker.webp",
+        "publicPath": "/previews/hawker.png",
         "sourceModelSha256": "76f894ead430fb1ba647daa6566e1c3ed2f42ecb09e3556d8ca8dd719a38dc59",
-        "sha256": null,
-        "contentType": null
+        "sha256": "756c6b889d301f3d60fec4d6afac0fae8cd836dd4cf0f0132c4b5ee0203cf90c",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1579,12 +1579,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/mama-shop.webp",
+        "publicPath": "/previews/mama-shop.png",
         "sourceModelSha256": "8e3b4936858fdde17b35b435abd939357b98c1bf9dcb666ff20ccf4d091ceb81",
-        "sha256": null,
-        "contentType": null
+        "sha256": "ee02d1f6c51b8a93121c3a765ef53e72439b3e2018a66f8456920860482890de",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1677,12 +1677,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/bumboat.webp",
+        "publicPath": "/previews/bumboat.png",
         "sourceModelSha256": "d95162caa09cd90abfde167af67ee91099c08ea6a1b355a403f5708f74dca3a5",
-        "sha256": null,
-        "contentType": null
+        "sha256": "e3776231e5e0d37047a6c220771ebab5391d3f19d0421b9fd11e48cb0ec84df3",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1781,12 +1781,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-alkaff-arcade.webp",
+        "publicPath": "/previews/lost-alkaff-arcade.png",
         "sourceModelSha256": "9ffc5d242b68a12176b3a84c02a71c724ab61fca09cf601886c6dc4a8e700697",
-        "sha256": null,
-        "contentType": null
+        "sha256": "03c5dc8f6183514aeabd3141641a999ed168996015b12b82ce35d82e827a90cc",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1885,12 +1885,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-amber-mansions.webp",
+        "publicPath": "/previews/lost-amber-mansions.png",
         "sourceModelSha256": "b8ace5a7d00c90ac8a1f9657cea2f3791a4fbf89f38d4039edf40c715f5e511a",
-        "sha256": null,
-        "contentType": null
+        "sha256": "ad65d988414e2f0e177abaa022e9d75488eac5e803d54bd342309fee9bba3768",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -1999,12 +1999,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-beauty-world-market.webp",
+        "publicPath": "/previews/lost-beauty-world-market.png",
         "sourceModelSha256": "6e760f5248955f5b6a32bf7772745de4f9cef9546eb3f0696486b2f02e8eeb68",
-        "sha256": null,
-        "contentType": null
+        "sha256": "42b4aced967ed6979e806f7c6df680bb4900fc491a2161b22a499e1058366295",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2108,12 +2108,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-eu-court.webp",
+        "publicPath": "/previews/lost-eu-court.png",
         "sourceModelSha256": "064e6daa67afc44a52b6ccb0bfce82a70ea510778d8ae848f39d79fedd49f5e6",
-        "sha256": null,
-        "contentType": null
+        "sha256": "e091e036b6f6ca9df24c9b14a9f4653ecac8535e6c20531e7cacef31dd1f7685",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2212,12 +2212,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-former-national-stadium.webp",
+        "publicPath": "/previews/lost-former-national-stadium.png",
         "sourceModelSha256": "3c4c3408c984c1bbe9bed96076641dd46cdbc24b8a48ffd6372f8e51de0c025e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "9f2875a4dc70ac1ab0285b3028bfbc8725d1d3ed08688cfc4d9f2c99a904e96a",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2316,12 +2316,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-national-library-stamford.webp",
+        "publicPath": "/previews/lost-national-library-stamford.png",
         "sourceModelSha256": "2494cc5e7f61fa19d65ef0b13236dba39c6b2c47c652d8416698337c643d7937",
-        "sha256": null,
-        "contentType": null
+        "sha256": "1ebaee93f23035bdfe55625210b4cd0cdc59fbb172f0f1daeeddd5726f3c42ca",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2420,12 +2420,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-national-theatre.webp",
+        "publicPath": "/previews/lost-national-theatre.png",
         "sourceModelSha256": "84ae6cb2dba164bc5cbf9234fcf995f154f36a8b10dddd19d5fc527afbf7bddb",
-        "sha256": null,
-        "contentType": null
+        "sha256": "4c9aede3146ccc361029fc2ed0fbb499bfd49eb59715ef251a0139737b2b39da",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2524,12 +2524,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-pearl-bank-apartments.webp",
+        "publicPath": "/previews/lost-pearl-bank-apartments.png",
         "sourceModelSha256": "1734244c077fe58926f53a1b9e1bd850bf136f9256f858e853024ffcdf8d30fd",
-        "sha256": null,
-        "contentType": null
+        "sha256": "59f8d7ed00a62b51c6198fb4dc77743eec519d7464b146bdb254749f506b09a1",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2628,12 +2628,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-comcentre.webp",
+        "publicPath": "/previews/lost-comcentre.png",
         "sourceModelSha256": "712346dca0520bba34f8e3d9bd4616c6239afd10a8291d0d63dc27c9bc894ce0",
-        "sha256": null,
-        "contentType": null
+        "sha256": "a6331dbde3590e2e9640a90dc215b2094a9b32512a9e1c718f3cf3831f418290",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2742,12 +2742,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-tang-dynasty-city.webp",
+        "publicPath": "/previews/lost-tang-dynasty-city.png",
         "sourceModelSha256": "a8913eb8be702cf305d99e969f60ee63e14c20a1217a0066aa82bfaaae99809d",
-        "sha256": null,
-        "contentType": null
+        "sha256": "95b3ddc1b1d773e64ba89464036b24ed8227d2b366feb0143fce77da5e570524",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2851,12 +2851,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-tanglin-shopping-centre.webp",
+        "publicPath": "/previews/lost-tanglin-shopping-centre.png",
         "sourceModelSha256": "d947ac22f5b4428f5d82355ae18a46b119244f2c085a903c5a91c520a1ef4603",
-        "sha256": null,
-        "contentType": null
+        "sha256": "3c3c76af67eb68cc0715a3b1afd711fe1a8af098b535bf325936184bfac8ea5b",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -2955,12 +2955,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-tank-road-railway-station.webp",
+        "publicPath": "/previews/lost-tank-road-railway-station.png",
         "sourceModelSha256": "d3e9f48e81fb7330905d9bf4fe3818afdec6646362cdcd9544be78c7c21aba0d",
-        "sha256": null,
-        "contentType": null
+        "sha256": "efdf1c5990ec8b8d36ffa7ebf5e943b0fdc01f68c1778a21ee53f490796b07f5",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3059,12 +3059,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/lost-van-kleef-aquarium.webp",
+        "publicPath": "/previews/lost-van-kleef-aquarium.png",
         "sourceModelSha256": "b7931a8c9d591f761ab3f9c0d311342c4ff2878e25fd3df01ab49b644f2daed0",
-        "sha256": null,
-        "contentType": null
+        "sha256": "e03f42936916d1323d42aa582a68e3c5e46bef766bf5ad808b5c9dbdac8a9c23",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3163,12 +3163,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/condo.webp",
+        "publicPath": "/previews/condo.png",
         "sourceModelSha256": "1ee0e58ac2f610664d23645fe9eb2bd2037268499b253f4265863d661cf8f7ad",
-        "sha256": null,
-        "contentType": null
+        "sha256": "3ea9125d9566da69d32459b00fbc389c0f5a2763236f7a290c3f12f807293bb7",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3261,12 +3261,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/hdb-call.webp",
+        "publicPath": "/previews/hdb-call.png",
         "sourceModelSha256": "36be85cce8bd72dfeef5bbc5616656368f2669bab966861fca68aaaa79a8f7f1",
-        "sha256": null,
-        "contentType": null
+        "sha256": "2c59516f615bad6893d6fdc4aafef51b1c8289512a488b95035069dd735b7e38",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3365,12 +3365,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/hdb-skyline.webp",
+        "publicPath": "/previews/hdb-skyline.png",
         "sourceModelSha256": "650ab3d9c8b9947cc92a94acc612f8aeac5dc340d1a2cd4f0035527e13f2b40b",
-        "sha256": null,
-        "contentType": null
+        "sha256": "fe243deafd107d788fd57cbadbb3eba0d163d27c795b0728333d922d4b5de6d8",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3469,12 +3469,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/kampong-props.webp",
+        "publicPath": "/previews/kampong-props.png",
         "sourceModelSha256": "34533ce15036f30c046dba9f7d6e6a7d808948acbbe72539c710b1ab6696f95e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "1c6311c8f369bd04e809e1fbd4fda504381a3a18b838cebb5f46cc42683db853",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3567,12 +3567,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/kampung-call.webp",
+        "publicPath": "/previews/kampung-call.png",
         "sourceModelSha256": "0a84b63f771d6f71f00f01ed292c002566f27630994bf720413a173c54b531da",
-        "sha256": null,
-        "contentType": null
+        "sha256": "a1d3583c3ab5cb46ec6386add79f698b312985e810d4fa7869328ee42610712a",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3665,12 +3665,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/landed-bg.webp",
+        "publicPath": "/previews/landed-bg.png",
         "sourceModelSha256": "5033b47efa2f99fc1e64f992b1b700a00c666076f5e1f1ef05fa7a8104ab54a3",
-        "sha256": null,
-        "contentType": null
+        "sha256": "315f8b7fa12833b7fa4e5fec5066445eb3d64b6a06aea27f7ae042b0afcc219e",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3763,12 +3763,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/condo-marina.webp",
+        "publicPath": "/previews/condo-marina.png",
         "sourceModelSha256": "8139931be909948be4904ec9a09dc8c782ff358c4384582e3bdd6aee765c6031",
-        "sha256": null,
-        "contentType": null
+        "sha256": "2ae86a43084ee3a900e3c1e69d63d07ee3ace612f869d18a9a5a29f9f75c2784",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3861,12 +3861,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/pointblock-call.webp",
+        "publicPath": "/previews/pointblock-call.png",
         "sourceModelSha256": "b203e5a28004b9ab2ac3e44b212d6a94f641d21d55255c9b57436600e0bbf173",
-        "sha256": null,
-        "contentType": null
+        "sha256": "1bf339e895820ed804c577146b1a505ff7dfc591512d06bdc0382660d9315d50",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -3965,12 +3965,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/landed-call.webp",
+        "publicPath": "/previews/landed-call.png",
         "sourceModelSha256": "52ad24a381c092f9a587cb2930a17eb920ffaa8ee78026b91a0138e22d97fb48",
-        "sha256": null,
-        "contentType": null
+        "sha256": "c81a58eed0bdd6174c475f3d30fde0a4e976c7505e072b716ebab0b0534fe2a2",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4063,12 +4063,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/condo-holland.webp",
+        "publicPath": "/previews/condo-holland.png",
         "sourceModelSha256": "69959dad6f818e051f89d205294a874277eca779c481f071f7132c6573a04682",
-        "sha256": null,
-        "contentType": null
+        "sha256": "ba1fbeeebc4f0c915cf3aa3ea930f401a6cab0058c12831bb06a918e63faa7aa",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4161,12 +4161,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/control-tower.webp",
+        "publicPath": "/previews/control-tower.png",
         "sourceModelSha256": "2dd02ce650724f848e4e7c8ae719227014df8f78724cf1cda9ca2c346a850df8",
-        "sha256": null,
-        "contentType": null
+        "sha256": "95e873165939a7624dafa04b9b2472b09f9d66ed4c2f366e6a9dfaab1d1dd1c0",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4266,11 +4266,11 @@
       },
       "cardPreview": {
         "status": "ready",
-        "sourcePath": "assets/previews/satellite-station-v2.png",
+        "sourcePath": "assets/previews/catalogue/satellite-station.webp",
         "publicPath": "/previews/satellite-station.png",
         "sourceModelSha256": "1dbb6e3a91d377c5b9e36d872708288a2a4b4859ca9da3c85004361c82d120d4",
-        "sha256": "239e7cdc7053224361a79f226a9f8d76ea27c2558b9294cbfb824f3f7559747b",
-        "contentType": "image/png"
+        "sha256": "aac771a246f1b8fced255a19d6eb5fc7da893e471cecc6afd0121c132c0567de",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4363,12 +4363,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/design-university.webp",
+        "publicPath": "/previews/design-university.png",
         "sourceModelSha256": "fcd53529029716bf415eb55b9236a66c167272e7c350fb7b9f54b4d2f0eedaaf",
-        "sha256": null,
-        "contentType": null
+        "sha256": "3a0fca1af7be116d7b659ad384b2692674fcb1330ded6da229339d7879932eec",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4461,12 +4461,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/management-university.webp",
+        "publicPath": "/previews/management-university.png",
         "sourceModelSha256": "58ffd75a6da9d69dec1bdf9249af3815c2b106cee3b6ac80e0628603a4a1b088",
-        "sha256": null,
-        "contentType": null
+        "sha256": "7c85611f6bb7254e5bf3300f2e930fc2f3d2869a8cae708ff1f32cc0774ea3bd",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4559,12 +4559,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/national-school.webp",
+        "publicPath": "/previews/national-school.png",
         "sourceModelSha256": "c4099e9b97e696c7706b0a295995789ff8c8d7e74f4936d86777470a861eb882",
-        "sha256": null,
-        "contentType": null
+        "sha256": "9b6bfdd7733e64db727888793e35377035616a5a98182c54b538a1065b90ccf4",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4657,12 +4657,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/national-university.webp",
+        "publicPath": "/previews/national-university.png",
         "sourceModelSha256": "3664b6c0e741e72ef7ac9004aeddaec6c212d7cc7fcb49609f82edf814aa971b",
-        "sha256": null,
-        "contentType": null
+        "sha256": "5475c924a830ef84f04efd6c848616f306dd6cbd021bbd9de2de18c2fa1333f9",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4755,12 +4755,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/temple-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/temple.webp",
+        "publicPath": "/previews/temple.png",
         "sourceModelSha256": "d84734c546fd7b174b482f939b1b7ebad03e83d1130d0388f2fb943b90429e6f",
-        "sha256": "f36a6ad102d32d98d812765b5504c05b74d43202cadf8a8de992294c3afa06c7",
-        "contentType": "image/png"
+        "sha256": "760aef7fa48f96f996b76f1cbadfbda1cf03b87678bb8ac60e36e9ed1257741e",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4853,12 +4853,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/technological-university.webp",
+        "publicPath": "/previews/technological-university.png",
         "sourceModelSha256": "457f5988de7cd770faacf3e88a6ea7756560d646cd5f7fa2aa17c7ffa6a35e3e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "fe1a18a1fa12f866f0f1499159b619961019a5dedd817fb544c48d5114302f76",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -4951,12 +4951,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/bus-stop.webp",
+        "publicPath": "/previews/bus-stop.png",
         "sourceModelSha256": "dd8e8666ceff1a73f524b4a977140925692b68f7c151168ce0bfe0d7fbf9abe5",
-        "sha256": null,
-        "contentType": null
+        "sha256": "8e0b2d70f595941db0e2007c48fd0137fd845f356c13fd046e93bfcbda7d71eb",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5055,12 +5055,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/bicycle.webp",
+        "publicPath": "/previews/bicycle.png",
         "sourceModelSha256": "c7b78267297fbe4fb827e1508e5e74c0983e02f7a52187783878addb31e63e3e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "125c042611475d982cadae40b6cd5d66aa966c0719e2f9fca764d76b4e193e92",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5153,12 +5153,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/overheadbridge-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/overhead-bridge.webp",
+        "publicPath": "/previews/overhead-bridge.png",
         "sourceModelSha256": "9a57247278be7c46b59216a2669bfe85d69ffef2d3f459ad27228066265ef853",
-        "sha256": "1e7c7a63435cd8d45fe6f3a7c53fe3511261d272fb5055c1650a6679f5cf90fb",
-        "contentType": "image/png"
+        "sha256": "ade396af951aba62fe6373d472b7b727a124118edee0e76a49b42cdd7954f1a1",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5262,12 +5262,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/service-van.webp",
+        "publicPath": "/previews/service-van.png",
         "sourceModelSha256": "53d7eba642f2c2e475c4c8e1ab2cf537e54d18bfa4445a2db8f559db95254b54",
-        "sha256": null,
-        "contentType": null
+        "sha256": "fd8295f27a6cb331b8102d3cdbd5d7e2fb80ebd9f2d47b534c8c0923ddba12e5",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5361,11 +5361,11 @@
       },
       "cardPreview": {
         "status": "ready",
-        "sourcePath": "assets/previews/singapore-cable-car-skyorb-v1.png",
+        "sourcePath": "assets/previews/catalogue/singapore-cable-car-skyorb.webp",
         "publicPath": "/previews/singapore-cable-car-skyorb.png",
         "sourceModelSha256": "9c1936e41357234706a452c243dcedf96fd0f270332696c32614856e2649f385",
-        "sha256": "4fcf8d237f01a0f72e0d2c4bdb9056cdadb51398657184c6fb49a75161de0cc0",
-        "contentType": "image/png"
+        "sha256": "030144df437e4e00e91680edddd092c536cba0549d3c81df9e90dd852097bd5d",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5399,7 +5399,7 @@
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "branded-industrial-design",
@@ -5471,12 +5471,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/birdcage.webp",
+        "publicPath": "/previews/birdcage.png",
         "sourceModelSha256": "7117d60a05c263cc1d5ef072146d8c878441dfb56c2c1db6b269e15c63bc795c",
-        "sha256": null,
-        "contentType": null
+        "sha256": "f161d9ca4cd42d49001c9ea6ec632a4292047c5ad60d46da30e32922830ef2ca",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5569,12 +5569,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/cat.webp",
+        "publicPath": "/previews/cat.png",
         "sourceModelSha256": "0ffaa61856455398fcdd9dcff9d82dd0d472329d647318bead50e0746d83bd6a",
-        "sha256": null,
-        "contentType": null
+        "sha256": "64c285ca197869e1f4b78813fab8db8aaa7004c0cd968f26cce5c35bf515ce7e",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5667,12 +5667,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/postbox.webp",
+        "publicPath": "/previews/postbox.png",
         "sourceModelSha256": "05535469d99529d908980cf3c950695d00ff3230557ab83d0be6f4502a3e2d10",
-        "sha256": null,
-        "contentType": null
+        "sha256": "6fbe4f623712f8cbe9ecbc3048843b25c78134d6d088df0317032bf9635da142",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5765,12 +5765,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/bench.webp",
+        "publicPath": "/previews/bench.png",
         "sourceModelSha256": "e3dedc76d409aaa0e179bc35de74926e37b8ccb0b1b154ed41be770a560f11db",
-        "sha256": null,
-        "contentType": null
+        "sha256": "80fdc56531cbbc9e7da2f22f05c78b24acf9bb9415dd7d3f3d349366335904dd",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5863,12 +5863,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/raintree.webp",
+        "publicPath": "/previews/raintree.png",
         "sourceModelSha256": "605583ada5c7dd563645acee669417c8442d59458049e2dccd1f42855471479f",
-        "sha256": null,
-        "contentType": null
+        "sha256": "adaf637ca131292f1e09d43ded110e472a564e430c3835d4d3de03ff909c8e00",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -5961,12 +5961,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/palm-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/palm.webp",
+        "publicPath": "/previews/palm.png",
         "sourceModelSha256": "8843f74574d48cdde754a14e14e62f28c3e5f95e5b33d7366549b096fd5a20f9",
-        "sha256": "26856c9743ce8a24bc168728342bfbb371dd666ce7043129520942db042586fe",
-        "contentType": "image/png"
+        "sha256": "54dec8f8f82627d84418004e97a3652ab74606548b6b3d973a47e37d78a733ca",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6059,12 +6059,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/smooth-coated-otter.webp",
+        "publicPath": "/previews/smooth-coated-otter.png",
         "sourceModelSha256": "72ce7bf0a98ae5c954a0ee7109ce3a9f27c88d5c888c98ae3809bcaa3c6d81cc",
-        "sha256": null,
-        "contentType": null
+        "sha256": "5ba096b8321a6c4f64d0708fa2a2a5e3c87d9679a4abef676cd4908796ed75b9",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6163,12 +6163,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/red-junglefowl.webp",
+        "publicPath": "/previews/red-junglefowl.png",
         "sourceModelSha256": "61b58e262b820b94d71966e0a0b8516d683c476409ef8fd1cf61f33262bb4d76",
-        "sha256": null,
-        "contentType": null
+        "sha256": "df6d23fe0f7fd7e867bcac13dcab7b6e5c86dfaa295dd9296c8f926fb2dcc406",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6268,11 +6268,11 @@
       },
       "cardPreview": {
         "status": "ready",
-        "sourcePath": "assets/previews/oriental-pied-hornbill-v1.png",
+        "sourcePath": "assets/previews/catalogue/oriental-pied-hornbill.webp",
         "publicPath": "/previews/oriental-pied-hornbill.png",
         "sourceModelSha256": "389b425d88ba16b7d702a0607369afaaefc5747aba5590395016559dda8021aa",
-        "sha256": "4d674cd11ef0ac22c898e0e3e13d432e2dbf9fc0e323fec425c2e8d4a7b6cd4d",
-        "contentType": "image/png"
+        "sha256": "b84a9c513fef1e9e53b3d2bb09355fe3057b1b636c4cfd76dff4e0a3eb098e8a",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6306,7 +6306,7 @@
       },
       "publication": {
         "status": "draft",
-        "lastReviewedAt": "2026-08-15T02:46:00.000Z"
+        "lastReviewedAt": null
       },
       "rights": {
         "subjectType": "natural-world",
@@ -6371,12 +6371,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/clouded-monitor.webp",
+        "publicPath": "/previews/clouded-monitor.png",
         "sourceModelSha256": "66d761d32a031d41a12655d7872658e5aca9b808d7c4bc13342d6121be953755",
-        "sha256": null,
-        "contentType": null
+        "sha256": "188f29f460652ae0b2c82437f8d7a73c878ba21163b33f08a89df1cbb115ba43",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6475,12 +6475,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/fibre-kit-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/fibre-kit.webp",
+        "publicPath": "/previews/fibre-kit.png",
         "sourceModelSha256": "94d959f87d73f014b9d31463e6d3fe1711d3d4f7712a3667c76f524dd9af087a",
-        "sha256": "92cf4bb693b1eece667f92ac2fa14fd599cdb5d96639e7355f085f40a090be9b",
-        "contentType": "image/png"
+        "sha256": "c855c500dc5a20cff72abded19b1091adcab7e660f2dc82045f30bddc72a9923",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6573,12 +6573,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/router-kit.webp",
+        "publicPath": "/previews/router-kit.png",
         "sourceModelSha256": "6c1ca4fca404eced1684f7f528703547b079a65788372b4c638b32ba12c7f21e",
-        "sha256": null,
-        "contentType": null
+        "sha256": "485616ec758e04b8adaf9d989f23aadd3f0a591fd0ecad94fd3f0fa71f935491",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6671,12 +6671,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "legacy",
-        "sourcePath": "assets/previews/wifi-kit-v2.png",
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/wifi-kit.webp",
+        "publicPath": "/previews/wifi-kit.png",
         "sourceModelSha256": "89cb867de9bbb7f5696271f9f59367221221acc703cbc3f11c4db8593aa1fd51",
-        "sha256": "739c067c2b41b1224090fd8259dd499e39bcd0e7c8e25418f096736c6edb244c",
-        "contentType": "image/png"
+        "sha256": "0a09abe8f5c7c01c88cf883cfee8c2b3ff752373257de52fae5e4af5d04ba022",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6769,12 +6769,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-auntie-rosnah.webp",
+        "publicPath": "/previews/resident-auntie-rosnah.png",
         "sourceModelSha256": "93b96a483985cb9c31f21e1865a3a9b92e5ee916da5541d969981b7b3ce67f56",
-        "sha256": null,
-        "contentType": null
+        "sha256": "9ec82fcac2b8e8110d1b29e4ce2fcd54c213a874fb5bc48df758017e58638aae",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6867,12 +6867,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-devi.webp",
+        "publicPath": "/previews/resident-devi.png",
         "sourceModelSha256": "5158d76f0ba1571c29e458519055dd0ca69d8be86b07665df18c4690347d3741",
-        "sha256": null,
-        "contentType": null
+        "sha256": "d12d9852c6852238624d67f2930ed4c31895cbc307b92299e2eeaa5bd2131d26",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -6965,12 +6965,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/engineer.webp",
+        "publicPath": "/previews/engineer.png",
         "sourceModelSha256": "3001f23f011c9b90635dac1690a8d986956c59635909a027582f219a2b0dee16",
-        "sha256": null,
-        "contentType": null
+        "sha256": "c142c2d2b4e7ab38cb7d2344a56413d9bdb8cf0691650c38a464496f80423bef",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -7063,12 +7063,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-kai.webp",
+        "publicPath": "/previews/resident-kai.png",
         "sourceModelSha256": "3f21d0de251f3d386482e3359c862398bd20b197ba458e31140586e76fca5af5",
-        "sha256": null,
-        "contentType": null
+        "sha256": "86628becbdb23340d28d8e6855b4b59d3ea26d35f8b1836a5a95c08e57b27b04",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -7161,12 +7161,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/engineer-legacy.webp",
+        "publicPath": "/previews/engineer-legacy.png",
         "sourceModelSha256": "06e67d6d6c8d1e42a83ee003d74f81278c8114be3f6e9ed7d7ced869302fe343",
-        "sha256": null,
-        "contentType": null
+        "sha256": "37563ce9f02b939fc026a7706b537c84aaae6c4bca061eafa48ec9b65bf4985a",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -7259,12 +7259,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-mr-tan.webp",
+        "publicPath": "/previews/resident-mr-tan.png",
         "sourceModelSha256": "6e35141095fc54aeda0e0c810c49222009499cefd4d08243b750d93a23e0a4a2",
-        "sha256": null,
-        "contentType": null
+        "sha256": "aa3c4a5f667c05b299a824e0db79a65d34d65f3521affa9c7679f928d6453bf9",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -7357,12 +7357,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-sofia.webp",
+        "publicPath": "/previews/resident-sofia.png",
         "sourceModelSha256": "b48ed8f4075f2ce1be1a8a5c1fa4b93763460fe7ee2dca6c3c152c438c73b74a",
-        "sha256": null,
-        "contentType": null
+        "sha256": "c942d75a707964631f8c2ca81eb15349e13a196dde32d90c92c645db0d6e9a9f",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
@@ -7455,12 +7455,12 @@
         "contentType": "model/gltf-binary"
       },
       "cardPreview": {
-        "status": "missing",
-        "sourcePath": null,
-        "publicPath": null,
+        "status": "ready",
+        "sourcePath": "assets/previews/catalogue/resident-uncle-lim.webp",
+        "publicPath": "/previews/resident-uncle-lim.png",
         "sourceModelSha256": "cc63e68fc1d14cb1a79b63ffa904e8616cf6b908edf68589d2801bd18bd6846b",
-        "sha256": null,
-        "contentType": null
+        "sha256": "6057e4873d4eb2cdc1158a4675f2f742ce2edac4466832212d138bc027b2fca7",
+        "contentType": "image/webp"
       },
       "creatorCredit": {
         "status": "unverified",
