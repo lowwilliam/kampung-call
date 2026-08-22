@@ -79,7 +79,13 @@ function HeroAssetMarquee({ assets }: { assets: readonly CatalogueCardAsset[] })
           tabIndex={duplicate ? -1 : undefined}
           aria-label={duplicate ? undefined : `View ${asset.name}`}
         >
-          <img src={asset.cardPreviewUrl} alt="" loading="eager" />
+          <img
+            src={asset.cardPreviewUrl}
+            alt=""
+            loading="eager"
+            decoding="async"
+            onError={(event) => { event.currentTarget.hidden = true; }}
+          />
           <span>{String(asset.curatedOrder).padStart(2, "0")}</span>
           <strong>{asset.name}</strong>
         </a>

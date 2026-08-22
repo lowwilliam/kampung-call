@@ -193,6 +193,11 @@ export function sortAssetsByIconicLevel(assets: CollectionAsset[]) {
   });
 }
 
+function cardPreviewUrl(record: CatalogueAssetRecord) {
+  const extension = record.cardPreview.sourcePath?.match(/\.(?:avif|png|webp)$/i)?.[0].toLowerCase();
+  return extension ? `/previews/${record.slug}${extension}` : undefined;
+}
+
 function collectionAsset(record: CatalogueAssetRecord): CollectionAsset {
   const english = record.locale.en;
   const historySource = record.sources.find((source) => source.kind === "history");
@@ -203,7 +208,10 @@ function collectionAsset(record: CatalogueAssetRecord): CollectionAsset {
     name: english.name,
     file: record.model.file,
     modelUrl: record.model.publicPath,
-    cardPreviewUrl: record.cardPreview.publicPath ?? (record.cardPreview.sourcePath ? `/previews/${record.slug}.png` : undefined),
+    // The sync step publishes previews by catalogue slug while preserving the
+    // source format. Derive the runtime URL from that contract so stale legacy
+    // publicPath values cannot point the UI at a non-existent PNG.
+    cardPreviewUrl: cardPreviewUrl(record),
     cardPreviewStatus: record.cardPreview.status,
     category: record.category,
     curatedOrder: record.curatedOrder,

@@ -36,6 +36,8 @@ test("server-renders the public collection", async () => {
   assert.match(html, /Lost Heritage/i);
   assert.doesNotMatch(html, /Catalogue edition 01/i);
   assert.match(html, /hero-assets-track/i);
+  assert.match(html, /src="\/previews\/peranakan-house\.webp"/i);
+  assert.doesNotMatch(html, /src="\/previews\/[^"]+\.png"/i);
   assert.match(html, /Live 360° previews/i);
   assert.doesNotMatch(html, /three\.module-/i);
   assert.doesNotMatch(html, /Download all/i);
