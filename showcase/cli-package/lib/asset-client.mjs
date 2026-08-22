@@ -4,6 +4,8 @@ import path from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 
+export const DEFAULT_SITE_URL = "https://kampung-call-collection.will-ai.chatgpt.site";
+
 export class AssetClientError extends Error {
   constructor(message, { status = 0, code = "asset_client_error", details } = {}) {
     super(message);
@@ -14,12 +16,12 @@ export class AssetClientError extends Error {
   }
 }
 
-export function safeFileName(value) {
+function safeFileName(value) {
   return String(value || "asset.glb").replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "asset.glb";
 }
 
 export class AssetClient {
-  constructor({ baseUrl = process.env.KAMPUNG_ASSET_API_URL || "https://kampung-call-collection.will-ai.chatgpt.site", token = process.env.KAMPUNG_ASSET_API_TOKEN || "", fetchImpl = globalThis.fetch } = {}) {
+  constructor({ baseUrl = process.env.KAMPUNG_ASSET_API_URL || DEFAULT_SITE_URL, token = process.env.KAMPUNG_ASSET_API_TOKEN || "", fetchImpl = globalThis.fetch } = {}) {
     if (typeof fetchImpl !== "function") throw new AssetClientError("This runtime does not provide fetch", { code: "missing_fetch" });
     this.baseUrl = new URL(baseUrl).href.replace(/\/$/, "");
     this.token = token;
@@ -33,21 +35,9 @@ export class AssetClient {
     return headers;
   }
 
-  resolve(pathname) {
-    return new URL(pathname, `${this.baseUrl}/`).href;
-  }
-
-  async requestJson(pathname, init = {}) {
-    const response = await this.fetchImpl(this.resolve(pathname), { ...init, headers: this.headers(init.headers) });
-    const text = await response.text();
-    let payload = null;
-    if (text) {
-      try {
-        payload = JSON.parse(text);
-      } catch {
-        payload = { error: text.slice(0, 500) };
-      }
-    }
+  async requestJson(pathname) {
+    const response = await this.fetchImpl(new URL(pathname, `${this.baseUrl}/`), { headers: this.headers() });
+    const payload = await response.json().catch(() => null);
     if (!response.ok) {
       throw new AssetClientError(payload?.error || `Asset API returned HTTP ${response.status}`, {
         status: response.status,
@@ -82,13 +72,7 @@ export class AssetClient {
     await mkdir(path.dirname(target), { recursive: true });
     const temporary = path.join(path.dirname(target), `.${path.basename(target)}.${process.pid}.${Date.now()}.tmp`);
     const response = await this.fetchImpl(asset.downloadUrl, { headers: this.headers({ accept: "model/gltf-binary" }), redirect: "follow" });
-    if (!response.ok || !response.body) {
-      const text = await response.text().catch(() => "");
-      throw new AssetClientError(text || `Download failed with HTTP ${response.status}`, {
-        status: response.status,
-        code: "download_failed",
-      });
-    }
+    if (!response.ok || !response.body) throw new AssetClientError(`Download failed with HTTP ${response.status}`, { status: response.status, code: "download_failed" });
     try {
       await pipeline(Readable.fromWeb(response.body), createWriteStream(temporary, { flags: "wx" }));
       await rename(temporary, target);
@@ -96,7 +80,6 @@ export class AssetClient {
       await unlink(temporary).catch(() => undefined);
       throw error;
     }
-    const downloaded = await stat(target);
-    return { asset, path: target, bytes: downloaded.size };
+    return { asset, path: target, bytes: (await stat(target)).size };
   }
 }

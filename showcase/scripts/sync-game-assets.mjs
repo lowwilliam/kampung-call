@@ -1,4 +1,5 @@
 import { access, copyFile, cp, mkdir, readFile, rm } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -23,6 +24,11 @@ await mkdir(outputRoot, { recursive: true });
 await rm(previewOutput, { recursive: true, force: true });
 await mkdir(previewOutput, { recursive: true });
 await rm(downloadOutput, { recursive: true, force: true });
+await mkdir(downloadOutput, { recursive: true });
+execFileSync("npm", ["pack", path.join(siteRoot, "cli-package"), "--pack-destination", downloadOutput], {
+  cwd: siteRoot,
+  stdio: "ignore",
+});
 
 let previewCount = 0;
 await Promise.all(manifest.assets.map(async (asset) => {

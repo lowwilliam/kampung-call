@@ -1,0 +1,18 @@
+{
+  "name": "kampung-assets",
+  "version": "0.2.0",
+  "description": "Command-line access to the Kampung 3D Collection hosted on ChatGPT Sites.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "kampung-assets": "./bin/kampung-assets.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

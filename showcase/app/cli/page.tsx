@@ -1,4 +1,6 @@
 const collectionUrl = "https://kampung-call-collection.will-ai.chatgpt.site";
+const cliPackageUrl = `${collectionUrl}/downloads/kampung-assets-0.2.0.tgz`;
+const mcpUrl = `${collectionUrl}/mcp`;
 
 function Terminal({ label, children }: { label: string; children: string }) {
   return (
@@ -45,17 +47,15 @@ game:lost-pearl-bank-apartments Pearl Bank Apartments`}</Terminal>
           <div className="guide-grid">
             <article className="guide-step">
               <span>01</span>
-              <div><h3>Install locally</h3><p>From this repository, install the collection tooling and expose the command on your machine.</p></div>
-              <Terminal label="Terminal">{`cd showcase
-npm install
-npm link`}</Terminal>
+              <div><h3>Install the public CLI</h3><p>Install the signed release package directly from this ChatGPT-hosted collection.</p></div>
+              <Terminal label="Terminal">{`npm install --global "${cliPackageUrl}"`}</Terminal>
             </article>
 
             <article className="guide-step">
               <span>02</span>
-              <div><h3>Choose the collection</h3><p>Point the CLI at the hosted archive once, or pass <code>--base-url</code> to an individual command.</p></div>
-              <Terminal label="Terminal">{`export KAMPUNG_ASSET_API_URL="${collectionUrl}"
-kampung-assets list --category "Lost Heritage"`}</Terminal>
+              <div><h3>Search immediately</h3><p>The public CLI already points to this ChatGPT-hosted collection. No environment setup is required.</p></div>
+              <Terminal label="Terminal">{`kampung-assets list --category "Lost Heritage"
+kampung-assets list --query heritage --json`}</Terminal>
             </article>
 
             <article className="guide-step">
@@ -79,10 +79,9 @@ kampung-assets list --category "Service Gear" --json`}</Terminal>
           <div>
             <p className="eyebrow">For agent-enabled terminals</p>
             <h2 id="mcp-title">Use the same collection through MCP.</h2>
-            <p>Run the included local stdio server, then add it to any MCP-compatible client. It exposes only search, detail and grant-controlled downloads.</p>
+            <p>Connect ChatGPT, Codex or another MCP client to the public Streamable HTTP endpoint. It exposes only search, detail and grant-controlled download links.</p>
           </div>
-          <Terminal label="MCP server">{`cd showcase
-KAMPUNG_ASSET_API_URL="${collectionUrl}" npm run mcp`}</Terminal>
+          <Terminal label="Remote MCP endpoint">{mcpUrl}</Terminal>
         </section>
 
         <section className="cli-reference" aria-label="Command reference">
@@ -92,7 +91,7 @@ KAMPUNG_ASSET_API_URL="${collectionUrl}" npm run mcp`}</Terminal>
             <code>get</code><span>Read one asset record</span>
             <code>download</code><span>Save one permitted GLB</span>
           </div>
-          <a href="/">Browse the live collection ↗</a>
+          <a href={cliPackageUrl}>Download the CLI package ↗</a>
         </section>
       </main>
     </div>

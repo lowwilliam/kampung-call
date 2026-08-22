@@ -38,7 +38,7 @@ Commands:
   download <asset-id> [-o FILE]
 
 Environment:
-  KAMPUNG_ASSET_API_URL    Default site origin (defaults to http://localhost:3000)
+  KAMPUNG_ASSET_API_URL    Override the ChatGPT-hosted collection origin
   KAMPUNG_ASSET_API_TOKEN  Optional bearer token for protected deployments
 
 Asset IDs are namespaced, for example game:peranakan-house.

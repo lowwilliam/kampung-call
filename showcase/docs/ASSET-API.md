@@ -26,30 +26,14 @@ Asset IDs are namespaced: `game:peranakan-house` and `community:<uuid>`. List fi
 
 ## CLI
 
-From `showcase/`:
+Install the CLI directly from the ChatGPT-hosted collection:
 
 ```bash
-npm link
-export KAMPUNG_ASSET_API_URL="https://your-collection.example"
+npm install --global "https://kampung-call-collection.will-ai.chatgpt.site/downloads/kampung-assets-0.2.0.tgz"
 
 kampung-assets list --query house
 kampung-assets get game:peranakan-house
 kampung-assets download game:peranakan-house -o ./models/peranakan-house.glb
-```
-
-Submit with the provided metadata template:
-
-```bash
-cp tooling/submission.example.json submission.json
-kampung-assets upload ./model.glb --metadata ./submission.json --yes-rights
-```
-
-Add `--allow-download` only when the contributor explicitly wants the published GLB to be downloadable. The upload response contains the recovery receipt:
-
-```bash
-kampung-assets status RECEIPT
-kampung-assets replace RECEIPT ./revised-model.glb
-kampung-assets withdraw RECEIPT --yes
 ```
 
 Every command accepts `--json`. `KAMPUNG_ASSET_API_TOKEN` is forwarded as a bearer token for deployments that place the public API behind an access gateway.
@@ -61,29 +45,14 @@ The server runs over stdio and exposes:
 - `search_assets`
 - `get_asset`
 - `download_asset`
-- `upload_asset`
-- `get_submission`
-- `replace_submission`
-- `withdraw_submission`
 
-Example MCP host configuration:
+The production Streamable HTTP endpoint is:
 
-```json
-{
-  "mcpServers": {
-    "kampung-call-assets": {
-      "command": "node",
-      "args": ["/absolute/path/to/showcase/mcp/server.mjs"],
-      "env": {
-        "KAMPUNG_ASSET_API_URL": "https://your-collection.example",
-        "KAMPUNG_ASSET_ROOTS": "/absolute/path/to/allowed/assets"
-      }
-    }
-  }
-}
+```text
+https://kampung-call-collection.will-ai.chatgpt.site/mcp
 ```
 
-`KAMPUNG_ASSET_ROOTS` is a platform-delimited list of directories the MCP server may read uploads from or write downloads into. It defaults to the MCP process working directory. Standard output is reserved for MCP protocol messages; diagnostics go to standard error.
+The repository also retains a local stdio server for development. The public endpoint returns licensed download URLs instead of attempting to write to a remote user's filesystem.
 
 ## Development verification
 

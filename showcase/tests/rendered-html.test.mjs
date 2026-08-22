@@ -98,6 +98,7 @@ test("server-renders the CLI and terminal guide", async () => {
   assert.match(html, /kampung-assets list --query heritage/i);
   assert.match(html, /game:lost-national-theatre/i);
   assert.match(html, /kampung-call-collection\.will-ai\.chatgpt\.site/i);
-  assert.match(html, /npm run mcp/i);
+  assert.match(html, /\/mcp/i);
+  assert.match(html, /kampung-assets-0\.2\.0\.tgz/i);
   assert.doesNotMatch(html, /kampung-assets upload|replace_submission|withdraw_submission/i);
 });
