@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T13:47:04.657Z",
+  "generatedAt": "2026-08-22T09:39:02.028Z",
   "manifest": [
     {
       "name": "engineer",
@@ -1554,18 +1554,39 @@
       "budget": 35000,
       "materialBudget": 8,
       "overBudget": false
+    },
+    {
+      "name": "experience:alfa-romeo-giulia-spider-v2",
+      "url": "assets/alfa-romeo-giulia-spider-v2.glb",
+      "scale": 1,
+      "dimensions": {
+        "width": 4.004901133477688,
+        "height": 1.3948943749572007,
+        "depth": 1.9479999740116483
+      },
+      "minY": 0.03799997414100492,
+      "maxY": 1.4328943490982056,
+      "requiredRadius": 2.226765422517617,
+      "triangles": 98116,
+      "materials": 15,
+      "meshCount": 203,
+      "compressed": false,
+      "kind": "hero",
+      "budget": 35000,
+      "materialBudget": 4,
+      "overBudget": true
     }
   ],
   "unreferenced": [],
   "legacyBrandedAssets": [],
   "failures": [],
   "summary": {
-    "assets": 74,
-    "triangles": 871382,
+    "assets": 75,
+    "triangles": 969498,
     "unreferenced": 0,
-    "assetsOverBudget": 0,
-    "materialsOverBudget": 0,
-    "ungrounded": 0,
-    "uncompressed": 0
+    "assetsOverBudget": 1,
+    "materialsOverBudget": 1,
+    "ungrounded": 1,
+    "uncompressed": 1
   }
 }
