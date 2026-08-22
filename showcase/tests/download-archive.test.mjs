@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -14,5 +14,5 @@ test("keeps every manifested model available without publishing a mass-download 
   assert.equal(modelFiles.length, 74);
   assert.equal(new Set(modelFiles).size, 74);
   await Promise.all(modelFiles.map((name) => access(path.join(modelsRoot, name))));
-  await assert.rejects(access(downloadsRoot));
+  assert.deepEqual(await readdir(downloadsRoot), ["kampung-assets-0.2.0.tgz"]);
 });
