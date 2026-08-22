@@ -110,9 +110,23 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   padding: 0.85rem 0.65rem 0.65rem;
   overflow: hidden;
   color: var(--ink);
-  background: #fff8e3;
+  background:
+    radial-gradient(circle, rgba(91,62,31,0.11) 0 0.55px, transparent 0.75px) 0 0 / 7px 9px,
+    linear-gradient(135deg, #fff9e8, #efe1b8);
   box-shadow: 0 5px 0 rgba(39,48,47,0.12), 0 9px 18px rgba(39,48,47,0.12);
   isolation: isolate;
+  -webkit-mask:
+    radial-gradient(circle at 0 7px, transparent 4px, #000 4.5px) 0 0 / 100% 14px repeat-y,
+    radial-gradient(circle at 100% 7px, transparent 4px, #000 4.5px) 0 0 / 100% 14px repeat-y,
+    radial-gradient(circle at 7px 0, transparent 4px, #000 4.5px) 0 0 / 14px 100% repeat-x,
+    radial-gradient(circle at 7px 100%, transparent 4px, #000 4.5px) 0 0 / 14px 100% repeat-x;
+  -webkit-mask-composite: source-in, source-in, source-in;
+  mask:
+    radial-gradient(circle at 0 7px, transparent 4px, #000 4.5px) 0 0 / 100% 14px repeat-y,
+    radial-gradient(circle at 100% 7px, transparent 4px, #000 4.5px) 0 0 / 100% 14px repeat-y,
+    radial-gradient(circle at 7px 0, transparent 4px, #000 4.5px) 0 0 / 14px 100% repeat-x,
+    radial-gradient(circle at 7px 100%, transparent 4px, #000 4.5px) 0 0 / 14px 100% repeat-x;
+  mask-composite: intersect;
   transform: rotate(-0.7deg);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
@@ -138,12 +152,32 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     radial-gradient(circle at 0 7px, var(--paper-soft) 0 3.5px, transparent 3.8px) 0 0 / 8px 14px repeat-y,
     radial-gradient(circle at 100% 7px, var(--paper-soft) 0 3.5px, transparent 3.8px) 100% 0 / 8px 14px repeat-y;
 }
+.hero-asset-tile::after {
+  content: "SG · 74";
+  position: absolute;
+  z-index: 3;
+  top: 1.2rem;
+  right: -1rem;
+  display: grid;
+  width: 4.4rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 2px double rgba(125,48,31,0.42);
+  border-radius: 50%;
+  color: rgba(125,48,31,0.5);
+  font: 800 0.42rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: rotate(-13deg);
+}
 .hero-stamp-kicker { position: absolute; z-index: 3; top: 0.38rem; right: 0.7rem; left: 0.7rem; overflow: hidden; color: var(--terracotta); font: 800 0.42rem/1 var(--mono); letter-spacing: 0.11em; text-align: right; text-transform: uppercase; white-space: nowrap; }
-.hero-stamp-art { position: relative; display: grid; height: 100%; align-content: end; overflow: hidden; border: 1px solid var(--stamp-accent); background: color-mix(in srgb, var(--stamp-accent) 42%, #d5d1b6); isolation: isolate; }
-.hero-stamp-art::after { content: ""; position: absolute; z-index: -1; inset: 42% 0 0; background: linear-gradient(transparent, rgba(24,31,30,0.86)); }
-.hero-stamp-art img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 240ms ease; }
+.hero-stamp-art { position: relative; display: grid; height: 100%; align-content: end; overflow: hidden; border: 2px solid #6e5630; outline: 1px solid #c6a968; outline-offset: -5px; background: color-mix(in srgb, var(--stamp-accent) 42%, #d5d1b6); box-shadow: inset 0 0 0 6px rgba(64,42,20,0.16), inset 0 0 24px rgba(54,34,17,0.3); isolation: isolate; }
+.hero-stamp-art::before { content: ""; position: absolute; z-index: 3; inset: 7px; border: 1px solid rgba(255,237,188,0.78); box-shadow: 0 0 0 2px rgba(75,48,22,0.62), inset 0 0 14px rgba(55,34,17,0.22); pointer-events: none; }
+.hero-stamp-art::after { content: ""; position: absolute; z-index: 1; inset: 38% 0 0; background: linear-gradient(transparent, rgba(24,31,30,0.88)); }
+.hero-stamp-art img { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.12) saturate(0.9) contrast(1.04); transition: transform 240ms ease, filter 240ms ease; }
 .hero-asset-tile:hover img, .hero-asset-tile:focus-visible img { transform: scale(1.045); }
-.hero-stamp-copy { display: grid; position: relative; z-index: 1; padding: 0.7rem; }
+.hero-stamp-copy { display: grid; position: relative; z-index: 2; padding: 0.7rem; }
 .hero-stamp-copy > span { color: rgba(255,250,240,0.78); font: 700 0.5rem/1 var(--mono); }
 .hero-stamp-copy strong { max-width: 8ch; margin-top: 0.3rem; color: var(--chalk); font: 900 1.02rem/0.88 var(--display); letter-spacing: -0.015em; text-transform: uppercase; }
 @keyframes hero-assets-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }

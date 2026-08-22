@@ -59,6 +59,8 @@ test("uses the animated asset marquee and lazy 3D viewers", async () => {
   assert.match(css, /\.hero-assets-track\s*\{/s);
   assert.match(css, /@keyframes hero-assets-scroll\s*\{[^}]*translateX\(0\)[\s\S]*translateX\(-50%\)/);
   assert.match(css, /animation-play-state:\s*paused/);
+  assert.match(css, /mask-composite:\s*intersect/);
+  assert.match(css, /hero-stamp-art::before/);
   assert.match(source, /HeroAssetMarquee/);
   assert.match(source, /aria-roledescription="carousel"/);
   assert.match(source, /hero-stamp-art/);
