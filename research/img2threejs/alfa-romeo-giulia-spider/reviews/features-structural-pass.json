@@ -1,0 +1,5 @@
+[
+  {"id":"alfa-front-identity","score":0.80,"visible":true,"notes":"Shield grille, twin intakes, round lamps and bumper-overrider hierarchy are distinct."},
+  {"id":"open-cockpit-system","score":0.78,"visible":true,"notes":"Split raked windshield, red cabin, gauges and right-hand steering system are present; upholstery is simplified."},
+  {"id":"wheel-system-detail","score":0.72,"visible":true,"notes":"Four separate wheel assemblies and hubcaps read; ventilation holes are approximate recess markers."}
+]

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive procedural Three.js reconstruction of a 1963 Alfa Romeo Giulia Spider." />
+    <title>1963 Alfa Romeo Giulia Spider — Procedural 3D Study</title>
+    <script type="module" src="/src/alfa-romeo-giulia-spider-preview.js"></script>
+  </head>
+  <body>
+    <main class="car-study">
+      <section class="viewer" aria-label="Interactive 3D car viewer">
+        <canvas id="car-canvas"></canvas>
+        <div class="title-card"><span>Blender-authored reconstruction · 1963</span><h1>Alfa Romeo<br>Giulia Spider</h1><p id="readout">Building model…</p></div>
+        <div class="view-controls" aria-label="Camera views">
+          <button data-view="front-three-quarter" class="active">Front ¾</button><button data-view="rear-three-quarter">Rear ¾</button><button data-view="front">Front</button><button data-view="side">Side</button><button data-view="cockpit">Cockpit</button>
+        </div>
+        <div class="interaction-controls">
+          <label><span>Explode</span><input id="explode" type="range" min="0" max="1" step="0.01" value="0"></label>
+          <label><span>Doors</span><input id="doors" type="range" min="0" max="1" step="0.01" value="0"></label>
+          <label><span>Hood</span><input id="hood" type="range" min="0" max="1" step="0.01" value="0"></label>
+          <label><span>Steering</span><input id="steering" type="range" min="-0.8" max="0.8" step="0.01" value="0"></label>
+        </div>
+        <div id="part-label" class="part-label">Click a component</div>
+      </section>
+      <aside><p class="eyebrow">Image-to-Three.js study</p><h2>Eight views,<br>one code-built car.</h2><p>Blender CLI-authored compound bodywork, boolean wheel arches, modeled Alfa shield grille, split windshield, oxblood cabin, punched steel wheels, and polished brightwork—exported as a web-ready glTF asset.</p><dl><div><dt>Source</dt><dd>8 admitted museum photographs</dd></div><div><dt>Runtime</dt><dd id="runtime-detail">Named, clickable, explodable parts</dd></div><div><dt>Confidence</dt><dd>Exterior high · hidden mechanics inferred</dd></div></dl><p class="note">Approximate real-time reconstruction. Underside, engine bay, exact badge artwork, plate typography, and folded roof mechanism are simplified or omitted.</p></aside>
+    </main>
+  </body>
+</html>

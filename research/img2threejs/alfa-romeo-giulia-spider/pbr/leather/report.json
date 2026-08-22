@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.93,
+  "estimatedFidelity": 0.93,
+  "targetThreshold": 0.7,
+  "materialId": "red-leather",
+  "sourceImage": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/references/cabin-left.jpg",
+  "outDir": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather",
+  "palette": [
+    "#201A19",
+    "#B13F38",
+    "#5D1516",
+    "#4E4C3F",
+    "#D69180"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather/red-leather_albedo.png",
+      "url": "red-leather_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather/red-leather_roughness.png",
+      "url": "red-leather_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather/red-leather_height.png",
+      "url": "red-leather_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather/red-leather_normal.png",
+      "url": "red-leather_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/william/Documents/Massanger/research/img2threejs/alfa-romeo-giulia-spider/pbr/leather/red-leather_ao.png",
+      "url": "red-leather_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 2880,
+    "sourceHeight": 3840,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 2880,
+      "height": 3840
+    },
+    "mask": {
+      "backgroundColor": "#32332B",
+      "backgroundNoise": 193.424,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.7108
+    },
+    "mapStats": {
+      "valueRange": 0.5609,
+      "heightP90Gradient": 0.06264,
+      "roughnessBase": 0.715,
+      "roughnessVariation": 0.12,
+      "normalStrength": 0.23,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#201A19",
+      "#B13F38",
+      "#5D1516",
+      "#4E4C3F",
+      "#D69180"
+    ]
+  },
+  "warnings": [
+    "source image was converted to PNG with macOS sips before pixel extraction"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

@@ -58,6 +58,21 @@ function readManifest() {
       knownUrls.add(url);
     }
   }
+  // Dedicated experience pages may load canonical GLBs outside the main world
+  // and collection manifests. Include their static import.meta.url references
+  // so valid page assets are audited instead of reported as dead files.
+  const standaloneSources = [path.join(root, 'src', 'loadAlfaRomeoGiuliaSpiderModel.js')];
+  const knownUrls = new Set(manifest.map((entry) => entry.url));
+  for (const standaloneSource of standaloneSources) {
+    if (!fs.existsSync(standaloneSource)) continue;
+    const source = fs.readFileSync(standaloneSource, 'utf8');
+    for (const match of source.matchAll(/\.\.\/(assets\/[A-Za-z0-9_./-]+\.glb)/g)) {
+      const url = match[1];
+      if (knownUrls.has(url)) continue;
+      manifest.push({ name: `experience:${path.basename(url, '.glb')}`, url, scale: 1, experienceOnly: true });
+      knownUrls.add(url);
+    }
+  }
   return manifest;
 }
 

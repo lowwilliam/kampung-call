@@ -4,3 +4,8 @@ node_modules/
 npm-debug.log*
 coverage/
 dist/
+
+# Blender autosaves and local conflict-copy filenames are never source assets.
+*.blend1
+* [0-9].*
+review-shots/*.log

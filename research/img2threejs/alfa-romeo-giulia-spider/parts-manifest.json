@@ -1,0 +1,151 @@
+{
+  "model": "1963-alfa-romeo-giulia-spider",
+  "parts": [
+    {
+      "name": "root",
+      "kind": "part",
+      "module": "root",
+      "triangles": 0
+    },
+    {
+      "name": "body-shell",
+      "kind": "part",
+      "module": "body-shell",
+      "triangles": 3388
+    },
+    {
+      "name": "front-fender-system",
+      "kind": "part",
+      "module": "front-fender-system",
+      "triangles": 8272
+    },
+    {
+      "name": "rear-fender-system",
+      "kind": "part",
+      "module": "rear-fender-system",
+      "triangles": 4136
+    },
+    {
+      "name": "hood",
+      "kind": "part",
+      "module": "hood",
+      "triangles": 4080
+    },
+    {
+      "name": "trunk-lid",
+      "kind": "part",
+      "module": "trunk-lid",
+      "triangles": 3424
+    },
+    {
+      "name": "cockpit",
+      "kind": "part",
+      "module": "cockpit",
+      "triangles": 9024
+    },
+    {
+      "name": "left-door",
+      "kind": "part",
+      "module": "left-door",
+      "triangles": 4524
+    },
+    {
+      "name": "right-door",
+      "kind": "part",
+      "module": "right-door",
+      "triangles": 4524
+    },
+    {
+      "name": "windshield",
+      "kind": "part",
+      "module": "windshield",
+      "triangles": 1588
+    },
+    {
+      "name": "dashboard",
+      "kind": "part",
+      "module": "dashboard",
+      "triangles": 1512
+    },
+    {
+      "name": "gauge-cluster",
+      "kind": "part",
+      "module": "gauge-cluster",
+      "triangles": 1116
+    },
+    {
+      "name": "steering-system",
+      "kind": "part",
+      "module": "steering-system",
+      "triangles": 1572
+    },
+    {
+      "name": "front-wheel-left",
+      "kind": "part",
+      "module": "front-wheel-left",
+      "triangles": 2656
+    },
+    {
+      "name": "front-wheel-right",
+      "kind": "part",
+      "module": "front-wheel-right",
+      "triangles": 2656
+    },
+    {
+      "name": "rear-wheel-left",
+      "kind": "part",
+      "module": "rear-wheel-left",
+      "triangles": 2656
+    },
+    {
+      "name": "rear-wheel-right",
+      "kind": "part",
+      "module": "rear-wheel-right",
+      "triangles": 2656
+    },
+    {
+      "name": "front-grille",
+      "kind": "part",
+      "module": "front-grille",
+      "triangles": 4680
+    },
+    {
+      "name": "front-lighting",
+      "kind": "part",
+      "module": "front-lighting",
+      "triangles": 1392
+    },
+    {
+      "name": "front-bumper",
+      "kind": "part",
+      "module": "front-bumper",
+      "triangles": 6604
+    },
+    {
+      "name": "rear-lighting",
+      "kind": "part",
+      "module": "rear-lighting",
+      "triangles": 8712
+    },
+    {
+      "name": "rear-bumper",
+      "kind": "part",
+      "module": "rear-bumper",
+      "triangles": 6604
+    },
+    {
+      "name": "exhaust",
+      "kind": "part",
+      "module": "exhaust",
+      "triangles": 684
+    },
+    {
+      "name": "floor-chassis",
+      "kind": "part",
+      "module": "floor-chassis",
+      "triangles": 1620
+    }
+  ],
+  "unnamedMeshes": 0,
+  "integralMeshes": 130
+}
