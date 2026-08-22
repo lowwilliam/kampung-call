@@ -49,7 +49,7 @@ The server runs over stdio and exposes:
 The production Streamable HTTP endpoint is:
 
 ```text
-https://kampung-call-collection.will-ai.chatgpt.site/mcp
+https://kampung-call-collection.will-ai.chatgpt.site/api/mcp
 ```
 
 The repository also retains a local stdio server for development. The public endpoint returns licensed download URLs instead of attempting to write to a remote user's filesystem.

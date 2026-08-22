@@ -1,6 +1,6 @@
 const collectionUrl = "https://kampung-call-collection.will-ai.chatgpt.site";
 const cliPackageUrl = `${collectionUrl}/downloads/kampung-assets-0.2.0.tgz`;
-const mcpUrl = `${collectionUrl}/mcp`;
+const mcpUrl = `${collectionUrl}/api/mcp`;
 
 function Terminal({ label, children }: { label: string; children: string }) {
   return (

@@ -1,6 +1,4 @@
-import { createHostedMcpHandler } from "../../mcp/remote-server.mjs";
-
-export const runtime = "edge";
+import { createHostedMcpHandler } from "../../../mcp/remote-server.mjs";
 
 const hostedMcp = createHostedMcpHandler();
 
